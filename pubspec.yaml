@@ -1,0 +1,83 @@
+name: banx
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.1.2 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  go_router: ^14.0.2
+
+  designsystem:
+    path: core/designsystem
+  data:
+    path: core/data
+  domain:
+    path: core/domain
+  utils:
+    path: core/utils
+  login:
+    path: feature/login
+  splash:
+    path: feature/splash
+  forgot_password:
+    path: feature/forgot_password
+  signup:
+    path: feature/signup
+  reset_password:
+    path: feature/reset_password
+  initial:
+    path: feature/initial
+  flutter_localizations:
+    sdk: flutter
+  intl: any
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.2
+  melos: ^6.0.0
+
+flutter:
+  fonts:
+    - family: Nunito
+      fonts:
+        - asset: assets/fonts/Nunito-Black.ttf
+          weight: 900
+          style: normal
+        - asset: assets/fonts/Nunito-Bold.ttf
+          weight: 700
+          style: normal
+        - asset: assets/fonts/Nunito-ExtraBold.ttf
+          weight: 800
+          style: normal
+        - asset: assets/fonts/Nunito-SemiBold.ttf
+          weight: 600
+          style: normal
+        - asset: assets/fonts/Nunito-Light.ttf
+          weight: 300
+          style: normal
+        - asset: assets/fonts/Nunito-ExtraLight.ttf
+          weight: 200
+          style: normal
+        - asset: assets/fonts/Nunito-Medium.ttf
+          weight: 500
+          style: normal
+        - asset: assets/fonts/Nunito-Regular.ttf
+          weight: 400
+          style: normal
+    - family: Banx
+      fonts:
+        - asset: assets/fonts/Banx.ttf
+
+
+  uses-material-design: true
+
+  assets:
+    - assets/images/slide-01.png
+    - assets/images/slide-02.png
+    - assets/images/slide-03.png
+    - assets/images/circle_user.svg

@@ -1,0 +1,86 @@
+name: banx
+repository: https://gitlab.com/mb2.cto/gp-banx-app.git
+
+packages:
+  - feature/*
+  - feature/*/*
+  - feature/*/*/*
+  - core/*
+  - core/*/*
+  - core/*/*/*
+
+command:
+  version:
+    # Generate commit links in package changelogs.
+    linkToCommits: true
+    # # Only allow versioning to happen on main branch.
+    # branch: master
+    # Additionally build a changelog at the root of the workspace.
+    workspaceChangelog: true
+
+  bootstrap:
+    # It seems so that running "pub get" in parallel has some issues (like
+    # https://github.com/dart-lang/pub/issues/3404). Disabling this feature
+    # makes the CI much more stable.
+    runPubGetInParallel: false
+    usePubspecOverrides: true
+
+scripts:
+
+  lint:all:
+    run: flutter pub global run melos run analyze
+    description: Run all static analysis checks.
+
+  analyze:
+    # We are setting the concurrency to 1 because a higher concurrency can crash
+    # the analysis server on low performance machines (like GitHub Actions).
+    run: |
+      flutter pub global run melos exec -c 1 -- \
+        dart analyze . --fatal-infos
+    description: |
+      Run `dart analyze` in all packages.
+       - Note: you can also rely on your IDEs Dart Analysis / Issues window.
+
+  test:all:
+    run: |
+      flutter pub global run melos run test --no-select
+    description: |
+      Run all tests available.
+
+  test:
+    run: |
+      flutter pub global run melos exec -c 6 --fail-fast -- \
+        "flutter test"
+    description: Run `flutter test` for a specific package.
+    packageFilters:
+      dirExists:
+        - test
+      ignore:
+        - '*web*'
+        - '*odm*'
+        - '*example*'
+
+  clean:deep:
+    run: git clean -x -d -f -q
+    description: Clean things very deeply, can be used to establish "pristine checkout" status.
+
+  qualitycheck:
+    run: |
+      flutter pub global run melos run clean:deep && \
+      flutter pub global run melos clean && \
+      flutter pub global run melos bootstrap && \
+      flutter pub global run melos run lint:all && \
+      flutter pub global run melos run test:all
+    description: Run all targets generally expected in CI for a full local quality check.
+
+  generate:pigeon:
+    run: |
+      flutter pub global run melos exec -- "flutter pub run pigeon --input ./pigeons/messages.dart" && \
+      flutter pub global run melos run generate:pigeon:macos --no-select && \
+    packageFilters:
+      fileExists: 'pigeons/messages.dart'
+    description: Generate the pigeon messages for all the supported packages.
+
+  # Additional cleanup lifecycle script, executed when `flutter pub global run melos clean` is run.
+  postclean: >
+    flutter pub global run melos exec -c 6 -- "flutter clean"

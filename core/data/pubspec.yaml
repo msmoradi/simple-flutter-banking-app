@@ -1,0 +1,26 @@
+name: data
+description: Dart package which manages the data.
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.1.2 <4.0.0'
+
+
+dependencies:
+  equatable: ^2.0.0
+  uuid: ^3.0.0
+  domain:
+    path: ../domain
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+
+flutter:
+  module:
+    androidX: true
+    androidPackage: com.banx.core.data
+    iosBundleIdentifier: com.banx.core.data
