@@ -19,12 +19,10 @@ class PhoneBloc extends Bloc<PhoneEvent, PhoneState> {
     PhoneSubmitted event,
     Emitter<PhoneState> emit,
   ) async {
-    emit(PhoneInProgress());
+    emit(PhoneSuccess("sample id "));
+   /* emit(PhoneInProgress());
     try {
-      final response = await loginRepository.login(
-        event.email,
-        event.password,
-      );
+      final response = await loginRepository.login(event.phoneNumber,"");
 
       response.when(
           success: (success) => emit(PhoneSuccess()),
@@ -33,6 +31,6 @@ class PhoneBloc extends Bloc<PhoneEvent, PhoneState> {
               emit(PhoneFailure(exception.toString())));
     } catch (_) {
       emit(const PhoneFailure('on handled error'));
-    }
+    }*/
   }
 }

@@ -9,13 +9,11 @@ import 'package:phone/presentation/view/phone_form.dart';
 import '../bloc/phone_bloc.dart';
 
 class PhonePage extends StatelessWidget {
-  final Function() onSignUpTapped;
-  final Function() onForgotPasswordTapped;
+  final Function(String) onVerifyOtp;
 
   const PhonePage({
     super.key,
-    required this.onSignUpTapped,
-    required this.onForgotPasswordTapped,
+    required this.onVerifyOtp,
   });
 
   @override
@@ -27,8 +25,7 @@ class PhonePage extends StatelessWidget {
         child: BlocProvider(
           create: (context) => loginBloc,
           child: PhoneForm(
-            onSignUpTapped: onSignUpTapped,
-            onForgotPasswordTapped: onForgotPasswordTapped,
+            onVerifyOtp: onVerifyOtp,
           ),
         ),
       ),
