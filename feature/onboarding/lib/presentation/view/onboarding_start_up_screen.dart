@@ -26,8 +26,8 @@ class OnboardingStartUpScreen extends StatelessWidget {
         ),
         Padding(
           padding: const EdgeInsets.symmetric(
-              vertical: InitialPage.verticalPagePadding,
-              horizontal: InitialPage.horizontalPagePadding),
+              vertical: OnboardingPage.verticalPagePadding,
+              horizontal: OnboardingPage.horizontalPagePadding),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -40,8 +40,8 @@ class OnboardingStartUpScreen extends StatelessWidget {
                 label: translator.getStarted,
                 onPressed: () {
                   controller.nextPage(
-                      duration: InitialPage.animatesDuration,
-                      curve: InitialPage.animatesCurve);
+                      duration: OnboardingPage.animatesDuration,
+                      curve: OnboardingPage.animatesCurve);
                 },
               )
             ],
