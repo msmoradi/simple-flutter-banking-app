@@ -12,8 +12,12 @@ class OTPInput extends StatefulWidget {
 }
 
 class OTPInputState extends State<OTPInput> {
-  List<TextEditingController> controllers = [];
-  List<FocusNode> focusNodes = [];
+  List<TextEditingController> controllers;
+  List<FocusNode> focusNodes;
+
+  OTPInputState()
+      : controllers = [],
+        focusNodes = [];
 
   @override
   void initState() {
@@ -47,6 +51,7 @@ class OTPInputState extends State<OTPInput> {
               focusNode: focusNodes[index],
               maxLength: 1,
               textAlign: TextAlign.center,
+              keyboardType: TextInputType.number,
               decoration: InputDecoration(
                 counterText: "",
                 enabledBorder: OutlineInputBorder(
@@ -58,17 +63,17 @@ class OTPInputState extends State<OTPInput> {
                   borderRadius: BorderRadius.circular(30),
                 ),
               ),
-              keyboardType: TextInputType.number,
               onChanged: (value) {
-                if (value.length == 1 && index == widget.numCells - 1) {
-                  bool isCompleted = controllers
-                      .every((controller) => controller.text.length == 1);
-                  if (isCompleted) {
+                if (value.length == 1) {
+                  if (index == widget.numCells - 1) {
                     widget.onCompleted(getOTP());
+                  } else {
+                    FocusScope.of(context).nextFocus();
                   }
-                }
-                if (value.length == 1 && index < widget.numCells - 1) {
-                  FocusScope.of(context).nextFocus();
+                } else {
+                  if (index > 0) {
+                    FocusScope.of(context).previousFocus();
+                  }
                 }
               },
             ),
