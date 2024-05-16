@@ -1,3 +1,4 @@
+import 'package:designsystem/widgets/appbar/empty_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:login/data/datasource/local/login_remote_datasource_impl.dart';
@@ -20,15 +21,14 @@ class PhonePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-          child: BlocProvider(
-            create: (context) => loginBloc,
-            child: PhoneForm(
-              onSignUpTapped: onSignUpTapped,
-              onForgotPasswordTapped: onForgotPasswordTapped,
-            ),
+      appBar: const EmptyAppBar(),
+      body: Padding(
+        padding: const EdgeInsets.all(16),
+        child: BlocProvider(
+          create: (context) => loginBloc,
+          child: PhoneForm(
+            onSignUpTapped: onSignUpTapped,
+            onForgotPasswordTapped: onForgotPasswordTapped,
           ),
         ),
       ),
