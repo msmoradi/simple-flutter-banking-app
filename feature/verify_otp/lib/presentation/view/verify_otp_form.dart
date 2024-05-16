@@ -45,12 +45,17 @@ class _VerifyOtpFormState extends State<VerifyOtpForm> {
         return Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const Text(
+            Text(
               "کد تأیید را وارد کنید",
+              style: Theme.of(context)
+                  .textTheme
+                  .headlineSmall
+                  ?.copyWith(fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 16),
             Text(
               "کد ${widget.numCells} رقمی ارسال شده به شماره تلفن همراه ${widget.phoneNumber} را وارد نمایید",
+              style: Theme.of(context).textTheme.titleMedium,
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 32),

@@ -46,6 +46,10 @@ class _PhoneFormState extends State<PhoneForm> {
             Align(
               alignment: Alignment.centerRight,
               child: Text(
+                style: Theme.of(context)
+                    .textTheme
+                    .headlineMedium
+                    ?.copyWith(fontWeight: FontWeight.bold),
                 translator.mobilePhoneNumber,
               ),
             ),
@@ -63,10 +67,13 @@ class _PhoneFormState extends State<PhoneForm> {
                   ],
                 )),
             const Spacer(),
-            const Padding(
+            Padding(
               padding: EdgeInsets.symmetric(horizontal: 40),
               child: Text(
                 "با ثبت نام در بنکس، با شرایط استفاده و سیاست حفظ حریم خصوصی ما موافقت می‌کنید",
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyMedium,
                 textAlign: TextAlign.center,
               ),
             ),

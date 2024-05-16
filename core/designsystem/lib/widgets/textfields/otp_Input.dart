@@ -56,6 +56,10 @@ class OTPInputState extends State<OTPInput> {
           return SizedBox(
             width: 50,
             child: TextField(
+              style: Theme.of(context)
+                  .textTheme
+                  .bodyMedium
+                  ?.copyWith(fontWeight: FontWeight.bold),
               controller: controllers[index],
               focusNode: focusNodes[index],
               maxLength: 1,
@@ -63,7 +67,7 @@ class OTPInputState extends State<OTPInput> {
               keyboardType: TextInputType.number,
               decoration: InputDecoration(
                 isDense: true,
-                contentPadding: const EdgeInsets.symmetric(vertical: 8),
+                contentPadding: const EdgeInsets.symmetric(vertical: 12),
                 counterText: "",
                 border:
                     OutlineInputBorder(borderRadius: BorderRadius.circular(25)),
