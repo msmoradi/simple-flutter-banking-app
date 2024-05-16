@@ -2,8 +2,7 @@ import 'package:domain/entities/phone_number.dart';
 
 extension PhoneNumberExtension on PhoneNumber {
   bool isValid() {
-    return RegExp(
-            r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$')
+    return RegExp(r'^(?:0|\+98|0098)?9\d{9}$|^(?:0|\+98|0098)21\d{8}$')
         .hasMatch(value);
   }
 
