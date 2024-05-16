@@ -20,8 +20,6 @@ class VerifyOtpForm extends StatefulWidget {
 }
 
 class _VerifyOtpFormState extends State<VerifyOtpForm> {
-  final _formKey = GlobalKey<FormState>();
-
   // GlobalKey to access the OTPInput state
   final GlobalKey<OTPInputState> otpKey = GlobalKey();
 
