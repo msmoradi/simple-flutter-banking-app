@@ -6,6 +6,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/intl.dart' as intl;
 
 import 'app_localizations_en.dart';
+import 'app_localizations_fa.dart';
 
 /// Callers can lookup localized strings with an instance of Translator
 /// returned by `Translator.of(context)`.
@@ -88,7 +89,8 @@ abstract class Translator {
 
   /// A list of this localizations delegate's supported locales.
   static const List<Locale> supportedLocales = <Locale>[
-    Locale('en')
+    Locale('en'),
+    Locale('fa')
   ];
 
   /// No description provided for @logIn.
@@ -96,6 +98,18 @@ abstract class Translator {
   /// In en, this message translates to:
   /// **'Log in'**
   String get logIn;
+
+  /// No description provided for @mobilePhoneNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'Phone Number'**
+  String get mobilePhoneNumber;
+
+  /// No description provided for @acceptAndContinue.
+  ///
+  /// In en, this message translates to:
+  /// **'تأیید و ادامه'**
+  String get acceptAndContinue;
 
   /// No description provided for @signUp.
   ///
@@ -749,7 +763,7 @@ class _TranslatorDelegate extends LocalizationsDelegate<Translator> {
   }
 
   @override
-  bool isSupported(Locale locale) => <String>['en'].contains(locale.languageCode);
+  bool isSupported(Locale locale) => <String>['en', 'fa'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_TranslatorDelegate old) => false;
@@ -761,6 +775,7 @@ Translator lookupTranslator(Locale locale) {
   // Lookup logic when only language code is specified.
   switch (locale.languageCode) {
     case 'en': return TranslatorEn();
+    case 'fa': return TranslatorFa();
   }
 
   throw FlutterError(
