@@ -70,14 +70,7 @@ class OTPInputState extends State<OTPInput> {
                     OutlineInputBorder(borderRadius: BorderRadius.circular(25)),
               ),
               onChanged: (value) {
-                String persianValue = value.toPersianDigits;
-                if (value != persianValue) {
-                  controllers[index].text = persianValue;
-                  controllers[index].selection = TextSelection.fromPosition(
-                    TextPosition(offset: persianValue.length),
-                  );
-                }
-                if (persianValue.length == 1) {
+                if (value.length == 1) {
                   if (index == widget.numCells - 1) {
                     widget.onCompleted(getOTP());
                   } else {

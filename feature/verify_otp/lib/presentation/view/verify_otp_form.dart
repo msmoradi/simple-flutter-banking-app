@@ -51,8 +51,7 @@ class _VerifyOtpFormState extends State<VerifyOtpForm> {
             ),
             const SizedBox(height: 16),
             Text(
-              "کد ${widget.numCells} رقمی ارسال شده به شماره تلفن همراه ${widget.phoneNumber} را وارد نمایید"
-                  .toPersianDigits,
+              "کد ${widget.numCells} رقمی ارسال شده به شماره تلفن همراه ${widget.phoneNumber} را وارد نمایید",
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 32),
