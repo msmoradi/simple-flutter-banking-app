@@ -21,6 +21,8 @@ dependencies:
     path: core/utils
   login:
     path: feature/login
+  phone:
+    path: feature/phone
   splash:
     path: feature/splash
   forgot_password:

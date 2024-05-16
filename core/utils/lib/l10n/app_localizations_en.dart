@@ -8,6 +8,12 @@ class TranslatorEn extends Translator {
   String get logIn => 'Log in';
 
   @override
+  String get mobilePhoneNumber => 'Phone Number';
+
+  @override
+  String get acceptAndContinue => 'تأیید و ادامه';
+
+  @override
   String get signUp => 'Sign up';
 
   @override

@@ -106,25 +106,10 @@ class _LoginFormState extends State<LoginForm> {
                 label: translator.logIn,
                 isLoading: state is LoginInProgress,
               ),
-              Center(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      translator.doNotHaveAccount,
-                      style: TextStyles.bodyTextBody1.copyWith(
-                          color: Theme.of(context).colorScheme.onSecondary),
-                    ),
-                    TextButton(
-                      onPressed: widget.onSignUpTapped,
-                      child: Text(
-                        translator.signUp,
-                        style: TextStyles.h7.copyWith(
-                            color: Theme.of(context).colorScheme.primary),
-                      ),
-                    ),
-                  ],
-                ),
+              const SizedBox(height: 16),
+              PrimaryFillButton(
+                onPressed: null,
+                label: translator.signUp,
               ),
             ],
           ),
