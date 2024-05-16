@@ -58,10 +58,19 @@ flutter_launcher_icons:
 
 flutter:
   fonts:
-    - family: IranSansX
+    - family: IRANSansXFaNum
       fonts:
-        - asset: assets/fonts/iransansx-bold.ttf
-        - asset: assets/fonts/iransansx-regular.ttf
+        - asset: assets/fonts/IRANSansXFaNum-Black.ttf
+        - asset: assets/fonts/IRANSansXFaNum-Bold.ttf
+        - asset: assets/fonts/IRANSansXFaNum-DemiBold.ttf
+        - asset: assets/fonts/IRANSansXFaNum-ExtraBlack.ttf
+        - asset: assets/fonts/IRANSansXFaNum-ExtraBold.ttf
+        - asset: assets/fonts/IRANSansXFaNum-Heavy.ttf
+        - asset: assets/fonts/IRANSansXFaNum-Light.ttf
+        - asset: assets/fonts/IRANSansXFaNum-Medium.ttf
+        - asset: assets/fonts/IRANSansXFaNum-Regular.ttf
+        - asset: assets/fonts/IRANSansXFaNum-Thin.ttf
+        - asset: assets/fonts/IRANSansXFaNum-UltraLight.ttf
 
 
   uses-material-design: true
