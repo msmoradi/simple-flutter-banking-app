@@ -9,7 +9,7 @@ import 'package:phone/presentation/view/phone_form.dart';
 import '../bloc/phone_bloc.dart';
 
 class PhonePage extends StatelessWidget {
-  final Function(String) onVerifyOtp;
+  final Function(String, String, int) onVerifyOtp;
 
   const PhonePage({
     super.key,

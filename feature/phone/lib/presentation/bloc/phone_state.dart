@@ -20,9 +20,14 @@ class PhoneInProgress extends PhoneState {
 }
 
 class PhoneSuccess extends PhoneState {
-  final String id;
+  final String phoneNumber;
+  final String sessionId;
+  final int numCells;
 
-  const PhoneSuccess(this.id);
+  const PhoneSuccess(
+      {required this.phoneNumber,
+      required this.sessionId,
+      required this.numCells});
 
   @override
   List<Object?> get props => [];

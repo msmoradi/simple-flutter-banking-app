@@ -8,7 +8,7 @@ import 'package:utils/extension/build_context.dart';
 import '../bloc/phone_bloc.dart';
 
 class PhoneForm extends StatefulWidget {
-  final Function(String) onVerifyOtp;
+  final Function(String, String, int) onVerifyOtp;
 
   const PhoneForm({
     super.key,
@@ -36,7 +36,8 @@ class _PhoneFormState extends State<PhoneForm> {
               SnackBar(content: Text(state.message)),
             );
         } else if (state is PhoneSuccess) {
-          widget.onVerifyOtp(state.id);
+          widget.onVerifyOtp(
+              state.phoneNumber, state.sessionId, state.numCells);
         }
       },
       builder: (context, state) {

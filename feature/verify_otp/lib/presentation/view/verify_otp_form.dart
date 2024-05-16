@@ -9,7 +9,11 @@ import 'package:utils/extension/build_context.dart';
 import '../bloc/verify_otp_bloc.dart';
 
 class VerifyOtpForm extends StatefulWidget {
-  const VerifyOtpForm({super.key});
+  final String phoneNumber;
+  final int numCells;
+
+  const VerifyOtpForm(
+      {super.key, required this.phoneNumber, required this.numCells});
 
   @override
   State<VerifyOtpForm> createState() => _VerifyOtpFormState();
@@ -51,7 +55,7 @@ class _VerifyOtpFormState extends State<VerifyOtpForm> {
             ),
             const SizedBox(height: 16),
             Text(
-              "کد ۶ رقمی ارسال شده به شماره تلفن همراه ۰۹۱۲۵۸۴۹۸۳۴ را وارد نمایید",
+              "کد ۶ رقمی ارسال شده به شماره تلفن همراه ${widget.phoneNumber} را وارد نمایید",
               textAlign: TextAlign.center,
               style: TextStyles.bodyTextBody1
                   .copyWith(color: Theme.of(context).colorScheme.onBackground),
@@ -62,7 +66,7 @@ class _VerifyOtpFormState extends State<VerifyOtpForm> {
               child: Center(
                 child: OTPInput(
                   key: otpKey,
-                  numCells: 5,
+                  numCells: widget.numCells,
                   onCompleted: _onOTPComplete,
                 ),
               ),

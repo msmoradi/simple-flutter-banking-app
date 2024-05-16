@@ -19,8 +19,13 @@ class PhoneBloc extends Bloc<PhoneEvent, PhoneState> {
     PhoneSubmitted event,
     Emitter<PhoneState> emit,
   ) async {
-    emit(PhoneSuccess("sample id "));
-   /* emit(PhoneInProgress());
+    emit(
+      PhoneSuccess(
+          phoneNumber: event.phoneNumber,
+          sessionId: "sample session id",
+          numCells: 6),
+    );
+    /* emit(PhoneInProgress());
     try {
       final response = await loginRepository.login(event.phoneNumber,"");
 

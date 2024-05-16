@@ -8,8 +8,10 @@ class PhonePageFactory {
 
   static PhonePage builder(BuildContext context, GoRouterState state) {
     return PhonePage(
-      onVerifyOtp: (value) {
-        context.push(VerifyOtpPageFactory.path);
+      onVerifyOtp: (phoneNumber, sessionId,numCells) {
+        context.push(VerifyOtpPageFactory.path,
+            extra:
+                VerifyOtpExtra(phoneNumber: phoneNumber, sessionId: sessionId,numCells: numCells));
       },
     );
   }

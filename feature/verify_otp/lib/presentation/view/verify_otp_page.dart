@@ -8,11 +8,16 @@ import 'package:verify_otp/presentation/view/verify_otp_form.dart';
 
 class VerifyOtpPage extends StatelessWidget {
   final Function() onBackPressed;
+  final String phoneNumber;
+  final String sessionId;
+  final int numCells;
 
-  const VerifyOtpPage({
-    super.key,
-    required this.onBackPressed,
-  });
+  const VerifyOtpPage(
+      {super.key,
+      required this.onBackPressed,
+      required this.phoneNumber,
+      required this.sessionId,
+      required this.numCells});
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +31,10 @@ class VerifyOtpPage extends StatelessWidget {
         padding: const EdgeInsets.all(16),
         child: BlocProvider(
           create: (context) => loginBloc,
-          child: VerifyOtpForm(),
+          child: VerifyOtpForm(
+            phoneNumber: phoneNumber,
+            numCells: numCells,
+          ),
         ),
       ),
     );
