@@ -66,6 +66,15 @@ class _PhoneFormState extends State<PhoneForm> {
                   ],
                 )),
             const Spacer(),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 40),
+              child: Text(
+                "با ثبت نام در بنکس، با شرایط استفاده و سیاست حفظ حریم خصوصی ما موافقت می‌کنید",
+                textAlign: TextAlign.center,
+                style: TextStyles.bodyTextBody2.copyWith(),
+              ),
+            ),
+            const SizedBox(height: 24),
             PrimaryFillButton(
               onPressed: () {
                 if (_formKey.currentState!.validate()) {
