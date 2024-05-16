@@ -1,43 +1,33 @@
 import 'package:flutter/material.dart';
 
 class OTPInput extends StatefulWidget {
+  final int numCells;
   final ValueChanged<String> onCompleted;
 
-  const OTPInput({super.key, required this.onCompleted});
+  const OTPInput({Key? key, required this.numCells, required this.onCompleted})
+      : super(key: key);
 
   @override
-  _OTPInputState createState() => _OTPInputState();
+  OTPInputState createState() => OTPInputState();
 }
 
-class _OTPInputState extends State<OTPInput> {
-  List<TextEditingController> controllers =
-      List.generate(5, (_) => TextEditingController());
-  List<FocusNode> focusNodes = List.generate(5, (_) => FocusNode());
+class OTPInputState extends State<OTPInput> {
+  List<TextEditingController> controllers = [];
+  List<FocusNode> focusNodes = [];
+
+  @override
+  void initState() {
+    super.initState();
+    controllers =
+        List.generate(widget.numCells, (_) => TextEditingController());
+    focusNodes = List.generate(widget.numCells, (_) => FocusNode());
+  }
 
   @override
   void dispose() {
     controllers.forEach((controller) => controller.dispose());
     focusNodes.forEach((focusNode) => focusNode.dispose());
     super.dispose();
-  }
-
-  void nextField(String value, int index) {
-    if (value.length == 1) {
-      if (index + 1 < controllers.length) {
-        FocusScope.of(context).requestFocus(focusNodes[index + 1]);
-      }
-      if (index == controllers.length - 1) {
-        widget.onCompleted(getOTP());
-      }
-    }
-  }
-
-  void previousField(int index) {
-    if (index > 0) {
-      FocusScope.of(context).requestFocus(focusNodes[index - 1]);
-      controllers[index - 1].selection = TextSelection.fromPosition(
-          TextPosition(offset: controllers[index - 1].text.length));
-    }
   }
 
   String getOTP() {
@@ -49,7 +39,7 @@ class _OTPInputState extends State<OTPInput> {
     return Form(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: List<Widget>.generate(controllers.length, (index) {
+        children: List<Widget>.generate(widget.numCells, (index) {
           return Container(
             width: 60.0,
             child: TextField(
@@ -57,7 +47,6 @@ class _OTPInputState extends State<OTPInput> {
               focusNode: focusNodes[index],
               maxLength: 1,
               textAlign: TextAlign.center,
-              keyboardType: TextInputType.number,
               decoration: InputDecoration(
                 counterText: "",
                 enabledBorder: OutlineInputBorder(
@@ -69,9 +58,19 @@ class _OTPInputState extends State<OTPInput> {
                   borderRadius: BorderRadius.circular(30),
                 ),
               ),
-              onChanged: (value) => value.isEmpty
-                  ? previousField(index)
-                  : nextField(value, index),
+              keyboardType: TextInputType.number,
+              onChanged: (value) {
+                if (value.length == 1 && index == widget.numCells - 1) {
+                  bool isCompleted = controllers
+                      .every((controller) => controller.text.length == 1);
+                  if (isCompleted) {
+                    widget.onCompleted(getOTP());
+                  }
+                }
+                if (value.length == 1 && index < widget.numCells - 1) {
+                  FocusScope.of(context).nextFocus();
+                }
+              },
             ),
           );
         }),
