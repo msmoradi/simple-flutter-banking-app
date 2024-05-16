@@ -2,6 +2,7 @@ import "package:designsystem/theme/text_styles.dart";
 import "package:flutter/material.dart";
 
 import "filled_button_theme.dart";
+import "input_decoration_theme.dart";
 
 class BanxTheme {
   static MaterialScheme lightScheme() {
@@ -127,6 +128,7 @@ class BanxTheme {
         fontFamily: TextStyles.fontFamilyName,
         brightness: colorScheme.brightness,
         filledButtonTheme: BanxFilledButtonTheme.filledButtonThemeData,
+        inputDecorationTheme: BanxInputDecorationTheme.inputDecorationTheme,
         colorScheme: colorScheme,
         scaffoldBackgroundColor: colorScheme.background,
         canvasColor: colorScheme.surface,
