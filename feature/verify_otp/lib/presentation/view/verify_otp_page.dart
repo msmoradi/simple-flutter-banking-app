@@ -1,4 +1,3 @@
-import 'package:designsystem/widgets/appbar/empty_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:networking/api_service.dart';
@@ -8,27 +7,26 @@ import 'package:verify_otp/presentation/bloc/verify_otp_bloc.dart';
 import 'package:verify_otp/presentation/view/verify_otp_form.dart';
 
 class VerifyOtpPage extends StatelessWidget {
-  final Function() onSignUpTapped;
-  final Function() onForgotPasswordTapped;
+  final Function() onBackPressed;
 
   const VerifyOtpPage({
     super.key,
-    required this.onSignUpTapped,
-    required this.onForgotPasswordTapped,
+    required this.onBackPressed,
   });
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const EmptyAppBar(),
+      appBar: AppBar(
+        leading: BackButton(
+          onPressed: onBackPressed,
+        ),
+      ),
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: BlocProvider(
           create: (context) => loginBloc,
-          child: VerifyOtpForm(
-            onSignUpTapped: onSignUpTapped,
-            onForgotPasswordTapped: onForgotPasswordTapped,
-          ),
+          child: VerifyOtpForm(),
         ),
       ),
     );

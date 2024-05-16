@@ -1,5 +1,3 @@
-import 'package:banx/composition/forgot_password_page_factory.dart';
-import 'package:banx/composition/sign_up_page_factory.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 import 'package:verify_otp/presentation/view/verify_otp_page.dart';
@@ -9,11 +7,8 @@ class VerifyOtpPageFactory {
 
   static VerifyOtpPage builder(BuildContext context, GoRouterState state) {
     return VerifyOtpPage(
-      onSignUpTapped: () {
-        context.push(SignUpPageFactory.path);
-      },
-      onForgotPasswordTapped: () {
-        context.push(ForgotPasswordPageFactory.path);
+      onBackPressed: () {
+        context.pop();
       },
     );
   }

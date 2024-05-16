@@ -1,5 +1,7 @@
 import 'package:designsystem/theme/text_styles.dart';
 import 'package:designsystem/widgets/button/fill/full_fill_button.dart';
+import 'package:designsystem/widgets/button/fill/full_outline_button.dart';
+import 'package:designsystem/widgets/textfields/otp_Input.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:utils/extension/build_context.dart';
@@ -7,14 +9,7 @@ import 'package:utils/extension/build_context.dart';
 import '../bloc/verify_otp_bloc.dart';
 
 class VerifyOtpForm extends StatefulWidget {
-  final Function() onSignUpTapped;
-  final Function() onForgotPasswordTapped;
-
-  const VerifyOtpForm({
-    super.key,
-    required this.onSignUpTapped,
-    required this.onForgotPasswordTapped,
-  });
+  const VerifyOtpForm({super.key});
 
   @override
   State<VerifyOtpForm> createState() => _VerifyOtpFormState();
@@ -22,8 +17,14 @@ class VerifyOtpForm extends StatefulWidget {
 
 class _VerifyOtpFormState extends State<VerifyOtpForm> {
   final _formKey = GlobalKey<FormState>();
-  String? email;
-  String? password;
+
+  // GlobalKey to access the OTPInput state
+  final GlobalKey<OTPInputState> otpKey = GlobalKey();
+
+  void _onOTPComplete(String otp) {
+    print("Complete OTP: $otp");
+    // Additional actions upon completion e.g., verification
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,41 +44,43 @@ class _VerifyOtpFormState extends State<VerifyOtpForm> {
         return Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Align(
-              alignment: Alignment.centerRight,
-              child: Text(
-                translator.email,
-                style: TextStyles.h2.copyWith(
-                    color: Theme.of(context).colorScheme.onBackground),
-              ),
+            Text(
+              "کد تأیید را وارد کنید",
+              style: TextStyles.h3
+                  .copyWith(color: Theme.of(context).colorScheme.onBackground),
             ),
             const SizedBox(height: 16),
-            Form(
-                key: _formKey,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [],
-                )),
-            const Spacer(),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 40),
-              child: Text(
-                "با ثبت نام در بنکس، با شرایط استفاده و سیاست حفظ حریم خصوصی ما موافقت می‌کنید",
-                textAlign: TextAlign.center,
-                style: TextStyles.bodyTextBody2.copyWith(),
+            Text(
+              "کد ۶ رقمی ارسال شده به شماره تلفن همراه ۰۹۱۲۵۸۴۹۸۳۴ را وارد نمایید",
+              textAlign: TextAlign.center,
+              style: TextStyles.bodyTextBody1
+                  .copyWith(color: Theme.of(context).colorScheme.onBackground),
+            ),
+            const SizedBox(height: 32),
+            Directionality(
+              textDirection: TextDirection.ltr,
+              child: Center(
+                child: OTPInput(
+                  key: otpKey,
+                  numCells: 5,
+                  onCompleted: _onOTPComplete,
+                ),
               ),
             ),
-            const SizedBox(height: 24),
+            const Spacer(),
             PrimaryFillButton(
               onPressed: () {
-                if (_formKey.currentState!.validate()) {
-                  _formKey.currentState?.save();
-                  context
-                      .read<VerifyOtpBloc>()
-                      .add(VerifyOtpSubmitted(email!, password!));
-                }
+                // Use the key to access the getOTP method
+                String currentOTP = otpKey.currentState!.getOTP();
+                print("Current OTP: $currentOTP");
               },
               label: translator.acceptAndContinue,
+              isLoading: state is VerifyOtpInProgress,
+            ),
+            const SizedBox(height: 16),
+            PrimaryOutlineButton(
+              onPressed: () {},
+              label: "ارسال مجدد کد",
               isLoading: state is VerifyOtpInProgress,
             ),
           ],
