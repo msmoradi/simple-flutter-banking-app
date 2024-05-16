@@ -4,7 +4,6 @@ import 'package:designsystem/widgets/textfields/otp_Input.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:utils/extension/build_context.dart';
-import 'package:utils/extension/strings.dart';
 
 import '../bloc/verify_otp_bloc.dart';
 

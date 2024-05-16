@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:utils/extension/strings.dart';
 
 class OTPInput extends StatefulWidget {
   final int numCells;
