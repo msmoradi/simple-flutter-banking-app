@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 
 class TextStyles {
-  static const fontFamilyName = 'Nunito';
+  static const fontFamilyName = 'IranSansX';
 
   static const h1 = TextStyle(
       fontWeight: FontWeight.w500,
