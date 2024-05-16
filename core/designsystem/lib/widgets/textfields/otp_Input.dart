@@ -1,4 +1,6 @@
+import 'package:designsystem/theme/text_styles.dart';
 import 'package:flutter/material.dart';
+import 'package:utils/extension/strings.dart';
 
 class OTPInput extends StatefulWidget {
   final int numCells;
@@ -55,20 +57,29 @@ class OTPInputState extends State<OTPInput> {
         children: List<Widget>.generate(widget.numCells, (index) {
           return SizedBox(
             width: 50,
-            height: 50,
             child: TextField(
               controller: controllers[index],
               focusNode: focusNodes[index],
               maxLength: 1,
               textAlign: TextAlign.center,
               keyboardType: TextInputType.number,
+              style: TextStyles.h4,
               decoration: InputDecoration(
+                isDense: true,
+                contentPadding: EdgeInsets.symmetric(vertical: 8),
                 counterText: "",
                 border:
                     OutlineInputBorder(borderRadius: BorderRadius.circular(25)),
               ),
               onChanged: (value) {
-                if (value.length == 1) {
+                String persianValue = value.toPersianDigits;
+                if (value != persianValue) {
+                  controllers[index].text = persianValue;
+                  controllers[index].selection = TextSelection.fromPosition(
+                    TextPosition(offset: persianValue.length),
+                  );
+                }
+                if (persianValue.length == 1) {
                   if (index == widget.numCells - 1) {
                     widget.onCompleted(getOTP());
                   } else {

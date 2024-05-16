@@ -5,6 +5,7 @@ import 'package:designsystem/widgets/textfields/otp_Input.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:utils/extension/build_context.dart';
+import 'package:utils/extension/strings.dart';
 
 import '../bloc/verify_otp_bloc.dart';
 
@@ -46,17 +47,16 @@ class _VerifyOtpFormState extends State<VerifyOtpForm> {
         return Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Text(
+            const Text(
               "کد تأیید را وارد کنید",
-              style: TextStyles.h3
-                  .copyWith(color: Theme.of(context).colorScheme.onBackground),
+              style: TextStyles.h3,
             ),
             const SizedBox(height: 16),
             Text(
-              "کد ۶ رقمی ارسال شده به شماره تلفن همراه ${widget.phoneNumber} را وارد نمایید",
+              "کد ${widget.numCells} رقمی ارسال شده به شماره تلفن همراه ${widget.phoneNumber} را وارد نمایید"
+                  .toPersianDigits,
               textAlign: TextAlign.center,
-              style: TextStyles.bodyTextBody1
-                  .copyWith(color: Theme.of(context).colorScheme.onBackground),
+              style: TextStyles.bodyTextBody1,
             ),
             const SizedBox(height: 32),
             Directionality(

@@ -23,7 +23,7 @@ class PhoneBloc extends Bloc<PhoneEvent, PhoneState> {
       PhoneSuccess(
           phoneNumber: event.phoneNumber,
           sessionId: "sample session id",
-          numCells: 6),
+          numCells: 5),
     );
     /* emit(PhoneInProgress());
     try {
