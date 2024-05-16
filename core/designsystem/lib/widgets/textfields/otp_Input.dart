@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 class OTPInput extends StatefulWidget {
+  final ValueChanged<String> onCompleted;
+
+  const OTPInput({super.key, required this.onCompleted});
+
   @override
   _OTPInputState createState() => _OTPInputState();
 }
 
 class _OTPInputState extends State<OTPInput> {
-  List<TextEditingController> controllers = List.generate(5, (_) => TextEditingController());
+  List<TextEditingController> controllers =
+      List.generate(5, (_) => TextEditingController());
   List<FocusNode> focusNodes = List.generate(5, (_) => FocusNode());
 
   @override
@@ -19,8 +23,11 @@ class _OTPInputState extends State<OTPInput> {
 
   void nextField(String value, int index) {
     if (value.length == 1) {
-      if (index + 1 < focusNodes.length) {
+      if (index + 1 < controllers.length) {
         FocusScope.of(context).requestFocus(focusNodes[index + 1]);
+      }
+      if (index == controllers.length - 1) {
+        widget.onCompleted(getOTP());
       }
     }
   }
@@ -31,6 +38,10 @@ class _OTPInputState extends State<OTPInput> {
       controllers[index - 1].selection = TextSelection.fromPosition(
           TextPosition(offset: controllers[index - 1].text.length));
     }
+  }
+
+  String getOTP() {
+    return controllers.map((e) => e.text).join('');
   }
 
   @override
@@ -46,6 +57,7 @@ class _OTPInputState extends State<OTPInput> {
               focusNode: focusNodes[index],
               maxLength: 1,
               textAlign: TextAlign.center,
+              keyboardType: TextInputType.number,
               decoration: InputDecoration(
                 counterText: "",
                 enabledBorder: OutlineInputBorder(
@@ -57,13 +69,9 @@ class _OTPInputState extends State<OTPInput> {
                   borderRadius: BorderRadius.circular(30),
                 ),
               ),
-              keyboardType: TextInputType.number,
-              onChanged: (value) => value.isEmpty ? previousField(index) : nextField(value, index),
-              onSubmitted: (value) {
-                if (index + 1 < focusNodes.length && value.isNotEmpty) {
-                  FocusScope.of(context).requestFocus(focusNodes[index + 1]);
-                }
-              },
+              onChanged: (value) => value.isEmpty
+                  ? previousField(index)
+                  : nextField(value, index),
             ),
           );
         }),
