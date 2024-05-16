@@ -1,8 +1,9 @@
 import "package:designsystem/theme/text_styles.dart";
 import "package:flutter/material.dart";
 
-class BanxTheme {
+import "filled_button_theme.dart";
 
+class BanxTheme {
   static MaterialScheme lightScheme() {
     return const MaterialScheme(
       brightness: Brightness.light,
@@ -125,6 +126,7 @@ class BanxTheme {
         useMaterial3: true,
         fontFamily: TextStyles.fontFamilyName,
         brightness: colorScheme.brightness,
+        filledButtonTheme: BanxFilledButtonTheme.filledButtonThemeData,
         colorScheme: colorScheme,
         scaffoldBackgroundColor: colorScheme.background,
         canvasColor: colorScheme.surface,
