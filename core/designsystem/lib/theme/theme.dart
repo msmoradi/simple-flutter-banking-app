@@ -1,3 +1,4 @@
+import "package:designsystem/theme/outline_button_theme.dart";
 import "package:designsystem/theme/text_styles.dart";
 import "package:flutter/material.dart";
 
@@ -128,6 +129,7 @@ class BanxTheme {
         fontFamily: TextStyles.fontFamilyName,
         brightness: colorScheme.brightness,
         filledButtonTheme: BanxFilledButtonTheme.filledButtonThemeData,
+        outlinedButtonTheme: BanxOutlineButtonTheme.outlinedButtonThemeData,
         inputDecorationTheme: BanxInputDecorationTheme.inputDecorationTheme,
         colorScheme: colorScheme,
         scaffoldBackgroundColor: colorScheme.background,
