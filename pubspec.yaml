@@ -33,8 +33,6 @@ dependencies:
     path: feature/signup
   reset_password:
     path: feature/reset_password
-  onboarding:
-    path: feature/onboarding
   flutter_localizations:
     sdk: flutter
   intl: any

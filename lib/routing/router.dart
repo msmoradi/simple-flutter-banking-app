@@ -1,6 +1,5 @@
 import 'package:banx/composition/forgot_password_page_factory.dart';
 import 'package:banx/composition/login_page_factory.dart';
-import 'package:banx/composition/onboarding_page_factory.dart';
 import 'package:banx/composition/phone_page_factory.dart';
 import 'package:banx/composition/reset_password_page_factory.dart';
 import 'package:banx/composition/root_page_factory.dart';
@@ -13,7 +12,6 @@ import 'package:utils/configurations/hermes_config.dart';
 Future<GoRouter> get routerConfig async => GoRouter(
       initialLocation: await initialLocation,
       routes: <RouteBase>[
-        OnboardingPageFactory.route(),
         RootPageFactory.route(),
         PhonePageFactory.route(),
         VerifyOtpPageFactory.route(),

@@ -20,9 +20,21 @@ class PhoneNumberTextField extends StatefulWidget {
 }
 
 class _PhoneNumberTextFieldState extends State<PhoneNumberTextField> {
+  var focusNode = FocusNode();
+
+  @override
+  void initState() {
+    super.initState();
+    // Auto-focus the first input cell
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      FocusScope.of(context).requestFocus(focusNode);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      focusNode: focusNode,
       style: TextStyles.bodyTextBody1
           .copyWith(color: Theme.of(context).colorScheme.onBackground),
       controller: widget.controller,

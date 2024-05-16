@@ -34,8 +34,12 @@ class OTPInputState extends State<OTPInput> {
 
   @override
   void dispose() {
-    controllers.forEach((controller) => controller.dispose());
-    focusNodes.forEach((focusNode) => focusNode.dispose());
+    for (var controller in controllers) {
+      controller.dispose();
+    }
+    for (var focusNode in focusNodes) {
+      focusNode.dispose();
+    }
     super.dispose();
   }
 
@@ -49,8 +53,9 @@ class OTPInputState extends State<OTPInput> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: List<Widget>.generate(widget.numCells, (index) {
-          return Container(
-            width: 60.0,
+          return SizedBox(
+            width: 50,
+            height: 50,
             child: TextField(
               controller: controllers[index],
               focusNode: focusNodes[index],
@@ -59,14 +64,8 @@ class OTPInputState extends State<OTPInput> {
               keyboardType: TextInputType.number,
               decoration: InputDecoration(
                 counterText: "",
-                enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(width: 2),
-                  borderRadius: BorderRadius.circular(30),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(width: 2, color: Colors.blue),
-                  borderRadius: BorderRadius.circular(30),
-                ),
+                border:
+                    OutlineInputBorder(borderRadius: BorderRadius.circular(25)),
               ),
               onChanged: (value) {
                 if (value.length == 1) {
