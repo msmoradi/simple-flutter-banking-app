@@ -30,6 +30,7 @@ class _PhoneNumberTextFieldState extends State<PhoneNumberTextField> {
       onFieldSubmitted: widget.onFieldSubmitted,
       keyboardType: TextInputType.phone,
       decoration: InputDecoration(
+        prefixIcon: Icon(Icons.phone_iphone),
         hintText: context.getTranslator().mobilePhoneNumber,
       ),
       validator: (value) {
