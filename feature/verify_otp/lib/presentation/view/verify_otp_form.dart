@@ -1,4 +1,3 @@
-import 'package:designsystem/theme/text_styles.dart';
 import 'package:designsystem/widgets/button/fill/full_fill_button.dart';
 import 'package:designsystem/widgets/button/fill/full_outline_button.dart';
 import 'package:designsystem/widgets/textfields/otp_Input.dart';
@@ -49,14 +48,12 @@ class _VerifyOtpFormState extends State<VerifyOtpForm> {
           children: [
             const Text(
               "کد تأیید را وارد کنید",
-              style: TextStyles.h3,
             ),
             const SizedBox(height: 16),
             Text(
               "کد ${widget.numCells} رقمی ارسال شده به شماره تلفن همراه ${widget.phoneNumber} را وارد نمایید"
                   .toPersianDigits,
               textAlign: TextAlign.center,
-              style: TextStyles.bodyTextBody1,
             ),
             const SizedBox(height: 32),
             Directionality(

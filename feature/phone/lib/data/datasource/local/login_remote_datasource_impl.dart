@@ -1,8 +1,8 @@
-import 'package:login/data/datasource/local/login_remote_datasource.dart';
-import 'package:login/data/model/login_response_dto.dart';
 import 'package:networking/api_endpoints.dart';
 import 'package:networking/http_client.dart';
 import 'package:networking/model/dto/network_response.dart';
+import 'package:phone/data/datasource/local/login_remote_datasource.dart';
+import 'package:phone/data/model/login_response_dto.dart';
 
 class LoginRemoteDataSourceImpl extends LoginRemoteDataSource {
   final HTTPClient _apiService;

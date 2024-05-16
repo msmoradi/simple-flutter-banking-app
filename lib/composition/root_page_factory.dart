@@ -6,7 +6,7 @@ class RootPageFactory {
   static const path = "/root";
 
   static RootPage builder(BuildContext context, GoRouterState state) {
-    return RootPage(
+    return const RootPage(
     );
   }
 

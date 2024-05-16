@@ -14,7 +14,7 @@ class App extends StatelessWidget {
       builder: (context, snapshot) {
         if (!snapshot.hasData) {
           return MaterialApp(
-            locale: Locale('fa'),
+            locale: const Locale('fa'),
             theme: BanxTheme.light(),
             darkTheme: BanxTheme.dark(),
             home: const Scaffold(
@@ -28,7 +28,7 @@ class App extends StatelessWidget {
               routerConfig: snapshot.data,
               theme: BanxTheme.light(),
               darkTheme: BanxTheme.dark(),
-              locale: Locale('fa'),
+              locale: const Locale('fa'),
               localizationsDelegates: Translator.localizationsDelegates,
               supportedLocales: Translator.supportedLocales);
         }

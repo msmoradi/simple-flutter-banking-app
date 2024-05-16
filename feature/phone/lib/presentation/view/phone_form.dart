@@ -1,4 +1,3 @@
-import 'package:designsystem/theme/text_styles.dart';
 import 'package:designsystem/widgets/button/fill/full_fill_button.dart';
 import 'package:designsystem/widgets/textfields/phone_number_text_field.dart';
 import 'package:flutter/material.dart';
@@ -48,8 +47,6 @@ class _PhoneFormState extends State<PhoneForm> {
               alignment: Alignment.centerRight,
               child: Text(
                 translator.mobilePhoneNumber,
-                style: TextStyles.h2.copyWith(
-                    color: Theme.of(context).colorScheme.onBackground),
               ),
             ),
             const SizedBox(height: 16),
@@ -66,12 +63,11 @@ class _PhoneFormState extends State<PhoneForm> {
                   ],
                 )),
             const Spacer(),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 40),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 40),
               child: Text(
                 "با ثبت نام در بنکس، با شرایط استفاده و سیاست حفظ حریم خصوصی ما موافقت می‌کنید",
                 textAlign: TextAlign.center,
-                style: TextStyles.bodyTextBody2.copyWith(),
               ),
             ),
             const SizedBox(height: 24),

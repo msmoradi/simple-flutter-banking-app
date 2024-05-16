@@ -1,5 +1,5 @@
 import 'package:domain/entity_wrapper.dart';
-import 'package:login/domain/login_entity.dart';
+import 'package:phone/domain/login_entity.dart';
 
 abstract class LoginRepository {
   Future<EntityWrapper<LoginEntity>> login(

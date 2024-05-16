@@ -1,4 +1,3 @@
-import 'package:designsystem/theme/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:utils/extension/strings.dart';
 
@@ -63,10 +62,9 @@ class OTPInputState extends State<OTPInput> {
               maxLength: 1,
               textAlign: TextAlign.center,
               keyboardType: TextInputType.number,
-              style: TextStyles.h4,
               decoration: InputDecoration(
                 isDense: true,
-                contentPadding: EdgeInsets.symmetric(vertical: 8),
+                contentPadding: const EdgeInsets.symmetric(vertical: 8),
                 counterText: "",
                 border:
                     OutlineInputBorder(borderRadius: BorderRadius.circular(25)),

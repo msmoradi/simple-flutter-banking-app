@@ -1,4 +1,3 @@
-import 'package:designsystem/theme/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:utils/extension/build_context.dart';
 import 'package:utils/validators/phone_number_validator.dart';
@@ -35,14 +34,12 @@ class _PhoneNumberTextFieldState extends State<PhoneNumberTextField> {
   Widget build(BuildContext context) {
     return TextFormField(
       focusNode: focusNode,
-      style: TextStyles.bodyTextBody1
-          .copyWith(color: Theme.of(context).colorScheme.onBackground),
       controller: widget.controller,
       onSaved: widget.onSaved,
       onFieldSubmitted: widget.onFieldSubmitted,
       keyboardType: TextInputType.phone,
       decoration: InputDecoration(
-        prefixIcon: Icon(Icons.phone_iphone),
+        prefixIcon: const Icon(Icons.phone_iphone),
         hintText: context.getTranslator().mobilePhoneNumber,
       ),
       validator: (value) {

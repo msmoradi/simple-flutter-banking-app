@@ -1,5 +1,5 @@
-import 'package:login/data/model/login_response_dto.dart';
 import 'package:networking/model/dto/network_response.dart';
+import 'package:phone/data/model/login_response_dto.dart';
 
 abstract class LoginRemoteDataSource {
   Future<NetworkResponse<LoginResponseDto>> login(

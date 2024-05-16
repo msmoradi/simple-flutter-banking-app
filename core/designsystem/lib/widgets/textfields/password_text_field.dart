@@ -1,4 +1,3 @@
-import 'package:designsystem/theme/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:utils/extension/build_context.dart';
 import 'package:utils/validators/password_validator.dart';
@@ -35,8 +34,6 @@ class _PasswordTextFieldState extends State<PasswordTextField> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      style: TextStyles.bodyTextBody1
-          .copyWith(color: Theme.of(context).colorScheme.onBackground),
       controller: widget.controller,
       keyboardType: TextInputType.text,
       onSaved: widget.onSaved,

@@ -1,9 +1,9 @@
 import 'package:designsystem/widgets/appbar/empty_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:login/data/datasource/local/login_remote_datasource_impl.dart';
-import 'package:login/data/repository/login_repository_impl.dart';
 import 'package:networking/api_service.dart';
+import 'package:phone/data/datasource/local/login_remote_datasource_impl.dart';
+import 'package:phone/data/repository/login_repository_impl.dart';
 import 'package:phone/presentation/view/phone_form.dart';
 
 import '../bloc/phone_bloc.dart';

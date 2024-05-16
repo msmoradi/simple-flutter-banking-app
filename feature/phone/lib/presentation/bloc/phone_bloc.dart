@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
-import 'package:login/domain/repository/login_repository.dart';
+import 'package:phone/domain/repository/login_repository.dart';
 
 part 'phone_event.dart';
 part 'phone_state.dart';

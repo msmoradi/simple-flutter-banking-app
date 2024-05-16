@@ -19,20 +19,12 @@ dependencies:
     path: core/domain
   utils:
     path: core/utils
-  login:
-    path: feature/login
   phone:
     path: feature/phone
   verify_otp:
     path: feature/verify_otp
   splash:
     path: feature/splash
-  forgot_password:
-    path: feature/forgot_password
-  signup:
-    path: feature/signup
-  reset_password:
-    path: feature/reset_password
   flutter_localizations:
     sdk: flutter
   intl: any
