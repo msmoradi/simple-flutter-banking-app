@@ -8,11 +8,10 @@ abstract class PhoneEvent extends Equatable {
 }
 
 class PhoneSubmitted extends PhoneEvent {
-  final String email;
-  final String password;
+  final String phoneNumber;
 
-  const PhoneSubmitted(this.email, this.password);
+  const PhoneSubmitted(this.phoneNumber);
 
   @override
-  List<Object> get props => [email, password];
+  List<Object> get props => [phoneNumber];
 }

@@ -8,13 +8,11 @@ import 'package:utils/extension/build_context.dart';
 import '../bloc/phone_bloc.dart';
 
 class PhoneForm extends StatefulWidget {
-  final Function() onSignUpTapped;
-  final Function() onForgotPasswordTapped;
+  final Function(String) onVerifyOtp;
 
   const PhoneForm({
     super.key,
-    required this.onSignUpTapped,
-    required this.onForgotPasswordTapped,
+    required this.onVerifyOtp,
   });
 
   @override
@@ -23,8 +21,7 @@ class PhoneForm extends StatefulWidget {
 
 class _PhoneFormState extends State<PhoneForm> {
   final _formKey = GlobalKey<FormState>();
-  String? email;
-  String? password;
+  String? phoneNumber;
 
   @override
   Widget build(BuildContext context) {
@@ -38,6 +35,8 @@ class _PhoneFormState extends State<PhoneForm> {
             ..showSnackBar(
               SnackBar(content: Text(state.message)),
             );
+        } else if (state is PhoneSuccess) {
+          widget.onVerifyOtp(state.id);
         }
       },
       builder: (context, state) {
@@ -60,7 +59,7 @@ class _PhoneFormState extends State<PhoneForm> {
                   children: [
                     PhoneNumberTextField(
                       onSaved: (value) {
-                        email = value;
+                        phoneNumber = value;
                       },
                     ),
                   ],
@@ -79,9 +78,7 @@ class _PhoneFormState extends State<PhoneForm> {
               onPressed: () {
                 if (_formKey.currentState!.validate()) {
                   _formKey.currentState?.save();
-                  context
-                      .read<PhoneBloc>()
-                      .add(PhoneSubmitted(email!, password!));
+                  context.read<PhoneBloc>().add(PhoneSubmitted(phoneNumber!));
                 }
               },
               label: translator.acceptAndContinue,
