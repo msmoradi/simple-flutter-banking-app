@@ -23,6 +23,8 @@ dependencies:
     path: feature/login
   phone:
     path: feature/phone
+  verify_otp:
+    path: feature/verify_otp
   splash:
     path: feature/splash
   forgot_password:
