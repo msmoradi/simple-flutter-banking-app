@@ -4,17 +4,16 @@ import 'package:designsystem/widgets/button/fill/full_fill_button.dart';
 import 'package:flutter/material.dart';
 import 'package:utils/extension/build_context.dart';
 
-import 'initial_page.dart';
+import 'onboarding_page.dart';
 
-class InitialStartUpScreen extends StatelessWidget {
+class OnboardingStartUpScreen extends StatelessWidget {
   final PageController controller;
 
-  const InitialStartUpScreen(this.controller, {Key? key}) : super(key: key);
+  const OnboardingStartUpScreen(this.controller, {super.key});
 
   @override
   Widget build(BuildContext context) {
     final translator = context.getTranslator();
-
     return Container(
       constraints: const BoxConstraints.expand(),
       child: Stack(children: [

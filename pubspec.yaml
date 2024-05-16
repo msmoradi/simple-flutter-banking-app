@@ -29,8 +29,8 @@ dependencies:
     path: feature/signup
   reset_password:
     path: feature/reset_password
-  initial:
-    path: feature/initial
+  onboarding:
+    path: feature/onboarding
   flutter_localizations:
     sdk: flutter
   intl: any

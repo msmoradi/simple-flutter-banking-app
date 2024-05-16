@@ -4,7 +4,7 @@ import 'package:designsystem/widgets/button/fill/full_fill_button.dart';
 import 'package:flutter/material.dart';
 import 'package:utils/extension/build_context.dart';
 
-import 'initial_page.dart';
+import 'onboarding_page.dart';
 
 class LoginScreen extends StatelessWidget {
   final PageController controller;
@@ -13,12 +13,12 @@ class LoginScreen extends StatelessWidget {
   final Function() onSkipLoginTapped;
 
   const LoginScreen({
-    Key? key,
+    super.key,
     required this.controller,
     required this.onLoginTapped,
     required this.onSignUpTapped,
     required this.onSkipLoginTapped,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -36,8 +36,8 @@ class LoginScreen extends StatelessWidget {
         ),
         Padding(
           padding: const EdgeInsets.symmetric(
-              vertical: InitialPage.verticalPagePadding,
-              horizontal: InitialPage.horizontalPagePadding),
+              vertical: OnboardingPage.verticalPagePadding,
+              horizontal: OnboardingPage.horizontalPagePadding),
           child: Column(
             children: [
               Row(

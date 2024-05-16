@@ -2,12 +2,11 @@ import 'dart:core';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:initial/presentation/view/initial_start_up_screen.dart';
+import 'package:onboarding/presentation/view/onboarding_start_up_screen.dart';
 
-import 'enable_gps_screen.dart';
 import 'login_screen.dart';
 
-class InitialPage extends StatelessWidget {
+class OnboardingPage extends StatelessWidget {
   static const double verticalPagePadding = 56;
   static const double horizontalPagePadding = 16;
   static const Duration animatesDuration = Duration(milliseconds: 400);
@@ -16,12 +15,12 @@ class InitialPage extends StatelessWidget {
   final Function() onSignUpTapped;
   final Function() onSkipLoginTapped;
 
-  const InitialPage({
-    Key? key,
+  const OnboardingPage({
+    super.key,
     required this.onLoginTapped,
     required this.onSignUpTapped,
     required this.onSkipLoginTapped,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -32,8 +31,7 @@ class InitialPage extends StatelessWidget {
       body: PageView(
         controller: controller,
         children: [
-          InitialStartUpScreen(controller),
-          EnableGpsScreen(controller),
+          OnboardingStartUpScreen(controller),
           LoginScreen(
             controller: controller,
             onLoginTapped: onLoginTapped,

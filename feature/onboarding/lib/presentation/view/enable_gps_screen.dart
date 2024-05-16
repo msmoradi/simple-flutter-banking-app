@@ -2,7 +2,7 @@ import 'package:designsystem/theme/colors.dart';
 import 'package:designsystem/theme/text_styles.dart';
 import 'package:designsystem/widgets/button/fill/full_fill_button.dart';
 import 'package:flutter/material.dart';
-import 'package:initial/presentation/view/initial_page.dart';
+import 'package:onboarding/presentation/view/onboarding_page.dart';
 import 'package:utils/extension/build_context.dart';
 
 class EnableGpsScreen extends StatelessWidget {
@@ -26,8 +26,8 @@ class EnableGpsScreen extends StatelessWidget {
         ),
         Padding(
           padding: const EdgeInsets.symmetric(
-              vertical: InitialPage.verticalPagePadding,
-              horizontal: InitialPage.horizontalPagePadding),
+              vertical: OnboardingPage.verticalPagePadding,
+              horizontal: OnboardingPage.horizontalPagePadding),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -47,8 +47,8 @@ class EnableGpsScreen extends StatelessWidget {
                     child: Text(translator.skip),
                     onPressed: () {
                       controller.nextPage(
-                          duration: InitialPage.animatesDuration,
-                          curve: InitialPage.animatesCurve);
+                          duration: OnboardingPage.animatesDuration,
+                          curve: OnboardingPage.animatesCurve);
                     },
                   )
                 ],

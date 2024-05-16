@@ -1,15 +1,15 @@
-import 'package:flutter/cupertino.dart';
-import 'package:go_router/go_router.dart';
 import 'package:banx/composition/login_page_factory.dart';
 import 'package:banx/composition/root_page_factory.dart';
 import 'package:banx/composition/sign_up_page_factory.dart';
-import 'package:initial/presentation/view/initial_page.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:go_router/go_router.dart';
+import 'package:onboarding/presentation/view/onboarding_page.dart';
 
-class InitPageFactory {
+class OnboardingPageFactory {
   static const path = "/";
 
-  static InitialPage builder(BuildContext context, GoRouterState state) {
-    return InitialPage(
+  static OnboardingPage builder(BuildContext context, GoRouterState state) {
+    return OnboardingPage(
       onLoginTapped: () {
         context.pushReplacement(LoginPageFactory.path);
       },
@@ -26,8 +26,8 @@ class InitPageFactory {
     List<RouteBase> routes = const <RouteBase>[],
   }) {
     return GoRoute(
-        path: (InitPageFactory.path),
-        builder: InitPageFactory.builder,
+        path: (OnboardingPageFactory.path),
+        builder: OnboardingPageFactory.builder,
         routes: routes);
   }
 }

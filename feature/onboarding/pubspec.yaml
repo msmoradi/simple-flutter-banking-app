@@ -1,4 +1,4 @@
-name: initial
+name: onboarding
 version: 1.0.0+1
 publish_to: 'none'
 
@@ -30,5 +30,5 @@ flutter:
 
   module:
     androidX: true
-    androidPackage: com.banx.initial
-    iosBundleIdentifier: com.banx.initial
+    androidPackage: com.banx.onboarding
+    iosBundleIdentifier: com.banx.onboarding
