@@ -20,7 +20,18 @@ class PhoneForm extends StatefulWidget {
 
 class _PhoneFormState extends State<PhoneForm> {
   final _formKey = GlobalKey<FormState>();
+  final focusNode = FocusNode();
+
   String? phoneNumber;
+
+  @override
+  void initState() {
+    super.initState();
+    // Auto-focus the first input cell
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      FocusScope.of(context).requestFocus(focusNode);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -60,6 +71,7 @@ class _PhoneFormState extends State<PhoneForm> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     PhoneNumberTextField(
+                      focusNode: focusNode,
                       onSaved: (value) {
                         phoneNumber = value;
                       },
@@ -71,9 +83,7 @@ class _PhoneFormState extends State<PhoneForm> {
               padding: EdgeInsets.symmetric(horizontal: 40),
               child: Text(
                 "با ثبت نام در بنکس، با شرایط استفاده و سیاست حفظ حریم خصوصی ما موافقت می‌کنید",
-                style: Theme.of(context)
-                    .textTheme
-                    .bodyMedium,
+                style: Theme.of(context).textTheme.bodyMedium,
                 textAlign: TextAlign.center,
               ),
             ),
