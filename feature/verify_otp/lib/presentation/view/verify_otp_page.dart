@@ -4,7 +4,7 @@ import 'package:networking/api_service.dart';
 import 'package:verify_otp/data/datasource/local/verify_otp_remote_datasource_impl.dart';
 import 'package:verify_otp/data/repository/verify_otp_repository_impl.dart';
 import 'package:verify_otp/presentation/bloc/verify_otp_bloc.dart';
-import 'package:verify_otp/presentation/view/verify_otp_form.dart';
+import 'package:verify_otp/presentation/view/verify_otp_content.dart';
 
 class VerifyOtpPage extends StatelessWidget {
   final Function() onBackPressed;
@@ -21,27 +21,31 @@ class VerifyOtpPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        leading: BackButton(
-          onPressed: onBackPressed,
-        ),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(16),
-        child: BlocProvider(
-          create: (context) => loginBloc,
-          child: VerifyOtpForm(
+    return BlocProvider(
+      create: (context) => verifyOtpBloc,
+      child: BlocConsumer<VerifyOtpBloc, VerifyOtpState>(
+        listener: (context, state) {
+          if (state is VerifyOtpFailure) {
+            ScaffoldMessenger.of(context)
+              ..hideCurrentSnackBar()
+              ..showSnackBar(
+                SnackBar(content: Text(state.message)),
+              );
+          } else if (state is VerifyOtpSuccess) {}
+        },
+        builder: (context, state) {
+          return VerifyOtpContent(
+            state: state,
             phoneNumber: phoneNumber,
             numCells: numCells,
-          ),
-        ),
+          );
+        },
       ),
     );
   }
 }
 
-VerifyOtpBloc get loginBloc => VerifyOtpBloc(
+VerifyOtpBloc get verifyOtpBloc => VerifyOtpBloc(
       loginRepository: VerifyOtpRepositoryImpl(
         verifyOtpRemoteDataSource: VerifyOtpRemoteDataSourceImpl(ApiService()),
       ),
