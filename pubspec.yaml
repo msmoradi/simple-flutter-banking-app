@@ -21,6 +21,8 @@ dependencies:
     path: core/utils
   phone:
     path: feature/phone
+  identity:
+    path: feature/identity
   verify_otp:
     path: feature/verify_otp
   splash:
