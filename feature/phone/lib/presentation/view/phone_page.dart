@@ -1,10 +1,9 @@
-import 'package:designsystem/widgets/appbar/empty_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:networking/api_service.dart';
 import 'package:phone/data/datasource/local/login_remote_datasource_impl.dart';
 import 'package:phone/data/repository/login_repository_impl.dart';
-import 'package:phone/presentation/view/phone_form.dart';
+import 'package:phone/presentation/view/phone_content.dart';
 
 import '../bloc/phone_bloc.dart';
 
@@ -18,18 +17,26 @@ class PhonePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: const EmptyAppBar(),
-      body: Padding(
-        padding: const EdgeInsets.all(16),
-        child: BlocProvider(
-          create: (context) => loginBloc,
-          child: PhoneForm(
-            onVerifyOtp: onVerifyOtp,
-          ),
-        ),
+    return BlocProvider(
+      create: (context) => loginBloc,
+      child: BlocConsumer<PhoneBloc, PhoneState>(
+        listener: (context, state) {
+          if (state is PhoneFailure) {
+            ScaffoldMessenger.of(context)
+              ..hideCurrentSnackBar()
+              ..showSnackBar(
+                SnackBar(content: Text(state.message)),
+              );
+          } else if (state is PhoneSuccess) {
+            onVerifyOtp(state.phoneNumber, state.sessionId, state.numCells);
+          }
+        },
+        builder: (context, state) {
+          return PhoneContent(state: state);
+        },
       ),
     );
+    ;
   }
 }
 

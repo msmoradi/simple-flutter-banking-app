@@ -7,11 +7,11 @@ import 'package:utils/extension/build_context.dart';
 import '../bloc/phone_bloc.dart';
 
 class PhoneForm extends StatefulWidget {
-  final Function(String, String, int) onVerifyOtp;
+  final bool showLoading;
 
   const PhoneForm({
     super.key,
-    required this.onVerifyOtp,
+    required this.showLoading,
   });
 
   @override
@@ -36,71 +36,54 @@ class _PhoneFormState extends State<PhoneForm> {
   @override
   Widget build(BuildContext context) {
     final translator = context.getTranslator();
-
-    return BlocConsumer<PhoneBloc, PhoneState>(
-      listener: (context, state) {
-        if (state is PhoneFailure) {
-          ScaffoldMessenger.of(context)
-            ..hideCurrentSnackBar()
-            ..showSnackBar(
-              SnackBar(content: Text(state.message)),
-            );
-        } else if (state is PhoneSuccess) {
-          widget.onVerifyOtp(
-              state.phoneNumber, state.sessionId, state.numCells);
-        }
-      },
-      builder: (context, state) {
-        return Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Align(
-              alignment: Alignment.centerRight,
-              child: Text(
-                style: Theme.of(context)
-                    .textTheme
-                    .headlineMedium
-                    ?.copyWith(fontWeight: FontWeight.bold),
-                translator.mobilePhoneNumber,
-              ),
-            ),
-            const SizedBox(height: 16),
-            Form(
-                key: _formKey,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    PhoneNumberTextField(
-                      focusNode: focusNode,
-                      onSaved: (value) {
-                        phoneNumber = value;
-                      },
-                    ),
-                  ],
-                )),
-            const Spacer(),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 40),
-              child: Text(
-                "با ثبت نام در بنکس، با شرایط استفاده و سیاست حفظ حریم خصوصی ما موافقت می‌کنید",
-                style: Theme.of(context).textTheme.bodyMedium,
-                textAlign: TextAlign.center,
-              ),
-            ),
-            const SizedBox(height: 24),
-            PrimaryFillButton(
-              onPressed: () {
-                if (_formKey.currentState!.validate()) {
-                  _formKey.currentState?.save();
-                  context.read<PhoneBloc>().add(PhoneSubmitted(phoneNumber!));
-                }
-              },
-              label: translator.acceptAndContinue,
-              isLoading: state is PhoneInProgress,
-            ),
-          ],
-        );
-      },
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Align(
+          alignment: Alignment.centerRight,
+          child: Text(
+            style: Theme.of(context)
+                .textTheme
+                .headlineMedium
+                ?.copyWith(fontWeight: FontWeight.bold),
+            translator.mobilePhoneNumber,
+          ),
+        ),
+        const SizedBox(height: 16),
+        Form(
+            key: _formKey,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                PhoneNumberTextField(
+                  focusNode: focusNode,
+                  onSaved: (value) {
+                    phoneNumber = value;
+                  },
+                ),
+              ],
+            )),
+        const Spacer(),
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 40),
+          child: Text(
+            "با ثبت نام در بنکس، با شرایط استفاده و سیاست حفظ حریم خصوصی ما موافقت می‌کنید",
+            style: Theme.of(context).textTheme.bodyMedium,
+            textAlign: TextAlign.center,
+          ),
+        ),
+        const SizedBox(height: 24),
+        PrimaryFillButton(
+          onPressed: () {
+            if (_formKey.currentState!.validate()) {
+              _formKey.currentState?.save();
+              context.read<PhoneBloc>().add(PhoneSubmitted(phoneNumber!));
+            }
+          },
+          label: translator.acceptAndContinue,
+          isLoading: widget.showLoading,
+        ),
+      ],
     );
   }
 }
