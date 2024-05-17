@@ -8,10 +8,11 @@ abstract class IdentityEvent extends Equatable {
 }
 
 class IdentitySubmitted extends IdentityEvent {
-  final String phoneNumber;
+  final String birthday;
+  final String nationalId;
 
-  const IdentitySubmitted(this.phoneNumber);
+  const IdentitySubmitted({required this.nationalId, required this.birthday});
 
   @override
-  List<Object> get props => [phoneNumber];
+  List<Object> get props => [birthday, nationalId];
 }

@@ -16,7 +16,7 @@ class IdentityBloc extends Bloc<IdentityEvent, IdentityState> {
   ) async {
     emit(
       IdentitySuccess(
-          phoneNumber: event.phoneNumber,
+          phoneNumber: event.nationalId,
           sessionId: "sample session id",
           numCells: 5),
     );

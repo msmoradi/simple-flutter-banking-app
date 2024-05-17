@@ -1,9 +1,7 @@
-import 'package:designsystem/widgets/appbar/empty_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:identity/presentation/view/identity_form.dart';
-
-import '../bloc/identity_bloc.dart';
+import 'package:identity/presentation/bloc/identity_bloc.dart';
+import 'package:identity/presentation/view/identity_content.dart';
 
 class IdentityPage extends StatelessWidget {
   final Function(String, String, int) onVerifyOtp;
@@ -15,16 +13,23 @@ class IdentityPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: const EmptyAppBar(),
-      body: Padding(
-        padding: const EdgeInsets.all(16),
-        child: BlocProvider(
-          create: (context) => IdentityBloc(),
-          child: IdentityForm(
-            onVerifyOtp: onVerifyOtp,
-          ),
-        ),
+    return BlocProvider(
+      create: (context) => IdentityBloc(),
+      child: BlocConsumer<IdentityBloc, IdentityState>(
+        listener: (context, state) {
+          if (state is IdentityFailure) {
+            ScaffoldMessenger.of(context)
+              ..hideCurrentSnackBar()
+              ..showSnackBar(
+                SnackBar(content: Text(state.message)),
+              );
+          } else if (state is IdentitySuccess) {
+            onVerifyOtp(state.phoneNumber, state.sessionId, state.numCells);
+          }
+        },
+        builder: (context, state) {
+          return IdentityContent(state: state);
+        },
       ),
     );
   }
