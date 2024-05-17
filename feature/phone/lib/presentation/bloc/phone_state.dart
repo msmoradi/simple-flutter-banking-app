@@ -30,7 +30,7 @@ class PhoneSuccess extends PhoneState {
       required this.numCells});
 
   @override
-  List<Object?> get props => [];
+  List<Object?> get props => [phoneNumber, sessionId, numCells];
 }
 
 class PhoneValidated extends PhoneState {

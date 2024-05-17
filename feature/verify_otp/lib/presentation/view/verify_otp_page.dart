@@ -8,6 +8,7 @@ import 'package:verify_otp/presentation/view/verify_otp_content.dart';
 
 class VerifyOtpPage extends StatelessWidget {
   final Function() onBackPressed;
+  final Function() onNext;
   final String phoneNumber;
   final String sessionId;
   final int numCells;
@@ -15,6 +16,7 @@ class VerifyOtpPage extends StatelessWidget {
   const VerifyOtpPage(
       {super.key,
       required this.onBackPressed,
+      required this.onNext,
       required this.phoneNumber,
       required this.sessionId,
       required this.numCells});
@@ -31,7 +33,9 @@ class VerifyOtpPage extends StatelessWidget {
               ..showSnackBar(
                 SnackBar(content: Text(state.message)),
               );
-          } else if (state is VerifyOtpSuccess) {}
+          } else if (state is VerifyOtpSuccess) {
+            onNext();
+          }
         },
         builder: (context, state) {
           return VerifyOtpContent(

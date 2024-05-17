@@ -32,7 +32,7 @@ class OnboardingPasswordPage extends StatelessWidget {
               ),
               Image.asset(
                 "assets/images/image-key.png",
-                fit: BoxFit.cover,
+                fit: BoxFit.fitWidth,
                 width: double.infinity,
                 alignment: Alignment.center,
               ),

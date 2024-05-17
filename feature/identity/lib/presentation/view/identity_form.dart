@@ -77,13 +77,18 @@ class _IdentityFormState extends State<IdentityForm> {
         const Spacer(),
         PrimaryFillButton(
           onPressed: () {
-            if (formKey.currentState!.validate()) {
+            /*if (formKey.currentState!.validate()) {
               formKey.currentState?.save();
               context.read<IdentityBloc>().add(
                     IdentitySubmitted(
                         nationalId: _nationalId!, birthday: _birthday!),
                   );
-            }
+            }*/
+            formKey.currentState?.save();
+            context.read<IdentityBloc>().add(
+              IdentitySubmitted(
+                  nationalId: _nationalId!, birthday: _birthday!),
+            );
           },
           label: translator.acceptAndContinue,
           isLoading: widget.showLoading,

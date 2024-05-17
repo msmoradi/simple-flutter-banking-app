@@ -4,11 +4,11 @@ import 'package:identity/presentation/bloc/identity_bloc.dart';
 import 'package:identity/presentation/view/identity_content.dart';
 
 class IdentityPage extends StatelessWidget {
-  final Function(String, String, int) onVerifyOtp;
+  final Function(String, String, int) onNext;
 
   const IdentityPage({
     super.key,
-    required this.onVerifyOtp,
+    required this.onNext,
   });
 
   @override
@@ -24,7 +24,7 @@ class IdentityPage extends StatelessWidget {
                 SnackBar(content: Text(state.message)),
               );
           } else if (state is IdentitySuccess) {
-            onVerifyOtp(state.phoneNumber, state.sessionId, state.numCells);
+            onNext(state.phoneNumber, state.sessionId, state.numCells);
           }
         },
         builder: (context, state) {

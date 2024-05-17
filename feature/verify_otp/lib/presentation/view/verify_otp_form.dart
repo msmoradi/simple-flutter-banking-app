@@ -2,7 +2,9 @@ import 'package:designsystem/widgets/button/fill/full_fill_button.dart';
 import 'package:designsystem/widgets/button/fill/full_outline_button.dart';
 import 'package:designsystem/widgets/textfields/otp_Input.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:utils/extension/build_context.dart';
+import 'package:verify_otp/phone.dart';
 
 class VerifyOtpForm extends StatefulWidget {
   final bool showLoading;
@@ -66,6 +68,7 @@ class _VerifyOtpFormState extends State<VerifyOtpForm> {
             // Use the key to access the getOTP method
             String currentOTP = otpKey.currentState!.getOTP();
             print("Current OTP: $currentOTP");
+            context.read<VerifyOtpBloc>().add(VerifyOtpSubmitted(currentOTP));
           },
           label: translator.acceptAndContinue,
           isLoading: widget.showLoading,

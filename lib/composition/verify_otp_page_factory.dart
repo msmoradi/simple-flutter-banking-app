@@ -1,3 +1,4 @@
+import 'package:banx/composition/identity_page_factory.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 import 'package:verify_otp/presentation/view/verify_otp_page.dart';
@@ -11,6 +12,9 @@ class VerifyOtpPageFactory {
       phoneNumber: phoneNumber,
       sessionId: sessionId,
       numCells: numCells,
+      onNext: () {
+        context.push(IdentityPageFactory.path);
+      },
       onBackPressed: () {
         context.pop();
       },
