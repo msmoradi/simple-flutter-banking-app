@@ -31,8 +31,8 @@ class _IdentityFormState extends State<IdentityForm> {
   @override
   Widget build(BuildContext context) {
     final translator = context.getTranslator();
-    String? _nationalId;
-    String? _birthday;
+    String? nationalId;
+    String? birthday;
 
     return Column(
       children: [
@@ -59,14 +59,14 @@ class _IdentityFormState extends State<IdentityForm> {
                       NationalIdTextField(
                         focusNode: nationalIdFocusNode,
                         onSaved: (value) {
-                          _nationalId = value;
+                          nationalId = value;
                         },
                       ),
                       const SizedBox(height: 8),
                       // TODO replace with birthday
                       PhoneNumberTextField(
                         onSaved: (value) {
-                          _birthday = value;
+                          birthday = value;
                         },
                       ),
                     ],
@@ -87,7 +87,7 @@ class _IdentityFormState extends State<IdentityForm> {
             formKey.currentState?.save();
             context.read<IdentityBloc>().add(
               IdentitySubmitted(
-                  nationalId: _nationalId!, birthday: _birthday!),
+                  nationalId: nationalId!, birthday: birthday!),
             );
           },
           label: translator.acceptAndContinue,

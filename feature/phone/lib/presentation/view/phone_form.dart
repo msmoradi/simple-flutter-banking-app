@@ -73,7 +73,7 @@ class _PhoneFormState extends State<PhoneForm> {
             )),
         const Spacer(),
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: 40),
+          padding: const EdgeInsets.symmetric(horizontal: 40),
           child: Text(
             "با ثبت نام در بنکس، با شرایط استفاده و سیاست حفظ حریم خصوصی ما موافقت می‌کنید",
             style: Theme.of(context).textTheme.bodyMedium,

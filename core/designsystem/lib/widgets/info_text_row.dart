@@ -24,7 +24,7 @@ class InfoTextRowWidget extends StatelessWidget {
             color: Theme.of(context).colorScheme.onSecondaryContainer,
           ),
         ),
-        SizedBox(
+        const SizedBox(
           width: 12,
         ),
         Expanded(

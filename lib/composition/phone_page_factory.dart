@@ -1,8 +1,6 @@
-import 'package:banx/composition/onboarding_password_page_factory.dart';
 import 'package:banx/composition/verify_otp_page_factory.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
-import 'package:onboarding_password/phone.dart';
 import 'package:phone/presentation/view/phone_page.dart';
 
 class PhonePageFactory {

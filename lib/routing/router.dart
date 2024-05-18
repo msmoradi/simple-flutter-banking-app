@@ -4,7 +4,6 @@ import 'package:banx/composition/phone_page_factory.dart';
 import 'package:banx/composition/root_page_factory.dart';
 import 'package:banx/composition/verify_otp_page_factory.dart';
 import 'package:go_router/go_router.dart';
-import 'package:onboarding_password/presentation/view/onboarding_password_page.dart';
 import 'package:utils/configurations/hermes_config.dart';
 
 /// The route configuration.

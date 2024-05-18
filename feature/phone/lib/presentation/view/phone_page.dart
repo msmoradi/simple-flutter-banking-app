@@ -36,7 +36,6 @@ class PhonePage extends StatelessWidget {
         },
       ),
     );
-    ;
   }
 }
 

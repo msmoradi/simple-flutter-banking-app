@@ -14,7 +14,7 @@ class OnboardingPasswordPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: EmptyAppBar(),
+      appBar: const EmptyAppBar(),
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: SingleChildScrollView(
@@ -48,13 +48,13 @@ class OnboardingPasswordPage extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 50),
-              InfoTextRowWidget(
+              const InfoTextRowWidget(
                 title: 'تعریف رمز ۴ تا ۶ رقمی',
                 subtitle:
                     'برای دسترسی به حساب BNAX خود باید  یک رمز ورود ۴ تا ۶ رقمی تعریف کنید',
               ),
               const SizedBox(height: 24),
-              InfoTextRowWidget(
+              const InfoTextRowWidget(
                 title: 'فعال‌سازی ورود بیومتریک',
                 subtitle:
                     'با فعال‌سازی FaceID یا Fingerprint تلفن همراه خود از ویژگی ورود سریع به وسیله سنسور بیومتریک دستگاه خود استفاده کنید',
