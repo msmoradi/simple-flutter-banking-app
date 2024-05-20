@@ -4,10 +4,10 @@ import 'package:networking/model/dto/network_response.dart';
 import 'package:phone/data/datasource/local/login_remote_datasource.dart';
 import 'package:phone/data/model/login_response_dto.dart';
 
-class LoginRemoteDataSourceImpl extends LoginRemoteDataSource {
+class AuthenticationRemoteDataSourceImpl extends AuthenticationRemoteDataSource {
   final HTTPClient _apiService;
 
-  LoginRemoteDataSourceImpl(HTTPClient apiService) : _apiService = apiService;
+  AuthenticationRemoteDataSourceImpl(HTTPClient apiService) : _apiService = apiService;
 
   @override
   Future<NetworkResponse<LoginResponseDto>> login(

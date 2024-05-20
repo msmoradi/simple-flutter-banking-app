@@ -40,7 +40,7 @@ class PhonePage extends StatelessWidget {
 }
 
 PhoneBloc get loginBloc => PhoneBloc(
-      loginRepository: LoginRepositoryImpl(
-        loginRemoteDataSource: LoginRemoteDataSourceImpl(ApiService()),
+      loginRepository: AuthenticationRepositoryImpl(
+        loginRemoteDataSource: AuthenticationRemoteDataSourceImpl(ApiService()),
       ),
     );

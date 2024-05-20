@@ -6,10 +6,10 @@ import 'package:phone/data/mapper/response.mapper.dart';
 import 'package:phone/domain/login_entity.dart';
 import 'package:phone/domain/repository/login_repository.dart';
 
-class LoginRepositoryImpl extends LoginRepository {
-  LoginRepositoryImpl({required this.loginRemoteDataSource});
+class AuthenticationRepositoryImpl extends AuthenticationRepository {
+  AuthenticationRepositoryImpl({required this.loginRemoteDataSource});
 
-  final LoginRemoteDataSource loginRemoteDataSource;
+  final AuthenticationRemoteDataSource loginRemoteDataSource;
 
   @override
   Future<EntityWrapper<LoginEntity>> login(

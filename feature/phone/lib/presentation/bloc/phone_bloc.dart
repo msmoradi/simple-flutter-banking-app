@@ -7,7 +7,7 @@ part 'phone_event.dart';
 part 'phone_state.dart';
 
 class PhoneBloc extends Bloc<PhoneEvent, PhoneState> {
-  final LoginRepository loginRepository;
+  final AuthenticationRepository loginRepository;
 
   PhoneBloc({
     required this.loginRepository,
@@ -19,16 +19,9 @@ class PhoneBloc extends Bloc<PhoneEvent, PhoneState> {
     PhoneSubmitted event,
     Emitter<PhoneState> emit,
   ) async {
-    emit(
-      PhoneSuccess(
-          phoneNumber: event.phoneNumber,
-          sessionId: "sample session id",
-          numCells: 5),
-    );
-    /* emit(PhoneInProgress());
+     emit(PhoneInProgress());
     try {
       final response = await loginRepository.login(event.phoneNumber,"");
-
       response.when(
           success: (success) => emit(PhoneSuccess()),
           partialSuccess: (message) => emit(PhoneFailure(message)),
@@ -36,6 +29,6 @@ class PhoneBloc extends Bloc<PhoneEvent, PhoneState> {
               emit(PhoneFailure(exception.toString())));
     } catch (_) {
       emit(const PhoneFailure('on handled error'));
-    }*/
+    }
   }
 }
