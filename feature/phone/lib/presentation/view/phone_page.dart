@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:networking/api_service.dart';
-import 'package:phone/data/datasource/local/login_remote_datasource_impl.dart';
-import 'package:phone/data/repository/login_repository_impl.dart';
+import 'package:phone/data/datasource/local/authentication_remote_datasource_impl.dart';
+import 'package:phone/data/repository/authentication_repository_impl.dart';
 import 'package:phone/presentation/view/phone_content.dart';
 
 import '../bloc/phone_bloc.dart';
@@ -40,7 +40,7 @@ class PhonePage extends StatelessWidget {
 }
 
 PhoneBloc get loginBloc => PhoneBloc(
-      loginRepository: AuthenticationRepositoryImpl(
-        loginRemoteDataSource: AuthenticationRemoteDataSourceImpl(ApiService()),
+      authenticationRepository: AuthenticationRepositoryImpl(
+        authenticationRemoteDataSource: AuthenticationRemoteDataSourceImpl(ApiService()),
       ),
     );

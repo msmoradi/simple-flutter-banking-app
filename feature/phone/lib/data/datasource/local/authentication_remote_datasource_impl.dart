@@ -1,7 +1,7 @@
 import 'package:networking/api_endpoints.dart';
 import 'package:networking/http_client.dart';
 import 'package:networking/model/dto/network_response.dart';
-import 'package:phone/data/datasource/local/login_remote_datasource.dart';
+import 'package:phone/data/datasource/local/authentication_remote_datasource.dart';
 import 'package:phone/data/model/login_response_dto.dart';
 
 class AuthenticationRemoteDataSourceImpl extends AuthenticationRemoteDataSource {
