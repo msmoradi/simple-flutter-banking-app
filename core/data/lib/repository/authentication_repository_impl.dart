@@ -1,47 +1,29 @@
 import 'dart:async';
 
-import 'package:domain/entities/authentication_status.dart';
-import 'package:domain/repository/repository.dart';
+import 'package:data/datasource/remote/authentication_remote_datasource.dart';
+import 'package:data/mapper/response.mapper.dart';
+import 'package:domain/entities/send_otp_entity.dart';
+import 'package:domain/entity_wrapper.dart';
+import 'package:domain/repository/authentication_repository.dart';
 
 class AuthenticationRepositoryImpl extends AuthenticationRepository {
-  final _controller = StreamController<AuthenticationStatus>();
+  AuthenticationRepositoryImpl({required this.authenticationRemoteDataSource});
+
+  final AuthenticationRemoteDataSource authenticationRemoteDataSource;
 
   @override
-  Stream<AuthenticationStatus> get status async* {
-    await Future<void>.delayed(const Duration(seconds: 1));
-    yield AuthenticationStatus.unauthenticated;
-    yield* _controller.stream;
-  }
-
-  @override
-  Future<void> logIn({
-    required String username,
-    required String password,
-  }) async {
-    await Future.delayed(
+  Future<EntityWrapper<SendOtpEntity>> sendOtp(String phoneNumber) {
+/*    if (_user != null) {
+      return EntityWrapper.success<LoginEntity>(_user!);
+    }
+    Future.delayed(
       const Duration(milliseconds: 300),
-      () => _controller.add(AuthenticationStatus.authenticated),
+          () => _user = UserEntity(const Uuid().v4()),
     );
-  }
+    return EntityWrapper.success<UserEntity>(_user!);*/
 
-  @override
-  Future<void> signUp({
-    required String firstName,
-    required String lastName,
-    required String email,
-    required String password,
-  }) async {
-    await Future.delayed(
-      const Duration(milliseconds: 300),
-      () => _controller.add(AuthenticationStatus.authenticated),
-    );
+    return authenticationRemoteDataSource
+        .sendOtp(phoneNumber)
+        .mapResponseToEntityWrapper();
   }
-
-  @override
-  void logOut() {
-    _controller.add(AuthenticationStatus.unauthenticated);
-  }
-
-  @override
-  void dispose() => _controller.close();
 }

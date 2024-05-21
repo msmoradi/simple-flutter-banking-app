@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:networking/api_service.dart';
-import 'package:phone/data/datasource/local/authentication_remote_datasource_impl.dart';
-import 'package:phone/data/repository/authentication_repository_impl.dart';
+import 'package:data/datasource/remote/authentication_remote_datasource_impl.dart';
+import 'package:data/repository/authentication_repository_impl.dart';
 import 'package:phone/presentation/view/phone_content.dart';
 
 import '../bloc/phone_bloc.dart';

@@ -1,21 +1,8 @@
-import 'package:domain/entities/authentication_status.dart';
+import 'package:domain/entities/send_otp_entity.dart';
+import 'package:domain/entity_wrapper.dart';
 
 abstract class AuthenticationRepository {
-  Stream<AuthenticationStatus> get status;
-
-  Future<void> logIn({
-    required String username,
-    required String password,
-  });
-
-  Future<void> signUp({
-    required String firstName,
-    required String lastName,
-    required String email,
-    required String password,
-  });
-
-  void logOut();
-
-  void dispose();
+  Future<EntityWrapper<SendOtpEntity>> sendOtp(
+    String phoneNumber,
+  );
 }
