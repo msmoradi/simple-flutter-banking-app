@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class PrimaryFillButton extends StatefulWidget {
   final VoidCallback? onPressed;
@@ -28,7 +29,10 @@ class _PrimaryFillButtonState extends State<PrimaryFillButton> {
       child: widget.isLoading
           ? FilledButton(
               onPressed: () {},
-              child: const CircularProgressIndicator(),
+              child: const SpinKitThreeBounce(
+                color: Colors.white,
+                size: 30.0,
+              ),
             )
           : widget.icon != null
               ? FilledButton.icon(
