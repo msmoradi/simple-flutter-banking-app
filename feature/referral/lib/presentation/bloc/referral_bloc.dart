@@ -19,7 +19,7 @@ class ReferralBloc extends Bloc<ReferralEvent, ReferralState> {
     ReferralSubmitted event,
     Emitter<ReferralState> emit,
   ) async {
-    emit(ReferralSuccess());
+    emit(const ReferralSuccess());
     /*emit(ReferralInProgress());
     try {
       final response =

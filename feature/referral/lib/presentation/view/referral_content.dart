@@ -1,6 +1,9 @@
 import 'package:designsystem/widgets/button/fill/full_fill_button.dart';
 import 'package:flutter/material.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:referral/presentation/bloc/referral_bloc.dart';
+import 'package:referral/presentation/view/referral_bottom_sheet_content.dart';
+import 'package:referral/presentation/view/without_referral_bottom_sheet_content.dart';
 
 class ReferralContent extends StatelessWidget {
   final ReferralState state;
@@ -25,7 +28,7 @@ class ReferralContent extends StatelessWidget {
               textAlign: TextAlign.center,
               style: Theme.of(context)
                   .textTheme
-                  .headlineSmall
+                  .headlineMedium
                   ?.copyWith(fontWeight: FontWeight.bold),
               'دعوت‌نامه ثبت‌نام',
             ),
@@ -38,7 +41,7 @@ class ReferralContent extends StatelessWidget {
                 'ثبت‌نام در بنکس تنها بوسیله کد دعوت امکان پذیر است، جهت ثبت نام از دوستان و آشنایان خودتان کد دعوت دریافت کنید',
               ),
             ),
-            Spacer(),
+            const Spacer(),
             Padding(
               padding:
                   const EdgeInsets.symmetric(horizontal: 16.0, vertical: 24.0),
@@ -47,17 +50,34 @@ class ReferralContent extends StatelessWidget {
                 children: [
                   Expanded(
                     child: PrimaryFillButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        showBarModalBottomSheet(
+                          enableDrag: true,
+                          context: context,
+                          backgroundColor:
+                              Theme.of(context).colorScheme.surface,
+                          builder: (context) => const ReferralBottomSheetContent(),
+                        );
+                      },
                       label: 'کد دعوت دارم',
                       fillWidth: false,
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 16.0,
                   ),
                   Expanded(
                     child: PrimaryFillButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        showBarModalBottomSheet(
+                          enableDrag: true,
+                          context: context,
+                          backgroundColor:
+                              Theme.of(context).colorScheme.surface,
+                          builder: (context) =>
+                              const WithOutReferralBottomSheetContent(),
+                        );
+                      },
                       label: 'کد ندارم',
                       fillWidth: false,
                     ),
