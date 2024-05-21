@@ -21,6 +21,8 @@ dependencies:
     path: core/utils
   phone:
     path: feature/phone
+  referral:
+    path: feature/referral
   identity:
     path: feature/identity
   onboarding_password:
@@ -71,6 +73,7 @@ flutter:
   uses-material-design: true
 
   assets:
+    - assets/images/referral_frame.png
     - assets/images/x1.png
     - assets/images/banx-logo.png
     - assets/images/banx-logo.svg
