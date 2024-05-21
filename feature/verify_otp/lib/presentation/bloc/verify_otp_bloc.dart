@@ -1,17 +1,16 @@
 import 'package:bloc/bloc.dart';
+import 'package:domain/repository/authentication_repository.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
-
-import '../../domain/repository/verify_otp_repository.dart';
 
 part 'verify_otp_event.dart';
 part 'verify_otp_state.dart';
 
 class VerifyOtpBloc extends Bloc<VerifyOtpEvent, VerifyOtpState> {
-  final VerifyOtpRepository loginRepository;
+  final AuthenticationRepository authenticationRepository;
 
   VerifyOtpBloc({
-    required this.loginRepository,
+    required this.authenticationRepository,
   }) : super(VerifyOtpValidated()) {
     on<VerifyOtpSubmitted>(_onVerifyOtpSubmitted);
   }
@@ -20,14 +19,10 @@ class VerifyOtpBloc extends Bloc<VerifyOtpEvent, VerifyOtpState> {
     VerifyOtpSubmitted event,
     Emitter<VerifyOtpState> emit,
   ) async {
-    emit(VerifyOtpSuccess());
-   /* emit(VerifyOtpInProgress());
+    emit(VerifyOtpInProgress());
     try {
-      final response = await loginRepository.login(
-        event.email,
-        event.password,
-      );
-
+      final response = await authenticationRepository.verifyOtp(
+          event.phoneNumber, event.otp);
       response.when(
           success: (success) => emit(VerifyOtpSuccess()),
           partialSuccess: (message) => emit(VerifyOtpFailure(message)),
@@ -35,6 +30,6 @@ class VerifyOtpBloc extends Bloc<VerifyOtpEvent, VerifyOtpState> {
               emit(VerifyOtpFailure(exception.toString())));
     } catch (_) {
       emit(const VerifyOtpFailure('on handled error'));
-    }*/
+    }
   }
 }

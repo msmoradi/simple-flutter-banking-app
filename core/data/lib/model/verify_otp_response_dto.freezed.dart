@@ -12,25 +12,25 @@ part of 'verify_otp_response_dto.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$VerifyOtpResponseDto {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(String status) $default, {
+    TResult Function() $default, {
     required TResult Function(Map<String, dynamic> data) json,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(String status)? $default, {
+    TResult? Function()? $default, {
     TResult? Function(Map<String, dynamic> data)? json,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(String status)? $default, {
+    TResult Function()? $default, {
     TResult Function(Map<String, dynamic> data)? json,
     required TResult orElse(),
   }) =>
@@ -58,13 +58,14 @@ mixin _$VerifyOtpResponseDto {
 
 /// @nodoc
 abstract class $VerifyOtpResponseDtoCopyWith<$Res> {
-  factory $VerifyOtpResponseDtoCopyWith(
-          VerifyOtpResponseDto value, $Res Function(VerifyOtpResponseDto) then) =
+  factory $VerifyOtpResponseDtoCopyWith(VerifyOtpResponseDto value,
+          $Res Function(VerifyOtpResponseDto) then) =
       _$VerifyOtpResponseDtoCopyWithImpl<$Res, VerifyOtpResponseDto>;
 }
 
 /// @nodoc
-class _$VerifyOtpResponseDtoCopyWithImpl<$Res, $Val extends VerifyOtpResponseDto>
+class _$VerifyOtpResponseDtoCopyWithImpl<$Res,
+        $Val extends VerifyOtpResponseDto>
     implements $VerifyOtpResponseDtoCopyWith<$Res> {
   _$VerifyOtpResponseDtoCopyWithImpl(this._value, this._then);
 
@@ -75,93 +76,68 @@ class _$VerifyOtpResponseDtoCopyWithImpl<$Res, $Val extends VerifyOtpResponseDto
 }
 
 /// @nodoc
-abstract class _$$_VerifyOtpResponseDtoCopyWith<$Res> {
-  factory _$$_VerifyOtpResponseDtoCopyWith(
-          _$_VerifyOtpResponseDto value, $Res Function(_$_VerifyOtpResponseDto) then) =
-      __$$_VerifyOtpResponseDtoCopyWithImpl<$Res>;
-  @useResult
-  $Res call({String status});
+abstract class _$$VerifyOtpResponseDtoImplCopyWith<$Res> {
+  factory _$$VerifyOtpResponseDtoImplCopyWith(_$VerifyOtpResponseDtoImpl value,
+          $Res Function(_$VerifyOtpResponseDtoImpl) then) =
+      __$$VerifyOtpResponseDtoImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_VerifyOtpResponseDtoCopyWithImpl<$Res>
-    extends _$VerifyOtpResponseDtoCopyWithImpl<$Res, _$_VerifyOtpResponseDto>
-    implements _$$_VerifyOtpResponseDtoCopyWith<$Res> {
-  __$$_VerifyOtpResponseDtoCopyWithImpl(
-      _$_VerifyOtpResponseDto _value, $Res Function(_$_VerifyOtpResponseDto) _then)
+class __$$VerifyOtpResponseDtoImplCopyWithImpl<$Res>
+    extends _$VerifyOtpResponseDtoCopyWithImpl<$Res, _$VerifyOtpResponseDtoImpl>
+    implements _$$VerifyOtpResponseDtoImplCopyWith<$Res> {
+  __$$VerifyOtpResponseDtoImplCopyWithImpl(_$VerifyOtpResponseDtoImpl _value,
+      $Res Function(_$VerifyOtpResponseDtoImpl) _then)
       : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? status = null,
-  }) {
-    return _then(_$_VerifyOtpResponseDto(
-      null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
 }
 
 /// @nodoc
 
-class _$_VerifyOtpResponseDto implements _VerifyOtpResponseDto {
-  const _$_VerifyOtpResponseDto(this.status);
-
-  @override
-  final String status;
+class _$VerifyOtpResponseDtoImpl implements _VerifyOtpResponseDto {
+  const _$VerifyOtpResponseDtoImpl();
 
   @override
   String toString() {
-    return 'VerifyOtpResponseDto(status: $status)';
+    return 'VerifyOtpResponseDto()';
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_VerifyOtpResponseDto &&
-            (identical(other.status, status) || other.status == status));
+            other is _$VerifyOtpResponseDtoImpl);
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, status);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$_VerifyOtpResponseDtoCopyWith<_$_VerifyOtpResponseDto> get copyWith =>
-      __$$_VerifyOtpResponseDtoCopyWithImpl<_$_VerifyOtpResponseDto>(this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(String status) $default, {
+    TResult Function() $default, {
     required TResult Function(Map<String, dynamic> data) json,
   }) {
-    return $default(status);
+    return $default();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(String status)? $default, {
+    TResult? Function()? $default, {
     TResult? Function(Map<String, dynamic> data)? json,
   }) {
-    return $default?.call(status);
+    return $default?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(String status)? $default, {
+    TResult Function()? $default, {
     TResult Function(Map<String, dynamic> data)? json,
     required TResult orElse(),
   }) {
     if ($default != null) {
-      return $default(status);
+      return $default();
     }
     return orElse();
   }
@@ -199,27 +175,23 @@ class _$_VerifyOtpResponseDto implements _VerifyOtpResponseDto {
 }
 
 abstract class _VerifyOtpResponseDto implements VerifyOtpResponseDto {
-  const factory _VerifyOtpResponseDto(final String status) = _$_VerifyOtpResponseDto;
-
-  String get status;
-  @JsonKey(ignore: true)
-  _$$_VerifyOtpResponseDtoCopyWith<_$_VerifyOtpResponseDto> get copyWith =>
-      throw _privateConstructorUsedError;
+  const factory _VerifyOtpResponseDto() = _$VerifyOtpResponseDtoImpl;
 }
 
 /// @nodoc
-abstract class _$$JsonCopyWith<$Res> {
-  factory _$$JsonCopyWith(_$Json value, $Res Function(_$Json) then) =
-      __$$JsonCopyWithImpl<$Res>;
+abstract class _$$JsonImplCopyWith<$Res> {
+  factory _$$JsonImplCopyWith(
+          _$JsonImpl value, $Res Function(_$JsonImpl) then) =
+      __$$JsonImplCopyWithImpl<$Res>;
   @useResult
   $Res call({Map<String, dynamic> data});
 }
 
 /// @nodoc
-class __$$JsonCopyWithImpl<$Res>
-    extends _$VerifyOtpResponseDtoCopyWithImpl<$Res, _$Json>
-    implements _$$JsonCopyWith<$Res> {
-  __$$JsonCopyWithImpl(_$Json _value, $Res Function(_$Json) _then)
+class __$$JsonImplCopyWithImpl<$Res>
+    extends _$VerifyOtpResponseDtoCopyWithImpl<$Res, _$JsonImpl>
+    implements _$$JsonImplCopyWith<$Res> {
+  __$$JsonImplCopyWithImpl(_$JsonImpl _value, $Res Function(_$JsonImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -227,7 +199,7 @@ class __$$JsonCopyWithImpl<$Res>
   $Res call({
     Object? data = null,
   }) {
-    return _then(_$Json(
+    return _then(_$JsonImpl(
       null == data
           ? _value._data
           : data // ignore: cast_nullable_to_non_nullable
@@ -238,8 +210,8 @@ class __$$JsonCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$Json implements Json {
-  const _$Json(final Map<String, dynamic> data) : _data = data;
+class _$JsonImpl implements Json {
+  const _$JsonImpl(final Map<String, dynamic> data) : _data = data;
 
   final Map<String, dynamic> _data;
   @override
@@ -255,10 +227,10 @@ class _$Json implements Json {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$Json &&
+            other is _$JsonImpl &&
             const DeepCollectionEquality().equals(other._data, _data));
   }
 
@@ -269,13 +241,13 @@ class _$Json implements Json {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$JsonCopyWith<_$Json> get copyWith =>
-      __$$JsonCopyWithImpl<_$Json>(this, _$identity);
+  _$$JsonImplCopyWith<_$JsonImpl> get copyWith =>
+      __$$JsonImplCopyWithImpl<_$JsonImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(String status) $default, {
+    TResult Function() $default, {
     required TResult Function(Map<String, dynamic> data) json,
   }) {
     return json(data);
@@ -284,7 +256,7 @@ class _$Json implements Json {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(String status)? $default, {
+    TResult? Function()? $default, {
     TResult? Function(Map<String, dynamic> data)? json,
   }) {
     return json?.call(data);
@@ -293,7 +265,7 @@ class _$Json implements Json {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(String status)? $default, {
+    TResult Function()? $default, {
     TResult Function(Map<String, dynamic> data)? json,
     required TResult orElse(),
   }) {
@@ -336,9 +308,10 @@ class _$Json implements Json {
 }
 
 abstract class Json implements VerifyOtpResponseDto {
-  const factory Json(final Map<String, dynamic> data) = _$Json;
+  const factory Json(final Map<String, dynamic> data) = _$JsonImpl;
 
   Map<String, dynamic> get data;
   @JsonKey(ignore: true)
-  _$$JsonCopyWith<_$Json> get copyWith => throw _privateConstructorUsedError;
+  _$$JsonImplCopyWith<_$JsonImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

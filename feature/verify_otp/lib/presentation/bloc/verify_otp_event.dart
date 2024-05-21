@@ -9,8 +9,9 @@ abstract class VerifyOtpEvent extends Equatable {
 
 class VerifyOtpSubmitted extends VerifyOtpEvent {
   final String otp;
+  final String phoneNumber;
 
-  const VerifyOtpSubmitted(this.otp);
+  const VerifyOtpSubmitted(this.phoneNumber, this.otp);
 
   @override
   List<Object> get props => [otp];

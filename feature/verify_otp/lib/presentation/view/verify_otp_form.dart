@@ -68,7 +68,9 @@ class _VerifyOtpFormState extends State<VerifyOtpForm> {
             // Use the key to access the getOTP method
             String currentOTP = otpKey.currentState!.getOTP();
             print("Current OTP: $currentOTP");
-            context.read<VerifyOtpBloc>().add(VerifyOtpSubmitted(currentOTP));
+            context
+                .read<VerifyOtpBloc>()
+                .add(VerifyOtpSubmitted(widget.phoneNumber, currentOTP));
           },
           label: translator.acceptAndContinue,
           isLoading: widget.showLoading,
