@@ -13,11 +13,10 @@ class ReferralBottomSheetContent extends StatelessWidget {
       child: Padding(
         padding: MediaQuery.of(context).viewInsets,
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16),
+          padding: const EdgeInsets.all(16.0),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              const SizedBox(height: 24),
               Text(
                 textAlign: TextAlign.center,
                 style: Theme.of(context).textTheme.headlineSmall,

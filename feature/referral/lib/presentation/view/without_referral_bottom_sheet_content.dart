@@ -8,11 +8,10 @@ class WithOutReferralBottomSheetContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 24.0),
+      padding: const EdgeInsets.all(16.0),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          const SizedBox(height: 24),
           AspectRatio(
             aspectRatio: 2.0,
             child: Image.asset(
