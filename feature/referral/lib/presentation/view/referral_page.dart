@@ -35,6 +35,7 @@ class ReferralPage extends StatelessWidget {
           return ReferralContent(
             state: state,
             onNext: onNext,
+            showLoading : state is ReferralInProgress
           );
         },
       ),
