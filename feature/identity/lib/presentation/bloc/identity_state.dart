@@ -20,14 +20,7 @@ class IdentityInProgress extends IdentityState {
 }
 
 class IdentitySuccess extends IdentityState {
-  final String phoneNumber;
-  final String sessionId;
-  final int numCells;
-
-  const IdentitySuccess(
-      {required this.phoneNumber,
-      required this.sessionId,
-      required this.numCells});
+  const IdentitySuccess();
 
   @override
   List<Object?> get props => [];

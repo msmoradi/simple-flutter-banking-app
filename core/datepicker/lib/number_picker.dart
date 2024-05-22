@@ -1,6 +1,5 @@
 import 'dart:math' as math;
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
@@ -9,7 +8,7 @@ import 'month_name_handler.dart';
 /// Created by Marcin Szałek
 
 ///Define a text mapper to transform the text displayed by the picker
-typedef String TextMapper(String numberText);
+typedef TextMapper = String Function(String numberText);
 
 ///NumberPicker is a widget designed to pick a number between #minValue and #maxValue
 class NumberPicker extends StatelessWidget {
@@ -23,7 +22,7 @@ class NumberPicker extends StatelessWidget {
 
   ///constructor for integer number picker
   NumberPicker.integer({
-    Key? key,
+    super.key,
     required int initialValue,
     required this.minValue,
     required this.maxValue,
@@ -55,8 +54,7 @@ class NumberPicker extends StatelessWidget {
         ),
         decimalScrollController = null,
         listViewHeight = 3 * itemExtent,
-        integerItemCount = (maxValue - minValue) ~/ step + 1,
-        super(key: key) {
+        integerItemCount = (maxValue - minValue) ~/ step + 1 {
     onChanged(selectedIntValue);
   }
 
@@ -195,7 +193,8 @@ class NumberPicker extends StatelessWidget {
         }
       },
       child: NotificationListener(
-        child: Container(
+        onNotification: _onIntegerNotification,
+        child: SizedBox(
           height: listViewHeight,
           width: listViewWidth,
           child: Stack(
@@ -205,8 +204,8 @@ class NumberPicker extends StatelessWidget {
                 controller: intScrollController,
                 itemExtent: itemExtent,
                 physics: enabled
-                    ? ClampingScrollPhysics()
-                    : NeverScrollableScrollPhysics(),
+                    ? const ClampingScrollPhysics()
+                    : const NeverScrollableScrollPhysics(),
                 itemCount: listItemCount,
                 cacheExtent: _calculateCacheExtent(listItemCount),
                 itemBuilder: (BuildContext context, int index) {
@@ -238,7 +237,6 @@ class NumberPicker extends StatelessWidget {
             ],
           ),
         ),
-        onNotification: _onIntegerNotification,
       ),
     );
   }
@@ -351,8 +349,8 @@ class NumberPicker extends StatelessWidget {
   _animate(ScrollController scrollController, double value) {
     scrollController.animateTo(
       value,
-      duration: Duration(seconds: 1),
-      curve: ElasticOutCurve(),
+      duration: const Duration(seconds: 1),
+      curve: const ElasticOutCurve(),
     );
   }
 }
@@ -363,11 +361,9 @@ class _NumberPickerSelectedItemDecoration extends StatelessWidget {
   final Decoration? decoration;
 
   const _NumberPickerSelectedItemDecoration(
-      {Key? key,
-      required this.axis,
+      {required this.axis,
       required this.itemExtent,
-      required this.decoration})
-      : super(key: key);
+      required this.decoration});
 
   @override
   Widget build(BuildContext context) {
@@ -408,7 +404,7 @@ class NumberPickerDialog extends StatefulWidget {
   final bool isJalali;
 
   ///constructor for integer values
-  NumberPickerDialog.integer({
+  const NumberPickerDialog.integer({super.key, 
     required this.minValue,
     required this.maxValue,
     required this.initialIntegerValue,
@@ -425,13 +421,13 @@ class NumberPickerDialog extends StatefulWidget {
     Widget? cancelWidget,
     this.isShowMonthName = false,
     this.isJalali = false,
-  })  : confirmWidget = confirmWidget ?? Text("OK"),
-        cancelWidget = cancelWidget ?? Text("CANCEL"),
+  })  : confirmWidget = confirmWidget ?? const Text("OK"),
+        cancelWidget = cancelWidget ?? const Text("CANCEL"),
         decimalPlaces = 0,
         initialDoubleValue = -1.0;
 
   ///constructor for decimal values
-  NumberPickerDialog.decimal({
+  const NumberPickerDialog.decimal({super.key, 
     required this.minValue,
     required this.maxValue,
     required this.initialDoubleValue,
@@ -446,8 +442,8 @@ class NumberPickerDialog extends StatefulWidget {
     Widget? cancelWidget,
     this.isShowMonthName = false,
     this.isJalali = false,
-  })  : confirmWidget = confirmWidget ?? Text("OK"),
-        cancelWidget = cancelWidget ?? Text("CANCEL"),
+  })  : confirmWidget = confirmWidget ?? const Text("OK"),
+        cancelWidget = cancelWidget ?? const Text("CANCEL"),
         initialIntegerValue = -1,
         step = 1,
         infiniteLoop = false,
