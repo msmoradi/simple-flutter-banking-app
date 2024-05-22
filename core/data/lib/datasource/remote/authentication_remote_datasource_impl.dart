@@ -1,4 +1,5 @@
 import 'package:data/datasource/remote/authentication_remote_datasource.dart';
+import 'package:data/model/referral_code_response_dto.dart';
 import 'package:data/model/send_otp_response_dto.dart';
 import 'package:data/model/verify_otp_response_dto.dart';
 import 'package:networking/api_endpoints.dart';
@@ -40,5 +41,19 @@ class AuthenticationRemoteDataSourceImpl
         endpoint: ApiEndpoint.auth(AuthEndpoint.VERIFY_OTP),
         data: body,
         mapper: VerifyOtpResponseDto.json);
+  }
+
+  @override
+  Future<NetworkResponse<ReferralCodeResponseDto>> referralCode(
+    String referralCode,
+  ) async {
+    final body = {
+      'referralCode': referralCode,
+    };
+
+    return await _apiService.post(
+        endpoint: ApiEndpoint.auth(AuthEndpoint.REFERRAL_CODE),
+        data: body,
+        mapper: ReferralCodeResponseDto.json);
   }
 }
