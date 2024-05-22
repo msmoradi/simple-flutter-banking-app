@@ -21,24 +21,8 @@ class PhoneForm extends StatefulWidget {
 class _PhoneFormState extends State<PhoneForm> {
   final _formKey = GlobalKey<FormState>();
   late final FocusNode focusNode;
-  late final TextEditingController controller;
 
   String? phoneNumber;
-
-  @override
-  void dispose() {
-    focusNode.dispose();
-    controller.dispose();
-    super.dispose();
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    focusNode = FocusNode();
-    controller = TextEditingController();
-    focusNode.requestFocus();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -63,8 +47,7 @@ class _PhoneFormState extends State<PhoneForm> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 PhoneNumberTextField(
-                  controller: controller,
-                  focusNode: focusNode,
+                  autofocus: true,
                   onSaved: (value) {
                     phoneNumber = value;
                   },

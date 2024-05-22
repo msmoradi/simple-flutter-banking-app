@@ -7,6 +7,7 @@ class PhoneNumberTextField extends StatefulWidget {
   final ValueChanged<String>? onFieldSubmitted;
   final TextEditingController? controller;
   final FocusNode? focusNode;
+  final bool autofocus;
 
   const PhoneNumberTextField({
     Key? key,
@@ -14,6 +15,7 @@ class PhoneNumberTextField extends StatefulWidget {
     this.onFieldSubmitted,
     this.controller,
     this.focusNode,
+    this.autofocus = false,
   }) : super(key: key);
 
   @override
@@ -24,11 +26,12 @@ class _PhoneNumberTextFieldState extends State<PhoneNumberTextField> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      autofocus: widget.autofocus,
       focusNode: widget.focusNode,
       controller: widget.controller,
       onSaved: widget.onSaved,
       onFieldSubmitted: widget.onFieldSubmitted,
-      keyboardType: TextInputType.phone,
+      keyboardType: TextInputType.number,
       decoration: InputDecoration(
         prefixIcon: const Icon(Icons.phone_iphone),
         hintText: context.getTranslator().mobilePhoneNumber,
