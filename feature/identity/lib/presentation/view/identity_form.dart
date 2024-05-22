@@ -18,20 +18,10 @@ class IdentityForm extends StatefulWidget {
 }
 
 class _IdentityFormState extends State<IdentityForm> {
-  final nationalIdFocusNode = FocusNode();
   final formKey = GlobalKey<FormState>();
   final birthdayController = TextEditingController();
   String? _nationalId;
   String? _birthday;
-
-  @override
-  void initState() {
-    super.initState();
-
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      FocusScope.of(context).requestFocus(nationalIdFocusNode);
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +50,7 @@ class _IdentityFormState extends State<IdentityForm> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       NationalIdTextField(
-                        focusNode: nationalIdFocusNode,
+                        autofocus: true,
                         onSaved: (value) {
                           setState(() {
                             _nationalId = value;
@@ -79,7 +69,7 @@ class _IdentityFormState extends State<IdentityForm> {
                                 Theme.of(context).colorScheme.surface,
                             builder: (context) => DatePickerBottomSheet(
                               initialDate: _birthday ?? '',
-                              onPressed: (value) {
+                              onButtonPressed: (value) {
                                 birthdayController.text = value;
                                 setState(() {
                                   _birthday = value;

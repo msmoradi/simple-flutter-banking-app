@@ -7,6 +7,7 @@ class EmailTextField extends StatefulWidget {
   final ValueChanged<String>? onFieldSubmitted;
   final TextEditingController? controller;
   final FocusNode? focusNode;
+  final bool autofocus;
 
   const EmailTextField({
     Key? key,
@@ -14,6 +15,7 @@ class EmailTextField extends StatefulWidget {
     this.onFieldSubmitted,
     this.controller,
     this.focusNode,
+    this.autofocus = false
   }) : super(key: key);
 
   @override
@@ -24,6 +26,7 @@ class _EmailTextFieldState extends State<EmailTextField> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      autofocus: widget.autofocus,
       focusNode: widget.focusNode,
       controller: widget.controller,
       onSaved: widget.onSaved,

@@ -25,11 +25,6 @@ class OTPInputState extends State<OTPInput> {
     controllers =
         List.generate(widget.numCells, (_) => TextEditingController());
     focusNodes = List.generate(widget.numCells, (_) => FocusNode());
-
-    // Auto-focus the first input cell
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      FocusScope.of(context).requestFocus(focusNodes[0]);
-    });
   }
 
   @override
@@ -56,6 +51,7 @@ class OTPInputState extends State<OTPInput> {
           return SizedBox(
             width: 50,
             child: TextField(
+              autofocus: index == 0,
               style: Theme.of(context)
                   .textTheme
                   .bodyMedium

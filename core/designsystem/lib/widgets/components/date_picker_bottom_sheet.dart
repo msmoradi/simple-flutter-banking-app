@@ -3,11 +3,11 @@ import 'package:designsystem/widgets/button/fill/full_fill_button.dart';
 import 'package:flutter/widgets.dart';
 
 class DatePickerBottomSheet extends StatelessWidget {
-  final Function(String date) onPressed;
+  final Function(String date) onButtonPressed;
   final String initialDate;
 
   const DatePickerBottomSheet(
-      {super.key, required this.onPressed, this.initialDate = ''});
+      {super.key, required this.onButtonPressed, this.initialDate = ''});
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +29,7 @@ class DatePickerBottomSheet extends StatelessWidget {
           PrimaryFillButton(
             label: 'تأیید تاریخ',
             onPressed: () {
-              onPressed(value.isEmpty ? initialDate : value);
+              onButtonPressed(value.isEmpty ? initialDate : value);
             },
           )
         ],
