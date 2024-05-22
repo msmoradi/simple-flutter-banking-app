@@ -1,18 +1,18 @@
-import 'package:banx/composition/onboarding_face_page_factory.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
+import 'package:onboarding_face/presentation/view/onboarding_face_page.dart';
 import 'package:onboarding_password/presentation/view/onboarding_password_page.dart';
 
-class OnboardingPasswordPageFactory {
-  static const path = "/onboarding_password";
+class OnboardingFacePageFactory {
+  static const path = "/onboarding_face";
 
-  static OnboardingPasswordPage builder(
+  static OnboardingFacePage builder(
     BuildContext context,
     GoRouterState state,
   ) {
-    return OnboardingPasswordPage(
-      onNext: () {
-        context.push(OnboardingFacePageFactory.path);
+    return OnboardingFacePage(
+      onBackPressed: () {
+        context.pop();
       },
     );
   }
@@ -21,10 +21,10 @@ class OnboardingPasswordPageFactory {
     List<RouteBase> routes = const <RouteBase>[],
   }) {
     return GoRoute(
-        path: (OnboardingPasswordPageFactory.path),
+        path: (OnboardingFacePageFactory.path),
         builder: (ctx, state) {
           // final extra = state.extra as OnboardingPasswordExtra;
-          return OnboardingPasswordPageFactory.builder(ctx, state);
+          return OnboardingFacePageFactory.builder(ctx, state);
         },
         routes: routes);
   }

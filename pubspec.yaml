@@ -29,6 +29,8 @@ dependencies:
     path: feature/identity
   onboarding_password:
     path: feature/onboarding_password
+  onboarding_face:
+    path: feature/onboarding_face
   verify_otp:
     path: feature/verify_otp
   splash:
@@ -84,3 +86,4 @@ flutter:
     - assets/images/slide-03.png
     - assets/images/circle_user.svg
     - assets/images/image-key.png
+    - assets/images/onboarding_face.png

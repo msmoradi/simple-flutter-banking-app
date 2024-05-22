@@ -1,4 +1,5 @@
 import 'package:banx/composition/identity_page_factory.dart';
+import 'package:banx/composition/onboarding_face_page_factory.dart';
 import 'package:banx/composition/onboarding_password_page_factory.dart';
 import 'package:banx/composition/phone_page_factory.dart';
 import 'package:banx/composition/referral_page_factory.dart';
@@ -15,6 +16,7 @@ Future<GoRouter> get routerConfig async => GoRouter(
         PhonePageFactory.route(),
         ReferralPageFactory.route(),
         OnboardingPasswordPageFactory.route(),
+        OnboardingFacePageFactory.route(),
         IdentityPageFactory.route(),
         VerifyOtpPageFactory.route(),
       ],
