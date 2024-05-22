@@ -4,7 +4,7 @@ import 'package:identity/presentation/bloc/identity_bloc.dart';
 import 'package:identity/presentation/view/identity_content.dart';
 
 class IdentityPage extends StatelessWidget {
-  final Function(String, String, int) onNext;
+  final Function() onNext;
 
   const IdentityPage({
     super.key,
@@ -24,7 +24,7 @@ class IdentityPage extends StatelessWidget {
                 SnackBar(content: Text(state.message)),
               );
           } else if (state is IdentitySuccess) {
-            onNext(state.phoneNumber, state.sessionId, state.numCells);
+            onNext();
           }
         },
         builder: (context, state) {

@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:data/datasource/remote/authentication_remote_datasource.dart';
+import 'package:domain/entities/identity_entity.dart';
 import 'package:domain/entities/referral_code_entity.dart';
 import 'package:domain/entities/send_otp_entity.dart';
 import 'package:domain/entities/verify_otp_entity.dart';
@@ -34,7 +35,7 @@ class AuthenticationRepositoryImpl extends AuthenticationRepository {
     );
 
     /* return authenticationRemoteDataSource
-        .sendOtp(phoneNumber)
+        .verifyOtp(phoneNumber,code)
         .mapResponseToEntityWrapper();*/
   }
 
@@ -46,6 +47,19 @@ class AuthenticationRepositoryImpl extends AuthenticationRepository {
     );
 
     /* return authenticationRemoteDataSource
+        .referralCode(referralCode)
+        .mapResponseToEntityWrapper();*/
+  }
+
+  @override
+  Future<EntityWrapper<IdentityEntity>> identity(
+      String nationalId, String birthday) {
+    return Future.delayed(
+      const Duration(seconds: 5),
+      () => EntityWrapper.success<IdentityEntity>(IdentityEntity()),
+    );
+
+/* return authenticationRemoteDataSource
         .sendOtp(phoneNumber)
         .mapResponseToEntityWrapper();*/
   }

@@ -1,3 +1,4 @@
+import 'package:domain/entities/identity_entity.dart';
 import 'package:domain/entities/referral_code_entity.dart';
 import 'package:domain/entities/send_otp_entity.dart';
 import 'package:domain/entities/verify_otp_entity.dart';
@@ -13,5 +14,10 @@ abstract class AuthenticationRepository {
 
   Future<EntityWrapper<ReferralCodeEntity>> referralCode(
     String referralCode,
+  );
+
+  Future<EntityWrapper<IdentityEntity>> identity(
+    String nationalId,
+    String birthday,
   );
 }

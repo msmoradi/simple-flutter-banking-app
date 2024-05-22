@@ -1,3 +1,4 @@
+import 'package:data/model/identity_response_dto.dart';
 import 'package:data/model/referral_code_response_dto.dart';
 import 'package:data/model/send_otp_response_dto.dart';
 import 'package:data/model/verify_otp_response_dto.dart';
@@ -16,4 +17,7 @@ abstract class AuthenticationRemoteDataSource {
   Future<NetworkResponse<ReferralCodeResponseDto>> referralCode(
     String referralCode,
   );
+
+  Future<NetworkResponse<IdentityResponseDto>> identity(
+      String nationalId, String birthday  );
 }

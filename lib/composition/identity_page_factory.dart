@@ -8,7 +8,7 @@ class IdentityPageFactory {
 
   static IdentityPage builder(BuildContext context, GoRouterState state) {
     return IdentityPage(
-      onNext: (phoneNumber, sessionId, numCells) {
+      onNext: () {
         context.push(OnboardingPasswordPageFactory.path);
       },
     );

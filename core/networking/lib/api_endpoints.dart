@@ -15,6 +15,7 @@ class ApiEndpoint {
       case AuthEndpoint.LOGIN: return '$path/signin';
       case AuthEndpoint.RESET_PASSWORD: return '$path/ResetPassword';
       case AuthEndpoint.SEND_OTP: return '$path/sendOtp';
+      case AuthEndpoint.IDENTITY: return '$path/identity';
       case AuthEndpoint.REFERRAL_CODE: return '$path/referralCode';
       case AuthEndpoint.VERIFY_OTP: return '$path/verifyOtp';
     }
@@ -41,6 +42,7 @@ enum AuthEndpoint {
   SEND_OTP,
   VERIFY_OTP,
   REFERRAL_CODE,
+  IDENTITY,
   /// An endpoint for login requests.
   RESET_PASSWORD,
 }
