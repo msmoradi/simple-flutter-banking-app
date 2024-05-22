@@ -8,10 +8,10 @@ abstract class ReferralEvent extends Equatable {
 }
 
 class ReferralSubmitted extends ReferralEvent {
-  final String referralNumber;
+  final String referralCode;
 
-  const ReferralSubmitted(this.referralNumber);
+  const ReferralSubmitted(this.referralCode);
 
   @override
-  List<Object> get props => [referralNumber];
+  List<Object> get props => [referralCode];
 }

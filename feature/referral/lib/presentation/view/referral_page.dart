@@ -18,7 +18,7 @@ class ReferralPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => loginBloc,
+      create: (context) => referralBloc,
       child: BlocConsumer<ReferralBloc, ReferralState>(
         listener: (context, state) {
           if (state is ReferralFailure) {
@@ -33,17 +33,21 @@ class ReferralPage extends StatelessWidget {
         },
         builder: (context, state) {
           return ReferralContent(
-            state: state,
-            onNext: onNext,
-            showLoading : state is ReferralInProgress
-          );
+              state: state,
+              onConfirmPressed: (referralCode) {
+                Navigator.of(context).pop();
+                context
+                    .read<ReferralBloc>()
+                    .add(ReferralSubmitted(referralCode));
+              },
+              showLoading: state is ReferralInProgress);
         },
       ),
     );
   }
 }
 
-ReferralBloc get loginBloc => ReferralBloc(
+ReferralBloc get referralBloc => ReferralBloc(
       authenticationRepository: AuthenticationRepositoryImpl(
         authenticationRemoteDataSource:
             AuthenticationRemoteDataSourceImpl(ApiService()),

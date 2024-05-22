@@ -3,11 +3,10 @@ import 'package:designsystem/widgets/textfields/phone_number_text_field.dart';
 import 'package:flutter/material.dart';
 
 class ReferralBottomSheetContent extends StatelessWidget {
-  final Function() onNext;
-  final bool showLoading;
+  final Function(String) onConfirmPressed;
 
   const ReferralBottomSheetContent(
-      {super.key, required this.onNext, required this.showLoading});
+      {super.key, required this.onConfirmPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -28,11 +27,9 @@ class ReferralBottomSheetContent extends StatelessWidget {
           const PhoneNumberTextField(),
           const SizedBox(height: 200),
           PrimaryFillButton(
-            isLoading: showLoading,
             label: 'تأیید و ادامه',
             onPressed: () {
-              Navigator.of(context).pop();
-              onNext();
+              onConfirmPressed("sample code");
             },
           )
         ],

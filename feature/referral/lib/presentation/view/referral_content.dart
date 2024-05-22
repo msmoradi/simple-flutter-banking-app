@@ -7,13 +7,13 @@ import 'package:referral/presentation/view/without_referral_bottom_sheet_content
 
 class ReferralContent extends StatelessWidget {
   final ReferralState state;
-  final Function() onNext;
+  final Function(String) onConfirmPressed;
   final bool showLoading;
 
   const ReferralContent(
       {super.key,
       required this.state,
-      required this.onNext,
+      required this.onConfirmPressed,
       required this.showLoading});
 
   @override
@@ -63,11 +63,11 @@ class ReferralContent extends StatelessWidget {
                           backgroundColor:
                               Theme.of(context).colorScheme.surface,
                           builder: (context) => ReferralBottomSheetContent(
-                            onNext: onNext,
-                            showLoading: showLoading,
+                            onConfirmPressed: onConfirmPressed,
                           ),
                         );
                       },
+                      isLoading: showLoading,
                       label: 'کد دعوت دارم',
                       fillWidth: false,
                     ),

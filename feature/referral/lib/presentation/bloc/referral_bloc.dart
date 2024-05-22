@@ -19,18 +19,17 @@ class ReferralBloc extends Bloc<ReferralEvent, ReferralState> {
     ReferralSubmitted event,
     Emitter<ReferralState> emit,
   ) async {
-    emit(const ReferralSuccess());
-    /*emit(ReferralInProgress());
+    emit(ReferralInProgress());
     try {
       final response =
-          await authenticationRepository.sendOtp(event.referralNumber);
+          await authenticationRepository.referralCode(event.referralCode);
       response.when(
-          success: (success) => emit(ReferralSuccess()),
+          success: (success) => emit(const ReferralSuccess()),
           partialSuccess: (message) => emit(ReferralFailure(message)),
           networkError: (exception) =>
               emit(ReferralFailure(exception.toString())));
     } catch (_) {
       emit(const ReferralFailure('on handled error'));
-    }*/
+    }
   }
 }
