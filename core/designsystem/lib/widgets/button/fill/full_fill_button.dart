@@ -23,11 +23,6 @@ class PrimaryFillButton extends StatelessWidget {
       width: fillWidth ? Size.infinite.width : null,
       child: isLoading
           ? FilledButton(
-              style: FilledButton.styleFrom(
-                backgroundColor: Theme.of(context)
-                    .colorScheme
-                    .primaryContainer, // This is what you need!
-              ),
               onPressed: () {},
               child: SpinKitThreeBounce(
                 color: Theme.of(context).colorScheme.onPrimaryContainer,
@@ -36,21 +31,11 @@ class PrimaryFillButton extends StatelessWidget {
             )
           : icon != null
               ? FilledButton.icon(
-                  style: FilledButton.styleFrom(
-                    backgroundColor: Theme.of(context)
-                        .colorScheme
-                        .primaryContainer, // This is what you need!
-                  ),
                   onPressed: onPressed,
                   icon: Icon(icon),
                   label: Text(label),
                 )
               : FilledButton(
-                  style: FilledButton.styleFrom(
-                    backgroundColor: Theme.of(context)
-                        .colorScheme
-                        .primaryContainer, // This is what you need!
-                  ),
                   onPressed: onPressed,
                   child: Text(label),
                 ),
