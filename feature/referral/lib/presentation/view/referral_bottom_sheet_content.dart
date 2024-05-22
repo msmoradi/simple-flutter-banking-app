@@ -3,7 +3,9 @@ import 'package:designsystem/widgets/textfields/phone_number_text_field.dart';
 import 'package:flutter/material.dart';
 
 class ReferralBottomSheetContent extends StatelessWidget {
-  const ReferralBottomSheetContent({super.key});
+  final Function() onNext;
+
+  const ReferralBottomSheetContent({super.key, required this.onNext});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +17,10 @@ class ReferralBottomSheetContent extends StatelessWidget {
           const SizedBox(height: 24),
           Text(
             textAlign: TextAlign.center,
-            style: Theme.of(context).textTheme.headlineSmall,
+            style: Theme
+                .of(context)
+                .textTheme
+                .headlineSmall,
             'کد دعوتنامه خود را وارد کنید و از خدمات بنکس لذت ببرید :)',
           ),
           const SizedBox(
@@ -25,7 +30,10 @@ class ReferralBottomSheetContent extends StatelessWidget {
           const SizedBox(height: 200),
           PrimaryFillButton(
             label: 'تأیید و ادامه',
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).pop();
+              onNext();
+            },
           )
         ],
       ),

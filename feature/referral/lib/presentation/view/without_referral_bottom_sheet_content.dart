@@ -61,7 +61,9 @@ class WithOutReferralBottomSheetContent extends StatelessWidget {
           const SizedBox(height: 100),
           PrimaryFillButton(
             label: 'متوجه شدم',
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
           )
         ],
       ),

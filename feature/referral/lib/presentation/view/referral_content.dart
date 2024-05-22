@@ -7,8 +7,9 @@ import 'package:referral/presentation/view/without_referral_bottom_sheet_content
 
 class ReferralContent extends StatelessWidget {
   final ReferralState state;
+  final Function() onNext;
 
-  const ReferralContent({super.key, required this.state});
+  const ReferralContent({super.key, required this.state, required this.onNext});
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +57,8 @@ class ReferralContent extends StatelessWidget {
                           context: context,
                           backgroundColor:
                               Theme.of(context).colorScheme.surface,
-                          builder: (context) => const ReferralBottomSheetContent(),
+                          builder: (context) =>
+                              ReferralBottomSheetContent(onNext: onNext),
                         );
                       },
                       label: 'کد دعوت دارم',

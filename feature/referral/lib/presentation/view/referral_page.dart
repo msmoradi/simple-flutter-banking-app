@@ -1,18 +1,18 @@
+import 'package:data/datasource/remote/authentication_remote_datasource_impl.dart';
+import 'package:data/repository/authentication_repository_impl.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:networking/api_service.dart';
-import 'package:data/datasource/remote/authentication_remote_datasource_impl.dart';
-import 'package:data/repository/authentication_repository_impl.dart';
 import 'package:referral/presentation/view/referral_content.dart';
 
 import '../bloc/referral_bloc.dart';
 
 class ReferralPage extends StatelessWidget {
-  final Function() onVerifyOtp;
+  final Function() onNext;
 
   const ReferralPage({
     super.key,
-    required this.onVerifyOtp,
+    required this.onNext,
   });
 
   @override
@@ -28,11 +28,14 @@ class ReferralPage extends StatelessWidget {
                 SnackBar(content: Text(state.message)),
               );
           } else if (state is ReferralSuccess) {
-            onVerifyOtp();
+            onNext();
           }
         },
         builder: (context, state) {
-          return ReferralContent(state: state);
+          return ReferralContent(
+            state: state,
+            onNext: onNext,
+          );
         },
       ),
     );
@@ -41,6 +44,7 @@ class ReferralPage extends StatelessWidget {
 
 ReferralBloc get loginBloc => ReferralBloc(
       authenticationRepository: AuthenticationRepositoryImpl(
-        authenticationRemoteDataSource: AuthenticationRemoteDataSourceImpl(ApiService()),
+        authenticationRemoteDataSource:
+            AuthenticationRemoteDataSourceImpl(ApiService()),
       ),
     );

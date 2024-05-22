@@ -28,5 +28,5 @@ Future<String> get initialLocation async {
     await BanxConfig.app.introPageViewed();
     return OnboardingPageFactory.path;
   }*/
-  return ReferralPageFactory.path;
+  return PhonePageFactory.path;
 }

@@ -1,3 +1,4 @@
+import 'package:banx/composition/identity_page_factory.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 import 'package:referral/presentation/view/referral_page.dart';
@@ -7,7 +8,9 @@ class ReferralPageFactory {
 
   static ReferralPage builder(BuildContext context, GoRouterState state) {
     return ReferralPage(
-      onVerifyOtp: () {},
+      onNext: () {
+        context.push(IdentityPageFactory.path);
+      },
     );
   }
 
