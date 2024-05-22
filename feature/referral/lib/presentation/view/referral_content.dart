@@ -20,85 +20,84 @@ class ReferralContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        constraints: const BoxConstraints.expand(),
-        child: Column(
-          children: [
-            Image.asset(
+      body: Column(
+        children: [
+          AspectRatio(
+            aspectRatio: 0.76,
+            child: Image.asset(
               "assets/images/referral_frame.png",
-              fit: BoxFit.cover,
-              width: double.infinity,
+              fit: BoxFit.fill,
               alignment: Alignment.center,
             ),
-            const SizedBox(height: 24),
-            Text(
+          ),
+          const SizedBox(height: 24),
+          Text(
+            textAlign: TextAlign.center,
+            style: Theme.of(context)
+                .textTheme
+                .headlineMedium
+                ?.copyWith(fontWeight: FontWeight.bold),
+            'دعوت‌نامه ثبت‌نام',
+          ),
+          const SizedBox(height: 16),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 25),
+            child: Text(
               textAlign: TextAlign.center,
-              style: Theme.of(context)
-                  .textTheme
-                  .headlineMedium
-                  ?.copyWith(fontWeight: FontWeight.bold),
-              'دعوت‌نامه ثبت‌نام',
+              style: Theme.of(context).textTheme.titleMedium,
+              'ثبت‌نام در بنکس تنها بوسیله کد دعوت امکان پذیر است، جهت ثبت نام از دوستان و آشنایان خودتان کد دعوت دریافت کنید',
             ),
-            const SizedBox(height: 16),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 25),
-              child: Text(
-                textAlign: TextAlign.center,
-                style: Theme.of(context).textTheme.titleMedium,
-                'ثبت‌نام در بنکس تنها بوسیله کد دعوت امکان پذیر است، جهت ثبت نام از دوستان و آشنایان خودتان کد دعوت دریافت کنید',
-              ),
+          ),
+          const Spacer(),
+          Padding(
+            padding:
+                const EdgeInsets.symmetric(horizontal: 16.0, vertical: 24.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Expanded(
+                  child: PrimaryFillButton(
+                    onPressed: () {
+                      showBarModalBottomSheet(
+                        enableDrag: true,
+                        context: context,
+                        backgroundColor:
+                            Theme.of(context).colorScheme.surface,
+                        builder: (context) => ReferralBottomSheetContent(
+                          onConfirmPressed: onConfirmPressed,
+                        ),
+                      );
+                    },
+                    isLoading: showLoading,
+                    label: 'کد دعوت دارم',
+                    fillWidth: false,
+                  ),
+                ),
+                const SizedBox(
+                  width: 16.0,
+                ),
+                Expanded(
+                  child: SecondaryFillButton(
+                    onPressed: showLoading
+                        ? null
+                        : () {
+                            showBarModalBottomSheet(
+                              enableDrag: true,
+                              context: context,
+                              backgroundColor:
+                                  Theme.of(context).colorScheme.surface,
+                              builder: (context) =>
+                                  const WithOutReferralBottomSheetContent(),
+                            );
+                          },
+                    label: 'کد ندارم',
+                    fillWidth: false,
+                  ),
+                ),
+              ],
             ),
-            const Spacer(),
-            Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 16.0, vertical: 24.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Expanded(
-                    child: PrimaryFillButton(
-                      onPressed: () {
-                        showBarModalBottomSheet(
-                          enableDrag: true,
-                          context: context,
-                          backgroundColor:
-                              Theme.of(context).colorScheme.surface,
-                          builder: (context) => ReferralBottomSheetContent(
-                            onConfirmPressed: onConfirmPressed,
-                          ),
-                        );
-                      },
-                      isLoading: showLoading,
-                      label: 'کد دعوت دارم',
-                      fillWidth: false,
-                    ),
-                  ),
-                  const SizedBox(
-                    width: 16.0,
-                  ),
-                  Expanded(
-                    child: SecondaryFillButton(
-                      onPressed: showLoading
-                          ? null
-                          : () {
-                              showBarModalBottomSheet(
-                                enableDrag: true,
-                                context: context,
-                                backgroundColor:
-                                    Theme.of(context).colorScheme.surface,
-                                builder: (context) =>
-                                    const WithOutReferralBottomSheetContent(),
-                              );
-                            },
-                      label: 'کد ندارم',
-                      fillWidth: false,
-                    ),
-                  ),
-                ],
-              ),
-            )
-          ],
-        ),
+          )
+        ],
       ),
     );
   }

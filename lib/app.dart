@@ -10,6 +10,7 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     precacheImage(const AssetImage("assets/images/image-key.png"), context);
+    precacheImage(const AssetImage("assets/images/referral_frame.png"), context);
     return FutureBuilder<GoRouter>(
       future: routerConfig,
       builder: (context, snapshot) {
