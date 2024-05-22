@@ -1,9 +1,11 @@
 import 'package:designsystem/widgets/button/fill/full_fill_button.dart';
+import 'package:designsystem/widgets/components/date_picker_bottom_sheet.dart';
+import 'package:designsystem/widgets/textfields/birthday_text_field.dart';
 import 'package:designsystem/widgets/textfields/national_id_text_field.dart';
-import 'package:designsystem/widgets/textfields/phone_number_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:identity/presentation/bloc/identity_bloc.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:utils/extension/build_context.dart';
 
 class IdentityForm extends StatefulWidget {
@@ -18,6 +20,9 @@ class IdentityForm extends StatefulWidget {
 class _IdentityFormState extends State<IdentityForm> {
   final nationalIdFocusNode = FocusNode();
   final formKey = GlobalKey<FormState>();
+  final birthdayController = TextEditingController();
+  String? _nationalId;
+  String? _birthday;
 
   @override
   void initState() {
@@ -31,8 +36,6 @@ class _IdentityFormState extends State<IdentityForm> {
   @override
   Widget build(BuildContext context) {
     final translator = context.getTranslator();
-    String? nationalId;
-    String? birthday;
 
     return Column(
       children: [
@@ -59,14 +62,32 @@ class _IdentityFormState extends State<IdentityForm> {
                       NationalIdTextField(
                         focusNode: nationalIdFocusNode,
                         onSaved: (value) {
-                          nationalId = value;
+                          setState(() {
+                            _nationalId = value;
+                          });
                         },
                       ),
                       const SizedBox(height: 8),
                       // TODO replace with birthday
-                      PhoneNumberTextField(
-                        onSaved: (value) {
-                          birthday = value;
+                      BirthdayTextField(
+                        controller: birthdayController,
+                        onTap: () {
+                          showBarModalBottomSheet(
+                            enableDrag: true,
+                            context: context,
+                            backgroundColor:
+                                Theme.of(context).colorScheme.surface,
+                            builder: (context) => DatePickerBottomSheet(
+                              initialDate: _birthday ?? '',
+                              onPressed: (value) {
+                                birthdayController.text = value;
+                                setState(() {
+                                  _birthday = value;
+                                });
+                                Navigator.of(context).pop();
+                              },
+                            ),
+                          );
                         },
                       ),
                     ],
@@ -77,18 +98,13 @@ class _IdentityFormState extends State<IdentityForm> {
         const Spacer(),
         PrimaryFillButton(
           onPressed: () {
-            /*if (formKey.currentState!.validate()) {
+            if (formKey.currentState!.validate()) {
               formKey.currentState?.save();
               context.read<IdentityBloc>().add(
                     IdentitySubmitted(
                         nationalId: _nationalId!, birthday: _birthday!),
                   );
-            }*/
-            formKey.currentState?.save();
-            context.read<IdentityBloc>().add(
-              IdentitySubmitted(
-                  nationalId: nationalId!, birthday: birthday!),
-            );
+            }
           },
           label: translator.acceptAndContinue,
           isLoading: widget.showLoading,
