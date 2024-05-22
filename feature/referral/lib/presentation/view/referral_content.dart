@@ -98,7 +98,7 @@ class ReferralContent extends StatelessWidget {
                               ),
                               context: context,
                               builder: (context) =>
-                                  WithOutReferralBottomSheetContent(),
+                                  const WithOutReferralBottomSheetContent(),
                             );
                           },
                     label: 'کد ندارم',

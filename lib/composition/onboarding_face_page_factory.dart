@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 import 'package:onboarding_face/presentation/view/onboarding_face_page.dart';
-import 'package:onboarding_password/presentation/view/onboarding_password_page.dart';
 
 class OnboardingFacePageFactory {
   static const path = "/onboarding_face";

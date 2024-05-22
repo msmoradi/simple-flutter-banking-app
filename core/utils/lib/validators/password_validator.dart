@@ -1,8 +1,6 @@
 import 'package:domain/entities/password.dart';
 import 'package:flutter/material.dart';
 import 'package:utils/extension/build_context.dart';
-import 'package:utils/extension/password.dart';
-
 import 'base/validation_error.dart';
 import 'base/validation_result.dart';
 import 'base/validator.dart';

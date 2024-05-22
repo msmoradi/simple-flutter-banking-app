@@ -1,7 +1,6 @@
 import 'package:domain/entities/phone_number.dart';
 import 'package:flutter/material.dart';
 import 'package:utils/extension/build_context.dart';
-import 'package:utils/extension/phone_number.dart';
 
 import 'base/validation_error.dart';
 import 'base/validation_result.dart';
