@@ -11,6 +11,8 @@ dependencies:
     sdk: flutter
   domain:
     path: ../domain
+  datepicker:
+    path: ../datepicker
   utils:
     path: ../utils
   collection:
