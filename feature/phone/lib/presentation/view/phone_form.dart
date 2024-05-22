@@ -68,6 +68,7 @@ class _PhoneFormState extends State<PhoneForm> {
           onPressed: () {
             if (_formKey.currentState!.validate()) {
               _formKey.currentState?.save();
+              FocusManager.instance.primaryFocus?.unfocus();
               context.read<PhoneBloc>().add(PhoneSubmitted(phoneNumber!));
             }
           },

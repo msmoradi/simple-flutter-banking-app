@@ -90,6 +90,7 @@ class _IdentityFormState extends State<IdentityForm> {
           onPressed: () {
             if (formKey.currentState!.validate()) {
               formKey.currentState?.save();
+              FocusManager.instance.primaryFocus?.unfocus();
               context.read<IdentityBloc>().add(
                     IdentitySubmitted(
                         nationalId: _nationalId!, birthday: _birthday!),
