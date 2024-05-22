@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
-class PrimaryFillButton extends StatelessWidget {
+class SecondaryFillButton extends StatelessWidget {
   final VoidCallback? onPressed;
   final String label;
   final IconData? icon;
   final bool isLoading;
   final bool fillWidth;
 
-  const PrimaryFillButton({
+  const SecondaryFillButton({
     Key? key,
     this.onPressed,
     required this.label,
@@ -26,11 +26,11 @@ class PrimaryFillButton extends StatelessWidget {
               style: FilledButton.styleFrom(
                 backgroundColor: Theme.of(context)
                     .colorScheme
-                    .primaryContainer, // This is what you need!
+                    .secondaryContainer, // This is what you need!
               ),
               onPressed: () {},
               child: SpinKitThreeBounce(
-                color: Theme.of(context).colorScheme.onPrimaryContainer,
+                color: Theme.of(context).colorScheme.onSecondaryContainer,
                 size: 30.0,
               ),
             )
@@ -39,7 +39,7 @@ class PrimaryFillButton extends StatelessWidget {
                   style: FilledButton.styleFrom(
                     backgroundColor: Theme.of(context)
                         .colorScheme
-                        .primaryContainer, // This is what you need!
+                        .secondaryContainer, // This is what you need!
                   ),
                   onPressed: onPressed,
                   icon: Icon(icon),
@@ -49,7 +49,7 @@ class PrimaryFillButton extends StatelessWidget {
                   style: FilledButton.styleFrom(
                     backgroundColor: Theme.of(context)
                         .colorScheme
-                        .primaryContainer, // This is what you need!
+                        .secondaryContainer, // This is what you need!
                   ),
                   onPressed: onPressed,
                   child: Text(label),

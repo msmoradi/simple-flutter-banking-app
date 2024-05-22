@@ -1,4 +1,5 @@
 import 'package:designsystem/widgets/button/fill/full_fill_button.dart';
+import 'package:designsystem/widgets/button/fill/secondary_button.dart';
 import 'package:flutter/material.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:referral/presentation/bloc/referral_bloc.dart';
@@ -76,17 +77,19 @@ class ReferralContent extends StatelessWidget {
                     width: 16.0,
                   ),
                   Expanded(
-                    child: PrimaryFillButton(
-                      onPressed: () {
-                        showBarModalBottomSheet(
-                          enableDrag: true,
-                          context: context,
-                          backgroundColor:
-                              Theme.of(context).colorScheme.surface,
-                          builder: (context) =>
-                              const WithOutReferralBottomSheetContent(),
-                        );
-                      },
+                    child: SecondaryFillButton(
+                      onPressed: showLoading
+                          ? null
+                          : () {
+                              showBarModalBottomSheet(
+                                enableDrag: true,
+                                context: context,
+                                backgroundColor:
+                                    Theme.of(context).colorScheme.surface,
+                                builder: (context) =>
+                                    const WithOutReferralBottomSheetContent(),
+                              );
+                            },
                       label: 'کد ندارم',
                       fillWidth: false,
                     ),
