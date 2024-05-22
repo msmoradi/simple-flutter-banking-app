@@ -1,7 +1,6 @@
 import 'package:designsystem/widgets/button/fill/full_fill_button.dart';
 import 'package:designsystem/widgets/button/fill/secondary_button.dart';
 import 'package:flutter/material.dart';
-import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:referral/presentation/bloc/referral_bloc.dart';
 import 'package:referral/presentation/view/referral_bottom_sheet_content.dart';
 import 'package:referral/presentation/view/without_referral_bottom_sheet_content.dart';
@@ -58,11 +57,17 @@ class ReferralContent extends StatelessWidget {
                 Expanded(
                   child: PrimaryFillButton(
                     onPressed: () {
-                      showBarModalBottomSheet(
-                        enableDrag: true,
+                      showModalBottomSheet(
+                        enableDrag: false,
+                        showDragHandle: true,
+                        isScrollControlled: true,
+                        useSafeArea: true,
+                        shape: const RoundedRectangleBorder(
+                          borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(8.0),
+                              topRight: Radius.circular(8.0)),
+                        ),
                         context: context,
-                        backgroundColor:
-                            Theme.of(context).colorScheme.surface,
                         builder: (context) => ReferralBottomSheetContent(
                           onConfirmPressed: onConfirmPressed,
                         ),
@@ -81,13 +86,19 @@ class ReferralContent extends StatelessWidget {
                     onPressed: showLoading
                         ? null
                         : () {
-                            showBarModalBottomSheet(
-                              enableDrag: true,
+                            showModalBottomSheet(
+                              enableDrag: false,
+                              showDragHandle: true,
+                              isScrollControlled: true,
+                              useSafeArea: true,
+                              shape: const RoundedRectangleBorder(
+                                borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(8.0),
+                                    topRight: Radius.circular(8.0)),
+                              ),
                               context: context,
-                              backgroundColor:
-                                  Theme.of(context).colorScheme.surface,
                               builder: (context) =>
-                                  const WithOutReferralBottomSheetContent(),
+                                  WithOutReferralBottomSheetContent(),
                             );
                           },
                     label: 'کد ندارم',

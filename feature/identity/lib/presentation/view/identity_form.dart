@@ -5,7 +5,6 @@ import 'package:designsystem/widgets/textfields/national_id_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:identity/presentation/bloc/identity_bloc.dart';
-import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:utils/extension/build_context.dart';
 
 class IdentityForm extends StatefulWidget {
@@ -62,11 +61,17 @@ class _IdentityFormState extends State<IdentityForm> {
                       BirthdayTextField(
                         controller: birthdayController,
                         onTap: () {
-                          showBarModalBottomSheet(
-                            enableDrag: true,
+                          showModalBottomSheet(
+                            enableDrag: false,
+                            showDragHandle: true,
+                            isScrollControlled: true,
+                            useSafeArea: true,
+                            shape: const RoundedRectangleBorder(
+                              borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(8.0),
+                                  topRight: Radius.circular(8.0)),
+                            ),
                             context: context,
-                            backgroundColor:
-                                Theme.of(context).colorScheme.surface,
                             builder: (context) => DatePickerBottomSheet(
                               initialDate: _birthday ?? '',
                               onButtonPressed: (value) {
