@@ -17,6 +17,7 @@ class App extends StatelessWidget {
       builder: (context, snapshot) {
         if (!snapshot.hasData) {
           return MaterialApp(
+            debugShowCheckedModeBanner: false,
             locale: const Locale('fa'),
             theme: BanxTheme.light(),
             darkTheme: BanxTheme.dark(),
@@ -28,6 +29,7 @@ class App extends StatelessWidget {
           );
         } else {
           return MaterialApp.router(
+              debugShowCheckedModeBanner: false,
               routerConfig: snapshot.data,
               theme: BanxTheme.light(),
               darkTheme: BanxTheme.dark(),
