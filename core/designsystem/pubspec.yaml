@@ -17,6 +17,7 @@ dependencies:
     path: ../utils
   collection:
   flutter_spinkit:
+  pinput: ^4.0.0
 
 
 dev_dependencies:

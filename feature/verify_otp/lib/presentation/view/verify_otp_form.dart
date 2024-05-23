@@ -1,6 +1,6 @@
 import 'package:designsystem/widgets/button/fill/full_fill_button.dart';
 import 'package:designsystem/widgets/button/fill/full_outline_button.dart';
-import 'package:designsystem/widgets/textfields/otp_Input.dart';
+import 'package:designsystem/widgets/textfields/rounded_with_shadow_otp.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:utils/extension/build_context.dart';
@@ -23,12 +23,24 @@ class VerifyOtpForm extends StatefulWidget {
 }
 
 class _VerifyOtpFormState extends State<VerifyOtpForm> {
-  // GlobalKey to access the OTPInput state
-  final GlobalKey<OTPInputState> otpKey = GlobalKey();
+  final formKey = GlobalKey<FormState>();
+  final pinController = TextEditingController();
+  final focusNode = FocusNode();
+
+  @override
+  void dispose() {
+    pinController.dispose();
+    focusNode.dispose();
+    super.dispose();
+  }
 
   void _onOTPComplete(String otp) {
-    print("Complete OTP: $otp");
-    // Additional actions upon completion e.g., verification
+    if (formKey.currentState!.validate()) {
+      focusNode.unfocus();
+      context
+          .read<VerifyOtpBloc>()
+          .add(VerifyOtpSubmitted(widget.phoneNumber, otp));
+    }
   }
 
   @override
@@ -52,26 +64,32 @@ class _VerifyOtpFormState extends State<VerifyOtpForm> {
           textAlign: TextAlign.center,
         ),
         const SizedBox(height: 32),
-        Directionality(
-          textDirection: TextDirection.ltr,
-          child: Center(
-            child: OTPInput(
-              key: otpKey,
-              numCells: widget.numCells,
-              onCompleted: _onOTPComplete,
+        Form(
+          key: formKey,
+          child: Directionality(
+            textDirection: TextDirection.ltr,
+            child: Center(
+              child: RoundedWithShadowInput(
+                controller: pinController,
+                focusNode: focusNode,
+                validator: (value) {
+                  return value?.length == widget.numCells ? null : 'Pin is incorrect';
+                },
+                length: widget.numCells,
+                onCompleted: _onOTPComplete,
+              ),
             ),
           ),
         ),
         const Spacer(),
         PrimaryFillButton(
           onPressed: () {
-            // Use the key to access the getOTP method
-            String currentOTP = otpKey.currentState!.getOTP();
-            print("Current OTP: $currentOTP");
-            FocusManager.instance.primaryFocus?.unfocus();
-            context
-                .read<VerifyOtpBloc>()
-                .add(VerifyOtpSubmitted(widget.phoneNumber, currentOTP));
+            if (formKey.currentState!.validate()) {
+              focusNode.unfocus();
+              context
+                  .read<VerifyOtpBloc>()
+                  .add(VerifyOtpSubmitted(widget.phoneNumber, "currentOTP"));
+            }
           },
           label: translator.acceptAndContinue,
           isLoading: widget.showLoading,
