@@ -29,6 +29,8 @@ dependencies:
     path: feature/identity
   onboarding_password:
     path: feature/onboarding_password
+  create_password:
+    path: feature/create_password
   onboarding_face:
     path: feature/onboarding_face
   verify_otp:

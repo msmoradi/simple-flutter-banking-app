@@ -1,4 +1,4 @@
-import 'package:banx/composition/onboarding_face_page_factory.dart';
+import 'package:banx/composition/create_password_page_factory.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 import 'package:onboarding_password/presentation/view/onboarding_password_page.dart';
@@ -12,7 +12,7 @@ class OnboardingPasswordPageFactory {
   ) {
     return OnboardingPasswordPage(
       onNext: () {
-        context.push(OnboardingFacePageFactory.path);
+        context.push(CreatePasswordPageFactory.path);
       },
     );
   }
