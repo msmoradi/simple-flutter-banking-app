@@ -1,9 +1,7 @@
-import 'package:designsystem/widgets/appbar/empty_app_bar.dart';
-import 'package:designsystem/widgets/button/fill/full_fill_button.dart';
+import 'package:designsystem/widgets/components/custom_keyboard.dart';
 import 'package:designsystem/widgets/textfields/rounded_with_shadow_otp.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:utils/extension/build_context.dart';
 
 class CreatePasswordPage extends StatefulWidget {
   final Function() onNext;
@@ -31,6 +29,24 @@ class _CreatePasswordPageState extends State<CreatePasswordPage> {
     ),
   );
 
+  Future<void> onConfirm() async {
+    if (formKey.currentState!.validate()) {
+      FocusManager.instance.primaryFocus?.unfocus();
+
+      // Store username and password securely
+      await _secureStorage.write(
+        key: 'username',
+        value: widget.phoneNumber,
+      );
+      await _secureStorage.write(
+        key: 'password',
+        value: pinController.text,
+      );
+
+      widget.onNext();
+    }
+  }
+
   @override
   void dispose() {
     pinController.dispose();
@@ -40,9 +56,10 @@ class _CreatePasswordPageState extends State<CreatePasswordPage> {
 
   @override
   Widget build(BuildContext context) {
-    final translator = context.getTranslator();
     return Scaffold(
-      appBar: const EmptyAppBar(),
+      appBar: AppBar(
+        leading: const BackButton(),
+      ),
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
@@ -62,15 +79,17 @@ class _CreatePasswordPageState extends State<CreatePasswordPage> {
               style: Theme.of(context).textTheme.titleMedium,
               textAlign: TextAlign.center,
             ),
-            const SizedBox(height: 32),
+            const SizedBox(height: 56),
             Form(
               key: formKey,
               child: Directionality(
                 textDirection: TextDirection.ltr,
                 child: Center(
                   child: RoundedWithShadowInput(
+                    obscureText: true,
                     controller: pinController,
                     focusNode: focusNode,
+                    useNativeKeyboard: false,
                     validator: (value) {
                       return value?.length == widget.numCells
                           ? null
@@ -82,26 +101,15 @@ class _CreatePasswordPageState extends State<CreatePasswordPage> {
               ),
             ),
             const Spacer(),
-            PrimaryFillButton(
-              onPressed: () async {
-                if (formKey.currentState!.validate()) {
-                  FocusManager.instance.primaryFocus?.unfocus();
-
-                  // Store username and password securely
-                  await _secureStorage.write(
-                    key: 'username',
-                    value: widget.phoneNumber,
-                  );
-                  await _secureStorage.write(
-                    key: 'password',
-                    value: pinController.text,
-                  );
-
-                  widget.onNext();
-                }
-              },
-              label: translator.acceptAndContinue,
+            Directionality(
+              textDirection: TextDirection.ltr,
+              child: CustomKeyBoard(
+                onConfirm: onConfirm,
+                maxLength: 4,
+                controller: pinController,
+              ),
             ),
+            const SizedBox(height: 42),
           ],
         ),
       ),

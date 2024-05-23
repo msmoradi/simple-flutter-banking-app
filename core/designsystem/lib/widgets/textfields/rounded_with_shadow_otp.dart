@@ -9,6 +9,8 @@ class RoundedWithShadowInput extends StatefulWidget {
   final ValueChanged<String>? onChanged;
   final ValueChanged<String>? onSubmitted;
   final FormFieldValidator<String>? validator;
+  final bool obscureText;
+  final bool useNativeKeyboard;
 
   const RoundedWithShadowInput(
       {Key? key,
@@ -18,7 +20,9 @@ class RoundedWithShadowInput extends StatefulWidget {
       this.onCompleted,
       this.onChanged,
       this.onSubmitted,
-      this.validator})
+      this.validator,
+      this.obscureText = false,
+      this.useNativeKeyboard = true})
       : super(key: key);
 
   @override
@@ -70,12 +74,15 @@ class _RoundedWithShadowInputState extends State<RoundedWithShadowInput> {
       onSubmitted: widget.onSubmitted,
       defaultPinTheme: defaultPinTheme,
       validator: widget.validator,
+      obscureText: widget.obscureText,
+      useNativeKeyboard: widget.useNativeKeyboard,
       hapticFeedbackType: HapticFeedbackType.lightImpact,
       separatorBuilder: (index) => const SizedBox(width: 12),
       focusedPinTheme: defaultPinTheme.copyWith(
         decoration: BoxDecoration(
           color: Colors.white,
-          border: Border.all(color: Theme.of(context).colorScheme.outlineVariant),
+          border:
+              Border.all(color: Theme.of(context).colorScheme.outlineVariant),
           borderRadius: BorderRadius.circular(8),
           boxShadow: const [
             BoxShadow(

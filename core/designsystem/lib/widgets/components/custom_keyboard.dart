@@ -69,10 +69,10 @@ class _CustomKeyBoardState extends State<CustomKeyBoard> {
                         widget.controller.text + buttonNumber.toString();
                   });
                 }
-                widget.onChanged!(widget.controller.text);
+                widget.onChanged?.call(widget.controller.text);
                 if (widget.controller.text.length >= widget.maxLength &&
                     widget.onCompleted != null) {
-                  widget.onCompleted!(widget.controller.text);
+                  widget.onCompleted?.call(widget.controller.text);
                 }
               },
             ))
@@ -108,10 +108,10 @@ class _CustomKeyBoardState extends State<CustomKeyBoard> {
                       widget.controller.text + 0.toString();
                 });
               }
-              widget.onChanged!(widget.controller.text);
+              widget.onChanged?.call(widget.controller.text);
               if (widget.controller.text.length >= widget.maxLength &&
                   widget.onCompleted != null) {
-                widget.onCompleted!(widget.controller.text);
+                widget.onCompleted?.call(widget.controller.text);
               }
             },
           ),
@@ -128,7 +128,7 @@ class _CustomKeyBoardState extends State<CustomKeyBoard> {
                         .substring(0, widget.controller.text.length - 1);
                   });
                 }
-                widget.onChanged!(widget.controller.text);
+                widget.onChanged?.call(widget.controller.text);
               }),
         ],
       ),
