@@ -1,3 +1,4 @@
+import 'package:banx/composition/enable_biometric_page_factory.dart';
 import 'package:create_password/presentation/view/create_password_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
@@ -10,7 +11,9 @@ class CreatePasswordPageFactory {
     GoRouterState state,
   ) {
     return CreatePasswordPage(
-      onNext: () {},
+      onNext: () {
+        context.push(EnableBiometricPageFactory.path);
+      },
       phoneNumber: '09128702779',
       numCells: 4,
     );

@@ -3,7 +3,6 @@ import 'package:designsystem/widgets/button/fill/full_fill_button.dart';
 import 'package:designsystem/widgets/textfields/rounded_with_shadow_otp.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:local_auth/local_auth.dart';
 import 'package:utils/extension/build_context.dart';
 
 class CreatePasswordPage extends StatefulWidget {
@@ -26,45 +25,17 @@ class _CreatePasswordPageState extends State<CreatePasswordPage> {
   final pinController = TextEditingController();
   final focusNode = FocusNode();
 
-  final FlutterSecureStorage _secureStorage = const FlutterSecureStorage();
-  final LocalAuthentication _localAuth = LocalAuthentication();
-  bool _biometricEnabled = false;
-
-  @override
-  void initState() {
-    super.initState();
-    _checkBiometricSupport();
-  }
+  final _secureStorage = const FlutterSecureStorage(
+    aOptions: AndroidOptions(
+      encryptedSharedPreferences: true,
+    ),
+  );
 
   @override
   void dispose() {
     pinController.dispose();
     focusNode.dispose();
     super.dispose();
-  }
-
-  Future<void> check() async {
-    if (_biometricEnabled) {
-      bool enabled = await _localAuth.authenticate(
-        localizedReason: 'Enable biometric authentication for future logins',
-      );
-      if (enabled) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text('Biometric authentication enabled'),
-          ),
-        );
-      }
-    }
-  }
-
-  Future<void> _checkBiometricSupport() async {
-    bool canCheckBiometrics = await _localAuth.canCheckBiometrics;
-    if (canCheckBiometrics) {
-      setState(() {
-        _biometricEnabled = true;
-      });
-    }
   }
 
   @override
@@ -126,7 +97,7 @@ class _CreatePasswordPageState extends State<CreatePasswordPage> {
                     value: pinController.text,
                   );
 
-                  await check();
+                  widget.onNext();
                 }
               },
               label: translator.acceptAndContinue,

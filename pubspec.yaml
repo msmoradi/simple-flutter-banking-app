@@ -31,6 +31,8 @@ dependencies:
     path: feature/onboarding_password
   create_password:
     path: feature/create_password
+  enable_biometric:
+    path: feature/enable_biometric
   onboarding_face:
     path: feature/onboarding_face
   verify_otp:
