@@ -9,7 +9,14 @@ class IdentityPageFactory {
   static IdentityPage builder(BuildContext context, GoRouterState state) {
     return IdentityPage(
       onNext: () {
-        context.push(OnboardingPasswordPageFactory.path);
+        context.push(
+          OnboardingPasswordPageFactory.path,
+          extra: OnboardingPasswordExtra(
+            phoneNumber: "09128702779",
+            sessionId: "sessionId",
+            numCells: 4,
+          ),
+        );
       },
     );
   }

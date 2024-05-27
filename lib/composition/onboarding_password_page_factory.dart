@@ -6,13 +6,21 @@ import 'package:onboarding_password/presentation/view/onboarding_password_page.d
 class OnboardingPasswordPageFactory {
   static const path = "/onboarding_password";
 
-  static OnboardingPasswordPage builder(
-    BuildContext context,
-    GoRouterState state,
-  ) {
+  static OnboardingPasswordPage builder({
+    required BuildContext context,
+    required GoRouterState state,
+    required OnboardingPasswordExtra extra,
+  }) {
     return OnboardingPasswordPage(
       onNext: () {
-        context.push(CreatePasswordPageFactory.path);
+        context.push(
+          CreatePasswordPageFactory.path,
+          extra: CreatePasswordExtra(
+            phoneNumber: extra.phoneNumber,
+            sessionId: extra.sessionId,
+            numCells: extra.numCells,
+          ),
+        );
       },
     );
   }
@@ -23,11 +31,25 @@ class OnboardingPasswordPageFactory {
     return GoRoute(
         path: (OnboardingPasswordPageFactory.path),
         builder: (ctx, state) {
-          // final extra = state.extra as OnboardingPasswordExtra;
-          return OnboardingPasswordPageFactory.builder(ctx, state);
+          final extra = state.extra as OnboardingPasswordExtra;
+          return OnboardingPasswordPageFactory.builder(
+            context: ctx,
+            state: state,
+            extra: extra,
+          );
         },
         routes: routes);
   }
 }
 
-class OnboardingPasswordExtra {}
+class OnboardingPasswordExtra {
+  final String phoneNumber;
+  final String sessionId;
+  final int numCells;
+
+  OnboardingPasswordExtra({
+    required this.phoneNumber,
+    required this.sessionId,
+    required this.numCells,
+  });
+}

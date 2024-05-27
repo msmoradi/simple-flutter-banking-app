@@ -11,7 +11,7 @@ class CustomKeyBoard extends StatefulWidget {
   final Function(String)? onCompleted;
 
   /// function to be called when special keys are pressed.
-  final Function() onConfirm;
+  final Function(String)? onConfirm;
 
   /// maximum length of the amount.
   final int maxLength;
@@ -25,7 +25,8 @@ class CustomKeyBoard extends StatefulWidget {
     required this.onConfirm,
     this.onCompleted,
     required this.controller,
-  })  : assert(maxLength > 0),
+  })
+      : assert(maxLength > 0),
         super(key: key);
 
   @override
@@ -45,7 +46,10 @@ class _CustomKeyBoardState extends State<CustomKeyBoard> {
           style: TextStyle(
             fontSize: 30,
             fontWeight: FontWeight.bold,
-            color: Theme.of(context).colorScheme.primary,
+            color: Theme
+                .of(context)
+                .colorScheme
+                .primary,
           ),
         );
       }
@@ -60,29 +64,30 @@ class _CustomKeyBoardState extends State<CustomKeyBoard> {
 
   Widget buildNumberRow(List<int> numbers) {
     List<Widget> buttonList = numbers
-        .map((buttonNumber) => buildNumberButton(
-              number: buttonNumber,
-              onPressed: () {
-                if (widget.controller.text.length < widget.maxLength) {
-                  setState(() {
-                    widget.controller.text =
-                        widget.controller.text + buttonNumber.toString();
-                  });
-                }
-                widget.onChanged?.call(widget.controller.text);
-                if (widget.controller.text.length >= widget.maxLength &&
-                    widget.onCompleted != null) {
-                  widget.onCompleted?.call(widget.controller.text);
-                }
-              },
-            ))
+        .map((buttonNumber) =>
+        buildNumberButton(
+          number: buttonNumber,
+          onPressed: () {
+            if (widget.controller.text.length < widget.maxLength) {
+              setState(() {
+                widget.controller.text =
+                    widget.controller.text + buttonNumber.toString();
+              });
+            }
+            widget.onChanged?.call(widget.controller.text);
+            if (widget.controller.text.length >= widget.maxLength &&
+                widget.onCompleted != null) {
+              widget.onCompleted?.call(widget.controller.text);
+            }
+          },
+        ))
         .toList();
     return Expanded(
         child: Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: buttonList,
-    ));
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: buttonList,
+        ));
   }
 
   Widget buildSpecialRow() {
@@ -95,10 +100,15 @@ class _CustomKeyBoardState extends State<CustomKeyBoard> {
               icon: Icon(
                 Icons.arrow_circle_left_rounded,
                 key: const Key('confirm'),
-                color: Theme.of(context).colorScheme.primary,
+                color: Theme
+                    .of(context)
+                    .colorScheme
+                    .primary,
                 size: 40,
               ),
-              onPressed: widget.onConfirm),
+              onPressed: () {
+                widget.onConfirm?.call(widget.controller.text);
+              }),
           buildNumberButton(
             number: 0,
             onPressed: () {
@@ -119,7 +129,10 @@ class _CustomKeyBoardState extends State<CustomKeyBoard> {
               icon: Icon(
                 Icons.backspace,
                 key: const Key('backspace'),
-                color: Theme.of(context).colorScheme.primary,
+                color: Theme
+                    .of(context)
+                    .colorScheme
+                    .primary,
               ),
               onPressed: () {
                 if (widget.controller.text.isNotEmpty) {

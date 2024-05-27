@@ -3,22 +3,24 @@ import 'package:designsystem/widgets/textfields/rounded_with_shadow_otp.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
-class CreatePasswordPage extends StatefulWidget {
-  final Function(String, String) onNext;
+class ConfirmPasswordPage extends StatefulWidget {
+  final Function() onNext;
   final String phoneNumber;
+  final String newPassword;
   final int numCells;
 
-  const CreatePasswordPage(
+  const ConfirmPasswordPage(
       {super.key,
       required this.onNext,
       required this.phoneNumber,
+      required this.newPassword,
       required this.numCells});
 
   @override
-  State<CreatePasswordPage> createState() => _CreatePasswordPageState();
+  State<ConfirmPasswordPage> createState() => _ConfirmPasswordPageState();
 }
 
-class _CreatePasswordPageState extends State<CreatePasswordPage> {
+class _ConfirmPasswordPageState extends State<ConfirmPasswordPage> {
   final formKey = GlobalKey<FormState>();
   final pinController = TextEditingController();
   final focusNode = FocusNode();
@@ -33,17 +35,17 @@ class _CreatePasswordPageState extends State<CreatePasswordPage> {
     if (formKey.currentState!.validate()) {
       FocusManager.instance.primaryFocus?.unfocus();
 
-      /*   // Store username and password securely
+      // Store username and password securely
       await _secureStorage.write(
         key: 'username',
         value: widget.phoneNumber,
       );
       await _secureStorage.write(
         key: 'password',
-        value: pinController.text,
-      );*/
+        value: value,
+      );
 
-      widget.onNext(widget.phoneNumber, value);
+      widget.onNext();
     }
   }
 
@@ -67,7 +69,7 @@ class _CreatePasswordPageState extends State<CreatePasswordPage> {
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(
-              "تعریف رمز عبور",
+              "تأیید رمز عبور",
               style: Theme.of(context)
                   .textTheme
                   .headlineSmall
@@ -75,7 +77,7 @@ class _CreatePasswordPageState extends State<CreatePasswordPage> {
             ),
             const SizedBox(height: 16),
             Text(
-              "رمز ورود به اپلیکیشن باید بین ۴ الی ۶ رقم باشد",
+              "رمز ورود خود را مجدد وارد نمایید",
               style: Theme.of(context).textTheme.titleMedium,
               textAlign: TextAlign.center,
             ),
@@ -91,7 +93,8 @@ class _CreatePasswordPageState extends State<CreatePasswordPage> {
                     focusNode: focusNode,
                     useNativeKeyboard: false,
                     validator: (value) {
-                      return value?.length == widget.numCells
+                      return value?.length == widget.numCells &&
+                              value == widget.newPassword
                           ? null
                           : 'Pin is incorrect';
                     },
