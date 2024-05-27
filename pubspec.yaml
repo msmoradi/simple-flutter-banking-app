@@ -85,6 +85,7 @@ flutter:
   uses-material-design: true
 
   assets:
+    - assets/images/enable_face.png
     - assets/images/metal_card_silver.png
     - assets/images/metal_card_gold.png
     - assets/images/metal_card_black.png

@@ -1,4 +1,3 @@
-import 'package:designsystem/widgets/appbar/empty_app_bar.dart';
 import 'package:designsystem/widgets/button/fill/full_fill_button.dart';
 import 'package:designsystem/widgets/button/fill/secondary_button.dart';
 import 'package:flutter/material.dart';
@@ -49,53 +48,63 @@ class _EnableBiometricPageState extends State<EnableBiometricPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const EmptyAppBar(),
-      body: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          mainAxisSize: MainAxisSize.max,
-          children: [
-            Image.asset(
-              "assets/images/onboarding_face.png",
-              fit: BoxFit.fitWidth,
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisSize: MainAxisSize.max,
+        children: [
+          AspectRatio(
+            aspectRatio: 393 / 504,
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 50.0),
+              color: Theme.of(context).colorScheme.surface,
               width: double.infinity,
-              alignment: Alignment.center,
+              child: Image.asset(
+                "assets/images/enable_face.png",
+                fit: BoxFit.fitWidth,
+                width: double.infinity,
+                alignment: Alignment.center,
+              ),
             ),
-            const SizedBox(height: 71),
-            Text(
-              style: Theme.of(context).textTheme.headlineMedium,
-              "فعال‌سازی ورود با چهره",
-            ),
-            const SizedBox(height: 30),
-            Text(
+          ),
+          const SizedBox(height: 71),
+          Text(
+            style: Theme.of(context).textTheme.headlineMedium,
+            "فعال‌سازی ورود با چهره",
+          ),
+          const SizedBox(height: 30),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 70.0),
+            child: Text(
                 style: Theme.of(context).textTheme.bodyMedium,
                 textAlign: TextAlign.center,
                 "برای ورود امن و سریع به BANX از ماژول تشخیص چهره استفاده میکنم"),
-            const Spacer(),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Expanded(
-                  child: PrimaryFillButton(
-                    onPressed: () async {
-                      await enableAuthentication();
-                    },
-                    label: 'فعال‌سازی',
-                    fillWidth: false,
-                  ),
-                ),
-                const SizedBox(
-                  width: 16.0,
-                ),
-                Expanded(
-                  child: SecondaryFillButton(
-                    onPressed: () {},
-                    label: 'فعلاً نه',
-                    fillWidth: false,
-                  ),
-                ),
-              ],
+          ),
+          const Spacer(),
+        ],
+      ),
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Expanded(
+              child: PrimaryFillButton(
+                onPressed: () async {
+                  await enableAuthentication();
+                },
+                label: 'فعال‌سازی',
+                fillWidth: false,
+              ),
+            ),
+            const SizedBox(
+              width: 16.0,
+            ),
+            Expanded(
+              child: SecondaryFillButton(
+                onPressed: widget.onNext,
+                label: 'فعلاً نه',
+                fillWidth: false,
+              ),
             ),
           ],
         ),
