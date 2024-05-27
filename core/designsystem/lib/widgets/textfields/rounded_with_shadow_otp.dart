@@ -75,6 +75,13 @@ class _RoundedWithShadowInputState extends State<RoundedWithShadowInput> {
       defaultPinTheme: defaultPinTheme,
       validator: widget.validator,
       obscureText: widget.obscureText,
+      obscuringWidget: Container(
+        width: 10,
+        height: 10,
+        decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            color: Theme.of(context).colorScheme.primary),
+      ),
       useNativeKeyboard: widget.useNativeKeyboard,
       hapticFeedbackType: HapticFeedbackType.lightImpact,
       separatorBuilder: (index) => const SizedBox(width: 12),
