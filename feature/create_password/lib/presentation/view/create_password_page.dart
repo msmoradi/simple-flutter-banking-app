@@ -1,7 +1,7 @@
-import 'package:designsystem/widgets/components/custom_keyboard.dart';
+import 'package:designsystem/widgets/button/fill/full_fill_button.dart';
 import 'package:designsystem/widgets/textfields/rounded_with_shadow_otp.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:utils/extension/build_context.dart';
 
 class CreatePasswordPage extends StatefulWidget {
   final Function(String, String) onNext;
@@ -23,26 +23,9 @@ class _CreatePasswordPageState extends State<CreatePasswordPage> {
   final pinController = TextEditingController();
   final focusNode = FocusNode();
 
-  final _secureStorage = const FlutterSecureStorage(
-    aOptions: AndroidOptions(
-      encryptedSharedPreferences: true,
-    ),
-  );
-
   Future<void> onConfirm(String value) async {
     if (formKey.currentState!.validate()) {
       FocusManager.instance.primaryFocus?.unfocus();
-
-      /*   // Store username and password securely
-      await _secureStorage.write(
-        key: 'username',
-        value: widget.phoneNumber,
-      );
-      await _secureStorage.write(
-        key: 'password',
-        value: pinController.text,
-      );*/
-
       widget.onNext(widget.phoneNumber, value);
     }
   }
@@ -56,6 +39,8 @@ class _CreatePasswordPageState extends State<CreatePasswordPage> {
 
   @override
   Widget build(BuildContext context) {
+    final translator = context.getTranslator();
+
     return Scaffold(
       appBar: AppBar(
         leading: const BackButton(),
@@ -89,28 +74,31 @@ class _CreatePasswordPageState extends State<CreatePasswordPage> {
                     obscureText: true,
                     controller: pinController,
                     focusNode: focusNode,
-                    useNativeKeyboard: false,
                     validator: (value) {
                       return value?.length == widget.numCells
                           ? null
                           : 'Pin is incorrect';
                     },
                     length: widget.numCells,
+                    onCompleted: onConfirm,
                   ),
                 ),
               ),
             ),
             const Spacer(),
-            Directionality(
-              textDirection: TextDirection.ltr,
-              child: CustomKeyBoard(
-                onConfirm: onConfirm,
-                maxLength: widget.numCells,
-                controller: pinController,
-              ),
-            ),
-            const SizedBox(height: 42),
           ],
+        ),
+      ),
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: PrimaryFillButton(
+          onPressed: () {
+            if (formKey.currentState!.validate()) {
+              FocusManager.instance.primaryFocus?.unfocus();
+              onConfirm(pinController.text);
+            }
+          },
+          label: translator.acceptAndContinue,
         ),
       ),
     );

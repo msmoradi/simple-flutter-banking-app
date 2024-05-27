@@ -73,7 +73,9 @@ class _VerifyOtpFormState extends State<VerifyOtpForm> {
                 controller: pinController,
                 focusNode: focusNode,
                 validator: (value) {
-                  return value?.length == widget.numCells ? null : 'Pin is incorrect';
+                  return value?.length == widget.numCells
+                      ? null
+                      : 'Pin is incorrect';
                 },
                 length: widget.numCells,
                 onCompleted: _onOTPComplete,

@@ -1,7 +1,8 @@
-import 'package:designsystem/widgets/components/custom_keyboard.dart';
+import 'package:designsystem/widgets/button/fill/full_fill_button.dart';
 import 'package:designsystem/widgets/textfields/rounded_with_shadow_otp.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:utils/extension/build_context.dart';
 
 class ConfirmPasswordPage extends StatefulWidget {
   final Function() onNext;
@@ -58,6 +59,8 @@ class _ConfirmPasswordPageState extends State<ConfirmPasswordPage> {
 
   @override
   Widget build(BuildContext context) {
+    final translator = context.getTranslator();
+
     return Scaffold(
       appBar: AppBar(
         leading: const BackButton(),
@@ -91,7 +94,6 @@ class _ConfirmPasswordPageState extends State<ConfirmPasswordPage> {
                     obscureText: true,
                     controller: pinController,
                     focusNode: focusNode,
-                    useNativeKeyboard: false,
                     validator: (value) {
                       return value?.length == widget.numCells &&
                               value == widget.newPassword
@@ -99,21 +101,25 @@ class _ConfirmPasswordPageState extends State<ConfirmPasswordPage> {
                           : 'Pin is incorrect';
                     },
                     length: widget.numCells,
+                    onCompleted: onConfirm,
                   ),
                 ),
               ),
             ),
             const Spacer(),
-            Directionality(
-              textDirection: TextDirection.ltr,
-              child: CustomKeyBoard(
-                onConfirm: onConfirm,
-                maxLength: widget.numCells,
-                controller: pinController,
-              ),
-            ),
-            const SizedBox(height: 42),
           ],
+        ),
+      ),
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: PrimaryFillButton(
+          onPressed: () {
+            if (formKey.currentState!.validate()) {
+              FocusManager.instance.primaryFocus?.unfocus();
+              onConfirm(pinController.text);
+            }
+          },
+          label: translator.acceptAndContinue,
         ),
       ),
     );
