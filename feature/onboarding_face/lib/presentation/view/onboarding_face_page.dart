@@ -4,11 +4,11 @@ import 'package:designsystem/widgets/info_text_row.dart';
 import 'package:flutter/material.dart';
 
 class OnboardingFacePage extends StatelessWidget {
-  final Function() onBackPressed;
+  final Function() onNext;
 
   const OnboardingFacePage({
     super.key,
-    required this.onBackPressed,
+    required this.onNext,
   });
 
   @override
@@ -66,8 +66,8 @@ class OnboardingFacePage extends StatelessWidget {
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.all(16.0),
         child: PrimaryFillButton(
-          label: 'تعریف رمز',
-          onPressed: () {},
+          label: 'متوجه شدم',
+          onPressed: onNext,
         ),
       ),
     );

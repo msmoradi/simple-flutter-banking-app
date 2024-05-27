@@ -14,7 +14,8 @@ class EnableBiometricPageFactory {
   ) {
     return EnableBiometricPage(
       onNext: () {
-        context.push(OnboardingFacePageFactory.path);
+        context.push(OnboardingFacePageFactory.path,
+        extra: OnboardingFaceExtra(sessionId: "sessionId"));
       },
     );
   }

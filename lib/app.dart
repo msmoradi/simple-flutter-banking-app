@@ -12,6 +12,12 @@ class App extends StatelessWidget {
     precacheImage(const AssetImage("assets/images/image-key.png"), context);
     precacheImage(const AssetImage("assets/images/onboarding_face.png"), context);
     precacheImage(const AssetImage("assets/images/referral_frame.png"), context);
+    precacheImage(const AssetImage("assets/images/metal_card_silver.png"), context);
+    precacheImage(const AssetImage("assets/images/metal_card_black.png"), context);
+    precacheImage(const AssetImage("assets/images/metal_card_gold.png"), context);
+    precacheImage(const AssetImage("assets/images/gold.png"), context);
+    precacheImage(const AssetImage("assets/images/black.png"), context);
+    precacheImage(const AssetImage("assets/images/silver.png"), context);
     return FutureBuilder<GoRouter>(
       future: routerConfig,
       builder: (context, snapshot) {

@@ -37,6 +37,8 @@ dependencies:
     path: feature/enable_biometric
   onboarding_face:
     path: feature/onboarding_face
+  select_card:
+    path: feature/select_card
   verify_otp:
     path: feature/verify_otp
   splash:
@@ -83,6 +85,12 @@ flutter:
   uses-material-design: true
 
   assets:
+    - assets/images/metal_card_silver.png
+    - assets/images/metal_card_gold.png
+    - assets/images/metal_card_black.png
+    - assets/images/silver.png
+    - assets/images/gold.png
+    - assets/images/black.png
     - assets/images/referral_frame.png
     - assets/images/x1.png
     - assets/images/banx-logo.png

@@ -7,6 +7,7 @@ import 'package:banx/composition/onboarding_password_page_factory.dart';
 import 'package:banx/composition/phone_page_factory.dart';
 import 'package:banx/composition/referral_page_factory.dart';
 import 'package:banx/composition/root_page_factory.dart';
+import 'package:banx/composition/select_card_page_factory.dart';
 import 'package:banx/composition/verify_otp_page_factory.dart';
 import 'package:go_router/go_router.dart';
 import 'package:utils/configurations/hermes_config.dart';
@@ -21,6 +22,7 @@ Future<GoRouter> get routerConfig async => GoRouter(
         OnboardingPasswordPageFactory.route(),
         CreatePasswordPageFactory.route(),
         ConfirmPasswordPageFactory.route(),
+        SelectCardPageFactory.route(),
         EnableBiometricPageFactory.route(),
         OnboardingFacePageFactory.route(),
         IdentityPageFactory.route(),
