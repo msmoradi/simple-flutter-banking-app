@@ -2,7 +2,6 @@ import 'package:designsystem/widgets/appbar/empty_app_bar.dart';
 import 'package:designsystem/widgets/button/fill/full_fill_button.dart';
 import 'package:flutter/material.dart';
 import 'package:select_card/presentation/view/app_card.dart';
-import 'package:select_card/presentation/view/flip_card.dart';
 
 class SelectCardPage extends StatefulWidget {
   final Function() onNext;
@@ -17,38 +16,88 @@ class SelectCardPage extends StatefulWidget {
 }
 
 class _SelectCardPageState extends State<SelectCardPage> {
-  bool _showFrontSide = true;
-  int _selectedIndex = 1;
-  String _frontCard = "assets/images/metal_card_gold.png";
-  String _backCard = "assets/images/metal_card_silver.png";
+  late PageController _pageViewController;
+  int _currentPageIndex = 1;
+
+  void _handlePageViewChanged(int currentPageIndex) {
+    setState(() {
+      _currentPageIndex = currentPageIndex;
+    });
+  }
+
+  void _updateCurrentPageIndex(int index) {
+    _pageViewController.animateToPage(
+      index,
+      duration: const Duration(milliseconds: 400),
+      curve: Curves.easeInOut,
+    );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _pageViewController = PageController(
+      initialPage: 1,
+      viewportFraction: 0.75,
+    );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _pageViewController.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const EmptyAppBar(),
       body: Padding(
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.symmetric(vertical: 16),
         child: Column(
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Align(
-              alignment: Alignment.centerRight,
-              child: Text(
-                style: Theme.of(context)
-                    .textTheme
-                    .headlineMedium
-                    ?.copyWith(fontWeight: FontWeight.bold),
-                "سفارش کارت",
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              child: Align(
+                alignment: Alignment.centerRight,
+                child: Text(
+                  style: Theme.of(context)
+                      .textTheme
+                      .headlineMedium
+                      ?.copyWith(fontWeight: FontWeight.bold),
+                  "سفارش کارت",
+                ),
               ),
             ),
             SizedBox(
+              height: 16,
+            ),
+            SizedBox(
               height: 425.6,
-              child: FlipCard(
-                showFrontSide: _showFrontSide,
-                frontCard: AppCard(imagePath: _frontCard),
-                backCard: AppCard(imagePath: _backCard),
+              child: PageView(
+                controller: _pageViewController,
+                onPageChanged: _handlePageViewChanged,
+                children: <Widget>[
+                  Center(
+                    child: AppCard(
+                      imagePath: "assets/images/metal_card_black.png",
+                    ),
+                  ),
+                  Center(
+                    child: AppCard(
+                      imagePath: "assets/images/metal_card_gold.png",
+                    ),
+                  ),
+                  Center(
+                    child: AppCard(
+                      imagePath: "assets/images/metal_card_silver.png",
+                    ),
+                  ),
+                ],
               ),
+            ),
+            SizedBox(
+              height: 20,
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 80.0),
@@ -75,66 +124,28 @@ class _SelectCardPageState extends State<SelectCardPage> {
                     children: [
                       GestureDetector(
                         onTap: () {
-                          //do what you want here
-                          setState(() {
-                            if (_selectedIndex != 0) {
-                              _selectedIndex = 0;
-                              if (_showFrontSide) {
-                                _backCard =
-                                    "assets/images/metal_card_black.png";
-                              } else {
-                                _frontCard =
-                                    "assets/images/metal_card_black.png";
-                              }
-                              _showFrontSide = !_showFrontSide;
-                            }
-                          });
+                          _updateCurrentPageIndex(0);
                         },
                         child: CircleItem(
-                          isSelected: _selectedIndex == 0,
+                          isSelected: _currentPageIndex == 0,
                           path: "assets/images/black.png",
                         ),
                       ),
                       GestureDetector(
                         onTap: () {
-                          //do what you want here
-                          setState(() {
-                            if (_selectedIndex != 1) {
-                              _selectedIndex = 1;
-                              if (_showFrontSide) {
-                                _backCard = "assets/images/metal_card_gold.png";
-                              } else {
-                                _frontCard =
-                                    "assets/images/metal_card_gold.png";
-                              }
-                              _showFrontSide = !_showFrontSide;
-                            }
-                          });
+                          _updateCurrentPageIndex(1);
                         },
                         child: CircleItem(
-                          isSelected: _selectedIndex == 1,
+                          isSelected: _currentPageIndex == 1,
                           path: "assets/images/gold.png",
                         ),
                       ),
                       GestureDetector(
                         onTap: () {
-                          //do what you want here
-                          setState(() {
-                            if (_selectedIndex != 2) {
-                              _selectedIndex = 2;
-                              if (_showFrontSide) {
-                                _backCard =
-                                    "assets/images/metal_card_silver.png";
-                              } else {
-                                _frontCard =
-                                    "assets/images/metal_card_silver.png";
-                              }
-                              _showFrontSide = !_showFrontSide;
-                            }
-                          });
+                          _updateCurrentPageIndex(2);
                         },
                         child: CircleItem(
-                          isSelected: _selectedIndex == 2,
+                          isSelected: _currentPageIndex == 2,
                           path: "assets/images/silver.png",
                         ),
                       ),
@@ -143,14 +154,15 @@ class _SelectCardPageState extends State<SelectCardPage> {
                 ],
               ),
             ),
+            Spacer(),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              child: PrimaryFillButton(
+                label: 'دریافت کارت فلزی رایگان',
+                onPressed: () {},
+              ),
+            ),
           ],
-        ),
-      ),
-      bottomNavigationBar: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: PrimaryFillButton(
-          label: 'دریافت کارت فلزی رایگان',
-          onPressed: () {},
         ),
       ),
     );
