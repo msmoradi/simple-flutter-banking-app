@@ -11,19 +11,21 @@ class RoundedWithShadowInput extends StatefulWidget {
   final FormFieldValidator<String>? validator;
   final bool obscureText;
   final bool useNativeKeyboard;
+  final bool autofocus;
 
-  const RoundedWithShadowInput(
-      {Key? key,
-      this.controller,
-      this.focusNode,
-      this.length = 4,
-      this.onCompleted,
-      this.onChanged,
-      this.onSubmitted,
-      this.validator,
-      this.obscureText = false,
-      this.useNativeKeyboard = true})
-      : super(key: key);
+  const RoundedWithShadowInput({
+    Key? key,
+    this.controller,
+    this.focusNode,
+    this.length = 4,
+    this.onCompleted,
+    this.onChanged,
+    this.onSubmitted,
+    this.validator,
+    this.obscureText = false,
+    this.useNativeKeyboard = true,
+    this.autofocus = true,
+  }) : super(key: key);
 
   @override
   _RoundedWithShadowInputState createState() => _RoundedWithShadowInputState();
@@ -71,6 +73,7 @@ class _RoundedWithShadowInputState extends State<RoundedWithShadowInput> {
       focusNode: widget.focusNode,
       onCompleted: widget.onCompleted,
       onChanged: widget.onChanged,
+      autofocus: widget.autofocus,
       onSubmitted: widget.onSubmitted,
       defaultPinTheme: defaultPinTheme,
       validator: widget.validator,

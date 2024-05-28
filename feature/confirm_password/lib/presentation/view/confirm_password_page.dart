@@ -107,19 +107,16 @@ class _ConfirmPasswordPageState extends State<ConfirmPasswordPage> {
               ),
             ),
             const Spacer(),
+            PrimaryFillButton(
+              onPressed: () {
+                if (formKey.currentState!.validate()) {
+                  FocusManager.instance.primaryFocus?.unfocus();
+                  onConfirm(pinController.text);
+                }
+              },
+              label: translator.acceptAndContinue,
+            ),
           ],
-        ),
-      ),
-      bottomNavigationBar: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: PrimaryFillButton(
-          onPressed: () {
-            if (formKey.currentState!.validate()) {
-              FocusManager.instance.primaryFocus?.unfocus();
-              onConfirm(pinController.text);
-            }
-          },
-          label: translator.acceptAndContinue,
         ),
       ),
     );

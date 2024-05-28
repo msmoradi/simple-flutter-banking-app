@@ -25,7 +25,9 @@ class ReferralBottomSheetContent extends StatelessWidget {
               const SizedBox(
                 height: 24,
               ),
-              const ReferralCodeTextField(),
+              const ReferralCodeTextField(
+                autofocus: true,
+              ),
               const SizedBox(height: 100),
               PrimaryFillButton(
                 label: 'تأیید و ادامه',
