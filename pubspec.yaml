@@ -27,6 +27,8 @@ dependencies:
     path: feature/referral
   identity:
     path: feature/identity
+  face_detection:
+    path: feature/face_detection
   onboarding_password:
     path: feature/onboarding_password
   create_password:

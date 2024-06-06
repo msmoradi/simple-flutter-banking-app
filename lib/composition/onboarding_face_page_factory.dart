@@ -1,4 +1,4 @@
-import 'package:banx/composition/select_card_page_factory.dart';
+import 'package:banx/composition/face_detection_factory.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 import 'package:onboarding_face/presentation/view/onboarding_face_page.dart';
@@ -14,8 +14,8 @@ class OnboardingFacePageFactory {
     return OnboardingFacePage(
       onNext: () {
         context.push(
-          SelectCardPageFactory.path,
-          extra: SelectCardExtra(sessionId: extra.sessionId),
+          FaceDetectionPageFactory.path,
+          extra: FaceDetectionExtra(sessionId: extra.sessionId),
         );
       },
     );

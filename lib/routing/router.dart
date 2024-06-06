@@ -1,6 +1,7 @@
 import 'package:banx/composition/confirm_password_page_factory.dart';
 import 'package:banx/composition/create_password_page_factory.dart';
 import 'package:banx/composition/enable_biometric_page_factory.dart';
+import 'package:banx/composition/face_detection_factory.dart';
 import 'package:banx/composition/identity_page_factory.dart';
 import 'package:banx/composition/onboarding_face_page_factory.dart';
 import 'package:banx/composition/onboarding_password_page_factory.dart';
@@ -19,6 +20,7 @@ Future<GoRouter> get routerConfig async => GoRouter(
         RootPageFactory.route(),
         PhonePageFactory.route(),
         ReferralPageFactory.route(),
+        FaceDetectionPageFactory.route(),
         OnboardingPasswordPageFactory.route(),
         CreatePasswordPageFactory.route(),
         ConfirmPasswordPageFactory.route(),
