@@ -69,7 +69,7 @@ class _SelectCardPageState extends State<SelectCardPage> {
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 16,
             ),
             SizedBox(
@@ -77,7 +77,7 @@ class _SelectCardPageState extends State<SelectCardPage> {
               child: PageView(
                 controller: _pageViewController,
                 onPageChanged: _handlePageViewChanged,
-                children: <Widget>[
+                children: const <Widget>[
                   Center(
                     child: AppCard(
                       imagePath: "assets/images/metal_card_black.png",
@@ -96,7 +96,7 @@ class _SelectCardPageState extends State<SelectCardPage> {
                 ],
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Padding(
@@ -154,7 +154,7 @@ class _SelectCardPageState extends State<SelectCardPage> {
                 ],
               ),
             ),
-            Spacer(),
+            const Spacer(),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: PrimaryFillButton(

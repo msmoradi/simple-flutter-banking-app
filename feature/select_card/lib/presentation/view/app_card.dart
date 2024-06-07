@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class AppCard extends StatelessWidget {
   final String imagePath;
 
-  const AppCard({
+  const AppCard({super.key, 
     required this.imagePath,
   });
 

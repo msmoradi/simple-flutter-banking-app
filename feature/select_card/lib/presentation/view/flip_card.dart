@@ -7,7 +7,7 @@ class FlipCard extends StatelessWidget {
   final Widget frontCard;
   final Widget backCard;
 
-  const FlipCard({
+  const FlipCard({super.key, 
     required this.showFrontSide,
     required this.backCard,
     required this.frontCard,
