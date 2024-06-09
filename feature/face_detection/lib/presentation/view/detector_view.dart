@@ -11,18 +11,16 @@ class DetectorView extends StatefulWidget {
     Key? key,
     required this.title,
     required this.onImage,
-    this.customPaint,
-    this.text,
     this.initialDetectionMode = DetectorViewMode.liveFeed,
     this.initialCameraLensDirection = CameraLensDirection.back,
     this.onCameraFeedReady,
     this.onDetectorViewModeChanged,
     this.onCameraLensDirectionChanged,
+    required this.rotY,
   }) : super(key: key);
 
+  final double rotY;
   final String title;
-  final CustomPaint? customPaint;
-  final String? text;
   final DetectorViewMode initialDetectionMode;
   final Function(InputImage inputImage) onImage;
   final Function()? onCameraFeedReady;
@@ -45,15 +43,14 @@ class _DetectorViewState extends State<DetectorView> {
 
   @override
   Widget build(BuildContext context) {
-    return  CameraView(
-            customPaint: widget.customPaint,
-            onImage: widget.onImage,
-            onCameraFeedReady: widget.onCameraFeedReady,
-            onDetectorViewModeChanged: _onDetectorViewModeChanged,
-            initialCameraLensDirection: widget.initialCameraLensDirection,
-            onCameraLensDirectionChanged: widget.onCameraLensDirectionChanged,
-          );
-
+    return CameraView(
+      onImage: widget.onImage,
+      onCameraFeedReady: widget.onCameraFeedReady,
+      onDetectorViewModeChanged: _onDetectorViewModeChanged,
+      initialCameraLensDirection: widget.initialCameraLensDirection,
+      onCameraLensDirectionChanged: widget.onCameraLensDirectionChanged,
+      rotY: widget.rotY,
+    );
   }
 
   void _onDetectorViewModeChanged() {
