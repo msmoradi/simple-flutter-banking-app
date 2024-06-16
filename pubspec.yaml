@@ -31,6 +31,8 @@ dependencies:
     path: feature/face_detection
   onboarding_password:
     path: feature/onboarding_password
+  kyc_status:
+    path: feature/kyc_status
   create_password:
     path: feature/create_password
   confirm_password:
@@ -88,6 +90,7 @@ flutter:
 
   assets:
     - assets/images/enable_face.png
+    - assets/images/kyc_status.png
     - assets/images/metal_card_silver.png
     - assets/images/metal_card_gold.png
     - assets/images/metal_card_black.png
