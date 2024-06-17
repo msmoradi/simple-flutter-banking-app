@@ -1,3 +1,4 @@
+import 'package:banx/composition/kyc_status_page_factory.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 import 'package:select_card/presentation/view/select_card_page.dart';
@@ -11,7 +12,12 @@ class SelectCardPageFactory {
     required SelectCardExtra? extra,
   }) {
     return SelectCardPage(
-      onNext: () {},
+      onNext: () {
+        context.push(
+          KycStatusPageFactory.path,
+          extra: KycStatusExtra(sessionId: "extra.sessionId", phoneNumber: ""),
+        );
+      },
     );
   }
 

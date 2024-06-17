@@ -13,10 +13,10 @@ class FaceDetectionPageFactory {
       ) {
     return FaceDetectionPage(
       onNext: () {
-        /*context.push(
+        context.push(
           SelectCardPageFactory.path,
-          extra: SelectCardExtra(sessionId: extra.sessionId),
-        );*/
+          extra: SelectCardExtra(sessionId: "extra.sessionId"),
+        );
       },
     );
   }
