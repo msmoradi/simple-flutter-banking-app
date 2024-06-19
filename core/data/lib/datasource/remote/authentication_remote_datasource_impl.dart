@@ -1,7 +1,7 @@
 import 'package:data/datasource/remote/authentication_remote_datasource.dart';
-import 'package:data/model/identity_response_dto.dart';
-import 'package:data/model/referral_code_response_dto.dart';
+import 'package:data/model/password_response_dto.dart';
 import 'package:data/model/send_otp_response_dto.dart';
+import 'package:data/model/sign_up_response_dto.dart';
 import 'package:data/model/verify_otp_response_dto.dart';
 import 'package:networking/api_endpoints.dart';
 import 'package:networking/http_client.dart';
@@ -31,11 +31,11 @@ class AuthenticationRemoteDataSourceImpl
   @override
   Future<NetworkResponse<VerifyOtpResponseDto>> verifyOtp(
     String phoneNumber,
-    String code,
+    String otp,
   ) async {
     final body = {
       'phoneNumber': phoneNumber,
-      'code': code,
+      'otp': otp,
     };
 
     return await _apiService.post(
@@ -45,30 +45,50 @@ class AuthenticationRemoteDataSourceImpl
   }
 
   @override
-  Future<NetworkResponse<ReferralCodeResponseDto>> referralCode(
+  Future<NetworkResponse<PasswordResponseDto>> password(String password) async {
+    final body = {
+      'password': password,
+    };
+
+    return await _apiService.post(
+        endpoint: ApiEndpoint.auth(AuthEndpoint.PASSWORD),
+        data: body,
+        mapper: PasswordResponseDto.json);
+  }
+
+  @override
+  Future<NetworkResponse<VerifyOtpResponseDto>> refresh(
+    String refreshToken,
+    String password,
+  ) async {
+    final body = {
+      'refreshToken': refreshToken,
+      'password': password,
+    };
+
+    return await _apiService.post(
+        endpoint: ApiEndpoint.auth(AuthEndpoint.REFRESH),
+        data: body,
+        mapper: VerifyOtpResponseDto.json);
+  }
+
+  @override
+  Future<NetworkResponse<SignUpResponseDto>> signup(
+    String phoneNumber,
+    String nationalId,
+    String birthDate,
     String referralCode,
   ) async {
     final body = {
+      'phoneNumber': phoneNumber,
+      'nationalId': nationalId,
+      'birthDate': birthDate,
       'referralCode': referralCode,
     };
 
     return await _apiService.post(
-        endpoint: ApiEndpoint.auth(AuthEndpoint.REFERRAL_CODE),
+        endpoint: ApiEndpoint.auth(AuthEndpoint.SIGN_UP),
         data: body,
-        mapper: ReferralCodeResponseDto.json);
-  }
-
-  @override
-  Future<NetworkResponse<IdentityResponseDto>> identity(
-      String nationalId, String birthday) async {
-    final body = {
-      'nationalId': nationalId,
-      'birthday': birthday,
-    };
-
-    return await _apiService.post(
-        endpoint: ApiEndpoint.auth(AuthEndpoint.IDENTITY),
-        data: body,
-        mapper: IdentityResponseDto.json);
+        mapper: SignUpResponseDto.json);
   }
 }

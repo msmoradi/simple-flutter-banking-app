@@ -1,9 +1,15 @@
 import 'package:domain/entities/entity.dart';
 
 class SendOtpEntity extends Entity {
-  final String phoneNumber;
-  final String sessionId;
-  final int numCells;
+  final bool needSignup;
+  final bool? needReferralCode;
+  final int? expiresIn;
+  final int? codeLength;
 
-  SendOtpEntity(this.phoneNumber, this.sessionId, this.numCells);
+  SendOtpEntity({
+    required this.needSignup,
+    this.needReferralCode,
+    this.expiresIn,
+    this.codeLength,
+  });
 }

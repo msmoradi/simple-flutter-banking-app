@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'referral_code_response_dto.dart';
+part of 'password_response_dto.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,7 +15,7 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
-mixin _$ReferralCodeResponseDto {
+mixin _$PasswordResponseDto {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function() $default, {
@@ -37,19 +37,19 @@ mixin _$ReferralCodeResponseDto {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>(
-    TResult Function(_ReferralCodeResponseDto value) $default, {
+    TResult Function(_PasswordResponseDto value) $default, {
     required TResult Function(Json value) json,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(_ReferralCodeResponseDto value)? $default, {
+    TResult? Function(_PasswordResponseDto value)? $default, {
     TResult? Function(Json value)? json,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>(
-    TResult Function(_ReferralCodeResponseDto value)? $default, {
+    TResult Function(_PasswordResponseDto value)? $default, {
     TResult Function(Json value)? json,
     required TResult orElse(),
   }) =>
@@ -57,17 +57,16 @@ mixin _$ReferralCodeResponseDto {
 }
 
 /// @nodoc
-abstract class $ReferralCodeResponseDtoCopyWith<$Res> {
-  factory $ReferralCodeResponseDtoCopyWith(ReferralCodeResponseDto value,
-          $Res Function(ReferralCodeResponseDto) then) =
-      _$ReferralCodeResponseDtoCopyWithImpl<$Res, ReferralCodeResponseDto>;
+abstract class $PasswordResponseDtoCopyWith<$Res> {
+  factory $PasswordResponseDtoCopyWith(
+          PasswordResponseDto value, $Res Function(PasswordResponseDto) then) =
+      _$PasswordResponseDtoCopyWithImpl<$Res, PasswordResponseDto>;
 }
 
 /// @nodoc
-class _$ReferralCodeResponseDtoCopyWithImpl<$Res,
-        $Val extends ReferralCodeResponseDto>
-    implements $ReferralCodeResponseDtoCopyWith<$Res> {
-  _$ReferralCodeResponseDtoCopyWithImpl(this._value, this._then);
+class _$PasswordResponseDtoCopyWithImpl<$Res, $Val extends PasswordResponseDto>
+    implements $PasswordResponseDtoCopyWith<$Res> {
+  _$PasswordResponseDtoCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -76,39 +75,36 @@ class _$ReferralCodeResponseDtoCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$ReferralCodeResponseDtoImplCopyWith<$Res> {
-  factory _$$ReferralCodeResponseDtoImplCopyWith(
-          _$ReferralCodeResponseDtoImpl value,
-          $Res Function(_$ReferralCodeResponseDtoImpl) then) =
-      __$$ReferralCodeResponseDtoImplCopyWithImpl<$Res>;
+abstract class _$$PasswordResponseDtoImplCopyWith<$Res> {
+  factory _$$PasswordResponseDtoImplCopyWith(_$PasswordResponseDtoImpl value,
+          $Res Function(_$PasswordResponseDtoImpl) then) =
+      __$$PasswordResponseDtoImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$ReferralCodeResponseDtoImplCopyWithImpl<$Res>
-    extends _$ReferralCodeResponseDtoCopyWithImpl<$Res,
-        _$ReferralCodeResponseDtoImpl>
-    implements _$$ReferralCodeResponseDtoImplCopyWith<$Res> {
-  __$$ReferralCodeResponseDtoImplCopyWithImpl(
-      _$ReferralCodeResponseDtoImpl _value,
-      $Res Function(_$ReferralCodeResponseDtoImpl) _then)
+class __$$PasswordResponseDtoImplCopyWithImpl<$Res>
+    extends _$PasswordResponseDtoCopyWithImpl<$Res, _$PasswordResponseDtoImpl>
+    implements _$$PasswordResponseDtoImplCopyWith<$Res> {
+  __$$PasswordResponseDtoImplCopyWithImpl(_$PasswordResponseDtoImpl _value,
+      $Res Function(_$PasswordResponseDtoImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$ReferralCodeResponseDtoImpl implements _ReferralCodeResponseDto {
-  const _$ReferralCodeResponseDtoImpl();
+class _$PasswordResponseDtoImpl implements _PasswordResponseDto {
+  const _$PasswordResponseDtoImpl();
 
   @override
   String toString() {
-    return 'ReferralCodeResponseDto()';
+    return 'PasswordResponseDto()';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ReferralCodeResponseDtoImpl);
+            other is _$PasswordResponseDtoImpl);
   }
 
   @override
@@ -148,7 +144,7 @@ class _$ReferralCodeResponseDtoImpl implements _ReferralCodeResponseDto {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>(
-    TResult Function(_ReferralCodeResponseDto value) $default, {
+    TResult Function(_PasswordResponseDto value) $default, {
     required TResult Function(Json value) json,
   }) {
     return $default(this);
@@ -157,7 +153,7 @@ class _$ReferralCodeResponseDtoImpl implements _ReferralCodeResponseDto {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(_ReferralCodeResponseDto value)? $default, {
+    TResult? Function(_PasswordResponseDto value)? $default, {
     TResult? Function(Json value)? json,
   }) {
     return $default?.call(this);
@@ -166,7 +162,7 @@ class _$ReferralCodeResponseDtoImpl implements _ReferralCodeResponseDto {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>(
-    TResult Function(_ReferralCodeResponseDto value)? $default, {
+    TResult Function(_PasswordResponseDto value)? $default, {
     TResult Function(Json value)? json,
     required TResult orElse(),
   }) {
@@ -177,8 +173,8 @@ class _$ReferralCodeResponseDtoImpl implements _ReferralCodeResponseDto {
   }
 }
 
-abstract class _ReferralCodeResponseDto implements ReferralCodeResponseDto {
-  const factory _ReferralCodeResponseDto() = _$ReferralCodeResponseDtoImpl;
+abstract class _PasswordResponseDto implements PasswordResponseDto {
+  const factory _PasswordResponseDto() = _$PasswordResponseDtoImpl;
 }
 
 /// @nodoc
@@ -192,7 +188,7 @@ abstract class _$$JsonImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$JsonImplCopyWithImpl<$Res>
-    extends _$ReferralCodeResponseDtoCopyWithImpl<$Res, _$JsonImpl>
+    extends _$PasswordResponseDtoCopyWithImpl<$Res, _$JsonImpl>
     implements _$$JsonImplCopyWith<$Res> {
   __$$JsonImplCopyWithImpl(_$JsonImpl _value, $Res Function(_$JsonImpl) _then)
       : super(_value, _then);
@@ -226,7 +222,7 @@ class _$JsonImpl implements Json {
 
   @override
   String toString() {
-    return 'ReferralCodeResponseDto.json(data: $data)';
+    return 'PasswordResponseDto.json(data: $data)';
   }
 
   @override
@@ -281,7 +277,7 @@ class _$JsonImpl implements Json {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>(
-    TResult Function(_ReferralCodeResponseDto value) $default, {
+    TResult Function(_PasswordResponseDto value) $default, {
     required TResult Function(Json value) json,
   }) {
     return json(this);
@@ -290,7 +286,7 @@ class _$JsonImpl implements Json {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(_ReferralCodeResponseDto value)? $default, {
+    TResult? Function(_PasswordResponseDto value)? $default, {
     TResult? Function(Json value)? json,
   }) {
     return json?.call(this);
@@ -299,7 +295,7 @@ class _$JsonImpl implements Json {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>(
-    TResult Function(_ReferralCodeResponseDto value)? $default, {
+    TResult Function(_PasswordResponseDto value)? $default, {
     TResult Function(Json value)? json,
     required TResult orElse(),
   }) {
@@ -310,7 +306,7 @@ class _$JsonImpl implements Json {
   }
 }
 
-abstract class Json implements ReferralCodeResponseDto {
+abstract class Json implements PasswordResponseDto {
   const factory Json(final Map<String, dynamic> data) = _$JsonImpl;
 
   Map<String, dynamic> get data;

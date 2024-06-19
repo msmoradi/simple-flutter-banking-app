@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'send_otp_response_dto.dart';
+part of 'sign_up_response_dto.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,47 +15,41 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
-mixin _$SendOtpResponseDto {
+mixin _$SignUpResponseDto {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(bool needSignup, bool needReferralCode, Long expiresIn,
-            int codeLength)
-        $default, {
+    TResult Function(Long expiresIn, int codeLength) $default, {
     required TResult Function(Map<String, dynamic> data) json,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(bool needSignup, bool needReferralCode, Long expiresIn,
-            int codeLength)?
-        $default, {
+    TResult? Function(Long expiresIn, int codeLength)? $default, {
     TResult? Function(Map<String, dynamic> data)? json,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(bool needSignup, bool needReferralCode, Long expiresIn,
-            int codeLength)?
-        $default, {
+    TResult Function(Long expiresIn, int codeLength)? $default, {
     TResult Function(Map<String, dynamic> data)? json,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>(
-    TResult Function(_SendOtpResponseDto value) $default, {
+    TResult Function(_SignUpResponseDto value) $default, {
     required TResult Function(Json value) json,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(_SendOtpResponseDto value)? $default, {
+    TResult? Function(_SignUpResponseDto value)? $default, {
     TResult? Function(Json value)? json,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>(
-    TResult Function(_SendOtpResponseDto value)? $default, {
+    TResult Function(_SignUpResponseDto value)? $default, {
     TResult Function(Json value)? json,
     required TResult orElse(),
   }) =>
@@ -63,16 +57,16 @@ mixin _$SendOtpResponseDto {
 }
 
 /// @nodoc
-abstract class $SendOtpResponseDtoCopyWith<$Res> {
-  factory $SendOtpResponseDtoCopyWith(
-          SendOtpResponseDto value, $Res Function(SendOtpResponseDto) then) =
-      _$SendOtpResponseDtoCopyWithImpl<$Res, SendOtpResponseDto>;
+abstract class $SignUpResponseDtoCopyWith<$Res> {
+  factory $SignUpResponseDtoCopyWith(
+          SignUpResponseDto value, $Res Function(SignUpResponseDto) then) =
+      _$SignUpResponseDtoCopyWithImpl<$Res, SignUpResponseDto>;
 }
 
 /// @nodoc
-class _$SendOtpResponseDtoCopyWithImpl<$Res, $Val extends SendOtpResponseDto>
-    implements $SendOtpResponseDtoCopyWith<$Res> {
-  _$SendOtpResponseDtoCopyWithImpl(this._value, this._then);
+class _$SignUpResponseDtoCopyWithImpl<$Res, $Val extends SignUpResponseDto>
+    implements $SignUpResponseDtoCopyWith<$Res> {
+  _$SignUpResponseDtoCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -81,40 +75,29 @@ class _$SendOtpResponseDtoCopyWithImpl<$Res, $Val extends SendOtpResponseDto>
 }
 
 /// @nodoc
-abstract class _$$SendOtpResponseDtoImplCopyWith<$Res> {
-  factory _$$SendOtpResponseDtoImplCopyWith(_$SendOtpResponseDtoImpl value,
-          $Res Function(_$SendOtpResponseDtoImpl) then) =
-      __$$SendOtpResponseDtoImplCopyWithImpl<$Res>;
+abstract class _$$SignUpResponseDtoImplCopyWith<$Res> {
+  factory _$$SignUpResponseDtoImplCopyWith(_$SignUpResponseDtoImpl value,
+          $Res Function(_$SignUpResponseDtoImpl) then) =
+      __$$SignUpResponseDtoImplCopyWithImpl<$Res>;
   @useResult
-  $Res call(
-      {bool needSignup, bool needReferralCode, Long expiresIn, int codeLength});
+  $Res call({Long expiresIn, int codeLength});
 }
 
 /// @nodoc
-class __$$SendOtpResponseDtoImplCopyWithImpl<$Res>
-    extends _$SendOtpResponseDtoCopyWithImpl<$Res, _$SendOtpResponseDtoImpl>
-    implements _$$SendOtpResponseDtoImplCopyWith<$Res> {
-  __$$SendOtpResponseDtoImplCopyWithImpl(_$SendOtpResponseDtoImpl _value,
-      $Res Function(_$SendOtpResponseDtoImpl) _then)
+class __$$SignUpResponseDtoImplCopyWithImpl<$Res>
+    extends _$SignUpResponseDtoCopyWithImpl<$Res, _$SignUpResponseDtoImpl>
+    implements _$$SignUpResponseDtoImplCopyWith<$Res> {
+  __$$SignUpResponseDtoImplCopyWithImpl(_$SignUpResponseDtoImpl _value,
+      $Res Function(_$SignUpResponseDtoImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? needSignup = null,
-    Object? needReferralCode = null,
     Object? expiresIn = null,
     Object? codeLength = null,
   }) {
-    return _then(_$SendOtpResponseDtoImpl(
-      null == needSignup
-          ? _value.needSignup
-          : needSignup // ignore: cast_nullable_to_non_nullable
-              as bool,
-      null == needReferralCode
-          ? _value.needReferralCode
-          : needReferralCode // ignore: cast_nullable_to_non_nullable
-              as bool,
+    return _then(_$SignUpResponseDtoImpl(
       null == expiresIn
           ? _value.expiresIn
           : expiresIn // ignore: cast_nullable_to_non_nullable
@@ -129,14 +112,9 @@ class __$$SendOtpResponseDtoImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$SendOtpResponseDtoImpl implements _SendOtpResponseDto {
-  const _$SendOtpResponseDtoImpl(
-      this.needSignup, this.needReferralCode, this.expiresIn, this.codeLength);
+class _$SignUpResponseDtoImpl implements _SignUpResponseDto {
+  const _$SignUpResponseDtoImpl(this.expiresIn, this.codeLength);
 
-  @override
-  final bool needSignup;
-  @override
-  final bool needReferralCode;
   @override
   final Long expiresIn;
   @override
@@ -144,18 +122,14 @@ class _$SendOtpResponseDtoImpl implements _SendOtpResponseDto {
 
   @override
   String toString() {
-    return 'SendOtpResponseDto(needSignup: $needSignup, needReferralCode: $needReferralCode, expiresIn: $expiresIn, codeLength: $codeLength)';
+    return 'SignUpResponseDto(expiresIn: $expiresIn, codeLength: $codeLength)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$SendOtpResponseDtoImpl &&
-            (identical(other.needSignup, needSignup) ||
-                other.needSignup == needSignup) &&
-            (identical(other.needReferralCode, needReferralCode) ||
-                other.needReferralCode == needReferralCode) &&
+            other is _$SignUpResponseDtoImpl &&
             (identical(other.expiresIn, expiresIn) ||
                 other.expiresIn == expiresIn) &&
             (identical(other.codeLength, codeLength) ||
@@ -163,49 +137,42 @@ class _$SendOtpResponseDtoImpl implements _SendOtpResponseDto {
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, needSignup, needReferralCode, expiresIn, codeLength);
+  int get hashCode => Object.hash(runtimeType, expiresIn, codeLength);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$SendOtpResponseDtoImplCopyWith<_$SendOtpResponseDtoImpl> get copyWith =>
-      __$$SendOtpResponseDtoImplCopyWithImpl<_$SendOtpResponseDtoImpl>(
+  _$$SignUpResponseDtoImplCopyWith<_$SignUpResponseDtoImpl> get copyWith =>
+      __$$SignUpResponseDtoImplCopyWithImpl<_$SignUpResponseDtoImpl>(
           this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(bool needSignup, bool needReferralCode, Long expiresIn,
-            int codeLength)
-        $default, {
+    TResult Function(Long expiresIn, int codeLength) $default, {
     required TResult Function(Map<String, dynamic> data) json,
   }) {
-    return $default(needSignup, needReferralCode, expiresIn, codeLength);
+    return $default(expiresIn, codeLength);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(bool needSignup, bool needReferralCode, Long expiresIn,
-            int codeLength)?
-        $default, {
+    TResult? Function(Long expiresIn, int codeLength)? $default, {
     TResult? Function(Map<String, dynamic> data)? json,
   }) {
-    return $default?.call(needSignup, needReferralCode, expiresIn, codeLength);
+    return $default?.call(expiresIn, codeLength);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(bool needSignup, bool needReferralCode, Long expiresIn,
-            int codeLength)?
-        $default, {
+    TResult Function(Long expiresIn, int codeLength)? $default, {
     TResult Function(Map<String, dynamic> data)? json,
     required TResult orElse(),
   }) {
     if ($default != null) {
-      return $default(needSignup, needReferralCode, expiresIn, codeLength);
+      return $default(expiresIn, codeLength);
     }
     return orElse();
   }
@@ -213,7 +180,7 @@ class _$SendOtpResponseDtoImpl implements _SendOtpResponseDto {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>(
-    TResult Function(_SendOtpResponseDto value) $default, {
+    TResult Function(_SignUpResponseDto value) $default, {
     required TResult Function(Json value) json,
   }) {
     return $default(this);
@@ -222,7 +189,7 @@ class _$SendOtpResponseDtoImpl implements _SendOtpResponseDto {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(_SendOtpResponseDto value)? $default, {
+    TResult? Function(_SignUpResponseDto value)? $default, {
     TResult? Function(Json value)? json,
   }) {
     return $default?.call(this);
@@ -231,7 +198,7 @@ class _$SendOtpResponseDtoImpl implements _SendOtpResponseDto {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>(
-    TResult Function(_SendOtpResponseDto value)? $default, {
+    TResult Function(_SignUpResponseDto value)? $default, {
     TResult Function(Json value)? json,
     required TResult orElse(),
   }) {
@@ -242,19 +209,14 @@ class _$SendOtpResponseDtoImpl implements _SendOtpResponseDto {
   }
 }
 
-abstract class _SendOtpResponseDto implements SendOtpResponseDto {
-  const factory _SendOtpResponseDto(
-      final bool needSignup,
-      final bool needReferralCode,
-      final Long expiresIn,
-      final int codeLength) = _$SendOtpResponseDtoImpl;
+abstract class _SignUpResponseDto implements SignUpResponseDto {
+  const factory _SignUpResponseDto(final Long expiresIn, final int codeLength) =
+      _$SignUpResponseDtoImpl;
 
-  bool get needSignup;
-  bool get needReferralCode;
   Long get expiresIn;
   int get codeLength;
   @JsonKey(ignore: true)
-  _$$SendOtpResponseDtoImplCopyWith<_$SendOtpResponseDtoImpl> get copyWith =>
+  _$$SignUpResponseDtoImplCopyWith<_$SignUpResponseDtoImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -269,7 +231,7 @@ abstract class _$$JsonImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$JsonImplCopyWithImpl<$Res>
-    extends _$SendOtpResponseDtoCopyWithImpl<$Res, _$JsonImpl>
+    extends _$SignUpResponseDtoCopyWithImpl<$Res, _$JsonImpl>
     implements _$$JsonImplCopyWith<$Res> {
   __$$JsonImplCopyWithImpl(_$JsonImpl _value, $Res Function(_$JsonImpl) _then)
       : super(_value, _then);
@@ -303,7 +265,7 @@ class _$JsonImpl implements Json {
 
   @override
   String toString() {
-    return 'SendOtpResponseDto.json(data: $data)';
+    return 'SignUpResponseDto.json(data: $data)';
   }
 
   @override
@@ -327,9 +289,7 @@ class _$JsonImpl implements Json {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(bool needSignup, bool needReferralCode, Long expiresIn,
-            int codeLength)
-        $default, {
+    TResult Function(Long expiresIn, int codeLength) $default, {
     required TResult Function(Map<String, dynamic> data) json,
   }) {
     return json(data);
@@ -338,9 +298,7 @@ class _$JsonImpl implements Json {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(bool needSignup, bool needReferralCode, Long expiresIn,
-            int codeLength)?
-        $default, {
+    TResult? Function(Long expiresIn, int codeLength)? $default, {
     TResult? Function(Map<String, dynamic> data)? json,
   }) {
     return json?.call(data);
@@ -349,9 +307,7 @@ class _$JsonImpl implements Json {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(bool needSignup, bool needReferralCode, Long expiresIn,
-            int codeLength)?
-        $default, {
+    TResult Function(Long expiresIn, int codeLength)? $default, {
     TResult Function(Map<String, dynamic> data)? json,
     required TResult orElse(),
   }) {
@@ -364,7 +320,7 @@ class _$JsonImpl implements Json {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>(
-    TResult Function(_SendOtpResponseDto value) $default, {
+    TResult Function(_SignUpResponseDto value) $default, {
     required TResult Function(Json value) json,
   }) {
     return json(this);
@@ -373,7 +329,7 @@ class _$JsonImpl implements Json {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(_SendOtpResponseDto value)? $default, {
+    TResult? Function(_SignUpResponseDto value)? $default, {
     TResult? Function(Json value)? json,
   }) {
     return json?.call(this);
@@ -382,7 +338,7 @@ class _$JsonImpl implements Json {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>(
-    TResult Function(_SendOtpResponseDto value)? $default, {
+    TResult Function(_SignUpResponseDto value)? $default, {
     TResult Function(Json value)? json,
     required TResult orElse(),
   }) {
@@ -393,7 +349,7 @@ class _$JsonImpl implements Json {
   }
 }
 
-abstract class Json implements SendOtpResponseDto {
+abstract class Json implements SignUpResponseDto {
   const factory Json(final Map<String, dynamic> data) = _$JsonImpl;
 
   Map<String, dynamic> get data;

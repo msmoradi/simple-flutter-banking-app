@@ -1,9 +1,9 @@
 import 'dart:async';
 
 import 'package:data/datasource/remote/authentication_remote_datasource.dart';
-import 'package:domain/entities/identity_entity.dart';
-import 'package:domain/entities/referral_code_entity.dart';
+import 'package:domain/entities/password_entity.dart';
 import 'package:domain/entities/send_otp_entity.dart';
+import 'package:domain/entities/sign_up_entity.dart';
 import 'package:domain/entities/verify_otp_entity.dart';
 import 'package:domain/entity_wrapper.dart';
 import 'package:domain/repository/authentication_repository.dart';
@@ -17,8 +17,12 @@ class AuthenticationRepositoryImpl extends AuthenticationRepository {
   Future<EntityWrapper<SendOtpEntity>> sendOtp(String phoneNumber) {
     return Future.delayed(
       const Duration(seconds: 5),
-      () => EntityWrapper.success<SendOtpEntity>(
-          SendOtpEntity(phoneNumber, "", 5)),
+      () => EntityWrapper.success<SendOtpEntity>(SendOtpEntity(
+        needSignup: true,
+        needReferralCode: true,
+        expiresIn: 300,
+        codeLength: 6,
+      )),
     );
 
     /* return authenticationRemoteDataSource
@@ -28,7 +32,7 @@ class AuthenticationRepositoryImpl extends AuthenticationRepository {
 
   @override
   Future<EntityWrapper<VerifyOtpEntity>> verifyOtp(
-      String phoneNumber, String code) {
+      String phoneNumber, String otp) {
     return Future.delayed(
       const Duration(seconds: 5),
       () => EntityWrapper.success<VerifyOtpEntity>(VerifyOtpEntity()),
@@ -40,27 +44,47 @@ class AuthenticationRepositoryImpl extends AuthenticationRepository {
   }
 
   @override
-  Future<EntityWrapper<ReferralCodeEntity>> referralCode(String referralCode) {
+  Future<EntityWrapper<PasswordEntity>> password(String password) {
     return Future.delayed(
       const Duration(seconds: 5),
-      () => EntityWrapper.success<ReferralCodeEntity>(ReferralCodeEntity()),
+      () => EntityWrapper.success<PasswordEntity>(PasswordEntity()),
     );
 
     /* return authenticationRemoteDataSource
-        .referralCode(referralCode)
+        .password(password)
         .mapResponseToEntityWrapper();*/
   }
 
   @override
-  Future<EntityWrapper<IdentityEntity>> identity(
-      String nationalId, String birthday) {
+  Future<EntityWrapper<VerifyOtpEntity>> refresh(
+    String refreshToken,
+    String password,
+  ) {
     return Future.delayed(
       const Duration(seconds: 5),
-      () => EntityWrapper.success<IdentityEntity>(IdentityEntity()),
+      () => EntityWrapper.success<VerifyOtpEntity>(VerifyOtpEntity()),
     );
 
-/* return authenticationRemoteDataSource
-        .sendOtp(phoneNumber)
+    /* return authenticationRemoteDataSource
+        .refresh(password)
+        .mapResponseToEntityWrapper();*/
+  }
+
+  @override
+  Future<EntityWrapper<SignUpEntity>> signup(
+    String phoneNumber,
+    String nationalId,
+    String birthDate,
+    String referralCode,
+  ) {
+    return Future.delayed(
+      const Duration(seconds: 5),
+      () => EntityWrapper.success<SignUpEntity>(
+          SignUpEntity(expiresIn: 300, codeLength: 6)),
+    );
+
+    /* return authenticationRemoteDataSource
+        .refresh(password)
         .mapResponseToEntityWrapper();*/
   }
 }
