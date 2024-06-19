@@ -127,7 +127,7 @@ class BanxTheme {
   static ThemeData theme(ColorScheme colorScheme) => ThemeData(
         useMaterial3: true,
         typography: Typography.material2021(colorScheme: colorScheme),
-        fontFamily: TextStyles.fontFamilyName,
+        fontFamily: FalomenTextStyles.fontFamilyName,
         brightness: colorScheme.brightness,
         filledButtonTheme: BanxFilledButtonTheme.filledButtonThemeData,
         outlinedButtonTheme: BanxOutlineButtonTheme.outlinedButtonThemeData,

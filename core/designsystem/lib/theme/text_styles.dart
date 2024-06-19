@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-class TextStyles {
+class FalomenTextStyles {
   static const fontFamilyName = 'IRANSansXFaNum';
 
-  static TextTheme falomenTextTheme = const TextTheme(
+  static TextTheme textTheme = const TextTheme(
     displayLarge: TextStyle(
       fontFamily: fontFamilyName,
       fontSize: 57,
