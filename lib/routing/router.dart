@@ -20,7 +20,6 @@ Future<GoRouter> get routerConfig async => GoRouter(
       routes: <RouteBase>[
         RootPageFactory.route(),
         PhonePageFactory.route(),
-        ReferralPageFactory.route(),
         KycStatusPageFactory.route(),
         FaceDetectionPageFactory.route(),
         OnboardingPasswordPageFactory.route(),
