@@ -23,14 +23,14 @@ class PhoneBloc extends Bloc<PhoneEvent, PhoneState> {
     try {
       final response =
           await authenticationRepository.sendOtp(event.phoneNumber);
-      response.when(
+  /*    response.when(
           success: (success) => emit(PhoneSuccess(
               phoneNumber: success.phoneNumber,
               sessionId: success.sessionId,
               numCells: success.numCells)),
           partialSuccess: (message) => emit(PhoneFailure(message)),
           networkError: (exception) =>
-              emit(PhoneFailure(exception.toString())));
+              emit(PhoneFailure(exception.toString())));*/
     } catch (_) {
       emit(const PhoneFailure('on handled error'));
     }
