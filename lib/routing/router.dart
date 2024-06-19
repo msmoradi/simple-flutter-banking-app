@@ -7,7 +7,6 @@ import 'package:banx/composition/kyc_status_page_factory.dart';
 import 'package:banx/composition/onboarding_face_page_factory.dart';
 import 'package:banx/composition/onboarding_password_page_factory.dart';
 import 'package:banx/composition/phone_page_factory.dart';
-import 'package:banx/composition/referral_page_factory.dart';
 import 'package:banx/composition/root_page_factory.dart';
 import 'package:banx/composition/select_card_page_factory.dart';
 import 'package:banx/composition/verify_otp_page_factory.dart';
