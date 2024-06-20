@@ -36,7 +36,10 @@ class IdentityPage extends StatelessWidget {
                 SnackBar(content: Text(state.message)),
               );
           } else if (state is IdentitySuccess) {
-            onVerifyOtp(300, 6);
+            onVerifyOtp(
+              state.signUpEntity.expiresIn,
+              state.signUpEntity.codeLength,
+            );
           }
         },
         builder: (context, state) {

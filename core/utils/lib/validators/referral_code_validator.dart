@@ -23,6 +23,6 @@ class ReferralCodeValidator extends FieldValidator {
 class ReferralCodeStructuralError implements ValidationError {
   @override
   String getMessage(BuildContext context) {
-    return 'کد دعوتنامه خود را وارد کنید';
+    return 'کد دعوت خود را وارد کنید';
   }
 }
