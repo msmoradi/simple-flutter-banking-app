@@ -20,7 +20,9 @@ class IdentityInProgress extends IdentityState {
 }
 
 class IdentitySuccess extends IdentityState {
-  const IdentitySuccess();
+  final SignUpEntity signUpEntity;
+
+  const IdentitySuccess({required this.signUpEntity});
 
   @override
   List<Object?> get props => [];

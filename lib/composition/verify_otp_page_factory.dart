@@ -5,12 +5,15 @@ import 'package:verify_otp/presentation/view/verify_otp_page.dart';
 class VerifyOtpPageFactory {
   static const path = "/verifyOtp";
 
-  static VerifyOtpPage builder(BuildContext context, GoRouterState state,
-      String phoneNumber, String sessionId, int numCells) {
+  static VerifyOtpPage builder(
+    BuildContext context,
+    GoRouterState state,
+    VerifyOtpExtra extra,
+  ) {
     return VerifyOtpPage(
-      phoneNumber: phoneNumber,
-      sessionId: sessionId,
-      numCells: numCells,
+      phoneNumber: extra.phoneNumber,
+      codeLength: extra.codeLength,
+      expiresIn: extra.expiresIn,
       onNext: () {},
       onBackPressed: () {
         context.pop();
@@ -25,8 +28,7 @@ class VerifyOtpPageFactory {
         path: (VerifyOtpPageFactory.path),
         builder: (ctx, state) {
           final extra = state.extra as VerifyOtpExtra;
-          return VerifyOtpPageFactory.builder(
-              ctx, state, extra.phoneNumber, extra.sessionId, extra.numCells);
+          return VerifyOtpPageFactory.builder(ctx, state, extra);
         },
         routes: routes);
   }
@@ -34,12 +36,12 @@ class VerifyOtpPageFactory {
 
 class VerifyOtpExtra {
   final String phoneNumber;
-  final String sessionId;
-  final int numCells;
+  final int codeLength;
+  final int expiresIn;
 
   VerifyOtpExtra({
     required this.phoneNumber,
-    required this.sessionId,
-    required this.numCells,
+    required this.codeLength,
+    required this.expiresIn,
   });
 }

@@ -14,7 +14,7 @@ class AuthenticationRepositoryImpl extends AuthenticationRepository {
   final AuthenticationRemoteDataSource authenticationRemoteDataSource;
 
   @override
-  Future<EntityWrapper<SendOtpEntity>> sendOtp(String phoneNumber) {
+  Future<EntityWrapper<SendOtpEntity>> sendOtp({required String phoneNumber}) {
     return Future.delayed(
       const Duration(seconds: 5),
       () => EntityWrapper.success<SendOtpEntity>(SendOtpEntity(
@@ -31,8 +31,10 @@ class AuthenticationRepositoryImpl extends AuthenticationRepository {
   }
 
   @override
-  Future<EntityWrapper<VerifyOtpEntity>> verifyOtp(
-      String phoneNumber, String otp) {
+  Future<EntityWrapper<VerifyOtpEntity>> verifyOtp({
+    required String phoneNumber,
+    required String otp,
+  }) {
     return Future.delayed(
       const Duration(seconds: 5),
       () => EntityWrapper.success<VerifyOtpEntity>(VerifyOtpEntity()),
@@ -44,7 +46,7 @@ class AuthenticationRepositoryImpl extends AuthenticationRepository {
   }
 
   @override
-  Future<EntityWrapper<PasswordEntity>> password(String password) {
+  Future<EntityWrapper<PasswordEntity>> password({required String password}) {
     return Future.delayed(
       const Duration(seconds: 5),
       () => EntityWrapper.success<PasswordEntity>(PasswordEntity()),
@@ -56,10 +58,10 @@ class AuthenticationRepositoryImpl extends AuthenticationRepository {
   }
 
   @override
-  Future<EntityWrapper<VerifyOtpEntity>> refresh(
-    String refreshToken,
-    String password,
-  ) {
+  Future<EntityWrapper<VerifyOtpEntity>> refresh({
+    required String refreshToken,
+    required String password,
+  }) {
     return Future.delayed(
       const Duration(seconds: 5),
       () => EntityWrapper.success<VerifyOtpEntity>(VerifyOtpEntity()),
@@ -71,12 +73,12 @@ class AuthenticationRepositoryImpl extends AuthenticationRepository {
   }
 
   @override
-  Future<EntityWrapper<SignUpEntity>> signup(
-    String phoneNumber,
-    String nationalId,
-    String birthDate,
-    String referralCode,
-  ) {
+  Future<EntityWrapper<SignUpEntity>> signup({
+    required String phoneNumber,
+    required String nationalId,
+    required String birthDate,
+    required String referralCode,
+  }) {
     return Future.delayed(
       const Duration(seconds: 5),
       () => EntityWrapper.success<SignUpEntity>(

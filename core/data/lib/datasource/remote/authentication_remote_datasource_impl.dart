@@ -21,7 +21,6 @@ class AuthenticationRemoteDataSourceImpl
     final body = {
       'phoneNumber': phoneNumber,
     };
-
     return await _apiService.post(
         endpoint: ApiEndpoint.auth(AuthEndpoint.SEND_OTP),
         data: body,

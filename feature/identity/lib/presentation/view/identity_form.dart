@@ -2,15 +2,19 @@ import 'package:designsystem/widgets/button/fill/full_fill_button.dart';
 import 'package:designsystem/widgets/components/date_picker_bottom_sheet.dart';
 import 'package:designsystem/widgets/textfields/birthday_text_field.dart';
 import 'package:designsystem/widgets/textfields/national_id_text_field.dart';
+import 'package:designsystem/widgets/textfields/referral_code_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:identity/presentation/bloc/identity_bloc.dart';
+import 'package:identity/presentation/view/referral_bottom_sheet_content.dart';
 import 'package:utils/extension/build_context.dart';
 
 class IdentityForm extends StatefulWidget {
   final bool showLoading;
+  final String phoneNumber;
 
-  const IdentityForm({super.key, this.showLoading = false});
+  const IdentityForm(
+      {super.key, this.showLoading = false, required this.phoneNumber});
 
   @override
   State<IdentityForm> createState() => _IdentityFormState();
@@ -19,8 +23,10 @@ class IdentityForm extends StatefulWidget {
 class _IdentityFormState extends State<IdentityForm> {
   final formKey = GlobalKey<FormState>();
   final birthdayController = TextEditingController();
-  String? _nationalId;
-  String? _birthday;
+  final referralController = TextEditingController();
+  String? _nationalId = "";
+  String? _referralCode = "";
+  String? _birthday = "";
 
   @override
   Widget build(BuildContext context) {
@@ -56,8 +62,7 @@ class _IdentityFormState extends State<IdentityForm> {
                           });
                         },
                       ),
-                      const SizedBox(height: 8),
-                      // TODO replace with birthday
+                      const SizedBox(height: 16),
                       BirthdayTextField(
                         controller: birthdayController,
                         onTap: () {
@@ -85,6 +90,31 @@ class _IdentityFormState extends State<IdentityForm> {
                           );
                         },
                       ),
+                      const SizedBox(height: 16),
+                      ReferralCodeTextField(
+                        controller: referralController,
+                        onSaved: (value) {
+                          setState(() {
+                            _referralCode = value;
+                          });
+                        },
+                        onSuffixPressed: () {
+                          showModalBottomSheet(
+                            enableDrag: false,
+                            showDragHandle: true,
+                            isScrollControlled: true,
+                            useSafeArea: true,
+                            shape: const RoundedRectangleBorder(
+                              borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(8.0),
+                                  topRight: Radius.circular(8.0)),
+                            ),
+                            context: context,
+                            builder: (context) =>
+                                const WithOutReferralBottomSheetContent(),
+                          );
+                        },
+                      )
                     ],
                   )),
             ],
@@ -98,7 +128,11 @@ class _IdentityFormState extends State<IdentityForm> {
               FocusManager.instance.primaryFocus?.unfocus();
               context.read<IdentityBloc>().add(
                     IdentitySubmitted(
-                        nationalId: _nationalId!, birthday: _birthday!),
+                      phoneNumber: widget.phoneNumber,
+                      nationalId: _nationalId!,
+                      birthDate: _birthday!,
+                      referral: _referralCode!,
+                    ),
                   );
             }
           },

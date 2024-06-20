@@ -19,18 +19,32 @@ class PhoneInProgress extends PhoneState {
   List<Object?> get props => [];
 }
 
-class PhoneSuccess extends PhoneState {
+class VerifyOtpSuccess extends PhoneState {
   final String phoneNumber;
-  final String sessionId;
-  final int numCells;
+  final int expiresIn;
+  final int codeLength;
 
-  const PhoneSuccess(
-      {required this.phoneNumber,
-      required this.sessionId,
-      required this.numCells});
+  const VerifyOtpSuccess({
+    required this.phoneNumber,
+    required this.expiresIn,
+    required this.codeLength,
+  });
 
   @override
-  List<Object?> get props => [phoneNumber, sessionId, numCells];
+  List<Object?> get props => [phoneNumber, expiresIn, codeLength];
+}
+
+class Identity extends PhoneState {
+  final String phoneNumber;
+  final bool needReferralCode;
+
+  const Identity({
+    required this.phoneNumber,
+    required this.needReferralCode,
+  });
+
+  @override
+  List<Object?> get props => [phoneNumber, needReferralCode];
 }
 
 class PhoneValidated extends PhoneState {

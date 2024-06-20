@@ -1,18 +1,20 @@
+import 'package:data/datasource/remote/authentication_remote_datasource_impl.dart';
+import 'package:data/repository/authentication_repository_impl.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:networking/api_service.dart';
-import 'package:data/datasource/remote/authentication_remote_datasource_impl.dart';
-import 'package:data/repository/authentication_repository_impl.dart';
 import 'package:phone/presentation/view/phone_content.dart';
 
 import '../bloc/phone_bloc.dart';
 
 class PhonePage extends StatelessWidget {
-  final Function(String, String, int) onVerifyOtp;
+  final Function(String, int, int) onVerifyOtp;
+  final Function(String, bool) onIdentity;
 
   const PhonePage({
     super.key,
     required this.onVerifyOtp,
+    required this.onIdentity,
   });
 
   @override
@@ -27,8 +29,14 @@ class PhonePage extends StatelessWidget {
               ..showSnackBar(
                 SnackBar(content: Text(state.message)),
               );
-          } else if (state is PhoneSuccess) {
-            onVerifyOtp(state.phoneNumber, state.sessionId, state.numCells);
+          } else if (state is VerifyOtpSuccess) {
+            onVerifyOtp(
+              state.phoneNumber,
+              state.expiresIn,
+              state.codeLength,
+            );
+          } else if (state is Identity) {
+            onIdentity(state.phoneNumber, state.needReferralCode);
           }
         },
         builder: (context, state) {
@@ -41,6 +49,7 @@ class PhonePage extends StatelessWidget {
 
 PhoneBloc get loginBloc => PhoneBloc(
       authenticationRepository: AuthenticationRepositoryImpl(
-        authenticationRemoteDataSource: AuthenticationRemoteDataSourceImpl(ApiService()),
+        authenticationRemoteDataSource:
+            AuthenticationRemoteDataSourceImpl(ApiService()),
       ),
     );

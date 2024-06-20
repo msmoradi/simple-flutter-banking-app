@@ -10,16 +10,17 @@ class VerifyOtpPage extends StatelessWidget {
   final Function() onBackPressed;
   final Function() onNext;
   final String phoneNumber;
-  final String sessionId;
-  final int numCells;
+  final int codeLength;
+  final int expiresIn;
 
-  const VerifyOtpPage(
-      {super.key,
-      required this.onBackPressed,
-      required this.onNext,
-      required this.phoneNumber,
-      required this.sessionId,
-      required this.numCells});
+  const VerifyOtpPage({
+    super.key,
+    required this.onBackPressed,
+    required this.onNext,
+    required this.phoneNumber,
+    required this.codeLength,
+    required this.expiresIn,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +42,7 @@ class VerifyOtpPage extends StatelessWidget {
           return VerifyOtpContent(
             state: state,
             phoneNumber: phoneNumber,
-            numCells: numCells,
+            codeLength: codeLength,
           );
         },
       ),

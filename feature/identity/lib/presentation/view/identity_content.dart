@@ -6,8 +6,10 @@ import '../bloc/identity_bloc.dart';
 
 class IdentityContent extends StatelessWidget {
   final IdentityState state;
+  final String phoneNumber;
 
-  const IdentityContent({super.key, required this.state});
+  const IdentityContent(
+      {super.key, required this.state, required this.phoneNumber});
 
   @override
   Widget build(BuildContext context) {
@@ -16,6 +18,7 @@ class IdentityContent extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: IdentityForm(
+          phoneNumber: phoneNumber,
           showLoading: state is IdentityInProgress,
         ),
       ),

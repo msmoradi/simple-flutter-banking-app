@@ -5,6 +5,7 @@ import 'package:utils/validators/referral_code_validator.dart';
 class ReferralCodeTextField extends StatefulWidget {
   final FormFieldSetter<String>? onSaved;
   final ValueChanged<String>? onFieldSubmitted;
+  final VoidCallback? onSuffixPressed;
   final TextEditingController? controller;
   final FocusNode? focusNode;
   final bool autofocus;
@@ -16,6 +17,7 @@ class ReferralCodeTextField extends StatefulWidget {
     this.controller,
     this.focusNode,
     this.autofocus = false,
+    this.onSuffixPressed,
   }) : super(key: key);
 
   @override
@@ -32,9 +34,13 @@ class _ReferralCodeTextFieldState extends State<ReferralCodeTextField> {
       onSaved: widget.onSaved,
       onFieldSubmitted: widget.onFieldSubmitted,
       keyboardType: TextInputType.text,
-      decoration: const InputDecoration(
-        prefixIcon: Icon(Icons.person_2_outlined),
-        hintText: 'کد دعوتنامه',
+      decoration: InputDecoration(
+        suffixIcon: IconButton(
+          onPressed: widget.onSuffixPressed,
+          icon: const Icon(Icons.info_outline),
+        ),
+        prefixIcon: const Icon(Icons.person_2_outlined),
+        hintText: 'کد دعوت',
       ),
       validator: (value) {
         return context.validateFiled(ReferralCodeValidator(value));

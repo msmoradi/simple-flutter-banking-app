@@ -1,4 +1,4 @@
-import 'package:banx/composition/onboarding_password_page_factory.dart';
+import 'package:banx/composition/verify_otp_page_factory.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 import 'package:identity/presentation/view/identity_page.dart';
@@ -6,17 +6,21 @@ import 'package:identity/presentation/view/identity_page.dart';
 class IdentityPageFactory {
   static const path = "/identity";
 
-  static IdentityPage builder(BuildContext context, GoRouterState state) {
+  static IdentityPage builder({
+    required BuildContext context,
+    required GoRouterState state,
+    required IdentityExtra extra,
+  }) {
     return IdentityPage(
-      onNext: () {
-        context.push(
-          OnboardingPasswordPageFactory.path,
-          extra: OnboardingPasswordExtra(
-            phoneNumber: "09128702779",
-            sessionId: "sessionId",
-            numCells: 4,
-          ),
-        );
+      phoneNumber: extra.phoneNumber,
+      needReferralCode: extra.needReferralCode,
+      onVerifyOtp: (expiresIn, codeLength) {
+        context.push(VerifyOtpPageFactory.path,
+            extra: VerifyOtpExtra(
+              phoneNumber: extra.phoneNumber,
+              expiresIn: expiresIn,
+              codeLength: codeLength,
+            ));
       },
     );
   }
@@ -26,7 +30,24 @@ class IdentityPageFactory {
   }) {
     return GoRoute(
         path: (IdentityPageFactory.path),
-        builder: IdentityPageFactory.builder,
+        builder: (ctx, state) {
+          final extra = state.extra as IdentityExtra;
+          return IdentityPageFactory.builder(
+            context: ctx,
+            state: state,
+            extra: extra,
+          );
+        },
         routes: routes);
   }
+}
+
+class IdentityExtra {
+  final String phoneNumber;
+  final bool needReferralCode;
+
+  IdentityExtra({
+    required this.phoneNumber,
+    required this.needReferralCode,
+  });
 }

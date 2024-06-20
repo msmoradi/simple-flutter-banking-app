@@ -7,11 +7,15 @@ import 'package:identity/presentation/view/identity_content.dart';
 import 'package:networking/api_service.dart';
 
 class IdentityPage extends StatelessWidget {
-  final Function() onNext;
+  final bool needReferralCode;
+  final String phoneNumber;
+  final Function(int, int) onVerifyOtp;
 
   const IdentityPage({
     super.key,
-    required this.onNext,
+    required this.onVerifyOtp,
+    required this.needReferralCode,
+    required this.phoneNumber,
   });
 
   @override
@@ -32,11 +36,14 @@ class IdentityPage extends StatelessWidget {
                 SnackBar(content: Text(state.message)),
               );
           } else if (state is IdentitySuccess) {
-            onNext();
+            onVerifyOtp(300, 6);
           }
         },
         builder: (context, state) {
-          return IdentityContent(state: state);
+          return IdentityContent(
+            state: state,
+            phoneNumber: phoneNumber,
+          );
         },
       ),
     );

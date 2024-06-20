@@ -21,16 +21,28 @@ class PhoneBloc extends Bloc<PhoneEvent, PhoneState> {
   ) async {
     emit(PhoneInProgress());
     try {
-      final response =
-          await authenticationRepository.sendOtp(event.phoneNumber);
-  /*    response.when(
-          success: (success) => emit(PhoneSuccess(
-              phoneNumber: success.phoneNumber,
-              sessionId: success.sessionId,
-              numCells: success.numCells)),
+      final response = await authenticationRepository.sendOtp(
+          phoneNumber: event.phoneNumber);
+      response.when(
+          success: (response) {
+            if (response.needSignup) {
+              emit(
+                Identity(
+                    phoneNumber: event.phoneNumber,
+                    needReferralCode: response.needReferralCode!),
+              );
+            } else {
+              emit(
+                VerifyOtpSuccess(
+                    phoneNumber: event.phoneNumber,
+                    expiresIn: response.expiresIn!,
+                    codeLength: response.codeLength!),
+              );
+            }
+          },
           partialSuccess: (message) => emit(PhoneFailure(message)),
           networkError: (exception) =>
-              emit(PhoneFailure(exception.toString())));*/
+              emit(PhoneFailure(exception.toString())));
     } catch (_) {
       emit(const PhoneFailure('on handled error'));
     }

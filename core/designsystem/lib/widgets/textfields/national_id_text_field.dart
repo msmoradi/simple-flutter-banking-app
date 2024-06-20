@@ -32,7 +32,6 @@ class _NationalIdTextFieldState extends State<NationalIdTextField> {
       onSaved: widget.onSaved,
       onFieldSubmitted: widget.onFieldSubmitted,
       keyboardType: TextInputType.number,
-      maxLength: 10,
       decoration: const InputDecoration(
         prefixIcon: Icon(Icons.person_outline),
         hintText: "کدملی ۱۰ رقمی",

@@ -22,7 +22,9 @@ class VerifyOtpBloc extends Bloc<VerifyOtpEvent, VerifyOtpState> {
     emit(VerifyOtpInProgress());
     try {
       final response = await authenticationRepository.verifyOtp(
-          event.phoneNumber, event.otp);
+        phoneNumber: event.phoneNumber,
+        otp: event.otp,
+      );
       response.when(
           success: (success) => emit(VerifyOtpSuccess()),
           partialSuccess: (message) => emit(VerifyOtpFailure(message)),

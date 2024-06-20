@@ -1,3 +1,4 @@
+import 'package:banx/composition/identity_page_factory.dart';
 import 'package:banx/composition/verify_otp_page_factory.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
@@ -8,10 +9,20 @@ class PhonePageFactory {
 
   static PhonePage builder(BuildContext context, GoRouterState state) {
     return PhonePage(
-      onVerifyOtp: (phoneNumber, sessionId, numCells) {
-         context.push(VerifyOtpPageFactory.path,
-            extra:
-                VerifyOtpExtra(phoneNumber: phoneNumber, sessionId: sessionId,numCells: numCells));
+      onIdentity: (phoneNumber, needReferralCode) {
+        context.push(IdentityPageFactory.path,
+            extra: IdentityExtra(
+              phoneNumber: phoneNumber,
+              needReferralCode: needReferralCode,
+            ));
+      },
+      onVerifyOtp: (phoneNumber, expiresIn, codeLength) {
+        context.push(VerifyOtpPageFactory.path,
+            extra: VerifyOtpExtra(
+              phoneNumber: phoneNumber,
+              expiresIn: expiresIn,
+              codeLength: codeLength,
+            ));
       },
     );
   }

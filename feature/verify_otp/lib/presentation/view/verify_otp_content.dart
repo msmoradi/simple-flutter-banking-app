@@ -6,13 +6,13 @@ import 'package:verify_otp/presentation/view/verify_otp_form.dart';
 class VerifyOtpContent extends StatelessWidget {
   final VerifyOtpState state;
   final String phoneNumber;
-  final int numCells;
+  final int codeLength;
 
   const VerifyOtpContent(
       {super.key,
       required this.state,
       required this.phoneNumber,
-      required this.numCells});
+      required this.codeLength});
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +23,7 @@ class VerifyOtpContent extends StatelessWidget {
         child: VerifyOtpForm(
           showLoading: state is VerifyOtpInProgress,
           phoneNumber: phoneNumber,
-          numCells: numCells,
+          numCells: codeLength,
         ),
       ),
     );
