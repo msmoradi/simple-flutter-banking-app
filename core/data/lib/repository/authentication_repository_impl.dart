@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:data/datasource/remote/authentication_remote_datasource.dart';
+import 'package:domain/entities/password_authentication.dart';
 import 'package:domain/entities/password_entity.dart';
 import 'package:domain/entities/send_otp_entity.dart';
 import 'package:domain/entities/sign_up_entity.dart';
@@ -37,7 +38,13 @@ class AuthenticationRepositoryImpl extends AuthenticationRepository {
   }) {
     return Future.delayed(
       const Duration(seconds: 5),
-      () => EntityWrapper.success<VerifyOtpEntity>(VerifyOtpEntity()),
+      () => EntityWrapper.success<VerifyOtpEntity>(
+        VerifyOtpEntity(
+          accessToken: 'accessToken',
+          refreshToken: 'refreshToken',
+          passwordAuthentication: PasswordAuthentication.none,
+        ),
+      ),
     );
 
     /* return authenticationRemoteDataSource
@@ -64,7 +71,13 @@ class AuthenticationRepositoryImpl extends AuthenticationRepository {
   }) {
     return Future.delayed(
       const Duration(seconds: 5),
-      () => EntityWrapper.success<VerifyOtpEntity>(VerifyOtpEntity()),
+      () => EntityWrapper.success<VerifyOtpEntity>(
+        VerifyOtpEntity(
+          accessToken: 'accessToken',
+          refreshToken: 'refreshToken',
+          passwordAuthentication: PasswordAuthentication.none,
+        ),
+      ),
     );
 
     /* return authenticationRemoteDataSource
