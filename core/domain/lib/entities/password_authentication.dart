@@ -1,5 +1,5 @@
 enum PasswordAuthentication {
-  None,
-  Set,
-  Verify,
+  none,
+  set,
+  verify,
 }
