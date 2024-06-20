@@ -9,6 +9,7 @@ class ReferralCodeTextField extends StatefulWidget {
   final TextEditingController? controller;
   final FocusNode? focusNode;
   final bool autofocus;
+  final bool needValidation;
 
   const ReferralCodeTextField({
     Key? key,
@@ -18,6 +19,7 @@ class ReferralCodeTextField extends StatefulWidget {
     this.focusNode,
     this.autofocus = false,
     this.onSuffixPressed,
+    required this.needValidation,
   }) : super(key: key);
 
   @override
@@ -43,7 +45,11 @@ class _ReferralCodeTextFieldState extends State<ReferralCodeTextField> {
         hintText: 'کد دعوت',
       ),
       validator: (value) {
-        return context.validateFiled(ReferralCodeValidator(value));
+        if (widget.needValidation) {
+          return context.validateFiled(ReferralCodeValidator(value));
+        } else {
+          return null;
+        }
       },
     );
   }

@@ -7,9 +7,14 @@ import '../bloc/identity_bloc.dart';
 class IdentityContent extends StatelessWidget {
   final IdentityState state;
   final String phoneNumber;
+  final bool needReferralCode;
 
-  const IdentityContent(
-      {super.key, required this.state, required this.phoneNumber});
+  const IdentityContent({
+    super.key,
+    required this.state,
+    required this.phoneNumber,
+    required this.needReferralCode,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -19,6 +24,7 @@ class IdentityContent extends StatelessWidget {
         padding: const EdgeInsets.all(16),
         child: IdentityForm(
           phoneNumber: phoneNumber,
+          needReferralCode: needReferralCode,
           showLoading: state is IdentityInProgress,
         ),
       ),

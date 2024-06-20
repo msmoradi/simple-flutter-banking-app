@@ -11,10 +11,15 @@ import 'package:utils/extension/build_context.dart';
 
 class IdentityForm extends StatefulWidget {
   final bool showLoading;
+  final bool needReferralCode;
   final String phoneNumber;
 
-  const IdentityForm(
-      {super.key, this.showLoading = false, required this.phoneNumber});
+  const IdentityForm({
+    super.key,
+    this.showLoading = false,
+    required this.phoneNumber,
+    required this.needReferralCode,
+  });
 
   @override
   State<IdentityForm> createState() => _IdentityFormState();
@@ -92,6 +97,7 @@ class _IdentityFormState extends State<IdentityForm> {
                       ),
                       const SizedBox(height: 16),
                       ReferralCodeTextField(
+                        needValidation: widget.needReferralCode,
                         controller: referralController,
                         onSaved: (value) {
                           setState(() {

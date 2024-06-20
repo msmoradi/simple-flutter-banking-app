@@ -46,6 +46,7 @@ class IdentityPage extends StatelessWidget {
           return IdentityContent(
             state: state,
             phoneNumber: phoneNumber,
+            needReferralCode: needReferralCode,
           );
         },
       ),
