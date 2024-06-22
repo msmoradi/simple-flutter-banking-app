@@ -13,25 +13,49 @@ class VerifyOtpBloc extends Bloc<VerifyOtpEvent, VerifyOtpState> {
     required this.authenticationRepository,
   }) : super(VerifyOtpValidated()) {
     on<VerifyOtpSubmitted>(_onVerifyOtpSubmitted);
+    on<ResendCode>(_onResendCode);
+  }
+
+  Future<void> _onResendCode(
+    ResendCode event,
+    Emitter<VerifyOtpState> emit,
+  ) async {
+    try {
+      final response = await authenticationRepository.sendOtp(
+        phoneNumber: event.phoneNumber,
+      );
+      response.when(
+          success: (success) => emit(VerifyOtpValidated()),
+          partialSuccess: (message) => emit(VerifyOtpFailure(message)),
+          networkError: (exception) =>
+              emit(VerifyOtpFailure(exception.toString())));
+    } catch (_) {
+      emit(const VerifyOtpFailure('خطایی رخ داده است'));
+    }
   }
 
   Future<void> _onVerifyOtpSubmitted(
     VerifyOtpSubmitted event,
     Emitter<VerifyOtpState> emit,
   ) async {
-    emit(VerifyOtpInProgress());
-    try {
-      final response = await authenticationRepository.verifyOtp(
-        phoneNumber: event.phoneNumber,
-        otp: event.otp,
-      );
-      response.when(
-          success: (success) => emit(VerifyOtpSuccess()),
-          partialSuccess: (message) => emit(VerifyOtpFailure(message)),
-          networkError: (exception) =>
-              emit(VerifyOtpFailure(exception.toString())));
-    } catch (_) {
-      emit(const VerifyOtpFailure('on handled error'));
+    if (event.otp.length != event.codeLength) {
+      emit(const OtpError('کد پیامک شده را وارد نمایید'));
+    } else {
+      emit(VerifyOtpInProgress());
+      try {
+        final response = await authenticationRepository.verifyOtp(
+          phoneNumber: event.phoneNumber,
+          otp: event.otp,
+        );
+        response.when(
+            success: (success) => emit(VerifyOtpSuccess()),
+            partialSuccess: (message) =>
+                emit(const OtpError('کد وارد شده صحیح نیست')),
+            networkError: (exception) =>
+                emit(VerifyOtpFailure(exception.toString())));
+      } catch (_) {
+        emit(const VerifyOtpFailure('خطایی رخ داده است'));
+      }
     }
   }
 }

@@ -12,6 +12,9 @@ class RoundedWithShadowInput extends StatefulWidget {
   final bool obscureText;
   final bool useNativeKeyboard;
   final bool autofocus;
+  final bool readOnly;
+  final String? errorText;
+  final bool forceErrorState;
 
   const RoundedWithShadowInput({
     Key? key,
@@ -25,6 +28,9 @@ class RoundedWithShadowInput extends StatefulWidget {
     this.obscureText = false,
     this.useNativeKeyboard = true,
     this.autofocus = true,
+    this.readOnly = false,
+    this.errorText,
+    this.forceErrorState = false,
   }) : super(key: key);
 
   @override
@@ -49,7 +55,7 @@ class _RoundedWithShadowInputState extends State<RoundedWithShadowInput> {
       height: 64,
       decoration: BoxDecoration(
         border: Border.all(color: Theme.of(context).colorScheme.outlineVariant),
-        color: const Color.fromRGBO(232, 235, 241, 0.37),
+        color: Theme.of(context).colorScheme.surface,
         borderRadius: BorderRadius.circular(24),
       ),
     );
@@ -70,6 +76,7 @@ class _RoundedWithShadowInputState extends State<RoundedWithShadowInput> {
     return Pinput(
       length: widget.length,
       controller: widget.controller,
+      readOnly: widget.readOnly,
       focusNode: widget.focusNode,
       onCompleted: widget.onCompleted,
       onChanged: widget.onChanged,
@@ -77,7 +84,25 @@ class _RoundedWithShadowInputState extends State<RoundedWithShadowInput> {
       onSubmitted: widget.onSubmitted,
       defaultPinTheme: defaultPinTheme,
       validator: widget.validator,
+      errorText: widget.errorText,
+      errorBuilder: (String? errorText, String pin) {
+        return Align(
+          alignment: Alignment.center,
+          child: Padding(
+            padding: const EdgeInsets.only(top: 16.0),
+            child: Text(
+              errorText ?? 'خطایی رخ داده است',
+              style: Theme.of(context)
+                  .textTheme
+                  .bodySmall
+                  ?.copyWith(color: Theme.of(context).colorScheme.error),
+            ),
+          ),
+        );
+      },
+      forceErrorState: widget.forceErrorState,
       obscureText: widget.obscureText,
+      pinputAutovalidateMode: PinputAutovalidateMode.onSubmit,
       obscuringWidget: Container(
         width: 10,
         height: 10,
@@ -88,20 +113,8 @@ class _RoundedWithShadowInputState extends State<RoundedWithShadowInput> {
       useNativeKeyboard: widget.useNativeKeyboard,
       hapticFeedbackType: HapticFeedbackType.lightImpact,
       separatorBuilder: (index) => const SizedBox(width: 12),
-      focusedPinTheme: defaultPinTheme.copyWith(
-        decoration: BoxDecoration(
-          color: Colors.white,
-          border:
-              Border.all(color: Theme.of(context).colorScheme.outlineVariant),
-          borderRadius: BorderRadius.circular(8),
-          boxShadow: const [
-            BoxShadow(
-              color: Color.fromRGBO(0, 0, 0, 0.05999999865889549),
-              offset: Offset(0, 3),
-              blurRadius: 16,
-            ),
-          ],
-        ),
+      focusedPinTheme: defaultPinTheme.copyBorderWith(
+        border: Border.all(color: Theme.of(context).colorScheme.outline),
       ),
       errorPinTheme: defaultPinTheme.copyBorderWith(
         border: Border.all(color: Theme.of(context).colorScheme.error),

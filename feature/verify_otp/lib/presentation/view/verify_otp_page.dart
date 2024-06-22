@@ -43,6 +43,8 @@ class VerifyOtpPage extends StatelessWidget {
             state: state,
             phoneNumber: phoneNumber,
             codeLength: codeLength,
+            expiresIn: expiresIn,
+            errorMessage: state is OtpError ? state.message : null,
           );
         },
       ),

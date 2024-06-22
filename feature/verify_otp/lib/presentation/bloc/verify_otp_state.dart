@@ -14,6 +14,15 @@ class VerifyOtpFailure extends VerifyOtpState {
   List<Object?> get props => [];
 }
 
+class OtpError extends VerifyOtpState {
+  final String message;
+
+  const OtpError(this.message);
+
+  @override
+  List<Object?> get props => [];
+}
+
 class VerifyOtpInProgress extends VerifyOtpState {
   @override
   List<Object?> get props => [];

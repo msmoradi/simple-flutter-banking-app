@@ -21,7 +21,7 @@ class AuthenticationRepositoryImpl extends AuthenticationRepository {
       () => EntityWrapper.success<SendOtpEntity>(SendOtpEntity(
         needSignup: true,
         needReferralCode: true,
-        expiresIn: 300,
+        expiresIn: 10,
         codeLength: 6,
       )),
     );
@@ -94,8 +94,10 @@ class AuthenticationRepositoryImpl extends AuthenticationRepository {
   }) {
     return Future.delayed(
       const Duration(seconds: 5),
-      () => EntityWrapper.success<SignUpEntity>(
-          SignUpEntity(expiresIn: 300, codeLength: 6)),
+      () => EntityWrapper.success<SignUpEntity>(SignUpEntity(
+        expiresIn: 10,
+        codeLength: 6,
+      )),
     );
 
     /* return authenticationRemoteDataSource

@@ -7,12 +7,17 @@ class VerifyOtpContent extends StatelessWidget {
   final VerifyOtpState state;
   final String phoneNumber;
   final int codeLength;
+  final int expiresIn;
+  final String? errorMessage;
 
-  const VerifyOtpContent(
-      {super.key,
-      required this.state,
-      required this.phoneNumber,
-      required this.codeLength});
+  const VerifyOtpContent({
+    super.key,
+    required this.state,
+    required this.phoneNumber,
+    required this.codeLength,
+    required this.expiresIn,
+    this.errorMessage,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -21,10 +26,11 @@ class VerifyOtpContent extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: VerifyOtpForm(
-          showLoading: state is VerifyOtpInProgress,
-          phoneNumber: phoneNumber,
-          numCells: codeLength,
-        ),
+            showLoading: state is VerifyOtpInProgress,
+            phoneNumber: phoneNumber,
+            codeLength: codeLength,
+            expiresIn: expiresIn,
+            errorMessage: errorMessage),
       ),
     );
   }
