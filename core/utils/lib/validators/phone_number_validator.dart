@@ -1,6 +1,5 @@
 import 'package:domain/entities/phone_number.dart';
 import 'package:flutter/material.dart';
-import 'package:utils/extension/build_context.dart';
 
 import 'base/validation_error.dart';
 import 'base/validation_result.dart';
@@ -14,9 +13,8 @@ class PhoneNumberValidator extends FieldValidator {
 
   @override
   ValidationResult validate() {
-    final emptinessResult = EmptinessValidator([_phoneNumber]).validate();
-    if (!emptinessResult.isValid) {
-      return emptinessResult;
+    if (!EmptinessValidator([_phoneNumber]).validate().isValid) {
+      return ValidationResult.invalid(PhoneNumberEmptyError());
     }
     if (!PhoneNumber(value: _phoneNumber!).isValid()) {
       return ValidationResult.invalid(PhoneNumberStructuralError());
@@ -29,6 +27,13 @@ class PhoneNumberValidator extends FieldValidator {
 class PhoneNumberStructuralError implements ValidationError {
   @override
   String getMessage(BuildContext context) {
-    return context.getTranslator().emailValidationText;
+    return "شماره تلفن همراه خود را صحیح وارد کنید";
+  }
+}
+
+class PhoneNumberEmptyError implements ValidationError {
+  @override
+  String getMessage(BuildContext context) {
+    return "شماره تلفن همراه خود را وارد کنید";
   }
 }
