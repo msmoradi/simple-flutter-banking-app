@@ -1,6 +1,6 @@
 import 'package:domain/entities/national_id.dart';
 import 'package:flutter/material.dart';
-import 'package:utils/extension/build_context.dart';
+
 import 'base/validation_error.dart';
 import 'base/validation_result.dart';
 import 'base/validator.dart';
@@ -13,9 +13,8 @@ class NationalIdValidator extends FieldValidator {
 
   @override
   ValidationResult validate() {
-    final emptinessResult = EmptinessValidator([_nationalId]).validate();
-    if (!emptinessResult.isValid) {
-      return emptinessResult;
+    if (!EmptinessValidator([_nationalId]).validate().isValid) {
+      return ValidationResult.invalid(NationalIdEmptyError());
     }
     if (!NationalId(value: _nationalId!).isValid()) {
       return ValidationResult.invalid(NationalIdStructuralError());
@@ -28,6 +27,13 @@ class NationalIdValidator extends FieldValidator {
 class NationalIdStructuralError implements ValidationError {
   @override
   String getMessage(BuildContext context) {
-    return context.getTranslator().emailValidationText;
+    return "کدملی خود را صحیح وارد کنید";
+  }
+}
+
+class NationalIdEmptyError implements ValidationError {
+  @override
+  String getMessage(BuildContext context) {
+    return "کدملی خود را وارد نمایید";
   }
 }
