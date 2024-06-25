@@ -17,8 +17,6 @@ class OnboardingPasswordPageFactory {
           CreatePasswordPageFactory.path,
           extra: CreatePasswordExtra(
             phoneNumber: extra.phoneNumber,
-            sessionId: extra.sessionId,
-            numCells: extra.numCells,
           ),
         );
       },
@@ -44,12 +42,8 @@ class OnboardingPasswordPageFactory {
 
 class OnboardingPasswordExtra {
   final String phoneNumber;
-  final String sessionId;
-  final int numCells;
 
   OnboardingPasswordExtra({
     required this.phoneNumber,
-    required this.sessionId,
-    required this.numCells,
   });
 }

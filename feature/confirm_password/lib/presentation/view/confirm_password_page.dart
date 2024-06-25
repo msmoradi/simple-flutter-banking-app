@@ -8,14 +8,12 @@ class ConfirmPasswordPage extends StatefulWidget {
   final Function() onNext;
   final String phoneNumber;
   final String newPassword;
-  final int numCells;
 
   const ConfirmPasswordPage(
       {super.key,
       required this.onNext,
       required this.phoneNumber,
-      required this.newPassword,
-      required this.numCells});
+      required this.newPassword});
 
   @override
   State<ConfirmPasswordPage> createState() => _ConfirmPasswordPageState();
@@ -95,12 +93,12 @@ class _ConfirmPasswordPageState extends State<ConfirmPasswordPage> {
                     controller: pinController,
                     focusNode: focusNode,
                     validator: (value) {
-                      return value?.length == widget.numCells &&
+                      return value?.length == 4 &&
                               value == widget.newPassword
                           ? null
                           : 'Pin is incorrect';
                     },
-                    length: widget.numCells,
+                    length: 4,
                     onCompleted: onConfirm,
                   ),
                 ),

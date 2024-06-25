@@ -17,13 +17,10 @@ class CreatePasswordPageFactory {
           extra: ConfirmPasswordExtra(
             phoneNumber: phone,
             newPassword: password,
-            sessionId: extra.sessionId,
-            numCells: extra.numCells,
           ),
         );
       },
       phoneNumber: extra.phoneNumber,
-      numCells: extra.numCells,
     );
   }
 
@@ -46,12 +43,8 @@ class CreatePasswordPageFactory {
 
 class CreatePasswordExtra {
   final String phoneNumber;
-  final String sessionId;
-  final int numCells;
 
   CreatePasswordExtra({
     required this.phoneNumber,
-    required this.sessionId,
-    required this.numCells,
   });
 }

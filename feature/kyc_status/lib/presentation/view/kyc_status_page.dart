@@ -49,16 +49,19 @@ class KycStatusPage extends StatelessWidget {
               ),
               const SizedBox(height: 50),
               const InfoTextRowWidget(
+                icon: Icons.person_4_outlined,
                 title: 'مالکیت شماره تلفن همراه',
                 subtitle: 'تطابق شماره تلفن همراه و کدملی شما انجام شده',
               ),
               const SizedBox(height: 24),
               const InfoTextRowWidget(
+                icon: Icons.person_4_outlined,
                 title: 'شناسایی هویت',
                 subtitle: 'دریافت اطلاعات شما از ثبت احوال در حال انجام است',
               ),
               const SizedBox(height: 24),
               const InfoTextRowWidget(
+                icon: Icons.person_4_outlined,
                 title: 'احراز هویت',
                 subtitle: 'بررسی چهره و تطبیق آن با هویت شما در حال انجام است',
               ),

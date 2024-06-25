@@ -33,6 +33,11 @@ class VerifyOtpSuccess extends VerifyOtpState {
   List<Object?> get props => [];
 }
 
+class SetPassword extends VerifyOtpState {
+  @override
+  List<Object?> get props => [];
+}
+
 class VerifyOtpValidated extends VerifyOtpState {
   @override
   List<Object?> get props => [];

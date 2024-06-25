@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 class InfoTextRowWidget extends StatelessWidget {
   final String title;
   final String subtitle;
+  final IconData? icon;
 
   const InfoTextRowWidget({
     super.key,
     required this.title,
     required this.subtitle,
+    required this.icon,
   });
 
   @override
@@ -16,12 +18,12 @@ class InfoTextRowWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         CircleAvatar(
-          radius: 16,
-          backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
+          radius: 21,
+          backgroundColor: Theme.of(context).colorScheme.onSurface,
           child: Icon(
-            Icons.person_outline,
-            size: 16.0,
-            color: Theme.of(context).colorScheme.onSecondaryContainer,
+            icon,
+            size: 21.0,
+            color: Theme.of(context).colorScheme.surface,
           ),
         ),
         const SizedBox(
@@ -32,18 +34,20 @@ class InfoTextRowWidget extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                style: Theme.of(context)
-                    .textTheme
-                    .bodyLarge
-                    ?.copyWith(fontWeight: FontWeight.bold),
                 title,
+                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                      fontWeight: FontWeight.bold,
+                      color: Theme.of(context).colorScheme.primary,
+                    ),
+              ),
+              const SizedBox(
+                height: 4,
               ),
               Text(
-                style: Theme.of(context)
-                    .textTheme
-                    .bodyMedium
-                    ?.copyWith(color: Theme.of(context).colorScheme.secondary),
                 subtitle,
+                style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                      color: Theme.of(context).colorScheme.onSurfaceVariant,
+                    ),
               ),
             ],
           ),

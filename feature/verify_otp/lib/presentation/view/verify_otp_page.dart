@@ -9,6 +9,7 @@ import 'package:verify_otp/presentation/view/verify_otp_content.dart';
 class VerifyOtpPage extends StatelessWidget {
   final Function() onBackPressed;
   final Function() onNext;
+  final Function() setPassword;
   final String phoneNumber;
   final int codeLength;
   final int expiresIn;
@@ -20,6 +21,7 @@ class VerifyOtpPage extends StatelessWidget {
     required this.phoneNumber,
     required this.codeLength,
     required this.expiresIn,
+    required this.setPassword,
   });
 
   @override
@@ -28,14 +30,23 @@ class VerifyOtpPage extends StatelessWidget {
       create: (context) => verifyOtpBloc,
       child: BlocConsumer<VerifyOtpBloc, VerifyOtpState>(
         listener: (context, state) {
-          if (state is VerifyOtpFailure) {
-            ScaffoldMessenger.of(context)
-              ..hideCurrentSnackBar()
-              ..showSnackBar(
-                SnackBar(content: Text(state.message)),
-              );
-          } else if (state is VerifyOtpSuccess) {
-            onNext();
+          switch (state) {
+            case final VerifyOtpFailure s:
+              {
+                ScaffoldMessenger.of(context)
+                  ..hideCurrentSnackBar()
+                  ..showSnackBar(
+                    SnackBar(content: Text(s.message)),
+                  );
+              }
+            case final VerifyOtpSuccess s:
+              {
+                onNext();
+              }
+            case final SetPassword s:
+              {
+                setPassword();
+              }
           }
         },
         builder: (context, state) {

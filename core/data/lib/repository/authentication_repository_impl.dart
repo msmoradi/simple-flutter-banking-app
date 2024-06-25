@@ -42,7 +42,7 @@ class AuthenticationRepositoryImpl extends AuthenticationRepository {
         VerifyOtpEntity(
           accessToken: 'accessToken',
           refreshToken: 'refreshToken',
-          passwordAuthentication: PasswordAuthentication.none,
+          passwordAuthentication: PasswordAuthentication.set,
         ),
       ),
     );

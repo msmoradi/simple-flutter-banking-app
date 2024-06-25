@@ -16,7 +16,6 @@ class ConfirmPasswordPageFactory {
       },
       phoneNumber: extra.phoneNumber,
       newPassword: extra.newPassword,
-      numCells: extra.numCells,
     );
   }
 
@@ -40,13 +39,9 @@ class ConfirmPasswordPageFactory {
 class ConfirmPasswordExtra {
   final String phoneNumber;
   final String newPassword;
-  final String sessionId;
-  final int numCells;
 
   ConfirmPasswordExtra({
     required this.phoneNumber,
     required this.newPassword,
-    required this.sessionId,
-    required this.numCells,
   });
 }

@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:domain/entities/password_authentication.dart';
 import 'package:domain/repository/authentication_repository.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
@@ -48,7 +49,11 @@ class VerifyOtpBloc extends Bloc<VerifyOtpEvent, VerifyOtpState> {
           otp: event.otp,
         );
         response.when(
-            success: (success) => emit(VerifyOtpSuccess()),
+            success: (success) => switch(success.passwordAuthentication){
+              PasswordAuthentication.none => emit(VerifyOtpSuccess()),
+              PasswordAuthentication.set => emit(SetPassword()),
+              PasswordAuthentication.verify => emit(SetPassword()), // TODO
+            },
             partialSuccess: (message) =>
                 emit(const OtpError('کد وارد شده صحیح نیست')),
             networkError: (exception) =>

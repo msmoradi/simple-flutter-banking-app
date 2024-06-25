@@ -1,5 +1,5 @@
 import 'package:designsystem/widgets/button/fill/full_fill_button.dart';
-import 'package:designsystem/widgets/button/fill/secondary_button.dart';
+import 'package:designsystem/widgets/button/fill/full_outline_button.dart';
 import 'package:flutter/material.dart';
 import 'package:local_auth/local_auth.dart';
 
@@ -68,16 +68,22 @@ class _EnableBiometricPageState extends State<EnableBiometricPage> {
           ),
           const SizedBox(height: 71),
           Text(
-            style: Theme.of(context).textTheme.headlineMedium,
-            "فعال‌سازی ورود با چهره",
+            style: Theme.of(context)
+                .textTheme
+                .headlineMedium
+                ?.copyWith(color: Theme.of(context).colorScheme.primary),
+            "فعال‌سازی ورود بایومتریک",
           ),
           const SizedBox(height: 30),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 70.0),
             child: Text(
-                style: Theme.of(context).textTheme.bodyMedium,
-                textAlign: TextAlign.center,
-                "برای ورود امن و سریع به BANX از ماژول تشخیص چهره استفاده میکنم"),
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                    color: Theme.of(context).colorScheme.onSurfaceVariant,
+                  ),
+              textAlign: TextAlign.center,
+              "برای ورود امن و سریع به بنکس می‌توانید از قابلیت تشخیص چهره استفاده کنید",
+            ),
           ),
           const Spacer(),
         ],
@@ -100,7 +106,7 @@ class _EnableBiometricPageState extends State<EnableBiometricPage> {
               width: 16.0,
             ),
             Expanded(
-              child: SecondaryFillButton(
+              child: PrimaryOutlineButton(
                 onPressed: widget.onNext,
                 label: 'فعلاً نه',
                 fillWidth: false,

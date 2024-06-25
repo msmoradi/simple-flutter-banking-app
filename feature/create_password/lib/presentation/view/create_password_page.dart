@@ -6,13 +6,12 @@ import 'package:utils/extension/build_context.dart';
 class CreatePasswordPage extends StatefulWidget {
   final Function(String, String) onNext;
   final String phoneNumber;
-  final int numCells;
 
-  const CreatePasswordPage(
-      {super.key,
-      required this.onNext,
-      required this.phoneNumber,
-      required this.numCells});
+  const CreatePasswordPage({
+    super.key,
+    required this.onNext,
+    required this.phoneNumber,
+  });
 
   @override
   State<CreatePasswordPage> createState() => _CreatePasswordPageState();
@@ -75,11 +74,9 @@ class _CreatePasswordPageState extends State<CreatePasswordPage> {
                     controller: pinController,
                     focusNode: focusNode,
                     validator: (value) {
-                      return value?.length == widget.numCells
-                          ? null
-                          : 'Pin is incorrect';
+                      return value?.length == 4 ? null : 'Pin is incorrect';
                     },
-                    length: widget.numCells,
+                    length: 4,
                     onCompleted: onConfirm,
                   ),
                 ),
