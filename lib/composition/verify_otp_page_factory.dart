@@ -8,12 +8,12 @@ class VerifyOtpPageFactory {
   static VerifyOtpPage builder(
     BuildContext context,
     GoRouterState state,
-    VerifyOtpExtra extra,
+    VerifyOtpExtra? extra,
   ) {
     return VerifyOtpPage(
-      phoneNumber: extra.phoneNumber,
-      codeLength: extra.codeLength,
-      expiresIn: extra.expiresIn,
+      phoneNumber: extra?.phoneNumber ?? "09121452078",
+      codeLength: extra?.codeLength ?? 6,
+      expiresIn: extra?.expiresIn ?? 10,
       onNext: () {},
       onBackPressed: () {
         context.pop();
@@ -27,7 +27,7 @@ class VerifyOtpPageFactory {
     return GoRoute(
         path: (VerifyOtpPageFactory.path),
         builder: (ctx, state) {
-          final extra = state.extra as VerifyOtpExtra;
+          final extra = state.extra as VerifyOtpExtra?;
           return VerifyOtpPageFactory.builder(ctx, state, extra);
         },
         routes: routes);
