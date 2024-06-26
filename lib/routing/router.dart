@@ -4,6 +4,7 @@ import 'package:banx/composition/enable_biometric_page_factory.dart';
 import 'package:banx/composition/face_detection_factory.dart';
 import 'package:banx/composition/identity_page_factory.dart';
 import 'package:banx/composition/kyc_status_page_factory.dart';
+import 'package:banx/composition/main_page_factory.dart';
 import 'package:banx/composition/onboarding_face_page_factory.dart';
 import 'package:banx/composition/onboarding_password_page_factory.dart';
 import 'package:banx/composition/phone_page_factory.dart';
@@ -24,6 +25,7 @@ Future<GoRouter> get routerConfig async => GoRouter(
         OnboardingPasswordPageFactory.route(),
         CreatePasswordPageFactory.route(),
         ConfirmPasswordPageFactory.route(),
+        MainPageFactory.route(),
         SelectCardPageFactory.route(),
         EnableBiometricPageFactory.route(),
         OnboardingFacePageFactory.route(),
@@ -40,5 +42,5 @@ Future<String> get initialLocation async {
     await BanxConfig.app.introPageViewed();
     return OnboardingPageFactory.path;
   }*/
-  return PhonePageFactory.path;
+  return MainPageFactory.path;
 }

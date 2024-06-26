@@ -8,7 +8,7 @@ import 'package:verify_otp/presentation/view/verify_otp_content.dart';
 
 class VerifyOtpPage extends StatelessWidget {
   final Function() onBackPressed;
-  final Function() onNext;
+  final Function() onMainPage;
   final Function() setPassword;
   final String phoneNumber;
   final int codeLength;
@@ -17,7 +17,7 @@ class VerifyOtpPage extends StatelessWidget {
   const VerifyOtpPage({
     super.key,
     required this.onBackPressed,
-    required this.onNext,
+    required this.onMainPage,
     required this.phoneNumber,
     required this.codeLength,
     required this.expiresIn,
@@ -41,7 +41,7 @@ class VerifyOtpPage extends StatelessWidget {
               }
             case final VerifyOtpSuccess s:
               {
-                onNext();
+                onMainPage();
               }
             case final SetPassword s:
               {

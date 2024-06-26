@@ -1,4 +1,4 @@
-import 'package:banx/composition/create_password_page_factory.dart';
+import 'package:banx/composition/main_page_factory.dart';
 import 'package:banx/composition/onboarding_password_page_factory.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
@@ -16,7 +16,9 @@ class VerifyOtpPageFactory {
       phoneNumber: extra.phoneNumber,
       codeLength: extra.codeLength,
       expiresIn: extra.expiresIn,
-      onNext: () {},
+      onMainPage: () {
+        context.push(MainPageFactory.path);
+      },
       setPassword: () {
         context.push(
           OnboardingPasswordPageFactory.path,
