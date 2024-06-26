@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:verify_otp/presentation/bloc/main_bloc.dart';
-import 'package:verify_otp/presentation/view/main_content.dart';
+import 'package:main/presentation/bloc/main_bloc.dart';
+import 'package:main/presentation/view/main_content.dart';
 
 class MainPage extends StatelessWidget {
   const MainPage({
