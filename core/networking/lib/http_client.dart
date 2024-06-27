@@ -10,7 +10,7 @@ abstract class HTTPClient {
     required T Function(JSON responseBody) mapper,
   });
 
-  Future<NetworkResponse<T>> post<T>({
+  Future<T> post<T>({
     required String endpoint,
     JSON? data,
     required T Function(Map<String, dynamic> response) mapper

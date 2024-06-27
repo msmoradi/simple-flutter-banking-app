@@ -14,45 +14,18 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
+SignUpResponseDto _$SignUpResponseDtoFromJson(Map<String, dynamic> json) {
+  return _SignUpResponseDto.fromJson(json);
+}
+
 /// @nodoc
 mixin _$SignUpResponseDto {
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function(Long expiresIn, int codeLength) $default, {
-    required TResult Function(Map<String, dynamic> data) json,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(Long expiresIn, int codeLength)? $default, {
-    TResult? Function(Map<String, dynamic> data)? json,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function(Long expiresIn, int codeLength)? $default, {
-    TResult Function(Map<String, dynamic> data)? json,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(_SignUpResponseDto value) $default, {
-    required TResult Function(Json value) json,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(_SignUpResponseDto value)? $default, {
-    TResult? Function(Json value)? json,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(_SignUpResponseDto value)? $default, {
-    TResult Function(Json value)? json,
-    required TResult orElse(),
-  }) =>
+  int get expiresIn => throw _privateConstructorUsedError;
+  int get codeLength => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $SignUpResponseDtoCopyWith<SignUpResponseDto> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -61,6 +34,8 @@ abstract class $SignUpResponseDtoCopyWith<$Res> {
   factory $SignUpResponseDtoCopyWith(
           SignUpResponseDto value, $Res Function(SignUpResponseDto) then) =
       _$SignUpResponseDtoCopyWithImpl<$Res, SignUpResponseDto>;
+  @useResult
+  $Res call({int expiresIn, int codeLength});
 }
 
 /// @nodoc
@@ -72,15 +47,35 @@ class _$SignUpResponseDtoCopyWithImpl<$Res, $Val extends SignUpResponseDto>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? expiresIn = null,
+    Object? codeLength = null,
+  }) {
+    return _then(_value.copyWith(
+      expiresIn: null == expiresIn
+          ? _value.expiresIn
+          : expiresIn // ignore: cast_nullable_to_non_nullable
+              as int,
+      codeLength: null == codeLength
+          ? _value.codeLength
+          : codeLength // ignore: cast_nullable_to_non_nullable
+              as int,
+    ) as $Val);
+  }
 }
 
 /// @nodoc
-abstract class _$$SignUpResponseDtoImplCopyWith<$Res> {
+abstract class _$$SignUpResponseDtoImplCopyWith<$Res>
+    implements $SignUpResponseDtoCopyWith<$Res> {
   factory _$$SignUpResponseDtoImplCopyWith(_$SignUpResponseDtoImpl value,
           $Res Function(_$SignUpResponseDtoImpl) then) =
       __$$SignUpResponseDtoImplCopyWithImpl<$Res>;
+  @override
   @useResult
-  $Res call({Long expiresIn, int codeLength});
+  $Res call({int expiresIn, int codeLength});
 }
 
 /// @nodoc
@@ -98,11 +93,11 @@ class __$$SignUpResponseDtoImplCopyWithImpl<$Res>
     Object? codeLength = null,
   }) {
     return _then(_$SignUpResponseDtoImpl(
-      null == expiresIn
+      expiresIn: null == expiresIn
           ? _value.expiresIn
           : expiresIn // ignore: cast_nullable_to_non_nullable
-              as Long,
-      null == codeLength
+              as int,
+      codeLength: null == codeLength
           ? _value.codeLength
           : codeLength // ignore: cast_nullable_to_non_nullable
               as int,
@@ -111,12 +106,16 @@ class __$$SignUpResponseDtoImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$SignUpResponseDtoImpl implements _SignUpResponseDto {
-  const _$SignUpResponseDtoImpl(this.expiresIn, this.codeLength);
+  const _$SignUpResponseDtoImpl(
+      {required this.expiresIn, required this.codeLength});
+
+  factory _$SignUpResponseDtoImpl.fromJson(Map<String, dynamic> json) =>
+      _$$SignUpResponseDtoImplFromJson(json);
 
   @override
-  final Long expiresIn;
+  final int expiresIn;
   @override
   final int codeLength;
 
@@ -136,6 +135,7 @@ class _$SignUpResponseDtoImpl implements _SignUpResponseDto {
                 other.codeLength == codeLength));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, expiresIn, codeLength);
 
@@ -147,213 +147,27 @@ class _$SignUpResponseDtoImpl implements _SignUpResponseDto {
           this, _$identity);
 
   @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function(Long expiresIn, int codeLength) $default, {
-    required TResult Function(Map<String, dynamic> data) json,
-  }) {
-    return $default(expiresIn, codeLength);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(Long expiresIn, int codeLength)? $default, {
-    TResult? Function(Map<String, dynamic> data)? json,
-  }) {
-    return $default?.call(expiresIn, codeLength);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function(Long expiresIn, int codeLength)? $default, {
-    TResult Function(Map<String, dynamic> data)? json,
-    required TResult orElse(),
-  }) {
-    if ($default != null) {
-      return $default(expiresIn, codeLength);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(_SignUpResponseDto value) $default, {
-    required TResult Function(Json value) json,
-  }) {
-    return $default(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(_SignUpResponseDto value)? $default, {
-    TResult? Function(Json value)? json,
-  }) {
-    return $default?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(_SignUpResponseDto value)? $default, {
-    TResult Function(Json value)? json,
-    required TResult orElse(),
-  }) {
-    if ($default != null) {
-      return $default(this);
-    }
-    return orElse();
+  Map<String, dynamic> toJson() {
+    return _$$SignUpResponseDtoImplToJson(
+      this,
+    );
   }
 }
 
 abstract class _SignUpResponseDto implements SignUpResponseDto {
-  const factory _SignUpResponseDto(final Long expiresIn, final int codeLength) =
-      _$SignUpResponseDtoImpl;
+  const factory _SignUpResponseDto(
+      {required final int expiresIn,
+      required final int codeLength}) = _$SignUpResponseDtoImpl;
 
-  Long get expiresIn;
+  factory _SignUpResponseDto.fromJson(Map<String, dynamic> json) =
+      _$SignUpResponseDtoImpl.fromJson;
+
+  @override
+  int get expiresIn;
+  @override
   int get codeLength;
+  @override
   @JsonKey(ignore: true)
   _$$SignUpResponseDtoImplCopyWith<_$SignUpResponseDtoImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$JsonImplCopyWith<$Res> {
-  factory _$$JsonImplCopyWith(
-          _$JsonImpl value, $Res Function(_$JsonImpl) then) =
-      __$$JsonImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({Map<String, dynamic> data});
-}
-
-/// @nodoc
-class __$$JsonImplCopyWithImpl<$Res>
-    extends _$SignUpResponseDtoCopyWithImpl<$Res, _$JsonImpl>
-    implements _$$JsonImplCopyWith<$Res> {
-  __$$JsonImplCopyWithImpl(_$JsonImpl _value, $Res Function(_$JsonImpl) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? data = null,
-  }) {
-    return _then(_$JsonImpl(
-      null == data
-          ? _value._data
-          : data // ignore: cast_nullable_to_non_nullable
-              as Map<String, dynamic>,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$JsonImpl implements Json {
-  const _$JsonImpl(final Map<String, dynamic> data) : _data = data;
-
-  final Map<String, dynamic> _data;
-  @override
-  Map<String, dynamic> get data {
-    if (_data is EqualUnmodifiableMapView) return _data;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableMapView(_data);
-  }
-
-  @override
-  String toString() {
-    return 'SignUpResponseDto.json(data: $data)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$JsonImpl &&
-            const DeepCollectionEquality().equals(other._data, _data));
-  }
-
-  @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_data));
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$JsonImplCopyWith<_$JsonImpl> get copyWith =>
-      __$$JsonImplCopyWithImpl<_$JsonImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function(Long expiresIn, int codeLength) $default, {
-    required TResult Function(Map<String, dynamic> data) json,
-  }) {
-    return json(data);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(Long expiresIn, int codeLength)? $default, {
-    TResult? Function(Map<String, dynamic> data)? json,
-  }) {
-    return json?.call(data);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function(Long expiresIn, int codeLength)? $default, {
-    TResult Function(Map<String, dynamic> data)? json,
-    required TResult orElse(),
-  }) {
-    if (json != null) {
-      return json(data);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(_SignUpResponseDto value) $default, {
-    required TResult Function(Json value) json,
-  }) {
-    return json(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(_SignUpResponseDto value)? $default, {
-    TResult? Function(Json value)? json,
-  }) {
-    return json?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(_SignUpResponseDto value)? $default, {
-    TResult Function(Json value)? json,
-    required TResult orElse(),
-  }) {
-    if (json != null) {
-      return json(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class Json implements SignUpResponseDto {
-  const factory Json(final Map<String, dynamic> data) = _$JsonImpl;
-
-  Map<String, dynamic> get data;
-  @JsonKey(ignore: true)
-  _$$JsonImplCopyWith<_$JsonImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

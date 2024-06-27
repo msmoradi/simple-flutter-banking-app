@@ -5,7 +5,6 @@ import 'package:data/model/sign_up_response_dto.dart';
 import 'package:data/model/verify_otp_response_dto.dart';
 import 'package:networking/api_endpoints.dart';
 import 'package:networking/http_client.dart';
-import 'package:networking/model/dto/network_response.dart';
 
 class AuthenticationRemoteDataSourceImpl
     extends AuthenticationRemoteDataSource {
@@ -15,7 +14,7 @@ class AuthenticationRemoteDataSourceImpl
       : _apiService = apiService;
 
   @override
-  Future<NetworkResponse<SendOtpResponseDto>> sendOtp(
+  Future<SendOtpResponseDto> sendOtp(
     String phoneNumber,
   ) async {
     final body = {
@@ -24,11 +23,11 @@ class AuthenticationRemoteDataSourceImpl
     return await _apiService.post(
         endpoint: ApiEndpoint.auth(AuthEndpoint.SEND_OTP),
         data: body,
-        mapper: SendOtpResponseDto.json);
+        mapper: SendOtpResponseDto.fromJson);
   }
 
   @override
-  Future<NetworkResponse<VerifyOtpResponseDto>> verifyOtp(
+  Future<VerifyOtpResponseDto> verifyOtp(
     String phoneNumber,
     String otp,
   ) async {
@@ -40,11 +39,11 @@ class AuthenticationRemoteDataSourceImpl
     return await _apiService.post(
         endpoint: ApiEndpoint.auth(AuthEndpoint.VERIFY_OTP),
         data: body,
-        mapper: VerifyOtpResponseDto.json);
+        mapper: VerifyOtpResponseDto.fromJson);
   }
 
   @override
-  Future<NetworkResponse<PasswordResponseDto>> password(String password) async {
+  Future<PasswordResponseDto> password(String password) async {
     final body = {
       'password': password,
     };
@@ -56,7 +55,7 @@ class AuthenticationRemoteDataSourceImpl
   }
 
   @override
-  Future<NetworkResponse<VerifyOtpResponseDto>> refresh(
+  Future<VerifyOtpResponseDto> refresh(
     String refreshToken,
     String password,
   ) async {
@@ -68,11 +67,11 @@ class AuthenticationRemoteDataSourceImpl
     return await _apiService.post(
         endpoint: ApiEndpoint.auth(AuthEndpoint.REFRESH),
         data: body,
-        mapper: VerifyOtpResponseDto.json);
+        mapper: VerifyOtpResponseDto.fromJson);
   }
 
   @override
-  Future<NetworkResponse<SignUpResponseDto>> signup(
+  Future<SignUpResponseDto> signup(
     String phoneNumber,
     String nationalId,
     String birthDate,
@@ -88,6 +87,6 @@ class AuthenticationRemoteDataSourceImpl
     return await _apiService.post(
         endpoint: ApiEndpoint.auth(AuthEndpoint.SIGN_UP),
         data: body,
-        mapper: SignUpResponseDto.json);
+        mapper: SignUpResponseDto.fromJson);
   }
 }

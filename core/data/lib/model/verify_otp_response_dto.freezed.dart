@@ -14,51 +14,19 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
+VerifyOtpResponseDto _$VerifyOtpResponseDtoFromJson(Map<String, dynamic> json) {
+  return _VerifyOtpResponseDto.fromJson(json);
+}
+
 /// @nodoc
 mixin _$VerifyOtpResponseDto {
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function(String access_token, String refresh_token,
-            String passwordAuthentication)
-        $default, {
-    required TResult Function(Map<String, dynamic> data) json,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(String access_token, String refresh_token,
-            String passwordAuthentication)?
-        $default, {
-    TResult? Function(Map<String, dynamic> data)? json,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function(String access_token, String refresh_token,
-            String passwordAuthentication)?
-        $default, {
-    TResult Function(Map<String, dynamic> data)? json,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(_VerifyOtpResponseDto value) $default, {
-    required TResult Function(Json value) json,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(_VerifyOtpResponseDto value)? $default, {
-    TResult? Function(Json value)? json,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(_VerifyOtpResponseDto value)? $default, {
-    TResult Function(Json value)? json,
-    required TResult orElse(),
-  }) =>
+  String get access_token => throw _privateConstructorUsedError;
+  String get refresh_token => throw _privateConstructorUsedError;
+  String get passwordAuthentication => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $VerifyOtpResponseDtoCopyWith<VerifyOtpResponseDto> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -67,6 +35,11 @@ abstract class $VerifyOtpResponseDtoCopyWith<$Res> {
   factory $VerifyOtpResponseDtoCopyWith(VerifyOtpResponseDto value,
           $Res Function(VerifyOtpResponseDto) then) =
       _$VerifyOtpResponseDtoCopyWithImpl<$Res, VerifyOtpResponseDto>;
+  @useResult
+  $Res call(
+      {String access_token,
+      String refresh_token,
+      String passwordAuthentication});
 }
 
 /// @nodoc
@@ -79,13 +52,38 @@ class _$VerifyOtpResponseDtoCopyWithImpl<$Res,
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? access_token = null,
+    Object? refresh_token = null,
+    Object? passwordAuthentication = null,
+  }) {
+    return _then(_value.copyWith(
+      access_token: null == access_token
+          ? _value.access_token
+          : access_token // ignore: cast_nullable_to_non_nullable
+              as String,
+      refresh_token: null == refresh_token
+          ? _value.refresh_token
+          : refresh_token // ignore: cast_nullable_to_non_nullable
+              as String,
+      passwordAuthentication: null == passwordAuthentication
+          ? _value.passwordAuthentication
+          : passwordAuthentication // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
 }
 
 /// @nodoc
-abstract class _$$VerifyOtpResponseDtoImplCopyWith<$Res> {
+abstract class _$$VerifyOtpResponseDtoImplCopyWith<$Res>
+    implements $VerifyOtpResponseDtoCopyWith<$Res> {
   factory _$$VerifyOtpResponseDtoImplCopyWith(_$VerifyOtpResponseDtoImpl value,
           $Res Function(_$VerifyOtpResponseDtoImpl) then) =
       __$$VerifyOtpResponseDtoImplCopyWithImpl<$Res>;
+  @override
   @useResult
   $Res call(
       {String access_token,
@@ -109,15 +107,15 @@ class __$$VerifyOtpResponseDtoImplCopyWithImpl<$Res>
     Object? passwordAuthentication = null,
   }) {
     return _then(_$VerifyOtpResponseDtoImpl(
-      null == access_token
+      access_token: null == access_token
           ? _value.access_token
           : access_token // ignore: cast_nullable_to_non_nullable
               as String,
-      null == refresh_token
+      refresh_token: null == refresh_token
           ? _value.refresh_token
           : refresh_token // ignore: cast_nullable_to_non_nullable
               as String,
-      null == passwordAuthentication
+      passwordAuthentication: null == passwordAuthentication
           ? _value.passwordAuthentication
           : passwordAuthentication // ignore: cast_nullable_to_non_nullable
               as String,
@@ -126,10 +124,15 @@ class __$$VerifyOtpResponseDtoImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$VerifyOtpResponseDtoImpl implements _VerifyOtpResponseDto {
   const _$VerifyOtpResponseDtoImpl(
-      this.access_token, this.refresh_token, this.passwordAuthentication);
+      {required this.access_token,
+      required this.refresh_token,
+      required this.passwordAuthentication});
+
+  factory _$VerifyOtpResponseDtoImpl.fromJson(Map<String, dynamic> json) =>
+      _$$VerifyOtpResponseDtoImplFromJson(json);
 
   @override
   final String access_token;
@@ -156,6 +159,7 @@ class _$VerifyOtpResponseDtoImpl implements _VerifyOtpResponseDto {
                 other.passwordAuthentication == passwordAuthentication));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType, access_token, refresh_token, passwordAuthentication);
@@ -169,228 +173,31 @@ class _$VerifyOtpResponseDtoImpl implements _VerifyOtpResponseDto {
               this, _$identity);
 
   @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function(String access_token, String refresh_token,
-            String passwordAuthentication)
-        $default, {
-    required TResult Function(Map<String, dynamic> data) json,
-  }) {
-    return $default(access_token, refresh_token, passwordAuthentication);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(String access_token, String refresh_token,
-            String passwordAuthentication)?
-        $default, {
-    TResult? Function(Map<String, dynamic> data)? json,
-  }) {
-    return $default?.call(access_token, refresh_token, passwordAuthentication);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function(String access_token, String refresh_token,
-            String passwordAuthentication)?
-        $default, {
-    TResult Function(Map<String, dynamic> data)? json,
-    required TResult orElse(),
-  }) {
-    if ($default != null) {
-      return $default(access_token, refresh_token, passwordAuthentication);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(_VerifyOtpResponseDto value) $default, {
-    required TResult Function(Json value) json,
-  }) {
-    return $default(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(_VerifyOtpResponseDto value)? $default, {
-    TResult? Function(Json value)? json,
-  }) {
-    return $default?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(_VerifyOtpResponseDto value)? $default, {
-    TResult Function(Json value)? json,
-    required TResult orElse(),
-  }) {
-    if ($default != null) {
-      return $default(this);
-    }
-    return orElse();
+  Map<String, dynamic> toJson() {
+    return _$$VerifyOtpResponseDtoImplToJson(
+      this,
+    );
   }
 }
 
 abstract class _VerifyOtpResponseDto implements VerifyOtpResponseDto {
   const factory _VerifyOtpResponseDto(
-      final String access_token,
-      final String refresh_token,
-      final String passwordAuthentication) = _$VerifyOtpResponseDtoImpl;
+          {required final String access_token,
+          required final String refresh_token,
+          required final String passwordAuthentication}) =
+      _$VerifyOtpResponseDtoImpl;
 
+  factory _VerifyOtpResponseDto.fromJson(Map<String, dynamic> json) =
+      _$VerifyOtpResponseDtoImpl.fromJson;
+
+  @override
   String get access_token;
+  @override
   String get refresh_token;
+  @override
   String get passwordAuthentication;
+  @override
   @JsonKey(ignore: true)
   _$$VerifyOtpResponseDtoImplCopyWith<_$VerifyOtpResponseDtoImpl>
       get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$JsonImplCopyWith<$Res> {
-  factory _$$JsonImplCopyWith(
-          _$JsonImpl value, $Res Function(_$JsonImpl) then) =
-      __$$JsonImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({Map<String, dynamic> data});
-}
-
-/// @nodoc
-class __$$JsonImplCopyWithImpl<$Res>
-    extends _$VerifyOtpResponseDtoCopyWithImpl<$Res, _$JsonImpl>
-    implements _$$JsonImplCopyWith<$Res> {
-  __$$JsonImplCopyWithImpl(_$JsonImpl _value, $Res Function(_$JsonImpl) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? data = null,
-  }) {
-    return _then(_$JsonImpl(
-      null == data
-          ? _value._data
-          : data // ignore: cast_nullable_to_non_nullable
-              as Map<String, dynamic>,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$JsonImpl implements Json {
-  const _$JsonImpl(final Map<String, dynamic> data) : _data = data;
-
-  final Map<String, dynamic> _data;
-  @override
-  Map<String, dynamic> get data {
-    if (_data is EqualUnmodifiableMapView) return _data;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableMapView(_data);
-  }
-
-  @override
-  String toString() {
-    return 'VerifyOtpResponseDto.json(data: $data)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$JsonImpl &&
-            const DeepCollectionEquality().equals(other._data, _data));
-  }
-
-  @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_data));
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$JsonImplCopyWith<_$JsonImpl> get copyWith =>
-      __$$JsonImplCopyWithImpl<_$JsonImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function(String access_token, String refresh_token,
-            String passwordAuthentication)
-        $default, {
-    required TResult Function(Map<String, dynamic> data) json,
-  }) {
-    return json(data);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(String access_token, String refresh_token,
-            String passwordAuthentication)?
-        $default, {
-    TResult? Function(Map<String, dynamic> data)? json,
-  }) {
-    return json?.call(data);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function(String access_token, String refresh_token,
-            String passwordAuthentication)?
-        $default, {
-    TResult Function(Map<String, dynamic> data)? json,
-    required TResult orElse(),
-  }) {
-    if (json != null) {
-      return json(data);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(_VerifyOtpResponseDto value) $default, {
-    required TResult Function(Json value) json,
-  }) {
-    return json(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(_VerifyOtpResponseDto value)? $default, {
-    TResult? Function(Json value)? json,
-  }) {
-    return json?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(_VerifyOtpResponseDto value)? $default, {
-    TResult Function(Json value)? json,
-    required TResult orElse(),
-  }) {
-    if (json != null) {
-      return json(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class Json implements VerifyOtpResponseDto {
-  const factory Json(final Map<String, dynamic> data) = _$JsonImpl;
-
-  Map<String, dynamic> get data;
-  @JsonKey(ignore: true)
-  _$$JsonImplCopyWith<_$JsonImpl> get copyWith =>
-      throw _privateConstructorUsedError;
 }

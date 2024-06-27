@@ -1,6 +1,6 @@
 import 'package:designsystem/widgets/button/fill/full_fill_button.dart';
 import 'package:flutter/material.dart';
-import 'package:identity/presentation/view/with_icon_row.dart';
+import 'package:designsystem/widgets/components/with_icon_row.dart';
 
 class WithOutReferralBottomSheetContent extends StatelessWidget {
   const WithOutReferralBottomSheetContent({super.key});

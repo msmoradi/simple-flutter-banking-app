@@ -5,7 +5,7 @@ import 'package:flutter/foundation.dart';
 class ApiEndpoint {
   const ApiEndpoint._();
 
-  static const baseUrl = 'https://tour.banx-dev.xyz/api/';
+  static const baseUrl = 'http://192.168.205.175:8083';
 
   static String auth(AuthEndpoint endpoint) {
     const path = '/api/v1/auth/';

@@ -15,41 +15,28 @@ class AuthenticationRepositoryImpl extends AuthenticationRepository {
   final AuthenticationRemoteDataSource authenticationRemoteDataSource;
 
   @override
-  Future<EntityWrapper<SendOtpEntity>> sendOtp({required String phoneNumber}) {
-    return Future.delayed(
-      const Duration(seconds: 5),
-      () => EntityWrapper.success<SendOtpEntity>(SendOtpEntity(
-        needSignup: true,
-        needReferralCode: true,
-        expiresIn: 10,
-        codeLength: 6,
-      )),
-    );
-
-    /* return authenticationRemoteDataSource
-        .sendOtp(phoneNumber)
-        .mapResponseToEntityWrapper();*/
-  }
-
-  @override
   Future<EntityWrapper<VerifyOtpEntity>> verifyOtp({
     required String phoneNumber,
     required String otp,
-  }) {
-    return Future.delayed(
-      const Duration(seconds: 5),
-      () => EntityWrapper.success<VerifyOtpEntity>(
-        VerifyOtpEntity(
-          accessToken: 'accessToken',
-          refreshToken: 'refreshToken',
-          passwordAuthentication: PasswordAuthentication.set,
-        ),
-      ),
-    );
-
-    /* return authenticationRemoteDataSource
-        .verifyOtp(phoneNumber,code)
-        .mapResponseToEntityWrapper();*/
+  }) async {
+    try {
+      final response =
+          await authenticationRemoteDataSource.verifyOtp(phoneNumber, otp);
+      late PasswordAuthentication passwordAuthentication;
+      if (response.passwordAuthentication == "None") {
+        passwordAuthentication = PasswordAuthentication.none;
+      } else if (response.passwordAuthentication == "Set") {
+        passwordAuthentication = PasswordAuthentication.set;
+      } else if (response.passwordAuthentication == "Verify") {
+        passwordAuthentication = PasswordAuthentication.verify;
+      }
+      return EntityWrapper.success(VerifyOtpEntity(
+          accessToken: response.access_token,
+          refreshToken: response.refresh_token,
+          passwordAuthentication: passwordAuthentication));
+    } catch (e) {
+      throw Exception('$e');
+    }
   }
 
   @override
@@ -91,17 +78,30 @@ class AuthenticationRepositoryImpl extends AuthenticationRepository {
     required String nationalId,
     required String birthDate,
     required String referralCode,
-  }) {
-    return Future.delayed(
-      const Duration(seconds: 5),
-      () => EntityWrapper.success<SignUpEntity>(SignUpEntity(
-        expiresIn: 10,
-        codeLength: 6,
-      )),
-    );
+  }) async {
+    try {
+      final response = await authenticationRemoteDataSource.signup(
+          phoneNumber, nationalId, birthDate, referralCode);
+      return EntityWrapper.success(SignUpEntity(
+          expiresIn: response.expiresIn, codeLength: response.codeLength));
+    } catch (e) {
+      throw Exception('$e');
+    }
+  }
 
-    /* return authenticationRemoteDataSource
-        .refresh(password)
-        .mapResponseToEntityWrapper();*/
+  @override
+  Future<EntityWrapper<SendOtpEntity>> sendOtp(
+      {required String phoneNumber}) async {
+    try {
+      final response =
+          await authenticationRemoteDataSource.sendOtp(phoneNumber);
+      return EntityWrapper.success(SendOtpEntity(
+          needSignup: response.needSignup,
+          needReferralCode: response.needReferralCode,
+          expiresIn: response.expiresIn,
+          codeLength: response.codeLength));
+    } catch (e) {
+      throw Exception('$e');
+    }
   }
 }

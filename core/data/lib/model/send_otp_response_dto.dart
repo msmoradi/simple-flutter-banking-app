@@ -1,17 +1,20 @@
 import 'dart:ffi';
 
+import 'package:domain/entities/send_otp_entity.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'send_otp_response_dto.freezed.dart';
+part 'send_otp_response_dto.g.dart';
 
 @freezed
 class SendOtpResponseDto with _$SendOtpResponseDto {
-  const factory SendOtpResponseDto(
-    bool needSignup,
-    bool needReferralCode,
-    Long expiresIn,
-    int codeLength,
-  ) = _SendOtpResponseDto;
+  const factory SendOtpResponseDto({
+    required bool needSignup,
+    required bool needReferralCode,
+    required int expiresIn,
+    required int codeLength,
+  }) = _SendOtpResponseDto;
 
-  const factory SendOtpResponseDto.json(Map<String, dynamic> data) = Json;
+  factory SendOtpResponseDto.fromJson(Map<String, dynamic> json) =>
+      _$SendOtpResponseDtoFromJson(json);
 }

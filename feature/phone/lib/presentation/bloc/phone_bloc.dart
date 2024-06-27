@@ -26,6 +26,7 @@ class PhoneBloc extends Bloc<PhoneEvent, PhoneState> {
       response.when(
           success: (response) {
             if (response.needSignup) {
+              print("*** $response");
               emit(
                 Identity(
                     phoneNumber: event.phoneNumber,
@@ -43,8 +44,8 @@ class PhoneBloc extends Bloc<PhoneEvent, PhoneState> {
           partialSuccess: (message) => emit(PhoneFailure(message)),
           networkError: (exception) =>
               emit(PhoneFailure(exception.toString())));
-    } catch (_) {
-      emit(const PhoneFailure('on handled error'));
+    } catch (e) {
+      emit(PhoneFailure('Failed to load data: $e'));
     }
   }
 }
