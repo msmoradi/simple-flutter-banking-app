@@ -18,6 +18,7 @@ dependencies:
   collection:
   flutter_spinkit:
   pinput: ^4.0.0
+  flip_card: ^0.7.0
 
 
 dev_dependencies:

@@ -1,7 +1,8 @@
 import 'package:designsystem/widgets/appbar/empty_app_bar.dart';
 import 'package:designsystem/widgets/button/fill/full_fill_button.dart';
+import 'package:designsystem/widgets/card/credit_card.dart';
+import 'package:designsystem/widgets/components/card_personalization_bottom_sheet.dart';
 import 'package:flutter/material.dart';
-import 'package:select_card/presentation/view/app_card.dart';
 
 class SelectCardPage extends StatefulWidget {
   final Function() onNext;
@@ -16,181 +17,132 @@ class SelectCardPage extends StatefulWidget {
 }
 
 class _SelectCardPageState extends State<SelectCardPage> {
-  late PageController _pageViewController;
-  int _currentPageIndex = 1;
-
-  void _handlePageViewChanged(int currentPageIndex) {
-    setState(() {
-      _currentPageIndex = currentPageIndex;
-    });
-  }
-
-  void _updateCurrentPageIndex(int index) {
-    _pageViewController.animateToPage(
-      index,
-      duration: const Duration(milliseconds: 400),
-      curve: Curves.easeInOut,
-    );
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    _pageViewController = PageController(
-      initialPage: 1,
-      viewportFraction: 0.75,
-    );
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    _pageViewController.dispose();
-  }
+  final TextEditingController cardHolderNameController =
+      TextEditingController(text: "Saeed Moradi");
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const EmptyAppBar(),
       body: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 16),
+        padding: const EdgeInsets.all(16),
         child: Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: Align(
-                alignment: Alignment.centerRight,
-                child: Text(
-                  style: Theme.of(context)
-                      .textTheme
-                      .headlineMedium
-                      ?.copyWith(fontWeight: FontWeight.bold),
-                  "سفارش کارت",
+            Align(
+              alignment: Alignment.centerRight,
+              child: Text(
+                style: Theme.of(context).textTheme.headlineLarge?.copyWith(
+                      fontWeight: FontWeight.bold,
+                      color: Theme.of(context).colorScheme.primary,
+                    ),
+                "سفارش کارت",
+              ),
+            ),
+            const SizedBox(
+              height: 16,
+            ),
+            CreditCard(cardHolderNameController: cardHolderNameController),
+            const SizedBox(
+              height: 20,
+            ),
+            Text(
+              'کارت فلزی  |  رنگ کربنی',
+              style: Theme.of(context)
+                  .textTheme
+                  .headlineSmall
+                  ?.copyWith(color: Theme.of(context).colorScheme.primary),
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(
+              height: 12,
+            ),
+            Text(
+              'کارت بانکی، عضو شبکه شتاب',
+              textAlign: TextAlign.center,
+              style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                  color: Theme.of(context).colorScheme.onSurfaceVariant),
+            ),
+            const Spacer(),
+            InkWell(
+              onTap: () {
+                showModalBottomSheet(
+                  enableDrag: false,
+                  showDragHandle: true,
+                  isScrollControlled: true,
+                  useSafeArea: true,
+                  shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(8.0),
+                        topRight: Radius.circular(8.0)),
+                  ),
+                  context: context,
+                  builder: (context) => CardPersonalizationBottomSheet(
+                    initialName: cardHolderNameController.text,
+                    onButtonPressed: (value) {
+                      Navigator.of(context).pop();
+                      cardHolderNameController.text = value;
+                    },
+                  ),
+                );
+              },
+              child: Container(
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: Theme.of(context).colorScheme.outline,
+                  ),
+                  borderRadius: const BorderRadius.all(Radius.circular(8)),
+                ),
+                child: Padding(
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'نام و نام خانوادگی درج شده روی کارت',
+                            style:
+                                Theme.of(context).textTheme.bodySmall?.copyWith(
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .onSurfaceVariant,
+                                    ),
+                          ),
+                          const SizedBox(
+                            height: 2,
+                          ),
+                          Text(
+                            cardHolderNameController.text,
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleMedium
+                                ?.copyWith(
+                                  color: Theme.of(context).colorScheme.primary,
+                                ),
+                          ),
+                        ],
+                      ),
+                      Icon(
+                        Icons.mode_edit_outlined,
+                        size: 16.0,
+                        color: Theme.of(context).colorScheme.onSurfaceVariant,
+                      )
+                    ],
+                  ),
                 ),
               ),
             ),
             const SizedBox(
               height: 16,
             ),
-            SizedBox(
-              height: 425.6,
-              child: PageView(
-                controller: _pageViewController,
-                onPageChanged: _handlePageViewChanged,
-                children: const <Widget>[
-                  Center(
-                    child: AppCard(
-                      imagePath: "assets/images/metal_card_black.png",
-                    ),
-                  ),
-                  Center(
-                    child: AppCard(
-                      imagePath: "assets/images/metal_card_gold.png",
-                    ),
-                  ),
-                  Center(
-                    child: AppCard(
-                      imagePath: "assets/images/metal_card_silver.png",
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 80.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    'کارت فلزی رنگ سُربی',
-                    style: Theme.of(context).textTheme.headlineSmall,
-                  ),
-                  const SizedBox(
-                    height: 12,
-                  ),
-                  Text(
-                    'کارت فلزی باضخامت ۱۰۰۰ میکرون با امکان خرید و انتقال وجه',
-                    textAlign: TextAlign.center,
-                    style: Theme.of(context).textTheme.bodySmall,
-                  ),
-                  const SizedBox(
-                    height: 24,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      GestureDetector(
-                        onTap: () {
-                          _updateCurrentPageIndex(0);
-                        },
-                        child: CircleItem(
-                          isSelected: _currentPageIndex == 0,
-                          path: "assets/images/black.png",
-                        ),
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          _updateCurrentPageIndex(1);
-                        },
-                        child: CircleItem(
-                          isSelected: _currentPageIndex == 1,
-                          path: "assets/images/gold.png",
-                        ),
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          _updateCurrentPageIndex(2);
-                        },
-                        child: CircleItem(
-                          isSelected: _currentPageIndex == 2,
-                          path: "assets/images/silver.png",
-                        ),
-                      ),
-                    ],
-                  )
-                ],
-              ),
-            ),
-            const Spacer(),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: PrimaryFillButton(
-                label: 'دریافت کارت فلزی رایگان',
-                onPressed: () {},
-              ),
+            PrimaryFillButton(
+              label: 'سفارش کارت',
+              onPressed: () {},
             ),
           ],
-        ),
-      ),
-    );
-  }
-}
-
-class CircleItem extends StatelessWidget {
-  final String path;
-  final bool isSelected;
-
-  const CircleItem({super.key, required this.path, required this.isSelected});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: 42.0,
-      height: 42.0,
-      decoration: BoxDecoration(
-        image: DecorationImage(
-          image: ExactAssetImage(path),
-          fit: BoxFit.cover,
-        ),
-        borderRadius: const BorderRadius.all(Radius.circular(50.0)),
-        border: Border.all(
-          color: isSelected
-              ? Theme.of(context).colorScheme.outline
-              : Theme.of(context).colorScheme.surface,
-          width: 4.0,
         ),
       ),
     );
