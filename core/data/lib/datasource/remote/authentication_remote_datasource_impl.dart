@@ -16,11 +16,11 @@ class AuthenticationRemoteDataSourceImpl
   @override
   Future<SendOtpResponseDto> sendOtp(
     String phoneNumber,
-  ) async {
+  ) {
     final body = {
       'phoneNumber': phoneNumber,
     };
-    return await _apiService.post(
+    return _apiService.post(
         endpoint: ApiEndpoint.auth(AuthEndpoint.SEND_OTP),
         data: body,
         mapper: SendOtpResponseDto.fromJson);
@@ -30,25 +30,24 @@ class AuthenticationRemoteDataSourceImpl
   Future<VerifyOtpResponseDto> verifyOtp(
     String phoneNumber,
     String otp,
-  ) async {
+  ) {
     final body = {
       'phoneNumber': phoneNumber,
       'otp': otp,
     };
-
-    return await _apiService.post(
+    return _apiService.post(
         endpoint: ApiEndpoint.auth(AuthEndpoint.VERIFY_OTP),
         data: body,
         mapper: VerifyOtpResponseDto.fromJson);
   }
 
   @override
-  Future<PasswordResponseDto> password(String password) async {
+  Future<PasswordResponseDto> password(String password) {
     final body = {
       'password': password,
     };
 
-    return await _apiService.post(
+    return _apiService.post(
         endpoint: ApiEndpoint.auth(AuthEndpoint.PASSWORD),
         data: body,
         mapper: PasswordResponseDto.json);
@@ -58,13 +57,13 @@ class AuthenticationRemoteDataSourceImpl
   Future<VerifyOtpResponseDto> refresh(
     String refreshToken,
     String password,
-  ) async {
+  ) {
     final body = {
       'refreshToken': refreshToken,
       'password': password,
     };
 
-    return await _apiService.post(
+    return _apiService.post(
         endpoint: ApiEndpoint.auth(AuthEndpoint.REFRESH),
         data: body,
         mapper: VerifyOtpResponseDto.fromJson);
@@ -76,7 +75,7 @@ class AuthenticationRemoteDataSourceImpl
     String nationalId,
     String birthDate,
     String referralCode,
-  ) async {
+  ) {
     final body = {
       'phoneNumber': phoneNumber,
       'nationalId': nationalId,
@@ -84,7 +83,7 @@ class AuthenticationRemoteDataSourceImpl
       'referralCode': referralCode,
     };
 
-    return await _apiService.post(
+    return _apiService.post(
         endpoint: ApiEndpoint.auth(AuthEndpoint.SIGN_UP),
         data: body,
         mapper: SignUpResponseDto.fromJson);

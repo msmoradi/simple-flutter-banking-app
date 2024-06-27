@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:networking/dio_interceptor.dart';
 import 'package:networking/exceptions/network_exception.dart';
+import 'package:networking/model/dto/error_dto.dart';
 import 'package:networking/typedefs.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
@@ -29,11 +30,13 @@ class DioService {
     required String url,
     JSON? queryParameters,
     Options? options,
-  }) async {
+  }) {
     try {
-      final response = await _dio.get<JSON>(url,
+      return _dio.get<JSON>(url,
           options: options, queryParameters: queryParameters);
-      return response;
+    } on DioException catch (result) {
+      final errorModel = ErrorDto.fromJson(result.response!.data!);
+      throw RequestErrorException(errorModel.message);
     } catch (e) {
       throw RequestErrorException(e.toString());
     }
@@ -43,14 +46,16 @@ class DioService {
     required String url,
     JSON? data,
     Options? options,
-  }) async {
+  }) {
     try {
-      final response = await _dio.post<JSON>(
+      return _dio.post<JSON>(
         url,
         data: data,
         options: options,
       );
-      return response;
+    } on DioException catch (result) {
+      final errorModel = ErrorDto.fromJson(result.response!.data!);
+      throw RequestErrorException(errorModel.message);
     } catch (e) {
       throw RequestErrorException(e.toString());
     }

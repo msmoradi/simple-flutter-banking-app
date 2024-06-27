@@ -30,8 +30,8 @@ class VerifyOtpBloc extends Bloc<VerifyOtpEvent, VerifyOtpState> {
           partialSuccess: (message) => emit(VerifyOtpFailure(message)),
           networkError: (exception) =>
               emit(VerifyOtpFailure(exception.toString())));
-    } catch (_) {
-      emit(const VerifyOtpFailure('خطایی رخ داده است'));
+    } catch (e) {
+      emit(VerifyOtpFailure(e.toString()));
     }
   }
 
@@ -49,17 +49,16 @@ class VerifyOtpBloc extends Bloc<VerifyOtpEvent, VerifyOtpState> {
           otp: event.otp,
         );
         response.when(
-            success: (success) => switch(success.passwordAuthentication){
-              PasswordAuthentication.none => emit(VerifyOtpSuccess()),
-              PasswordAuthentication.set => emit(SetPassword()),
-              PasswordAuthentication.verify => emit(SetPassword()), // TODO
-            },
-            partialSuccess: (message) =>
-                emit(const OtpError('کد وارد شده صحیح نیست')),
+            success: (success) => switch (success.passwordAuthentication) {
+                  PasswordAuthentication.none => emit(VerifyOtpSuccess()),
+                  PasswordAuthentication.set => emit(SetPassword()),
+                  PasswordAuthentication.verify => emit(SetPassword()), // TODO
+                },
+            partialSuccess: (message) => emit(VerifyOtpFailure(message)),
             networkError: (exception) =>
                 emit(VerifyOtpFailure(exception.toString())));
-      } catch (_) {
-        emit(const VerifyOtpFailure('خطایی رخ داده است'));
+      } catch (e) {
+        emit(VerifyOtpFailure(e.toString()));
       }
     }
   }

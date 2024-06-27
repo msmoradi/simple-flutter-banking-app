@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:data/datasource/remote/authentication_remote_datasource.dart';
+import 'package:data/mapper/response.mapper.dart';
 import 'package:domain/entities/password_authentication.dart';
 import 'package:domain/entities/password_entity.dart';
 import 'package:domain/entities/send_otp_entity.dart';
@@ -18,37 +19,26 @@ class AuthenticationRepositoryImpl extends AuthenticationRepository {
   Future<EntityWrapper<VerifyOtpEntity>> verifyOtp({
     required String phoneNumber,
     required String otp,
-  }) async {
-    try {
-      final response =
-          await authenticationRemoteDataSource.verifyOtp(phoneNumber, otp);
-      late PasswordAuthentication passwordAuthentication;
-      if (response.passwordAuthentication == "None") {
-        passwordAuthentication = PasswordAuthentication.none;
-      } else if (response.passwordAuthentication == "Set") {
-        passwordAuthentication = PasswordAuthentication.set;
-      } else if (response.passwordAuthentication == "Verify") {
-        passwordAuthentication = PasswordAuthentication.verify;
-      }
-      return EntityWrapper.success(VerifyOtpEntity(
-          accessToken: response.access_token,
-          refreshToken: response.refresh_token,
-          passwordAuthentication: passwordAuthentication));
-    } catch (e) {
-      throw Exception('$e');
-    }
+  }) {
+    return authenticationRemoteDataSource
+        .verifyOtp(phoneNumber, otp)
+        .mapResponseToEntityWrapper(mapper: (model) {
+      return VerifyOtpEntity(
+        accessToken: model.access_token,
+        refreshToken: model.refresh_token,
+        passwordAuthentication:
+            stringToPasswordAuthentication(model.passwordAuthentication),
+      );
+    });
   }
 
   @override
   Future<EntityWrapper<PasswordEntity>> password({required String password}) {
-    return Future.delayed(
-      const Duration(seconds: 5),
-      () => EntityWrapper.success<PasswordEntity>(PasswordEntity()),
-    );
-
-    /* return authenticationRemoteDataSource
+    return authenticationRemoteDataSource
         .password(password)
-        .mapResponseToEntityWrapper();*/
+        .mapResponseToEntityWrapper(mapper: (model) {
+      return PasswordEntity();
+    });
   }
 
   @override
@@ -56,20 +46,16 @@ class AuthenticationRepositoryImpl extends AuthenticationRepository {
     required String refreshToken,
     required String password,
   }) {
-    return Future.delayed(
-      const Duration(seconds: 5),
-      () => EntityWrapper.success<VerifyOtpEntity>(
-        VerifyOtpEntity(
-          accessToken: 'accessToken',
-          refreshToken: 'refreshToken',
-          passwordAuthentication: PasswordAuthentication.none,
-        ),
-      ),
-    );
-
-    /* return authenticationRemoteDataSource
-        .refresh(password)
-        .mapResponseToEntityWrapper();*/
+    return authenticationRemoteDataSource
+        .refresh(refreshToken, password)
+        .mapResponseToEntityWrapper(mapper: (model) {
+      return VerifyOtpEntity(
+        accessToken: model.access_token,
+        refreshToken: model.refresh_token,
+        passwordAuthentication:
+            stringToPasswordAuthentication(model.passwordAuthentication),
+      );
+    });
   }
 
   @override
@@ -78,30 +64,28 @@ class AuthenticationRepositoryImpl extends AuthenticationRepository {
     required String nationalId,
     required String birthDate,
     required String referralCode,
-  }) async {
-    try {
-      final response = await authenticationRemoteDataSource.signup(
-          phoneNumber, nationalId, birthDate, referralCode);
-      return EntityWrapper.success(SignUpEntity(
-          expiresIn: response.expiresIn, codeLength: response.codeLength));
-    } catch (e) {
-      throw Exception('$e');
-    }
+  }) {
+    return authenticationRemoteDataSource
+        .signup(phoneNumber, nationalId, birthDate, referralCode)
+        .mapResponseToEntityWrapper(mapper: (model) {
+      return SignUpEntity(
+        expiresIn: model.expiresIn,
+        codeLength: model.codeLength,
+      );
+    });
   }
 
   @override
-  Future<EntityWrapper<SendOtpEntity>> sendOtp(
-      {required String phoneNumber}) async {
-    try {
-      final response =
-          await authenticationRemoteDataSource.sendOtp(phoneNumber);
-      return EntityWrapper.success(SendOtpEntity(
-          needSignup: response.needSignup,
-          needReferralCode: response.needReferralCode,
-          expiresIn: response.expiresIn,
-          codeLength: response.codeLength));
-    } catch (e) {
-      throw Exception('$e');
-    }
+  Future<EntityWrapper<SendOtpEntity>> sendOtp({required String phoneNumber}) {
+    return authenticationRemoteDataSource
+        .sendOtp(phoneNumber)
+        .mapResponseToEntityWrapper(mapper: (model) {
+      return SendOtpEntity(
+        needSignup: model.needSignup,
+        needReferralCode: model.needReferralCode,
+        expiresIn: model.expiresIn,
+        codeLength: model.codeLength,
+      );
+    });
   }
 }

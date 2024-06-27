@@ -30,19 +30,14 @@ class ApiService implements HTTPClient {
       Options? options,
       required T Function(Map<String, dynamic> response) mapper}) async {
     try {
-      final response =
-          await _dioService.post(url: endpoint, data: data, options: options);
-      if (response.statusCode == 200) {
-        if (response.data != null) {
-          return mapper(response.data!);
-        } else {
-          throw Exception('response data is null');
-        }
-      } else {
-        throw Exception('Failed to load data');
-      }
+      final response = await _dioService.post(
+        url: endpoint,
+        data: data,
+        options: options,
+      );
+      return mapper(response.data!);
     } catch (e) {
-      throw Exception('Failed to load data ApiService post : $e');
+      throw Exception(e);
     }
   }
 }

@@ -34,8 +34,8 @@ class IdentityBloc extends Bloc<IdentityEvent, IdentityState> {
           partialSuccess: (message) => emit(IdentityFailure(message)),
           networkError: (exception) =>
               emit(IdentityFailure(exception.toString())));
-    } catch (_) {
-      emit(const IdentityFailure('on handled error'));
+    } catch (e) {
+      emit(IdentityFailure(e.toString()));
     }
   }
 }
