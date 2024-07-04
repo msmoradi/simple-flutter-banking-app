@@ -1,9 +1,9 @@
 import 'dart:io';
 
 import 'package:camera/camera.dart';
+import 'package:face_detection/presentation/view/video_preview_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_animation_progress_bar/flutter_animation_progress_bar.dart';
 import 'package:google_mlkit_face_detection/google_mlkit_face_detection.dart';
 
 class CameraView extends StatefulWidget {
@@ -11,7 +11,6 @@ class CameraView extends StatefulWidget {
       {Key? key,
       required this.onImage,
       this.onCameraFeedReady,
-      this.onDetectorViewModeChanged,
       this.onCameraLensDirectionChanged,
       this.initialCameraLensDirection = CameraLensDirection.back,
       required this.rotY})
@@ -19,7 +18,6 @@ class CameraView extends StatefulWidget {
 
   final Function(InputImage inputImage) onImage;
   final VoidCallback? onCameraFeedReady;
-  final VoidCallback? onDetectorViewModeChanged;
   final Function(CameraLensDirection direction)? onCameraLensDirectionChanged;
   final CameraLensDirection initialCameraLensDirection;
   final double rotY;
@@ -32,30 +30,143 @@ class _CameraViewState extends State<CameraView> {
   static List<CameraDescription> _cameras = [];
   CameraController? _controller;
   int _cameraIndex = -1;
-  double _minAvailableExposureOffset = 0.0;
-  double _maxAvailableExposureOffset = 0.0;
-  double _currentExposureOffset = 0.0;
+
+  late FaceDetector _faceDetector;
+  bool _isDetecting = false;
+  bool _isRecording = false;
+  String? _videoPath;
 
   @override
   void initState() {
     super.initState();
 
     _initialize();
+
+    _faceDetector = FaceDetector(
+      options: FaceDetectorOptions(
+        enableClassification: true,
+        enableTracking: true,
+      ),
+    );
   }
 
   void _initialize() async {
     if (_cameras.isEmpty) {
       _cameras = await availableCameras();
     }
-    for (var i = 0; i < _cameras.length; i++) {
-      if (_cameras[i].lensDirection == widget.initialCameraLensDirection) {
-        _cameraIndex = i;
-        break;
-      }
-    }
+
+    _cameraIndex = _cameras.indexWhere(
+          (camera) => camera.lensDirection == widget.initialCameraLensDirection,
+    );
+
     if (_cameraIndex != -1) {
       _startLiveFeed();
     }
+  }
+
+  Future<void> _startFaceDetection() async {
+    print(' camera_view -> _startFaceDetection');
+    _controller!.startImageStream((CameraImage image) async {
+      if (_isDetecting) return;
+      _isDetecting = true;
+
+      final inputImage = _inputImageFromCameraImage(image);
+      if (inputImage == null) return;
+      final List<Face> faces = await _faceDetector.processImage(inputImage);
+
+      print(' camera_view -> _startFaceDetection , faces: ${faces.toString()}');
+      if (faces.isNotEmpty) {
+        final face = faces[0];
+        _checkHeadPosition(face);
+      } else {
+        if (_isRecording) {
+          _stopRecording();
+        }
+      }
+
+      _isDetecting = false;
+    });
+  }
+
+  void _checkHeadPosition(Face face) {
+    print(' camera_view -> _checkHeadPosition , face: $face');
+    final boundingBox = face.boundingBox;
+
+    // Define the mask bounding box (this should match the MaskPainter)
+    final maskCenterX = MediaQuery.of(context).size.width / 2;
+    final maskCenterY = MediaQuery.of(context).size.height / 2;
+    const originalMaskSize = 250.0; // Original size of the square mask
+    final maskSize = originalMaskSize * 1.2; // Increase size by 20%
+
+    final maskLeft = maskCenterX - maskSize / 2;
+    final maskTop = maskCenterY - maskSize / 2;
+    final maskRight = maskCenterX + maskSize / 2;
+    final maskBottom = maskCenterY + maskSize / 2;
+
+    // Add a 10% tolerance to the mask bounding box
+    final tolerance = maskSize * 0.1;
+    final maskBoundingBox = Rect.fromLTRB(
+      maskLeft - tolerance,
+      maskTop - tolerance,
+      maskRight + tolerance,
+      maskBottom + tolerance,
+    );
+
+    // Check if the face boundingBox is within the mask boundingBox with tolerance
+    final isFaceInsideMask = maskBoundingBox.overlaps(boundingBox);
+
+    print(
+        ' camera_view -> _checkHeadPosition, isFaceInsideMask: $isFaceInsideMask , isRecording: $_isRecording');
+
+    if (isFaceInsideMask) {
+      if (!_isRecording) {
+        _startRecording();
+      }
+    } else {
+      if (_isRecording) {
+        _stopRecording();
+      }
+    }
+  }
+
+  Future<void> _startRecording() async {
+    print(' camera_view -> _startRecording');
+    if (_controller!.value.isRecordingVideo) return;
+
+    try {
+      await _controller!.startVideoRecording();
+      setState(() {
+        _isRecording = true;
+      });
+      print(' camera_view -> Recording started');
+    } catch (e) {
+      print(' camera_view -> Error starting video recording: $e');
+    }
+  }
+
+  Future<void> _stopRecording() async {
+    print(' camera_view -> _stopRecording');
+    if (!_controller!.value.isRecordingVideo) return;
+
+    try {
+      final XFile videoFile = await _controller!.stopVideoRecording();
+      setState(() {
+        _isRecording = false;
+        _videoPath = videoFile.path;
+      });
+      print(' camera_view -> Recording stopped: $_videoPath');
+    } catch (e) {
+      print(' camera_view -> Error stopping video recording: $e');
+    }
+  }
+
+  void _previewVideo(String videoPath) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => VideoPreviewScreen(videoPath: videoPath),
+      ),
+    );
   }
 
   @override
@@ -66,7 +177,27 @@ class _CameraViewState extends State<CameraView> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: _liveFeedBody());
+    return Scaffold(
+      body: Stack(
+        children: [
+          _liveFeedBody(),
+          MaskOverlay(isRecording: _isRecording),
+          if (_videoPath != null)
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  ElevatedButton(
+                    onPressed: () => _previewVideo(_videoPath!),
+                    child: Text('Preview Video'),
+                  ),
+                ],
+              ),
+            ),
+        ],
+      ),
+    );
   }
 
   Widget _liveFeedBody() {
@@ -83,67 +214,14 @@ class _CameraViewState extends State<CameraView> {
               _controller!,
             ),
           ),
-          // _backButton(),
-          _leftCurve(),
-          _rightCurve(),
-          // _switchLiveCameraToggle(),
-          // _detectionViewModeToggle(),
-          // _zoomControl(),
-          // _exposureControl(),
+          MaskOverlay(isRecording: _isRecording),
         ],
       ),
     );
   }
 
-  Widget _leftCurve() => Positioned(
-        top: 200,
-        left: 30,
-        child: SizedBox(
-          width: 40,
-          height: 300,
-          child: FAProgressBar(
-            direction: Axis.vertical,
-            verticalDirection: VerticalDirection.up,
-            maxValue: 40,
-            currentValue: widget.rotY >= 0 ? widget.rotY : 0,
-          ),
-        ),
-      );
-
-  Widget _rightCurve() => Positioned(
-        top: 200,
-        right: 30,
-        child: SizedBox(
-          width: 40,
-          height: 300,
-          child: FAProgressBar(
-            direction: Axis.vertical,
-            verticalDirection: VerticalDirection.up,
-            maxValue: 40,
-            currentValue: widget.rotY <= 0 ? widget.rotY * -1 : 0,
-          ),
-        ),
-      );
-
-  Widget _backButton() => Positioned(
-        top: 40,
-        left: 8,
-        child: SizedBox(
-          height: 50.0,
-          width: 50.0,
-          child: FloatingActionButton(
-            heroTag: Object(),
-            onPressed: () => Navigator.of(context).pop(),
-            backgroundColor: Colors.black54,
-            child: Icon(
-              Icons.arrow_back_ios_outlined,
-              size: 20,
-            ),
-          ),
-        ),
-      );
-
   Future _startLiveFeed() async {
+    print(' camera_view -> _startLiveFeed');
     final camera = _cameras[_cameraIndex];
     _controller = CameraController(
       camera,
@@ -158,35 +236,17 @@ class _CameraViewState extends State<CameraView> {
       if (!mounted) {
         return;
       }
-      _currentExposureOffset = 0.0;
-      _controller?.getMinExposureOffset().then((value) {
-        _minAvailableExposureOffset = value;
-      });
-      _controller?.getMaxExposureOffset().then((value) {
-        _maxAvailableExposureOffset = value;
-      });
-      _controller?.startImageStream(_processCameraImage).then((value) {
-        if (widget.onCameraFeedReady != null) {
-          widget.onCameraFeedReady!();
-        }
-        if (widget.onCameraLensDirectionChanged != null) {
-          widget.onCameraLensDirectionChanged!(camera.lensDirection);
-        }
-      });
+      if (!mounted) return;
       setState(() {});
+      _startFaceDetection();
     });
   }
 
   Future _stopLiveFeed() async {
     await _controller?.stopImageStream();
     await _controller?.dispose();
+    _faceDetector.close();
     _controller = null;
-  }
-
-  void _processCameraImage(CameraImage image) {
-    final inputImage = _inputImageFromCameraImage(image);
-    if (inputImage == null) return;
-    widget.onImage(inputImage);
   }
 
   final _orientations = {
@@ -223,10 +283,10 @@ class _CameraViewState extends State<CameraView> {
             (sensorOrientation - rotationCompensation + 360) % 360;
       }
       rotation = InputImageRotationValue.fromRawValue(rotationCompensation);
-      // print('rotationCompensation: $rotationCompensation');
+      // print(' camera_view -> rotationCompensation: $rotationCompensation');
     }
     if (rotation == null) return null;
-    // print('final rotation: $rotation');
+    // print(' camera_view -> final rotation: $rotation');
 
     // get image format
     final format = InputImageFormatValue.fromRawValue(image.format.raw);
@@ -253,4 +313,152 @@ class _CameraViewState extends State<CameraView> {
       ),
     );
   }
+}
+
+class MaskOverlay extends StatefulWidget {
+  final bool isRecording;
+
+  MaskOverlay({required this.isRecording});
+
+  @override
+  _MaskOverlayState createState() => _MaskOverlayState();
+}
+
+class _MaskOverlayState extends State<MaskOverlay>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+  late Animation<double> _animation;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      vsync: this,
+      duration: Duration(milliseconds: 500),
+    )..repeat(reverse: true);
+
+    _animation = CurvedAnimation(
+      parent: _controller,
+      curve: Curves.easeInOut,
+    );
+  }
+
+  @override
+  void didUpdateWidget(MaskOverlay oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (widget.isRecording) {
+      _controller.repeat(reverse: true);
+    } else {
+      _controller.stop();
+    }
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: [
+        // Semi-transparent background with mask
+        CustomPaint(
+          size: Size(MediaQuery.of(context).size.width,
+              MediaQuery.of(context).size.height),
+          painter: MaskPainter(),
+        ),
+        // Red circular animation when recording
+        if (widget.isRecording)
+          Center(
+            child: FadeTransition(
+              opacity: _animation,
+              child: Container(
+                width: 50,
+                height: 50,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: Colors.red,
+                ),
+              ),
+            ),
+          ),
+        // Instructions text
+        Align(
+          alignment: Alignment.bottomCenter,
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Text(
+              'سر خود را در کادر قرار دهید',
+              style: TextStyle(color: Colors.white, fontSize: 18),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class MaskPainter extends CustomPainter {
+  @override
+  void paint(Canvas canvas, Size size) {
+    // Draw semi-transparent background
+    final paintBackground = Paint()
+      ..color = Colors.black.withOpacity(0.5)
+      ..style = PaintingStyle.fill;
+
+    final originalMaskSize = 250.0; // Original size of the square mask
+    final maskSize = originalMaskSize * 1.2; // Increase size by 20%
+    final centerX = size.width / 2;
+    final centerY = size.height / 2;
+    final left = centerX - maskSize / 2;
+    final top = centerY - maskSize / 2;
+    final right = centerX + maskSize / 2;
+    final bottom = centerY + maskSize / 2;
+    final cornerLength = 20.0; // Length of the corner lines
+
+    // Define the cut-out area (square)
+    final path = Path()
+      ..addRect(Rect.fromCenter(
+        center: Offset(centerX, centerY),
+        width: maskSize,
+        height: maskSize,
+      ));
+
+    // Draw the background, excluding the mask area
+    canvas.drawPath(
+      Path.combine(
+        PathOperation.difference,
+        Path()..addRect(Rect.fromLTWH(0, 0, size.width, size.height)),
+        path,
+      ),
+      paintBackground,
+    );
+
+    // Draw the corner borders
+    final paintBorder = Paint()
+      ..color = Colors.blue // Use the same color as in the provided image
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 5.0; // Adjust the stroke width as needed
+
+    final borderPath = Path()
+      ..moveTo(left, top + cornerLength) // Top-left vertical line
+      ..lineTo(left, top)
+      ..lineTo(left + cornerLength, top) // Top-left horizontal line
+      ..moveTo(right - cornerLength, top) // Top-right horizontal line
+      ..lineTo(right, top)
+      ..lineTo(right, top + cornerLength) // Top-right vertical line
+      ..moveTo(right, bottom - cornerLength) // Bottom-right vertical line
+      ..lineTo(right, bottom)
+      ..lineTo(right - cornerLength, bottom) // Bottom-right horizontal line
+      ..moveTo(left + cornerLength, bottom) // Bottom-left horizontal line
+      ..lineTo(left, bottom)
+      ..lineTo(left, bottom - cornerLength); // Bottom-left vertical line
+
+    canvas.drawPath(borderPath, paintBorder);
+  }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
 }

@@ -1,8 +1,7 @@
 import 'package:camera/camera.dart';
+import 'package:face_detection/presentation/view/camera_view.dart';
 import 'package:flutter/material.dart';
 import 'package:google_mlkit_face_detection/google_mlkit_face_detection.dart';
-
-import 'detector_view.dart';
 
 class FaceDetectorView extends StatefulWidget {
   @override
@@ -31,8 +30,8 @@ class _FaceDetectorViewState extends State<FaceDetectorView> {
 
   @override
   Widget build(BuildContext context) {
-    return DetectorView(
-        title: 'Face Detector',
+    // return CameraScreen();
+    return CameraView(
         onImage: _processImage,
         initialCameraLensDirection: _cameraLensDirection,
         onCameraLensDirectionChanged: (value) => _cameraLensDirection = value,
