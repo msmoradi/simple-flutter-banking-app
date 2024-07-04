@@ -35,7 +35,7 @@ class InfoTextRowWidget extends StatelessWidget {
             children: [
               Text(
                 title,
-                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                       fontWeight: FontWeight.bold,
                       color: Theme.of(context).colorScheme.primary,
                     ),

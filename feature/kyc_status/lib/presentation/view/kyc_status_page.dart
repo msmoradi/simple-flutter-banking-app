@@ -1,4 +1,3 @@
-import 'package:designsystem/widgets/appbar/empty_app_bar.dart';
 import 'package:designsystem/widgets/button/fill/full_fill_button.dart';
 import 'package:designsystem/widgets/info_text_row.dart';
 import 'package:flutter/material.dart';
@@ -14,22 +13,22 @@ class KycStatusPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const EmptyAppBar(),
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        title: Text(
+          style: Theme.of(context)
+              .textTheme
+              .headlineMedium
+              ?.copyWith(fontWeight: FontWeight.bold),
+          'در انتظار بازکردن حساب',
+        ),
+      ),
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: SingleChildScrollView(
           child: Column(
             children: [
-              Align(
-                alignment: Alignment.centerRight,
-                child: Text(
-                  style: Theme.of(context)
-                      .textTheme
-                      .headlineMedium
-                      ?.copyWith(fontWeight: FontWeight.bold),
-                  "در انتظار افتتاح سپرده",
-                ),
-              ),
+              const SizedBox(height: 16),
               Image.asset(
                 "assets/images/kyc_status.png",
                 fit: BoxFit.fitWidth,
@@ -42,9 +41,9 @@ class KycStatusPage extends StatelessWidget {
                 child: Text(
                   style: Theme.of(context)
                       .textTheme
-                      .headlineSmall
+                      .headlineMedium
                       ?.copyWith(fontWeight: FontWeight.bold),
-                  "وضعیت احراز هویت شما",
+                  "مراحل شناسایی و احراز هویت",
                 ),
               ),
               const SizedBox(height: 50),
@@ -73,6 +72,7 @@ class KycStatusPage extends StatelessWidget {
         padding: const EdgeInsets.all(16.0),
         child: PrimaryFillButton(
           label: 'مشاهده ویژگی‌های بنکس',
+          icon: Icons.lightbulb_outline_rounded,
           onPressed: onNext,
         ),
       ),
