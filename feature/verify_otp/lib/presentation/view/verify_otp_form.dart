@@ -110,7 +110,7 @@ class _VerifyOtpFormState extends State<VerifyOtpForm> {
           child: Text(
             style: Theme.of(context)
                 .textTheme
-                .headlineLarge
+                .headlineMedium
                 ?.copyWith(fontWeight: FontWeight.bold),
             "تأیید تلفن همراه",
           ),

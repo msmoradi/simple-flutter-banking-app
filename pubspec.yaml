@@ -45,6 +45,8 @@ dependencies:
     path: feature/select_card
   verify_otp:
     path: feature/verify_otp
+  card_order:
+    path: feature/card_order
   splash:
     path: feature/splash
   flutter_localizations:
@@ -89,6 +91,7 @@ flutter:
   uses-material-design: true
 
   assets:
+    - assets/images/card-banner.png
     - assets/images/enable_face.png
     - assets/images/kyc_status.png
     - assets/images/metal_card_silver.png

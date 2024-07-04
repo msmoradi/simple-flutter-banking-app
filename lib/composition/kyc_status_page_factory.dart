@@ -33,11 +33,5 @@ class KycStatusPageFactory {
 }
 
 class KycStatusExtra {
-  final String phoneNumber;
-  final String sessionId;
-
-  KycStatusExtra({
-    required this.phoneNumber,
-    required this.sessionId,
-  });
+  KycStatusExtra();
 }

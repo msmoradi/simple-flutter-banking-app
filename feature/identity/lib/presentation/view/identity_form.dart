@@ -48,7 +48,7 @@ class _IdentityFormState extends State<IdentityForm> {
                 child: Text(
                   style: Theme.of(context)
                       .textTheme
-                      .headlineLarge
+                      .headlineMedium
                       ?.copyWith(fontWeight: FontWeight.bold),
                   "اطلاعات هویتی",
                 ),

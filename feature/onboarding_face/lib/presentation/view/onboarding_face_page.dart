@@ -23,7 +23,7 @@ class OnboardingFacePage extends StatelessWidget {
               Align(
                 alignment: Alignment.centerRight,
                 child: Text(
-                  style: Theme.of(context).textTheme.headlineLarge?.copyWith(
+                  style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                         fontWeight: FontWeight.bold,
                         color: Theme.of(context).colorScheme.primary,
                       ),

@@ -129,7 +129,7 @@ class BanxTheme {
         typography: Typography.material2021(colorScheme: colorScheme),
         fontFamily: FalomenTextStyles.fontFamilyName,
         brightness: colorScheme.brightness,
-        filledButtonTheme: BanxFilledButtonTheme.filledButtonThemeData,
+        filledButtonTheme: BanxFilledButtonTheme.filledButtonThemeData(colorScheme),
         outlinedButtonTheme: BanxOutlineButtonTheme.outlinedButtonThemeData,
         inputDecorationTheme: BanxInputDecorationTheme.inputDecorationTheme,
         colorScheme: colorScheme,

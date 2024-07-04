@@ -36,7 +36,7 @@ class _PhoneFormState extends State<PhoneForm> {
           child: Text(
             style: Theme.of(context)
                 .textTheme
-                .headlineLarge
+                .headlineMedium
                 ?.copyWith(fontWeight: FontWeight.bold),
             translator.mobilePhoneNumber,
           ),

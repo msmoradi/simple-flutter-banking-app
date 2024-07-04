@@ -1,3 +1,6 @@
+import 'package:banx/composition/add_address_page_factory.dart';
+import 'package:banx/composition/card_delivery_page_factory.dart';
+import 'package:banx/composition/card_delivery_time_page_factory.dart';
 import 'package:banx/composition/confirm_password_page_factory.dart';
 import 'package:banx/composition/create_password_page_factory.dart';
 import 'package:banx/composition/enable_biometric_page_factory.dart';
@@ -5,6 +8,7 @@ import 'package:banx/composition/face_detection_factory.dart';
 import 'package:banx/composition/identity_page_factory.dart';
 import 'package:banx/composition/kyc_status_page_factory.dart';
 import 'package:banx/composition/main_page_factory.dart';
+import 'package:banx/composition/map_address_page_factory.dart';
 import 'package:banx/composition/onboarding_face_page_factory.dart';
 import 'package:banx/composition/onboarding_password_page_factory.dart';
 import 'package:banx/composition/phone_page_factory.dart';
@@ -24,6 +28,10 @@ Future<GoRouter> get routerConfig async => GoRouter(
         FaceDetectionPageFactory.route(),
         OnboardingPasswordPageFactory.route(),
         CreatePasswordPageFactory.route(),
+        AddAddressPageFactory.route(),
+        CardDeliveryPageFactory.route(),
+        CardDeliveryTimePageFactory.route(),
+        MapAddressPageFactory.route(),
         ConfirmPasswordPageFactory.route(),
         MainPageFactory.route(),
         SelectCardPageFactory.route(),
@@ -42,5 +50,5 @@ Future<String> get initialLocation async {
     await BanxConfig.app.introPageViewed();
     return OnboardingPageFactory.path;
   }*/
-  return FaceDetectionPageFactory.path;
+  return CardDeliveryPageFactory.path;
 }
