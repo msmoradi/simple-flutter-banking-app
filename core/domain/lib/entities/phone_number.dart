@@ -4,7 +4,7 @@ class PhoneNumber {
   PhoneNumber({required this.value});
 
   bool isValid() {
-    return RegExp(r'^(?:0|\+98|0098)?9\d{9}$|^(?:0|\+98|0098)21\d{8}$')
+    return RegExp(r'^(0|\+98|0098)(999\d{2}(?=\d{5}$)|[9](?:[01239]\d{1})(?=\d{7}$))(\d*)$')
         .hasMatch(value);
   }
 }
