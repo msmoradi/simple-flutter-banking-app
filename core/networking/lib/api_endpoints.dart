@@ -22,6 +22,14 @@ class ApiEndpoint {
         return '$path/otp/signup';
     }
   }
+
+  static String getProfile(ProfileEndpoint endpoint) {
+    const path = '/api/v1/';
+    switch (endpoint) {
+      case ProfileEndpoint.GET_PROFILE:
+        return '$path/profile';
+    }
+  }
 }
 
 enum AuthEndpoint {
@@ -31,3 +39,5 @@ enum AuthEndpoint {
   REFRESH,
   SIGN_UP,
 }
+
+enum ProfileEndpoint { GET_PROFILE }
