@@ -8,7 +8,7 @@ class AddAddressPageFactory {
 
   static AddAddressPage builder(BuildContext context, GoRouterState state) {
     return AddAddressPage(
-      onAddAddress: () {
+      onNext: () {
         context.push(
           MapAddressPageFactory.path,
         );

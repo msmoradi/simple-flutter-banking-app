@@ -8,7 +8,9 @@ class AppBarWithTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 16.0),
+      padding: EdgeInsets.symmetric(
+        vertical: 16.0,
+      ),
       child: Align(
         alignment: Alignment.centerRight,
         child: Text(

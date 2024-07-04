@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
 
 class AddressRow extends StatelessWidget {
+  final Function()? onEditPressed;
+
   final String address;
 
-  const AddressRow({super.key, required this.address});
+  const AddressRow({
+    super.key,
+    required this.address,
+    this.onEditPressed,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -24,11 +30,16 @@ class AddressRow extends StatelessWidget {
         ),
       ),
       const SizedBox(width: 16.0),
-      Icon(
-        size: 24.0,
-        Icons.arrow_forward_ios_rounded,
-        color: Theme.of(context).colorScheme.primary,
-      ),
+      IconButton(
+        onPressed: onEditPressed,
+        icon: Icon(
+          size: 24.0,
+          onEditPressed != null
+              ? Icons.edit_outlined
+              : Icons.arrow_forward_ios_rounded,
+          color: Theme.of(context).colorScheme.primary,
+        ),
+      )
     ]);
   }
 }

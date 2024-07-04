@@ -8,11 +8,11 @@ import 'package:networking/api_service.dart';
 import '../bloc/card_order_bloc.dart';
 
 class AddAddressPage extends StatelessWidget {
-  final Function() onAddAddress;
+  final Function() onNext;
 
   const AddAddressPage({
     super.key,
-    required this.onAddAddress,
+    required this.onNext,
   });
 
   @override
@@ -24,6 +24,7 @@ class AddAddressPage extends StatelessWidget {
         builder: (context, state) {
           return AddAddressContent(
             state: state,
+            onNext: onNext,
           );
         },
       ),

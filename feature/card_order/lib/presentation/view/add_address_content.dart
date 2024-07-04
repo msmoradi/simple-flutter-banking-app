@@ -8,8 +8,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AddAddressContent extends StatefulWidget {
   final CardOrderState state;
+  final Function() onNext;
 
-  AddAddressContent({super.key, required this.state});
+  AddAddressContent({super.key, required this.state, required this.onNext});
 
   @override
   State<AddAddressContent> createState() => _AddAddressContentState();
@@ -22,14 +23,21 @@ class _AddAddressContentState extends State<AddAddressContent> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const EmptyAppBar(),
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        title: Text(
+          style: Theme.of(context)
+              .textTheme
+              .headlineMedium
+              ?.copyWith(fontWeight: FontWeight.bold),
+          'آدرس دریافت کارت',
+        ),
+      ),
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            AppBarWithTitle(title: 'آدرس دریافت کارت'),
-            const SizedBox(height: 16),
             Form(
                 key: _formKey,
                 child: Column(
@@ -46,13 +54,14 @@ class _AddAddressContentState extends State<AddAddressContent> {
             const Spacer(),
             PrimaryFillButton(
               onPressed: () {
-                if (_formKey.currentState!.validate()) {
+              /*  if (_formKey.currentState!.validate()) {
                   _formKey.currentState?.save();
                   FocusManager.instance.primaryFocus?.unfocus();
                   context
                       .read<CardOrderBloc>()
                       .add(CheckPostalCodeSubmitted(_postalCode!));
-                }
+                }*/
+                widget.onNext();
               },
               icon: Icons.search_outlined,
               label: 'بررسی کد پستی',

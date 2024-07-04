@@ -9,10 +9,12 @@ import '../bloc/card_order_bloc.dart';
 
 class CardDeliveryTimePage extends StatelessWidget {
   final Function() onNext;
+  final Function() onEditAddress;
 
   const CardDeliveryTimePage({
     super.key,
     required this.onNext,
+    required this.onEditAddress,
   });
 
   @override
@@ -24,6 +26,8 @@ class CardDeliveryTimePage extends StatelessWidget {
         builder: (context, state) {
           return CardDeliveryTimeContent(
             state: state,
+            onNext: onNext,
+            onEditAddress: onEditAddress,
           );
         },
       ),

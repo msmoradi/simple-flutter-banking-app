@@ -24,6 +24,7 @@ class MapAddressPage extends StatelessWidget {
         builder: (context, state) {
           return MapAddressContent(
             state: state,
+            onNext: onNext,
           );
         },
       ),
