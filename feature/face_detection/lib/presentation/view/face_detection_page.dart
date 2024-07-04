@@ -1,4 +1,4 @@
-import 'package:face_detection/presentation/view/face_detector_view.dart';
+import 'package:face_detection/presentation/view/camera_view.dart';
 import 'package:flutter/material.dart';
 
 class FaceDetectionPage extends StatelessWidget {
@@ -11,6 +11,6 @@ class FaceDetectionPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FaceDetectorView();
+    return CameraView();
   }
 }

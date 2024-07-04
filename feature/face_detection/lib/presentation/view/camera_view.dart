@@ -7,20 +7,12 @@ import 'package:flutter/services.dart';
 import 'package:google_mlkit_face_detection/google_mlkit_face_detection.dart';
 
 class CameraView extends StatefulWidget {
-  CameraView(
-      {Key? key,
-      required this.onImage,
-      this.onCameraFeedReady,
-      this.onCameraLensDirectionChanged,
-      this.initialCameraLensDirection = CameraLensDirection.back,
-      required this.rotY})
-      : super(key: key);
+  CameraView({
+    Key? key,
+    this.initialCameraLensDirection = CameraLensDirection.front,
+  }) : super(key: key);
 
-  final Function(InputImage inputImage) onImage;
-  final VoidCallback? onCameraFeedReady;
-  final Function(CameraLensDirection direction)? onCameraLensDirectionChanged;
   final CameraLensDirection initialCameraLensDirection;
-  final double rotY;
 
   @override
   State<CameraView> createState() => _CameraViewState();
@@ -32,22 +24,20 @@ class _CameraViewState extends State<CameraView> {
   int _cameraIndex = -1;
 
   late FaceDetector _faceDetector;
-  bool _isDetecting = false;
   bool _isRecording = false;
   String? _videoPath;
+  bool _canProcess = true;
+  bool _isBusy = false;
+  double rotY = 0;
+  int _noFaceDetectedCount =
+      0; // New counter to track consecutive frames with no faces
+  String description = 'سر خود را در کادر قرار دهید';
 
   @override
   void initState() {
     super.initState();
 
     _initialize();
-
-    _faceDetector = FaceDetector(
-      options: FaceDetectorOptions(
-        enableClassification: true,
-        enableTracking: true,
-      ),
-    );
   }
 
   void _initialize() async {
@@ -55,8 +45,15 @@ class _CameraViewState extends State<CameraView> {
       _cameras = await availableCameras();
     }
 
+    _faceDetector = FaceDetector(
+      options: FaceDetectorOptions(
+        enableContours: true,
+        enableLandmarks: true,
+      ),
+    );
+
     _cameraIndex = _cameras.indexWhere(
-          (camera) => camera.lensDirection == widget.initialCameraLensDirection,
+      (camera) => camera.lensDirection == widget.initialCameraLensDirection,
     );
 
     if (_cameraIndex != -1) {
@@ -65,26 +62,41 @@ class _CameraViewState extends State<CameraView> {
   }
 
   Future<void> _startFaceDetection() async {
+    if (_isBusy) return;
+    if (!_canProcess) return;
+    _isBusy = true;
+
     print(' camera_view -> _startFaceDetection');
     _controller!.startImageStream((CameraImage image) async {
-      if (_isDetecting) return;
-      _isDetecting = true;
-
       final inputImage = _inputImageFromCameraImage(image);
       if (inputImage == null) return;
+
       final List<Face> faces = await _faceDetector.processImage(inputImage);
 
-      print(' camera_view -> _startFaceDetection , faces: ${faces.toString()}');
+      if (inputImage.metadata?.size != null &&
+          inputImage.metadata?.rotation != null) {
+        setState(() {
+          rotY = faces.last.headEulerAngleY ?? 0.0;
+          if (rotY >= 20.0) {
+            description = 'سر خود را به راست بچرخانید';
+          } else {
+            description = 'سر خود را به چپ بچرخانید';
+          }
+        });
+      }
+
+      print(' camera_view -> _startFaceDetection , faces: ${faces.length}');
       if (faces.isNotEmpty) {
         final face = faces[0];
         _checkHeadPosition(face);
       } else {
-        if (_isRecording) {
+        _noFaceDetectedCount++;
+        if (_isRecording && _noFaceDetectedCount >= 5) {
           _stopRecording();
         }
       }
 
-      _isDetecting = false;
+      _isBusy = false;
     });
   }
 
@@ -96,7 +108,7 @@ class _CameraViewState extends State<CameraView> {
     final maskCenterX = MediaQuery.of(context).size.width / 2;
     final maskCenterY = MediaQuery.of(context).size.height / 2;
     const originalMaskSize = 250.0; // Original size of the square mask
-    final maskSize = originalMaskSize * 1.2; // Increase size by 20%
+    final maskSize = originalMaskSize * 1.1; // Increase size by 20%
 
     final maskLeft = maskCenterX - maskSize / 2;
     final maskTop = maskCenterY - maskSize / 2;
@@ -104,7 +116,7 @@ class _CameraViewState extends State<CameraView> {
     final maskBottom = maskCenterY + maskSize / 2;
 
     // Add a 10% tolerance to the mask bounding box
-    final tolerance = maskSize * 0.1;
+    final tolerance = maskSize * 0.05;
     final maskBoundingBox = Rect.fromLTRB(
       maskLeft - tolerance,
       maskTop - tolerance,
@@ -171,6 +183,7 @@ class _CameraViewState extends State<CameraView> {
 
   @override
   void dispose() {
+    _canProcess = false;
     _stopLiveFeed();
     super.dispose();
   }
@@ -181,7 +194,6 @@ class _CameraViewState extends State<CameraView> {
       body: Stack(
         children: [
           _liveFeedBody(),
-          MaskOverlay(isRecording: _isRecording),
           if (_videoPath != null)
             Align(
               alignment: Alignment.bottomCenter,
@@ -214,7 +226,10 @@ class _CameraViewState extends State<CameraView> {
               _controller!,
             ),
           ),
-          MaskOverlay(isRecording: _isRecording),
+          MaskOverlay(
+            isRecording: _isRecording,
+            description: description,
+          ),
         ],
       ),
     );
@@ -233,9 +248,6 @@ class _CameraViewState extends State<CameraView> {
           : ImageFormatGroup.bgra8888,
     );
     _controller?.initialize().then((_) {
-      if (!mounted) {
-        return;
-      }
       if (!mounted) return;
       setState(() {});
       _startFaceDetection();
@@ -259,14 +271,8 @@ class _CameraViewState extends State<CameraView> {
   InputImage? _inputImageFromCameraImage(CameraImage image) {
     if (_controller == null) return null;
 
-    // get image rotation
-    // it is used in android to convert the InputImage from Dart to Java: https://github.com/flutter-ml/google_ml_kit_flutter/blob/master/packages/google_mlkit_commons/android/src/main/java/com/google_mlkit_commons/InputImageConverter.java
-    // `rotation` is not used in iOS to convert the InputImage from Dart to Obj-C: https://github.com/flutter-ml/google_ml_kit_flutter/blob/master/packages/google_mlkit_commons/ios/Classes/MLKVisionImage%2BFlutterPlugin.m
-    // in both platforms `rotation` and `camera.lensDirection` can be used to compensate `x` and `y` coordinates on a canvas: https://github.com/flutter-ml/google_ml_kit_flutter/blob/master/packages/example/lib/vision_detector_views/painters/coordinates_translator.dart
     final camera = _cameras[_cameraIndex];
     final sensorOrientation = camera.sensorOrientation;
-    // print(
-    //     'lensDirection: ${camera.lensDirection}, sensorOrientation: $sensorOrientation, ${_controller?.value.deviceOrientation} ${_controller?.value.lockedCaptureOrientation} ${_controller?.value.isCaptureOrientationLocked}');
     InputImageRotation? rotation;
     if (Platform.isIOS) {
       rotation = InputImageRotationValue.fromRawValue(sensorOrientation);
@@ -275,41 +281,30 @@ class _CameraViewState extends State<CameraView> {
           _orientations[_controller!.value.deviceOrientation];
       if (rotationCompensation == null) return null;
       if (camera.lensDirection == CameraLensDirection.front) {
-        // front-facing
         rotationCompensation = (sensorOrientation + rotationCompensation) % 360;
       } else {
-        // back-facing
         rotationCompensation =
             (sensorOrientation - rotationCompensation + 360) % 360;
       }
       rotation = InputImageRotationValue.fromRawValue(rotationCompensation);
-      // print(' camera_view -> rotationCompensation: $rotationCompensation');
     }
     if (rotation == null) return null;
-    // print(' camera_view -> final rotation: $rotation');
 
-    // get image format
     final format = InputImageFormatValue.fromRawValue(image.format.raw);
-    // validate format depending on platform
-    // only supported formats:
-    // * nv21 for Android
-    // * bgra8888 for iOS
     if (format == null ||
         (Platform.isAndroid && format != InputImageFormat.nv21) ||
         (Platform.isIOS && format != InputImageFormat.bgra8888)) return null;
 
-    // since format is constraint to nv21 or bgra8888, both only have one plane
     if (image.planes.length != 1) return null;
     final plane = image.planes.first;
 
-    // compose InputImage using bytes
     return InputImage.fromBytes(
       bytes: plane.bytes,
       metadata: InputImageMetadata(
         size: Size(image.width.toDouble(), image.height.toDouble()),
-        rotation: rotation, // used only in Android
-        format: format, // used only in iOS
-        bytesPerRow: plane.bytesPerRow, // used only in iOS
+        rotation: rotation,
+        format: format,
+        bytesPerRow: plane.bytesPerRow,
       ),
     );
   }
@@ -317,8 +312,12 @@ class _CameraViewState extends State<CameraView> {
 
 class MaskOverlay extends StatefulWidget {
   final bool isRecording;
+  final String description;
 
-  MaskOverlay({required this.isRecording});
+  MaskOverlay({
+    required this.isRecording,
+    required this.description,
+  });
 
   @override
   _MaskOverlayState createState() => _MaskOverlayState();
@@ -390,7 +389,7 @@ class _MaskOverlayState extends State<MaskOverlay>
           child: Padding(
             padding: const EdgeInsets.all(16.0),
             child: Text(
-              'سر خود را در کادر قرار دهید',
+              widget.description,
               style: TextStyle(color: Colors.white, fontSize: 18),
             ),
           ),
@@ -438,7 +437,7 @@ class MaskPainter extends CustomPainter {
 
     // Draw the corner borders
     final paintBorder = Paint()
-      ..color = Colors.blue // Use the same color as in the provided image
+      ..color = Colors.grey // Use the same color as in the provided image
       ..style = PaintingStyle.stroke
       ..strokeWidth = 5.0; // Adjust the stroke width as needed
 
@@ -461,4 +460,11 @@ class MaskPainter extends CustomPainter {
 
   @override
   bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
+}
+
+enum Step {
+  right,
+  left,
+  center,
+  finish;
 }
