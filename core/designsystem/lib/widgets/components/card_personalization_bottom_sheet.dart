@@ -4,13 +4,12 @@ import 'package:flutter/material.dart';
 
 class CardPersonalizationBottomSheet extends StatelessWidget {
   final Function(String date) onButtonPressed;
-  final String initialName;
-  final TextEditingController controller = TextEditingController();
+  final TextEditingController controller;
 
-  CardPersonalizationBottomSheet({
+  const CardPersonalizationBottomSheet({
     super.key,
     required this.onButtonPressed,
-    required this.initialName,
+    required this.controller,
   });
 
   @override

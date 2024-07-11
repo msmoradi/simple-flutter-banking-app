@@ -1,4 +1,3 @@
-import 'package:designsystem/widgets/appbar/empty_app_bar.dart';
 import 'package:designsystem/widgets/button/fill/full_fill_button.dart';
 import 'package:designsystem/widgets/card/credit_card.dart';
 import 'package:designsystem/widgets/components/card_personalization_bottom_sheet.dart';
@@ -17,33 +16,41 @@ class SelectCardPage extends StatefulWidget {
 }
 
 class _SelectCardPageState extends State<SelectCardPage> {
-  final TextEditingController cardHolderNameController =
-      TextEditingController(text: "Saeed Moradi");
+  String cardHolderName = "Saeed Moradi";
 
   @override
   Widget build(BuildContext context) {
+    var screenWidth = MediaQuery.of(context).size.width;
+
     return Scaffold(
-      appBar: const EmptyAppBar(),
-      body: Padding(
-        padding: const EdgeInsets.all(16),
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        title: Text(
+          style: Theme.of(context)
+              .textTheme
+              .headlineMedium
+              ?.copyWith(fontWeight: FontWeight.bold),
+          'سفارش کارت',
+        ),
+      ),
+      body: SingleChildScrollView(
         child: Column(
           children: [
-            Align(
-              alignment: Alignment.centerRight,
-              child: Text(
-                style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                      fontWeight: FontWeight.bold,
-                      color: Theme.of(context).colorScheme.primary,
-                    ),
-                "سفارش کارت",
+            const SizedBox(
+              height: 30,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 62.0),
+              child: CreditCard(
+                cardHolderName: cardHolderName,
+                flipOnTouch: false,
+                quarterTurns: 1,
+                scale: 1.4,
               ),
             ),
             const SizedBox(
-              height: 16,
-            ),
-            CreditCard(cardHolderNameController: cardHolderNameController),
-            const SizedBox(
-              height: 20,
+              width: double.infinity,
+              height: 26,
             ),
             Text(
               'کارت فلزی  |  رنگ کربنی',
@@ -62,7 +69,14 @@ class _SelectCardPageState extends State<SelectCardPage> {
               style: Theme.of(context).textTheme.bodySmall?.copyWith(
                   color: Theme.of(context).colorScheme.onSurfaceVariant),
             ),
-            const Spacer(),
+          ],
+        ),
+      ),
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
             InkWell(
               onTap: () {
                 showModalBottomSheet(
@@ -77,10 +91,12 @@ class _SelectCardPageState extends State<SelectCardPage> {
                   ),
                   context: context,
                   builder: (context) => CardPersonalizationBottomSheet(
-                    initialName: cardHolderNameController.text,
+                    controller: TextEditingController(text: cardHolderName),
                     onButtonPressed: (value) {
                       Navigator.of(context).pop();
-                      cardHolderNameController.text = value;
+                      setState(() {
+                        cardHolderName = value;
+                      });
                     },
                   ),
                 );
@@ -115,7 +131,7 @@ class _SelectCardPageState extends State<SelectCardPage> {
                             height: 2,
                           ),
                           Text(
-                            cardHolderNameController.text,
+                            cardHolderName,
                             style: Theme.of(context)
                                 .textTheme
                                 .titleMedium
@@ -136,11 +152,11 @@ class _SelectCardPageState extends State<SelectCardPage> {
               ),
             ),
             const SizedBox(
-              height: 16,
+              height: 16.0,
             ),
             PrimaryFillButton(
               label: 'سفارش کارت',
-              onPressed: () {},
+              onPressed: widget.onNext,
             ),
           ],
         ),

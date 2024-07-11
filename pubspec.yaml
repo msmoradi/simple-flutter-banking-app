@@ -102,6 +102,7 @@ flutter:
     - assets/images/black.png
     - assets/images/referral_frame.png
     - assets/images/x1.png
+    - assets/images/x1_white.png
     - assets/images/banx-logo.png
     - assets/images/banx-logo.svg
     - assets/images/slide-01.png
@@ -111,6 +112,6 @@ flutter:
     - assets/images/image-key.png
     - assets/images/onboarding_face.png
     - assets/images/blue-logo.png
-    - assets/images/cheap.png
+    - assets/images/chip.png
     - assets/images/saman-bank.png
     - assets/images/checked.png
