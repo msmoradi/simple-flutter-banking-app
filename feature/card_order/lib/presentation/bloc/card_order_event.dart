@@ -15,20 +15,3 @@ class CardOrderSubmitted extends CardOrderEvent {
   @override
   List<Object> get props => [phoneNumber];
 }
-
-class AddAddressSubmitted extends CardOrderEvent {
-
-  const AddAddressSubmitted();
-
-  @override
-  List<Object> get props => [];
-}
-
-class CheckPostalCodeSubmitted extends CardOrderEvent {
-  final String postalCode;
-
-  const CheckPostalCodeSubmitted(this.postalCode);
-
-  @override
-  List<Object> get props => [];
-}

@@ -1,11 +1,11 @@
-import 'package:card_order/presentation/view/add_address_content.dart';
+import 'package:add_address/presentation/view/add_address_content.dart';
 import 'package:data/datasource/remote/authentication_remote_datasource_impl.dart';
 import 'package:data/repository/authentication_repository_impl.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:networking/api_service.dart';
 
-import '../bloc/card_order_bloc.dart';
+import '../bloc/add_address_bloc.dart';
 
 class AddAddressPage extends StatelessWidget {
   final Function() onNext;
@@ -18,13 +18,23 @@ class AddAddressPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => loginBloc,
-      child: BlocConsumer<CardOrderBloc, CardOrderState>(
-        listener: (context, state) {},
+      create: (context) => addAddressBloc,
+      child: BlocConsumer<AddAddressBloc, AddAddressState>(
+        listener: (context, state) {
+          if (state is AddAddressFailure) {
+            ScaffoldMessenger.of(context)
+              ..hideCurrentSnackBar()
+              ..showSnackBar(
+                SnackBar(content: Text(state.message)),
+              );
+          } else if (state is AddAddressSuccess) {
+            onNext();
+          }
+        },
         builder: (context, state) {
           return AddAddressContent(
-            state: state,
             onNext: onNext,
+            showLoading: state is AddAddressInProgress,
           );
         },
       ),
@@ -32,7 +42,7 @@ class AddAddressPage extends StatelessWidget {
   }
 }
 
-CardOrderBloc get loginBloc => CardOrderBloc(
+AddAddressBloc get addAddressBloc => AddAddressBloc(
       authenticationRepository: AuthenticationRepositoryImpl(
         authenticationRemoteDataSource:
             AuthenticationRemoteDataSourceImpl(ApiService()),

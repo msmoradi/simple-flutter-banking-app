@@ -1,0 +1,42 @@
+name: add_address
+description: A new Flutter project.
+version: 1.0.0+1
+publish_to: 'none'
+
+environment:
+  sdk: '>=3.1.2 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  domain:
+    path: ../../core/domain
+  data:
+    path: ../../core/data
+  networking:
+    path: ../../core/networking
+  designsystem:
+    path: ../../core/designsystem
+  utils:
+    path: ../../core/utils
+  bloc: ^8.1.0
+  flutter_bloc: ^8.1.1
+  equatable: ^2.0.0
+  json_annotation: ^4.8.1
+
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+  build_runner: ^2.4.6
+  json_serializable: ^6.7.1
+
+flutter:
+
+  uses-material-design: true
+
+  module:
+    androidX: true
+    androidPackage: com.banx.add_address
+    iosBundleIdentifier: com.banx.add_address

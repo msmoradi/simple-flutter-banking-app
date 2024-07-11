@@ -29,4 +29,8 @@ abstract class AuthenticationRepository {
     required String birthDate,
     required String referralCode,
   });
+
+  Future<EntityWrapper<SendOtpEntity>> checkPostalCode({
+    required String postalCode,
+  });
 }

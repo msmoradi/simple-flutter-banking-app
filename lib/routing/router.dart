@@ -50,5 +50,5 @@ Future<String> get initialLocation async {
     await BanxConfig.app.introPageViewed();
     return OnboardingPageFactory.path;
   }*/
-  return SelectCardPageFactory.path;
+  return AddAddressPageFactory.path;
 }

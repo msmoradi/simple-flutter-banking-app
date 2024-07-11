@@ -47,6 +47,8 @@ dependencies:
     path: feature/verify_otp
   card_order:
     path: feature/card_order
+  add_address:
+    path: feature/add_address
   splash:
     path: feature/splash
   flutter_localizations:
