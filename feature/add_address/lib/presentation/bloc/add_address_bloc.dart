@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:domain/repository/authentication_repository.dart';
+import 'package:domain/repository/profile_repository.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 
@@ -7,10 +7,10 @@ part 'add_address_event.dart';
 part 'add_address_state.dart';
 
 class AddAddressBloc extends Bloc<AddAddressEvent, AddAddressState> {
-  final AuthenticationRepository authenticationRepository;
+  final ProfileRepository profileRepository;
 
   AddAddressBloc({
-    required this.authenticationRepository,
+    required this.profileRepository,
   }) : super(AddAddressValidated()) {
     on<CheckPostalCodeSubmitted>(_onCheckPostalCodeSubmitted);
   }
@@ -21,8 +21,8 @@ class AddAddressBloc extends Bloc<AddAddressEvent, AddAddressState> {
   ) async {
     emit(AddAddressInProgress());
     try {
-      final response = await authenticationRepository.checkPostalCode(
-          postalCode: event.postalCode);
+      final response =
+          await profileRepository.checkPostalCode(postalCode: event.postalCode);
       response.when(
           success: (response) {
             emit(

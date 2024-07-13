@@ -1,6 +1,3 @@
-import 'dart:ffi';
-
-import 'package:domain/entities/send_otp_entity.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'send_otp_response_dto.freezed.dart';

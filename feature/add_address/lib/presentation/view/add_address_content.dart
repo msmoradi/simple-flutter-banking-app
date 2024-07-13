@@ -6,10 +6,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AddAddressContent extends StatefulWidget {
   final bool showLoading;
-  final Function() onNext;
 
-  AddAddressContent(
-      {super.key, required this.showLoading, required this.onNext});
+  AddAddressContent({super.key, required this.showLoading});
 
   @override
   State<AddAddressContent> createState() => _AddAddressContentState();
@@ -53,18 +51,19 @@ class _AddAddressContentState extends State<AddAddressContent> {
         padding: const EdgeInsets.all(16),
         child: SingleChildScrollView(
           child: Form(
-              key: _formKey,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  PostalCodeTextField(
-                    autofocus: true,
-                    onSaved: (value) {
-                      _postalCode = value;
-                    },
-                  ),
-                ],
-              )),
+            key: _formKey,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                PostalCodeTextField(
+                  autofocus: true,
+                  onSaved: (value) {
+                    _postalCode = value;
+                  },
+                ),
+              ],
+            ),
+          ),
         ),
       ),
     );

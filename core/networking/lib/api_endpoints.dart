@@ -23,11 +23,13 @@ class ApiEndpoint {
     }
   }
 
-  static String getProfile(ProfileEndpoint endpoint) {
+  static String profile(ProfileEndpoint endpoint) {
     const path = '/api/v1/';
     switch (endpoint) {
       case ProfileEndpoint.GET_PROFILE:
         return '$path/profile';
+      case ProfileEndpoint.POSTAL_CODE:
+        return '$path/postalCode';
     }
   }
 }
@@ -40,4 +42,4 @@ enum AuthEndpoint {
   SIGN_UP,
 }
 
-enum ProfileEndpoint { GET_PROFILE }
+enum ProfileEndpoint { GET_PROFILE, POSTAL_CODE }

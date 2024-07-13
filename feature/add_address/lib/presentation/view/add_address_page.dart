@@ -1,6 +1,6 @@
 import 'package:add_address/presentation/view/add_address_content.dart';
-import 'package:data/datasource/remote/authentication_remote_datasource_impl.dart';
-import 'package:data/repository/authentication_repository_impl.dart';
+import 'package:data/datasource/remote/profile_remote_datasource_impl.dart';
+import 'package:data/repository/profile_repository_impl.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:networking/api_service.dart';
@@ -33,7 +33,6 @@ class AddAddressPage extends StatelessWidget {
         },
         builder: (context, state) {
           return AddAddressContent(
-            onNext: onNext,
             showLoading: state is AddAddressInProgress,
           );
         },
@@ -43,8 +42,7 @@ class AddAddressPage extends StatelessWidget {
 }
 
 AddAddressBloc get addAddressBloc => AddAddressBloc(
-      authenticationRepository: AuthenticationRepositoryImpl(
-        authenticationRemoteDataSource:
-            AuthenticationRemoteDataSourceImpl(ApiService()),
+      profileRepository: ProfileRepositoryImpl(
+        profileRemoteDataSource: ProfileRemoteDataSourceImpl(ApiService()),
       ),
     );

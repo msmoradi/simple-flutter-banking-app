@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:data/datasource/remote/profile_remote_datasource.dart';
 import 'package:data/mapper/response.mapper.dart';
+import 'package:domain/entities/check_postal_code_entity.dart';
 import 'package:domain/entities/user_profile_entity.dart';
 import 'package:domain/entity_wrapper.dart';
 import 'package:domain/repository/profile_repository.dart';
@@ -34,6 +35,16 @@ class ProfileRepositoryImpl extends ProfileRepository {
           sayahState: model.kycState.sayahState,
         ),
       );
+    });
+  }
+
+  @override
+  Future<EntityWrapper<CheckPostalCodeEntity>> checkPostalCode(
+      {required String postalCode}) {
+    return profileRemoteDataSource
+        .checkPostalCode(postalCode)
+        .mapResponseToEntityWrapper(mapper: (model) {
+      return CheckPostalCodeEntity();
     });
   }
 }
