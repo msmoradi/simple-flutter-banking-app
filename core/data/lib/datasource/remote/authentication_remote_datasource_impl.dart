@@ -48,9 +48,15 @@ class AuthenticationRemoteDataSourceImpl
     };
 
     return _apiService.put(
-        endpoint: ApiEndpoint.auth(AuthEndpoint.PASSWORD),
-        data: body,
-        mapper: PasswordResponseDto.json);
+      endpoint: ApiEndpoint.auth(AuthEndpoint.PASSWORD),
+      data: body,
+      mapper: (response) {
+        if (response != null) {
+          return PasswordResponseDto.fromJson(response);
+        }
+        return PasswordResponseDto.empty();
+      },
+    );
   }
 
   @override

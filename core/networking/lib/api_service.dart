@@ -79,7 +79,7 @@ class ApiService implements HTTPClient {
     required String endpoint,
     JSON? data,
     Options? options,
-    required T Function(Map<String, dynamic> response) mapper,
+    required T Function(Map<String, dynamic>? response) mapper,
   }) async {
     try {
       final response = await _dio.put<JSON>(
@@ -87,7 +87,8 @@ class ApiService implements HTTPClient {
         data: data,
         options: options,
       );
-      return mapper(response.data!);
+
+      return mapper(response.data);
     } on DioException catch (result) {
       final errorModel = ErrorDto.fromJson(result.response!.data!);
       throw RequestErrorException(errorModel.message);

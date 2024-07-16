@@ -14,46 +14,13 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
+PasswordResponseDto _$PasswordResponseDtoFromJson(Map<String, dynamic> json) {
+  return _PasswordResponseDto.fromJson(json);
+}
+
 /// @nodoc
 mixin _$PasswordResponseDto {
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function() $default, {
-    required TResult Function(Map<String, dynamic> data) json,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function()? $default, {
-    TResult? Function(Map<String, dynamic> data)? json,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function()? $default, {
-    TResult Function(Map<String, dynamic> data)? json,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(_PasswordResponseDto value) $default, {
-    required TResult Function(Json value) json,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(_PasswordResponseDto value)? $default, {
-    TResult? Function(Json value)? json,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(_PasswordResponseDto value)? $default, {
-    TResult Function(Json value)? json,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -91,9 +58,12 @@ class __$$PasswordResponseDtoImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$PasswordResponseDtoImpl implements _PasswordResponseDto {
   const _$PasswordResponseDtoImpl();
+
+  factory _$PasswordResponseDtoImpl.fromJson(Map<String, dynamic> json) =>
+      _$$PasswordResponseDtoImplFromJson(json);
 
   @override
   String toString() {
@@ -107,210 +77,21 @@ class _$PasswordResponseDtoImpl implements _PasswordResponseDto {
             other is _$PasswordResponseDtoImpl);
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => runtimeType.hashCode;
 
   @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function() $default, {
-    required TResult Function(Map<String, dynamic> data) json,
-  }) {
-    return $default();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function()? $default, {
-    TResult? Function(Map<String, dynamic> data)? json,
-  }) {
-    return $default?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function()? $default, {
-    TResult Function(Map<String, dynamic> data)? json,
-    required TResult orElse(),
-  }) {
-    if ($default != null) {
-      return $default();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(_PasswordResponseDto value) $default, {
-    required TResult Function(Json value) json,
-  }) {
-    return $default(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(_PasswordResponseDto value)? $default, {
-    TResult? Function(Json value)? json,
-  }) {
-    return $default?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(_PasswordResponseDto value)? $default, {
-    TResult Function(Json value)? json,
-    required TResult orElse(),
-  }) {
-    if ($default != null) {
-      return $default(this);
-    }
-    return orElse();
+  Map<String, dynamic> toJson() {
+    return _$$PasswordResponseDtoImplToJson(
+      this,
+    );
   }
 }
 
 abstract class _PasswordResponseDto implements PasswordResponseDto {
   const factory _PasswordResponseDto() = _$PasswordResponseDtoImpl;
-}
 
-/// @nodoc
-abstract class _$$JsonImplCopyWith<$Res> {
-  factory _$$JsonImplCopyWith(
-          _$JsonImpl value, $Res Function(_$JsonImpl) then) =
-      __$$JsonImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({Map<String, dynamic> data});
-}
-
-/// @nodoc
-class __$$JsonImplCopyWithImpl<$Res>
-    extends _$PasswordResponseDtoCopyWithImpl<$Res, _$JsonImpl>
-    implements _$$JsonImplCopyWith<$Res> {
-  __$$JsonImplCopyWithImpl(_$JsonImpl _value, $Res Function(_$JsonImpl) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? data = null,
-  }) {
-    return _then(_$JsonImpl(
-      null == data
-          ? _value._data
-          : data // ignore: cast_nullable_to_non_nullable
-              as Map<String, dynamic>,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$JsonImpl implements Json {
-  const _$JsonImpl(final Map<String, dynamic> data) : _data = data;
-
-  final Map<String, dynamic> _data;
-  @override
-  Map<String, dynamic> get data {
-    if (_data is EqualUnmodifiableMapView) return _data;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableMapView(_data);
-  }
-
-  @override
-  String toString() {
-    return 'PasswordResponseDto.json(data: $data)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$JsonImpl &&
-            const DeepCollectionEquality().equals(other._data, _data));
-  }
-
-  @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_data));
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$JsonImplCopyWith<_$JsonImpl> get copyWith =>
-      __$$JsonImplCopyWithImpl<_$JsonImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function() $default, {
-    required TResult Function(Map<String, dynamic> data) json,
-  }) {
-    return json(data);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function()? $default, {
-    TResult? Function(Map<String, dynamic> data)? json,
-  }) {
-    return json?.call(data);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function()? $default, {
-    TResult Function(Map<String, dynamic> data)? json,
-    required TResult orElse(),
-  }) {
-    if (json != null) {
-      return json(data);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(_PasswordResponseDto value) $default, {
-    required TResult Function(Json value) json,
-  }) {
-    return json(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(_PasswordResponseDto value)? $default, {
-    TResult? Function(Json value)? json,
-  }) {
-    return json?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(_PasswordResponseDto value)? $default, {
-    TResult Function(Json value)? json,
-    required TResult orElse(),
-  }) {
-    if (json != null) {
-      return json(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class Json implements PasswordResponseDto {
-  const factory Json(final Map<String, dynamic> data) = _$JsonImpl;
-
-  Map<String, dynamic> get data;
-  @JsonKey(ignore: true)
-  _$$JsonImplCopyWith<_$JsonImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  factory _PasswordResponseDto.fromJson(Map<String, dynamic> json) =
+      _$PasswordResponseDtoImpl.fromJson;
 }

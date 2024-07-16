@@ -49,7 +49,9 @@ class ConfirmPasswordBloc
       final response =
           await authenticationRepository.password(password: event.password);
       response.when(
-          success: (response) {},
+          success: (response) {
+            // getProfile()
+          },
           partialSuccess: (message) => emit(ConfirmPasswordFailure(message)),
           networkError: (exception) =>
               emit(ConfirmPasswordFailure(exception.toString())));
