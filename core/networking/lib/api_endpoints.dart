@@ -5,10 +5,10 @@ import 'package:flutter/foundation.dart';
 class ApiEndpoint {
   const ApiEndpoint._();
 
-  static const baseUrl = 'http://192.168.205.175:8083';
+  static const baseUrl = 'http://5.34.202.38:8585';
 
   static String auth(AuthEndpoint endpoint) {
-    const path = '/api/v1/auth/';
+    const path = '/api/v1/app/auth/';
     switch (endpoint) {
       case AuthEndpoint.SEND_OTP:
         return '$path/otp/send';
@@ -24,7 +24,7 @@ class ApiEndpoint {
   }
 
   static String profile(ProfileEndpoint endpoint) {
-    const path = '/api/v1/';
+    const path = '/api/v1/app/';
     switch (endpoint) {
       case ProfileEndpoint.GET_PROFILE:
         return '$path/profile';
