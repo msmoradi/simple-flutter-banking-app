@@ -9,15 +9,15 @@ part of 'verify_otp_response_dto.dart';
 _$VerifyOtpResponseDtoImpl _$$VerifyOtpResponseDtoImplFromJson(
         Map<String, dynamic> json) =>
     _$VerifyOtpResponseDtoImpl(
-      access_token: json['access_token'] as String,
-      refresh_token: json['refresh_token'] as String,
+      accessToken: json['accessToken'] as String,
+      refreshToken: json['refreshToken'] as String,
       passwordAuthentication: json['passwordAuthentication'] as String,
     );
 
 Map<String, dynamic> _$$VerifyOtpResponseDtoImplToJson(
         _$VerifyOtpResponseDtoImpl instance) =>
     <String, dynamic>{
-      'access_token': instance.access_token,
-      'refresh_token': instance.refresh_token,
+      'accessToken': instance.accessToken,
+      'refreshToken': instance.refreshToken,
       'passwordAuthentication': instance.passwordAuthentication,
     };

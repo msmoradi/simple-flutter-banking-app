@@ -20,8 +20,8 @@ VerifyOtpResponseDto _$VerifyOtpResponseDtoFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$VerifyOtpResponseDto {
-  String get access_token => throw _privateConstructorUsedError;
-  String get refresh_token => throw _privateConstructorUsedError;
+  String get accessToken => throw _privateConstructorUsedError;
+  String get refreshToken => throw _privateConstructorUsedError;
   String get passwordAuthentication => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -37,9 +37,7 @@ abstract class $VerifyOtpResponseDtoCopyWith<$Res> {
       _$VerifyOtpResponseDtoCopyWithImpl<$Res, VerifyOtpResponseDto>;
   @useResult
   $Res call(
-      {String access_token,
-      String refresh_token,
-      String passwordAuthentication});
+      {String accessToken, String refreshToken, String passwordAuthentication});
 }
 
 /// @nodoc
@@ -56,18 +54,18 @@ class _$VerifyOtpResponseDtoCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? access_token = null,
-    Object? refresh_token = null,
+    Object? accessToken = null,
+    Object? refreshToken = null,
     Object? passwordAuthentication = null,
   }) {
     return _then(_value.copyWith(
-      access_token: null == access_token
-          ? _value.access_token
-          : access_token // ignore: cast_nullable_to_non_nullable
+      accessToken: null == accessToken
+          ? _value.accessToken
+          : accessToken // ignore: cast_nullable_to_non_nullable
               as String,
-      refresh_token: null == refresh_token
-          ? _value.refresh_token
-          : refresh_token // ignore: cast_nullable_to_non_nullable
+      refreshToken: null == refreshToken
+          ? _value.refreshToken
+          : refreshToken // ignore: cast_nullable_to_non_nullable
               as String,
       passwordAuthentication: null == passwordAuthentication
           ? _value.passwordAuthentication
@@ -86,9 +84,7 @@ abstract class _$$VerifyOtpResponseDtoImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String access_token,
-      String refresh_token,
-      String passwordAuthentication});
+      {String accessToken, String refreshToken, String passwordAuthentication});
 }
 
 /// @nodoc
@@ -102,18 +98,18 @@ class __$$VerifyOtpResponseDtoImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? access_token = null,
-    Object? refresh_token = null,
+    Object? accessToken = null,
+    Object? refreshToken = null,
     Object? passwordAuthentication = null,
   }) {
     return _then(_$VerifyOtpResponseDtoImpl(
-      access_token: null == access_token
-          ? _value.access_token
-          : access_token // ignore: cast_nullable_to_non_nullable
+      accessToken: null == accessToken
+          ? _value.accessToken
+          : accessToken // ignore: cast_nullable_to_non_nullable
               as String,
-      refresh_token: null == refresh_token
-          ? _value.refresh_token
-          : refresh_token // ignore: cast_nullable_to_non_nullable
+      refreshToken: null == refreshToken
+          ? _value.refreshToken
+          : refreshToken // ignore: cast_nullable_to_non_nullable
               as String,
       passwordAuthentication: null == passwordAuthentication
           ? _value.passwordAuthentication
@@ -127,23 +123,23 @@ class __$$VerifyOtpResponseDtoImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$VerifyOtpResponseDtoImpl implements _VerifyOtpResponseDto {
   const _$VerifyOtpResponseDtoImpl(
-      {required this.access_token,
-      required this.refresh_token,
+      {required this.accessToken,
+      required this.refreshToken,
       required this.passwordAuthentication});
 
   factory _$VerifyOtpResponseDtoImpl.fromJson(Map<String, dynamic> json) =>
       _$$VerifyOtpResponseDtoImplFromJson(json);
 
   @override
-  final String access_token;
+  final String accessToken;
   @override
-  final String refresh_token;
+  final String refreshToken;
   @override
   final String passwordAuthentication;
 
   @override
   String toString() {
-    return 'VerifyOtpResponseDto(access_token: $access_token, refresh_token: $refresh_token, passwordAuthentication: $passwordAuthentication)';
+    return 'VerifyOtpResponseDto(accessToken: $accessToken, refreshToken: $refreshToken, passwordAuthentication: $passwordAuthentication)';
   }
 
   @override
@@ -151,10 +147,10 @@ class _$VerifyOtpResponseDtoImpl implements _VerifyOtpResponseDto {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$VerifyOtpResponseDtoImpl &&
-            (identical(other.access_token, access_token) ||
-                other.access_token == access_token) &&
-            (identical(other.refresh_token, refresh_token) ||
-                other.refresh_token == refresh_token) &&
+            (identical(other.accessToken, accessToken) ||
+                other.accessToken == accessToken) &&
+            (identical(other.refreshToken, refreshToken) ||
+                other.refreshToken == refreshToken) &&
             (identical(other.passwordAuthentication, passwordAuthentication) ||
                 other.passwordAuthentication == passwordAuthentication));
   }
@@ -162,7 +158,7 @@ class _$VerifyOtpResponseDtoImpl implements _VerifyOtpResponseDto {
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-      runtimeType, access_token, refresh_token, passwordAuthentication);
+      runtimeType, accessToken, refreshToken, passwordAuthentication);
 
   @JsonKey(ignore: true)
   @override
@@ -182,8 +178,8 @@ class _$VerifyOtpResponseDtoImpl implements _VerifyOtpResponseDto {
 
 abstract class _VerifyOtpResponseDto implements VerifyOtpResponseDto {
   const factory _VerifyOtpResponseDto(
-          {required final String access_token,
-          required final String refresh_token,
+          {required final String accessToken,
+          required final String refreshToken,
           required final String passwordAuthentication}) =
       _$VerifyOtpResponseDtoImpl;
 
@@ -191,9 +187,9 @@ abstract class _VerifyOtpResponseDto implements VerifyOtpResponseDto {
       _$VerifyOtpResponseDtoImpl.fromJson;
 
   @override
-  String get access_token;
+  String get accessToken;
   @override
-  String get refresh_token;
+  String get refreshToken;
   @override
   String get passwordAuthentication;
   @override

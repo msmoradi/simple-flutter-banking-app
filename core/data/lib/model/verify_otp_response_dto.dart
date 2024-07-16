@@ -6,8 +6,8 @@ part 'verify_otp_response_dto.g.dart';
 @freezed
 class VerifyOtpResponseDto with _$VerifyOtpResponseDto {
   const factory VerifyOtpResponseDto({
-    required String access_token,
-    required String refresh_token,
+    required String accessToken,
+    required String refreshToken,
     required String passwordAuthentication,
   }) = _VerifyOtpResponseDto;
 
