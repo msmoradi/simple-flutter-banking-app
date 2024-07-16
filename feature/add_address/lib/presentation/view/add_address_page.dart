@@ -1,6 +1,7 @@
 import 'package:add_address/presentation/view/add_address_content.dart';
 import 'package:data/datasource/remote/profile_remote_datasource_impl.dart';
 import 'package:data/repository/profile_repository_impl.dart';
+import 'package:data/repository/token_repository_impl.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:networking/api_service.dart';
@@ -43,6 +44,7 @@ class AddAddressPage extends StatelessWidget {
 
 AddAddressBloc get addAddressBloc => AddAddressBloc(
       profileRepository: ProfileRepositoryImpl(
-        profileRemoteDataSource: ProfileRemoteDataSourceImpl(ApiService()),
+        profileRemoteDataSource: ProfileRemoteDataSourceImpl(
+            ApiService(tokenRepository: TokenRepositoryImpl())),
       ),
     );

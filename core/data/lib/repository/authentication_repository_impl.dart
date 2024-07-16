@@ -9,11 +9,15 @@ import 'package:domain/entities/sign_up_entity.dart';
 import 'package:domain/entities/verify_otp_entity.dart';
 import 'package:domain/entity_wrapper.dart';
 import 'package:domain/repository/authentication_repository.dart';
+import 'package:domain/repository/token_repository.dart';
 
 class AuthenticationRepositoryImpl extends AuthenticationRepository {
-  AuthenticationRepositoryImpl({required this.authenticationRemoteDataSource});
+  AuthenticationRepositoryImpl(
+      {required this.authenticationRemoteDataSource,
+      required this.tokenRepository});
 
   final AuthenticationRemoteDataSource authenticationRemoteDataSource;
+  final TokenRepository tokenRepository;
 
   @override
   Future<EntityWrapper<VerifyOtpEntity>> verifyOtp({
@@ -29,6 +33,12 @@ class AuthenticationRepositoryImpl extends AuthenticationRepository {
         passwordAuthentication:
             stringToPasswordAuthentication(model.passwordAuthentication),
       );
+    }).then((entityWrapper) async {
+      if (entityWrapper is SuccessEntityWrapper<VerifyOtpEntity>) {
+        await tokenRepository.saveAccessToken(entityWrapper.data.accessToken);
+        await tokenRepository.saveRefreshToken(entityWrapper.data.refreshToken);
+      }
+      return entityWrapper;
     });
   }
 
@@ -55,6 +65,12 @@ class AuthenticationRepositoryImpl extends AuthenticationRepository {
         passwordAuthentication:
             stringToPasswordAuthentication(model.passwordAuthentication),
       );
+    }).then((entityWrapper) async {
+      if (entityWrapper is SuccessEntityWrapper<VerifyOtpEntity>) {
+        await tokenRepository.saveAccessToken(entityWrapper.data.accessToken);
+        await tokenRepository.saveRefreshToken(entityWrapper.data.refreshToken);
+      }
+      return entityWrapper;
     });
   }
 

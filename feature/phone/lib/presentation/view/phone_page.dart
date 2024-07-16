@@ -1,5 +1,6 @@
 import 'package:data/datasource/remote/authentication_remote_datasource_impl.dart';
 import 'package:data/repository/authentication_repository_impl.dart';
+import 'package:data/repository/token_repository_impl.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:networking/api_service.dart';
@@ -49,7 +50,8 @@ class PhonePage extends StatelessWidget {
 
 PhoneBloc get loginBloc => PhoneBloc(
       authenticationRepository: AuthenticationRepositoryImpl(
-        authenticationRemoteDataSource:
-            AuthenticationRemoteDataSourceImpl(ApiService()),
+        tokenRepository: TokenRepositoryImpl(),
+        authenticationRemoteDataSource: AuthenticationRemoteDataSourceImpl(
+            ApiService(tokenRepository: TokenRepositoryImpl())),
       ),
     );

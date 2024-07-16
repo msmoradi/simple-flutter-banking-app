@@ -1,5 +1,6 @@
 import 'package:data/datasource/remote/authentication_remote_datasource_impl.dart';
 import 'package:data/repository/authentication_repository_impl.dart';
+import 'package:data/repository/token_repository_impl.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:identity/presentation/bloc/identity_bloc.dart';
@@ -23,8 +24,9 @@ class IdentityPage extends StatelessWidget {
     return BlocProvider(
       create: (context) => IdentityBloc(
         authenticationRepository: AuthenticationRepositoryImpl(
-          authenticationRemoteDataSource:
-              AuthenticationRemoteDataSourceImpl(ApiService()),
+          tokenRepository: TokenRepositoryImpl(),
+          authenticationRemoteDataSource: AuthenticationRemoteDataSourceImpl(
+              ApiService(tokenRepository: TokenRepositoryImpl())),
         ),
       ),
       child: BlocConsumer<IdentityBloc, IdentityState>(

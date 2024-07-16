@@ -19,6 +19,10 @@ Depends on all your plugins, and provides a function to register them.
   s.static_framework    = true
   s.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES' }
   s.dependency 'Flutter'
+  s.dependency 'device_info_plus'
+  s.dependency 'flutter_secure_storage'
+  s.dependency 'package_info_plus'
+  s.dependency 'path_provider_foundation'
   s.dependency 'shared_preferences_foundation'
   s.dependency 'smart_auth'
 end
