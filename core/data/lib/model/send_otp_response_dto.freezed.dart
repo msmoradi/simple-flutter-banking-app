@@ -22,8 +22,8 @@ SendOtpResponseDto _$SendOtpResponseDtoFromJson(Map<String, dynamic> json) {
 mixin _$SendOtpResponseDto {
   bool get needSignup => throw _privateConstructorUsedError;
   bool get needReferralCode => throw _privateConstructorUsedError;
-  int get expiresIn => throw _privateConstructorUsedError;
-  int get codeLength => throw _privateConstructorUsedError;
+  int? get expiresIn => throw _privateConstructorUsedError;
+  int? get codeLength => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -38,7 +38,10 @@ abstract class $SendOtpResponseDtoCopyWith<$Res> {
       _$SendOtpResponseDtoCopyWithImpl<$Res, SendOtpResponseDto>;
   @useResult
   $Res call(
-      {bool needSignup, bool needReferralCode, int expiresIn, int codeLength});
+      {bool needSignup,
+      bool needReferralCode,
+      int? expiresIn,
+      int? codeLength});
 }
 
 /// @nodoc
@@ -56,8 +59,8 @@ class _$SendOtpResponseDtoCopyWithImpl<$Res, $Val extends SendOtpResponseDto>
   $Res call({
     Object? needSignup = null,
     Object? needReferralCode = null,
-    Object? expiresIn = null,
-    Object? codeLength = null,
+    Object? expiresIn = freezed,
+    Object? codeLength = freezed,
   }) {
     return _then(_value.copyWith(
       needSignup: null == needSignup
@@ -68,14 +71,14 @@ class _$SendOtpResponseDtoCopyWithImpl<$Res, $Val extends SendOtpResponseDto>
           ? _value.needReferralCode
           : needReferralCode // ignore: cast_nullable_to_non_nullable
               as bool,
-      expiresIn: null == expiresIn
+      expiresIn: freezed == expiresIn
           ? _value.expiresIn
           : expiresIn // ignore: cast_nullable_to_non_nullable
-              as int,
-      codeLength: null == codeLength
+              as int?,
+      codeLength: freezed == codeLength
           ? _value.codeLength
           : codeLength // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
     ) as $Val);
   }
 }
@@ -89,7 +92,10 @@ abstract class _$$SendOtpResponseDtoImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {bool needSignup, bool needReferralCode, int expiresIn, int codeLength});
+      {bool needSignup,
+      bool needReferralCode,
+      int? expiresIn,
+      int? codeLength});
 }
 
 /// @nodoc
@@ -105,8 +111,8 @@ class __$$SendOtpResponseDtoImplCopyWithImpl<$Res>
   $Res call({
     Object? needSignup = null,
     Object? needReferralCode = null,
-    Object? expiresIn = null,
-    Object? codeLength = null,
+    Object? expiresIn = freezed,
+    Object? codeLength = freezed,
   }) {
     return _then(_$SendOtpResponseDtoImpl(
       needSignup: null == needSignup
@@ -117,14 +123,14 @@ class __$$SendOtpResponseDtoImplCopyWithImpl<$Res>
           ? _value.needReferralCode
           : needReferralCode // ignore: cast_nullable_to_non_nullable
               as bool,
-      expiresIn: null == expiresIn
+      expiresIn: freezed == expiresIn
           ? _value.expiresIn
           : expiresIn // ignore: cast_nullable_to_non_nullable
-              as int,
-      codeLength: null == codeLength
+              as int?,
+      codeLength: freezed == codeLength
           ? _value.codeLength
           : codeLength // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
     ));
   }
 }
@@ -146,9 +152,9 @@ class _$SendOtpResponseDtoImpl implements _SendOtpResponseDto {
   @override
   final bool needReferralCode;
   @override
-  final int expiresIn;
+  final int? expiresIn;
   @override
-  final int codeLength;
+  final int? codeLength;
 
   @override
   String toString() {
@@ -194,8 +200,8 @@ abstract class _SendOtpResponseDto implements SendOtpResponseDto {
   const factory _SendOtpResponseDto(
       {required final bool needSignup,
       required final bool needReferralCode,
-      required final int expiresIn,
-      required final int codeLength}) = _$SendOtpResponseDtoImpl;
+      required final int? expiresIn,
+      required final int? codeLength}) = _$SendOtpResponseDtoImpl;
 
   factory _SendOtpResponseDto.fromJson(Map<String, dynamic> json) =
       _$SendOtpResponseDtoImpl.fromJson;
@@ -205,9 +211,9 @@ abstract class _SendOtpResponseDto implements SendOtpResponseDto {
   @override
   bool get needReferralCode;
   @override
-  int get expiresIn;
+  int? get expiresIn;
   @override
-  int get codeLength;
+  int? get codeLength;
   @override
   @JsonKey(ignore: true)
   _$$SendOtpResponseDtoImplCopyWith<_$SendOtpResponseDtoImpl> get copyWith =>

@@ -8,8 +8,8 @@ class SendOtpResponseDto with _$SendOtpResponseDto {
   const factory SendOtpResponseDto({
     required bool needSignup,
     required bool needReferralCode,
-    required int expiresIn,
-    required int codeLength,
+    required int? expiresIn,
+    required int? codeLength,
   }) = _SendOtpResponseDto;
 
   factory SendOtpResponseDto.fromJson(Map<String, dynamic> json) =>

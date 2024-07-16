@@ -11,8 +11,8 @@ _$SendOtpResponseDtoImpl _$$SendOtpResponseDtoImplFromJson(
     _$SendOtpResponseDtoImpl(
       needSignup: json['needSignup'] as bool,
       needReferralCode: json['needReferralCode'] as bool,
-      expiresIn: (json['expiresIn'] as num).toInt(),
-      codeLength: (json['codeLength'] as num).toInt(),
+      expiresIn: (json['expiresIn'] as num?)?.toInt(),
+      codeLength: (json['codeLength'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$$SendOtpResponseDtoImplToJson(
