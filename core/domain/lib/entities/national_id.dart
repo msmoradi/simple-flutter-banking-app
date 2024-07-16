@@ -4,7 +4,7 @@ class NationalId {
   NationalId({required this.value});
 
   bool isValid() {
-    return RegExp(r'^\d{1}[A-Z]\d{8}$')
+    return RegExp(r'^\d{10}$')
         .hasMatch(value);
   }
 }
