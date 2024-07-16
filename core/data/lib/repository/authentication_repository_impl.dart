@@ -24,8 +24,8 @@ class AuthenticationRepositoryImpl extends AuthenticationRepository {
         .verifyOtp(phoneNumber, otp)
         .mapResponseToEntityWrapper(mapper: (model) {
       return VerifyOtpEntity(
-        accessToken: model.access_token,
-        refreshToken: model.refresh_token,
+        accessToken: model.accessToken,
+        refreshToken: model.refreshToken,
         passwordAuthentication:
             stringToPasswordAuthentication(model.passwordAuthentication),
       );
@@ -50,8 +50,8 @@ class AuthenticationRepositoryImpl extends AuthenticationRepository {
         .refresh(refreshToken, password)
         .mapResponseToEntityWrapper(mapper: (model) {
       return VerifyOtpEntity(
-        accessToken: model.access_token,
-        refreshToken: model.refresh_token,
+        accessToken: model.accessToken,
+        refreshToken: model.refreshToken,
         passwordAuthentication:
             stringToPasswordAuthentication(model.passwordAuthentication),
       );

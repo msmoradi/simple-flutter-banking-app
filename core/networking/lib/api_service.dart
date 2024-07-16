@@ -40,4 +40,22 @@ class ApiService implements HTTPClient {
       throw Exception(e);
     }
   }
+
+  @override
+  Future<T> put<T>(
+      {required String endpoint,
+        JSON? data,
+        Options? options,
+        required T Function(Map<String, dynamic> response) mapper}) async {
+    try {
+      final response = await _dioService.put(
+        url: endpoint,
+        data: data,
+        options: options,
+      );
+      return mapper(response.data!);
+    } catch (e) {
+      throw Exception(e);
+    }
+  }
 }

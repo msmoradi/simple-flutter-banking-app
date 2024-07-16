@@ -62,4 +62,23 @@ class DioService {
       throw RequestErrorException(e.toString());
     }
   }
+
+  Future<Response<JSON>> put({
+    required String url,
+    JSON? data,
+    Options? options,
+  }) {
+    try {
+      return _dio.put<JSON>(
+        url,
+        data: data,
+        options: options,
+      );
+    } on DioException catch (result) {
+      final errorModel = ErrorDto.fromJson(result.response!.data!);
+      throw RequestErrorException(errorModel.message);
+    } catch (e) {
+      throw RequestErrorException(e.toString());
+    }
+  }
 }

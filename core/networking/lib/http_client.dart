@@ -15,4 +15,10 @@ abstract class HTTPClient {
     JSON? data,
     required T Function(Map<String, dynamic> response) mapper
   });
+
+  Future<T> put<T>({
+    required String endpoint,
+    JSON? data,
+    required T Function(Map<String, dynamic> response) mapper
+  });
 }
