@@ -10,6 +10,8 @@ dependencies:
   flutter:
     sdk: flutter
   go_router: ^14.0.2
+  package_info_plus: ^8.0.0
+  device_info_plus: ^10.1.0
 
   designsystem:
     path: core/designsystem

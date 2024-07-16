@@ -1,7 +1,8 @@
 import 'package:dio/dio.dart';
-import 'package:networking/dio_interceptor.dart';
+import 'package:networking/token_interceptor.dart';
 import 'package:networking/exceptions/network_exception.dart';
 import 'package:networking/model/dto/error_dto.dart';
+import 'package:networking/static_header_interceptor.dart';
 import 'package:networking/typedefs.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
@@ -15,7 +16,8 @@ class DioService {
       baseUrl: ApiEndpoint.baseUrl,
     );
     _dio = Dio(baseOptions);
-    _dio.interceptors.add(DioInterceptor());
+    _dio.interceptors.add(StaticHeaderInterceptor());
+    _dio.interceptors.add(TokenInterceptor());
     _dio.interceptors.add(PrettyDioLogger(
       requestHeader: true,
       requestBody: true,
