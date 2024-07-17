@@ -1,15 +1,18 @@
 import 'package:domain/entities/entity.dart';
 import 'package:domain/entity_wrapper.dart';
+import 'package:networking/exceptions/network_exception.dart';
 
-extension ExtendedString<T> on Future<T> {
-  Future<EntityWrapper<R>> mapResponseToEntityWrapper<R extends Entity>(
-      {required R Function(T response) mapper}) {
-    return then((value) => EntityWrapper.success(mapper(value)),
-        onError: (error) {
-      if (error is Exception) {
-        return EntityWrapper.networkError<R>(error);
+extension ExtendedFuture<T> on Future<T> {
+  Future<EntityWrapper<E>> mapResponseToEntityWrapper<E extends Entity>({
+    required E Function(T response) mapper,
+  }) {
+    return then<EntityWrapper<E>>((value) {
+      return EntityWrapper.success(mapper(value));
+    }).catchError((error) {
+      if (error is NetworkException) {
+        return EntityWrapper.networkError<E>(error);
       } else {
-        return EntityWrapper.partialSuccess<R>(error.toString());
+        return EntityWrapper.networkError<E>(NetworkException('Unknown error'));
       }
     });
   }
