@@ -14,15 +14,6 @@ class VerifyPasswordFailure extends VerifyPasswordState {
   List<Object?> get props => [];
 }
 
-class PasswordError extends VerifyPasswordState {
-  final String message;
-
-  const PasswordError(this.message);
-
-  @override
-  List<Object?> get props => [];
-}
-
 class VerifyPasswordInProgress extends VerifyPasswordState {
   @override
   List<Object?> get props => [];

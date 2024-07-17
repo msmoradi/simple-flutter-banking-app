@@ -33,8 +33,7 @@ class VerifyPasswordPage extends StatelessWidget {
         },
         builder: (context, state) {
           return VerifyPasswordContent(
-            state: state,
-            errorMessage: state is PasswordError ? state.message : null,
+            showLoading: state is VerifyPasswordInProgress,
           );
         },
       ),
