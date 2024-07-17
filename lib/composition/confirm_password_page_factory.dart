@@ -1,4 +1,7 @@
-import 'package:banx/composition/enable_biometric_page_factory.dart';
+import 'package:banx/composition/kyc_status_page_factory.dart';
+import 'package:banx/composition/main_page_factory.dart';
+import 'package:banx/composition/onboarding_face_page_factory.dart';
+import 'package:banx/composition/select_card_page_factory.dart';
 import 'package:confirm_password/presentation/view/confirm_password_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
@@ -11,8 +14,17 @@ class ConfirmPasswordPageFactory {
       required GoRouterState state,
       required ConfirmPasswordExtra extra}) {
     return ConfirmPasswordPage(
-      onNext: () {
-        context.push(EnableBiometricPageFactory.path);
+      homeLanding: () {
+        context.push(MainPageFactory.path);
+      },
+      waitingLanding: () {
+        context.push(KycStatusPageFactory.path);
+      },
+      faceDetectionLanding: () {
+        context.push(OnboardingFacePageFactory.path);
+      },
+      cardOrderingLanding: () {
+        context.push(SelectCardPageFactory.path);
       },
       phoneNumber: extra.phoneNumber,
       newPassword: extra.newPassword,
