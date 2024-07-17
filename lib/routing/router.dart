@@ -46,11 +46,10 @@ Future<GoRouter> get routerConfig async => GoRouter(
 
 Future<String> get initialLocation async {
   await BanxConfig.initialize();
-  /*if (BanxConfig.app.isIntroPageViewed()) {
-    return RootPageFactory.path;
+  final isRefreshTokenExist = await BanxConfig.app.refreshTokenExist();
+  if (isRefreshTokenExist) {
+    return VerifyPasswordPageFactory.path;
   } else {
-    await BanxConfig.app.introPageViewed();
-    return OnboardingPageFactory.path;
-  }*/
-  return PhonePageFactory.path;
+    return PhonePageFactory.path;
+  }
 }
