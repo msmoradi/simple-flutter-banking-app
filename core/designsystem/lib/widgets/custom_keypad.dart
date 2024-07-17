@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class CustomKeypad extends StatelessWidget {
   final Function(String) onKeyTapped;
@@ -22,7 +23,7 @@ class CustomKeypad extends StatelessWidget {
           _buildKeypadRow(['1', '2', '3'], context),
           _buildKeypadRow(['4', '5', '6'], context),
           _buildKeypadRow(['7', '8', '9'], context),
-          _buildKeypadRow(['', '0', 'backspace'], context),
+          _buildKeypadRow(['face', '0', 'backspace'], context),
         ],
       ),
     );
@@ -34,6 +35,8 @@ class CustomKeypad extends StatelessWidget {
       children: keys.map((key) {
         if (key == 'backspace') {
           return _buildBackspaceKey();
+        } else if (key == 'face') {
+          return _buildFaceKey();
         } else {
           return _buildKey(key, context);
         }
@@ -43,7 +46,13 @@ class CustomKeypad extends StatelessWidget {
 
   Widget _buildKey(String key, BuildContext context) {
     return InkWell(
-      onTap: isEnabled ? () => onKeyTapped(key) : null,
+      customBorder: const CircleBorder(),
+      onTap: isEnabled
+          ? () {
+              HapticFeedback.mediumImpact();
+              onKeyTapped(key);
+            }
+          : null,
       child: Container(
         margin: const EdgeInsets.all(12.0),
         width: 80.0,
@@ -63,7 +72,11 @@ class CustomKeypad extends StatelessWidget {
 
   Widget _buildBackspaceKey() {
     return InkWell(
-      onTap: isEnabled ? onBackspace : null,
+      customBorder: const CircleBorder(),
+      onTap: () {
+        HapticFeedback.mediumImpact();
+        onBackspace();
+      },
       child: Container(
         margin: const EdgeInsets.all(12.0),
         width: 80.0,
@@ -71,6 +84,27 @@ class CustomKeypad extends StatelessWidget {
         child: const Center(
           child: Icon(
             Icons.backspace_rounded,
+            size: 24.0,
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildFaceKey() {
+    return InkWell(
+      customBorder: const CircleBorder(),
+      onTap: () {
+        HapticFeedback.mediumImpact();
+        onBackspace();
+      },
+      child: Container(
+        margin: const EdgeInsets.all(12.0),
+        width: 80.0,
+        height: 80.0,
+        child: const Center(
+          child: Icon(
+            Icons.fingerprint_rounded,
             size: 24.0,
           ),
         ),

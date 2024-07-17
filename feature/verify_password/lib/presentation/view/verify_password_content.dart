@@ -18,21 +18,12 @@ class VerifyPasswordContent extends StatefulWidget {
 }
 
 class _VerifyPasswordContentState extends State<VerifyPasswordContent> {
-  final pinController = TextEditingController();
+  late final TextEditingController pinController;
 
   void _onKeyTapped(String key) {
-    if (pinController.text.length < 4) {
-      setState(() {
-        pinController.text += key;
-        if (pinController.text.length == 4) {
-          context.read<VerifyPasswordBloc>().add(
-                VerifyPasswordSubmitted(
-                  password: pinController.text,
-                ),
-              );
-        }
-      });
-    }
+    setState(() {
+      pinController.text += key;
+    });
   }
 
   void _onBackspace() {
@@ -42,6 +33,12 @@ class _VerifyPasswordContentState extends State<VerifyPasswordContent> {
             pinController.text.substring(0, pinController.text.length - 1);
       });
     }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    pinController = TextEditingController();
   }
 
   @override
@@ -80,6 +77,13 @@ class _VerifyPasswordContentState extends State<VerifyPasswordContent> {
                   controller: pinController,
                   useNativeKeyboard: false,
                   length: 4,
+                  onCompleted: (password) {
+                    context.read<VerifyPasswordBloc>().add(
+                          VerifyPasswordSubmitted(
+                            password: password,
+                          ),
+                        );
+                  },
                 ),
               ),
             ),
@@ -87,7 +91,7 @@ class _VerifyPasswordContentState extends State<VerifyPasswordContent> {
             CustomKeypad(
               onKeyTapped: _onKeyTapped,
               onBackspace: _onBackspace,
-              isEnabled: !widget.showLoading,
+              isEnabled: pinController.text.length < 4,
             ),
             const Spacer(),
             Text(
