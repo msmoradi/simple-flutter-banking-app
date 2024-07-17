@@ -19,20 +19,20 @@ class ProfileRepositoryImpl extends ProfileRepository {
       return UserProfileEntity(
         firstName: model.firstName,
         lastName: model.lastName,
-        firstNameEn: model.firstNameEn,
-        lastNameEn: model.lastNameEn,
+        firstNameEN: model.firstNameEN,
+        lastNameEN: model.lastNameEN,
         phoneNumber: model.phoneNumber,
         username: model.username,
-        nationalId: model.nationalId,
+        nationalID: model.nationalID,
         photoUrl: model.photoUrl,
         profileStatus: model.profileStatus,
         landingPage: stringToLandingPageEntity(model.landingPage),
         kycLevel: model.kycLevel,
         kycState: KycStateEntity(
           identityChecked: model.kycState.identityChecked,
-          isLive: model.kycState.isLive,
-          isFaceDetected: model.kycState.isFaceDetected,
-          sayahState: model.kycState.sayahState,
+          livenessChecked: model.kycState.livenessChecked,
+          faceCompareChecked: model.kycState.faceCompareChecked,
+          sayahChecked: model.kycState.sayahChecked,
         ),
       );
     });

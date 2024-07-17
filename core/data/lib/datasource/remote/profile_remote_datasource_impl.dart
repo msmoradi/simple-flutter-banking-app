@@ -11,10 +11,8 @@ class ProfileRemoteDataSourceImpl extends ProfileRemoteDataSource {
 
   @override
   Future<UserProfileResponseDto> getProfile() {
-    final body = {};
-    return _apiService.post(
+    return _apiService.get(
         endpoint: ApiEndpoint.profile(ProfileEndpoint.GET_PROFILE),
-        data: null,
         mapper: UserProfileResponseDto.fromJson);
   }
 

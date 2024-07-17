@@ -21,17 +21,17 @@ UserProfileResponseDto _$UserProfileResponseDtoFromJson(
 
 /// @nodoc
 mixin _$UserProfileResponseDto {
-  String get firstName => throw _privateConstructorUsedError;
-  String get lastName => throw _privateConstructorUsedError;
-  String get firstNameEn => throw _privateConstructorUsedError;
-  String get lastNameEn => throw _privateConstructorUsedError;
-  String get phoneNumber => throw _privateConstructorUsedError;
-  String get username => throw _privateConstructorUsedError;
-  String get nationalId => throw _privateConstructorUsedError;
-  String get photoUrl => throw _privateConstructorUsedError;
-  String get profileStatus => throw _privateConstructorUsedError;
+  String? get firstName => throw _privateConstructorUsedError;
+  String? get lastName => throw _privateConstructorUsedError;
+  String? get firstNameEN => throw _privateConstructorUsedError;
+  String? get lastNameEN => throw _privateConstructorUsedError;
+  String? get phoneNumber => throw _privateConstructorUsedError;
+  String? get username => throw _privateConstructorUsedError;
+  String? get nationalID => throw _privateConstructorUsedError;
+  String? get photoUrl => throw _privateConstructorUsedError;
+  String? get profileStatus => throw _privateConstructorUsedError;
   String get landingPage => throw _privateConstructorUsedError;
-  String get kycLevel => throw _privateConstructorUsedError;
+  String? get kycLevel => throw _privateConstructorUsedError;
   KycState get kycState => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -47,17 +47,17 @@ abstract class $UserProfileResponseDtoCopyWith<$Res> {
       _$UserProfileResponseDtoCopyWithImpl<$Res, UserProfileResponseDto>;
   @useResult
   $Res call(
-      {String firstName,
-      String lastName,
-      String firstNameEn,
-      String lastNameEn,
-      String phoneNumber,
-      String username,
-      String nationalId,
-      String photoUrl,
-      String profileStatus,
+      {String? firstName,
+      String? lastName,
+      String? firstNameEN,
+      String? lastNameEN,
+      String? phoneNumber,
+      String? username,
+      String? nationalID,
+      String? photoUrl,
+      String? profileStatus,
       String landingPage,
-      String kycLevel,
+      String? kycLevel,
       KycState kycState});
 
   $KycStateCopyWith<$Res> get kycState;
@@ -77,64 +77,64 @@ class _$UserProfileResponseDtoCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? firstName = null,
-    Object? lastName = null,
-    Object? firstNameEn = null,
-    Object? lastNameEn = null,
-    Object? phoneNumber = null,
-    Object? username = null,
-    Object? nationalId = null,
-    Object? photoUrl = null,
-    Object? profileStatus = null,
+    Object? firstName = freezed,
+    Object? lastName = freezed,
+    Object? firstNameEN = freezed,
+    Object? lastNameEN = freezed,
+    Object? phoneNumber = freezed,
+    Object? username = freezed,
+    Object? nationalID = freezed,
+    Object? photoUrl = freezed,
+    Object? profileStatus = freezed,
     Object? landingPage = null,
-    Object? kycLevel = null,
+    Object? kycLevel = freezed,
     Object? kycState = null,
   }) {
     return _then(_value.copyWith(
-      firstName: null == firstName
+      firstName: freezed == firstName
           ? _value.firstName
           : firstName // ignore: cast_nullable_to_non_nullable
-              as String,
-      lastName: null == lastName
+              as String?,
+      lastName: freezed == lastName
           ? _value.lastName
           : lastName // ignore: cast_nullable_to_non_nullable
-              as String,
-      firstNameEn: null == firstNameEn
-          ? _value.firstNameEn
-          : firstNameEn // ignore: cast_nullable_to_non_nullable
-              as String,
-      lastNameEn: null == lastNameEn
-          ? _value.lastNameEn
-          : lastNameEn // ignore: cast_nullable_to_non_nullable
-              as String,
-      phoneNumber: null == phoneNumber
+              as String?,
+      firstNameEN: freezed == firstNameEN
+          ? _value.firstNameEN
+          : firstNameEN // ignore: cast_nullable_to_non_nullable
+              as String?,
+      lastNameEN: freezed == lastNameEN
+          ? _value.lastNameEN
+          : lastNameEN // ignore: cast_nullable_to_non_nullable
+              as String?,
+      phoneNumber: freezed == phoneNumber
           ? _value.phoneNumber
           : phoneNumber // ignore: cast_nullable_to_non_nullable
-              as String,
-      username: null == username
+              as String?,
+      username: freezed == username
           ? _value.username
           : username // ignore: cast_nullable_to_non_nullable
-              as String,
-      nationalId: null == nationalId
-          ? _value.nationalId
-          : nationalId // ignore: cast_nullable_to_non_nullable
-              as String,
-      photoUrl: null == photoUrl
+              as String?,
+      nationalID: freezed == nationalID
+          ? _value.nationalID
+          : nationalID // ignore: cast_nullable_to_non_nullable
+              as String?,
+      photoUrl: freezed == photoUrl
           ? _value.photoUrl
           : photoUrl // ignore: cast_nullable_to_non_nullable
-              as String,
-      profileStatus: null == profileStatus
+              as String?,
+      profileStatus: freezed == profileStatus
           ? _value.profileStatus
           : profileStatus // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       landingPage: null == landingPage
           ? _value.landingPage
           : landingPage // ignore: cast_nullable_to_non_nullable
               as String,
-      kycLevel: null == kycLevel
+      kycLevel: freezed == kycLevel
           ? _value.kycLevel
           : kycLevel // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       kycState: null == kycState
           ? _value.kycState
           : kycState // ignore: cast_nullable_to_non_nullable
@@ -161,17 +161,17 @@ abstract class _$$UserProfileResponseDtoImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String firstName,
-      String lastName,
-      String firstNameEn,
-      String lastNameEn,
-      String phoneNumber,
-      String username,
-      String nationalId,
-      String photoUrl,
-      String profileStatus,
+      {String? firstName,
+      String? lastName,
+      String? firstNameEN,
+      String? lastNameEN,
+      String? phoneNumber,
+      String? username,
+      String? nationalID,
+      String? photoUrl,
+      String? profileStatus,
       String landingPage,
-      String kycLevel,
+      String? kycLevel,
       KycState kycState});
 
   @override
@@ -191,64 +191,64 @@ class __$$UserProfileResponseDtoImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? firstName = null,
-    Object? lastName = null,
-    Object? firstNameEn = null,
-    Object? lastNameEn = null,
-    Object? phoneNumber = null,
-    Object? username = null,
-    Object? nationalId = null,
-    Object? photoUrl = null,
-    Object? profileStatus = null,
+    Object? firstName = freezed,
+    Object? lastName = freezed,
+    Object? firstNameEN = freezed,
+    Object? lastNameEN = freezed,
+    Object? phoneNumber = freezed,
+    Object? username = freezed,
+    Object? nationalID = freezed,
+    Object? photoUrl = freezed,
+    Object? profileStatus = freezed,
     Object? landingPage = null,
-    Object? kycLevel = null,
+    Object? kycLevel = freezed,
     Object? kycState = null,
   }) {
     return _then(_$UserProfileResponseDtoImpl(
-      firstName: null == firstName
+      firstName: freezed == firstName
           ? _value.firstName
           : firstName // ignore: cast_nullable_to_non_nullable
-              as String,
-      lastName: null == lastName
+              as String?,
+      lastName: freezed == lastName
           ? _value.lastName
           : lastName // ignore: cast_nullable_to_non_nullable
-              as String,
-      firstNameEn: null == firstNameEn
-          ? _value.firstNameEn
-          : firstNameEn // ignore: cast_nullable_to_non_nullable
-              as String,
-      lastNameEn: null == lastNameEn
-          ? _value.lastNameEn
-          : lastNameEn // ignore: cast_nullable_to_non_nullable
-              as String,
-      phoneNumber: null == phoneNumber
+              as String?,
+      firstNameEN: freezed == firstNameEN
+          ? _value.firstNameEN
+          : firstNameEN // ignore: cast_nullable_to_non_nullable
+              as String?,
+      lastNameEN: freezed == lastNameEN
+          ? _value.lastNameEN
+          : lastNameEN // ignore: cast_nullable_to_non_nullable
+              as String?,
+      phoneNumber: freezed == phoneNumber
           ? _value.phoneNumber
           : phoneNumber // ignore: cast_nullable_to_non_nullable
-              as String,
-      username: null == username
+              as String?,
+      username: freezed == username
           ? _value.username
           : username // ignore: cast_nullable_to_non_nullable
-              as String,
-      nationalId: null == nationalId
-          ? _value.nationalId
-          : nationalId // ignore: cast_nullable_to_non_nullable
-              as String,
-      photoUrl: null == photoUrl
+              as String?,
+      nationalID: freezed == nationalID
+          ? _value.nationalID
+          : nationalID // ignore: cast_nullable_to_non_nullable
+              as String?,
+      photoUrl: freezed == photoUrl
           ? _value.photoUrl
           : photoUrl // ignore: cast_nullable_to_non_nullable
-              as String,
-      profileStatus: null == profileStatus
+              as String?,
+      profileStatus: freezed == profileStatus
           ? _value.profileStatus
           : profileStatus // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       landingPage: null == landingPage
           ? _value.landingPage
           : landingPage // ignore: cast_nullable_to_non_nullable
               as String,
-      kycLevel: null == kycLevel
+      kycLevel: freezed == kycLevel
           ? _value.kycLevel
           : kycLevel // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       kycState: null == kycState
           ? _value.kycState
           : kycState // ignore: cast_nullable_to_non_nullable
@@ -263,11 +263,11 @@ class _$UserProfileResponseDtoImpl implements _UserProfileResponseDto {
   const _$UserProfileResponseDtoImpl(
       {required this.firstName,
       required this.lastName,
-      required this.firstNameEn,
-      required this.lastNameEn,
+      required this.firstNameEN,
+      required this.lastNameEN,
       required this.phoneNumber,
       required this.username,
-      required this.nationalId,
+      required this.nationalID,
       required this.photoUrl,
       required this.profileStatus,
       required this.landingPage,
@@ -278,33 +278,33 @@ class _$UserProfileResponseDtoImpl implements _UserProfileResponseDto {
       _$$UserProfileResponseDtoImplFromJson(json);
 
   @override
-  final String firstName;
+  final String? firstName;
   @override
-  final String lastName;
+  final String? lastName;
   @override
-  final String firstNameEn;
+  final String? firstNameEN;
   @override
-  final String lastNameEn;
+  final String? lastNameEN;
   @override
-  final String phoneNumber;
+  final String? phoneNumber;
   @override
-  final String username;
+  final String? username;
   @override
-  final String nationalId;
+  final String? nationalID;
   @override
-  final String photoUrl;
+  final String? photoUrl;
   @override
-  final String profileStatus;
+  final String? profileStatus;
   @override
   final String landingPage;
   @override
-  final String kycLevel;
+  final String? kycLevel;
   @override
   final KycState kycState;
 
   @override
   String toString() {
-    return 'UserProfileResponseDto(firstName: $firstName, lastName: $lastName, firstNameEn: $firstNameEn, lastNameEn: $lastNameEn, phoneNumber: $phoneNumber, username: $username, nationalId: $nationalId, photoUrl: $photoUrl, profileStatus: $profileStatus, landingPage: $landingPage, kycLevel: $kycLevel, kycState: $kycState)';
+    return 'UserProfileResponseDto(firstName: $firstName, lastName: $lastName, firstNameEN: $firstNameEN, lastNameEN: $lastNameEN, phoneNumber: $phoneNumber, username: $username, nationalID: $nationalID, photoUrl: $photoUrl, profileStatus: $profileStatus, landingPage: $landingPage, kycLevel: $kycLevel, kycState: $kycState)';
   }
 
   @override
@@ -316,16 +316,16 @@ class _$UserProfileResponseDtoImpl implements _UserProfileResponseDto {
                 other.firstName == firstName) &&
             (identical(other.lastName, lastName) ||
                 other.lastName == lastName) &&
-            (identical(other.firstNameEn, firstNameEn) ||
-                other.firstNameEn == firstNameEn) &&
-            (identical(other.lastNameEn, lastNameEn) ||
-                other.lastNameEn == lastNameEn) &&
+            (identical(other.firstNameEN, firstNameEN) ||
+                other.firstNameEN == firstNameEN) &&
+            (identical(other.lastNameEN, lastNameEN) ||
+                other.lastNameEN == lastNameEN) &&
             (identical(other.phoneNumber, phoneNumber) ||
                 other.phoneNumber == phoneNumber) &&
             (identical(other.username, username) ||
                 other.username == username) &&
-            (identical(other.nationalId, nationalId) ||
-                other.nationalId == nationalId) &&
+            (identical(other.nationalID, nationalID) ||
+                other.nationalID == nationalID) &&
             (identical(other.photoUrl, photoUrl) ||
                 other.photoUrl == photoUrl) &&
             (identical(other.profileStatus, profileStatus) ||
@@ -344,11 +344,11 @@ class _$UserProfileResponseDtoImpl implements _UserProfileResponseDto {
       runtimeType,
       firstName,
       lastName,
-      firstNameEn,
-      lastNameEn,
+      firstNameEN,
+      lastNameEN,
       phoneNumber,
       username,
-      nationalId,
+      nationalID,
       photoUrl,
       profileStatus,
       landingPage,
@@ -372,44 +372,44 @@ class _$UserProfileResponseDtoImpl implements _UserProfileResponseDto {
 
 abstract class _UserProfileResponseDto implements UserProfileResponseDto {
   const factory _UserProfileResponseDto(
-      {required final String firstName,
-      required final String lastName,
-      required final String firstNameEn,
-      required final String lastNameEn,
-      required final String phoneNumber,
-      required final String username,
-      required final String nationalId,
-      required final String photoUrl,
-      required final String profileStatus,
+      {required final String? firstName,
+      required final String? lastName,
+      required final String? firstNameEN,
+      required final String? lastNameEN,
+      required final String? phoneNumber,
+      required final String? username,
+      required final String? nationalID,
+      required final String? photoUrl,
+      required final String? profileStatus,
       required final String landingPage,
-      required final String kycLevel,
+      required final String? kycLevel,
       required final KycState kycState}) = _$UserProfileResponseDtoImpl;
 
   factory _UserProfileResponseDto.fromJson(Map<String, dynamic> json) =
       _$UserProfileResponseDtoImpl.fromJson;
 
   @override
-  String get firstName;
+  String? get firstName;
   @override
-  String get lastName;
+  String? get lastName;
   @override
-  String get firstNameEn;
+  String? get firstNameEN;
   @override
-  String get lastNameEn;
+  String? get lastNameEN;
   @override
-  String get phoneNumber;
+  String? get phoneNumber;
   @override
-  String get username;
+  String? get username;
   @override
-  String get nationalId;
+  String? get nationalID;
   @override
-  String get photoUrl;
+  String? get photoUrl;
   @override
-  String get profileStatus;
+  String? get profileStatus;
   @override
   String get landingPage;
   @override
-  String get kycLevel;
+  String? get kycLevel;
   @override
   KycState get kycState;
   @override
@@ -425,9 +425,9 @@ KycState _$KycStateFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$KycState {
   bool get identityChecked => throw _privateConstructorUsedError;
-  bool get isLive => throw _privateConstructorUsedError;
-  bool get isFaceDetected => throw _privateConstructorUsedError;
-  bool get sayahState => throw _privateConstructorUsedError;
+  bool? get livenessChecked => throw _privateConstructorUsedError;
+  bool? get faceCompareChecked => throw _privateConstructorUsedError;
+  bool? get sayahChecked => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -442,9 +442,9 @@ abstract class $KycStateCopyWith<$Res> {
   @useResult
   $Res call(
       {bool identityChecked,
-      bool isLive,
-      bool isFaceDetected,
-      bool sayahState});
+      bool? livenessChecked,
+      bool? faceCompareChecked,
+      bool? sayahChecked});
 }
 
 /// @nodoc
@@ -461,27 +461,27 @@ class _$KycStateCopyWithImpl<$Res, $Val extends KycState>
   @override
   $Res call({
     Object? identityChecked = null,
-    Object? isLive = null,
-    Object? isFaceDetected = null,
-    Object? sayahState = null,
+    Object? livenessChecked = freezed,
+    Object? faceCompareChecked = freezed,
+    Object? sayahChecked = freezed,
   }) {
     return _then(_value.copyWith(
       identityChecked: null == identityChecked
           ? _value.identityChecked
           : identityChecked // ignore: cast_nullable_to_non_nullable
               as bool,
-      isLive: null == isLive
-          ? _value.isLive
-          : isLive // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isFaceDetected: null == isFaceDetected
-          ? _value.isFaceDetected
-          : isFaceDetected // ignore: cast_nullable_to_non_nullable
-              as bool,
-      sayahState: null == sayahState
-          ? _value.sayahState
-          : sayahState // ignore: cast_nullable_to_non_nullable
-              as bool,
+      livenessChecked: freezed == livenessChecked
+          ? _value.livenessChecked
+          : livenessChecked // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      faceCompareChecked: freezed == faceCompareChecked
+          ? _value.faceCompareChecked
+          : faceCompareChecked // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      sayahChecked: freezed == sayahChecked
+          ? _value.sayahChecked
+          : sayahChecked // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ) as $Val);
   }
 }
@@ -496,9 +496,9 @@ abstract class _$$KycStateImplCopyWith<$Res>
   @useResult
   $Res call(
       {bool identityChecked,
-      bool isLive,
-      bool isFaceDetected,
-      bool sayahState});
+      bool? livenessChecked,
+      bool? faceCompareChecked,
+      bool? sayahChecked});
 }
 
 /// @nodoc
@@ -513,27 +513,27 @@ class __$$KycStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? identityChecked = null,
-    Object? isLive = null,
-    Object? isFaceDetected = null,
-    Object? sayahState = null,
+    Object? livenessChecked = freezed,
+    Object? faceCompareChecked = freezed,
+    Object? sayahChecked = freezed,
   }) {
     return _then(_$KycStateImpl(
       identityChecked: null == identityChecked
           ? _value.identityChecked
           : identityChecked // ignore: cast_nullable_to_non_nullable
               as bool,
-      isLive: null == isLive
-          ? _value.isLive
-          : isLive // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isFaceDetected: null == isFaceDetected
-          ? _value.isFaceDetected
-          : isFaceDetected // ignore: cast_nullable_to_non_nullable
-              as bool,
-      sayahState: null == sayahState
-          ? _value.sayahState
-          : sayahState // ignore: cast_nullable_to_non_nullable
-              as bool,
+      livenessChecked: freezed == livenessChecked
+          ? _value.livenessChecked
+          : livenessChecked // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      faceCompareChecked: freezed == faceCompareChecked
+          ? _value.faceCompareChecked
+          : faceCompareChecked // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      sayahChecked: freezed == sayahChecked
+          ? _value.sayahChecked
+          : sayahChecked // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ));
   }
 }
@@ -543,9 +543,9 @@ class __$$KycStateImplCopyWithImpl<$Res>
 class _$KycStateImpl implements _KycState {
   const _$KycStateImpl(
       {required this.identityChecked,
-      required this.isLive,
-      required this.isFaceDetected,
-      required this.sayahState});
+      required this.livenessChecked,
+      required this.faceCompareChecked,
+      required this.sayahChecked});
 
   factory _$KycStateImpl.fromJson(Map<String, dynamic> json) =>
       _$$KycStateImplFromJson(json);
@@ -553,15 +553,15 @@ class _$KycStateImpl implements _KycState {
   @override
   final bool identityChecked;
   @override
-  final bool isLive;
+  final bool? livenessChecked;
   @override
-  final bool isFaceDetected;
+  final bool? faceCompareChecked;
   @override
-  final bool sayahState;
+  final bool? sayahChecked;
 
   @override
   String toString() {
-    return 'KycState(identityChecked: $identityChecked, isLive: $isLive, isFaceDetected: $isFaceDetected, sayahState: $sayahState)';
+    return 'KycState(identityChecked: $identityChecked, livenessChecked: $livenessChecked, faceCompareChecked: $faceCompareChecked, sayahChecked: $sayahChecked)';
   }
 
   @override
@@ -571,17 +571,18 @@ class _$KycStateImpl implements _KycState {
             other is _$KycStateImpl &&
             (identical(other.identityChecked, identityChecked) ||
                 other.identityChecked == identityChecked) &&
-            (identical(other.isLive, isLive) || other.isLive == isLive) &&
-            (identical(other.isFaceDetected, isFaceDetected) ||
-                other.isFaceDetected == isFaceDetected) &&
-            (identical(other.sayahState, sayahState) ||
-                other.sayahState == sayahState));
+            (identical(other.livenessChecked, livenessChecked) ||
+                other.livenessChecked == livenessChecked) &&
+            (identical(other.faceCompareChecked, faceCompareChecked) ||
+                other.faceCompareChecked == faceCompareChecked) &&
+            (identical(other.sayahChecked, sayahChecked) ||
+                other.sayahChecked == sayahChecked));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, identityChecked, isLive, isFaceDetected, sayahState);
+  int get hashCode => Object.hash(runtimeType, identityChecked, livenessChecked,
+      faceCompareChecked, sayahChecked);
 
   @JsonKey(ignore: true)
   @override
@@ -600,9 +601,9 @@ class _$KycStateImpl implements _KycState {
 abstract class _KycState implements KycState {
   const factory _KycState(
       {required final bool identityChecked,
-      required final bool isLive,
-      required final bool isFaceDetected,
-      required final bool sayahState}) = _$KycStateImpl;
+      required final bool? livenessChecked,
+      required final bool? faceCompareChecked,
+      required final bool? sayahChecked}) = _$KycStateImpl;
 
   factory _KycState.fromJson(Map<String, dynamic> json) =
       _$KycStateImpl.fromJson;
@@ -610,11 +611,11 @@ abstract class _KycState implements KycState {
   @override
   bool get identityChecked;
   @override
-  bool get isLive;
+  bool? get livenessChecked;
   @override
-  bool get isFaceDetected;
+  bool? get faceCompareChecked;
   @override
-  bool get sayahState;
+  bool? get sayahChecked;
   @override
   @JsonKey(ignore: true)
   _$$KycStateImplCopyWith<_$KycStateImpl> get copyWith =>

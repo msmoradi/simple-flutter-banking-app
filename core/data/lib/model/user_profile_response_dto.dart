@@ -9,17 +9,17 @@ part 'user_profile_response_dto.g.dart';
 @freezed
 class UserProfileResponseDto with _$UserProfileResponseDto {
   const factory UserProfileResponseDto({
-    required String firstName,
-    required String lastName,
-    required String firstNameEn,
-    required String lastNameEn,
-    required String phoneNumber,
-    required String username,
-    required String nationalId,
-    required String photoUrl,
-    required String profileStatus,
+    required String? firstName,
+    required String? lastName,
+    required String? firstNameEN,
+    required String? lastNameEN,
+    required String? phoneNumber,
+    required String? username,
+    required String? nationalID,
+    required String? photoUrl,
+    required String? profileStatus,
     required String landingPage,
-    required String kycLevel,
+    required String? kycLevel,
     required KycState kycState,
   }) = _UserProfileResponseDto;
 
@@ -31,9 +31,9 @@ class UserProfileResponseDto with _$UserProfileResponseDto {
 class KycState with _$KycState {
   const factory KycState({
     required bool identityChecked,
-    required bool isLive,
-    required bool isFaceDetected,
-    required bool sayahState,
+    required bool? livenessChecked,
+    required bool? faceCompareChecked,
+    required bool? sayahChecked,
   }) = _KycState;
 
   factory KycState.fromJson(Map<String, dynamic> json) =>
