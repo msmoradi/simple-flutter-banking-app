@@ -9,13 +9,11 @@ class OnboardingFacePageFactory {
   static OnboardingFacePage builder(
     BuildContext context,
     GoRouterState state,
-    OnboardingFaceExtra extra,
   ) {
     return OnboardingFacePage(
       onNext: () {
         context.push(
           FaceDetectionPageFactory.path,
-          extra: FaceDetectionExtra(sessionId: extra.sessionId),
         );
       },
     );
@@ -27,15 +25,8 @@ class OnboardingFacePageFactory {
     return GoRoute(
         path: (OnboardingFacePageFactory.path),
         builder: (ctx, state) {
-          final extra = state.extra as OnboardingFaceExtra;
-          return OnboardingFacePageFactory.builder(ctx, state, extra);
+          return OnboardingFacePageFactory.builder(ctx, state);
         },
         routes: routes);
   }
-}
-
-class OnboardingFaceExtra {
-  final String sessionId;
-
-  OnboardingFaceExtra({required this.sessionId});
 }

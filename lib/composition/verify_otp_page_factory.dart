@@ -31,10 +31,6 @@ class VerifyOtpPageFactory {
       verifyPassword: (refreshToken) {
         context.push(
           VerifyPasswordPageFactory.path,
-          extra: VerifyPasswordExtra(
-            phoneNumber: extra.phoneNumber,
-            refreshToken: refreshToken,
-          ),
         );
       },
       onBackPressed: context.pop,

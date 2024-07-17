@@ -7,15 +7,13 @@ class FaceDetectionPageFactory {
   static const path = "/face_detection";
 
   static FaceDetectionPage builder(
-      BuildContext context,
-      GoRouterState state,
-      FaceDetectionExtra? extra,
-      ) {
+    BuildContext context,
+    GoRouterState state,
+  ) {
     return FaceDetectionPage(
       onNext: () {
         context.push(
           SelectCardPageFactory.path,
-          extra: SelectCardExtra(sessionId: "extra.sessionId"),
         );
       },
     );
@@ -27,15 +25,8 @@ class FaceDetectionPageFactory {
     return GoRoute(
         path: (FaceDetectionPageFactory.path),
         builder: (ctx, state) {
-          final extra = state.extra as FaceDetectionExtra?;
-          return FaceDetectionPageFactory.builder(ctx, state, extra);
+          return FaceDetectionPageFactory.builder(ctx, state);
         },
         routes: routes);
   }
-}
-
-class FaceDetectionExtra {
-  final String sessionId;
-
-  FaceDetectionExtra({required this.sessionId});
 }

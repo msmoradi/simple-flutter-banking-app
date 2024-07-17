@@ -1,4 +1,7 @@
+import 'package:banx/composition/kyc_status_page_factory.dart';
 import 'package:banx/composition/main_page_factory.dart';
+import 'package:banx/composition/onboarding_face_page_factory.dart';
+import 'package:banx/composition/select_card_page_factory.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 import 'package:verify_password/presentation/view/verify_password_page.dart';
@@ -9,13 +12,19 @@ class VerifyPasswordPageFactory {
   static VerifyPasswordPage builder(
     BuildContext context,
     GoRouterState state,
-    VerifyPasswordExtra extra,
   ) {
     return VerifyPasswordPage(
-      phoneNumber: extra.phoneNumber,
-      refreshToken: extra.refreshToken,
-      onMainPage: () {
+      homeLanding: () {
         context.push(MainPageFactory.path);
+      },
+      waitingLanding: () {
+        context.push(KycStatusPageFactory.path);
+      },
+      faceDetectionLanding: () {
+        context.push(OnboardingFacePageFactory.path);
+      },
+      cardOrderingLanding: () {
+        context.push(SelectCardPageFactory.path);
       },
     );
   }
@@ -26,19 +35,8 @@ class VerifyPasswordPageFactory {
     return GoRoute(
         path: (VerifyPasswordPageFactory.path),
         builder: (ctx, state) {
-          final extra = state.extra as VerifyPasswordExtra;
-          return VerifyPasswordPageFactory.builder(ctx, state, extra);
+          return VerifyPasswordPageFactory.builder(ctx, state);
         },
         routes: routes);
   }
-}
-
-class VerifyPasswordExtra {
-  final String phoneNumber;
-  final String refreshToken;
-
-  VerifyPasswordExtra({
-    required this.phoneNumber,
-    required this.refreshToken,
-  });
 }
