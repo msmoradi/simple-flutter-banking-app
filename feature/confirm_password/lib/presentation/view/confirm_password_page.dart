@@ -10,15 +10,22 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:networking/api_service.dart';
 
 class ConfirmPasswordPage extends StatelessWidget {
-  final Function() onNext;
+  final Function() homeLanding;
+  final Function() waitingLanding;
+  final Function() faceDetectionLanding;
+  final Function() cardOrderingLanding;
   final String phoneNumber;
   final String newPassword;
 
-  const ConfirmPasswordPage(
-      {super.key,
-      required this.onNext,
-      required this.phoneNumber,
-      required this.newPassword});
+  const ConfirmPasswordPage({
+    super.key,
+    required this.homeLanding,
+    required this.waitingLanding,
+    required this.faceDetectionLanding,
+    required this.cardOrderingLanding,
+    required this.phoneNumber,
+    required this.newPassword,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -32,8 +39,14 @@ class ConfirmPasswordPage extends StatelessWidget {
               ..showSnackBar(
                 SnackBar(content: Text(state.message)),
               );
-          } else if (state is CreatePasswordSuccess) {
-            onNext();
+          } else if (state is HomeLanding) {
+            homeLanding();
+          } else if (state is WaitingLanding) {
+            waitingLanding();
+          } else if (state is FaceDetectionLanding) {
+            faceDetectionLanding();
+          } else if (state is CardOrderingLanding) {
+            cardOrderingLanding();
           }
         },
         builder: (context, state) {

@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:domain/entities/user_profile_entity.dart';
 import 'package:domain/repository/authentication_repository.dart';
 import 'package:domain/repository/profile_repository.dart';
 import 'package:equatable/equatable.dart';
@@ -32,8 +33,17 @@ class ConfirmPasswordBloc
       });
       response.when(
           success: (response) {
-            emit(CreatePasswordSuccess());
-           },
+            switch (response.landingPage) {
+              case LandingPageEntity.home:
+                emit(HomeLanding());
+              case LandingPageEntity.waiting:
+                emit(WaitingLanding());
+              case LandingPageEntity.faceDetection:
+                emit(FaceDetectionLanding());
+              case LandingPageEntity.cardOrdering:
+                emit(CardOrderingLanding());
+            }
+          },
           partialSuccess: (message) => emit(ConfirmPasswordFailure(message)),
           networkError: (exception) =>
               emit(ConfirmPasswordFailure(exception.toString())));

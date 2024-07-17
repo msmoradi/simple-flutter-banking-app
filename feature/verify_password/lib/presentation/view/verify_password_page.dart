@@ -4,37 +4,29 @@ import 'package:data/repository/token_repository_impl.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:networking/api_service.dart';
-import 'package:verify_otp/presentation/bloc/verify_otp_bloc.dart';
-import 'package:verify_otp/presentation/view/verify_otp_content.dart';
+import 'package:verify_password/presentation/bloc/verify_password_bloc.dart';
+import 'package:verify_password/presentation/view/verify_password_content.dart';
 
-class VerifyOtpPage extends StatelessWidget {
-  final Function() onBackPressed;
+class VerifyPasswordPage extends StatelessWidget {
   final Function() onMainPage;
-  final Function() setPassword;
-  final Function(String) verifyPassword;
   final String phoneNumber;
-  final int codeLength;
-  final int expiresIn;
+  final String refreshToken;
 
-  const VerifyOtpPage({
+  const VerifyPasswordPage({
     super.key,
-    required this.onBackPressed,
     required this.onMainPage,
     required this.phoneNumber,
-    required this.codeLength,
-    required this.expiresIn,
-    required this.setPassword,
-    required this.verifyPassword,
+    required this.refreshToken,
   });
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => verifyOtpBloc,
-      child: BlocConsumer<VerifyOtpBloc, VerifyOtpState>(
+      create: (context) => verifyPasswordBloc,
+      child: BlocConsumer<VerifyPasswordBloc, VerifyPasswordState>(
         listener: (context, state) {
           switch (state) {
-            case final VerifyOtpFailure s:
+            case final VerifyPasswordFailure s:
               {
                 ScaffoldMessenger.of(context)
                   ..hideCurrentSnackBar()
@@ -42,27 +34,18 @@ class VerifyOtpPage extends StatelessWidget {
                     SnackBar(content: Text(s.message)),
                   );
               }
-            case final VerifyOtpSuccess s:
+            case final VerifyPasswordSuccess s:
               {
                 onMainPage();
-              }
-            case final SetPassword s:
-              {
-                setPassword();
-              }
-            case final VerifyPassword s:
-              {
-                verifyPassword(s.refreshToken);
               }
           }
         },
         builder: (context, state) {
-          return VerifyOtpContent(
+          return VerifyPasswordContent(
             state: state,
             phoneNumber: phoneNumber,
-            codeLength: codeLength,
-            expiresIn: expiresIn,
-            errorMessage: state is OtpError ? state.message : null,
+            refreshToken: refreshToken,
+            errorMessage: state is PasswordError ? state.message : null,
           );
         },
       ),
@@ -70,7 +53,7 @@ class VerifyOtpPage extends StatelessWidget {
   }
 }
 
-VerifyOtpBloc get verifyOtpBloc => VerifyOtpBloc(
+VerifyPasswordBloc get verifyPasswordBloc => VerifyPasswordBloc(
       authenticationRepository: AuthenticationRepositoryImpl(
         tokenRepository: TokenRepositoryImpl(),
         authenticationRemoteDataSource: AuthenticationRemoteDataSourceImpl(

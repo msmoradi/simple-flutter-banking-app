@@ -38,6 +38,15 @@ class SetPassword extends VerifyOtpState {
   List<Object?> get props => [];
 }
 
+class VerifyPassword extends VerifyOtpState {
+  final String refreshToken;
+
+  const VerifyPassword({required this.refreshToken});
+
+  @override
+  List<Object?> get props => [];
+}
+
 class VerifyOtpValidated extends VerifyOtpState {
   @override
   List<Object?> get props => [];

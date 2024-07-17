@@ -52,7 +52,8 @@ class VerifyOtpBloc extends Bloc<VerifyOtpEvent, VerifyOtpState> {
             success: (success) => switch (success.passwordAuthentication) {
                   PasswordAuthentication.none => emit(VerifyOtpSuccess()),
                   PasswordAuthentication.set => emit(SetPassword()),
-                  PasswordAuthentication.verify => emit(SetPassword()), // TODO
+                  PasswordAuthentication.verify =>
+                    emit(VerifyPassword(refreshToken: success.refreshToken)),
                 },
             partialSuccess: (message) => emit(VerifyOtpFailure(message)),
             networkError: (exception) =>
