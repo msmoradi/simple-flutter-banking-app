@@ -33,21 +33,7 @@ class ConfirmPasswordPage extends StatelessWidget {
       create: (context) => confirmPasswordBloc,
       child: BlocConsumer<ConfirmPasswordBloc, ConfirmPasswordState>(
         listener: (context, state) {
-          if (state is ConfirmPasswordFailure) {
-            ScaffoldMessenger.of(context)
-              ..hideCurrentSnackBar()
-              ..showSnackBar(
-                SnackBar(content: Text(state.message)),
-              );
-          } else if (state is HomeLanding) {
-            homeLanding();
-          } else if (state is WaitingLanding) {
-            waitingLanding();
-          } else if (state is FaceDetectionLanding) {
-            faceDetectionLanding();
-          } else if (state is CardOrderingLanding) {
-            cardOrderingLanding();
-          }
+          _handleStateChange(context, state);
         },
         builder: (context, state) {
           return ConfirmPasswordContent(
@@ -58,6 +44,35 @@ class ConfirmPasswordPage extends StatelessWidget {
         },
       ),
     );
+  }
+
+  void _handleStateChange(BuildContext context, ConfirmPasswordState state) {
+    switch (state) {
+      case final ConfirmPasswordFailure s:
+        {
+          ScaffoldMessenger.of(context)
+            ..hideCurrentSnackBar()
+            ..showSnackBar(
+              SnackBar(content: Text(s.message)),
+            );
+        }
+      case final HomeLanding s:
+        {
+          homeLanding();
+        }
+      case final WaitingLanding s:
+        {
+          waitingLanding();
+        }
+      case final FaceDetectionLanding s:
+        {
+          faceDetectionLanding();
+        }
+      case final CardOrderingLanding s:
+        {
+          cardOrderingLanding();
+        }
+    }
   }
 }
 

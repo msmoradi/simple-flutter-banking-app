@@ -9,14 +9,10 @@ import 'package:verify_password/presentation/bloc/verify_password_bloc.dart';
 
 class VerifyPasswordForm extends StatefulWidget {
   final bool showLoading;
-  final String phoneNumber;
-  final String refreshToken;
   final String? errorMessage;
 
   const VerifyPasswordForm({
     super.key,
-    required this.phoneNumber,
-    required this.refreshToken,
     this.showLoading = false,
     this.errorMessage,
   });
@@ -30,14 +26,11 @@ class _VerifyPasswordFormState extends State<VerifyPasswordForm> {
   final pinController = TextEditingController();
   final focusNode = FocusNode();
 
-  late Timer _timer;
-  int _start = 60; // Initial countdown value in seconds
 
   @override
   void dispose() {
     pinController.dispose();
     focusNode.dispose();
-    _timer.cancel();
     super.dispose();
   }
 
@@ -46,8 +39,6 @@ class _VerifyPasswordFormState extends State<VerifyPasswordForm> {
       focusNode.unfocus();
       context.read<VerifyPasswordBloc>().add(
             VerifyPasswordSubmitted(
-              phoneNumber: widget.phoneNumber,
-              refreshToken: widget.refreshToken,
               password: password,
             ),
           );
@@ -58,8 +49,6 @@ class _VerifyPasswordFormState extends State<VerifyPasswordForm> {
     focusNode.unfocus();
     context.read<VerifyPasswordBloc>().add(
           VerifyPasswordSubmitted(
-            phoneNumber: widget.phoneNumber,
-            refreshToken: widget.refreshToken,
             password: pinController.value.text,
           ),
         );

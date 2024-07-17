@@ -29,19 +29,25 @@ class ConfirmPasswordBloc
       final response = await authenticationRepository
           .password(password: event.password)
           .then((value) async {
-        return await profileRepository.getProfile();
+        if (value.isSuccess) {
+          return await profileRepository.getProfile();
+        } else {
+          return value;
+        }
       });
       response.when(
           success: (response) {
-            switch (response.landingPage) {
-              case LandingPageEntity.home:
-                emit(HomeLanding());
-              case LandingPageEntity.waiting:
-                emit(WaitingLanding());
-              case LandingPageEntity.faceDetection:
-                emit(FaceDetectionLanding());
-              case LandingPageEntity.cardOrdering:
-                emit(CardOrderingLanding());
+            if (response is UserProfileEntity) {
+              switch (response.landingPage) {
+                case LandingPageEntity.home:
+                  emit(HomeLanding());
+                case LandingPageEntity.waiting:
+                  emit(WaitingLanding());
+                case LandingPageEntity.faceDetection:
+                  emit(FaceDetectionLanding());
+                case LandingPageEntity.cardOrdering:
+                  emit(CardOrderingLanding());
+              }
             }
           },
           partialSuccess: (message) => emit(ConfirmPasswordFailure(message)),

@@ -28,17 +28,22 @@ class VerifyPasswordInProgress extends VerifyPasswordState {
   List<Object?> get props => [];
 }
 
-class VerifyPasswordSuccess extends VerifyPasswordState {
+class HomeLanding extends VerifyPasswordState {
   @override
   List<Object?> get props => [];
 }
 
-class SetPassword extends VerifyPasswordState {
+class WaitingLanding extends VerifyPasswordState {
   @override
   List<Object?> get props => [];
 }
 
-class VerifyPassword extends VerifyPasswordState {
+class FaceDetectionLanding extends VerifyPasswordState {
+  @override
+  List<Object?> get props => [];
+}
+
+class CardOrderingLanding extends VerifyPasswordState {
   @override
   List<Object?> get props => [];
 }

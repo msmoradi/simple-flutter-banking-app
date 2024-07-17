@@ -1,5 +1,8 @@
 import 'package:bloc/bloc.dart';
+import 'package:domain/entities/user_profile_entity.dart';
 import 'package:domain/repository/authentication_repository.dart';
+import 'package:domain/repository/profile_repository.dart';
+import 'package:domain/repository/token_repository.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 
@@ -9,9 +12,13 @@ part 'verify_password_state.dart';
 class VerifyPasswordBloc
     extends Bloc<VerifyPasswordEvent, VerifyPasswordState> {
   final AuthenticationRepository authenticationRepository;
+  final TokenRepository tokenRepository;
+  final ProfileRepository profileRepository;
 
   VerifyPasswordBloc({
     required this.authenticationRepository,
+    required this.tokenRepository,
+    required this.profileRepository,
   }) : super(VerifyPasswordValidated()) {
     on<VerifyPasswordSubmitted>(_onVerifyPasswordSubmitted);
   }
@@ -22,12 +29,31 @@ class VerifyPasswordBloc
   ) async {
     emit(VerifyPasswordInProgress());
     try {
-      final response = await authenticationRepository.refresh(
-        refreshToken: event.refreshToken,
-        password: event.password,
-      );
+      final refreshToken = await tokenRepository.getRefreshToken() ?? "";
+      final response = await authenticationRepository
+          .refresh(refreshToken: refreshToken, password: event.password)
+          .then((value) async {
+        if (value.isSuccess) {
+          return await profileRepository.getProfile();
+        } else {
+          return value;
+        }
+      });
       response.when(
-          success: (success) => emit(VerifyPasswordSuccess()),
+          success: (response) {
+            if (response is UserProfileEntity) {
+              switch (response.landingPage) {
+                case LandingPageEntity.home:
+                  emit(HomeLanding());
+                case LandingPageEntity.waiting:
+                  emit(WaitingLanding());
+                case LandingPageEntity.faceDetection:
+                  emit(FaceDetectionLanding());
+                case LandingPageEntity.cardOrdering:
+                  emit(CardOrderingLanding());
+              }
+            }
+          },
           partialSuccess: (message) => emit(VerifyPasswordFailure(message)),
           networkError: (exception) =>
               emit(VerifyPasswordFailure(exception.toString())));

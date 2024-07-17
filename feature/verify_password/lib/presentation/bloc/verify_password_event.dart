@@ -9,13 +9,9 @@ abstract class VerifyPasswordEvent extends Equatable {
 
 class VerifyPasswordSubmitted extends VerifyPasswordEvent {
   final String password;
-  final String phoneNumber;
-  final String refreshToken;
 
   const VerifyPasswordSubmitted({
-    required this.phoneNumber,
     required this.password,
-    required this.refreshToken,
   });
 
   @override

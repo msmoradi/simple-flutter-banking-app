@@ -5,15 +5,11 @@ import 'package:verify_password/presentation/view/verify_password_form.dart';
 
 class VerifyPasswordContent extends StatelessWidget {
   final VerifyPasswordState state;
-  final String phoneNumber;
-  final String refreshToken;
   final String? errorMessage;
 
   const VerifyPasswordContent({
     super.key,
     required this.state,
-    required this.phoneNumber,
-    required this.refreshToken,
     this.errorMessage,
   });
 
@@ -25,8 +21,6 @@ class VerifyPasswordContent extends StatelessWidget {
         padding: const EdgeInsets.all(16),
         child: VerifyPasswordForm(
             showLoading: state is VerifyPasswordInProgress,
-            phoneNumber: phoneNumber,
-            refreshToken: refreshToken,
             errorMessage: errorMessage),
       ),
     );
