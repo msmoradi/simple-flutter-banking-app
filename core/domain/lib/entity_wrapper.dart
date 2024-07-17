@@ -10,15 +10,18 @@ abstract class EntityWrapper<T extends Entity> {
   static EntityWrapper<E> partialSuccess<E extends Entity>(String message) =>
       PartialSuccessEntityWrapper<E>(message);
 
-  static EntityWrapper<E> networkError<E extends Entity>(NetworkException exception) =>
+  static EntityWrapper<E> networkError<E extends Entity>(
+          NetworkException exception) =>
       NetworkErrorEntityWrapper<E>(exception);
+
+  bool get isSuccess => this is SuccessEntityWrapper<T>;
 
   void when({
     required void Function(T data) success,
     required void Function(String message) partialSuccess,
     required void Function(NetworkException exception) networkError,
   }) {
-    if (this is SuccessEntityWrapper<T>) {
+    if (isSuccess) {
       success.call((this as SuccessEntityWrapper<T>).data);
     } else if (this is PartialSuccessEntityWrapper<T>) {
       partialSuccess.call((this as PartialSuccessEntityWrapper<T>).message);
@@ -30,15 +33,18 @@ abstract class EntityWrapper<T extends Entity> {
 
 class SuccessEntityWrapper<E extends Entity> extends EntityWrapper<E> {
   final E data;
+
   const SuccessEntityWrapper(this.data);
 }
 
 class PartialSuccessEntityWrapper<E extends Entity> extends EntityWrapper<E> {
   final String message;
+
   const PartialSuccessEntityWrapper(this.message);
 }
 
 class NetworkErrorEntityWrapper<E extends Entity> extends EntityWrapper<E> {
   final NetworkException exception;
+
   const NetworkErrorEntityWrapper(this.exception);
 }
