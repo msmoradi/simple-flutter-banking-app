@@ -6,9 +6,8 @@ part 'error_dto.g.dart';
 @freezed
 class ErrorDto with _$ErrorDto {
   const factory ErrorDto({
-    required String identifier,
-    required String error,
-    required int errorCode,
+    required String? error,
+    required int? code,
     required String message,
   }) = _ErrorDto;
 

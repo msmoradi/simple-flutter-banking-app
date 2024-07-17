@@ -8,16 +8,14 @@ part of 'error_dto.dart';
 
 _$ErrorDtoImpl _$$ErrorDtoImplFromJson(Map<String, dynamic> json) =>
     _$ErrorDtoImpl(
-      identifier: json['identifier'] as String,
-      error: json['error'] as String,
-      errorCode: (json['errorCode'] as num).toInt(),
+      error: json['error'] as String?,
+      code: (json['code'] as num?)?.toInt(),
       message: json['message'] as String,
     );
 
 Map<String, dynamic> _$$ErrorDtoImplToJson(_$ErrorDtoImpl instance) =>
     <String, dynamic>{
-      'identifier': instance.identifier,
       'error': instance.error,
-      'errorCode': instance.errorCode,
+      'code': instance.code,
       'message': instance.message,
     };

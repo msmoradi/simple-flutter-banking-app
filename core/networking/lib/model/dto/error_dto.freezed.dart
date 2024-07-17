@@ -20,9 +20,8 @@ ErrorDto _$ErrorDtoFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ErrorDto {
-  String get identifier => throw _privateConstructorUsedError;
-  String get error => throw _privateConstructorUsedError;
-  int get errorCode => throw _privateConstructorUsedError;
+  String? get error => throw _privateConstructorUsedError;
+  int? get code => throw _privateConstructorUsedError;
   String get message => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -36,7 +35,7 @@ abstract class $ErrorDtoCopyWith<$Res> {
   factory $ErrorDtoCopyWith(ErrorDto value, $Res Function(ErrorDto) then) =
       _$ErrorDtoCopyWithImpl<$Res, ErrorDto>;
   @useResult
-  $Res call({String identifier, String error, int errorCode, String message});
+  $Res call({String? error, int? code, String message});
 }
 
 /// @nodoc
@@ -52,24 +51,19 @@ class _$ErrorDtoCopyWithImpl<$Res, $Val extends ErrorDto>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? identifier = null,
-    Object? error = null,
-    Object? errorCode = null,
+    Object? error = freezed,
+    Object? code = freezed,
     Object? message = null,
   }) {
     return _then(_value.copyWith(
-      identifier: null == identifier
-          ? _value.identifier
-          : identifier // ignore: cast_nullable_to_non_nullable
-              as String,
-      error: null == error
+      error: freezed == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
-              as String,
-      errorCode: null == errorCode
-          ? _value.errorCode
-          : errorCode // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String?,
+      code: freezed == code
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as int?,
       message: null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -86,7 +80,7 @@ abstract class _$$ErrorDtoImplCopyWith<$Res>
       __$$ErrorDtoImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String identifier, String error, int errorCode, String message});
+  $Res call({String? error, int? code, String message});
 }
 
 /// @nodoc
@@ -100,24 +94,19 @@ class __$$ErrorDtoImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? identifier = null,
-    Object? error = null,
-    Object? errorCode = null,
+    Object? error = freezed,
+    Object? code = freezed,
     Object? message = null,
   }) {
     return _then(_$ErrorDtoImpl(
-      identifier: null == identifier
-          ? _value.identifier
-          : identifier // ignore: cast_nullable_to_non_nullable
-              as String,
-      error: null == error
+      error: freezed == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
-              as String,
-      errorCode: null == errorCode
-          ? _value.errorCode
-          : errorCode // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String?,
+      code: freezed == code
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as int?,
       message: null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -130,26 +119,21 @@ class __$$ErrorDtoImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ErrorDtoImpl implements _ErrorDto {
   const _$ErrorDtoImpl(
-      {required this.identifier,
-      required this.error,
-      required this.errorCode,
-      required this.message});
+      {required this.error, required this.code, required this.message});
 
   factory _$ErrorDtoImpl.fromJson(Map<String, dynamic> json) =>
       _$$ErrorDtoImplFromJson(json);
 
   @override
-  final String identifier;
+  final String? error;
   @override
-  final String error;
-  @override
-  final int errorCode;
+  final int? code;
   @override
   final String message;
 
   @override
   String toString() {
-    return 'ErrorDto(identifier: $identifier, error: $error, errorCode: $errorCode, message: $message)';
+    return 'ErrorDto(error: $error, code: $code, message: $message)';
   }
 
   @override
@@ -157,18 +141,14 @@ class _$ErrorDtoImpl implements _ErrorDto {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ErrorDtoImpl &&
-            (identical(other.identifier, identifier) ||
-                other.identifier == identifier) &&
             (identical(other.error, error) || other.error == error) &&
-            (identical(other.errorCode, errorCode) ||
-                other.errorCode == errorCode) &&
+            (identical(other.code, code) || other.code == code) &&
             (identical(other.message, message) || other.message == message));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, identifier, error, errorCode, message);
+  int get hashCode => Object.hash(runtimeType, error, code, message);
 
   @JsonKey(ignore: true)
   @override
@@ -186,20 +166,17 @@ class _$ErrorDtoImpl implements _ErrorDto {
 
 abstract class _ErrorDto implements ErrorDto {
   const factory _ErrorDto(
-      {required final String identifier,
-      required final String error,
-      required final int errorCode,
+      {required final String? error,
+      required final int? code,
       required final String message}) = _$ErrorDtoImpl;
 
   factory _ErrorDto.fromJson(Map<String, dynamic> json) =
       _$ErrorDtoImpl.fromJson;
 
   @override
-  String get identifier;
+  String? get error;
   @override
-  String get error;
-  @override
-  int get errorCode;
+  int? get code;
   @override
   String get message;
   @override
