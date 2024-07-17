@@ -1,7 +1,7 @@
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:domain/repository/token_repository.dart';
 
 abstract class BaseConfig {
-  final SharedPreferences? sharedPreferences;
+  final TokenRepository? tokenRepository;
 
-  BaseConfig({required this.sharedPreferences});
+  BaseConfig({required this.tokenRepository});
 }

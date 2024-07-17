@@ -1,19 +1,14 @@
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:domain/repository/token_repository.dart';
+import 'package:utils/extension/strings.dart';
+
 import 'base_config.dart';
 
 class AppConfig extends BaseConfig {
-  AppConfig(SharedPreferences? sharedPreferences)
-      : super(sharedPreferences: sharedPreferences);
-}
+  AppConfig(TokenRepository? tokenRepository)
+      : super(tokenRepository: tokenRepository);
 
-extension IntroPage on AppConfig {
-  static const _isIntroPageViewed = "is_intro_page_viewed";
-
-  Future introPageViewed() async {
-    await sharedPreferences?.setBool(_isIntroPageViewed, true);
-  }
-
-  bool isIntroPageViewed() {
-    return sharedPreferences?.getBool(_isIntroPageViewed) ?? false;
+  Future<bool> refreshTokenExist() async {
+    final refreshToken = await tokenRepository?.getRefreshToken();
+    return !refreshToken.isNullOrEmpty;
   }
 }
