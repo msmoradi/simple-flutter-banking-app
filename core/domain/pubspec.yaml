@@ -11,6 +11,8 @@ dependencies:
     sdk: flutter
   bloc: ^8.1.0
   flutter_bloc: ^8.1.1
+  networking:
+    path: ../networking
 
 dev_dependencies:
   flutter_test:
