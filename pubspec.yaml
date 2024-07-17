@@ -47,6 +47,8 @@ dependencies:
     path: feature/select_card
   verify_otp:
     path: feature/verify_otp
+  verify_password:
+    path: feature/verify_password
   card_order:
     path: feature/card_order
   add_address:
