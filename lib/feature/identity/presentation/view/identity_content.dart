@@ -1,4 +1,3 @@
-import 'package:banx/core/designsystem/widgets/appbar/empty_app_bar.dart';
 import 'package:banx/feature/identity/presentation/view/identity_form.dart';
 import 'package:flutter/material.dart';
 
@@ -19,7 +18,16 @@ class IdentityContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const EmptyAppBar(),
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        title: Text(
+          style: Theme.of(context)
+              .textTheme
+              .headlineMedium
+              ?.copyWith(fontWeight: FontWeight.bold),
+          "اطلاعات هویتی",
+        ),
+      ),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(16),

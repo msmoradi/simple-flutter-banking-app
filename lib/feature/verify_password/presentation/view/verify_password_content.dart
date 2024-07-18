@@ -1,4 +1,3 @@
-import 'package:banx/core/designsystem/widgets/appbar/empty_app_bar.dart';
 import 'package:banx/core/designsystem/widgets/custom_keypad.dart';
 import 'package:banx/core/designsystem/widgets/textfields/rounded_with_shadow_otp.dart';
 import 'package:banx/feature/verify_password/presentation/bloc/verify_password_bloc.dart';
@@ -52,14 +51,15 @@ class _VerifyPasswordContentState extends State<VerifyPasswordContent> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const EmptyAppBar(),
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+      ),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(16),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const SizedBox(height: 16),
               const CircleAvatar(
                 radius: 40.0,
                 backgroundImage: NetworkImage('https://i.pravatar.cc/300'),
@@ -107,7 +107,6 @@ class _VerifyPasswordContentState extends State<VerifyPasswordContent> {
                       color: Theme.of(context).colorScheme.primary,
                     ),
               ),
-              const SizedBox(height: 32),
             ],
           ),
         ),

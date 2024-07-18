@@ -39,94 +39,85 @@ class _IdentityFormState extends State<IdentityForm> {
 
     return Column(
       children: [
-        SingleChildScrollView(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Align(
-                alignment: Alignment.centerRight,
-                child: Text(
-                  style: Theme.of(context)
-                      .textTheme
-                      .headlineMedium
-                      ?.copyWith(fontWeight: FontWeight.bold),
-                  "اطلاعات هویتی",
-                ),
-              ),
-              const SizedBox(height: 16),
-              Form(
-                  key: formKey,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      NationalIdTextField(
-                        autofocus: true,
-                        onSaved: (value) {
-                          setState(() {
-                            _nationalId = value;
-                          });
-                        },
-                      ),
-                      const SizedBox(height: 16),
-                      BirthdayTextField(
-                        controller: birthdayController,
-                        onTap: () {
-                          showModalBottomSheet(
-                            enableDrag: false,
-                            showDragHandle: true,
-                            isScrollControlled: true,
-                            useSafeArea: true,
-                            shape: const RoundedRectangleBorder(
-                              borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(8.0),
-                                  topRight: Radius.circular(8.0)),
-                            ),
-                            context: context,
-                            builder: (context) => DatePickerBottomSheet(
-                              initialDate: _birthday ?? '',
-                              onButtonPressed: (value) {
-                                birthdayController.text = value;
-                                setState(() {
-                                  _birthday = value;
-                                });
-                                Navigator.of(context).pop();
-                              },
-                            ),
-                          );
-                        },
-                      ),
-                      const SizedBox(height: 16),
-                      ReferralCodeTextField(
-                        needValidation: widget.needReferralCode,
-                        controller: referralController,
-                        onSaved: (value) {
-                          setState(() {
-                            _referralCode = value;
-                          });
-                        },
-                        onSuffixPressed: () {
-                          showModalBottomSheet(
-                            enableDrag: false,
-                            showDragHandle: true,
-                            isScrollControlled: true,
-                            useSafeArea: true,
-                            shape: const RoundedRectangleBorder(
-                              borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(8.0),
-                                  topRight: Radius.circular(8.0)),
-                            ),
-                            context: context,
-                            builder: (context) =>
-                                const WithOutReferralBottomSheetContent(),
-                          );
-                        },
-                      )
-                    ],
-                  )),
-            ],
+        Expanded(
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const SizedBox(height: 16),
+                Form(
+                    key: formKey,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        NationalIdTextField(
+                          autofocus: true,
+                          onSaved: (value) {
+                            setState(() {
+                              _nationalId = value;
+                            });
+                          },
+                        ),
+                        const SizedBox(height: 16),
+                        BirthdayTextField(
+                          controller: birthdayController,
+                          onTap: () {
+                            showModalBottomSheet(
+                              enableDrag: false,
+                              showDragHandle: true,
+                              isScrollControlled: true,
+                              useSafeArea: true,
+                              shape: const RoundedRectangleBorder(
+                                borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(8.0),
+                                    topRight: Radius.circular(8.0)),
+                              ),
+                              context: context,
+                              builder: (context) => DatePickerBottomSheet(
+                                initialDate: _birthday ?? '',
+                                onButtonPressed: (value) {
+                                  birthdayController.text = value;
+                                  setState(() {
+                                    _birthday = value;
+                                  });
+                                  Navigator.of(context).pop();
+                                },
+                              ),
+                            );
+                          },
+                        ),
+                        const SizedBox(height: 16),
+                        ReferralCodeTextField(
+                          needValidation: widget.needReferralCode,
+                          controller: referralController,
+                          onSaved: (value) {
+                            setState(() {
+                              _referralCode = value;
+                            });
+                          },
+                          onSuffixPressed: () {
+                            showModalBottomSheet(
+                              enableDrag: false,
+                              showDragHandle: true,
+                              isScrollControlled: true,
+                              useSafeArea: true,
+                              shape: const RoundedRectangleBorder(
+                                borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(8.0),
+                                    topRight: Radius.circular(8.0)),
+                              ),
+                              context: context,
+                              builder: (context) =>
+                                  const WithOutReferralBottomSheetContent(),
+                            );
+                          },
+                        )
+                      ],
+                    )),
+              ],
+            ),
           ),
         ),
-        const Spacer(),
         PrimaryFillButton(
           onPressed: () {
             if (formKey.currentState!.validate()) {
