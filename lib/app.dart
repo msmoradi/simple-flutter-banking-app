@@ -1,8 +1,8 @@
+import 'package:banx/core/designsystem/theme/theme.dart';
+import 'package:banx/core/utils/l10n/app_localizations.dart';
 import 'package:banx/routing/router.dart';
-import 'package:designsystem/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:utils/utils.dart';
 
 class App extends StatelessWidget {
   const App({super.key});

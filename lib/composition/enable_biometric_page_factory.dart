@@ -1,5 +1,5 @@
 import 'package:banx/composition/onboarding_face_page_factory.dart';
-import 'package:enable_biometric/presentation/view/enable_biometric_page.dart';
+import 'package:banx/feature/enable_biometric/presentation/view/enable_biometric_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 

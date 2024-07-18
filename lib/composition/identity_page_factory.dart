@@ -1,7 +1,7 @@
 import 'package:banx/composition/verify_otp_page_factory.dart';
+import 'package:banx/feature/identity/presentation/view/identity_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
-import 'package:identity/presentation/view/identity_page.dart';
 
 class IdentityPageFactory {
   static const path = "/identity";

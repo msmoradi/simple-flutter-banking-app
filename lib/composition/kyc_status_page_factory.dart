@@ -1,6 +1,6 @@
+import 'package:banx/feature/kyc_status/presentation/view/kyc_status_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
-import 'package:kyc_status/presentation/view/kyc_status_page.dart';
 
 class KycStatusPageFactory {
   static const path = "/kyc_status";

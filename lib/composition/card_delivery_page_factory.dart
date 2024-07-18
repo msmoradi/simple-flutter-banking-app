@@ -1,5 +1,5 @@
 import 'package:banx/composition/add_address_page_factory.dart';
-import 'package:card_order/presentation/view/card_delivery_page.dart';
+import 'package:banx/feature/card_order/presentation/view/card_delivery_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 

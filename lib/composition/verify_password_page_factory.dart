@@ -2,9 +2,9 @@ import 'package:banx/composition/kyc_status_page_factory.dart';
 import 'package:banx/composition/main_page_factory.dart';
 import 'package:banx/composition/onboarding_face_page_factory.dart';
 import 'package:banx/composition/select_card_page_factory.dart';
+import 'package:banx/feature/verify_password/presentation/view/verify_password_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
-import 'package:verify_password/presentation/view/verify_password_page.dart';
 
 class VerifyPasswordPageFactory {
   static const path = "/verifyPassword";

@@ -1,5 +1,5 @@
 import 'package:banx/composition/select_card_page_factory.dart';
-import 'package:face_detection/presentation/view/face_detection_page.dart';
+import 'package:banx/feature/face_detection/presentation/view/face_detection_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 

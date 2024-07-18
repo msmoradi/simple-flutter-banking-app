@@ -1,6 +1,6 @@
+import 'package:banx/feature/main/presentation/view/main_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
-import 'package:main/presentation/view/main_page.dart';
 
 class MainPageFactory {
   static const path = "/main";

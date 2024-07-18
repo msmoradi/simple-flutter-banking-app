@@ -1,9 +1,9 @@
 import 'package:banx/composition/main_page_factory.dart';
 import 'package:banx/composition/onboarding_password_page_factory.dart';
 import 'package:banx/composition/verify_password_page_factory.dart';
+import 'package:banx/feature/verify_otp/presentation/view/verify_otp_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
-import 'package:verify_otp/presentation/view/verify_otp_page.dart';
 
 class VerifyOtpPageFactory {
   static const path = "/verifyOtp";

@@ -1,7 +1,7 @@
 import 'package:banx/composition/face_detection_factory.dart';
+import 'package:banx/feature/onboarding_face/presentation/view/onboarding_face_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
-import 'package:onboarding_face/presentation/view/onboarding_face_page.dart';
 
 class OnboardingFacePageFactory {
   static const path = "/onboarding_face";

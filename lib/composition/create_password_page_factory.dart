@@ -1,5 +1,5 @@
 import 'package:banx/composition/confirm_password_page_factory.dart';
-import 'package:create_password/presentation/view/create_password_page.dart';
+import 'package:banx/feature/create_password/presentation/view/create_password_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 

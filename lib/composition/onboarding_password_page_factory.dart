@@ -1,7 +1,7 @@
 import 'package:banx/composition/create_password_page_factory.dart';
+import 'package:banx/feature/onboarding_password/presentation/view/onboarding_password_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
-import 'package:onboarding_password/presentation/view/onboarding_password_page.dart';
 
 class OnboardingPasswordPageFactory {
   static const path = "/onboarding_password";

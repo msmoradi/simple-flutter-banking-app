@@ -1,8 +1,8 @@
 import 'package:banx/composition/identity_page_factory.dart';
 import 'package:banx/composition/verify_otp_page_factory.dart';
+import 'package:banx/feature/phone/presentation/view/phone_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
-import 'package:phone/presentation/view/phone_page.dart';
 
 class PhonePageFactory {
   static const path = "/phone";
