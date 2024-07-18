@@ -2,8 +2,10 @@ import 'package:banx/core/domain/repository/token_repository.dart';
 import 'package:banx/core/networking/api_endpoints.dart';
 import 'package:banx/core/networking/interceptors/info_interceptor.dart';
 import 'package:banx/core/networking/interceptors/token_interceptor.dart';
+import 'package:banx/core/utils/configurations/banx_config.dart';
 import 'package:banx/di.config.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
@@ -19,7 +21,6 @@ abstract class RegisterModule {
   @Named("BaseUrl")
   String get baseUrl => ApiEndpoint.baseUrl;
 
-  // url here will be injected
   @lazySingleton
   Dio dio(@Named('BaseUrl') String url, TokenRepository tokenRepository) =>
       Dio(BaseOptions(baseUrl: url))
@@ -33,4 +34,17 @@ abstract class RegisterModule {
           error: true,
           compact: true,
         ));
+
+  @lazySingleton
+  FlutterSecureStorage flutterSecureStorage() => const FlutterSecureStorage(
+          aOptions: AndroidOptions(
+        encryptedSharedPreferences: true,
+      ));
+
+  @preResolve
+  @lazySingleton
+  Future<BanxConfig> banxConfig(TokenRepository tokenRepository) async {
+    final config = BanxConfig(tokenRepository: tokenRepository);
+    return config;
+  }
 }

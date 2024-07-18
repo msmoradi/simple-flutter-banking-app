@@ -5,7 +5,7 @@ import 'package:banx/core/networking/api_endpoints.dart';
 import 'package:banx/core/networking/http_client.dart';
 import 'package:injectable/injectable.dart';
 
-@Singleton(as: ProfileRemoteDataSource)
+@LazySingleton(as: ProfileRemoteDataSource)
 class ProfileRemoteDataSourceImpl extends ProfileRemoteDataSource {
   final HTTPClient apiService;
 

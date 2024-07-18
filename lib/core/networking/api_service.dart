@@ -9,7 +9,7 @@ import 'package:injectable/injectable.dart';
 
 import 'http_client.dart';
 
-@Singleton(as: HTTPClient)
+@LazySingleton(as: HTTPClient)
 class ApiService implements HTTPClient {
   final Dio dio;
   final TokenRepository tokenRepository;

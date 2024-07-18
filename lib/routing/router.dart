@@ -19,34 +19,35 @@ import 'package:banx/composition/verify_password_page_factory.dart';
 import 'package:banx/core/utils/configurations/banx_config.dart';
 import 'package:go_router/go_router.dart';
 
-/// The route configuration.
-Future<GoRouter> get routerConfig async => GoRouter(
-      initialLocation: await initialLocation,
-      routes: <RouteBase>[
-        RootPageFactory.route(),
-        PhonePageFactory.route(),
-        KycStatusPageFactory.route(),
-        FaceDetectionPageFactory.route(),
-        OnboardingPasswordPageFactory.route(),
-        CreatePasswordPageFactory.route(),
-        AddAddressPageFactory.route(),
-        CardDeliveryPageFactory.route(),
-        CardDeliveryTimePageFactory.route(),
-        MapAddressPageFactory.route(),
-        ConfirmPasswordPageFactory.route(),
-        MainPageFactory.route(),
-        SelectCardPageFactory.route(),
-        EnableBiometricPageFactory.route(),
-        OnboardingFacePageFactory.route(),
-        IdentityPageFactory.route(),
-        VerifyOtpPageFactory.route(),
-        VerifyPasswordPageFactory.route(),
-      ],
-    );
+Future<GoRouter> getRouterConfig(BanxConfig banxConfig) async {
+  final initialLocation = await getInitialLocation(banxConfig);
+  return GoRouter(
+    initialLocation: initialLocation,
+    routes: <RouteBase>[
+      RootPageFactory.route(),
+      PhonePageFactory.route(),
+      KycStatusPageFactory.route(),
+      FaceDetectionPageFactory.route(),
+      OnboardingPasswordPageFactory.route(),
+      CreatePasswordPageFactory.route(),
+      AddAddressPageFactory.route(),
+      CardDeliveryPageFactory.route(),
+      CardDeliveryTimePageFactory.route(),
+      MapAddressPageFactory.route(),
+      ConfirmPasswordPageFactory.route(),
+      MainPageFactory.route(),
+      SelectCardPageFactory.route(),
+      EnableBiometricPageFactory.route(),
+      OnboardingFacePageFactory.route(),
+      IdentityPageFactory.route(),
+      VerifyOtpPageFactory.route(),
+      VerifyPasswordPageFactory.route(),
+    ],
+  );
+}
 
-Future<String> get initialLocation async {
-  await BanxConfig.initialize();
-  final isRefreshTokenExist = await BanxConfig.app.refreshTokenExist();
+Future<String> getInitialLocation(BanxConfig banxConfig) async {
+  final isRefreshTokenExist = await banxConfig.refreshTokenExist();
   if (isRefreshTokenExist) {
     return VerifyPasswordPageFactory.path;
   } else {

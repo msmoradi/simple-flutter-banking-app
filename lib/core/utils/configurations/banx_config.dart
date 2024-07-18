@@ -1,16 +1,15 @@
 import 'dart:async';
 
-import 'package:banx/core/data/repository/token_repository_impl.dart';
 import 'package:banx/core/domain/repository/token_repository.dart';
-import 'package:banx/core/utils/configurations/app_config.dart';
+import 'package:banx/core/utils/extension/strings.dart';
 
 class BanxConfig {
-  static TokenRepository? _tokenRepository;
+  final TokenRepository tokenRepository;
 
-  static Future<bool> initialize() async {
-    _tokenRepository = TokenRepositoryImpl();
-    return _tokenRepository != null;
+  BanxConfig({required this.tokenRepository});
+
+  Future<bool> refreshTokenExist() async {
+    final refreshToken = await tokenRepository.getRefreshToken();
+    return !refreshToken.isNullOrEmpty;
   }
-
-  static AppConfig get app => AppConfig(_tokenRepository);
 }

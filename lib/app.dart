@@ -1,5 +1,7 @@
 import 'package:banx/core/designsystem/theme/theme.dart';
+import 'package:banx/core/utils/configurations/banx_config.dart';
 import 'package:banx/core/utils/l10n/app_localizations.dart';
+import 'package:banx/di.dart';
 import 'package:banx/routing/router.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -9,18 +11,9 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    precacheImage(const AssetImage("assets/images/enable_face.png"), context);
-    precacheImage(const AssetImage("assets/images/image-key.png"), context);
-    precacheImage(const AssetImage("assets/images/onboarding_face.png"), context);
-    precacheImage(const AssetImage("assets/images/referral_frame.png"), context);
-    precacheImage(const AssetImage("assets/images/metal_card_silver.png"), context);
-    precacheImage(const AssetImage("assets/images/metal_card_black.png"), context);
-    precacheImage(const AssetImage("assets/images/metal_card_gold.png"), context);
-    precacheImage(const AssetImage("assets/images/gold.png"), context);
-    precacheImage(const AssetImage("assets/images/black.png"), context);
-    precacheImage(const AssetImage("assets/images/silver.png"), context);
+    precacheImages(context);
     return FutureBuilder<GoRouter>(
-      future: routerConfig,
+      future: _initializeRouter(),
       builder: (context, snapshot) {
         if (!snapshot.hasData) {
           return MaterialApp(
@@ -31,15 +24,39 @@ class App extends StatelessWidget {
           );
         } else {
           return MaterialApp.router(
-              debugShowCheckedModeBanner: false,
-              routerConfig: snapshot.data,
-              theme: BanxTheme.light(),
-              darkTheme: BanxTheme.dark(),
-              locale: const Locale('fa'),
-              localizationsDelegates: Translator.localizationsDelegates,
-              supportedLocales: Translator.supportedLocales);
+            debugShowCheckedModeBanner: false,
+            routerConfig: snapshot.data!,
+            theme: BanxTheme.light(),
+            darkTheme: BanxTheme.dark(),
+            locale: const Locale('fa'),
+            localizationsDelegates: Translator.localizationsDelegates,
+            supportedLocales: Translator.supportedLocales,
+          );
         }
       },
     );
+  }
+
+  Future<GoRouter> _initializeRouter() async {
+    final banxConfig = getIt<BanxConfig>();
+    return await getRouterConfig(banxConfig);
+  }
+
+  void precacheImages(BuildContext context) {
+    precacheImage(const AssetImage("assets/images/enable_face.png"), context);
+    precacheImage(const AssetImage("assets/images/image-key.png"), context);
+    precacheImage(
+        const AssetImage("assets/images/onboarding_face.png"), context);
+    precacheImage(
+        const AssetImage("assets/images/referral_frame.png"), context);
+    precacheImage(
+        const AssetImage("assets/images/metal_card_silver.png"), context);
+    precacheImage(
+        const AssetImage("assets/images/metal_card_black.png"), context);
+    precacheImage(
+        const AssetImage("assets/images/metal_card_gold.png"), context);
+    precacheImage(const AssetImage("assets/images/gold.png"), context);
+    precacheImage(const AssetImage("assets/images/black.png"), context);
+    precacheImage(const AssetImage("assets/images/silver.png"), context);
   }
 }

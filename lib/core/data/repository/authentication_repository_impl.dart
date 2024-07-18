@@ -11,7 +11,7 @@ import 'package:banx/core/domain/repository/authentication_repository.dart';
 import 'package:banx/core/domain/repository/token_repository.dart';
 import 'package:injectable/injectable.dart';
 
-@Singleton(as: AuthenticationRepository)
+@LazySingleton(as: AuthenticationRepository)
 class AuthenticationRepositoryImpl extends AuthenticationRepository {
   AuthenticationRepositoryImpl(
       {required this.authenticationRemoteDataSource,

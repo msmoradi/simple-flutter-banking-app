@@ -7,7 +7,7 @@ import 'package:banx/core/networking/api_endpoints.dart';
 import 'package:banx/core/networking/http_client.dart';
 import 'package:injectable/injectable.dart';
 
-@Singleton(as: AuthenticationRemoteDataSource)
+@LazySingleton(as: AuthenticationRemoteDataSource)
 class AuthenticationRemoteDataSourceImpl
     extends AuthenticationRemoteDataSource {
   final HTTPClient apiService;

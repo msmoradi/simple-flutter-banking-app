@@ -7,7 +7,7 @@ import 'package:banx/core/domain/entity_wrapper.dart';
 import 'package:banx/core/domain/repository/profile_repository.dart';
 import 'package:injectable/injectable.dart';
 
-@Singleton(as: ProfileRepository)
+@LazySingleton(as: ProfileRepository)
 class ProfileRepositoryImpl extends ProfileRepository {
   ProfileRepositoryImpl({required this.profileRemoteDataSource});
 

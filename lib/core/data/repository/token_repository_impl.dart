@@ -4,9 +4,9 @@ import 'package:injectable/injectable.dart';
 
 @Singleton(as: TokenRepository)
 class TokenRepositoryImpl implements TokenRepository {
-  final FlutterSecureStorage secureStorage = const FlutterSecureStorage();
+  final FlutterSecureStorage secureStorage;
 
-  TokenRepositoryImpl();
+  TokenRepositoryImpl({required this.secureStorage});
 
   static const _accessTokenKey = 'ACCESS_TOKEN';
   static const _refreshTokenKey = 'REFRESH_TOKEN';
