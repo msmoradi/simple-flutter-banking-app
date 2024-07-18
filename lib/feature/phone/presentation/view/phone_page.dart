@@ -5,6 +5,7 @@ import 'package:banx/core/networking/api_service.dart';
 import 'package:banx/feature/phone/presentation/view/phone_content.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_it/get_it.dart';
 
 import '../bloc/phone_bloc.dart';
 
@@ -21,7 +22,7 @@ class PhonePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => loginBloc,
+      create: (context) => GetIt.instance<PhoneBloc>(),
       child: BlocConsumer<PhoneBloc, PhoneState>(
         listener: (context, state) {
           if (state is PhoneFailure) {
@@ -47,11 +48,3 @@ class PhonePage extends StatelessWidget {
     );
   }
 }
-
-PhoneBloc get loginBloc => PhoneBloc(
-      authenticationRepository: AuthenticationRepositoryImpl(
-        tokenRepository: TokenRepositoryImpl(),
-        authenticationRemoteDataSource: AuthenticationRemoteDataSourceImpl(
-            ApiService(tokenRepository: TokenRepositoryImpl())),
-      ),
-    );

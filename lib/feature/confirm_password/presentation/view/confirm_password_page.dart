@@ -1,13 +1,8 @@
-import 'package:banx/core/data/datasource/remote/authentication_remote_datasource_impl.dart';
-import 'package:banx/core/data/datasource/remote/profile_remote_datasource_impl.dart';
-import 'package:banx/core/data/repository/authentication_repository_impl.dart';
-import 'package:banx/core/data/repository/profile_repository_impl.dart';
-import 'package:banx/core/data/repository/token_repository_impl.dart';
-import 'package:banx/core/networking/api_service.dart';
 import 'package:banx/feature/confirm_password/presentation/bloc/confirm_password_bloc.dart';
 import 'package:banx/feature/confirm_password/presentation/view/confirm_password_content.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_it/get_it.dart';
 
 class ConfirmPasswordPage extends StatelessWidget {
   final Function() homeLanding;
@@ -30,7 +25,7 @@ class ConfirmPasswordPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => confirmPasswordBloc,
+      create: (context) => GetIt.instance<ConfirmPasswordBloc>(),
       child: BlocConsumer<ConfirmPasswordBloc, ConfirmPasswordState>(
         listener: (context, state) {
           _handleStateChange(context, state);
@@ -75,14 +70,3 @@ class ConfirmPasswordPage extends StatelessWidget {
     }
   }
 }
-
-ConfirmPasswordBloc get confirmPasswordBloc => ConfirmPasswordBloc(
-      profileRepository: ProfileRepositoryImpl(
-          profileRemoteDataSource: ProfileRemoteDataSourceImpl(
-              ApiService(tokenRepository: TokenRepositoryImpl()))),
-      authenticationRepository: AuthenticationRepositoryImpl(
-        tokenRepository: TokenRepositoryImpl(),
-        authenticationRemoteDataSource: AuthenticationRemoteDataSourceImpl(
-            ApiService(tokenRepository: TokenRepositoryImpl())),
-      ),
-    );

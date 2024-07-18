@@ -9,7 +9,9 @@ import 'package:banx/core/domain/entities/verify_otp_entity.dart';
 import 'package:banx/core/domain/entity_wrapper.dart';
 import 'package:banx/core/domain/repository/authentication_repository.dart';
 import 'package:banx/core/domain/repository/token_repository.dart';
+import 'package:injectable/injectable.dart';
 
+@Singleton(as: AuthenticationRepository)
 class AuthenticationRepositoryImpl extends AuthenticationRepository {
   AuthenticationRepositoryImpl(
       {required this.authenticationRemoteDataSource,

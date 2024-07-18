@@ -5,10 +5,12 @@ import 'package:banx/core/domain/repository/token_repository.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:injectable/injectable.dart';
 
 part 'verify_password_event.dart';
 part 'verify_password_state.dart';
 
+@injectable
 class VerifyPasswordBloc
     extends Bloc<VerifyPasswordEvent, VerifyPasswordState> {
   final AuthenticationRepository authenticationRepository;

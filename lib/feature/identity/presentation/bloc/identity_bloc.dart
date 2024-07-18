@@ -1,12 +1,14 @@
 import 'package:banx/core/domain/entities/sign_up_entity.dart';
-import 'package:bloc/bloc.dart';
 import 'package:banx/core/domain/repository/authentication_repository.dart';
+import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
+import 'package:injectable/injectable.dart';
 
 part 'identity_event.dart';
 part 'identity_state.dart';
 
+@injectable
 class IdentityBloc extends Bloc<IdentityEvent, IdentityState> {
   final AuthenticationRepository authenticationRepository;
 

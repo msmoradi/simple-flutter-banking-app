@@ -1,10 +1,7 @@
-import 'package:banx/core/data/datasource/remote/authentication_remote_datasource_impl.dart';
-import 'package:banx/core/data/repository/authentication_repository_impl.dart';
-import 'package:banx/core/data/repository/token_repository_impl.dart';
-import 'package:banx/core/networking/api_service.dart';
 import 'package:banx/feature/card_order/presentation/view/map_address_content.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_it/get_it.dart';
 
 import '../bloc/card_order_bloc.dart';
 
@@ -19,7 +16,7 @@ class MapAddressPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => loginBloc,
+      create: (context) => GetIt.instance<CardOrderBloc>(),
       child: BlocConsumer<CardOrderBloc, CardOrderState>(
         listener: (context, state) {},
         builder: (context, state) {
@@ -32,11 +29,3 @@ class MapAddressPage extends StatelessWidget {
     );
   }
 }
-
-CardOrderBloc get loginBloc => CardOrderBloc(
-      authenticationRepository: AuthenticationRepositoryImpl(
-        tokenRepository: TokenRepositoryImpl(),
-        authenticationRemoteDataSource: AuthenticationRemoteDataSourceImpl(
-            ApiService(tokenRepository: TokenRepositoryImpl())),
-      ),
-    );

@@ -1,5 +1,3 @@
-
-
 import 'package:banx/core/data/datasource/remote/authentication_remote_datasource.dart';
 import 'package:banx/core/data/model/password_response_dto.dart';
 import 'package:banx/core/data/model/send_otp_response_dto.dart';
@@ -7,13 +5,14 @@ import 'package:banx/core/data/model/sign_up_response_dto.dart';
 import 'package:banx/core/data/model/verify_otp_response_dto.dart';
 import 'package:banx/core/networking/api_endpoints.dart';
 import 'package:banx/core/networking/http_client.dart';
+import 'package:injectable/injectable.dart';
 
+@Singleton(as: AuthenticationRemoteDataSource)
 class AuthenticationRemoteDataSourceImpl
     extends AuthenticationRemoteDataSource {
-  final HTTPClient _apiService;
+  final HTTPClient apiService;
 
-  AuthenticationRemoteDataSourceImpl(HTTPClient apiService)
-      : _apiService = apiService;
+  AuthenticationRemoteDataSourceImpl({required this.apiService});
 
   @override
   Future<SendOtpResponseDto> sendOtp(
@@ -22,7 +21,7 @@ class AuthenticationRemoteDataSourceImpl
     final body = {
       'phoneNumber': phoneNumber,
     };
-    return _apiService.post(
+    return apiService.post(
         endpoint: ApiEndpoint.auth(AuthEndpoint.SEND_OTP),
         data: body,
         mapper: SendOtpResponseDto.fromJson);
@@ -37,7 +36,7 @@ class AuthenticationRemoteDataSourceImpl
       'phoneNumber': phoneNumber,
       'otp': otp,
     };
-    return _apiService.post(
+    return apiService.post(
         endpoint: ApiEndpoint.auth(AuthEndpoint.VERIFY_OTP),
         data: body,
         mapper: VerifyOtpResponseDto.fromJson);
@@ -49,7 +48,7 @@ class AuthenticationRemoteDataSourceImpl
       'password': password,
     };
 
-    return _apiService.put(
+    return apiService.put(
       endpoint: ApiEndpoint.auth(AuthEndpoint.PASSWORD),
       data: body,
       mapper: (response) {
@@ -71,7 +70,7 @@ class AuthenticationRemoteDataSourceImpl
       'password': password,
     };
 
-    return _apiService.post(
+    return apiService.post(
         endpoint: ApiEndpoint.auth(AuthEndpoint.REFRESH),
         data: body,
         mapper: VerifyOtpResponseDto.fromJson);
@@ -91,7 +90,7 @@ class AuthenticationRemoteDataSourceImpl
       'referralCode': referralCode,
     };
 
-    return _apiService.post(
+    return apiService.post(
         endpoint: ApiEndpoint.auth(AuthEndpoint.SIGN_UP),
         data: body,
         mapper: SignUpResponseDto.fromJson);

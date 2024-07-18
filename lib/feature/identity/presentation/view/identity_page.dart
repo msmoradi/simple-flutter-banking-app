@@ -1,11 +1,8 @@
-import 'package:banx/core/data/datasource/remote/authentication_remote_datasource_impl.dart';
-import 'package:banx/core/data/repository/authentication_repository_impl.dart';
-import 'package:banx/core/data/repository/token_repository_impl.dart';
-import 'package:banx/core/networking/api_service.dart';
 import 'package:banx/feature/identity/presentation/bloc/identity_bloc.dart';
 import 'package:banx/feature/identity/presentation/view/identity_content.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_it/get_it.dart';
 
 class IdentityPage extends StatelessWidget {
   final bool needReferralCode;
@@ -22,13 +19,7 @@ class IdentityPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => IdentityBloc(
-        authenticationRepository: AuthenticationRepositoryImpl(
-          tokenRepository: TokenRepositoryImpl(),
-          authenticationRemoteDataSource: AuthenticationRemoteDataSourceImpl(
-              ApiService(tokenRepository: TokenRepositoryImpl())),
-        ),
-      ),
+      create: (context) => GetIt.instance<IdentityBloc>(),
       child: BlocConsumer<IdentityBloc, IdentityState>(
         listener: (context, state) {
           if (state is IdentityFailure) {

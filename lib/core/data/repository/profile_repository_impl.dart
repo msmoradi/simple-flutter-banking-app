@@ -5,7 +5,9 @@ import 'package:banx/core/domain/entities/check_postal_code_entity.dart';
 import 'package:banx/core/domain/entities/user_profile_entity.dart';
 import 'package:banx/core/domain/entity_wrapper.dart';
 import 'package:banx/core/domain/repository/profile_repository.dart';
+import 'package:injectable/injectable.dart';
 
+@Singleton(as: ProfileRepository)
 class ProfileRepositoryImpl extends ProfileRepository {
   ProfileRepositoryImpl({required this.profileRemoteDataSource});
 

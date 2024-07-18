@@ -4,10 +4,12 @@ import 'package:banx/core/domain/repository/profile_repository.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
+import 'package:injectable/injectable.dart';
 
 part 'confirm_password_event.dart';
 part 'confirm_password_state.dart';
 
+@injectable
 class ConfirmPasswordBloc
     extends Bloc<ConfirmPasswordEvent, ConfirmPasswordState> {
   final AuthenticationRepository authenticationRepository;

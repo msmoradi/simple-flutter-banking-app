@@ -1,11 +1,13 @@
-import 'package:bloc/bloc.dart';
 import 'package:banx/core/domain/repository/authentication_repository.dart';
+import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
+import 'package:injectable/injectable.dart';
 
 part 'phone_event.dart';
 part 'phone_state.dart';
 
+@injectable
 class PhoneBloc extends Bloc<PhoneEvent, PhoneState> {
   final AuthenticationRepository authenticationRepository;
 

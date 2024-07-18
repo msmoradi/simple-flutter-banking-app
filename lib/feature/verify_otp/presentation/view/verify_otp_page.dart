@@ -1,11 +1,8 @@
-import 'package:banx/core/data/datasource/remote/authentication_remote_datasource_impl.dart';
-import 'package:banx/core/data/repository/repository.dart';
-import 'package:banx/core/data/repository/token_repository_impl.dart';
-import 'package:banx/core/networking/api_service.dart';
 import 'package:banx/feature/verify_otp/presentation/bloc/verify_otp_bloc.dart';
 import 'package:banx/feature/verify_otp/presentation/view/verify_otp_content.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_it/get_it.dart';
 
 class VerifyOtpPage extends StatelessWidget {
   final Function() onBackPressed;
@@ -30,7 +27,7 @@ class VerifyOtpPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => verifyOtpBloc,
+      create: (context) => GetIt.instance<VerifyOtpBloc>(),
       child: BlocConsumer<VerifyOtpBloc, VerifyOtpState>(
         listener: (context, state) {
           switch (state) {
@@ -69,11 +66,3 @@ class VerifyOtpPage extends StatelessWidget {
     );
   }
 }
-
-VerifyOtpBloc get verifyOtpBloc => VerifyOtpBloc(
-      authenticationRepository: AuthenticationRepositoryImpl(
-        tokenRepository: TokenRepositoryImpl(),
-        authenticationRemoteDataSource: AuthenticationRemoteDataSourceImpl(
-            ApiService(tokenRepository: TokenRepositoryImpl())),
-      ),
-    );

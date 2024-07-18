@@ -9,6 +9,7 @@ import 'package:banx/feature/verify_password/presentation/bloc/verify_password_b
 import 'package:banx/feature/verify_password/presentation/view/verify_password_content.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_it/get_it.dart';
 
 class VerifyPasswordPage extends StatelessWidget {
   final Function() homeLanding;
@@ -27,7 +28,7 @@ class VerifyPasswordPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => verifyPasswordBloc,
+      create: (context) => GetIt.instance<VerifyPasswordBloc>(),
       child: BlocConsumer<VerifyPasswordBloc, VerifyPasswordState>(
         listener: (context, state) {
           _handleStateChange(context, state);
@@ -70,15 +71,3 @@ class VerifyPasswordPage extends StatelessWidget {
     }
   }
 }
-
-VerifyPasswordBloc get verifyPasswordBloc => VerifyPasswordBloc(
-      profileRepository: ProfileRepositoryImpl(
-          profileRemoteDataSource: ProfileRemoteDataSourceImpl(
-              ApiService(tokenRepository: TokenRepositoryImpl()))),
-      tokenRepository: TokenRepositoryImpl(),
-      authenticationRepository: AuthenticationRepositoryImpl(
-        tokenRepository: TokenRepositoryImpl(),
-        authenticationRemoteDataSource: AuthenticationRemoteDataSourceImpl(
-            ApiService(tokenRepository: TokenRepositoryImpl())),
-      ),
-    );
