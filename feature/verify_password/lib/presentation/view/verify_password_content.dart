@@ -35,6 +35,8 @@ class _VerifyPasswordContentState extends State<VerifyPasswordContent> {
     }
   }
 
+  void _onPrimaryTapped() {}
+
   @override
   void initState() {
     super.initState();
@@ -91,6 +93,8 @@ class _VerifyPasswordContentState extends State<VerifyPasswordContent> {
             CustomKeypad(
               onKeyTapped: _onKeyTapped,
               onBackspace: _onBackspace,
+              onPrimaryTapped: _onPrimaryTapped,
+              primaryIcon: Icons.fingerprint_rounded,
               isEnabled: pinController.text.length < 4,
             ),
             const Spacer(),

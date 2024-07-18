@@ -1,9 +1,8 @@
 import 'package:confirm_password/presentation/bloc/confirm_password_bloc.dart';
-import 'package:designsystem/widgets/button/fill/full_fill_button.dart';
+import 'package:designsystem/widgets/custom_keypad.dart';
 import 'package:designsystem/widgets/textfields/rounded_with_shadow_otp.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:utils/extension/build_context.dart';
 
 class ConfirmPasswordContent extends StatefulWidget {
   final String newPassword;
@@ -22,9 +21,46 @@ class ConfirmPasswordContent extends StatefulWidget {
 }
 
 class _ConfirmPasswordContentState extends State<ConfirmPasswordContent> {
-  final formKey = GlobalKey<FormState>();
-  final pinController = TextEditingController();
-  final focusNode = FocusNode();
+  late final GlobalKey<FormState> formKey;
+  late final TextEditingController pinController;
+  late final FocusNode focusNode;
+
+  void _onPrimaryTapped() async {
+    if (formKey.currentState!.validate()) {
+      focusNode.unfocus();
+      context.read<ConfirmPasswordBloc>().add(
+            ConfirmPasswordSubmitted(
+              phoneNumber: widget.phoneNumber,
+              password: pinController.text,
+            ),
+          );
+    }
+  }
+
+  void _onKeyTapped(String key) {
+    if (!mounted) return;
+    setState(() {
+      pinController.text += key;
+    });
+  }
+
+  void _onBackspace() {
+    if (!mounted) return;
+    if (pinController.text.isNotEmpty) {
+      setState(() {
+        pinController.text =
+            pinController.text.substring(0, pinController.text.length - 1);
+      });
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    formKey = GlobalKey<FormState>();
+    pinController = TextEditingController();
+    focusNode = FocusNode();
+  }
 
   @override
   void dispose() {
@@ -35,8 +71,6 @@ class _ConfirmPasswordContentState extends State<ConfirmPasswordContent> {
 
   @override
   Widget build(BuildContext context) {
-    final translator = context.getTranslator();
-
     return Scaffold(
       appBar: AppBar(
         leading: const BackButton(),
@@ -68,34 +102,28 @@ class _ConfirmPasswordContentState extends State<ConfirmPasswordContent> {
                 child: Center(
                   child: RoundedWithShadowInput(
                     obscureText: true,
-                    controller: pinController,
                     focusNode: focusNode,
+                    controller: pinController,
+                    useNativeKeyboard: false,
+                    length: 4,
                     validator: (value) {
                       return value?.length == 4 && value == widget.newPassword
                           ? null
-                          : 'Pin is incorrect';
+                          : 'رمز مطابقت ندارد';
                     },
-                    length: 4,
                   ),
                 ),
               ),
             ),
             const Spacer(),
-            PrimaryFillButton(
-              isLoading: widget.state is ConfirmPasswordInProgress,
-              onPressed: () {
-                if (formKey.currentState!.validate()) {
-                  FocusManager.instance.primaryFocus?.unfocus();
-                  context.read<ConfirmPasswordBloc>().add(
-                        ConfirmPasswordSubmitted(
-                          phoneNumber: widget.phoneNumber,
-                          password: pinController.text,
-                        ),
-                      );
-                }
-              },
-              label: translator.acceptAndContinue,
+            CustomKeypad(
+              onKeyTapped: _onKeyTapped,
+              onBackspace: _onBackspace,
+              onPrimaryTapped: _onPrimaryTapped,
+              primaryIcon: Icons.arrow_circle_left_rounded,
+              isEnabled: pinController.text.length < 4,
             ),
+            const SizedBox(height: 42),
           ],
         ),
       ),

@@ -1,7 +1,7 @@
-import 'package:designsystem/widgets/button/fill/full_fill_button.dart';
+import 'package:designsystem/widgets/appbar/empty_app_bar.dart';
+import 'package:designsystem/widgets/custom_keypad.dart';
 import 'package:designsystem/widgets/textfields/rounded_with_shadow_otp.dart';
 import 'package:flutter/material.dart';
-import 'package:utils/extension/build_context.dart';
 
 class CreatePasswordPage extends StatefulWidget {
   final Function(String, String) onNext;
@@ -18,15 +18,40 @@ class CreatePasswordPage extends StatefulWidget {
 }
 
 class _CreatePasswordPageState extends State<CreatePasswordPage> {
-  final formKey = GlobalKey<FormState>();
-  final pinController = TextEditingController();
-  final focusNode = FocusNode();
+  late final GlobalKey<FormState> formKey;
+  late final TextEditingController pinController;
+  late final FocusNode focusNode;
 
-  Future<void> onConfirm(String value) async {
+  void _onPrimaryTapped() async {
     if (formKey.currentState!.validate()) {
-      FocusManager.instance.primaryFocus?.unfocus();
-      widget.onNext(widget.phoneNumber, value);
+      focusNode.unfocus();
+      widget.onNext(widget.phoneNumber, pinController.text);
     }
+  }
+
+  void _onKeyTapped(String key) {
+    if (!mounted) return;
+    setState(() {
+      pinController.text += key;
+    });
+  }
+
+  void _onBackspace() {
+    if (!mounted) return;
+    if (pinController.text.isNotEmpty) {
+      setState(() {
+        pinController.text =
+            pinController.text.substring(0, pinController.text.length - 1);
+      });
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    formKey = GlobalKey<FormState>();
+    pinController = TextEditingController();
+    focusNode = FocusNode();
   }
 
   @override
@@ -38,12 +63,8 @@ class _CreatePasswordPageState extends State<CreatePasswordPage> {
 
   @override
   Widget build(BuildContext context) {
-    final translator = context.getTranslator();
-
     return Scaffold(
-      appBar: AppBar(
-        leading: const BackButton(),
-      ),
+      appBar: const EmptyAppBar(),
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
@@ -71,27 +92,26 @@ class _CreatePasswordPageState extends State<CreatePasswordPage> {
                 child: Center(
                   child: RoundedWithShadowInput(
                     obscureText: true,
-                    controller: pinController,
                     focusNode: focusNode,
-                    validator: (value) {
-                      return value?.length == 4 ? null : 'Pin is incorrect';
-                    },
+                    controller: pinController,
+                    useNativeKeyboard: false,
                     length: 4,
-                    onCompleted: onConfirm,
+                    validator: (value) {
+                      return value?.length == 4 ? null : 'رمز را وارد کنید';
+                    },
                   ),
                 ),
               ),
             ),
             const Spacer(),
-            PrimaryFillButton(
-              onPressed: () {
-                if (formKey.currentState!.validate()) {
-                  FocusManager.instance.primaryFocus?.unfocus();
-                  onConfirm(pinController.text);
-                }
-              },
-              label: translator.acceptAndContinue,
-            )
+            CustomKeypad(
+              onKeyTapped: _onKeyTapped,
+              onBackspace: _onBackspace,
+              onPrimaryTapped: _onPrimaryTapped,
+              primaryIcon: Icons.arrow_circle_left_rounded,
+              isEnabled: pinController.text.length < 4,
+            ),
+            const SizedBox(height: 42),
           ],
         ),
       ),
