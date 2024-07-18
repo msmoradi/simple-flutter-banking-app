@@ -10,9 +10,11 @@ class IdentityPageFactory {
     required BuildContext context,
     required GoRouterState state,
     required IdentityExtra extra,
+    required Function(String) showMessage,
   }) {
     return IdentityPage(
       phoneNumber: extra.phoneNumber,
+      showMessage: showMessage,
       needReferralCode: extra.needReferralCode,
       onVerifyOtp: (expiresIn, codeLength) {
         context.push(VerifyOtpPageFactory.path,
@@ -27,12 +29,14 @@ class IdentityPageFactory {
 
   static GoRoute route({
     List<RouteBase> routes = const <RouteBase>[],
+    required Function(String) showMessage,
   }) {
     return GoRoute(
         path: (IdentityPageFactory.path),
         builder: (ctx, state) {
           final extra = state.extra as IdentityExtra;
           return IdentityPageFactory.builder(
+            showMessage: showMessage,
             context: ctx,
             state: state,
             extra: extra,

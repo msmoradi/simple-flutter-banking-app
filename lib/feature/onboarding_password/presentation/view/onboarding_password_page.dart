@@ -4,10 +4,12 @@ import 'package:flutter/material.dart';
 
 class OnboardingPasswordPage extends StatelessWidget {
   final Function() onNext;
+  final Function(String) showMessage;
 
   const OnboardingPasswordPage({
     super.key,
     required this.onNext,
+    required this.showMessage,
   });
 
   @override

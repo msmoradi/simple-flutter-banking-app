@@ -9,6 +9,7 @@ class ConfirmPasswordPage extends StatelessWidget {
   final Function() waitingLanding;
   final Function() faceDetectionLanding;
   final Function() cardOrderingLanding;
+  final Function(String) showMessage;
   final String phoneNumber;
   final String newPassword;
 
@@ -20,6 +21,7 @@ class ConfirmPasswordPage extends StatelessWidget {
     required this.cardOrderingLanding,
     required this.phoneNumber,
     required this.newPassword,
+    required this.showMessage,
   });
 
   @override
@@ -45,11 +47,7 @@ class ConfirmPasswordPage extends StatelessWidget {
     switch (state) {
       case final ConfirmPasswordFailure s:
         {
-          ScaffoldMessenger.of(context)
-            ..hideCurrentSnackBar()
-            ..showSnackBar(
-              SnackBar(content: Text(s.message)),
-            );
+          showMessage(s.message);
         }
       case final HomeLanding s:
         {

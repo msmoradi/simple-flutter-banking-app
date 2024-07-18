@@ -2,8 +2,11 @@ import 'package:banx/core/utils/extension/build_context.dart';
 import 'package:flutter/material.dart';
 
 class RootPage extends StatefulWidget {
+  final Function(String) showMessage;
+
   const RootPage({
     super.key,
+    required this.showMessage,
   });
 
   @override

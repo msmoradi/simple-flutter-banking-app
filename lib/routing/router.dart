@@ -19,29 +19,32 @@ import 'package:banx/composition/verify_password_page_factory.dart';
 import 'package:banx/core/utils/configurations/banx_config.dart';
 import 'package:go_router/go_router.dart';
 
-Future<GoRouter> getRouterConfig(BanxConfig banxConfig) async {
+Future<GoRouter> getRouterConfig({
+  required BanxConfig banxConfig,
+  required Function(String) showMessage,
+}) async {
   final initialLocation = await getInitialLocation(banxConfig);
   return GoRouter(
     initialLocation: initialLocation,
     routes: <RouteBase>[
-      RootPageFactory.route(),
-      PhonePageFactory.route(),
-      KycStatusPageFactory.route(),
-      FaceDetectionPageFactory.route(),
-      OnboardingPasswordPageFactory.route(),
-      CreatePasswordPageFactory.route(),
-      AddAddressPageFactory.route(),
-      CardDeliveryPageFactory.route(),
-      CardDeliveryTimePageFactory.route(),
-      MapAddressPageFactory.route(),
-      ConfirmPasswordPageFactory.route(),
-      MainPageFactory.route(),
-      SelectCardPageFactory.route(),
-      EnableBiometricPageFactory.route(),
-      OnboardingFacePageFactory.route(),
-      IdentityPageFactory.route(),
-      VerifyOtpPageFactory.route(),
-      VerifyPasswordPageFactory.route(),
+      RootPageFactory.route(showMessage: showMessage),
+      PhonePageFactory.route(showMessage: showMessage),
+      KycStatusPageFactory.route(showMessage: showMessage),
+      FaceDetectionPageFactory.route(showMessage: showMessage),
+      OnboardingPasswordPageFactory.route(showMessage: showMessage),
+      CreatePasswordPageFactory.route(showMessage: showMessage),
+      AddAddressPageFactory.route(showMessage: showMessage),
+      CardDeliveryPageFactory.route(showMessage: showMessage),
+      CardDeliveryTimePageFactory.route(showMessage: showMessage),
+      MapAddressPageFactory.route(showMessage: showMessage),
+      ConfirmPasswordPageFactory.route(showMessage: showMessage),
+      MainPageFactory.route(showMessage: showMessage),
+      SelectCardPageFactory.route(showMessage: showMessage),
+      EnableBiometricPageFactory.route(showMessage: showMessage),
+      OnboardingFacePageFactory.route(showMessage: showMessage),
+      IdentityPageFactory.route(showMessage: showMessage),
+      VerifyOtpPageFactory.route(showMessage: showMessage),
+      VerifyPasswordPageFactory.route(showMessage: showMessage),
     ],
   );
 }

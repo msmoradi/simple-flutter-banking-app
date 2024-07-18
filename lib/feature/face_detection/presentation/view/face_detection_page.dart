@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 
 class FaceDetectionPage extends StatelessWidget {
   final Function() onNext;
+  final Function(String) showMessage;
 
   const FaceDetectionPage({
     super.key,
     required this.onNext,
+    required this.showMessage,
   });
 
   @override

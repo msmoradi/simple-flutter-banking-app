@@ -9,8 +9,10 @@ class FaceDetectionPageFactory {
   static FaceDetectionPage builder(
     BuildContext context,
     GoRouterState state,
+    Function(String message) showMessage,
   ) {
     return FaceDetectionPage(
+        showMessage:showMessage,
       onNext: () {
         context.push(
           SelectCardPageFactory.path,
@@ -21,11 +23,12 @@ class FaceDetectionPageFactory {
 
   static GoRoute route({
     List<RouteBase> routes = const <RouteBase>[],
+    required Function(String message) showMessage,
   }) {
     return GoRoute(
         path: (FaceDetectionPageFactory.path),
         builder: (ctx, state) {
-          return FaceDetectionPageFactory.builder(ctx, state);
+          return FaceDetectionPageFactory.builder(ctx, state, showMessage);
         },
         routes: routes);
   }

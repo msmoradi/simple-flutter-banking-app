@@ -12,8 +12,10 @@ class VerifyPasswordPageFactory {
   static VerifyPasswordPage builder(
     BuildContext context,
     GoRouterState state,
+    Function(String message) showMessage,
   ) {
     return VerifyPasswordPage(
+      showMessage: showMessage,
       homeLanding: () {
         context.push(MainPageFactory.path);
       },
@@ -31,11 +33,12 @@ class VerifyPasswordPageFactory {
 
   static GoRoute route({
     List<RouteBase> routes = const <RouteBase>[],
+    required Function(String message) showMessage,
   }) {
     return GoRoute(
         path: (VerifyPasswordPageFactory.path),
         builder: (ctx, state) {
-          return VerifyPasswordPageFactory.builder(ctx, state);
+          return VerifyPasswordPageFactory.builder(ctx, state, showMessage);
         },
         routes: routes);
   }

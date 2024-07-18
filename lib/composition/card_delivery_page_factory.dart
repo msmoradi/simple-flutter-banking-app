@@ -6,8 +6,13 @@ import 'package:go_router/go_router.dart';
 class CardDeliveryPageFactory {
   static const path = "/card_delivery";
 
-  static CardDeliveryPage builder(BuildContext context, GoRouterState state) {
+  static CardDeliveryPage builder({
+    required BuildContext context,
+    required GoRouterState state,
+    required Function(String message) showMessage,
+  }) {
     return CardDeliveryPage(
+        showMessage:showMessage,
       onAddAddress: () {
         context.push(
           AddAddressPageFactory.path,
@@ -18,10 +23,17 @@ class CardDeliveryPageFactory {
 
   static GoRoute route({
     List<RouteBase> routes = const <RouteBase>[],
+    required Function(String message) showMessage,
   }) {
     return GoRoute(
         path: (CardDeliveryPageFactory.path),
-        builder: CardDeliveryPageFactory.builder,
+        builder: (ctx, state) {
+          return CardDeliveryPageFactory.builder(
+            context: ctx,
+            state: state,
+            showMessage: showMessage,
+          );
+        },
         routes: routes);
   }
 }

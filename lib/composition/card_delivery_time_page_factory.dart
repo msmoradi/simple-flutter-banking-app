@@ -7,9 +7,13 @@ import 'package:go_router/go_router.dart';
 class CardDeliveryTimePageFactory {
   static const path = "/card_delivery_time";
 
-  static CardDeliveryTimePage builder(
-      BuildContext context, GoRouterState state) {
+  static CardDeliveryTimePage builder({
+    required BuildContext context,
+    required GoRouterState state,
+    required Function(String message) showMessage,
+  }) {
     return CardDeliveryTimePage(
+        showMessage:showMessage,
       onNext: () {
         context.push(KycStatusPageFactory.path, extra: KycStatusExtra());
       },
@@ -21,10 +25,17 @@ class CardDeliveryTimePageFactory {
 
   static GoRoute route({
     List<RouteBase> routes = const <RouteBase>[],
+    required Function(String message) showMessage,
   }) {
     return GoRoute(
         path: (CardDeliveryTimePageFactory.path),
-        builder: CardDeliveryTimePageFactory.builder,
+        builder: (ctx, state) {
+          return CardDeliveryTimePageFactory.builder(
+            context: ctx,
+            state: state,
+            showMessage: showMessage,
+          );
+        },
         routes: routes);
   }
 }

@@ -12,8 +12,10 @@ class VerifyOtpPageFactory {
     BuildContext context,
     GoRouterState state,
     VerifyOtpExtra extra,
+    Function(String message) showMessage,
   ) {
     return VerifyOtpPage(
+      showMessage:showMessage,
       phoneNumber: extra.phoneNumber,
       codeLength: extra.codeLength,
       expiresIn: extra.expiresIn,
@@ -39,12 +41,13 @@ class VerifyOtpPageFactory {
 
   static GoRoute route({
     List<RouteBase> routes = const <RouteBase>[],
+    required Function(String message) showMessage,
   }) {
     return GoRoute(
         path: (VerifyOtpPageFactory.path),
         builder: (ctx, state) {
           final extra = state.extra as VerifyOtpExtra;
-          return VerifyOtpPageFactory.builder(ctx, state, extra);
+          return VerifyOtpPageFactory.builder(ctx, state, extra, showMessage);
         },
         routes: routes);
   }

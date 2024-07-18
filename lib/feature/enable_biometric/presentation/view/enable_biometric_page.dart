@@ -5,10 +5,12 @@ import 'package:local_auth/local_auth.dart';
 
 class EnableBiometricPage extends StatefulWidget {
   final Function() onNext;
+  final Function(String) showMessage;
 
   const EnableBiometricPage({
     super.key,
     required this.onNext,
+    required this.showMessage,
   });
 
   @override

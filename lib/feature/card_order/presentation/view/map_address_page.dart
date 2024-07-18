@@ -7,10 +7,12 @@ import '../bloc/card_order_bloc.dart';
 
 class MapAddressPage extends StatelessWidget {
   final Function() onNext;
+  final Function(String) showMessage;
 
   const MapAddressPage({
     super.key,
     required this.onNext,
+    required this.showMessage,
   });
 
   @override

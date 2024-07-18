@@ -9,6 +9,7 @@ class VerifyOtpPage extends StatelessWidget {
   final Function() onMainPage;
   final Function() setPassword;
   final Function(String) verifyPassword;
+  final Function(String) showMessage;
   final String phoneNumber;
   final int codeLength;
   final int expiresIn;
@@ -22,6 +23,7 @@ class VerifyOtpPage extends StatelessWidget {
     required this.expiresIn,
     required this.setPassword,
     required this.verifyPassword,
+    required this.showMessage,
   });
 
   @override
@@ -33,11 +35,7 @@ class VerifyOtpPage extends StatelessWidget {
           switch (state) {
             case final VerifyOtpFailure s:
               {
-                ScaffoldMessenger.of(context)
-                  ..hideCurrentSnackBar()
-                  ..showSnackBar(
-                    SnackBar(content: Text(s.message)),
-                  );
+                showMessage(s.message);
               }
             case final VerifyOtpSuccess s:
               {

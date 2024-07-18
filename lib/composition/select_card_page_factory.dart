@@ -10,8 +10,10 @@ class SelectCardPageFactory {
     required BuildContext context,
     required GoRouterState state,
     required SelectCardExtra? extra,
+    required Function(String message) showMessage,
   }) {
     return SelectCardPage(
+        showMessage:showMessage,
       onNext: () {
         context.push(
           AddAddressPageFactory.path,
@@ -22,6 +24,7 @@ class SelectCardPageFactory {
 
   static GoRoute route({
     List<RouteBase> routes = const <RouteBase>[],
+    required Function(String message) showMessage,
   }) {
     return GoRoute(
         path: (SelectCardPageFactory.path),
@@ -31,6 +34,7 @@ class SelectCardPageFactory {
             context: ctx,
             state: state,
             extra: extra,
+              showMessage:showMessage,
           );
         },
         routes: routes);

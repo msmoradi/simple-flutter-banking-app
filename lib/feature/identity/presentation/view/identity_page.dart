@@ -3,17 +3,19 @@ import 'package:banx/feature/identity/presentation/view/identity_content.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
+import 'package:toastification/toastification.dart';
 
 class IdentityPage extends StatelessWidget {
   final bool needReferralCode;
   final String phoneNumber;
   final Function(int, int) onVerifyOtp;
+  final Function(String) showMessage;
 
   const IdentityPage({
     super.key,
     required this.onVerifyOtp,
     required this.needReferralCode,
-    required this.phoneNumber,
+    required this.phoneNumber, required this.showMessage,
   });
 
   @override
@@ -23,11 +25,7 @@ class IdentityPage extends StatelessWidget {
       child: BlocConsumer<IdentityBloc, IdentityState>(
         listener: (context, state) {
           if (state is IdentityFailure) {
-            ScaffoldMessenger.of(context)
-              ..hideCurrentSnackBar()
-              ..showSnackBar(
-                SnackBar(content: Text(state.message)),
-              );
+            showMessage(state.message);
           } else if (state is IdentitySuccess) {
             onVerifyOtp(
               state.signUpEntity.expiresIn,

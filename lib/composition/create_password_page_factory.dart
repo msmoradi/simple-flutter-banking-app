@@ -9,8 +9,10 @@ class CreatePasswordPageFactory {
   static CreatePasswordPage builder(
       {required BuildContext context,
       required GoRouterState state,
-      required CreatePasswordExtra extra}) {
+      required CreatePasswordExtra extra,
+      required Function(String message) showMessage,}) {
     return CreatePasswordPage(
+        showMessage:showMessage,
       onNext: (phone, password) {
         context.push(
           ConfirmPasswordPageFactory.path,
@@ -26,6 +28,7 @@ class CreatePasswordPageFactory {
 
   static GoRoute route({
     List<RouteBase> routes = const <RouteBase>[],
+    required Function(String message) showMessage,
   }) {
     return GoRoute(
         path: (CreatePasswordPageFactory.path),
@@ -35,6 +38,7 @@ class CreatePasswordPageFactory {
             context: ctx,
             state: state,
             extra: extra,
+            showMessage: showMessage,
           );
         },
         routes: routes);

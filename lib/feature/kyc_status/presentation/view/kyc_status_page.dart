@@ -4,10 +4,12 @@ import 'package:flutter/material.dart';
 
 class KycStatusPage extends StatelessWidget {
   final Function() onNext;
+  final Function(String) showMessage;
 
   const KycStatusPage({
     super.key,
     required this.onNext,
+    required this.showMessage,
   });
 
   @override
@@ -63,7 +65,8 @@ class KycStatusPage extends StatelessWidget {
                 const InfoTextRowWidget(
                   icon: Icons.person_4_outlined,
                   title: 'احراز هویت',
-                  subtitle: 'بررسی چهره و تطبیق آن با هویت شما در حال انجام است',
+                  subtitle:
+                      'بررسی چهره و تطبیق آن با هویت شما در حال انجام است',
                 ),
               ],
             ),

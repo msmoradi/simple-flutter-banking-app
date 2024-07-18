@@ -6,8 +6,12 @@ import 'package:go_router/go_router.dart';
 class MapAddressPageFactory {
   static const path = "/map_address";
 
-  static MapAddressPage builder(BuildContext context, GoRouterState state) {
+  static MapAddressPage builder(
+      {required BuildContext context,
+      required GoRouterState state,
+      required Function(String message) showMessage,}) {
     return MapAddressPage(
+        showMessage:showMessage,
       onNext: () {
         context.push(CardDeliveryTimePageFactory.path);
       },
@@ -16,10 +20,17 @@ class MapAddressPageFactory {
 
   static GoRoute route({
     List<RouteBase> routes = const <RouteBase>[],
+    required Function(String message) showMessage,
   }) {
     return GoRoute(
         path: (MapAddressPageFactory.path),
-        builder: MapAddressPageFactory.builder,
+        builder: (ctx, state) {
+          return MapAddressPageFactory.builder(
+            context: ctx,
+            state: state,
+            showMessage: showMessage,
+          );
+        },
         routes: routes);
   }
 }

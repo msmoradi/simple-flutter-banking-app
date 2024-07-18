@@ -7,8 +7,13 @@ import 'package:go_router/go_router.dart';
 class PhonePageFactory {
   static const path = "/phone";
 
-  static PhonePage builder(BuildContext context, GoRouterState state) {
+  static PhonePage builder({
+    required BuildContext context,
+    required GoRouterState state,
+    required Function(String message) showMessage,
+  }) {
     return PhonePage(
+        showMessage:showMessage,
       onIdentity: (phoneNumber, needReferralCode) {
         context.push(IdentityPageFactory.path,
             extra: IdentityExtra(
@@ -29,10 +34,17 @@ class PhonePageFactory {
 
   static GoRoute route({
     List<RouteBase> routes = const <RouteBase>[],
+    required Function(String message) showMessage,
   }) {
     return GoRoute(
         path: (PhonePageFactory.path),
-        builder: PhonePageFactory.builder,
+        builder: (ctx, state) {
+          return PhonePageFactory.builder(
+            context: ctx,
+            state: state,
+            showMessage: showMessage,
+          );
+        },
         routes: routes);
   }
 }

@@ -5,10 +5,11 @@ import 'package:flutter/material.dart';
 
 class SelectCardPage extends StatefulWidget {
   final Function() onNext;
+  final Function(String) showMessage;
 
   const SelectCardPage({
     super.key,
-    required this.onNext,
+    required this.onNext, required this.showMessage,
   });
 
   @override

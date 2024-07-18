@@ -9,6 +9,7 @@ class VerifyPasswordPage extends StatelessWidget {
   final Function() waitingLanding;
   final Function() faceDetectionLanding;
   final Function() cardOrderingLanding;
+  final Function(String) showMessage;
 
   const VerifyPasswordPage({
     super.key,
@@ -16,6 +17,7 @@ class VerifyPasswordPage extends StatelessWidget {
     required this.waitingLanding,
     required this.faceDetectionLanding,
     required this.cardOrderingLanding,
+    required this.showMessage,
   });
 
   @override
@@ -24,7 +26,7 @@ class VerifyPasswordPage extends StatelessWidget {
       create: (context) => GetIt.instance<VerifyPasswordBloc>(),
       child: BlocConsumer<VerifyPasswordBloc, VerifyPasswordState>(
         listener: (context, state) {
-          _handleStateChange(context, state);
+          _handleStateChange(context, state, showMessage);
         },
         builder: (context, state) {
           return VerifyPasswordContent(
@@ -35,15 +37,12 @@ class VerifyPasswordPage extends StatelessWidget {
     );
   }
 
-  void _handleStateChange(BuildContext context, VerifyPasswordState state) {
+  void _handleStateChange(
+      BuildContext context, VerifyPasswordState state, showMessage) {
     switch (state) {
       case final VerifyPasswordFailure s:
         {
-          ScaffoldMessenger.of(context)
-            ..hideCurrentSnackBar()
-            ..showSnackBar(
-              SnackBar(content: Text(s.message)),
-            );
+          showMessage(s.message);
         }
       case final HomeLanding s:
         {

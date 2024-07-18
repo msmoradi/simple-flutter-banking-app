@@ -5,6 +5,7 @@ import 'package:banx/di.dart';
 import 'package:banx/routing/router.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:toastification/toastification.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -12,34 +13,49 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     precacheImages(context);
-    return FutureBuilder<GoRouter>(
-      future: _initializeRouter(),
-      builder: (context, snapshot) {
-        if (!snapshot.hasData) {
-          return MaterialApp(
-            debugShowCheckedModeBanner: false,
-            locale: const Locale('fa'),
-            theme: BanxTheme.light(),
-            darkTheme: BanxTheme.dark(),
+    return ToastificationWrapper(
+      child: FutureBuilder<GoRouter>(
+        future: _initializeRouter(showMessage: (message) {
+          toastification.show(
+            type: ToastificationType.error,
+            style: ToastificationStyle.fillColored,
+            alignment: Alignment.bottomCenter,
+            showProgressBar: false,
+            closeOnClick: true,
+            dragToClose: true,
+            title: Text(message),
+            autoCloseDuration: const Duration(seconds: 5),
           );
-        } else {
-          return MaterialApp.router(
-            debugShowCheckedModeBanner: false,
-            routerConfig: snapshot.data!,
-            theme: BanxTheme.light(),
-            darkTheme: BanxTheme.dark(),
-            locale: const Locale('fa'),
-            localizationsDelegates: Translator.localizationsDelegates,
-            supportedLocales: Translator.supportedLocales,
-          );
-        }
-      },
+        }),
+        builder: (context, snapshot) {
+          if (!snapshot.hasData) {
+            return MaterialApp(
+              debugShowCheckedModeBanner: false,
+              locale: const Locale('fa'),
+              theme: BanxTheme.light(),
+              darkTheme: BanxTheme.dark(),
+            );
+          } else {
+            return MaterialApp.router(
+              debugShowCheckedModeBanner: false,
+              routerConfig: snapshot.data!,
+              theme: BanxTheme.light(),
+              darkTheme: BanxTheme.dark(),
+              locale: const Locale('fa'),
+              localizationsDelegates: Translator.localizationsDelegates,
+              supportedLocales: Translator.supportedLocales,
+            );
+          }
+        },
+      ),
     );
   }
 
-  Future<GoRouter> _initializeRouter() async {
+  Future<GoRouter> _initializeRouter(
+      {required Function(String) showMessage}) async {
     final banxConfig = getIt<BanxConfig>();
-    return await getRouterConfig(banxConfig);
+    return await getRouterConfig(
+        banxConfig: banxConfig, showMessage: showMessage);
   }
 
   void precacheImages(BuildContext context) {

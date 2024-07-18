@@ -7,10 +7,12 @@ import '../bloc/add_address_bloc.dart';
 
 class AddAddressPage extends StatelessWidget {
   final Function() onNext;
+  final Function(String) showMessage;
 
   const AddAddressPage({
     super.key,
     required this.onNext,
+    required this.showMessage,
   });
 
   @override
@@ -20,11 +22,7 @@ class AddAddressPage extends StatelessWidget {
       child: BlocConsumer<AddAddressBloc, AddAddressState>(
         listener: (context, state) {
           if (state is AddAddressFailure) {
-            ScaffoldMessenger.of(context)
-              ..hideCurrentSnackBar()
-              ..showSnackBar(
-                SnackBar(content: Text(state.message)),
-              );
+            showMessage(state.message);
           } else if (state is AddAddressSuccess) {
             onNext();
           }

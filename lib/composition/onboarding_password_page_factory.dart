@@ -10,8 +10,10 @@ class OnboardingPasswordPageFactory {
     required BuildContext context,
     required GoRouterState state,
     required OnboardingPasswordExtra extra,
+    required Function(String message) showMessage,
   }) {
     return OnboardingPasswordPage(
+        showMessage:showMessage,
       onNext: () {
         context.push(
           CreatePasswordPageFactory.path,
@@ -25,6 +27,7 @@ class OnboardingPasswordPageFactory {
 
   static GoRoute route({
     List<RouteBase> routes = const <RouteBase>[],
+    required Function(String message) showMessage,
   }) {
     return GoRoute(
         path: (OnboardingPasswordPageFactory.path),
@@ -34,6 +37,7 @@ class OnboardingPasswordPageFactory {
             context: ctx,
             state: state,
             extra: extra,
+            showMessage: showMessage,
           );
         },
         routes: routes);

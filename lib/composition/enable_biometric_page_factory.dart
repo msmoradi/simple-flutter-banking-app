@@ -9,9 +9,10 @@ class EnableBiometricPageFactory {
   static EnableBiometricPage builder({
     required BuildContext context,
     required GoRouterState state,
-    EnableBiometricExtra? extra,
+    EnableBiometricExtra? extra, required Function(String message) showMessage,
   }) {
     return EnableBiometricPage(
+        showMessage:showMessage,
       onNext: () {
         context.push(
           OnboardingFacePageFactory.path,
@@ -22,6 +23,7 @@ class EnableBiometricPageFactory {
 
   static GoRoute route({
     List<RouteBase> routes = const <RouteBase>[],
+    required Function(String message) showMessage,
   }) {
     return GoRoute(
         path: (EnableBiometricPageFactory.path),
@@ -31,6 +33,7 @@ class EnableBiometricPageFactory {
             context: ctx,
             state: state,
             extra: extra,
+              showMessage:showMessage,
           );
         },
         routes: routes);

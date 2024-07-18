@@ -8,11 +8,13 @@ import '../bloc/card_order_bloc.dart';
 class CardDeliveryTimePage extends StatelessWidget {
   final Function() onNext;
   final Function() onEditAddress;
+  final Function(String) showMessage;
 
   const CardDeliveryTimePage({
     super.key,
     required this.onNext,
     required this.onEditAddress,
+    required this.showMessage,
   });
 
   @override

@@ -4,10 +4,12 @@ import 'package:flutter/material.dart';
 
 class OnboardingFacePage extends StatelessWidget {
   final Function() onNext;
+  final Function(String) showMessage;
 
   const OnboardingFacePage({
     super.key,
     required this.onNext,
+    required this.showMessage,
   });
 
   @override
@@ -42,7 +44,10 @@ class OnboardingFacePage extends StatelessWidget {
                       Align(
                         alignment: Alignment.centerRight,
                         child: Text(
-                          style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                          style: Theme.of(context)
+                              .textTheme
+                              .headlineMedium
+                              ?.copyWith(
                                 fontWeight: FontWeight.bold,
                                 color: Theme.of(context).colorScheme.primary,
                               ),

@@ -12,8 +12,10 @@ class ConfirmPasswordPageFactory {
   static ConfirmPasswordPage builder(
       {required BuildContext context,
       required GoRouterState state,
-      required ConfirmPasswordExtra extra}) {
+      required ConfirmPasswordExtra extra,
+      required Function(String message) showMessage}) {
     return ConfirmPasswordPage(
+        showMessage:showMessage,
       homeLanding: () {
         context.push(MainPageFactory.path);
       },
@@ -33,6 +35,7 @@ class ConfirmPasswordPageFactory {
 
   static GoRoute route({
     List<RouteBase> routes = const <RouteBase>[],
+    required Function(String message) showMessage,
   }) {
     return GoRoute(
         path: (ConfirmPasswordPageFactory.path),
@@ -42,6 +45,7 @@ class ConfirmPasswordPageFactory {
             context: ctx,
             state: state,
             extra: extra,
+            showMessage: showMessage,
           );
         },
         routes: routes);

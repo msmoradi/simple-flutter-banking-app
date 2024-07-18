@@ -7,10 +7,11 @@ import '../bloc/card_order_bloc.dart';
 
 class CardDeliveryPage extends StatelessWidget {
   final Function() onAddAddress;
+  final Function(String) showMessage;
 
   const CardDeliveryPage({
     super.key,
-    required this.onAddAddress,
+    required this.onAddAddress, required this.showMessage,
   });
 
   @override

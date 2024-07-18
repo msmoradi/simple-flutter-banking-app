@@ -4,12 +4,14 @@ import 'package:flutter/material.dart';
 
 class CreatePasswordPage extends StatefulWidget {
   final Function(String, String) onNext;
+  final Function(String) showMessage;
   final String phoneNumber;
 
   const CreatePasswordPage({
     super.key,
     required this.onNext,
     required this.phoneNumber,
+    required this.showMessage,
   });
 
   @override
