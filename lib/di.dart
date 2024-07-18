@@ -34,21 +34,3 @@ abstract class RegisterModule {
           compact: true,
         ));
 }
-
-/*void setup() {
-  getIt.registerSingleton<Dio>(Dio());
-  getIt.registerSingleton<TokenRepository>(TokenRepositoryImpl());
-  getIt.registerSingleton<HTTPClient>(ApiService(tokenRepository: getIt()));
-
-  getIt.registerFactory<AuthenticationRepository>(() =>
-      AuthenticationRepositoryImpl(
-          authenticationRemoteDataSource: getIt(), tokenRepository: getIt()));
-  getIt.registerFactory<ProfileRepository>(
-      () => ProfileRepositoryImpl(profileRemoteDataSource: getIt()));
-
-  getIt.registerFactory<AuthenticationRemoteDataSource>(
-      () => AuthenticationRemoteDataSourceImpl(apiService: getIt()));
-
-  getIt.registerFactory<ProfileRemoteDataSource>(
-      () => ProfileRemoteDataSourceImpl(apiService: getIt()));
-}*/
