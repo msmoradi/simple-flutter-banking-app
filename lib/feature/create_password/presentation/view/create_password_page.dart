@@ -65,54 +65,56 @@ class _CreatePasswordPageState extends State<CreatePasswordPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const EmptyAppBar(),
-      body: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text(
-              "تعریف رمز عبور",
-              style: Theme.of(context)
-                  .textTheme
-                  .headlineSmall
-                  ?.copyWith(fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: 16),
-            Text(
-              "رمز ورود به اپلیکیشن باید بین ۴ الی ۶ رقم باشد",
-              style: Theme.of(context).textTheme.titleMedium,
-              textAlign: TextAlign.center,
-            ),
-            const SizedBox(height: 56),
-            Form(
-              key: formKey,
-              child: Directionality(
-                textDirection: TextDirection.ltr,
-                child: Center(
-                  child: RoundedWithShadowInput(
-                    obscureText: true,
-                    focusNode: focusNode,
-                    controller: pinController,
-                    useNativeKeyboard: false,
-                    length: 4,
-                    validator: (value) {
-                      return value?.length == 4 ? null : 'رمز را وارد کنید';
-                    },
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                "تعریف رمز عبور",
+                style: Theme.of(context)
+                    .textTheme
+                    .headlineSmall
+                    ?.copyWith(fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(height: 16),
+              Text(
+                "رمز ورود به اپلیکیشن باید بین ۴ الی ۶ رقم باشد",
+                style: Theme.of(context).textTheme.titleMedium,
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 56),
+              Form(
+                key: formKey,
+                child: Directionality(
+                  textDirection: TextDirection.ltr,
+                  child: Center(
+                    child: RoundedWithShadowInput(
+                      obscureText: true,
+                      focusNode: focusNode,
+                      controller: pinController,
+                      useNativeKeyboard: false,
+                      length: 4,
+                      validator: (value) {
+                        return value?.length == 4 ? null : 'رمز را وارد کنید';
+                      },
+                    ),
                   ),
                 ),
               ),
-            ),
-            const Spacer(),
-            CustomKeypad(
-              onKeyTapped: _onKeyTapped,
-              onBackspace: _onBackspace,
-              onPrimaryTapped: _onPrimaryTapped,
-              primaryIcon: Icons.arrow_circle_left_rounded,
-              isEnabled: pinController.text.length < 4,
-            ),
-            const SizedBox(height: 42),
-          ],
+              const Spacer(),
+              CustomKeypad(
+                onKeyTapped: _onKeyTapped,
+                onBackspace: _onBackspace,
+                onPrimaryTapped: _onPrimaryTapped,
+                primaryIcon: Icons.arrow_circle_left_rounded,
+                isEnabled: pinController.text.length < 4,
+              ),
+              const SizedBox(height: 42),
+            ],
+          ),
         ),
       ),
     );

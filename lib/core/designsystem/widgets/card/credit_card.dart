@@ -6,14 +6,16 @@ import 'package:flip_card/flip_card_controller.dart';
 import 'package:flutter/material.dart';
 
 class CreditCard extends StatefulWidget {
-  final String cardHolderName;
+  final String firstName;
+  final String lastName;
   final bool flipOnTouch;
   final double scale;
   final int quarterTurns;
 
   const CreditCard(
       {super.key,
-      required this.cardHolderName,
+      required this.firstName,
+      required this.lastName,
       required this.flipOnTouch,
       this.scale = 1.0,
       this.quarterTurns = 0});
@@ -61,7 +63,8 @@ class _CreditCardState extends State<CreditCard> {
               ),
               child: FrontCard(
                 cardHeight: cardHeight,
-                name: widget.cardHolderName,
+                firstName: widget.firstName,
+                lastName: widget.lastName,
               ),
             ),
             back: AnimatedContainer(

@@ -16,7 +16,8 @@ class SelectCardPage extends StatefulWidget {
 }
 
 class _SelectCardPageState extends State<SelectCardPage> {
-  String cardHolderName = "Saeed Moradi";
+  String _firstName = "Saeed";
+  String _lastName = "Moradi";
 
   @override
   Widget build(BuildContext context) {
@@ -31,43 +32,46 @@ class _SelectCardPageState extends State<SelectCardPage> {
           'سفارش کارت',
         ),
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            const SizedBox(
-              height: 30,
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 62.0),
-              child: CreditCard(
-                cardHolderName: cardHolderName,
-                flipOnTouch: false,
-                quarterTurns: 1,
-                scale: 1.4,
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              const SizedBox(
+                height: 30,
               ),
-            ),
-            const SizedBox(
-              width: double.infinity,
-              height: 26,
-            ),
-            Text(
-              'کارت فلزی  |  رنگ کربنی',
-              style: Theme.of(context)
-                  .textTheme
-                  .headlineSmall
-                  ?.copyWith(color: Theme.of(context).colorScheme.primary),
-              textAlign: TextAlign.center,
-            ),
-            const SizedBox(
-              height: 12,
-            ),
-            Text(
-              'کارت بانکی، عضو شبکه شتاب',
-              textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  color: Theme.of(context).colorScheme.onSurfaceVariant),
-            ),
-          ],
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 62.0),
+                child: CreditCard(
+                  firstName: _firstName,
+                  lastName: _lastName,
+                  flipOnTouch: false,
+                  quarterTurns: 1,
+                  scale: 1.4,
+                ),
+              ),
+              const SizedBox(
+                width: double.infinity,
+                height: 26,
+              ),
+              Text(
+                'کارت فلزی  |  رنگ کربنی',
+                style: Theme.of(context)
+                    .textTheme
+                    .headlineSmall
+                    ?.copyWith(color: Theme.of(context).colorScheme.primary),
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(
+                height: 12,
+              ),
+              Text(
+                'کارت بانکی، عضو شبکه شتاب',
+                textAlign: TextAlign.center,
+                style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                    color: Theme.of(context).colorScheme.onSurfaceVariant),
+              ),
+            ],
+          ),
         ),
       ),
       bottomNavigationBar: Padding(
@@ -89,11 +93,14 @@ class _SelectCardPageState extends State<SelectCardPage> {
                   ),
                   context: context,
                   builder: (context) => CardPersonalizationBottomSheet(
-                    controller: TextEditingController(text: cardHolderName),
-                    onButtonPressed: (value) {
+                    firstNameController:
+                        TextEditingController(text: _firstName),
+                    lastNameController: TextEditingController(text: _lastName),
+                    onButtonPressed: (firstName, lastName) {
                       Navigator.of(context).pop();
                       setState(() {
-                        cardHolderName = value;
+                        _firstName = firstName;
+                        _lastName = lastName;
                       });
                     },
                   ),
@@ -129,7 +136,7 @@ class _SelectCardPageState extends State<SelectCardPage> {
                             height: 2,
                           ),
                           Text(
-                            cardHolderName,
+                            _firstName +" "+ _lastName,
                             style: Theme.of(context)
                                 .textTheme
                                 .titleMedium

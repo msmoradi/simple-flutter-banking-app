@@ -47,21 +47,23 @@ class _AddAddressContentState extends State<AddAddressContent> {
           'آدرس دریافت کارت',
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16),
-        child: SingleChildScrollView(
-          child: Form(
-            key: _formKey,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                PostalCodeTextField(
-                  autofocus: true,
-                  onSaved: (value) {
-                    _postalCode = value;
-                  },
-                ),
-              ],
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: SingleChildScrollView(
+            child: Form(
+              key: _formKey,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  PostalCodeTextField(
+                    autofocus: true,
+                    onSaved: (value) {
+                      _postalCode = value;
+                    },
+                  ),
+                ],
+              ),
             ),
           ),
         ),

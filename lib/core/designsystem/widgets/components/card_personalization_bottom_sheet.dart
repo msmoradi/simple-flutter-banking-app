@@ -1,16 +1,17 @@
-
 import 'package:banx/core/designsystem/widgets/button/fill/full_fill_button.dart';
 import 'package:banx/core/designsystem/widgets/components/with_icon_row.dart';
 import 'package:flutter/material.dart';
 
 class CardPersonalizationBottomSheet extends StatelessWidget {
-  final Function(String date) onButtonPressed;
-  final TextEditingController controller;
+  final Function(String firstName, String lastName) onButtonPressed;
+  final TextEditingController firstNameController;
+  final TextEditingController lastNameController;
 
   const CardPersonalizationBottomSheet({
     super.key,
     required this.onButtonPressed,
-    required this.controller,
+    required this.firstNameController,
+    required this.lastNameController,
   });
 
   @override
@@ -24,19 +25,33 @@ class CardPersonalizationBottomSheet extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Row(),
               TextFormField(
                 autofocus: true,
-                controller: controller,
+                controller: firstNameController,
                 onFieldSubmitted: (text) {},
                 keyboardType: TextInputType.name,
                 decoration: const InputDecoration(
-                  hintText: "نام و نام‌خانوادگی درج شده روی کارت",
+                  hintText: "نام درج شده روی کارت",
+                ),
+                validator: (value) {
+                  return value?.isNotEmpty == true ? null : 'نام باید پر شود';
+                },
+              ),
+              const SizedBox(
+                height: 16,
+              ),
+              TextFormField(
+                autofocus: true,
+                controller: lastNameController,
+                onFieldSubmitted: (text) {},
+                keyboardType: TextInputType.name,
+                decoration: const InputDecoration(
+                  hintText: "نام‌خانوادگی درج شده روی کارت",
                 ),
                 validator: (value) {
                   return value?.isNotEmpty == true
                       ? null
-                      : 'نام و نام خانوادگی باید پر شود';
+                      : 'نام خانوادگی باید پر شود';
                 },
               ),
               const SizedBox(
@@ -94,7 +109,8 @@ class CardPersonalizationBottomSheet extends StatelessWidget {
               PrimaryFillButton(
                 label: 'ذخیره تغییرات',
                 onPressed: () {
-                  onButtonPressed(controller.text);
+                  onButtonPressed(
+                      firstNameController.text, lastNameController.text);
                 },
               )
             ],

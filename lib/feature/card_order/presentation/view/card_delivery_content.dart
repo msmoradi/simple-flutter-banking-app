@@ -23,42 +23,44 @@ class CardDeliveryContent extends StatelessWidget {
           'تحویل کارت',
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          children: [
-            const SizedBox(height: 16),
-            Image.asset(
-              'assets/images/card-banner.png',
-              height: 80,
-              width: 361,
-            ),
-            SizedBox(height: 30.0),
-            Align(
-              alignment: Alignment.centerRight,
-              child: Text(
-                'آدرس دریافت کارت خود را انتخاب کنید',
-                style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                    fontWeight: FontWeight.bold,
-                    color: Theme.of(context).colorScheme.primary),
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            children: [
+              const SizedBox(height: 16),
+              Image.asset(
+                'assets/images/card-banner.png',
+                height: 80,
+                width: 361,
               ),
-            ),
-            SizedBox(height: 16),
-            Column(
-              children: [
-                AddressRow(
-                    address:
-                        'شهر تهران، محله اکباتان، خیابان .شکوری غربی، بلوار شهید عبدالرحمان نفیسی ، فازیک بلوک A5، پلاک 0، طبقه 9، واحد 458'),
-              ],
-            ),
-            Spacer(),
-            PrimaryFillButton(
-              onPressed: onAddAddress,
-              icon: Icons.add_rounded,
-              label: 'آدرس جدید',
-              isLoading: state is CardOrderInProgress,
-            ),
-          ],
+              SizedBox(height: 30.0),
+              Align(
+                alignment: Alignment.centerRight,
+                child: Text(
+                  'آدرس دریافت کارت خود را انتخاب کنید',
+                  style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                      fontWeight: FontWeight.bold,
+                      color: Theme.of(context).colorScheme.primary),
+                ),
+              ),
+              SizedBox(height: 16),
+              Column(
+                children: [
+                  AddressRow(
+                      address:
+                          'شهر تهران، محله اکباتان، خیابان .شکوری غربی، بلوار شهید عبدالرحمان نفیسی ، فازیک بلوک A5، پلاک 0، طبقه 9، واحد 458'),
+                ],
+              ),
+              Spacer(),
+              PrimaryFillButton(
+                onPressed: onAddAddress,
+                icon: Icons.add_rounded,
+                label: 'آدرس جدید',
+                isLoading: state is CardOrderInProgress,
+              ),
+            ],
+          ),
         ),
       ),
     );

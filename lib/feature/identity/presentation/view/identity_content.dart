@@ -20,12 +20,14 @@ class IdentityContent extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const EmptyAppBar(),
-      body: Padding(
-        padding: const EdgeInsets.all(16),
-        child: IdentityForm(
-          phoneNumber: phoneNumber,
-          needReferralCode: needReferralCode,
-          showLoading: state is IdentityInProgress,
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: IdentityForm(
+            phoneNumber: phoneNumber,
+            needReferralCode: needReferralCode,
+            showLoading: state is IdentityInProgress,
+          ),
         ),
       ),
     );

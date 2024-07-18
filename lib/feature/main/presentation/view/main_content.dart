@@ -7,7 +7,7 @@ class MainContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      body: Center(child: Text("صفحه اصلی")),
+      body: SafeArea(child: Center(child: Text("صفحه اصلی"))),
     );
   }
 }

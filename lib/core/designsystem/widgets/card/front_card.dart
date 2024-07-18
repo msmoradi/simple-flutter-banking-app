@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class FrontCard extends StatelessWidget {
   final double cardHeight;
-  final String name;
+  final String firstName;
+  final String lastName;
 
-  const FrontCard({super.key, required this.cardHeight, required this.name});
+  const FrontCard({
+    super.key,
+    required this.cardHeight,
+    required this.firstName,
+    required this.lastName,
+  });
 
   String convertName(String input) {
     List<String> parts = input.split(' ');
@@ -49,15 +56,14 @@ class FrontCard extends StatelessWidget {
         ),
         Positioned(
           bottom: cardHeight * 0.1,
-          left: cardHeight * 0.12,
+          left: cardHeight * 0.2,
           child: Text(
-            convertName(name),
-            style: const TextStyle(
+            "$firstName\n   $lastName",
+            style: GoogleFonts.satisfy(
               color: Colors.white,
               fontSize: 24,
               fontWeight: FontWeight.w400,
               fontStyle: FontStyle.italic,
-              fontFamily: 'Cursive',
             ),
           ),
         ),

@@ -23,14 +23,16 @@ class VerifyOtpContent extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const EmptyAppBar(),
-      body: Padding(
-        padding: const EdgeInsets.all(16),
-        child: VerifyOtpForm(
-            showLoading: state is VerifyOtpInProgress,
-            phoneNumber: phoneNumber,
-            codeLength: codeLength,
-            expiresIn: expiresIn,
-            errorMessage: errorMessage),
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: VerifyOtpForm(
+              showLoading: state is VerifyOtpInProgress,
+              phoneNumber: phoneNumber,
+              codeLength: codeLength,
+              expiresIn: expiresIn,
+              errorMessage: errorMessage),
+        ),
       ),
     );
   }

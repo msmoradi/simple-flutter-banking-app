@@ -28,11 +28,6 @@ class App extends StatelessWidget {
             locale: const Locale('fa'),
             theme: BanxTheme.light(),
             darkTheme: BanxTheme.dark(),
-            home: const Scaffold(
-              body: Center(
-                child: CircularProgressIndicator(),
-              ),
-            ),
           );
         } else {
           return MaterialApp.router(

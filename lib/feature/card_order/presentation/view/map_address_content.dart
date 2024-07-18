@@ -21,17 +21,19 @@ class MapAddressContent extends StatelessWidget {
           'آدرس دقیق روی نقشه',
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          children: [
-            Spacer(),
-            PrimaryFillButton(
-              onPressed: onNext,
-              label: 'تأیید آدرس',
-              isLoading: state is CardOrderInProgress,
-            ),
-          ],
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            children: [
+              Spacer(),
+              PrimaryFillButton(
+                onPressed: onNext,
+                label: 'تأیید آدرس',
+                isLoading: state is CardOrderInProgress,
+              ),
+            ],
+          ),
         ),
       ),
     );
