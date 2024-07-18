@@ -1,6 +1,7 @@
 import 'package:banx/core/domain/repository/token_repository.dart';
 import 'package:banx/core/networking/api_endpoints.dart';
 import 'package:banx/core/networking/interceptors/info_interceptor.dart';
+import 'package:banx/core/networking/interceptors/response_interceptor.dart';
 import 'package:banx/core/networking/interceptors/token_interceptor.dart';
 import 'package:banx/core/utils/configurations/banx_config.dart';
 import 'package:banx/di.config.dart';
@@ -22,18 +23,18 @@ abstract class RegisterModule {
   String get baseUrl => ApiEndpoint.baseUrl;
 
   @lazySingleton
-  Dio dio(@Named('BaseUrl') String url, TokenRepository tokenRepository) =>
+  Dio dio(
+    @Named('BaseUrl') String url,
+    ResponseInterceptor responseInterceptor,
+    TokenInterceptor tokenInterceptor,
+    InfoInterceptor infoInterceptor,
+    PrettyDioLogger prettyDioLogger,
+  ) =>
       Dio(BaseOptions(baseUrl: url))
-        ..interceptors.add(InfoInterceptor())
-        ..interceptors.add(TokenInterceptor(tokenRepository: tokenRepository))
-        ..interceptors.add(PrettyDioLogger(
-          requestHeader: true,
-          requestBody: true,
-          responseBody: true,
-          responseHeader: false,
-          error: true,
-          compact: true,
-        ));
+        ..interceptors.add(responseInterceptor)
+        ..interceptors.add(infoInterceptor)
+        ..interceptors.add(tokenInterceptor)
+        ..interceptors.add(prettyDioLogger);
 
   @lazySingleton
   FlutterSecureStorage flutterSecureStorage() => const FlutterSecureStorage(
@@ -47,4 +48,14 @@ abstract class RegisterModule {
     final config = BanxConfig(tokenRepository: tokenRepository);
     return config;
   }
+
+  @lazySingleton
+  PrettyDioLogger prettyDioLogger() => PrettyDioLogger(
+        requestHeader: true,
+        requestBody: true,
+        responseBody: true,
+        responseHeader: false,
+        error: true,
+        compact: false,
+      );
 }

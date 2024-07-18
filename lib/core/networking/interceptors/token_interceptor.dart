@@ -1,6 +1,8 @@
 import 'package:banx/core/domain/repository/token_repository.dart';
 import 'package:dio/dio.dart';
+import 'package:injectable/injectable.dart';
 
+@injectable
 class TokenInterceptor extends Interceptor {
   final TokenRepository tokenRepository;
 
