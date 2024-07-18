@@ -28,7 +28,7 @@ dependencies:
   toastification: ^2.0.0
   flip_card: ^0.7.0
   pinput: ^5.0.0
-  camera: ^0.10.5+9
+  camera: ^0.11.0+1
   get_it: ^7.7.0
   google_fonts: ^6.2.1
   injectable: ^2.4.2
