@@ -3,6 +3,7 @@ import 'package:banx/core/designsystem/widgets/textfields/rounded_with_shadow_ot
 import 'package:banx/feature/verify_password/presentation/bloc/verify_password_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:local_auth/local_auth.dart';
 
 class VerifyPasswordContent extends StatefulWidget {
   final bool showLoading;
@@ -22,6 +23,8 @@ class VerifyPasswordContent extends StatefulWidget {
 
 class _VerifyPasswordContentState extends State<VerifyPasswordContent> {
   late final TextEditingController pinController;
+  final LocalAuthentication _localAuth = LocalAuthentication();
+  bool _biometricEnabled = false;
 
   void _onKeyTapped(String key) {
     setState(() {
@@ -38,16 +41,20 @@ class _VerifyPasswordContentState extends State<VerifyPasswordContent> {
     }
   }
 
-  Future<void> _authenticateAndRetrievePassword() async {
-    context.read<VerifyPasswordBloc>().add(
-          const BiometricsSubmitted(),
-        );
+  Future<void> _checkBiometricSupport() async {
+    bool canCheckBiometrics = await _localAuth.canCheckBiometrics;
+    if (canCheckBiometrics) {
+      setState(() {
+        _biometricEnabled = true;
+      });
+    }
   }
 
   @override
   void initState() {
     super.initState();
     pinController = TextEditingController();
+    _checkBiometricSupport();
   }
 
   @override
@@ -62,7 +69,6 @@ class _VerifyPasswordContentState extends State<VerifyPasswordContent> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        toolbarHeight: 0.0,
         automaticallyImplyLeading: false,
       ),
       body: SafeArea(
@@ -114,8 +120,13 @@ class _VerifyPasswordContentState extends State<VerifyPasswordContent> {
                       CustomKeypad(
                         onKeyTapped: _onKeyTapped,
                         onBackspace: _onBackspace,
-                        onPrimaryTapped: _authenticateAndRetrievePassword,
-                        primaryIcon: Icons.fingerprint_rounded,
+                        onPrimaryTapped: () =>
+                            context.read<VerifyPasswordBloc>().add(
+                                  const BiometricsSubmitted(),
+                                ),
+                        primaryIcon: _biometricEnabled
+                            ? Icons.fingerprint_rounded
+                            : null,
                         isEnabled: pinController.text.length < 4,
                       ),
                     ],
