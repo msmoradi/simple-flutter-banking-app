@@ -9,7 +9,7 @@ class CardDeliveryTimeContent extends StatelessWidget {
   final Function() onEditAddress;
   final CardOrderState state;
 
-  CardDeliveryTimeContent({
+  const CardDeliveryTimeContent({
     super.key,
     required this.state,
     required this.onNext,
@@ -41,13 +41,13 @@ class CardDeliveryTimeContent extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            SizedBox(height: 16.0),
+            const SizedBox(height: 16.0),
             Image.asset(
               'assets/images/card-banner.png',
               height: 80,
               width: 361,
             ),
-            SizedBox(height: 30.0),
+            const SizedBox(height: 30.0),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: Align(
@@ -60,7 +60,7 @@ class CardDeliveryTimeContent extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: AddressRow(
@@ -69,12 +69,12 @@ class CardDeliveryTimeContent extends StatelessWidget {
                     'شهر تهران، محله اکباتان، خیابان .شکوری غربی، بلوار شهید عبدالرحمان نفیسی ، فازیک بلوک A5، پلاک 0، طبقه 9، واحد 458',
               ),
             ),
-            SizedBox(height: 32),
+            const SizedBox(height: 32),
             Container(
               height: 12,
-              color: Color(0xffF4F6F7),
+              color: const Color(0xffF4F6F7),
             ),
-            SizedBox(height: 32),
+            const SizedBox(height: 32),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: Align(
@@ -87,7 +87,7 @@ class CardDeliveryTimeContent extends StatelessWidget {
                 ),
               ),
             ),
-            DeliveryCardTimes()
+            const DeliveryCardTimes()
           ],
         ),
       ),

@@ -12,7 +12,7 @@ class ReferralCodeTextField extends StatefulWidget {
   final bool needValidation;
 
   const ReferralCodeTextField({
-    Key? key,
+    super.key,
     this.onSaved,
     this.onFieldSubmitted,
     this.controller,
@@ -20,7 +20,7 @@ class ReferralCodeTextField extends StatefulWidget {
     this.autofocus = false,
     this.onSuffixPressed,
     required this.needValidation,
-  }) : super(key: key);
+  });
 
   @override
   State<ReferralCodeTextField> createState() => _ReferralCodeTextFieldState();

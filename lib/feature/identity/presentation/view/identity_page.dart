@@ -3,7 +3,6 @@ import 'package:banx/feature/identity/presentation/view/identity_content.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
-import 'package:toastification/toastification.dart';
 
 class IdentityPage extends StatelessWidget {
   final bool needReferralCode;

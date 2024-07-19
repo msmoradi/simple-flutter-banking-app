@@ -7,7 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class AddAddressContent extends StatefulWidget {
   final bool showLoading;
 
-  AddAddressContent({super.key, required this.showLoading});
+  const AddAddressContent({super.key, required this.showLoading});
 
   @override
   State<AddAddressContent> createState() => _AddAddressContentState();

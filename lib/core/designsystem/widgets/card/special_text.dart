@@ -11,7 +11,7 @@ class SpecialText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       text,
-      style: TextStyle(
+      style: const TextStyle(
         fontSize: 16,
         color: Colors.white,
       ),

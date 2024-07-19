@@ -7,12 +7,12 @@ class BirthdayTextField extends StatefulWidget {
   final GestureTapCallback? onTap;
 
   const BirthdayTextField({
-    Key? key,
+    super.key,
     this.onSaved,
     this.onFieldSubmitted,
     this.controller,
     this.onTap,
-  }) : super(key: key);
+  });
 
   @override
   State<BirthdayTextField> createState() => _BirthdayTextFieldState();

@@ -10,7 +10,7 @@ class MainPageFactory {
       required GoRouterState state,
       required MainExtra? extra,
       required Function(String message) showMessage}) {
-    return MainPage();
+    return const MainPage();
   }
 
   static GoRoute route({

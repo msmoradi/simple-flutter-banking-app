@@ -8,5 +8,5 @@ part 'main_state.dart';
 
 @injectable
 class MainBloc extends Bloc<MainEvent, MainState> {
-  MainBloc() : super(MainSuccess()) {}
+  MainBloc() : super(const MainSuccess());
 }

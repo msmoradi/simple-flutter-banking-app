@@ -10,13 +10,12 @@ class NationalIdTextField extends StatefulWidget {
   final bool autofocus;
 
   const NationalIdTextField(
-      {Key? key,
+      {super.key,
       this.onSaved,
       this.onFieldSubmitted,
       this.controller,
       this.focusNode,
-      this.autofocus = false})
-      : super(key: key);
+      this.autofocus = false});
 
   @override
   State<NationalIdTextField> createState() => _NationalIdTextFieldState();

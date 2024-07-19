@@ -15,7 +15,7 @@ class MainPage extends StatelessWidget {
       create: (context) => GetIt.instance<MainBloc>(),
       child: BlocBuilder<MainBloc, MainState>(
         builder: (context, state) {
-          return MainContent();
+          return const MainContent();
         },
       ),
     );

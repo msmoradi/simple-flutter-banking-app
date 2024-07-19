@@ -6,7 +6,7 @@ import 'package:video_player/video_player.dart';
 class VideoPreviewScreen extends StatefulWidget {
   final String videoPath;
 
-  VideoPreviewScreen({required this.videoPath});
+  const VideoPreviewScreen({super.key, required this.videoPath});
 
   @override
   _VideoPreviewScreenState createState() => _VideoPreviewScreenState();
@@ -34,7 +34,7 @@ class _VideoPreviewScreenState extends State<VideoPreviewScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Preview Video'),
+        title: const Text('Preview Video'),
       ),
       body: Center(
         child: FutureBuilder(
@@ -46,7 +46,7 @@ class _VideoPreviewScreenState extends State<VideoPreviewScreen> {
                 child: VideoPlayer(_controller),
               );
             } else {
-              return Center(child: CircularProgressIndicator());
+              return const Center(child: CircularProgressIndicator());
             }
           },
         ),

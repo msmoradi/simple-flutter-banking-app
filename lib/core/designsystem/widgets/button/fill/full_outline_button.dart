@@ -8,13 +8,13 @@ class PrimaryOutlineButton extends StatefulWidget {
   final bool fillWidth;
 
   const PrimaryOutlineButton({
-    Key? key,
+    super.key,
     this.onPressed,
     required this.label,
     this.icon,
     this.isLoading = false,
     this.fillWidth = true,
-  }) : super(key: key);
+  });
 
   @override
   State<PrimaryOutlineButton> createState() => _PrimaryFillButtonState();

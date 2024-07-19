@@ -2,7 +2,7 @@ import 'app_localizations.dart';
 
 /// The translations for Persian (`fa`).
 class TranslatorFa extends Translator {
-  TranslatorFa([String locale = 'fa']) : super(locale);
+  TranslatorFa([super.locale = 'fa']);
 
   @override
   String get logIn => 'ورود';

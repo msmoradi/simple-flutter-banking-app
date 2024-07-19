@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class BackCard extends StatelessWidget {
+  const BackCard({super.key});
+
   @override
   Widget build(BuildContext context) {
     return const Column(

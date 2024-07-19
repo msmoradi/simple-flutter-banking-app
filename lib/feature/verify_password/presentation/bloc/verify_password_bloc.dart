@@ -45,12 +45,12 @@ class VerifyPasswordBloc
       if (isAuthenticated) {
         String? password = await tokenRepository.getPassword();
         if (password.isNullOrEmpty) {
-          emit(VerifyPasswordFailure('Password is not exist'));
+          emit(const VerifyPasswordFailure('Password is not exist'));
         } else {
           emit(PinExist(password!));
         }
       } else {
-        emit(VerifyPasswordFailure('Authentication failed'));
+        emit(const VerifyPasswordFailure('Authentication failed'));
       }
     } catch (e) {
       emit(VerifyPasswordFailure(e.toString()));

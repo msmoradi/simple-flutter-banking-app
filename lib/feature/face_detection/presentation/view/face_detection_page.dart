@@ -13,6 +13,6 @@ class FaceDetectionPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CameraView();
+    return const CameraView();
   }
 }

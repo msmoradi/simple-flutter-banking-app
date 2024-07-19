@@ -32,8 +32,8 @@ class _PostalCodeTextFieldState extends State<PostalCodeTextField> {
       onSaved: widget.onSaved,
       onFieldSubmitted: widget.onFieldSubmitted,
       keyboardType: TextInputType.number,
-      decoration: InputDecoration(
-        prefixIcon: const Icon(Icons.location_on_outlined),
+      decoration: const InputDecoration(
+        prefixIcon: Icon(Icons.location_on_outlined),
         hintText: 'کدپستی ۱۰ رقمی',
       ),
       validator: (value) {

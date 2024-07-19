@@ -11,13 +11,13 @@ class PhoneNumberTextField extends StatefulWidget {
   final bool autofocus;
 
   const PhoneNumberTextField({
-    Key? key,
+    super.key,
     this.onSaved,
     this.onFieldSubmitted,
     this.controller,
     this.focusNode,
     this.autofocus = false,
-  }) : super(key: key);
+  });
 
   @override
   State<PhoneNumberTextField> createState() => _PhoneNumberTextFieldState();

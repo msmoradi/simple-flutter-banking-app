@@ -19,15 +19,14 @@ class CustomKeyBoard extends StatefulWidget {
   final TextEditingController controller;
 
   const CustomKeyBoard({
-    Key? key,
+    super.key,
     required this.maxLength,
     this.onChanged,
     required this.onConfirm,
     this.onCompleted,
     required this.controller,
   })
-      : assert(maxLength > 0),
-        super(key: key);
+      : assert(maxLength > 0);
 
   @override
   _CustomKeyBoardState createState() => _CustomKeyBoardState();

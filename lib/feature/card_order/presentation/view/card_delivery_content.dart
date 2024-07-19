@@ -7,7 +7,7 @@ class CardDeliveryContent extends StatelessWidget {
   final CardOrderState state;
   final Function() onAddAddress;
 
-  CardDeliveryContent(
+  const CardDeliveryContent(
       {super.key, required this.state, required this.onAddAddress});
 
   @override
@@ -34,7 +34,7 @@ class CardDeliveryContent extends StatelessWidget {
                 height: 80,
                 width: 361,
               ),
-              SizedBox(height: 30.0),
+              const SizedBox(height: 30.0),
               Align(
                 alignment: Alignment.centerRight,
                 child: Text(
@@ -44,15 +44,15 @@ class CardDeliveryContent extends StatelessWidget {
                       color: Theme.of(context).colorScheme.primary),
                 ),
               ),
-              SizedBox(height: 16),
-              Column(
+              const SizedBox(height: 16),
+              const Column(
                 children: [
                   AddressRow(
                       address:
                           'شهر تهران، محله اکباتان، خیابان .شکوری غربی، بلوار شهید عبدالرحمان نفیسی ، فازیک بلوک A5، پلاک 0، طبقه 9، واحد 458'),
                 ],
               ),
-              Spacer(),
+              const Spacer(),
               PrimaryFillButton(
                 onPressed: onAddAddress,
                 icon: Icons.add_rounded,

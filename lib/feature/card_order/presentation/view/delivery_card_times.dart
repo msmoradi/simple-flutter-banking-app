@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class DeliveryCardTimes extends StatefulWidget {
+  const DeliveryCardTimes({super.key});
+
   @override
   _DeliveryCardTimesState createState() => _DeliveryCardTimesState();
 }
@@ -20,7 +22,7 @@ class _DeliveryCardTimesState extends State<DeliveryCardTimes> {
       child: Row(
         children: <Widget>[
           Expanded(child: Text(text)),
-          SizedBox(width: 10),
+          const SizedBox(width: 10),
           Radio<int>(
             value: value,
             groupValue: _selectedTime,
@@ -44,11 +46,11 @@ class _DeliveryCardTimesState extends State<DeliveryCardTimes> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           _buildRadioRow(1, 'شنبه، ۸ اردیبهشت - ۹ الی ۱۵'),
-          Divider(),
+          const Divider(),
           _buildRadioRow(2, 'شنبه، ۸ اردیبهشت - ۱۵ الی ۲۱'),
-          Divider(),
+          const Divider(),
           _buildRadioRow(3, 'یکشنبه، ۹ اردیبهشت - ۹ الی ۱۵'),
-          Divider(),
+          const Divider(),
           _buildRadioRow(4, 'یکشنبه، ۹ اردیبهشت - ۱۵ الی ۲۱'),
         ],
       ),

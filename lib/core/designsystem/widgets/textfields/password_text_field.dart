@@ -12,7 +12,7 @@ class PasswordTextField extends StatefulWidget {
   final bool autofocus;
 
   const PasswordTextField({
-    Key? key,
+    super.key,
     this.hint,
     this.onSaved,
     this.onFieldSubmitted,
@@ -20,7 +20,7 @@ class PasswordTextField extends StatefulWidget {
     this.validator,
     this.focusNode,
     this.autofocus = false,
-  }) : super(key: key);
+  });
 
   @override
   State<PasswordTextField> createState() => _PasswordTextFieldState();

@@ -10,11 +10,11 @@ class VerifyPasswordContent extends StatefulWidget {
   final Function(String) showMessage;
 
   const VerifyPasswordContent({
-    Key? key,
+    super.key,
     required this.showLoading,
     required this.showMessage,
     required this.pin,
-  }) : super(key: key);
+  });
 
   @override
   _VerifyPasswordContentState createState() => _VerifyPasswordContentState();

@@ -6,7 +6,7 @@ class MapAddressContent extends StatelessWidget {
   final Function() onNext;
   final CardOrderState state;
 
-  MapAddressContent({super.key, required this.state, required this.onNext});
+  const MapAddressContent({super.key, required this.state, required this.onNext});
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +26,7 @@ class MapAddressContent extends StatelessWidget {
           padding: const EdgeInsets.all(16),
           child: Column(
             children: [
-              Spacer(),
+              const Spacer(),
               PrimaryFillButton(
                 onPressed: onNext,
                 label: 'تأیید آدرس',

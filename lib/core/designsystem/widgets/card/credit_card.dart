@@ -81,7 +81,7 @@ class _CreditCardState extends State<CreditCard> {
                 ],
               ),
               width: double.infinity,
-              child: BackCard(),
+              child: const BackCard(),
             ),
           ),
         ),

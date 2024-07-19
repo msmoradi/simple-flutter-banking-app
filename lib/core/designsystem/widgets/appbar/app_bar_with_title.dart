@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 class AppBarWithTitle extends StatelessWidget {
   final String title;
 
-  const AppBarWithTitle({Key? key, required this.title}) : super(key: key);
+  const AppBarWithTitle({super.key, required this.title});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(
+      padding: const EdgeInsets.symmetric(
         vertical: 16.0,
       ),
       child: Align(

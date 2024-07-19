@@ -10,13 +10,13 @@ class EmailTextField extends StatefulWidget {
   final bool autofocus;
 
   const EmailTextField({
-    Key? key,
+    super.key,
     this.onSaved,
     this.onFieldSubmitted,
     this.controller,
     this.focusNode,
     this.autofocus = false
-  }) : super(key: key);
+  });
 
   @override
   State<EmailTextField> createState() => _EmailTextFieldState();

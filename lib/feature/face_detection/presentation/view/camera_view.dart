@@ -7,10 +7,10 @@ import 'package:flutter/services.dart';
 import 'package:google_mlkit_face_detection/google_mlkit_face_detection.dart';
 
 class CameraView extends StatefulWidget {
-  CameraView({
-    Key? key,
+  const CameraView({
+    super.key,
     this.initialCameraLensDirection = CameraLensDirection.front,
-  }) : super(key: key);
+  });
 
   final CameraLensDirection initialCameraLensDirection;
 
@@ -108,7 +108,7 @@ class _CameraViewState extends State<CameraView> {
     final maskCenterX = MediaQuery.of(context).size.width / 2;
     final maskCenterY = MediaQuery.of(context).size.height / 2;
     const originalMaskSize = 250.0; // Original size of the square mask
-    final maskSize = originalMaskSize * 1.1; // Increase size by 20%
+    const maskSize = originalMaskSize * 1.1; // Increase size by 20%
 
     final maskLeft = maskCenterX - maskSize / 2;
     final maskTop = maskCenterY - maskSize / 2;
@@ -116,7 +116,7 @@ class _CameraViewState extends State<CameraView> {
     final maskBottom = maskCenterY + maskSize / 2;
 
     // Add a 10% tolerance to the mask bounding box
-    final tolerance = maskSize * 0.05;
+    const tolerance = maskSize * 0.05;
     final maskBoundingBox = Rect.fromLTRB(
       maskLeft - tolerance,
       maskTop - tolerance,
@@ -202,7 +202,7 @@ class _CameraViewState extends State<CameraView> {
                 children: [
                   ElevatedButton(
                     onPressed: () => _previewVideo(_videoPath!),
-                    child: Text('Preview Video'),
+                    child: const Text('Preview Video'),
                   ),
                 ],
               ),
@@ -314,7 +314,7 @@ class MaskOverlay extends StatefulWidget {
   final bool isRecording;
   final String description;
 
-  MaskOverlay({
+  const MaskOverlay({super.key, 
     required this.isRecording,
     required this.description,
   });
@@ -333,7 +333,7 @@ class _MaskOverlayState extends State<MaskOverlay>
     super.initState();
     _controller = AnimationController(
       vsync: this,
-      duration: Duration(milliseconds: 500),
+      duration: const Duration(milliseconds: 500),
     )..repeat(reverse: true);
 
     _animation = CurvedAnimation(
@@ -376,7 +376,7 @@ class _MaskOverlayState extends State<MaskOverlay>
               child: Container(
                 width: 50,
                 height: 50,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   shape: BoxShape.circle,
                   color: Colors.red,
                 ),
@@ -390,7 +390,7 @@ class _MaskOverlayState extends State<MaskOverlay>
             padding: const EdgeInsets.all(16.0),
             child: Text(
               widget.description,
-              style: TextStyle(color: Colors.white, fontSize: 18),
+              style: const TextStyle(color: Colors.white, fontSize: 18),
             ),
           ),
         ),
@@ -407,15 +407,15 @@ class MaskPainter extends CustomPainter {
       ..color = Colors.black.withOpacity(0.5)
       ..style = PaintingStyle.fill;
 
-    final originalMaskSize = 250.0; // Original size of the square mask
-    final maskSize = originalMaskSize * 1.2; // Increase size by 20%
+    const originalMaskSize = 250.0; // Original size of the square mask
+    const maskSize = originalMaskSize * 1.2; // Increase size by 20%
     final centerX = size.width / 2;
     final centerY = size.height / 2;
     final left = centerX - maskSize / 2;
     final top = centerY - maskSize / 2;
     final right = centerX + maskSize / 2;
     final bottom = centerY + maskSize / 2;
-    final cornerLength = 20.0; // Length of the corner lines
+    const cornerLength = 20.0; // Length of the corner lines
 
     // Define the cut-out area (square)
     final path = Path()

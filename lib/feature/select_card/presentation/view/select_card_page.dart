@@ -137,7 +137,7 @@ class _SelectCardPageState extends State<SelectCardPage> {
                             height: 2,
                           ),
                           Text(
-                            _firstName +" "+ _lastName,
+                            "$_firstName $_lastName",
                             style: Theme.of(context)
                                 .textTheme
                                 .titleMedium

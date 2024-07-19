@@ -9,13 +9,13 @@ class SecondaryFillButton extends StatelessWidget {
   final bool fillWidth;
 
   const SecondaryFillButton({
-    Key? key,
+    super.key,
     this.onPressed,
     required this.label,
     this.icon,
     this.isLoading = false,
     this.fillWidth = true,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

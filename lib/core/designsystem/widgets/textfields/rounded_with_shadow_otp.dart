@@ -17,7 +17,7 @@ class RoundedWithShadowInput extends StatefulWidget {
   final bool forceErrorState;
 
   const RoundedWithShadowInput({
-    Key? key,
+    super.key,
     this.controller,
     this.focusNode,
     this.length = 4,
@@ -31,7 +31,7 @@ class RoundedWithShadowInput extends StatefulWidget {
     this.readOnly = false,
     this.errorText,
     this.forceErrorState = false,
-  }) : super(key: key);
+  });
 
   @override
   _RoundedWithShadowInputState createState() => _RoundedWithShadowInputState();
