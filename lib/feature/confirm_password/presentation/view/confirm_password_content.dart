@@ -63,13 +63,6 @@ class _ConfirmPasswordContentState extends State<ConfirmPasswordContent> {
   }
 
   @override
-  void dispose() {
-    pinController.dispose();
-    focusNode.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(

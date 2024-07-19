@@ -86,8 +86,6 @@ class _VerifyOtpContentState extends State<VerifyOtpContent> {
 
   @override
   void dispose() {
-    pinController.dispose();
-    focusNode.dispose();
     _timer.cancel();
     super.dispose();
   }
