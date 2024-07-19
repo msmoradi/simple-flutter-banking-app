@@ -1,4 +1,3 @@
-import 'package:banx/core/domain/entities/user_profile_entity.dart';
 import 'package:banx/core/domain/repository/authentication_repository.dart';
 import 'package:banx/core/domain/repository/profile_repository.dart';
 import 'package:bloc/bloc.dart';
@@ -28,30 +27,10 @@ class ConfirmPasswordBloc
   ) async {
     emit(ConfirmPasswordInProgress());
     try {
-      final response = await authenticationRepository
-          .password(password: event.password)
-          .then((value) async {
-        if (value.isSuccess) {
-          return await profileRepository.getProfile();
-        } else {
-          return value;
-        }
-      });
+      final response =
+          await authenticationRepository.password(password: event.password);
       response.when(
-          success: (response) {
-            if (response is UserProfileEntity) {
-              switch (response.landingPage) {
-                case LandingPageEntity.home:
-                  emit(HomeLanding());
-                case LandingPageEntity.waiting:
-                  emit(WaitingLanding());
-                case LandingPageEntity.faceDetection:
-                  emit(FaceDetectionLanding());
-                case LandingPageEntity.cardOrdering:
-                  emit(CardOrderingLanding());
-              }
-            }
-          },
+          success: (response) => emit(BiometricLanding()),
           partialSuccess: (message) => emit(ConfirmPasswordFailure(message)),
           networkError: (exception) =>
               emit(ConfirmPasswordFailure(exception.toString())));

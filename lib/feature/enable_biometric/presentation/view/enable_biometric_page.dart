@@ -1,122 +1,166 @@
 import 'package:banx/core/designsystem/widgets/button/fill/full_fill_button.dart';
 import 'package:banx/core/designsystem/widgets/button/fill/full_outline_button.dart';
 import 'package:flutter/material.dart';
-import 'package:local_auth/local_auth.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_it/get_it.dart';
 
-class EnableBiometricPage extends StatefulWidget {
-  final Function() onNext;
+import '../bloc/enable_biometric_bloc.dart';
+
+class EnableBiometricPage extends StatelessWidget {
   final Function(String) showMessage;
+  final Function() homeLanding;
+  final Function() waitingLanding;
+  final Function() faceDetectionLanding;
+  final Function() cardOrderingLanding;
+  final String password;
 
   const EnableBiometricPage({
     super.key,
-    required this.onNext,
     required this.showMessage,
+    required this.homeLanding,
+    required this.waitingLanding,
+    required this.faceDetectionLanding,
+    required this.cardOrderingLanding,
+    required this.password,
   });
 
   @override
-  State<EnableBiometricPage> createState() => _EnableBiometricPageState();
-}
-
-class _EnableBiometricPageState extends State<EnableBiometricPage> {
-  final LocalAuthentication _localAuth = LocalAuthentication();
-  bool _biometricEnabled = false;
-
-  @override
-  void initState() {
-    super.initState();
-    _checkBiometricSupport();
-  }
-
-  Future<void> _checkBiometricSupport() async {
-    bool canCheckBiometrics = await _localAuth.canCheckBiometrics;
-    if (canCheckBiometrics) {
-      setState(() {
-        _biometricEnabled = true;
-      });
-    }
-  }
-
-  Future<void> enableAuthentication() async {
-    if (_biometricEnabled) {
-      bool enabled = await _localAuth.authenticate(
-        localizedReason: 'Enable biometric authentication for future logins',
-      );
-      if (enabled) {
-        widget.onNext();
-      }
-    }
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        mainAxisSize: MainAxisSize.max,
-        children: [
-          AspectRatio(
-            aspectRatio: 393 / 504,
-            child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 50.0),
-              color: Theme.of(context).colorScheme.surface,
-              width: double.infinity,
-              child: Image.asset(
-                "assets/images/enable_face.png",
-                fit: BoxFit.fitWidth,
-                width: double.infinity,
-                alignment: Alignment.center,
-              ),
+    return BlocProvider(
+      create: (context) => GetIt.instance<EnableBiometricBloc>(),
+      child: BlocConsumer<EnableBiometricBloc, EnableBiometricState>(
+        listener: (context, state) {
+          _handleStateChange(context, state);
+        },
+        builder: (context, state) {
+          return Scaffold(
+            appBar: AppBar(
+              toolbarHeight: 0.0,
             ),
-          ),
-          const SizedBox(height: 71),
-          Text(
-            style: Theme.of(context)
-                .textTheme
-                .headlineMedium
-                ?.copyWith(color: Theme.of(context).colorScheme.primary),
-            "فعال‌سازی ورود بایومتریک",
-          ),
-          const SizedBox(height: 30),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 70.0),
-            child: Text(
-              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    color: Theme.of(context).colorScheme.onSurfaceVariant,
+            body: SafeArea(
+              child: Column(
+                children: [
+                  Expanded(
+                    child: SingleChildScrollView(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          AspectRatio(
+                            aspectRatio: 1,
+                            child: Container(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 50.0),
+                              width: double.infinity,
+                              child: Image.asset(
+                                "assets/images/enable_face.png",
+                                fit: BoxFit.fitWidth,
+                                width: 280,
+                                height: 280,
+                                alignment: Alignment.center,
+                              ),
+                            ),
+                          ),
+                          const SizedBox(height: 36),
+                          Text(
+                            style: Theme.of(context)
+                                .textTheme
+                                .headlineMedium
+                                ?.copyWith(
+                                    color:
+                                        Theme.of(context).colorScheme.primary),
+                            "فعال‌سازی ورود بایومتریک",
+                          ),
+                          const SizedBox(height: 30),
+                          Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 70.0),
+                            child: Text(
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyMedium
+                                  ?.copyWith(
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .onSurfaceVariant,
+                                  ),
+                              textAlign: TextAlign.center,
+                              "برای ورود امن و سریع به بنکس می‌توانید از قابلیت تشخیص چهره استفاده کنید",
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
-              textAlign: TextAlign.center,
-              "برای ورود امن و سریع به بنکس می‌توانید از قابلیت تشخیص چهره استفاده کنید",
-            ),
-          ),
-          const Spacer(),
-        ],
-      ),
-      bottomNavigationBar: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Expanded(
-              child: PrimaryFillButton(
-                onPressed: () async {
-                  await enableAuthentication();
-                },
-                label: 'فعال‌سازی',
-                fillWidth: false,
+                  Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Expanded(
+                          child: PrimaryFillButton(
+                            isLoading: state is EnableBiometricInProgress,
+                            onPressed: () =>
+                                context.read<EnableBiometricBloc>().add(
+                                      EnableBiometricSubmitted(
+                                        password: password,
+                                        authNeeded: true,
+                                      ),
+                                    ),
+                            label: 'فعال‌سازی',
+                            fillWidth: false,
+                          ),
+                        ),
+                        const SizedBox(
+                          width: 16.0,
+                        ),
+                        Expanded(
+                          child: PrimaryOutlineButton(
+                            onPressed: () =>
+                                context.read<EnableBiometricBloc>().add(
+                                      EnableBiometricSubmitted(
+                                        password: password,
+                                        authNeeded: false,
+                                      ),
+                                    ),
+                            label: 'فعلاً نه',
+                            fillWidth: false,
+                          ),
+                        ),
+                      ],
+                    ),
+                  )
+                ],
               ),
             ),
-            const SizedBox(
-              width: 16.0,
-            ),
-            Expanded(
-              child: PrimaryOutlineButton(
-                onPressed: widget.onNext,
-                label: 'فعلاً نه',
-                fillWidth: false,
-              ),
-            ),
-          ],
-        ),
+          );
+        },
       ),
     );
+  }
+
+  void _handleStateChange(BuildContext context, EnableBiometricState state) {
+    switch (state) {
+      case final EnableBiometricFailure s:
+        {
+          showMessage(s.message);
+        }
+      case final HomeLanding s:
+        {
+          homeLanding();
+        }
+      case final WaitingLanding s:
+        {
+          waitingLanding();
+        }
+      case final FaceDetectionLanding s:
+        {
+          faceDetectionLanding();
+        }
+      case final CardOrderingLanding s:
+        {
+          cardOrderingLanding();
+        }
+    }
   }
 }

@@ -1,0 +1,68 @@
+import 'package:banx/core/domain/entities/user_profile_entity.dart';
+import 'package:banx/core/domain/repository/profile_repository.dart';
+import 'package:banx/core/domain/repository/token_repository.dart';
+import 'package:bloc/bloc.dart';
+import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
+import 'package:injectable/injectable.dart';
+import 'package:local_auth/local_auth.dart';
+
+part 'enable_biometric_event.dart';
+part 'enable_biometric_state.dart';
+
+@injectable
+class EnableBiometricBloc
+    extends Bloc<EnableBiometricEvent, EnableBiometricState> {
+  final ProfileRepository profileRepository;
+  final LocalAuthentication localAuthentication;
+  final TokenRepository tokenRepository;
+
+  EnableBiometricBloc({
+    required this.profileRepository,
+    required this.localAuthentication,
+    required this.tokenRepository,
+  }) : super(EnableBiometricValidated()) {
+    on<EnableBiometricSubmitted>(_onEnableBiometricSubmitted);
+  }
+
+  Future<void> _onEnableBiometricSubmitted(
+    EnableBiometricSubmitted event,
+    Emitter<EnableBiometricState> emit,
+  ) async {
+    try {
+      if (event.authNeeded) {
+        bool isAuthenticated = await localAuthentication.authenticate(
+          localizedReason: 'Please authenticate to access your password',
+          options: const AuthenticationOptions(
+            biometricOnly: true,
+          ),
+        );
+
+        if (isAuthenticated) {
+          await tokenRepository.savePassword(event.password);
+        }
+      }
+
+      emit(EnableBiometricInProgress());
+      final response = await profileRepository.getProfile();
+      response.when(
+          success: (response) {
+            switch (response.landingPage) {
+              case LandingPageEntity.home:
+                emit(HomeLanding());
+              case LandingPageEntity.waiting:
+                emit(WaitingLanding());
+              case LandingPageEntity.faceDetection:
+                emit(FaceDetectionLanding());
+              case LandingPageEntity.cardOrdering:
+                emit(CardOrderingLanding());
+            }
+          },
+          partialSuccess: (message) => emit(EnableBiometricFailure(message)),
+          networkError: (exception) =>
+              emit(EnableBiometricFailure(exception.toString())));
+    } catch (e) {
+      emit(EnableBiometricFailure(e.toString()));
+    }
+  }
+}

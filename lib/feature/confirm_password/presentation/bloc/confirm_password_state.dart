@@ -19,22 +19,7 @@ class ConfirmPasswordInProgress extends ConfirmPasswordState {
   List<Object?> get props => [];
 }
 
-class HomeLanding extends ConfirmPasswordState {
-  @override
-  List<Object?> get props => [];
-}
-
-class WaitingLanding extends ConfirmPasswordState {
-  @override
-  List<Object?> get props => [];
-}
-
-class FaceDetectionLanding extends ConfirmPasswordState {
-  @override
-  List<Object?> get props => [];
-}
-
-class CardOrderingLanding extends ConfirmPasswordState {
+class BiometricLanding extends ConfirmPasswordState {
   @override
   List<Object?> get props => [];
 }

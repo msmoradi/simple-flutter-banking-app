@@ -5,20 +5,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 
 class ConfirmPasswordPage extends StatelessWidget {
-  final Function() homeLanding;
-  final Function() waitingLanding;
-  final Function() faceDetectionLanding;
-  final Function() cardOrderingLanding;
+  final Function() biometricLanding;
   final Function(String) showMessage;
   final String phoneNumber;
   final String newPassword;
 
   const ConfirmPasswordPage({
     super.key,
-    required this.homeLanding,
-    required this.waitingLanding,
-    required this.faceDetectionLanding,
-    required this.cardOrderingLanding,
+    required this.biometricLanding,
     required this.phoneNumber,
     required this.newPassword,
     required this.showMessage,
@@ -49,21 +43,9 @@ class ConfirmPasswordPage extends StatelessWidget {
         {
           showMessage(s.message);
         }
-      case final HomeLanding s:
+      case final BiometricLanding s:
         {
-          homeLanding();
-        }
-      case final WaitingLanding s:
-        {
-          waitingLanding();
-        }
-      case final FaceDetectionLanding s:
-        {
-          faceDetectionLanding();
-        }
-      case final CardOrderingLanding s:
-        {
-          cardOrderingLanding();
+          biometricLanding();
         }
     }
   }
