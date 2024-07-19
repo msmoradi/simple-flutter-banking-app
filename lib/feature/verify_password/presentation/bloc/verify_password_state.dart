@@ -48,7 +48,7 @@ class CardOrderingLanding extends VerifyPasswordState {
   List<Object?> get props => [];
 }
 
-class VerifyPasswordValidated extends VerifyPasswordState {
+class VerifyPasswordInitial extends VerifyPasswordState {
   @override
   List<Object?> get props => [];
 }

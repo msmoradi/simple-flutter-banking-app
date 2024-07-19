@@ -69,6 +69,7 @@ class _VerifyPasswordContentState extends State<VerifyPasswordContent> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        toolbarHeight: 0.0,
         automaticallyImplyLeading: false,
       ),
       body: SafeArea(
@@ -81,6 +82,7 @@ class _VerifyPasswordContentState extends State<VerifyPasswordContent> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
+                      const SizedBox(height: 16.0,),
                       const CircleAvatar(
                         radius: 40.0,
                         backgroundImage:

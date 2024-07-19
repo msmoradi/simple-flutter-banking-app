@@ -25,7 +25,7 @@ class VerifyPasswordBloc
     required this.tokenRepository,
     required this.profileRepository,
     required this.localAuthentication,
-  }) : super(VerifyPasswordValidated()) {
+  }) : super(VerifyPasswordInitial()) {
     on<VerifyPasswordSubmitted>(_onVerifyPasswordSubmitted);
     on<BiometricsSubmitted>(_onBiometricsSubmitted);
   }
@@ -34,6 +34,7 @@ class VerifyPasswordBloc
     BiometricsSubmitted event,
     Emitter<VerifyPasswordState> emit,
   ) async {
+    emit(VerifyPasswordInitial());
     try {
       bool isAuthenticated = await localAuthentication.authenticate(
         localizedReason: 'Please authenticate to access your password',
