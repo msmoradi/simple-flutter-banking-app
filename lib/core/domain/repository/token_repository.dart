@@ -4,6 +4,10 @@ abstract class TokenRepository {
 
   Future<void> saveRefreshToken(String refreshToken);
 
+  Future<void> savePassword(String password);
+
+  Future<String?> getPassword();
+
   Future<String?> getAccessToken();
 
   Future<String?> getRefreshToken();

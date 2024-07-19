@@ -10,6 +10,7 @@ class TokenRepositoryImpl implements TokenRepository {
 
   static const _accessTokenKey = 'ACCESS_TOKEN';
   static const _refreshTokenKey = 'REFRESH_TOKEN';
+  static const _passwordKey = 'PASSWORD';
 
   @override
   Future<void> saveAccessToken(String accessToken) async {
@@ -19,6 +20,16 @@ class TokenRepositoryImpl implements TokenRepository {
   @override
   Future<void> saveRefreshToken(String refreshToken) async {
     await secureStorage.write(key: _refreshTokenKey, value: refreshToken);
+  }
+
+  @override
+  Future<void> savePassword(String password) async {
+    await secureStorage.write(key: _passwordKey, value: password);
+  }
+
+  @override
+  Future<String?> getPassword() async {
+    return await secureStorage.read(key: _passwordKey);
   }
 
   @override
