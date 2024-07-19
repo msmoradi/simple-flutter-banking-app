@@ -24,7 +24,7 @@ class App extends StatelessWidget {
             closeOnClick: true,
             dragToClose: true,
             title: Text(message),
-            autoCloseDuration: const Duration(seconds: 5),
+            autoCloseDuration: const Duration(seconds: 3),
           );
         }),
         builder: (context, snapshot) {
