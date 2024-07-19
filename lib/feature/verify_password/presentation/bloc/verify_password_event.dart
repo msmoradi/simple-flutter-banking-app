@@ -17,3 +17,10 @@ class VerifyPasswordSubmitted extends VerifyPasswordEvent {
   @override
   List<Object> get props => [password];
 }
+
+class BiometricsSubmitted extends VerifyPasswordEvent {
+  const BiometricsSubmitted();
+
+  @override
+  List<Object> get props => [];
+}

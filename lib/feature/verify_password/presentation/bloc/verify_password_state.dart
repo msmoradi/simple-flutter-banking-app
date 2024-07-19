@@ -14,6 +14,15 @@ class VerifyPasswordFailure extends VerifyPasswordState {
   List<Object?> get props => [];
 }
 
+class PinExist extends VerifyPasswordState {
+  final String password;
+
+  const PinExist(this.password);
+
+  @override
+  List<Object?> get props => [];
+}
+
 class VerifyPasswordInProgress extends VerifyPasswordState {
   @override
   List<Object?> get props => [];

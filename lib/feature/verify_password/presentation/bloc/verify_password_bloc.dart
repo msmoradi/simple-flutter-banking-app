@@ -2,10 +2,12 @@ import 'package:banx/core/domain/entities/user_profile_entity.dart';
 import 'package:banx/core/domain/repository/authentication_repository.dart';
 import 'package:banx/core/domain/repository/profile_repository.dart';
 import 'package:banx/core/domain/repository/token_repository.dart';
+import 'package:banx/core/utils/extension/strings.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
+import 'package:local_auth/local_auth.dart';
 
 part 'verify_password_event.dart';
 part 'verify_password_state.dart';
@@ -16,13 +18,43 @@ class VerifyPasswordBloc
   final AuthenticationRepository authenticationRepository;
   final TokenRepository tokenRepository;
   final ProfileRepository profileRepository;
+  final LocalAuthentication localAuthentication;
 
   VerifyPasswordBloc({
     required this.authenticationRepository,
     required this.tokenRepository,
     required this.profileRepository,
+    required this.localAuthentication,
   }) : super(VerifyPasswordValidated()) {
     on<VerifyPasswordSubmitted>(_onVerifyPasswordSubmitted);
+    on<BiometricsSubmitted>(_onBiometricsSubmitted);
+  }
+
+  Future<void> _onBiometricsSubmitted(
+    BiometricsSubmitted event,
+    Emitter<VerifyPasswordState> emit,
+  ) async {
+    try {
+      bool isAuthenticated = await localAuthentication.authenticate(
+        localizedReason: 'Please authenticate to access your password',
+        options: const AuthenticationOptions(
+          biometricOnly: true,
+        ),
+      );
+
+      if (isAuthenticated) {
+        String? password = await tokenRepository.getPassword();
+        if (password.isNullOrEmpty) {
+          emit(VerifyPasswordFailure('Password is not exist'));
+        } else {
+          emit(PinExist(password!));
+        }
+      } else {
+        emit(VerifyPasswordFailure('Authentication failed'));
+      }
+    } catch (e) {
+      emit(VerifyPasswordFailure(e.toString()));
+    }
   }
 
   Future<void> _onVerifyPasswordSubmitted(

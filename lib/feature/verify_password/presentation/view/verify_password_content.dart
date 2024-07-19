@@ -6,10 +6,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class VerifyPasswordContent extends StatefulWidget {
   final bool showLoading;
+  final String pin;
+  final Function(String) showMessage;
 
   const VerifyPasswordContent({
     Key? key,
     required this.showLoading,
+    required this.showMessage,
+    required this.pin,
   }) : super(key: key);
 
   @override
@@ -34,7 +38,11 @@ class _VerifyPasswordContentState extends State<VerifyPasswordContent> {
     }
   }
 
-  void _onPrimaryTapped() {}
+  Future<void> _authenticateAndRetrievePassword() async {
+    context.read<VerifyPasswordBloc>().add(
+          const BiometricsSubmitted(),
+        );
+  }
 
   @override
   void initState() {
@@ -43,9 +51,11 @@ class _VerifyPasswordContentState extends State<VerifyPasswordContent> {
   }
 
   @override
-  void dispose() {
-    pinController.dispose();
-    super.dispose();
+  void didUpdateWidget(VerifyPasswordContent oldWidget) {
+    if (widget.pin != oldWidget.pin) {
+      pinController.text = widget.pin;
+    }
+    super.didUpdateWidget(oldWidget);
   }
 
   @override
@@ -95,7 +105,7 @@ class _VerifyPasswordContentState extends State<VerifyPasswordContent> {
               CustomKeypad(
                 onKeyTapped: _onKeyTapped,
                 onBackspace: _onBackspace,
-                onPrimaryTapped: _onPrimaryTapped,
+                onPrimaryTapped: _authenticateAndRetrievePassword,
                 primaryIcon: Icons.fingerprint_rounded,
                 isEnabled: pinController.text.length < 4,
               ),

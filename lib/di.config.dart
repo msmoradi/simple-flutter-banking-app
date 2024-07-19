@@ -114,7 +114,6 @@ extension GetItInjectableX on _i1.GetIt {
     gh.factory<_i24.ConfirmPasswordBloc>(() => _i24.ConfirmPasswordBloc(
           authenticationRepository: gh<_i22.AuthenticationRepository>(),
           profileRepository: gh<_i20.ProfileRepository>(),
-          tokenRepository: gh<_i9.TokenRepository>(),
         ));
     gh.factory<_i25.AddAddressBloc>(() =>
         _i25.AddAddressBloc(profileRepository: gh<_i20.ProfileRepository>()));
