@@ -20,23 +20,6 @@ class _AddAddressContentState extends State<AddAddressContent> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: PrimaryFillButton(
-          onPressed: () {
-            if (_formKey.currentState!.validate()) {
-              _formKey.currentState?.save();
-              FocusManager.instance.primaryFocus?.unfocus();
-              context
-                  .read<AddAddressBloc>()
-                  .add(CheckPostalCodeSubmitted(_postalCode!));
-            }
-          },
-          icon: Icons.search_outlined,
-          label: 'بررسی کد پستی',
-          isLoading: widget.showLoading,
-        ),
-      ),
       appBar: AppBar(
         automaticallyImplyLeading: false,
         title: Text(
@@ -50,21 +33,41 @@ class _AddAddressContentState extends State<AddAddressContent> {
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(16),
-          child: SingleChildScrollView(
-            child: Form(
-              key: _formKey,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  PostalCodeTextField(
-                    autofocus: true,
-                    onSaved: (value) {
-                      _postalCode = value;
-                    },
+          child: Column(
+            children: [
+              Expanded(
+                child: SingleChildScrollView(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Form(
+                        key: _formKey,
+                        child: PostalCodeTextField(
+                          autofocus: true,
+                          onSaved: (value) {
+                            _postalCode = value;
+                          },
+                        ),
+                      ),
+                    ],
                   ),
-                ],
+                ),
               ),
-            ),
+              PrimaryFillButton(
+                onPressed: () {
+                  if (_formKey.currentState!.validate()) {
+                    _formKey.currentState?.save();
+                    FocusManager.instance.primaryFocus?.unfocus();
+                    context
+                        .read<AddAddressBloc>()
+                        .add(CheckPostalCodeSubmitted(_postalCode!));
+                  }
+                },
+                icon: Icons.search_outlined,
+                label: 'بررسی کد پستی',
+                isLoading: widget.showLoading,
+              ),
+            ],
           ),
         ),
       ),
