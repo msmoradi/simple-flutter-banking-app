@@ -12,7 +12,7 @@ abstract class HTTPClient {
   Future<T> post<T>({
     required String endpoint,
     JSON? data,
-    required T Function(Map<String, dynamic> response) mapper
+    required T Function(Map<String, dynamic>? response) mapper
   });
 
   Future<T> put<T>({

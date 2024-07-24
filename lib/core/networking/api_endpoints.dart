@@ -32,6 +32,20 @@ class ApiEndpoint {
         return '$path/postalCode';
     }
   }
+
+  static String address(AddressEndpoint endpoint) {
+    const path = '/api/v1/app/address';
+    switch (endpoint) {
+      case AddressEndpoint.ADDRESS:
+        return path;
+      case AddressEndpoint.STATES:
+        return '$path/states';
+      case AddressEndpoint.INQUERY:
+        return '$path/inquery';
+      case AddressEndpoint.CITIES:
+        return '$path/cities';
+    }
+  }
 }
 
 enum AuthEndpoint {
@@ -43,3 +57,5 @@ enum AuthEndpoint {
 }
 
 enum ProfileEndpoint { GET_PROFILE, POSTAL_CODE }
+
+enum AddressEndpoint { ADDRESS, STATES, INQUERY, CITIES }

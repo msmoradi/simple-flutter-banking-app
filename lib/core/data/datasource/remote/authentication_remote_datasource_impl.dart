@@ -5,6 +5,7 @@ import 'package:banx/core/data/model/sign_up_response_dto.dart';
 import 'package:banx/core/data/model/verify_otp_response_dto.dart';
 import 'package:banx/core/networking/api_endpoints.dart';
 import 'package:banx/core/networking/http_client.dart';
+import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 
 @LazySingleton(as: AuthenticationRemoteDataSource)
@@ -22,9 +23,15 @@ class AuthenticationRemoteDataSourceImpl
       'phoneNumber': phoneNumber,
     };
     return apiService.post(
-        endpoint: ApiEndpoint.auth(AuthEndpoint.SEND_OTP),
-        data: body,
-        mapper: SendOtpResponseDto.fromJson);
+      endpoint: ApiEndpoint.auth(AuthEndpoint.SEND_OTP),
+      data: body,
+      mapper: (response) {
+        if (response != null) {
+          return SendOtpResponseDto.fromJson(response);
+        }
+        throw NotNullableError('sendOtp response should not be null');
+      },
+    );
   }
 
   @override
@@ -37,9 +44,15 @@ class AuthenticationRemoteDataSourceImpl
       'otp': otp,
     };
     return apiService.post(
-        endpoint: ApiEndpoint.auth(AuthEndpoint.VERIFY_OTP),
-        data: body,
-        mapper: VerifyOtpResponseDto.fromJson);
+      endpoint: ApiEndpoint.auth(AuthEndpoint.VERIFY_OTP),
+      data: body,
+      mapper: (response) {
+        if (response != null) {
+          return VerifyOtpResponseDto.fromJson(response);
+        }
+        throw NotNullableError('verifyOtp response should not be null');
+      },
+    );
   }
 
   @override
@@ -51,10 +64,7 @@ class AuthenticationRemoteDataSourceImpl
     return apiService.put(
       endpoint: ApiEndpoint.auth(AuthEndpoint.PASSWORD),
       data: body,
-      mapper: (response) {
-        if (response != null) {
-          return PasswordResponseDto.fromJson(response);
-        }
+      mapper: (_) {
         return PasswordResponseDto.empty();
       },
     );
@@ -71,9 +81,15 @@ class AuthenticationRemoteDataSourceImpl
     };
 
     return apiService.post(
-        endpoint: ApiEndpoint.auth(AuthEndpoint.REFRESH),
-        data: body,
-        mapper: VerifyOtpResponseDto.fromJson);
+      endpoint: ApiEndpoint.auth(AuthEndpoint.REFRESH),
+      data: body,
+      mapper: (response) {
+        if (response != null) {
+          return VerifyOtpResponseDto.fromJson(response);
+        }
+        throw NotNullableError('refresh response should not be null');
+      },
+    );
   }
 
   @override
@@ -91,8 +107,14 @@ class AuthenticationRemoteDataSourceImpl
     };
 
     return apiService.post(
-        endpoint: ApiEndpoint.auth(AuthEndpoint.SIGN_UP),
-        data: body,
-        mapper: SignUpResponseDto.fromJson);
+      endpoint: ApiEndpoint.auth(AuthEndpoint.SIGN_UP),
+      data: body,
+      mapper: (response) {
+        if (response != null) {
+          return SignUpResponseDto.fromJson(response);
+        }
+        throw NotNullableError('signup response should not be null');
+      },
+    );
   }
 }

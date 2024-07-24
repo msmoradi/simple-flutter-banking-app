@@ -1,4 +1,4 @@
-import 'package:banx/core/domain/repository/profile_repository.dart';
+import 'package:banx/core/domain/repository/address_repository.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
@@ -9,10 +9,10 @@ part 'add_address_state.dart';
 
 @injectable
 class AddAddressBloc extends Bloc<AddAddressEvent, AddAddressState> {
-  final ProfileRepository profileRepository;
+  final AddressRepository addressRepository;
 
   AddAddressBloc({
-    required this.profileRepository,
+    required this.addressRepository,
   }) : super(AddAddressValidated()) {
     on<CheckPostalCodeSubmitted>(_onCheckPostalCodeSubmitted);
   }
@@ -24,7 +24,7 @@ class AddAddressBloc extends Bloc<AddAddressEvent, AddAddressState> {
     emit(AddAddressInProgress());
     try {
       final response =
-          await profileRepository.checkPostalCode(postalCode: event.postalCode);
+          await addressRepository.postAddress(postalCode: event.postalCode);
       response.when(
           success: (response) {
             emit(

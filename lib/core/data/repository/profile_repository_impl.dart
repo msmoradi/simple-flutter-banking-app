@@ -38,14 +38,4 @@ class ProfileRepositoryImpl extends ProfileRepository {
       );
     });
   }
-
-  @override
-  Future<EntityWrapper<CheckPostalCodeEntity>> checkPostalCode(
-      {required String postalCode}) {
-    return profileRemoteDataSource
-        .checkPostalCode(postalCode)
-        .mapResponseToEntityWrapper(mapper: (model) {
-      return CheckPostalCodeEntity();
-    });
-  }
 }
