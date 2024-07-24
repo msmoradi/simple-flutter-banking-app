@@ -1,8 +1,13 @@
 import 'dart:async';
 
 import 'package:banx/core/data/datasource/remote/address_remote_datasource.dart';
+import 'package:banx/core/data/mapper/address_mapper.dart';
+import 'package:banx/core/data/mapper/generic_list_mapper.dart';
 import 'package:banx/core/data/mapper/response.mapper.dart';
 import 'package:banx/core/domain/entities/address_entity.dart';
+import 'package:banx/core/domain/entities/generic_list_entity.dart';
+import 'package:banx/core/domain/entities/post_address_entity.dart';
+import 'package:banx/core/domain/entities/put_address_entity.dart';
 import 'package:banx/core/domain/entity_wrapper.dart';
 import 'package:banx/core/domain/repository/address_repository.dart';
 import 'package:injectable/injectable.dart';
@@ -14,28 +19,28 @@ class AddressRepositoryImpl extends AddressRepository {
   final AddressRemoteDataSource addressRemoteDataSource;
 
   @override
-  Future<EntityWrapper<AddressEntity>> getAddress() {
+  Future<EntityWrapper<GenericListEntity<AddressEntity>>> getAddress() {
     return addressRemoteDataSource.getAddress().mapResponseToEntityWrapper(
         mapper: (model) {
-      return AddressEntity();
+      return model.toEntity((item) => (item).toEntity());
     });
   }
 
   @override
-  Future<EntityWrapper<AddressEntity>> postAddress(
+  Future<EntityWrapper<PostAddressEntity>> postAddress(
       {required String postalCode}) {
     return addressRemoteDataSource
         .postAddress(postalCode: postalCode)
         .mapResponseToEntityWrapper(mapper: (model) {
-      return AddressEntity();
+      return PostAddressEntity();
     });
   }
 
   @override
-  Future<EntityWrapper<AddressEntity>> putAddress() {
+  Future<EntityWrapper<PutAddressEntity>> putAddress() {
     return addressRemoteDataSource.putAddress().mapResponseToEntityWrapper(
         mapper: (model) {
-      return AddressEntity();
+      return PutAddressEntity();
     });
   }
 }

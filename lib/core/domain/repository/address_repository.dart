@@ -1,11 +1,14 @@
 import 'package:banx/core/domain/entities/address_entity.dart';
+import 'package:banx/core/domain/entities/generic_list_entity.dart';
+import 'package:banx/core/domain/entities/post_address_entity.dart';
+import 'package:banx/core/domain/entities/put_address_entity.dart';
 import 'package:banx/core/domain/entity_wrapper.dart';
 
 abstract class AddressRepository {
-  Future<EntityWrapper<AddressEntity>> getAddress();
+  Future<EntityWrapper<GenericListEntity<AddressEntity>>> getAddress();
 
-  Future<EntityWrapper<AddressEntity>> postAddress(
+  Future<EntityWrapper<PostAddressEntity>> postAddress(
       {required String postalCode});
 
-  Future<EntityWrapper<AddressEntity>> putAddress();
+  Future<EntityWrapper<PutAddressEntity>> putAddress();
 }
