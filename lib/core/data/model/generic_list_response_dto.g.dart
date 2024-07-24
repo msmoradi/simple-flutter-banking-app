@@ -1,16 +1,16 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'generic_response_dto.dart';
+part of 'generic_list_response_dto.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$GenericResponseDtoImpl<T> _$$GenericResponseDtoImplFromJson<T>(
+_$GenericListResponseDtoImpl<T> _$$GenericListResponseDtoImplFromJson<T>(
   Map<String, dynamic> json,
   T Function(Object? json) fromJsonT,
 ) =>
-    _$GenericResponseDtoImpl<T>(
+    _$GenericListResponseDtoImpl<T>(
       totalPages: (json['totalPages'] as num).toInt(),
       totalElements: (json['totalElements'] as num).toInt(),
       pageable: Pageable.fromJson(json['pageable'] as Map<String, dynamic>),
@@ -26,8 +26,8 @@ _$GenericResponseDtoImpl<T> _$$GenericResponseDtoImplFromJson<T>(
       empty: json['empty'] as bool,
     );
 
-Map<String, dynamic> _$$GenericResponseDtoImplToJson<T>(
-  _$GenericResponseDtoImpl<T> instance,
+Map<String, dynamic> _$$GenericListResponseDtoImplToJson<T>(
+  _$GenericListResponseDtoImpl<T> instance,
   Object? Function(T value) toJsonT,
 ) =>
     <String, dynamic>{

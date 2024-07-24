@@ -1,6 +1,6 @@
 import 'package:banx/core/data/datasource/remote/address_remote_datasource.dart';
 import 'package:banx/core/data/model/address_dto.dart';
-import 'package:banx/core/data/model/generic_response_dto.dart';
+import 'package:banx/core/data/model/generic_list_response_dto.dart';
 import 'package:banx/core/data/model/post_address_response_dto.dart';
 import 'package:banx/core/data/model/request/get_address_request_dto.dart';
 import 'package:banx/core/data/model/request/post_address_request_dto.dart';
@@ -15,7 +15,7 @@ class AddressRemoteDataSourceImpl extends AddressRemoteDataSource {
   AddressRemoteDataSourceImpl({required this.apiService});
 
   @override
-  Future<GenericResponseDto<AddressDto>> getAddress() {
+  Future<GenericListResponseDto<AddressDto>> getAddress() {
     final requestParameters = const GetAddressRequestDto(
       page: 0,
       size: 1,
@@ -26,7 +26,7 @@ class AddressRemoteDataSourceImpl extends AddressRemoteDataSource {
       endpoint: ApiEndpoint.address(AddressEndpoint.ADDRESS),
       queryParameters: requestParameters,
       mapper: (responseBody) {
-        return GenericResponseDto<AddressDto>.fromJson(
+        return GenericListResponseDto<AddressDto>.fromJson(
           responseBody,
           (json) => AddressDto.fromJson(json as Map<String, dynamic>),
         );

@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'generic_response_dto.dart';
+part of 'generic_list_response_dto.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,13 +14,13 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-GenericResponseDto<T> _$GenericResponseDtoFromJson<T>(
+GenericListResponseDto<T> _$GenericListResponseDtoFromJson<T>(
     Map<String, dynamic> json, T Function(Object?) fromJsonT) {
-  return _GenericResponseDto<T>.fromJson(json, fromJsonT);
+  return _GenericListResponseDto<T>.fromJson(json, fromJsonT);
 }
 
 /// @nodoc
-mixin _$GenericResponseDto<T> {
+mixin _$GenericListResponseDto<T> {
   int get totalPages => throw _privateConstructorUsedError;
   int get totalElements => throw _privateConstructorUsedError;
   Pageable get pageable => throw _privateConstructorUsedError;
@@ -36,15 +36,15 @@ mixin _$GenericResponseDto<T> {
   Map<String, dynamic> toJson(Object? Function(T) toJsonT) =>
       throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $GenericResponseDtoCopyWith<T, GenericResponseDto<T>> get copyWith =>
+  $GenericListResponseDtoCopyWith<T, GenericListResponseDto<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $GenericResponseDtoCopyWith<T, $Res> {
-  factory $GenericResponseDtoCopyWith(GenericResponseDto<T> value,
-          $Res Function(GenericResponseDto<T>) then) =
-      _$GenericResponseDtoCopyWithImpl<T, $Res, GenericResponseDto<T>>;
+abstract class $GenericListResponseDtoCopyWith<T, $Res> {
+  factory $GenericListResponseDtoCopyWith(GenericListResponseDto<T> value,
+          $Res Function(GenericListResponseDto<T>) then) =
+      _$GenericListResponseDtoCopyWithImpl<T, $Res, GenericListResponseDto<T>>;
   @useResult
   $Res call(
       {int totalPages,
@@ -63,10 +63,10 @@ abstract class $GenericResponseDtoCopyWith<T, $Res> {
 }
 
 /// @nodoc
-class _$GenericResponseDtoCopyWithImpl<T, $Res,
-        $Val extends GenericResponseDto<T>>
-    implements $GenericResponseDtoCopyWith<T, $Res> {
-  _$GenericResponseDtoCopyWithImpl(this._value, this._then);
+class _$GenericListResponseDtoCopyWithImpl<T, $Res,
+        $Val extends GenericListResponseDto<T>>
+    implements $GenericListResponseDtoCopyWith<T, $Res> {
+  _$GenericListResponseDtoCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -146,11 +146,12 @@ class _$GenericResponseDtoCopyWithImpl<T, $Res,
 }
 
 /// @nodoc
-abstract class _$$GenericResponseDtoImplCopyWith<T, $Res>
-    implements $GenericResponseDtoCopyWith<T, $Res> {
-  factory _$$GenericResponseDtoImplCopyWith(_$GenericResponseDtoImpl<T> value,
-          $Res Function(_$GenericResponseDtoImpl<T>) then) =
-      __$$GenericResponseDtoImplCopyWithImpl<T, $Res>;
+abstract class _$$GenericListResponseDtoImplCopyWith<T, $Res>
+    implements $GenericListResponseDtoCopyWith<T, $Res> {
+  factory _$$GenericListResponseDtoImplCopyWith(
+          _$GenericListResponseDtoImpl<T> value,
+          $Res Function(_$GenericListResponseDtoImpl<T>) then) =
+      __$$GenericListResponseDtoImplCopyWithImpl<T, $Res>;
   @override
   @useResult
   $Res call(
@@ -171,12 +172,13 @@ abstract class _$$GenericResponseDtoImplCopyWith<T, $Res>
 }
 
 /// @nodoc
-class __$$GenericResponseDtoImplCopyWithImpl<T, $Res>
-    extends _$GenericResponseDtoCopyWithImpl<T, $Res,
-        _$GenericResponseDtoImpl<T>>
-    implements _$$GenericResponseDtoImplCopyWith<T, $Res> {
-  __$$GenericResponseDtoImplCopyWithImpl(_$GenericResponseDtoImpl<T> _value,
-      $Res Function(_$GenericResponseDtoImpl<T>) _then)
+class __$$GenericListResponseDtoImplCopyWithImpl<T, $Res>
+    extends _$GenericListResponseDtoCopyWithImpl<T, $Res,
+        _$GenericListResponseDtoImpl<T>>
+    implements _$$GenericListResponseDtoImplCopyWith<T, $Res> {
+  __$$GenericListResponseDtoImplCopyWithImpl(
+      _$GenericListResponseDtoImpl<T> _value,
+      $Res Function(_$GenericListResponseDtoImpl<T>) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -194,7 +196,7 @@ class __$$GenericResponseDtoImplCopyWithImpl<T, $Res>
     Object? sort = null,
     Object? empty = null,
   }) {
-    return _then(_$GenericResponseDtoImpl<T>(
+    return _then(_$GenericListResponseDtoImpl<T>(
       totalPages: null == totalPages
           ? _value.totalPages
           : totalPages // ignore: cast_nullable_to_non_nullable
@@ -245,8 +247,8 @@ class __$$GenericResponseDtoImplCopyWithImpl<T, $Res>
 
 /// @nodoc
 @JsonSerializable(genericArgumentFactories: true)
-class _$GenericResponseDtoImpl<T> implements _GenericResponseDto<T> {
-  const _$GenericResponseDtoImpl(
+class _$GenericListResponseDtoImpl<T> implements _GenericListResponseDto<T> {
+  const _$GenericListResponseDtoImpl(
       {required this.totalPages,
       required this.totalElements,
       required this.pageable,
@@ -261,9 +263,9 @@ class _$GenericResponseDtoImpl<T> implements _GenericResponseDto<T> {
       : _content = content,
         _sort = sort;
 
-  factory _$GenericResponseDtoImpl.fromJson(
+  factory _$GenericListResponseDtoImpl.fromJson(
           Map<String, dynamic> json, T Function(Object?) fromJsonT) =>
-      _$$GenericResponseDtoImplFromJson(json, fromJsonT);
+      _$$GenericListResponseDtoImplFromJson(json, fromJsonT);
 
   @override
   final int totalPages;
@@ -302,14 +304,14 @@ class _$GenericResponseDtoImpl<T> implements _GenericResponseDto<T> {
 
   @override
   String toString() {
-    return 'GenericResponseDto<$T>(totalPages: $totalPages, totalElements: $totalElements, pageable: $pageable, first: $first, last: $last, numberOfElements: $numberOfElements, size: $size, content: $content, number: $number, sort: $sort, empty: $empty)';
+    return 'GenericListResponseDto<$T>(totalPages: $totalPages, totalElements: $totalElements, pageable: $pageable, first: $first, last: $last, numberOfElements: $numberOfElements, size: $size, content: $content, number: $number, sort: $sort, empty: $empty)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$GenericResponseDtoImpl<T> &&
+            other is _$GenericListResponseDtoImpl<T> &&
             (identical(other.totalPages, totalPages) ||
                 other.totalPages == totalPages) &&
             (identical(other.totalElements, totalElements) ||
@@ -346,18 +348,18 @@ class _$GenericResponseDtoImpl<T> implements _GenericResponseDto<T> {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$GenericResponseDtoImplCopyWith<T, _$GenericResponseDtoImpl<T>>
-      get copyWith => __$$GenericResponseDtoImplCopyWithImpl<T,
-          _$GenericResponseDtoImpl<T>>(this, _$identity);
+  _$$GenericListResponseDtoImplCopyWith<T, _$GenericListResponseDtoImpl<T>>
+      get copyWith => __$$GenericListResponseDtoImplCopyWithImpl<T,
+          _$GenericListResponseDtoImpl<T>>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson(Object? Function(T) toJsonT) {
-    return _$$GenericResponseDtoImplToJson<T>(this, toJsonT);
+    return _$$GenericListResponseDtoImplToJson<T>(this, toJsonT);
   }
 }
 
-abstract class _GenericResponseDto<T> implements GenericResponseDto<T> {
-  const factory _GenericResponseDto(
+abstract class _GenericListResponseDto<T> implements GenericListResponseDto<T> {
+  const factory _GenericListResponseDto(
       {required final int totalPages,
       required final int totalElements,
       required final Pageable pageable,
@@ -368,11 +370,11 @@ abstract class _GenericResponseDto<T> implements GenericResponseDto<T> {
       required final List<T> content,
       required final int number,
       required final List<Sort> sort,
-      required final bool empty}) = _$GenericResponseDtoImpl<T>;
+      required final bool empty}) = _$GenericListResponseDtoImpl<T>;
 
-  factory _GenericResponseDto.fromJson(
+  factory _GenericListResponseDto.fromJson(
           Map<String, dynamic> json, T Function(Object?) fromJsonT) =
-      _$GenericResponseDtoImpl<T>.fromJson;
+      _$GenericListResponseDtoImpl<T>.fromJson;
 
   @override
   int get totalPages;
@@ -398,7 +400,7 @@ abstract class _GenericResponseDto<T> implements GenericResponseDto<T> {
   bool get empty;
   @override
   @JsonKey(ignore: true)
-  _$$GenericResponseDtoImplCopyWith<T, _$GenericResponseDtoImpl<T>>
+  _$$GenericListResponseDtoImplCopyWith<T, _$GenericListResponseDtoImpl<T>>
       get copyWith => throw _privateConstructorUsedError;
 }
 

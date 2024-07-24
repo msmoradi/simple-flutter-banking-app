@@ -1,11 +1,11 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'generic_response_dto.freezed.dart';
-part 'generic_response_dto.g.dart';
+part 'generic_list_response_dto.freezed.dart';
+part 'generic_list_response_dto.g.dart';
 
 @Freezed(genericArgumentFactories: true)
-class GenericResponseDto<T> with _$GenericResponseDto<T> {
-  const factory GenericResponseDto({
+class GenericListResponseDto<T> with _$GenericListResponseDto<T> {
+  const factory GenericListResponseDto({
     required int totalPages,
     required int totalElements,
     required Pageable pageable,
@@ -17,14 +17,14 @@ class GenericResponseDto<T> with _$GenericResponseDto<T> {
     required int number,
     required List<Sort> sort,
     required bool empty,
-  }) = _GenericResponseDto<T>;
+  }) = _GenericListResponseDto<T>;
 
-  factory GenericResponseDto.fromJson(
+  factory GenericListResponseDto.fromJson(
       Map<String, dynamic> json, T Function(Object?) fromJsonT) =>
-      _$GenericResponseDtoFromJson(json, fromJsonT);
+      _$GenericListResponseDtoFromJson(json, fromJsonT);
 }
 
-@Freezed()
+@freezed
 class Pageable with _$Pageable {
   const factory Pageable({
     required bool unpaged,
@@ -39,7 +39,7 @@ class Pageable with _$Pageable {
       _$PageableFromJson(json);
 }
 
-@Freezed()
+@freezed
 class Sort with _$Sort {
   const factory Sort({
     required String direction,
