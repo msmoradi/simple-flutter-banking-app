@@ -15,6 +15,7 @@ class RoundedWithShadowInput extends StatefulWidget {
   final bool readOnly;
   final String? errorText;
   final bool forceErrorState;
+  final SmsRetriever? smsRetriever;
 
   const RoundedWithShadowInput({
     super.key,
@@ -31,6 +32,7 @@ class RoundedWithShadowInput extends StatefulWidget {
     this.readOnly = false,
     this.errorText,
     this.forceErrorState = false,
+    this.smsRetriever,
   });
 
   @override
@@ -41,7 +43,6 @@ class RoundedWithShadowInput extends StatefulWidget {
 }
 
 class _RoundedWithShadowInputState extends State<RoundedWithShadowInput> {
-
   @override
   Widget build(BuildContext context) {
     final defaultPinTheme = PinTheme(
@@ -69,6 +70,7 @@ class _RoundedWithShadowInputState extends State<RoundedWithShadowInput> {
 
     return Pinput(
       length: widget.length,
+      smsRetriever: widget.smsRetriever,
       controller: widget.controller,
       readOnly: widget.readOnly,
       focusNode: widget.focusNode,

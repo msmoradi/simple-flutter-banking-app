@@ -3,10 +3,12 @@ import 'dart:async';
 import 'package:banx/core/designsystem/widgets/button/fill/full_fill_button.dart';
 import 'package:banx/core/designsystem/widgets/button/fill/full_outline_button.dart';
 import 'package:banx/core/designsystem/widgets/textfields/rounded_with_shadow_otp.dart';
+import 'package:banx/core/designsystem/widgets/textfields/sms_retriever_impl.dart';
 import 'package:banx/core/utils/extension/build_context.dart';
 import 'package:banx/feature/verify_otp/presentation/bloc/verify_otp_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:smart_auth/smart_auth.dart';
 
 class VerifyOtpContent extends StatefulWidget {
   final VerifyOtpState state;
@@ -31,6 +33,7 @@ class VerifyOtpContent extends StatefulWidget {
 class _VerifyOtpContentState extends State<VerifyOtpContent> {
   final formKey = GlobalKey<FormState>();
   late final TextEditingController pinController;
+  late final SmsRetrieverImpl smsRetrieverImpl;
 
   late Timer _timer;
   int _start = 60; // Initial countdown value in seconds
@@ -84,6 +87,7 @@ class _VerifyOtpContentState extends State<VerifyOtpContent> {
   @override
   void dispose() {
     pinController.dispose();
+    smsRetrieverImpl.dispose();
     _timer.cancel();
     super.dispose();
   }
@@ -91,6 +95,7 @@ class _VerifyOtpContentState extends State<VerifyOtpContent> {
   @override
   void initState() {
     super.initState();
+    smsRetrieverImpl = SmsRetrieverImpl(SmartAuth());
     pinController = TextEditingController();
     _startTimer();
   }
@@ -166,6 +171,7 @@ class _VerifyOtpContentState extends State<VerifyOtpContent> {
                               controller: pinController,
                               readOnly: widget.state is VerifyOtpInProgress,
                               errorText: widget.errorMessage,
+                              smsRetriever: smsRetrieverImpl,
                               forceErrorState: widget.errorMessage != null,
                               autofocus: true,
                               validator: (value) {
