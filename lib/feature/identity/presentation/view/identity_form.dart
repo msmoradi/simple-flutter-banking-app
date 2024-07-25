@@ -1,11 +1,11 @@
 import 'package:banx/core/designsystem/widgets/button/fill/full_fill_button.dart';
+import 'package:banx/core/designsystem/widgets/components/birth_date_bottom_sheet.dart';
 import 'package:banx/core/designsystem/widgets/textfields/birthday_text_field.dart';
 import 'package:banx/core/designsystem/widgets/textfields/national_id_text_field.dart';
 import 'package:banx/core/designsystem/widgets/textfields/referral_code_text_field.dart';
 import 'package:banx/core/utils/extension/build_context.dart';
 import 'package:banx/feature/identity/presentation/bloc/identity_bloc.dart';
 import 'package:banx/feature/identity/presentation/view/referral_bottom_sheet_content.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:persian_datetime_picker/persian_datetime_picker.dart';
@@ -36,14 +36,6 @@ class _IdentityFormState extends State<IdentityForm> {
   Widget build(BuildContext context) {
     final translator = context.getTranslator();
 
-    Jalali jalaliFromString(String x) {
-      List<String> parts = x.split('/');
-      int year = int.parse(parts[0]);
-      int month = int.parse(parts[1]);
-      int day = int.parse(parts[2]);
-      return Jalali(year, month, day);
-    }
-
     return Column(
       children: [
         Expanded(
@@ -69,88 +61,26 @@ class _IdentityFormState extends State<IdentityForm> {
                         BirthdayTextField(
                           controller: birthdayController,
                           onTap: () {
-                            showModalBottomSheet<Jalali>(
+                            showModalBottomSheet(
                               enableDrag: false,
                               showDragHandle: true,
                               context: context,
+                              useSafeArea: true,
+                              shape: const RoundedRectangleBorder(
+                                borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(8.0),
+                                    topRight: Radius.circular(8.0)),
+                              ),
                               isScrollControlled: true,
                               builder: (context) {
-                                Jalali? tempPickedDate;
-                                Jalali initialDateTime =
-                                    birthdayController.text.isEmpty
-                                        ? Jalali(1375, 4)
-                                        : jalaliFromString(birthdayController.text);
-                                return SizedBox(
-                                  height: 250,
-                                  child: Column(
-                                    children: [
-                                      Padding(
-                                        padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            CupertinoButton(
-                                              child: Text(
-                                                'تایید',
-                                                style: Theme.of(context)
-                                                    .textTheme
-                                                    .bodyMedium,
-                                              ),
-                                              onPressed: () {
-                                                Jalali jalaliDate =
-                                                    tempPickedDate ??
-                                                        initialDateTime;
-                                                String formattedDate =
-                                                    '${jalaliDate.year}/${jalaliDate.month}/${jalaliDate.day}';
-                                                birthdayController.text =
-                                                    formattedDate;
-                                                Navigator.of(context).pop();
-                                              },
-                                            ),
-                                            CupertinoButton(
-                                              child: Text(
-                                                'لغو',
-                                                style: Theme.of(context)
-                                                    .textTheme
-                                                    .bodyMedium,
-                                              ),
-                                              onPressed: () {
-                                                Navigator.of(context).pop();
-                                              },
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                      const Divider(
-                                        height: 0,
-                                        thickness: 1,
-                                      ),
-                                      Expanded(
-                                        child: CupertinoTheme(
-                                          data: CupertinoThemeData(
-                                            textTheme: CupertinoTextThemeData(
-                                              dateTimePickerTextStyle:
-                                                  Theme.of(context)
-                                                      .textTheme
-                                                      .titleMedium,
-                                            ),
-                                          ),
-                                          child: PCupertinoDatePicker(
-                                            mode: PCupertinoDatePickerMode.date,
-                                            initialDateTime: initialDateTime,
-                                            minimumDate: Jalali(1310, 8),
-                                            maximumDate: Jalali(1510, 9),
-                                            onDateTimeChanged:
-                                                (Jalali dateTime) {
-                                              tempPickedDate = dateTime;
-                                            },
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                );
+                                return BirthDateBottomSheet(
+                                    onCancelPressed: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                    onConfirmPressed: (_) {
+                                      Navigator.of(context).pop();
+                                    },
+                                    birthdayController: birthdayController);
                               },
                             );
                           },

@@ -34,7 +34,9 @@ class IdentityPageFactory {
     return GoRoute(
         path: (IdentityPageFactory.path),
         builder: (ctx, state) {
-          final extra = state.extra as IdentityExtra;
+          final extra = state.extra != null
+              ? state.extra as IdentityExtra
+              : IdentityExtra(phoneNumber: "", needReferralCode: false);
           return IdentityPageFactory.builder(
             showMessage: showMessage,
             context: ctx,
