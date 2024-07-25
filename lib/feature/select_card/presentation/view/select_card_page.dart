@@ -9,7 +9,8 @@ class SelectCardPage extends StatefulWidget {
 
   const SelectCardPage({
     super.key,
-    required this.onNext, required this.showMessage,
+    required this.onNext,
+    required this.showMessage,
   });
 
   @override
@@ -34,135 +35,151 @@ class _SelectCardPageState extends State<SelectCardPage> {
         ),
       ),
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              const SizedBox(
-                height: 30,
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 62.0),
-                child: CreditCard(
-                  firstName: _firstName,
-                  lastName: _lastName,
-                  flipOnTouch: false,
-                  quarterTurns: 1,
-                  scale: 1.4,
-                ),
-              ),
-              const SizedBox(
-                width: double.infinity,
-                height: 26,
-              ),
-              Text(
-                'کارت فلزی  |  رنگ کربنی',
-                style: Theme.of(context)
-                    .textTheme
-                    .headlineSmall
-                    ?.copyWith(color: Theme.of(context).colorScheme.primary),
-                textAlign: TextAlign.center,
-              ),
-              const SizedBox(
-                height: 12,
-              ),
-              Text(
-                'کارت بانکی، عضو شبکه شتاب',
-                textAlign: TextAlign.center,
-                style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: Theme.of(context).colorScheme.onSurfaceVariant),
-              ),
-            ],
-          ),
-        ),
-      ),
-      bottomNavigationBar: Padding(
-        padding: const EdgeInsets.all(16.0),
         child: Column(
-          mainAxisSize: MainAxisSize.min,
           children: [
-            InkWell(
-              onTap: () {
-                showModalBottomSheet(
-                  enableDrag: false,
-                  showDragHandle: true,
-                  isScrollControlled: true,
-                  useSafeArea: true,
-                  shape: const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(8.0),
-                        topRight: Radius.circular(8.0)),
-                  ),
-                  context: context,
-                  builder: (context) => CardPersonalizationBottomSheet(
-                    firstNameController:
-                        TextEditingController(text: _firstName),
-                    lastNameController: TextEditingController(text: _lastName),
-                    onButtonPressed: (firstName, lastName) {
-                      Navigator.of(context).pop();
-                      setState(() {
-                        _firstName = firstName;
-                        _lastName = lastName;
-                      });
-                    },
-                  ),
-                );
-              },
-              child: Container(
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: Theme.of(context).colorScheme.outline,
-                  ),
-                  borderRadius: const BorderRadius.all(Radius.circular(8)),
-                ),
-                child: Padding(
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'نام و نام خانوادگی درج شده روی کارت',
-                            style:
-                                Theme.of(context).textTheme.bodySmall?.copyWith(
-                                      color: Theme.of(context)
-                                          .colorScheme
-                                          .onSurfaceVariant,
-                                    ),
-                          ),
-                          const SizedBox(
-                            height: 2,
-                          ),
-                          Text(
-                            "$_firstName $_lastName",
-                            style: Theme.of(context)
-                                .textTheme
-                                .titleMedium
-                                ?.copyWith(
-                                  color: Theme.of(context).colorScheme.primary,
-                                ),
-                          ),
-                        ],
+            Expanded(
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    const SizedBox(
+                      height: 30,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 62.0),
+                      child: CreditCard(
+                        firstName: _firstName,
+                        lastName: _lastName,
+                        flipOnTouch: false,
+                        quarterTurns: 1,
+                        scale: 1.4,
                       ),
-                      Icon(
-                        Icons.mode_edit_outlined,
-                        size: 16.0,
-                        color: Theme.of(context).colorScheme.onSurfaceVariant,
-                      )
-                    ],
-                  ),
+                    ),
+                    const SizedBox(
+                      width: double.infinity,
+                      height: 26,
+                    ),
+                    Text(
+                      'کارت فلزی  |  رنگ کربنی',
+                      style: Theme.of(context)
+                          .textTheme
+                          .headlineSmall
+                          ?.copyWith(
+                              color: Theme.of(context).colorScheme.primary),
+                      textAlign: TextAlign.center,
+                    ),
+                    const SizedBox(
+                      height: 12,
+                    ),
+                    Text(
+                      'کارت بانکی، عضو شبکه شتاب',
+                      textAlign: TextAlign.center,
+                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                          color:
+                              Theme.of(context).colorScheme.onSurfaceVariant),
+                    ),
+                  ],
                 ),
               ),
             ),
-            const SizedBox(
-              height: 16.0,
-            ),
-            PrimaryFillButton(
-              label: 'سفارش کارت',
-              onPressed: widget.onNext,
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  InkWell(
+                    onTap: () {
+                      showModalBottomSheet(
+                        enableDrag: false,
+                        showDragHandle: true,
+                        isScrollControlled: true,
+                        useSafeArea: true,
+                        shape: const RoundedRectangleBorder(
+                          borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(8.0),
+                              topRight: Radius.circular(8.0)),
+                        ),
+                        context: context,
+                        builder: (context) => CardPersonalizationBottomSheet(
+                          firstNameController:
+                              TextEditingController(text: _firstName),
+                          lastNameController:
+                              TextEditingController(text: _lastName),
+                          onButtonPressed: (firstName, lastName) {
+                            Navigator.of(context).pop();
+                            setState(() {
+                              _firstName = firstName;
+                              _lastName = lastName;
+                            });
+                          },
+                        ),
+                      );
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: Theme.of(context).colorScheme.outline,
+                        ),
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(8)),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 8.0, horizontal: 16),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'نام و نام خانوادگی درج شده روی کارت',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodySmall
+                                      ?.copyWith(
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .onSurfaceVariant,
+                                      ),
+                                ),
+                                const SizedBox(
+                                  height: 2,
+                                ),
+                                Text(
+                                  "$_firstName $_lastName",
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .titleMedium
+                                      ?.copyWith(
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .primary,
+                                      ),
+                                ),
+                              ],
+                            ),
+                            Icon(
+                              Icons.mode_edit_outlined,
+                              size: 16.0,
+                              color: Theme.of(context)
+                                  .colorScheme
+                                  .onSurfaceVariant,
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 16.0,
+                  ),
+                  PrimaryFillButton(
+                    label: 'سفارش کارت',
+                    onPressed: widget.onNext,
+                  ),
+                ],
+              ),
             ),
           ],
         ),
