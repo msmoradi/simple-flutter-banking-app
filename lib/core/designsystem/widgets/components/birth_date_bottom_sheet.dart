@@ -5,13 +5,13 @@ import 'package:persian_datetime_picker/persian_datetime_picker.dart';
 class BirthDateBottomSheet extends StatelessWidget {
   final Function(String address) onConfirmPressed;
   final Function() onCancelPressed;
-  final TextEditingController birthdayController;
+  final String birthDate;
 
   const BirthDateBottomSheet({
     super.key,
     required this.onConfirmPressed,
     required this.onCancelPressed,
-    required this.birthdayController,
+    required this.birthDate,
   });
 
   Jalali jalaliFromString(String x) {
@@ -25,9 +25,9 @@ class BirthDateBottomSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Jalali? tempPickedDate;
-    Jalali initialDateTime = birthdayController.text.isEmpty
+    Jalali initialDateTime = birthDate.isEmpty
         ? Jalali(1375, 4)
-        : jalaliFromString(birthdayController.text);
+        : jalaliFromString(birthDate);
     return SingleChildScrollView(
       child: Container(
         padding:
@@ -53,7 +53,6 @@ class BirthDateBottomSheet extends StatelessWidget {
                                 tempPickedDate ?? initialDateTime;
                             String formattedDate =
                                 '${jalaliDate.year}/${jalaliDate.month}/${jalaliDate.day}';
-                            birthdayController.text = formattedDate;
                             onConfirmPressed(formattedDate);
                           },
                         ),

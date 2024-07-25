@@ -8,7 +8,6 @@ import 'package:banx/feature/identity/presentation/bloc/identity_bloc.dart';
 import 'package:banx/feature/identity/presentation/view/referral_bottom_sheet_content.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:persian_datetime_picker/persian_datetime_picker.dart';
 
 class IdentityForm extends StatefulWidget {
   final bool showLoading;
@@ -77,10 +76,11 @@ class _IdentityFormState extends State<IdentityForm> {
                                     onCancelPressed: () {
                                       Navigator.of(context).pop();
                                     },
-                                    onConfirmPressed: (_) {
+                                    onConfirmPressed: (newDate) {
+                                      birthdayController.text = newDate;
                                       Navigator.of(context).pop();
                                     },
-                                    birthdayController: birthdayController);
+                                    birthDate: birthdayController.text);
                               },
                             );
                           },
