@@ -77,7 +77,7 @@ class _VerifyPasswordContentState extends State<VerifyPasswordContent> {
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: AnimatedSwitcher(
-            duration: const Duration(milliseconds: 100),
+            duration: const Duration(milliseconds: 200),
             transitionBuilder: (child, animation) =>
                 ScaleTransition(scale: animation, child: child),
             child: widget.showLoading
