@@ -1,4 +1,3 @@
-import 'package:banx/composition/card_delivery_page_factory.dart';
 import 'package:banx/composition/kyc_status_page_factory.dart';
 import 'package:banx/feature/card_order/presentation/view/card_delivery_time_page.dart';
 import 'package:flutter/cupertino.dart';
@@ -18,9 +17,6 @@ class CardDeliveryTimePageFactory {
       showMessage: showMessage,
       onNext: () {
         context.push(KycStatusPageFactory.path, extra: KycStatusExtra());
-      },
-      onEditAddress: () {
-        context.push(CardDeliveryPageFactory.path);
       },
     );
   }

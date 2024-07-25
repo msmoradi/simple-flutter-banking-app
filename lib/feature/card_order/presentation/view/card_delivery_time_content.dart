@@ -1,12 +1,12 @@
 import 'package:banx/core/designsystem/widgets/button/fill/full_fill_button.dart';
 import 'package:banx/core/designsystem/widgets/components/address_row.dart';
+import 'package:banx/core/designsystem/widgets/components/edit_address_bottom_sheet.dart';
 import 'package:banx/feature/card_order/presentation/bloc/card_order_bloc.dart';
 import 'package:banx/feature/card_order/presentation/view/delivery_card_times.dart';
 import 'package:flutter/material.dart';
 
-class CardDeliveryTimeContent extends StatelessWidget {
+class CardDeliveryTimeContent extends StatefulWidget {
   final Function() onNext;
-  final Function() onEditAddress;
   final CardOrderState state;
   final String address;
 
@@ -14,9 +14,22 @@ class CardDeliveryTimeContent extends StatelessWidget {
     super.key,
     required this.state,
     required this.onNext,
-    required this.onEditAddress,
     required this.address,
   });
+
+  @override
+  State<CardDeliveryTimeContent> createState() =>
+      _CardDeliveryTimeContentState();
+}
+
+class _CardDeliveryTimeContentState extends State<CardDeliveryTimeContent> {
+  String _address = "";
+
+  @override
+  void initState() {
+    _address = widget.address;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -64,8 +77,31 @@ class CardDeliveryTimeContent extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 16.0),
                       child: AddressRow(
-                        onEditPressed: onEditAddress,
-                        address: address,
+                        onEditPressed: () {
+                          showModalBottomSheet(
+                            enableDrag: false,
+                            showDragHandle: true,
+                            isScrollControlled: true,
+                            useSafeArea: true,
+                            shape: const RoundedRectangleBorder(
+                              borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(8.0),
+                                  topRight: Radius.circular(8.0)),
+                            ),
+                            context: context,
+                            builder: (context) => EditAddressBottomSheet(
+                              addressController:
+                                  TextEditingController(text: _address),
+                              onButtonPressed: (address) {
+                                Navigator.of(context).pop();
+                                setState(() {
+                                  _address = address;
+                                });
+                              },
+                            ),
+                          );
+                        },
+                        address: _address,
                       ),
                     ),
                     const SizedBox(height: 32),
@@ -97,10 +133,10 @@ class CardDeliveryTimeContent extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: PrimaryFillButton(
-                onPressed: onNext,
+                onPressed: widget.onNext,
                 icon: Icons.thumb_up_outlined,
                 label: 'تأیید زمان و مکان دریافت کارت',
-                isLoading: state is CardOrderInProgress,
+                isLoading: widget.state is CardOrderInProgress,
               ),
             ),
           ],
