@@ -4,7 +4,6 @@ import 'package:banx/core/data/model/get_inquiry_response_dto.dart';
 import 'package:banx/core/data/model/state_dto.dart';
 import 'package:banx/core/domain/entities/address_entity.dart';
 import 'package:banx/core/domain/entities/city_entity.dart';
-import 'package:banx/core/domain/entities/get_inquiry_entity.dart';
 import 'package:banx/core/domain/entities/state_entity.dart';
 
 extension AddressDtoMapper on AddressDto {

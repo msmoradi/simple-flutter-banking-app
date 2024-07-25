@@ -3,6 +3,7 @@ import 'package:banx/core/designsystem/widgets/textfields/rounded_with_shadow_ot
 import 'package:banx/feature/verify_password/presentation/bloc/verify_password_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:local_auth/local_auth.dart';
 
 class VerifyPasswordContent extends StatefulWidget {
@@ -74,78 +75,93 @@ class _VerifyPasswordContentState extends State<VerifyPasswordContent> {
       ),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(16),
-          child: Column(
-            children: [
-              Expanded(
-                child: SingleChildScrollView(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
+          padding: const EdgeInsets.all(16.0),
+          child: AnimatedSwitcher(
+            duration: const Duration(milliseconds: 100),
+            transitionBuilder: (child, animation) =>
+                ScaleTransition(scale: animation, child: child),
+            child: widget.showLoading
+                ? Center(
+                    child: LoadingAnimationWidget.threeRotatingDots(
+                      color: Theme.of(context).colorScheme.onSurfaceVariant,
+                      size: 70.0,
+                    ),
+                  )
+                : Column(
                     children: [
-                      const SizedBox(height: 16.0,),
-                      const CircleAvatar(
-                        radius: 40.0,
-                        backgroundImage:
-                            NetworkImage('https://i.pravatar.cc/300'),
-                      ),
-                      const SizedBox(height: 16),
-                      Text(
-                        "روز بخیر، زهرا",
-                        style: Theme.of(context)
-                            .textTheme
-                            .headlineMedium
-                            ?.copyWith(
-                              fontWeight: FontWeight.bold,
-                              color: Theme.of(context).colorScheme.primary,
-                            ),
-                      ),
-                      const SizedBox(height: 58),
-                      Directionality(
-                        textDirection: TextDirection.ltr,
-                        child: Center(
-                          child: RoundedWithShadowInput(
-                            obscureText: true,
-                            controller: pinController,
-                            useNativeKeyboard: false,
-                            length: 4,
-                            onCompleted: (password) {
-                              context.read<VerifyPasswordBloc>().add(
-                                    VerifyPasswordSubmitted(
-                                      password: password,
+                      Expanded(
+                        child: SingleChildScrollView(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              const SizedBox(
+                                height: 16.0,
+                              ),
+                              const CircleAvatar(
+                                radius: 40.0,
+                                backgroundImage:
+                                    NetworkImage('https://i.pravatar.cc/300'),
+                              ),
+                              const SizedBox(height: 16),
+                              Text(
+                                "روز بخیر، زهرا",
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .headlineMedium
+                                    ?.copyWith(
+                                      fontWeight: FontWeight.bold,
+                                      color:
+                                          Theme.of(context).colorScheme.primary,
                                     ),
-                                  );
-                            },
+                              ),
+                              const SizedBox(height: 58),
+                              Directionality(
+                                textDirection: TextDirection.ltr,
+                                child: Center(
+                                  child: RoundedWithShadowInput(
+                                    obscureText: true,
+                                    controller: pinController,
+                                    useNativeKeyboard: false,
+                                    length: 4,
+                                    onCompleted: (password) {
+                                      context.read<VerifyPasswordBloc>().add(
+                                            VerifyPasswordSubmitted(
+                                              password: password,
+                                            ),
+                                          );
+                                    },
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(height: 32),
+                              CustomKeypad(
+                                onKeyTapped: _onKeyTapped,
+                                onBackspace: _onBackspace,
+                                onPrimaryTapped: () =>
+                                    context.read<VerifyPasswordBloc>().add(
+                                          const BiometricsSubmitted(),
+                                        ),
+                                primaryIcon: _biometricEnabled
+                                    ? Icons.fingerprint_rounded
+                                    : null,
+                                isEnabled: pinController.text.length < 4,
+                              ),
+                            ],
                           ),
                         ),
                       ),
-                      const SizedBox(height: 32),
-                      CustomKeypad(
-                        onKeyTapped: _onKeyTapped,
-                        onBackspace: _onBackspace,
-                        onPrimaryTapped: () =>
-                            context.read<VerifyPasswordBloc>().add(
-                                  const BiometricsSubmitted(),
-                                ),
-                        primaryIcon: _biometricEnabled
-                            ? Icons.fingerprint_rounded
-                            : null,
-                        isEnabled: pinController.text.length < 4,
+                      Text(
+                        "رمز ورود خود را فراموش کردید؟",
+                        style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                              fontWeight: FontWeight.w600,
+                              color: Theme.of(context).colorScheme.primary,
+                            ),
                       ),
+                      const SizedBox(
+                        height: 16.0,
+                      )
                     ],
                   ),
-                ),
-              ),
-              Text(
-                "رمز ورود خود را فراموش کردید؟",
-                style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                      fontWeight: FontWeight.w600,
-                      color: Theme.of(context).colorScheme.primary,
-                    ),
-              ),
-              const SizedBox(
-                height: 16.0,
-              )
-            ],
           ),
         ),
       ),
