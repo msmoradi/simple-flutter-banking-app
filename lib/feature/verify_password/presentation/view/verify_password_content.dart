@@ -48,6 +48,12 @@ class _VerifyPasswordContentState extends State<VerifyPasswordContent> {
   }
 
   @override
+  void dispose() {
+    pinController.dispose();
+    super.dispose();
+  }
+
+  @override
   void didUpdateWidget(VerifyPasswordContent oldWidget) {
     if (widget.pin != oldWidget.pin) {
       pinController.text = widget.pin;

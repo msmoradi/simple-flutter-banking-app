@@ -23,11 +23,9 @@ class ConfirmPasswordContent extends StatefulWidget {
 class _ConfirmPasswordContentState extends State<ConfirmPasswordContent> {
   late final GlobalKey<FormState> formKey;
   late final TextEditingController pinController;
-  late final FocusNode focusNode;
 
   void _onPrimaryTapped() async {
     if (formKey.currentState!.validate()) {
-      focusNode.unfocus();
       context.read<ConfirmPasswordBloc>().add(
             ConfirmPasswordSubmitted(
               phoneNumber: widget.phoneNumber,
@@ -59,7 +57,12 @@ class _ConfirmPasswordContentState extends State<ConfirmPasswordContent> {
     super.initState();
     formKey = GlobalKey<FormState>();
     pinController = TextEditingController();
-    focusNode = FocusNode();
+  }
+
+  @override
+  void dispose() {
+    pinController.dispose();
+    super.dispose();
   }
 
   @override
@@ -97,7 +100,7 @@ class _ConfirmPasswordContentState extends State<ConfirmPasswordContent> {
                     child: Center(
                       child: RoundedWithShadowInput(
                         obscureText: true,
-                        focusNode: focusNode,
+                        autofocus: true,
                         controller: pinController,
                         useNativeKeyboard: false,
                         length: 4,

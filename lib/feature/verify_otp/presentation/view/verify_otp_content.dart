@@ -30,8 +30,7 @@ class VerifyOtpContent extends StatefulWidget {
 
 class _VerifyOtpContentState extends State<VerifyOtpContent> {
   final formKey = GlobalKey<FormState>();
-  final pinController = TextEditingController();
-  final focusNode = FocusNode();
+  late final TextEditingController pinController;
 
   late Timer _timer;
   int _start = 60; // Initial countdown value in seconds
@@ -62,7 +61,6 @@ class _VerifyOtpContentState extends State<VerifyOtpContent> {
 
   void _onOTPComplete(String otp) {
     if (formKey.currentState!.validate()) {
-      focusNode.unfocus();
       context.read<VerifyOtpBloc>().add(
             VerifyOtpSubmitted(
               phoneNumber: widget.phoneNumber,
@@ -74,7 +72,6 @@ class _VerifyOtpContentState extends State<VerifyOtpContent> {
   }
 
   void _onSubmitTapped() {
-    focusNode.unfocus();
     context.read<VerifyOtpBloc>().add(
           VerifyOtpSubmitted(
             phoneNumber: widget.phoneNumber,
@@ -86,6 +83,7 @@ class _VerifyOtpContentState extends State<VerifyOtpContent> {
 
   @override
   void dispose() {
+    pinController.dispose();
     _timer.cancel();
     super.dispose();
   }
@@ -93,6 +91,7 @@ class _VerifyOtpContentState extends State<VerifyOtpContent> {
   @override
   void initState() {
     super.initState();
+    pinController = TextEditingController();
     _startTimer();
   }
 
@@ -168,7 +167,7 @@ class _VerifyOtpContentState extends State<VerifyOtpContent> {
                               readOnly: widget.state is VerifyOtpInProgress,
                               errorText: widget.errorMessage,
                               forceErrorState: widget.errorMessage != null,
-                              focusNode: focusNode,
+                              autofocus: true,
                               validator: (value) {
                                 return value?.length == widget.codeLength
                                     ? null

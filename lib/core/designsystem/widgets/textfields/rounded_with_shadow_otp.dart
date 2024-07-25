@@ -41,12 +41,6 @@ class RoundedWithShadowInput extends StatefulWidget {
 }
 
 class _RoundedWithShadowInputState extends State<RoundedWithShadowInput> {
-  @override
-  void dispose() {
-    widget.controller?.dispose();
-    widget.focusNode?.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {

@@ -21,11 +21,9 @@ class CreatePasswordPage extends StatefulWidget {
 class _CreatePasswordPageState extends State<CreatePasswordPage> {
   late final GlobalKey<FormState> formKey;
   late final TextEditingController pinController;
-  late final FocusNode focusNode;
 
   void _onPrimaryTapped() async {
     if (formKey.currentState!.validate()) {
-      focusNode.unfocus();
       widget.onNext(widget.phoneNumber, pinController.text);
     }
   }
@@ -52,7 +50,12 @@ class _CreatePasswordPageState extends State<CreatePasswordPage> {
     super.initState();
     formKey = GlobalKey<FormState>();
     pinController = TextEditingController();
-    focusNode = FocusNode();
+  }
+
+  @override
+  void dispose() {
+    pinController.dispose();
+    super.dispose();
   }
 
   @override
@@ -89,7 +92,7 @@ class _CreatePasswordPageState extends State<CreatePasswordPage> {
                     child: Center(
                       child: RoundedWithShadowInput(
                         obscureText: true,
-                        focusNode: focusNode,
+                        autofocus: true,
                         controller: pinController,
                         useNativeKeyboard: false,
                         length: 4,
