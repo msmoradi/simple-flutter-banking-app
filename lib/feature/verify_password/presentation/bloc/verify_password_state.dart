@@ -49,6 +49,10 @@ class CardOrderingLanding extends VerifyPasswordState {
 }
 
 class VerifyPasswordInitial extends VerifyPasswordState {
+  final bool showBiometric;
+
+  const VerifyPasswordInitial({required this.showBiometric});
+
   @override
   List<Object?> get props => [];
 }

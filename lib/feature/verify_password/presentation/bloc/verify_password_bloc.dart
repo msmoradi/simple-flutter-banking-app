@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:banx/core/domain/entities/user_profile_entity.dart';
 import 'package:banx/core/domain/repository/authentication_repository.dart';
 import 'package:banx/core/domain/repository/profile_repository.dart';
@@ -25,16 +27,35 @@ class VerifyPasswordBloc
     required this.tokenRepository,
     required this.profileRepository,
     required this.localAuthentication,
-  }) : super(VerifyPasswordInitial()) {
+  }) : super(VerifyPasswordInProgress()) {
     on<VerifyPasswordSubmitted>(_onVerifyPasswordSubmitted);
     on<BiometricsSubmitted>(_onBiometricsSubmitted);
+    on<CheckSavedPassword>(_onCheckSavedPassword);
+    add(const CheckSavedPassword());
+  }
+
+  FutureOr<void> _onCheckSavedPassword(
+      CheckSavedPassword event, Emitter<VerifyPasswordState> emit) async {
+    final showBiometric = await enableBiometrics();
+    try {
+      emit.call(VerifyPasswordInitial(showBiometric: showBiometric));
+    } catch (e) {
+      emit(VerifyPasswordFailure(e.toString()));
+    }
+  }
+
+  Future<bool> enableBiometrics() async {
+    final savedPassword = await tokenRepository.getPassword();
+    final canCheckBiometrics = await localAuthentication.canCheckBiometrics;
+    final biometricEnable = !savedPassword.isNullOrEmpty && canCheckBiometrics;
+    return biometricEnable;
   }
 
   Future<void> _onBiometricsSubmitted(
     BiometricsSubmitted event,
     Emitter<VerifyPasswordState> emit,
   ) async {
-    emit(VerifyPasswordInitial());
+    emit(const VerifyPasswordInitial(showBiometric: true));
     try {
       bool isAuthenticated = await localAuthentication.authenticate(
         localizedReason: 'Please authenticate to access your password',

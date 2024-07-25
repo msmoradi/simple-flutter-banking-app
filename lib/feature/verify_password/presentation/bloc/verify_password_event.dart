@@ -24,3 +24,10 @@ class BiometricsSubmitted extends VerifyPasswordEvent {
   @override
   List<Object> get props => [];
 }
+
+class CheckSavedPassword extends VerifyPasswordEvent {
+  const CheckSavedPassword();
+
+  @override
+  List<Object> get props => [];
+}

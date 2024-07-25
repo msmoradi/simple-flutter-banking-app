@@ -31,6 +31,8 @@ class VerifyPasswordPage extends StatelessWidget {
         builder: (context, state) {
           return VerifyPasswordContent(
             showMessage: showMessage,
+            showBiometric:
+                state is VerifyPasswordInitial ? state.showBiometric : false,
             showLoading: state is VerifyPasswordInProgress,
             pin: state is PinExist ? state.password : "",
           );

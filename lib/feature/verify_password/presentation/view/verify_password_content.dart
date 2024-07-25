@@ -4,10 +4,10 @@ import 'package:banx/feature/verify_password/presentation/bloc/verify_password_b
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
-import 'package:local_auth/local_auth.dart';
 
 class VerifyPasswordContent extends StatefulWidget {
   final bool showLoading;
+  final bool showBiometric;
   final String pin;
   final Function(String) showMessage;
 
@@ -16,6 +16,7 @@ class VerifyPasswordContent extends StatefulWidget {
     required this.showLoading,
     required this.showMessage,
     required this.pin,
+    required this.showBiometric,
   });
 
   @override
@@ -24,8 +25,6 @@ class VerifyPasswordContent extends StatefulWidget {
 
 class _VerifyPasswordContentState extends State<VerifyPasswordContent> {
   late final TextEditingController pinController;
-  final LocalAuthentication _localAuth = LocalAuthentication();
-  bool _biometricEnabled = false;
 
   void _onKeyTapped(String key) {
     setState(() {
@@ -42,20 +41,10 @@ class _VerifyPasswordContentState extends State<VerifyPasswordContent> {
     }
   }
 
-  Future<void> _checkBiometricSupport() async {
-    bool canCheckBiometrics = await _localAuth.canCheckBiometrics;
-    if (canCheckBiometrics) {
-      setState(() {
-        _biometricEnabled = true;
-      });
-    }
-  }
-
   @override
   void initState() {
     super.initState();
     pinController = TextEditingController();
-    _checkBiometricSupport();
   }
 
   @override
@@ -141,7 +130,7 @@ class _VerifyPasswordContentState extends State<VerifyPasswordContent> {
                                     context.read<VerifyPasswordBloc>().add(
                                           const BiometricsSubmitted(),
                                         ),
-                                primaryIcon: _biometricEnabled
+                                primaryIcon: widget.showBiometric
                                     ? Icons.fingerprint_rounded
                                     : null,
                                 isEnabled: pinController.text.length < 4,
