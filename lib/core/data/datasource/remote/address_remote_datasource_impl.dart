@@ -1,8 +1,10 @@
 import 'package:banx/core/data/datasource/remote/address_remote_datasource.dart';
 import 'package:banx/core/data/model/address_dto.dart';
 import 'package:banx/core/data/model/generic_list_response_dto.dart';
+import 'package:banx/core/data/model/get_inquiry_response_dto.dart';
 import 'package:banx/core/data/model/post_address_response_dto.dart';
 import 'package:banx/core/data/model/request/get_address_request_dto.dart';
+import 'package:banx/core/data/model/request/get_inquiry_request_dto.dart';
 import 'package:banx/core/data/model/request/post_address_request_dto.dart';
 import 'package:banx/core/networking/api_endpoints.dart';
 import 'package:banx/core/networking/http_client.dart';
@@ -59,5 +61,30 @@ class AddressRemoteDataSourceImpl extends AddressRemoteDataSource {
         return PostAddressResponseDto.empty();
       },
     );
+  }
+
+  @override
+  Future<PostAddressResponseDto> getCities() {
+    // TODO: implement getCities
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<GetInquiryResponseDto> getInquiry({required String postalCode}) {
+    final requestParameters = GetInquiryRequestDto(
+      postalCode: postalCode,
+    ).toJson();
+
+    return apiService.get(
+      endpoint: ApiEndpoint.address(AddressEndpoint.INQUIRY),
+      queryParameters: requestParameters,
+      mapper: GetInquiryResponseDto.fromJson,
+    );
+  }
+
+  @override
+  Future<PostAddressResponseDto> getStates() {
+    // TODO: implement getStates
+    throw UnimplementedError();
   }
 }

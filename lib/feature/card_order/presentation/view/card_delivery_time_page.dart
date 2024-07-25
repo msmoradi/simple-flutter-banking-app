@@ -9,9 +9,11 @@ class CardDeliveryTimePage extends StatelessWidget {
   final Function() onNext;
   final Function() onEditAddress;
   final Function(String) showMessage;
+  final String address;
 
   const CardDeliveryTimePage({
     super.key,
+    required this.address,
     required this.onNext,
     required this.onEditAddress,
     required this.showMessage,
@@ -27,6 +29,7 @@ class CardDeliveryTimePage extends StatelessWidget {
           return CardDeliveryTimeContent(
             state: state,
             onNext: onNext,
+            address: address,
             onEditAddress: onEditAddress,
           );
         },

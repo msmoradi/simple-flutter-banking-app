@@ -10,10 +10,12 @@ class CardDeliveryTimePageFactory {
   static CardDeliveryTimePage builder({
     required BuildContext context,
     required GoRouterState state,
+    required CardDeliveryTimeExtra extra,
     required Function(String message) showMessage,
   }) {
     return CardDeliveryTimePage(
-        showMessage:showMessage,
+      address: extra.address,
+      showMessage: showMessage,
       onNext: () {
         context.push(KycStatusPageFactory.path, extra: KycStatusExtra());
       },
@@ -30,12 +32,22 @@ class CardDeliveryTimePageFactory {
     return GoRoute(
         path: (CardDeliveryTimePageFactory.path),
         builder: (ctx, state) {
+          final extra = state.extra as CardDeliveryTimeExtra;
           return CardDeliveryTimePageFactory.builder(
             context: ctx,
             state: state,
+            extra: extra,
             showMessage: showMessage,
           );
         },
         routes: routes);
   }
+}
+
+class CardDeliveryTimeExtra {
+  final String address;
+
+  CardDeliveryTimeExtra({
+    required this.address,
+  });
 }

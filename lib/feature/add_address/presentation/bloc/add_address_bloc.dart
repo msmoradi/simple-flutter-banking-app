@@ -24,11 +24,11 @@ class AddAddressBloc extends Bloc<AddAddressEvent, AddAddressState> {
     emit(AddAddressInProgress());
     try {
       final response =
-          await addressRepository.postAddress(postalCode: event.postalCode);
+          await addressRepository.getInquiry(postalCode: event.postalCode);
       response.when(
           success: (response) {
             emit(
-              AddAddressSuccess(),
+              AddAddressSuccess(address: response.address),
             );
           },
           partialSuccess: (message) => emit(AddAddressFailure(message)),

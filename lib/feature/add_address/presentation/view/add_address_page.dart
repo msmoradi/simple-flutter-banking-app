@@ -6,7 +6,7 @@ import 'package:get_it/get_it.dart';
 import '../bloc/add_address_bloc.dart';
 
 class AddAddressPage extends StatelessWidget {
-  final Function() onNext;
+  final Function(String) onNext;
   final Function(String) showMessage;
 
   const AddAddressPage({
@@ -24,7 +24,7 @@ class AddAddressPage extends StatelessWidget {
           if (state is AddAddressFailure) {
             showMessage(state.message);
           } else if (state is AddAddressSuccess) {
-            onNext();
+            onNext(state.address);
           }
         },
         builder: (context, state) {

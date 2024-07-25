@@ -43,4 +43,26 @@ class AddressRepositoryImpl extends AddressRepository {
       return PutAddressEntity();
     });
   }
+
+  @override
+  Future<EntityWrapper<PutAddressEntity>> getCities() {
+    // TODO: implement getCities
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<EntityWrapper<AddressEntity>> getInquiry(
+      {required String postalCode}) {
+    return addressRemoteDataSource
+        .getInquiry(postalCode: postalCode)
+        .mapResponseToEntityWrapper(mapper: (model) {
+      return model.toEntity();
+    });
+  }
+
+  @override
+  Future<EntityWrapper<PutAddressEntity>> getStates() {
+    // TODO: implement getStates
+    throw UnimplementedError();
+  }
 }

@@ -25,6 +25,10 @@ class AddAddressValidated extends AddAddressState {
 }
 
 class AddAddressSuccess extends AddAddressState {
+  final String address;
+
+  const AddAddressSuccess({required this.address});
+
   @override
   List<Object?> get props => [];
 }

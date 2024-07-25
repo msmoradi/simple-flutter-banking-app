@@ -40,7 +40,7 @@ class ApiEndpoint {
         return path;
       case AddressEndpoint.STATES:
         return '$path/states';
-      case AddressEndpoint.INQUERY:
+      case AddressEndpoint.INQUIRY:
         return '$path/inquery';
       case AddressEndpoint.CITIES:
         return '$path/cities';
@@ -58,4 +58,4 @@ enum AuthEndpoint {
 
 enum ProfileEndpoint { GET_PROFILE, POSTAL_CODE }
 
-enum AddressEndpoint { ADDRESS, STATES, INQUERY, CITIES }
+enum AddressEndpoint { ADDRESS, STATES, INQUIRY, CITIES }

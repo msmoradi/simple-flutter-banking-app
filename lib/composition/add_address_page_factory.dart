@@ -11,10 +11,11 @@ class AddAddressPageFactory {
       required GoRouterState state,
       required Function(String message) showMessage}) {
     return AddAddressPage(
-        showMessage:showMessage,
-      onNext: () {
+      showMessage: showMessage,
+      onNext: (address) {
         context.push(
           CardDeliveryTimePageFactory.path,
+          extra: CardDeliveryTimeExtra(address: address),
         );
       },
     );

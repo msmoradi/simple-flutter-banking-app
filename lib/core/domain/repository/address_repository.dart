@@ -11,4 +11,10 @@ abstract class AddressRepository {
       {required String postalCode});
 
   Future<EntityWrapper<PutAddressEntity>> putAddress();
+
+  Future<EntityWrapper<PutAddressEntity>> getStates();
+
+  Future<EntityWrapper<AddressEntity>> getInquiry({required String postalCode});
+
+  Future<EntityWrapper<PutAddressEntity>> getCities();
 }

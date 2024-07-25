@@ -8,12 +8,14 @@ class CardDeliveryTimeContent extends StatelessWidget {
   final Function() onNext;
   final Function() onEditAddress;
   final CardOrderState state;
+  final String address;
 
   const CardDeliveryTimeContent({
     super.key,
     required this.state,
     required this.onNext,
     required this.onEditAddress,
+    required this.address,
   });
 
   @override
@@ -62,8 +64,7 @@ class CardDeliveryTimeContent extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(horizontal: 16.0),
                     child: AddressRow(
                       onEditPressed: onEditAddress,
-                      address:
-                          'شهر تهران، محله اکباتان، خیابان .شکوری غربی، بلوار شهید عبدالرحمان نفیسی ، فازیک بلوک A5، پلاک 0، طبقه 9، واحد 458',
+                      address: address,
                     ),
                   ),
                   const SizedBox(height: 32),
