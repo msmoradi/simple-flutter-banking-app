@@ -1,6 +1,7 @@
 import 'package:banx/core/designsystem/widgets/custom_keypad.dart';
 import 'package:banx/core/designsystem/widgets/textfields/rounded_with_shadow_otp.dart';
 import 'package:flutter/material.dart';
+import 'package:pinput/pinput.dart';
 
 class CreatePasswordPage extends StatefulWidget {
   final Function(String, String) onNext;
@@ -33,16 +34,6 @@ class _CreatePasswordPageState extends State<CreatePasswordPage> {
     setState(() {
       pinController.text += key;
     });
-  }
-
-  void _onBackspace() {
-    if (!mounted) return;
-    if (pinController.text.isNotEmpty) {
-      setState(() {
-        pinController.text =
-            pinController.text.substring(0, pinController.text.length - 1);
-      });
-    }
   }
 
   @override
@@ -106,7 +97,7 @@ class _CreatePasswordPageState extends State<CreatePasswordPage> {
                 const SizedBox(height: 56),
                 CustomKeypad(
                   onKeyTapped: _onKeyTapped,
-                  onBackspace: _onBackspace,
+                  onBackspace: pinController.delete,
                   onPrimaryTapped: _onPrimaryTapped,
                   primaryIcon: Icons.arrow_circle_left_rounded,
                   isEnabled: pinController.text.length < 4,

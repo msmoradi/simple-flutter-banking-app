@@ -4,6 +4,7 @@ import 'package:banx/feature/verify_password/presentation/bloc/verify_password_b
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:pinput/pinput.dart';
 
 class VerifyPasswordContent extends StatefulWidget {
   final bool showLoading;
@@ -30,15 +31,6 @@ class _VerifyPasswordContentState extends State<VerifyPasswordContent> {
     setState(() {
       pinController.text += key;
     });
-  }
-
-  void _onBackspace() {
-    if (pinController.text.isNotEmpty) {
-      setState(() {
-        pinController.text =
-            pinController.text.substring(0, pinController.text.length - 1);
-      });
-    }
   }
 
   @override
@@ -131,7 +123,7 @@ class _VerifyPasswordContentState extends State<VerifyPasswordContent> {
                               const SizedBox(height: 32),
                               CustomKeypad(
                                 onKeyTapped: _onKeyTapped,
-                                onBackspace: _onBackspace,
+                                onBackspace: pinController.delete,
                                 onPrimaryTapped: () =>
                                     context.read<VerifyPasswordBloc>().add(
                                           const BiometricsSubmitted(),
