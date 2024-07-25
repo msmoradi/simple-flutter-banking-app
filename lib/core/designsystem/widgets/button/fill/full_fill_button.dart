@@ -19,26 +19,28 @@ class PrimaryFillButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: fillWidth ? Size.infinite.width : null,
-      child: isLoading
-          ? FilledButton(
-              onPressed: () {},
-              child: SpinKitThreeBounce(
+    final content = AnimatedSwitcher(
+        duration: const Duration(milliseconds: 400),
+        transitionBuilder: (child, animation) =>
+            ScaleTransition(scale: animation, child: child),
+        child: isLoading
+            ? SpinKitThreeBounce(
                 color: Theme.of(context).colorScheme.onPrimaryContainer,
                 size: 30.0,
-              ),
+              )
+            : Text(label));
+    return SizedBox(
+      width: fillWidth ? Size.infinite.width : null,
+      child: icon != null
+          ? FilledButton.icon(
+              onPressed: isLoading ? null : onPressed,
+              icon: isLoading ? null : Icon(icon),
+              label: content,
             )
-          : icon != null
-              ? FilledButton.icon(
-                  onPressed: onPressed,
-                  icon: Icon(icon),
-                  label: Text(label),
-                )
-              : FilledButton(
-                  onPressed: onPressed,
-                  child: Text(label),
-                ),
+          : FilledButton(
+              onPressed: isLoading ? null : onPressed,
+              child: content,
+            ),
     );
   }
 }
