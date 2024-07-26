@@ -60,6 +60,7 @@ class _ConfirmPasswordContentState extends State<ConfirmPasswordContent> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: false,
         leading: const BackButton(),
       ),
       body: SafeArea(

@@ -21,6 +21,7 @@ class _AddAddressContentState extends State<AddAddressContent> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: false,
         automaticallyImplyLeading: false,
         title: Text(
           style: Theme.of(context)

@@ -25,6 +25,7 @@ class _SelectCardPageState extends State<SelectCardPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: false,
         automaticallyImplyLeading: false,
         title: Text(
           style: Theme.of(context)

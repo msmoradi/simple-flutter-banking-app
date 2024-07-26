@@ -35,6 +35,7 @@ class EnableBiometricPage extends StatelessWidget {
         builder: (context, state) {
           return Scaffold(
             appBar: AppBar(
+        centerTitle: false,
               toolbarHeight: 0.0,
             ),
             body: SafeArea(
