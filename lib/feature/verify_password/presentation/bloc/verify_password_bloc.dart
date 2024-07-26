@@ -5,11 +5,11 @@ import 'package:banx/core/domain/repository/authentication_repository.dart';
 import 'package:banx/core/domain/repository/profile_repository.dart';
 import 'package:banx/core/domain/repository/token_repository.dart';
 import 'package:banx/core/utils/extension/strings.dart';
+import 'package:banx/core/utils/localauth/local_auth_helper.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
-import 'package:local_auth/local_auth.dart';
 
 part 'verify_password_event.dart';
 part 'verify_password_state.dart';
@@ -20,7 +20,7 @@ class VerifyPasswordBloc
   final AuthenticationRepository authenticationRepository;
   final TokenRepository tokenRepository;
   final ProfileRepository profileRepository;
-  final LocalAuthentication localAuthentication;
+  final LocalAuthHelper localAuthentication;
 
   VerifyPasswordBloc({
     required this.authenticationRepository,
@@ -57,12 +57,7 @@ class VerifyPasswordBloc
   ) async {
     emit(const VerifyPasswordInitial(showBiometric: true));
     try {
-      bool isAuthenticated = await localAuthentication.authenticate(
-        localizedReason: 'Please authenticate to access your password',
-        options: const AuthenticationOptions(
-          biometricOnly: true,
-        ),
-      );
+      bool isAuthenticated = await localAuthentication.authenticate();
 
       if (isAuthenticated) {
         String? password = await tokenRepository.getPassword();
