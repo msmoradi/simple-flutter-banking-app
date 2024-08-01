@@ -40,6 +40,7 @@ dependencies:
   intl: any
   loading_animation_widget: ^1.2.1
   smart_auth: ^2.0.0
+  flutter_svg: ^2.0.10+1
 
 dev_dependencies:
   flutter_test:
@@ -82,27 +83,5 @@ flutter:
   uses-material-design: true
 
   assets:
-    - assets/images/card-banner.png
-    - assets/images/enable_face.png
-    - assets/images/kyc_status.png
-    - assets/images/metal_card_silver.png
-    - assets/images/metal_card_gold.png
-    - assets/images/metal_card_black.png
-    - assets/images/silver.png
-    - assets/images/gold.png
-    - assets/images/black.png
-    - assets/images/referral_frame.png
-    - assets/images/x1.png
-    - assets/images/x1_white.png
-    - assets/images/banx-logo.png
-    - assets/images/banx-logo.svg
-    - assets/images/slide-01.png
-    - assets/images/slide-02.png
-    - assets/images/slide-03.png
-    - assets/images/circle_user.svg
-    - assets/images/image-key.png
-    - assets/images/onboarding_face.png
-    - assets/images/blue-logo.png
-    - assets/images/chip.png
-    - assets/images/saman-bank.png
-    - assets/images/checked.png
+    - assets/images/
+    - assets/icons/
