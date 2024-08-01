@@ -165,7 +165,7 @@ class GlassRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GlassMorphism(
-      blur: 10,
+      blur: 20,
       color: Theme.of(context).colorScheme.surface,
       opacity: 0.2,
       child: SingleChildScrollView(
