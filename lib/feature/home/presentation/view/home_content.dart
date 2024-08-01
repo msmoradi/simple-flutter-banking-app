@@ -118,6 +118,10 @@ class _HomeContentState extends State<HomeContent> {
                     width: 32.0,
                     height: 32.0,
                     'assets/icons/bell.svg',
+                    colorFilter: ColorFilter.mode(
+                      Theme.of(context).colorScheme.onSurface,
+                      BlendMode.srcIn,
+                    ),
                   ),
                 ),
                 IconButton(
@@ -126,6 +130,10 @@ class _HomeContentState extends State<HomeContent> {
                     width: 32.0,
                     height: 32.0,
                     'assets/icons/help-circle.svg',
+                    colorFilter: ColorFilter.mode(
+                      Theme.of(context).colorScheme.onSurface,
+                      BlendMode.srcIn,
+                    ),
                   ),
                 ),
               ],
