@@ -127,9 +127,9 @@ class _HomeContentState extends State<HomeContent> {
                 ),
               ),
             ],
-            expandedHeight: 400.0,
+            expandedHeight: kToolbarHeight + 300,
             flexibleSpace: Padding(
-              padding: const EdgeInsets.only(top: 120.0),
+              padding: const EdgeInsets.only(top: kToolbarHeight * 2),
               child: Stack(
                 alignment: AlignmentDirectional.bottomCenter,
                 children: [
