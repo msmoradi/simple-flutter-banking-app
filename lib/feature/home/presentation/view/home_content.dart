@@ -93,64 +93,70 @@ class _HomeContentState extends State<HomeContent> {
     return Scaffold(
       body: CustomScrollView(
         slivers: [
-          SliverAppBar(
-            pinned: true,
-            stretch: true,
-            title: Text(
-              'Cash Banx',
-              style: Theme.of(context)
-                  .textTheme
-                  .labelLarge
-                  ?.copyWith(color: Theme.of(context).colorScheme.onSurface),
-            ),
-            centerTitle: true,
-            leading: Image.asset(
-              width: 48.0,
-              height: 48.0,
-              'assets/images/circle_avatar.png',
-            ),
-            actions: [
-              IconButton(
-                onPressed: () {},
-                icon: SvgPicture.asset(
-                  width: 32.0,
-                  height: 32.0,
-                  'assets/icons/bell.svg',
-                ),
+          SliverPadding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            sliver: SliverAppBar(
+              surfaceTintColor: Colors.transparent,
+              pinned: true,
+              stretch: true,
+              title: Text(
+                'Cash Banx',
+                style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                      color: Theme.of(context).colorScheme.onSurface,
+                    ),
               ),
-              IconButton(
-                onPressed: () {},
-                icon: SvgPicture.asset(
-                  width: 32.0,
-                  height: 32.0,
-                  'assets/icons/help-circle.svg',
-                ),
+              centerTitle: true,
+              leading: Image.asset(
+                width: 48.0,
+                height: 48.0,
+                'assets/images/circle_avatar.png',
               ),
-            ],
-            expandedHeight: kToolbarHeight + 300,
-            flexibleSpace: Padding(
-              padding: const EdgeInsets.only(top: kToolbarHeight * 2),
-              child: Stack(
-                alignment: AlignmentDirectional.bottomCenter,
-                children: [
-                  Image.asset(
-                    'assets/images/asset_shape.png',
-                    fit: BoxFit.fitHeight,
+              actions: [
+                IconButton(
+                  onPressed: () {},
+                  icon: SvgPicture.asset(
+                    width: 32.0,
+                    height: 32.0,
+                    'assets/icons/bell.svg',
                   ),
-                  const SizedBox(width: double.infinity, child: GlassRow())
-                ],
+                ),
+                IconButton(
+                  onPressed: () {},
+                  icon: SvgPicture.asset(
+                    width: 32.0,
+                    height: 32.0,
+                    'assets/icons/help-circle.svg',
+                  ),
+                ),
+              ],
+              expandedHeight: kToolbarHeight + 300,
+              flexibleSpace: Padding(
+                padding: const EdgeInsets.only(top: kToolbarHeight * 2),
+                child: Stack(
+                  alignment: AlignmentDirectional.bottomCenter,
+                  children: [
+                    Image.asset(
+                      'assets/images/asset_shape.png',
+                      fit: BoxFit.fitHeight,
+                    ),
+                    const SizedBox(
+                      width: double.infinity,
+                      child: GlassRow(),
+                    )
+                  ],
+                ),
               ),
             ),
           ),
-          SliverList(
-            delegate: SliverChildBuilderDelegate(
-              (BuildContext context, int index) {
-                return Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                  child: widgetList[index],
-                );
-              },
-              childCount: widgetList.length,
+          SliverPadding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            sliver: SliverList(
+              delegate: SliverChildBuilderDelegate(
+                (BuildContext context, int index) {
+                  return widgetList[index];
+                },
+                childCount: widgetList.length,
+              ),
             ),
           ),
         ],
