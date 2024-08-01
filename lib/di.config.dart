@@ -51,6 +51,7 @@ import 'package:banx/feature/confirm_password/presentation/bloc/confirm_password
     as _i339;
 import 'package:banx/feature/enable_biometric/presentation/bloc/enable_biometric_bloc.dart'
     as _i807;
+import 'package:banx/feature/home/presentation/bloc/home_bloc.dart' as _i412;
 import 'package:banx/feature/identity/presentation/bloc/identity_bloc.dart'
     as _i665;
 import 'package:banx/feature/main/presentation/bloc/main_bloc.dart' as _i381;
@@ -80,6 +81,7 @@ extension GetItInjectableX on _i174.GetIt {
     final registerModule = _$RegisterModule();
     gh.factory<_i606.ResponseInterceptor>(() => _i606.ResponseInterceptor());
     gh.factory<_i535.InfoInterceptor>(() => _i535.InfoInterceptor());
+    gh.factory<_i412.HomeBloc>(() => _i412.HomeBloc());
     gh.factory<_i381.MainBloc>(() => _i381.MainBloc());
     gh.lazySingleton<_i558.FlutterSecureStorage>(
         () => registerModule.flutterSecureStorage());
