@@ -78,7 +78,7 @@ class CustomCard extends StatelessWidget {
                   height: 113.0,
                   decoration: const BoxDecoration(
                     shape: BoxShape.circle,
-                    color: Color(0x66f2f3f6),
+                    color: Color(0x66f3f3f6),
                   ),
                 ),
                 Container(

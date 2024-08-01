@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class SimpleCard extends StatelessWidget {
   final String imagePath;
@@ -24,18 +23,20 @@ class SimpleCard extends StatelessWidget {
         children: [
           Image.asset(
             imagePath,
-            width: 70.0,
-            height: 70.0,
+            width: 48.0,
+            height: 48.0,
+          ),
+          const SizedBox(
+            width: 4.0,
           ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
                 title,
-                style: Theme.of(context)
-                    .textTheme
-                    .bodySmall
-                    ?.copyWith(color: Theme.of(context).colorScheme.onSurface),
+                style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                      color: Theme.of(context).colorScheme.onSurface,
+                    ),
               ),
               const SizedBox(
                 height: 4.0,
@@ -43,8 +44,9 @@ class SimpleCard extends StatelessWidget {
               Text(
                 subtitle,
                 style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                    fontWeight: FontWeight.bold,
-                    color: Theme.of(context).colorScheme.onSurface),
+                      fontWeight: FontWeight.bold,
+                      color: Theme.of(context).colorScheme.onSurface,
+                    ),
               ),
             ],
           ),
