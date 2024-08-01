@@ -1,6 +1,4 @@
 import 'package:banx/core/data/model/address_dto.dart';
-import 'package:banx/core/data/model/city_dto.dart';
-import 'package:banx/core/data/model/state_dto.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'get_inquiry_response_dto.freezed.dart';

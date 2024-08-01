@@ -1,5 +1,5 @@
 import 'package:banx/core/data/model/city_dto.dart';
-import 'package:banx/core/data/model/state_dto.dart';
+import 'package:banx/core/data/model/province_dto.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'address_dto.freezed.dart';
@@ -15,7 +15,7 @@ class AddressDto with _$AddressDto {
     required double longitude,
     required String address,
     required CityDto city,
-    required StateDto state,
+    required ProvinceDto province,
   }) = _AddressDto;
 
   factory AddressDto.fromJson(Map<String, dynamic> json) => _$AddressDtoFromJson(json);

@@ -1,7 +1,7 @@
 import 'package:banx/core/data/model/address_dto.dart';
 import 'package:banx/core/data/model/city_dto.dart';
 import 'package:banx/core/data/model/get_inquiry_response_dto.dart';
-import 'package:banx/core/data/model/state_dto.dart';
+import 'package:banx/core/data/model/province_dto.dart';
 import 'package:banx/core/domain/entities/address_entity.dart';
 import 'package:banx/core/domain/entities/city_entity.dart';
 import 'package:banx/core/domain/entities/state_entity.dart';
@@ -16,7 +16,7 @@ extension AddressDtoMapper on AddressDto {
       longitude: longitude,
       address: address,
       city: city.toEntity(),
-      state: state.toEntity(),
+      province: province.toEntity(),
     );
   }
 }
@@ -30,9 +30,9 @@ extension CityDtoMapper on CityDto {
   }
 }
 
-extension StateDtoMapper on StateDto {
-  StateEntity toEntity() {
-    return StateEntity(
+extension ProvinceDtoMapper on ProvinceDto {
+  ProvinceEntity toEntity() {
+    return ProvinceEntity(
       id: id,
       name: name,
     );
@@ -49,7 +49,7 @@ extension GetInquiryResponseDtoMapper on GetInquiryResponseDto {
       longitude: address.longitude,
       address: address.address,
       city: address.city.toEntity(),
-      state: address.state.toEntity(),
+      province: address.province.toEntity(),
     );
   }
 }

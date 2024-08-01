@@ -1,7 +1,7 @@
 import 'package:banx/core/domain/entities/entity.dart';
 
-class StateEntity extends Entity {
-  StateEntity({
+class ProvinceEntity extends Entity {
+  ProvinceEntity({
     required int id,
     required String name,
   });

@@ -9,150 +9,153 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:banx/core/data/datasource/remote/address_remote_datasource.dart'
-    as _i17;
+    as _i767;
 import 'package:banx/core/data/datasource/remote/address_remote_datasource_impl.dart'
-    as _i18;
+    as _i479;
 import 'package:banx/core/data/datasource/remote/authentication_remote_datasource.dart'
-    as _i19;
+    as _i84;
 import 'package:banx/core/data/datasource/remote/authentication_remote_datasource_impl.dart'
-    as _i20;
+    as _i149;
 import 'package:banx/core/data/datasource/remote/profile_remote_datasource.dart'
-    as _i21;
+    as _i264;
 import 'package:banx/core/data/datasource/remote/profile_remote_datasource_impl.dart'
-    as _i22;
-import 'package:banx/core/data/repository/address_repository_impl.dart' as _i30;
+    as _i192;
+import 'package:banx/core/data/repository/address_repository_impl.dart'
+    as _i794;
 import 'package:banx/core/data/repository/authentication_repository_impl.dart'
-    as _i27;
-import 'package:banx/core/data/repository/profile_repository_impl.dart' as _i24;
-import 'package:banx/core/data/repository/token_repository_impl.dart' as _i11;
-import 'package:banx/core/domain/repository/address_repository.dart' as _i29;
+    as _i450;
+import 'package:banx/core/data/repository/profile_repository_impl.dart'
+    as _i728;
+import 'package:banx/core/data/repository/token_repository_impl.dart' as _i205;
+import 'package:banx/core/domain/repository/address_repository.dart' as _i648;
 import 'package:banx/core/domain/repository/authentication_repository.dart'
-    as _i26;
-import 'package:banx/core/domain/repository/profile_repository.dart' as _i23;
-import 'package:banx/core/domain/repository/token_repository.dart' as _i10;
-import 'package:banx/core/networking/api_service.dart' as _i16;
-import 'package:banx/core/networking/http_client.dart' as _i15;
-import 'package:banx/core/networking/interceptors/info_interceptor.dart' as _i4;
+    as _i474;
+import 'package:banx/core/domain/repository/profile_repository.dart' as _i111;
+import 'package:banx/core/domain/repository/token_repository.dart' as _i232;
+import 'package:banx/core/networking/api_service.dart' as _i243;
+import 'package:banx/core/networking/http_client.dart' as _i1033;
+import 'package:banx/core/networking/interceptors/info_interceptor.dart'
+    as _i535;
 import 'package:banx/core/networking/interceptors/response_interceptor.dart'
-    as _i3;
+    as _i606;
 import 'package:banx/core/networking/interceptors/token_interceptor.dart'
-    as _i12;
-import 'package:banx/core/utils/configurations/banx_config.dart' as _i14;
-import 'package:banx/core/utils/localauth/local_auth_helper.dart' as _i9;
-import 'package:banx/di.dart' as _i37;
+    as _i450;
+import 'package:banx/core/utils/configurations/banx_config.dart' as _i962;
+import 'package:banx/core/utils/localauth/local_auth_helper.dart' as _i877;
+import 'package:banx/di.dart' as _i0;
 import 'package:banx/feature/add_address/presentation/bloc/add_address_bloc.dart'
-    as _i32;
+    as _i759;
 import 'package:banx/feature/card_order/presentation/bloc/card_order_bloc.dart'
-    as _i35;
+    as _i699;
 import 'package:banx/feature/confirm_password/presentation/bloc/confirm_password_bloc.dart'
-    as _i28;
+    as _i339;
 import 'package:banx/feature/enable_biometric/presentation/bloc/enable_biometric_bloc.dart'
-    as _i25;
+    as _i807;
 import 'package:banx/feature/identity/presentation/bloc/identity_bloc.dart'
-    as _i34;
-import 'package:banx/feature/main/presentation/bloc/main_bloc.dart' as _i5;
-import 'package:banx/feature/phone/presentation/bloc/phone_bloc.dart' as _i36;
+    as _i665;
+import 'package:banx/feature/main/presentation/bloc/main_bloc.dart' as _i381;
+import 'package:banx/feature/phone/presentation/bloc/phone_bloc.dart' as _i402;
 import 'package:banx/feature/verify_otp/presentation/bloc/verify_otp_bloc.dart'
-    as _i33;
+    as _i798;
 import 'package:banx/feature/verify_password/presentation/bloc/verify_password_bloc.dart'
-    as _i31;
-import 'package:dio/dio.dart' as _i13;
-import 'package:flutter_secure_storage/flutter_secure_storage.dart' as _i6;
-import 'package:get_it/get_it.dart' as _i1;
-import 'package:injectable/injectable.dart' as _i2;
-import 'package:local_auth/local_auth.dart' as _i8;
-import 'package:pretty_dio_logger/pretty_dio_logger.dart' as _i7;
+    as _i67;
+import 'package:dio/dio.dart' as _i361;
+import 'package:flutter_secure_storage/flutter_secure_storage.dart' as _i558;
+import 'package:get_it/get_it.dart' as _i174;
+import 'package:injectable/injectable.dart' as _i526;
+import 'package:local_auth/local_auth.dart' as _i152;
+import 'package:pretty_dio_logger/pretty_dio_logger.dart' as _i528;
 
-extension GetItInjectableX on _i1.GetIt {
+extension GetItInjectableX on _i174.GetIt {
 // initializes the registration of main-scope dependencies inside of GetIt
-  Future<_i1.GetIt> init({
+  Future<_i174.GetIt> init({
     String? environment,
-    _i2.EnvironmentFilter? environmentFilter,
+    _i526.EnvironmentFilter? environmentFilter,
   }) async {
-    final gh = _i2.GetItHelper(
+    final gh = _i526.GetItHelper(
       this,
       environment,
       environmentFilter,
     );
     final registerModule = _$RegisterModule();
-    gh.factory<_i3.ResponseInterceptor>(() => _i3.ResponseInterceptor());
-    gh.factory<_i4.InfoInterceptor>(() => _i4.InfoInterceptor());
-    gh.factory<_i5.MainBloc>(() => _i5.MainBloc());
-    gh.lazySingleton<_i6.FlutterSecureStorage>(
+    gh.factory<_i606.ResponseInterceptor>(() => _i606.ResponseInterceptor());
+    gh.factory<_i535.InfoInterceptor>(() => _i535.InfoInterceptor());
+    gh.factory<_i381.MainBloc>(() => _i381.MainBloc());
+    gh.lazySingleton<_i558.FlutterSecureStorage>(
         () => registerModule.flutterSecureStorage());
-    gh.lazySingleton<_i7.PrettyDioLogger>(
+    gh.lazySingleton<_i528.PrettyDioLogger>(
         () => registerModule.prettyDioLogger());
-    gh.lazySingleton<_i8.LocalAuthentication>(
+    gh.lazySingleton<_i152.LocalAuthentication>(
         () => registerModule.localAuthentication());
     gh.factory<String>(
       () => registerModule.baseUrl,
       instanceName: 'BaseUrl',
     );
-    gh.lazySingleton<_i9.LocalAuthHelper>(() =>
-        registerModule.localAuthHelperImpl(gh<_i8.LocalAuthentication>()));
-    gh.singleton<_i10.TokenRepository>(() => _i11.TokenRepositoryImpl(
-        secureStorage: gh<_i6.FlutterSecureStorage>()));
-    gh.factory<_i12.TokenInterceptor>(() =>
-        _i12.TokenInterceptor(tokenRepository: gh<_i10.TokenRepository>()));
-    gh.lazySingleton<_i13.Dio>(() => registerModule.dio(
-          gh<String>(instanceName: 'BaseUrl'),
-          gh<_i3.ResponseInterceptor>(),
-          gh<_i12.TokenInterceptor>(),
-          gh<_i4.InfoInterceptor>(),
-          gh<_i7.PrettyDioLogger>(),
-        ));
-    await gh.lazySingletonAsync<_i14.BanxConfig>(
-      () => registerModule.banxConfig(gh<_i10.TokenRepository>()),
+    gh.lazySingleton<_i877.LocalAuthHelper>(() =>
+        registerModule.localAuthHelperImpl(gh<_i152.LocalAuthentication>()));
+    gh.singleton<_i232.TokenRepository>(() => _i205.TokenRepositoryImpl(
+        secureStorage: gh<_i558.FlutterSecureStorage>()));
+    gh.factory<_i450.TokenInterceptor>(() =>
+        _i450.TokenInterceptor(tokenRepository: gh<_i232.TokenRepository>()));
+    await gh.lazySingletonAsync<_i962.BanxConfig>(
+      () => registerModule.banxConfig(gh<_i232.TokenRepository>()),
       preResolve: true,
     );
-    gh.lazySingleton<_i15.HTTPClient>(() => _i16.ApiService(
-          dio: gh<_i13.Dio>(),
-          tokenRepository: gh<_i10.TokenRepository>(),
+    gh.lazySingleton<_i361.Dio>(() => registerModule.dio(
+          gh<String>(instanceName: 'BaseUrl'),
+          gh<_i606.ResponseInterceptor>(),
+          gh<_i450.TokenInterceptor>(),
+          gh<_i535.InfoInterceptor>(),
+          gh<_i528.PrettyDioLogger>(),
         ));
-    gh.lazySingleton<_i17.AddressRemoteDataSource>(() =>
-        _i18.AddressRemoteDataSourceImpl(apiService: gh<_i15.HTTPClient>()));
-    gh.lazySingleton<_i19.AuthenticationRemoteDataSource>(() =>
-        _i20.AuthenticationRemoteDataSourceImpl(
-            apiService: gh<_i15.HTTPClient>()));
-    gh.lazySingleton<_i21.ProfileRemoteDataSource>(() =>
-        _i22.ProfileRemoteDataSourceImpl(apiService: gh<_i15.HTTPClient>()));
-    gh.lazySingleton<_i23.ProfileRepository>(() => _i24.ProfileRepositoryImpl(
-        profileRemoteDataSource: gh<_i21.ProfileRemoteDataSource>()));
-    gh.factory<_i25.EnableBiometricBloc>(() => _i25.EnableBiometricBloc(
-          profileRepository: gh<_i23.ProfileRepository>(),
-          localAuthentication: gh<_i8.LocalAuthentication>(),
-          tokenRepository: gh<_i10.TokenRepository>(),
+    gh.lazySingleton<_i1033.HTTPClient>(() => _i243.ApiService(
+          dio: gh<_i361.Dio>(),
+          tokenRepository: gh<_i232.TokenRepository>(),
         ));
-    gh.lazySingleton<_i26.AuthenticationRepository>(
-        () => _i27.AuthenticationRepositoryImpl(
+    gh.lazySingleton<_i767.AddressRemoteDataSource>(() =>
+        _i479.AddressRemoteDataSourceImpl(apiService: gh<_i1033.HTTPClient>()));
+    gh.lazySingleton<_i84.AuthenticationRemoteDataSource>(() =>
+        _i149.AuthenticationRemoteDataSourceImpl(
+            apiService: gh<_i1033.HTTPClient>()));
+    gh.lazySingleton<_i264.ProfileRemoteDataSource>(() =>
+        _i192.ProfileRemoteDataSourceImpl(apiService: gh<_i1033.HTTPClient>()));
+    gh.lazySingleton<_i111.ProfileRepository>(() => _i728.ProfileRepositoryImpl(
+        profileRemoteDataSource: gh<_i264.ProfileRemoteDataSource>()));
+    gh.factory<_i807.EnableBiometricBloc>(() => _i807.EnableBiometricBloc(
+          profileRepository: gh<_i111.ProfileRepository>(),
+          localAuthentication: gh<_i152.LocalAuthentication>(),
+          tokenRepository: gh<_i232.TokenRepository>(),
+        ));
+    gh.lazySingleton<_i474.AuthenticationRepository>(
+        () => _i450.AuthenticationRepositoryImpl(
               authenticationRemoteDataSource:
-                  gh<_i19.AuthenticationRemoteDataSource>(),
-              tokenRepository: gh<_i10.TokenRepository>(),
+                  gh<_i84.AuthenticationRemoteDataSource>(),
+              tokenRepository: gh<_i232.TokenRepository>(),
             ));
-    gh.factory<_i28.ConfirmPasswordBloc>(() => _i28.ConfirmPasswordBloc(
-          authenticationRepository: gh<_i26.AuthenticationRepository>(),
-          profileRepository: gh<_i23.ProfileRepository>(),
+    gh.factory<_i339.ConfirmPasswordBloc>(() => _i339.ConfirmPasswordBloc(
+          authenticationRepository: gh<_i474.AuthenticationRepository>(),
+          profileRepository: gh<_i111.ProfileRepository>(),
         ));
-    gh.lazySingleton<_i29.AddressRepository>(() => _i30.AddressRepositoryImpl(
-        addressRemoteDataSource: gh<_i17.AddressRemoteDataSource>()));
-    gh.factory<_i31.VerifyPasswordBloc>(() => _i31.VerifyPasswordBloc(
-          authenticationRepository: gh<_i26.AuthenticationRepository>(),
-          tokenRepository: gh<_i10.TokenRepository>(),
-          profileRepository: gh<_i23.ProfileRepository>(),
-          localAuthentication: gh<_i9.LocalAuthHelper>(),
+    gh.lazySingleton<_i648.AddressRepository>(() => _i794.AddressRepositoryImpl(
+        addressRemoteDataSource: gh<_i767.AddressRemoteDataSource>()));
+    gh.factory<_i67.VerifyPasswordBloc>(() => _i67.VerifyPasswordBloc(
+          authenticationRepository: gh<_i474.AuthenticationRepository>(),
+          tokenRepository: gh<_i232.TokenRepository>(),
+          profileRepository: gh<_i111.ProfileRepository>(),
+          localAuthentication: gh<_i877.LocalAuthHelper>(),
         ));
-    gh.factory<_i32.AddAddressBloc>(() =>
-        _i32.AddAddressBloc(addressRepository: gh<_i29.AddressRepository>()));
-    gh.factory<_i33.VerifyOtpBloc>(() => _i33.VerifyOtpBloc(
-        authenticationRepository: gh<_i26.AuthenticationRepository>()));
-    gh.factory<_i34.IdentityBloc>(() => _i34.IdentityBloc(
-        authenticationRepository: gh<_i26.AuthenticationRepository>()));
-    gh.factory<_i35.CardOrderBloc>(() => _i35.CardOrderBloc(
-        authenticationRepository: gh<_i26.AuthenticationRepository>()));
-    gh.factory<_i36.PhoneBloc>(() => _i36.PhoneBloc(
-        authenticationRepository: gh<_i26.AuthenticationRepository>()));
+    gh.factory<_i759.AddAddressBloc>(() =>
+        _i759.AddAddressBloc(addressRepository: gh<_i648.AddressRepository>()));
+    gh.factory<_i798.VerifyOtpBloc>(() => _i798.VerifyOtpBloc(
+        authenticationRepository: gh<_i474.AuthenticationRepository>()));
+    gh.factory<_i665.IdentityBloc>(() => _i665.IdentityBloc(
+        authenticationRepository: gh<_i474.AuthenticationRepository>()));
+    gh.factory<_i699.CardOrderBloc>(() => _i699.CardOrderBloc(
+        authenticationRepository: gh<_i474.AuthenticationRepository>()));
+    gh.factory<_i402.PhoneBloc>(() => _i402.PhoneBloc(
+        authenticationRepository: gh<_i474.AuthenticationRepository>()));
     return this;
   }
 }
 
-class _$RegisterModule extends _i37.RegisterModule {}
+class _$RegisterModule extends _i0.RegisterModule {}

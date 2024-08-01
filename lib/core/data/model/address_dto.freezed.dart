@@ -27,7 +27,7 @@ mixin _$AddressDto {
   double get longitude => throw _privateConstructorUsedError;
   String get address => throw _privateConstructorUsedError;
   CityDto get city => throw _privateConstructorUsedError;
-  StateDto get state => throw _privateConstructorUsedError;
+  ProvinceDto get province => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -49,10 +49,10 @@ abstract class $AddressDtoCopyWith<$Res> {
       double longitude,
       String address,
       CityDto city,
-      StateDto state});
+      ProvinceDto province});
 
   $CityDtoCopyWith<$Res> get city;
-  $StateDtoCopyWith<$Res> get state;
+  $ProvinceDtoCopyWith<$Res> get province;
 }
 
 /// @nodoc
@@ -75,7 +75,7 @@ class _$AddressDtoCopyWithImpl<$Res, $Val extends AddressDto>
     Object? longitude = null,
     Object? address = null,
     Object? city = null,
-    Object? state = null,
+    Object? province = null,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -106,10 +106,10 @@ class _$AddressDtoCopyWithImpl<$Res, $Val extends AddressDto>
           ? _value.city
           : city // ignore: cast_nullable_to_non_nullable
               as CityDto,
-      state: null == state
-          ? _value.state
-          : state // ignore: cast_nullable_to_non_nullable
-              as StateDto,
+      province: null == province
+          ? _value.province
+          : province // ignore: cast_nullable_to_non_nullable
+              as ProvinceDto,
     ) as $Val);
   }
 
@@ -123,9 +123,9 @@ class _$AddressDtoCopyWithImpl<$Res, $Val extends AddressDto>
 
   @override
   @pragma('vm:prefer-inline')
-  $StateDtoCopyWith<$Res> get state {
-    return $StateDtoCopyWith<$Res>(_value.state, (value) {
-      return _then(_value.copyWith(state: value) as $Val);
+  $ProvinceDtoCopyWith<$Res> get province {
+    return $ProvinceDtoCopyWith<$Res>(_value.province, (value) {
+      return _then(_value.copyWith(province: value) as $Val);
     });
   }
 }
@@ -146,12 +146,12 @@ abstract class _$$AddressDtoImplCopyWith<$Res>
       double longitude,
       String address,
       CityDto city,
-      StateDto state});
+      ProvinceDto province});
 
   @override
   $CityDtoCopyWith<$Res> get city;
   @override
-  $StateDtoCopyWith<$Res> get state;
+  $ProvinceDtoCopyWith<$Res> get province;
 }
 
 /// @nodoc
@@ -172,7 +172,7 @@ class __$$AddressDtoImplCopyWithImpl<$Res>
     Object? longitude = null,
     Object? address = null,
     Object? city = null,
-    Object? state = null,
+    Object? province = null,
   }) {
     return _then(_$AddressDtoImpl(
       id: freezed == id
@@ -203,10 +203,10 @@ class __$$AddressDtoImplCopyWithImpl<$Res>
           ? _value.city
           : city // ignore: cast_nullable_to_non_nullable
               as CityDto,
-      state: null == state
-          ? _value.state
-          : state // ignore: cast_nullable_to_non_nullable
-              as StateDto,
+      province: null == province
+          ? _value.province
+          : province // ignore: cast_nullable_to_non_nullable
+              as ProvinceDto,
     ));
   }
 }
@@ -222,7 +222,7 @@ class _$AddressDtoImpl implements _AddressDto {
       required this.longitude,
       required this.address,
       required this.city,
-      required this.state});
+      required this.province});
 
   factory _$AddressDtoImpl.fromJson(Map<String, dynamic> json) =>
       _$$AddressDtoImplFromJson(json);
@@ -242,11 +242,11 @@ class _$AddressDtoImpl implements _AddressDto {
   @override
   final CityDto city;
   @override
-  final StateDto state;
+  final ProvinceDto province;
 
   @override
   String toString() {
-    return 'AddressDto(id: $id, accountId: $accountId, postalCode: $postalCode, latitude: $latitude, longitude: $longitude, address: $address, city: $city, state: $state)';
+    return 'AddressDto(id: $id, accountId: $accountId, postalCode: $postalCode, latitude: $latitude, longitude: $longitude, address: $address, city: $city, province: $province)';
   }
 
   @override
@@ -265,13 +265,14 @@ class _$AddressDtoImpl implements _AddressDto {
                 other.longitude == longitude) &&
             (identical(other.address, address) || other.address == address) &&
             (identical(other.city, city) || other.city == city) &&
-            (identical(other.state, state) || other.state == state));
+            (identical(other.province, province) ||
+                other.province == province));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, id, accountId, postalCode,
-      latitude, longitude, address, city, state);
+      latitude, longitude, address, city, province);
 
   @JsonKey(ignore: true)
   @override
@@ -296,7 +297,7 @@ abstract class _AddressDto implements AddressDto {
       required final double longitude,
       required final String address,
       required final CityDto city,
-      required final StateDto state}) = _$AddressDtoImpl;
+      required final ProvinceDto province}) = _$AddressDtoImpl;
 
   factory _AddressDto.fromJson(Map<String, dynamic> json) =
       _$AddressDtoImpl.fromJson;
@@ -316,7 +317,7 @@ abstract class _AddressDto implements AddressDto {
   @override
   CityDto get city;
   @override
-  StateDto get state;
+  ProvinceDto get province;
   @override
   @JsonKey(ignore: true)
   _$$AddressDtoImplCopyWith<_$AddressDtoImpl> get copyWith =>

@@ -10,7 +10,7 @@ class AddressEntity extends Entity {
   final double longitude;
   final String address;
   final CityEntity city;
-  final StateEntity state;
+  final ProvinceEntity province;
 
   AddressEntity({
     this.id,
@@ -20,6 +20,6 @@ class AddressEntity extends Entity {
     required this.longitude,
     required this.address,
     required this.city,
-    required this.state,
+    required this.province,
   });
 }
