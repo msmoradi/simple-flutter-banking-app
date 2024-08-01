@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:banx/core/data/model/user_profile_response_dto.dart';
 import 'package:banx/core/domain/entities/user_profile_entity.dart';
 import 'package:banx/core/domain/repository/authentication_repository.dart';
 import 'package:banx/core/domain/repository/profile_repository.dart';
@@ -12,6 +13,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
 part 'verify_password_event.dart';
+
 part 'verify_password_state.dart';
 
 @injectable
@@ -94,13 +96,13 @@ class VerifyPasswordBloc
           success: (response) {
             if (response is UserProfileEntity) {
               switch (response.landingPage) {
-                case LandingPageEntity.home:
+                case LandingPage.home:
                   emit(HomeLanding());
-                case LandingPageEntity.waiting:
+                case LandingPage.waiting:
                   emit(WaitingLanding());
-                case LandingPageEntity.faceDetection:
+                case LandingPage.faceDetection:
                   emit(FaceDetectionLanding());
-                case LandingPageEntity.cardOrdering:
+                case LandingPage.cardOrdering:
                   emit(CardOrderingLanding());
               }
             }

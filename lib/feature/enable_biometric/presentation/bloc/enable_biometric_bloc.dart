@@ -1,4 +1,4 @@
-import 'package:banx/core/domain/entities/user_profile_entity.dart';
+import 'package:banx/core/data/model/user_profile_response_dto.dart';
 import 'package:banx/core/domain/repository/profile_repository.dart';
 import 'package:banx/core/domain/repository/token_repository.dart';
 import 'package:bloc/bloc.dart';
@@ -8,6 +8,7 @@ import 'package:injectable/injectable.dart';
 import 'package:local_auth/local_auth.dart';
 
 part 'enable_biometric_event.dart';
+
 part 'enable_biometric_state.dart';
 
 @injectable
@@ -48,13 +49,13 @@ class EnableBiometricBloc
       response.when(
           success: (response) {
             switch (response.landingPage) {
-              case LandingPageEntity.home:
+              case LandingPage.home:
                 emit(HomeLanding());
-              case LandingPageEntity.waiting:
+              case LandingPage.waiting:
                 emit(WaitingLanding());
-              case LandingPageEntity.faceDetection:
+              case LandingPage.faceDetection:
                 emit(FaceDetectionLanding());
-              case LandingPageEntity.cardOrdering:
+              case LandingPage.cardOrdering:
                 emit(CardOrderingLanding());
             }
           },

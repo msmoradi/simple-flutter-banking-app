@@ -27,7 +27,7 @@ class ProfileRepositoryImpl extends ProfileRepository {
         nationalID: model.nationalID,
         photoUrl: model.photoUrl,
         profileStatus: model.profileStatus,
-        landingPage: stringToLandingPageEntity(model.landingPage),
+        landingPage: model.landingPage,
         kycLevel: model.kycLevel,
         kycState: KycStateEntity(
           identityChecked: model.kycState.identityChecked,

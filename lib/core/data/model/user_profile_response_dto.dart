@@ -1,6 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'user_profile_response_dto.freezed.dart';
+
 part 'user_profile_response_dto.g.dart';
 
 @freezed
@@ -15,7 +16,7 @@ class UserProfileResponseDto with _$UserProfileResponseDto {
     required String? nationalID,
     required String? photoUrl,
     required String? profileStatus,
-    required String landingPage,
+    required LandingPage landingPage,
     required String? kycLevel,
     required KycState kycState,
   }) = _UserProfileResponseDto;
@@ -27,14 +28,34 @@ class UserProfileResponseDto with _$UserProfileResponseDto {
 @freezed
 class KycState with _$KycState {
   const factory KycState({
-    required bool identityChecked,
-    required bool? livenessChecked,
-    required bool? faceCompareChecked,
-    required bool? sayahChecked,
+    required KYCStatus identityChecked,
+    required KYCStatus livenessChecked,
+    required KYCStatus faceCompareChecked,
+    required KYCStatus sayahChecked,
   }) = _KycState;
 
   factory KycState.fromJson(Map<String, dynamic> json) =>
       _$KycStateFromJson(json);
 }
 
+enum KYCStatus {
+  @JsonValue('PENDING')
+  pending,
+  @JsonValue('CHECKING')
+  checking,
+  @JsonValue('SUCCEEDED')
+  succeeded,
+  @JsonValue('FAILED')
+  failed,
+}
 
+enum LandingPage {
+  @JsonValue('home')
+  home,
+  @JsonValue('waiting')
+  waiting,
+  @JsonValue('faceDetection')
+  faceDetection,
+  @JsonValue('cardOrdering')
+  cardOrdering,
+}

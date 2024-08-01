@@ -1,3 +1,4 @@
+import 'package:banx/core/data/model/user_profile_response_dto.dart';
 import 'package:banx/core/domain/entities/entity.dart';
 
 class UserProfileEntity extends Entity {
@@ -10,7 +11,7 @@ class UserProfileEntity extends Entity {
   final String? nationalID;
   final String? photoUrl;
   final String? profileStatus;
-  final LandingPageEntity landingPage;
+  final LandingPage landingPage;
   final String? kycLevel;
   final KycStateEntity kycState;
 
@@ -32,31 +33,9 @@ class UserProfileEntity extends Entity {
 
 class KycStateEntity {
   KycStateEntity({
-    required bool? identityChecked,
-    required bool? livenessChecked,
-    required bool? faceCompareChecked,
-    required bool? sayahChecked,
+    required KYCStatus identityChecked,
+    required KYCStatus livenessChecked,
+    required KYCStatus faceCompareChecked,
+    required KYCStatus sayahChecked,
   });
-}
-
-enum LandingPageEntity {
-  home,
-  waiting,
-  faceDetection,
-  cardOrdering,
-}
-
-LandingPageEntity stringToLandingPageEntity(String value) {
-  const map = {
-    'home': LandingPageEntity.home,
-    'waiting': LandingPageEntity.waiting,
-    'faceDetection': LandingPageEntity.faceDetection,
-    'cardOrdering': LandingPageEntity.cardOrdering,
-  };
-
-  final enumValue = map[value];
-  if (enumValue == null) {
-    throw ArgumentError('Unknown value: $value');
-  }
-  return enumValue;
 }
