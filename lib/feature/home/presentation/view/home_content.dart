@@ -98,27 +98,31 @@ class _HomeContentState extends State<HomeContent> {
             stretch: true,
             title: Text(
               'Cash Banx',
-              style: Theme.of(context).textTheme.labelLarge,
+              style: Theme.of(context)
+                  .textTheme
+                  .labelLarge
+                  ?.copyWith(color: Theme.of(context).colorScheme.onSurface),
             ),
             centerTitle: true,
-            leading: IconButton(
-              onPressed: () {},
-              icon: CircleAvatar(
-                child: Image.asset(
-                  'assets/images/circle_avatar.png',
-                ),
-              ),
+            leading: Image.asset(
+              width: 48.0,
+              height: 48.0,
+              'assets/images/circle_avatar.png',
             ),
             actions: [
               IconButton(
                 onPressed: () {},
                 icon: SvgPicture.asset(
+                  width: 32.0,
+                  height: 32.0,
                   'assets/icons/bell.svg',
                 ),
               ),
               IconButton(
                 onPressed: () {},
                 icon: SvgPicture.asset(
+                  width: 32.0,
+                  height: 32.0,
                   'assets/icons/help-circle.svg',
                 ),
               ),
