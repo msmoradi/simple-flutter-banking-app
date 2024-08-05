@@ -32,15 +32,23 @@ class VerifyPasswordBloc
   }) : super(VerifyPasswordInProgress()) {
     on<VerifyPasswordSubmitted>(_onVerifyPasswordSubmitted);
     on<BiometricsSubmitted>(_onBiometricsSubmitted);
-    on<CheckSavedPassword>(_onCheckSavedPassword);
-    add(const CheckSavedPassword());
+    on<Init>(_onInit);
+    add(const Init());
   }
 
-  FutureOr<void> _onCheckSavedPassword(
-      CheckSavedPassword event, Emitter<VerifyPasswordState> emit) async {
+  FutureOr<void> _onInit(
+    Init event,
+    Emitter<VerifyPasswordState> emit,
+  ) async {
     final showBiometric = await enableBiometrics();
+    final firstName = await profileRepository.getFirstName();
+    final photoUrl = await profileRepository.getPhotoUrl();
     try {
-      emit.call(VerifyPasswordInitial(showBiometric: showBiometric));
+      emit.call(VerifyPasswordInitial(
+        showBiometric: showBiometric,
+        firstName: firstName ?? 'تست',
+        photoUrl: photoUrl ?? 'https://i.pravatar.cc/300',
+      ));
     } catch (e) {
       emit(VerifyPasswordFailure(e.toString()));
     }

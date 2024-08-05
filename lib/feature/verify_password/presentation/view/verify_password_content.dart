@@ -10,6 +10,8 @@ class VerifyPasswordContent extends StatefulWidget {
   final bool showLoading;
   final bool showBiometric;
   final String pin;
+  final String firstName;
+  final String photoUrl;
   final Function(String) showMessage;
 
   const VerifyPasswordContent({
@@ -18,6 +20,8 @@ class VerifyPasswordContent extends StatefulWidget {
     required this.showMessage,
     required this.pin,
     required this.showBiometric,
+    required this.firstName,
+    required this.photoUrl,
   });
 
   @override
@@ -85,14 +89,13 @@ class _VerifyPasswordContentState extends State<VerifyPasswordContent> {
                               const SizedBox(
                                 height: 16.0,
                               ),
-                              const CircleAvatar(
+                              CircleAvatar(
                                 radius: 40.0,
-                                backgroundImage:
-                                    NetworkImage('https://i.pravatar.cc/300'),
+                                backgroundImage: NetworkImage(widget.photoUrl),
                               ),
                               const SizedBox(height: 16),
                               Text(
-                                "روز بخیر، زهرا",
+                                "روز بخیر، ${widget.firstName}",
                                 style: Theme.of(context)
                                     .textTheme
                                     .headlineMedium

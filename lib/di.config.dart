@@ -8,6 +8,10 @@
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
+import 'package:banx/core/data/datasource/local/profile_local_datasource.dart'
+    as _i904;
+import 'package:banx/core/data/datasource/local/profile_local_datasource_impl.dart'
+    as _i335;
 import 'package:banx/core/data/datasource/remote/address_remote_datasource.dart'
     as _i767;
 import 'package:banx/core/data/datasource/remote/address_remote_datasource_impl.dart'
@@ -99,6 +103,9 @@ extension GetItInjectableX on _i174.GetIt {
         secureStorage: gh<_i558.FlutterSecureStorage>()));
     gh.factory<_i450.TokenInterceptor>(() =>
         _i450.TokenInterceptor(tokenRepository: gh<_i232.TokenRepository>()));
+    gh.lazySingleton<_i904.ProfileLocalDataSource>(() =>
+        _i335.ProfileLocalDataSourceImpl(
+            secureStorage: gh<_i558.FlutterSecureStorage>()));
     await gh.lazySingletonAsync<_i962.BanxConfig>(
       () => registerModule.banxConfig(gh<_i232.TokenRepository>()),
       preResolve: true,
@@ -122,7 +129,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i264.ProfileRemoteDataSource>(() =>
         _i192.ProfileRemoteDataSourceImpl(apiService: gh<_i1033.HTTPClient>()));
     gh.lazySingleton<_i111.ProfileRepository>(() => _i728.ProfileRepositoryImpl(
-        profileRemoteDataSource: gh<_i264.ProfileRemoteDataSource>()));
+          profileLocalDataSource: gh<_i904.ProfileLocalDataSource>(),
+          profileRemoteDataSource: gh<_i264.ProfileRemoteDataSource>(),
+        ));
     gh.factory<_i807.EnableBiometricBloc>(() => _i807.EnableBiometricBloc(
           profileRepository: gh<_i111.ProfileRepository>(),
           localAuthentication: gh<_i152.LocalAuthentication>(),

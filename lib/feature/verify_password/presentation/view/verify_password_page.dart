@@ -33,6 +33,8 @@ class VerifyPasswordPage extends StatelessWidget {
             showMessage: showMessage,
             showBiometric:
                 state is VerifyPasswordInitial ? state.showBiometric : false,
+            firstName: state is VerifyPasswordInitial ? state.firstName : "",
+            photoUrl: state is VerifyPasswordInitial ? state.photoUrl : "",
             showLoading: state is VerifyPasswordInProgress,
             pin: state is PinExist ? state.password : "",
           );
