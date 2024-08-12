@@ -33,6 +33,16 @@ class ApiEndpoint {
     }
   }
 
+  static String media(MediaEndpoint endpoint) {
+    const path = '/api/v1/app/';
+    switch (endpoint) {
+      case MediaEndpoint.UPLOAD_VIDEO:
+        return '$path/upload_video';
+      case MediaEndpoint.UPLOAD_IMAGE:
+        return '$path/upload_image';
+    }
+  }
+
   static String address(AddressEndpoint endpoint) {
     const path = '/api/v1/app/address';
     switch (endpoint) {
@@ -57,5 +67,7 @@ enum AuthEndpoint {
 }
 
 enum ProfileEndpoint { GET_PROFILE, POSTAL_CODE }
+
+enum MediaEndpoint { UPLOAD_VIDEO,UPLOAD_IMAGE }
 
 enum AddressEndpoint { ADDRESS, STATES, INQUIRY, CITIES }
