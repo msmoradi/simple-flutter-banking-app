@@ -20,6 +20,7 @@ PasswordResponseDto _$PasswordResponseDtoFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$PasswordResponseDto {
+  /// Serializes this PasswordResponseDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 }
 
@@ -39,6 +40,9 @@ class _$PasswordResponseDtoCopyWithImpl<$Res, $Val extends PasswordResponseDto>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of PasswordResponseDto
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -55,6 +59,9 @@ class __$$PasswordResponseDtoImplCopyWithImpl<$Res>
   __$$PasswordResponseDtoImplCopyWithImpl(_$PasswordResponseDtoImpl _value,
       $Res Function(_$PasswordResponseDtoImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of PasswordResponseDto
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -77,7 +84,7 @@ class _$PasswordResponseDtoImpl implements _PasswordResponseDto {
             other is _$PasswordResponseDtoImpl);
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => runtimeType.hashCode;
 

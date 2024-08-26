@@ -21,6 +21,7 @@ PostAddressResponseDto _$PostAddressResponseDtoFromJson(
 
 /// @nodoc
 mixin _$PostAddressResponseDto {
+  /// Serializes this PostAddressResponseDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 }
 
@@ -41,6 +42,9 @@ class _$PostAddressResponseDtoCopyWithImpl<$Res,
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of PostAddressResponseDto
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -57,6 +61,9 @@ class __$$AddressResponseDtoImplCopyWithImpl<$Res>
   __$$AddressResponseDtoImplCopyWithImpl(_$AddressResponseDtoImpl _value,
       $Res Function(_$AddressResponseDtoImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of PostAddressResponseDto
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -78,7 +85,7 @@ class _$AddressResponseDtoImpl implements _AddressResponseDto {
         (other.runtimeType == runtimeType && other is _$AddressResponseDtoImpl);
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => runtimeType.hashCode;
 

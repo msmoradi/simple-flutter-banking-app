@@ -23,8 +23,12 @@ PostAddressRequestDto _$PostAddressRequestDtoFromJson(
 mixin _$PostAddressRequestDto {
   String get postalCode => throw _privateConstructorUsedError;
 
+  /// Serializes this PostAddressRequestDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of PostAddressRequestDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $PostAddressRequestDtoCopyWith<PostAddressRequestDto> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -49,6 +53,8 @@ class _$PostAddressRequestDtoCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of PostAddressRequestDto
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -84,6 +90,8 @@ class __$$PostAddressRequestDtoImplCopyWithImpl<$Res>
       $Res Function(_$PostAddressRequestDtoImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of PostAddressRequestDto
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -123,11 +131,13 @@ class _$PostAddressRequestDtoImpl implements _PostAddressRequestDto {
                 other.postalCode == postalCode));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, postalCode);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PostAddressRequestDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$PostAddressRequestDtoImplCopyWith<_$PostAddressRequestDtoImpl>
@@ -151,8 +161,11 @@ abstract class _PostAddressRequestDto implements PostAddressRequestDto {
 
   @override
   String get postalCode;
+
+  /// Create a copy of PostAddressRequestDto
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$PostAddressRequestDtoImplCopyWith<_$PostAddressRequestDtoImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

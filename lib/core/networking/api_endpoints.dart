@@ -33,6 +33,18 @@ class ApiEndpoint {
     }
   }
 
+  static String card(CardEndpoint endpoint) {
+    const path = '/api/v1/app/card';
+    switch (endpoint) {
+      case CardEndpoint.ORDERS:
+        return '$path/orders';
+      case CardEndpoint.TYPES:
+        return '$path/types';
+      case CardEndpoint.SHIPPING_TIME_SLOTS:
+        return '$path/shipping-time-slots';
+    }
+  }
+
   static String media(MediaEndpoint endpoint) {
     const path = '/api/v1/app/';
     switch (endpoint) {
@@ -68,6 +80,8 @@ enum AuthEndpoint {
 
 enum ProfileEndpoint { GET_PROFILE, POSTAL_CODE }
 
-enum MediaEndpoint { UPLOAD_VIDEO,UPLOAD_IMAGE }
+enum CardEndpoint { ORDERS, TYPES, SHIPPING_TIME_SLOTS }
+
+enum MediaEndpoint { UPLOAD_VIDEO, UPLOAD_IMAGE }
 
 enum AddressEndpoint { ADDRESS, STATES, INQUIRY, CITIES }

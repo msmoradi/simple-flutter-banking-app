@@ -23,8 +23,12 @@ mixin _$SignUpResponseDto {
   int get expiresIn => throw _privateConstructorUsedError;
   int get codeLength => throw _privateConstructorUsedError;
 
+  /// Serializes this SignUpResponseDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of SignUpResponseDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $SignUpResponseDtoCopyWith<SignUpResponseDto> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -48,6 +52,8 @@ class _$SignUpResponseDtoCopyWithImpl<$Res, $Val extends SignUpResponseDto>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of SignUpResponseDto
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -86,6 +92,8 @@ class __$$SignUpResponseDtoImplCopyWithImpl<$Res>
       $Res Function(_$SignUpResponseDtoImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of SignUpResponseDto
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -135,11 +143,13 @@ class _$SignUpResponseDtoImpl implements _SignUpResponseDto {
                 other.codeLength == codeLength));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, expiresIn, codeLength);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SignUpResponseDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SignUpResponseDtoImplCopyWith<_$SignUpResponseDtoImpl> get copyWith =>
@@ -166,8 +176,11 @@ abstract class _SignUpResponseDto implements SignUpResponseDto {
   int get expiresIn;
   @override
   int get codeLength;
+
+  /// Create a copy of SignUpResponseDto
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SignUpResponseDtoImplCopyWith<_$SignUpResponseDtoImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

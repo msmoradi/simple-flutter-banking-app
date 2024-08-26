@@ -72,6 +72,9 @@ class _$IdentityResponseDtoCopyWithImpl<$Res, $Val extends IdentityResponseDto>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of IdentityResponseDto
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -88,6 +91,9 @@ class __$$IdentityResponseDtoImplCopyWithImpl<$Res>
   __$$IdentityResponseDtoImplCopyWithImpl(_$IdentityResponseDtoImpl _value,
       $Res Function(_$IdentityResponseDtoImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of IdentityResponseDto
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -193,6 +199,8 @@ class __$$JsonImplCopyWithImpl<$Res>
   __$$JsonImplCopyWithImpl(_$JsonImpl _value, $Res Function(_$JsonImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of IdentityResponseDto
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -237,7 +245,9 @@ class _$JsonImpl implements Json {
   int get hashCode =>
       Object.hash(runtimeType, const DeepCollectionEquality().hash(_data));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of IdentityResponseDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$JsonImplCopyWith<_$JsonImpl> get copyWith =>
@@ -310,7 +320,10 @@ abstract class Json implements IdentityResponseDto {
   const factory Json(final Map<String, dynamic> data) = _$JsonImpl;
 
   Map<String, dynamic> get data;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of IdentityResponseDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$JsonImplCopyWith<_$JsonImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -33,9 +33,13 @@ mixin _$GenericListResponseDto<T> {
   List<Sort> get sort => throw _privateConstructorUsedError;
   bool get empty => throw _privateConstructorUsedError;
 
+  /// Serializes this GenericListResponseDto to a JSON map.
   Map<String, dynamic> toJson(Object? Function(T) toJsonT) =>
       throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of GenericListResponseDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $GenericListResponseDtoCopyWith<T, GenericListResponseDto<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -73,6 +77,8 @@ class _$GenericListResponseDtoCopyWithImpl<T, $Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of GenericListResponseDto
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -136,6 +142,8 @@ class _$GenericListResponseDtoCopyWithImpl<T, $Res,
     ) as $Val);
   }
 
+  /// Create a copy of GenericListResponseDto
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PageableCopyWith<$Res> get pageable {
@@ -181,6 +189,8 @@ class __$$GenericListResponseDtoImplCopyWithImpl<T, $Res>
       $Res Function(_$GenericListResponseDtoImpl<T>) _then)
       : super(_value, _then);
 
+  /// Create a copy of GenericListResponseDto
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -329,7 +339,7 @@ class _$GenericListResponseDtoImpl<T> implements _GenericListResponseDto<T> {
             (identical(other.empty, empty) || other.empty == empty));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -345,7 +355,9 @@ class _$GenericListResponseDtoImpl<T> implements _GenericListResponseDto<T> {
       const DeepCollectionEquality().hash(_sort),
       empty);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of GenericListResponseDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$GenericListResponseDtoImplCopyWith<T, _$GenericListResponseDtoImpl<T>>
@@ -398,8 +410,11 @@ abstract class _GenericListResponseDto<T> implements GenericListResponseDto<T> {
   List<Sort> get sort;
   @override
   bool get empty;
+
+  /// Create a copy of GenericListResponseDto
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$GenericListResponseDtoImplCopyWith<T, _$GenericListResponseDtoImpl<T>>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -417,8 +432,12 @@ mixin _$Pageable {
   int get offset => throw _privateConstructorUsedError;
   List<Sort> get sort => throw _privateConstructorUsedError;
 
+  /// Serializes this Pageable to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of Pageable
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $PageableCopyWith<Pageable> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -447,6 +466,8 @@ class _$PageableCopyWithImpl<$Res, $Val extends Pageable>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of Pageable
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -511,6 +532,8 @@ class __$$PageableImplCopyWithImpl<$Res>
       _$PageableImpl _value, $Res Function(_$PageableImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of Pageable
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -603,12 +626,14 @@ class _$PageableImpl implements _Pageable {
             const DeepCollectionEquality().equals(other._sort, _sort));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, unpaged, pageSize, paged,
       pageNumber, offset, const DeepCollectionEquality().hash(_sort));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Pageable
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$PageableImplCopyWith<_$PageableImpl> get copyWith =>
@@ -646,8 +671,11 @@ abstract class _Pageable implements Pageable {
   int get offset;
   @override
   List<Sort> get sort;
+
+  /// Create a copy of Pageable
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$PageableImplCopyWith<_$PageableImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -664,8 +692,12 @@ mixin _$Sort {
   String get property => throw _privateConstructorUsedError;
   bool get ignoreCase => throw _privateConstructorUsedError;
 
+  /// Serializes this Sort to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of Sort
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $SortCopyWith<Sort> get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -692,6 +724,8 @@ class _$SortCopyWithImpl<$Res, $Val extends Sort>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of Sort
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -748,6 +782,8 @@ class __$$SortImplCopyWithImpl<$Res>
   __$$SortImplCopyWithImpl(_$SortImpl _value, $Res Function(_$SortImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of Sort
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -828,12 +864,14 @@ class _$SortImpl implements _Sort {
                 other.ignoreCase == ignoreCase));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType, direction, nullHandling, ascending, property, ignoreCase);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Sort
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SortImplCopyWith<_$SortImpl> get copyWith =>
@@ -867,8 +905,11 @@ abstract class _Sort implements Sort {
   String get property;
   @override
   bool get ignoreCase;
+
+  /// Create a copy of Sort
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SortImplCopyWith<_$SortImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

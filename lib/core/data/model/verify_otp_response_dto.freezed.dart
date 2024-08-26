@@ -24,8 +24,12 @@ mixin _$VerifyOtpResponseDto {
   String get refreshToken => throw _privateConstructorUsedError;
   String get passwordAuthentication => throw _privateConstructorUsedError;
 
+  /// Serializes this VerifyOtpResponseDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of VerifyOtpResponseDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $VerifyOtpResponseDtoCopyWith<VerifyOtpResponseDto> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -51,6 +55,8 @@ class _$VerifyOtpResponseDtoCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of VerifyOtpResponseDto
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -95,6 +101,8 @@ class __$$VerifyOtpResponseDtoImplCopyWithImpl<$Res>
       $Res Function(_$VerifyOtpResponseDtoImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of VerifyOtpResponseDto
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -155,12 +163,14 @@ class _$VerifyOtpResponseDtoImpl implements _VerifyOtpResponseDto {
                 other.passwordAuthentication == passwordAuthentication));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType, accessToken, refreshToken, passwordAuthentication);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of VerifyOtpResponseDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$VerifyOtpResponseDtoImplCopyWith<_$VerifyOtpResponseDtoImpl>
@@ -192,8 +202,11 @@ abstract class _VerifyOtpResponseDto implements VerifyOtpResponseDto {
   String get refreshToken;
   @override
   String get passwordAuthentication;
+
+  /// Create a copy of VerifyOtpResponseDto
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$VerifyOtpResponseDtoImplCopyWith<_$VerifyOtpResponseDtoImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

@@ -25,8 +25,12 @@ mixin _$SendOtpResponseDto {
   int? get expiresIn => throw _privateConstructorUsedError;
   int? get codeLength => throw _privateConstructorUsedError;
 
+  /// Serializes this SendOtpResponseDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of SendOtpResponseDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $SendOtpResponseDtoCopyWith<SendOtpResponseDto> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -54,6 +58,8 @@ class _$SendOtpResponseDtoCopyWithImpl<$Res, $Val extends SendOtpResponseDto>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of SendOtpResponseDto
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -106,6 +112,8 @@ class __$$SendOtpResponseDtoImplCopyWithImpl<$Res>
       $Res Function(_$SendOtpResponseDtoImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of SendOtpResponseDto
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -176,12 +184,14 @@ class _$SendOtpResponseDtoImpl implements _SendOtpResponseDto {
                 other.codeLength == codeLength));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType, needSignup, needReferralCode, expiresIn, codeLength);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SendOtpResponseDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SendOtpResponseDtoImplCopyWith<_$SendOtpResponseDtoImpl> get copyWith =>
@@ -214,8 +224,11 @@ abstract class _SendOtpResponseDto implements SendOtpResponseDto {
   int? get expiresIn;
   @override
   int? get codeLength;
+
+  /// Create a copy of SendOtpResponseDto
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SendOtpResponseDtoImplCopyWith<_$SendOtpResponseDtoImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -34,8 +34,12 @@ mixin _$UserProfileResponseDto {
   String? get kycLevel => throw _privateConstructorUsedError;
   KycState get kycState => throw _privateConstructorUsedError;
 
+  /// Serializes this UserProfileResponseDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of UserProfileResponseDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $UserProfileResponseDtoCopyWith<UserProfileResponseDto> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -74,6 +78,8 @@ class _$UserProfileResponseDtoCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of UserProfileResponseDto
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -142,6 +148,8 @@ class _$UserProfileResponseDtoCopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of UserProfileResponseDto
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $KycStateCopyWith<$Res> get kycState {
@@ -188,6 +196,8 @@ class __$$UserProfileResponseDtoImplCopyWithImpl<$Res>
       $Res Function(_$UserProfileResponseDtoImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of UserProfileResponseDto
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -338,7 +348,7 @@ class _$UserProfileResponseDtoImpl implements _UserProfileResponseDto {
                 other.kycState == kycState));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -355,7 +365,9 @@ class _$UserProfileResponseDtoImpl implements _UserProfileResponseDto {
       kycLevel,
       kycState);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of UserProfileResponseDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$UserProfileResponseDtoImplCopyWith<_$UserProfileResponseDtoImpl>
@@ -412,8 +424,11 @@ abstract class _UserProfileResponseDto implements UserProfileResponseDto {
   String? get kycLevel;
   @override
   KycState get kycState;
+
+  /// Create a copy of UserProfileResponseDto
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$UserProfileResponseDtoImplCopyWith<_$UserProfileResponseDtoImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -429,8 +444,12 @@ mixin _$KycState {
   KYCStatus get faceCompareChecked => throw _privateConstructorUsedError;
   KYCStatus get sayahChecked => throw _privateConstructorUsedError;
 
+  /// Serializes this KycState to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of KycState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $KycStateCopyWith<KycState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -457,6 +476,8 @@ class _$KycStateCopyWithImpl<$Res, $Val extends KycState>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of KycState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -509,6 +530,8 @@ class __$$KycStateImplCopyWithImpl<$Res>
       _$KycStateImpl _value, $Res Function(_$KycStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of KycState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -579,12 +602,14 @@ class _$KycStateImpl implements _KycState {
                 other.sayahChecked == sayahChecked));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, identityChecked, livenessChecked,
       faceCompareChecked, sayahChecked);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of KycState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$KycStateImplCopyWith<_$KycStateImpl> get copyWith =>
@@ -616,8 +641,11 @@ abstract class _KycState implements KycState {
   KYCStatus get faceCompareChecked;
   @override
   KYCStatus get sayahChecked;
+
+  /// Create a copy of KycState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$KycStateImplCopyWith<_$KycStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
