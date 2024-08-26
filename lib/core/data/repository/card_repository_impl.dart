@@ -1,4 +1,5 @@
 import 'package:banx/core/data/datasource/remote/card_remote_datasource.dart';
+import 'package:banx/core/data/mapper/card_mapper.dart';
 import 'package:banx/core/data/mapper/response.mapper.dart';
 import 'package:banx/core/domain/entities/card_shipping_time_slots_entity.dart';
 import 'package:banx/core/domain/entities/card_types_entity.dart';
@@ -33,17 +34,15 @@ class CardRepositoryImpl extends CardRepository {
 
   @override
   Future<EntityWrapper<CardShippingTimeSlotsEntity>> shippingTimeSlots() {
-    return cardRemoteDataSource.shippingTimeSlots().mapResponseToEntityWrapper(
-        mapper: (mapper) {
-      return CardShippingTimeSlotsEntity();
-    });
+    return cardRemoteDataSource
+        .shippingTimeSlots()
+        .mapResponseToEntityWrapper(mapper: (dto) => dto.toEntity());
   }
 
   @override
-  Future<EntityWrapper<CardTypesEntity>> types() {
-    return cardRemoteDataSource.types().mapResponseToEntityWrapper(
-        mapper: (mapper) {
-      return CardTypesEntity();
-    });
+  Future<EntityWrapper<CardTypesResponseEntity>> types() {
+    return cardRemoteDataSource
+        .types()
+        .mapResponseToEntityWrapper(mapper: (dto) => dto.toEntity());
   }
 }

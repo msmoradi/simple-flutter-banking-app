@@ -19,6 +19,20 @@ class CardOrderInProgress extends CardOrderState {
   List<Object?> get props => [];
 }
 
+class LoadTimes extends CardOrderState {
+  @override
+  List<Object?> get props => [];
+}
+
+class TimeLoaded extends CardOrderState {
+  final List<ShippingTimeEntity> cardShippingTimeSlots;
+
+  const TimeLoaded({required this.cardShippingTimeSlots});
+
+  @override
+  List<Object?> get props => [];
+}
+
 class CardOrderValidated extends CardOrderState {
   @override
   List<Object?> get props => [];

@@ -15,3 +15,10 @@ class CardOrderSubmitted extends CardOrderEvent {
   @override
   List<Object> get props => [phoneNumber];
 }
+
+class Init extends CardOrderEvent {
+  const Init();
+
+  @override
+  List<Object> get props => [];
+}

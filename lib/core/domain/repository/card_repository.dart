@@ -11,7 +11,7 @@ abstract class CardRepository {
     required String label,
   });
 
-  Future<EntityWrapper<CardTypesEntity>> types();
+  Future<EntityWrapper<CardTypesResponseEntity>> types();
 
   Future<EntityWrapper<CardShippingTimeSlotsEntity>> shippingTimeSlots();
 }
