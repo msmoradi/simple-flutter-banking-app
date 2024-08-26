@@ -19,7 +19,7 @@ class MediaRemoteDataSourceImpl implements MediaRemoteDataSource {
     });
 
     return await apiService.post(
-      endpoint: ApiEndpoint.media(MediaEndpoint.UPLOAD_IMAGE),
+      endpoint: ApiEndpoint.kyc(KYCEndpoint.IMAGE),
       data: formData,
       onSendProgress: onSendProgress,
       mapper: (item) {},
@@ -30,11 +30,11 @@ class MediaRemoteDataSourceImpl implements MediaRemoteDataSource {
   Future<void> uploadVideo(File file, Function(int, int) onSendProgress) async {
     String fileName = file.path.split('/').last;
     FormData formData = FormData.fromMap({
-      "file": await MultipartFile.fromFile(file.path, filename: fileName),
+      "video": await MultipartFile.fromFile(file.path, filename: fileName),
     });
 
     return await apiService.post(
-      endpoint: ApiEndpoint.media(MediaEndpoint.UPLOAD_VIDEO),
+      endpoint: ApiEndpoint.kyc(KYCEndpoint.VIDEO),
       data: formData,
       onSendProgress: onSendProgress,
       mapper: (item) {},

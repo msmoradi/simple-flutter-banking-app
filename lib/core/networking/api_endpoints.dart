@@ -45,13 +45,13 @@ class ApiEndpoint {
     }
   }
 
-  static String media(MediaEndpoint endpoint) {
-    const path = '/api/v1/app/';
+  static String kyc(KYCEndpoint endpoint) {
+    const path = '/api/v1/app/kyc';
     switch (endpoint) {
-      case MediaEndpoint.UPLOAD_VIDEO:
-        return '$path/upload_video';
-      case MediaEndpoint.UPLOAD_IMAGE:
-        return '$path/upload_image';
+      case KYCEndpoint.VIDEO:
+        return '$path/video';
+      case KYCEndpoint.IMAGE:
+        return '$path/image';
     }
   }
 
@@ -82,6 +82,6 @@ enum ProfileEndpoint { GET_PROFILE, POSTAL_CODE }
 
 enum CardEndpoint { ORDERS, TYPES, SHIPPING_TIME_SLOTS }
 
-enum MediaEndpoint { UPLOAD_VIDEO, UPLOAD_IMAGE }
-
 enum AddressEndpoint { ADDRESS, STATES, INQUIRY, CITIES }
+
+enum KYCEndpoint { VIDEO, IMAGE }
