@@ -78,6 +78,9 @@ class _$NetworkResponseCopyWithImpl<T, $Res, $Val extends NetworkResponse<T>>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of NetworkResponse
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -96,6 +99,8 @@ class __$$OkImplCopyWithImpl<T, $Res>
   __$$OkImplCopyWithImpl(_$OkImpl<T> _value, $Res Function(_$OkImpl<T>) _then)
       : super(_value, _then);
 
+  /// Create a copy of NetworkResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -135,7 +140,9 @@ class _$OkImpl<T> implements Ok<T> {
   int get hashCode =>
       Object.hash(runtimeType, const DeepCollectionEquality().hash(data));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of NetworkResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$OkImplCopyWith<T, _$OkImpl<T>> get copyWith =>
@@ -214,7 +221,10 @@ abstract class Ok<T> implements NetworkResponse<T> {
   const factory Ok(final T data) = _$OkImpl<T>;
 
   T get data;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of NetworkResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$OkImplCopyWith<T, _$OkImpl<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -236,6 +246,8 @@ class __$$ErrorImplCopyWithImpl<T, $Res>
       _$ErrorImpl<T> _value, $Res Function(_$ErrorImpl<T>) _then)
       : super(_value, _then);
 
+  /// Create a copy of NetworkResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -274,7 +286,9 @@ class _$ErrorImpl<T> implements Error<T> {
   @override
   int get hashCode => Object.hash(runtimeType, message);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of NetworkResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ErrorImplCopyWith<T, _$ErrorImpl<T>> get copyWith =>
@@ -353,7 +367,10 @@ abstract class Error<T> implements NetworkResponse<T> {
   const factory Error(final String message) = _$ErrorImpl<T>;
 
   String get message;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of NetworkResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ErrorImplCopyWith<T, _$ErrorImpl<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -375,6 +392,8 @@ class __$$LoadingImplCopyWithImpl<T, $Res>
       _$LoadingImpl<T> _value, $Res Function(_$LoadingImpl<T>) _then)
       : super(_value, _then);
 
+  /// Create a copy of NetworkResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -413,7 +432,9 @@ class _$LoadingImpl<T> implements Loading<T> {
   @override
   int get hashCode => Object.hash(runtimeType, message);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of NetworkResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$LoadingImplCopyWith<T, _$LoadingImpl<T>> get copyWith =>
@@ -492,7 +513,10 @@ abstract class Loading<T> implements NetworkResponse<T> {
   const factory Loading(final String message) = _$LoadingImpl<T>;
 
   String get message;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of NetworkResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$LoadingImplCopyWith<T, _$LoadingImpl<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -59,6 +59,7 @@ class App extends StatelessWidget {
   }
 
   void precacheImages(BuildContext context) {
+    precacheImage(const AssetImage("assets/images/asset_shape.png"), context);
     precacheImage(const AssetImage("assets/images/enable_face.png"), context);
     precacheImage(const AssetImage("assets/images/image-key.png"), context);
     precacheImage(

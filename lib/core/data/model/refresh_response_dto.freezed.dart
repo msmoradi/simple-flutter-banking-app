@@ -72,6 +72,9 @@ class _$RefreshResponseDtoCopyWithImpl<$Res, $Val extends RefreshResponseDto>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of RefreshResponseDto
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -91,6 +94,8 @@ class __$$RefreshResponseDtoImplCopyWithImpl<$Res>
       $Res Function(_$RefreshResponseDtoImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of RefreshResponseDto
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -129,7 +134,9 @@ class _$RefreshResponseDtoImpl implements _RefreshResponseDto {
   @override
   int get hashCode => Object.hash(runtimeType, refresh);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of RefreshResponseDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$RefreshResponseDtoImplCopyWith<_$RefreshResponseDtoImpl> get copyWith =>
@@ -204,7 +211,10 @@ abstract class _RefreshResponseDto implements RefreshResponseDto {
       _$RefreshResponseDtoImpl;
 
   String get refresh;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of RefreshResponseDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$RefreshResponseDtoImplCopyWith<_$RefreshResponseDtoImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -225,6 +235,8 @@ class __$$JsonImplCopyWithImpl<$Res>
   __$$JsonImplCopyWithImpl(_$JsonImpl _value, $Res Function(_$JsonImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of RefreshResponseDto
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -269,7 +281,9 @@ class _$JsonImpl implements Json {
   int get hashCode =>
       Object.hash(runtimeType, const DeepCollectionEquality().hash(_data));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of RefreshResponseDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$JsonImplCopyWith<_$JsonImpl> get copyWith =>
@@ -342,7 +356,10 @@ abstract class Json implements RefreshResponseDto {
   const factory Json(final Map<String, dynamic> data) = _$JsonImpl;
 
   Map<String, dynamic> get data;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of RefreshResponseDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$JsonImplCopyWith<_$JsonImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

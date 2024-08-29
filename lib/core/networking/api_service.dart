@@ -38,17 +38,20 @@ class ApiService implements HTTPClient {
   }
 
   @override
-  Future<T> post<T>({
-    required String endpoint,
-    JSON? data,
-    Options? options,
-    required T Function(Map<String, dynamic>? response) mapper
-  }) async {
+  Future<T> post<T>(
+      {required String endpoint,
+      Object? data,
+      Options? options,
+      ProgressCallback? onSendProgress,
+      ProgressCallback? onReceiveProgress,
+      required T Function(Map<String, dynamic>? response) mapper}) async {
     try {
       final response = await dio.post<JSON>(
         endpoint,
         data: data,
         options: options,
+        onSendProgress: onSendProgress,
+        onReceiveProgress: onReceiveProgress,
       );
       return mapper(response.data);
     } on DioException catch (result) {

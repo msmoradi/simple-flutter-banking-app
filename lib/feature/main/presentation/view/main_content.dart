@@ -1,3 +1,5 @@
+import 'package:banx/feature/assist/presentation/view/assist_page.dart';
+import 'package:banx/feature/home/presentation/view/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -9,7 +11,7 @@ class MainContent extends StatefulWidget {
 }
 
 class _MainContentState extends State<MainContent> {
-  int _selectedIndex = 0;
+  int _selectedIndex = 2;
 
   void _onItemTapped(int index) {
     setState(() {
@@ -20,6 +22,13 @@ class _MainContentState extends State<MainContent> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      body: [
+        const AssistPage(),
+        const Center(child: Text('کارت')),
+        const HomePage(),
+        const Center(child: Text('انتقال')),
+        const Center(child: Text('تنظیمات')),
+      ][_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         items: <BottomNavigationBarItem>[
@@ -27,15 +36,15 @@ class _MainContentState extends State<MainContent> {
             icon: Padding(
               padding: const EdgeInsets.all(4.0),
               child: SvgPicture.asset(
-                'assets/icons/wave_icon.svg',
+                'assets/icons/wave.svg',
               ),
             ),
             activeIcon: Padding(
               padding: const EdgeInsets.all(4.0),
               child: SvgPicture.asset(
-                'assets/icons/wave_icon.svg',
+                'assets/icons/wave.svg',
                 colorFilter:
-                    ColorFilter.mode(Color(0XffC2904C), BlendMode.srcIn),
+                    const ColorFilter.mode(Color(0XffC2904C), BlendMode.srcIn),
               ),
             ),
             label: 'دستیار',
@@ -44,15 +53,15 @@ class _MainContentState extends State<MainContent> {
             icon: Padding(
               padding: const EdgeInsets.all(4.0),
               child: SvgPicture.asset(
-                'assets/icons/credit_card_icon.svg',
+                'assets/icons/credit-card.svg',
               ),
             ),
             activeIcon: Padding(
               padding: const EdgeInsets.all(4.0),
               child: SvgPicture.asset(
-                'assets/icons/credit_card_icon.svg',
+                'assets/icons/credit-card.svg',
                 colorFilter:
-                    ColorFilter.mode(Color(0XffC2904C), BlendMode.srcIn),
+                    const ColorFilter.mode(Color(0XffC2904C), BlendMode.srcIn),
               ),
             ),
             label: 'کارت',
@@ -61,15 +70,15 @@ class _MainContentState extends State<MainContent> {
             icon: Padding(
               padding: const EdgeInsets.all(4.0),
               child: SvgPicture.asset(
-                'assets/icons/banx_icon.svg',
+                'assets/icons/banx.svg',
               ),
             ),
             activeIcon: Padding(
               padding: const EdgeInsets.all(4.0),
               child: SvgPicture.asset(
-                'assets/icons/banx_icon.svg',
+                'assets/icons/banx.svg',
                 colorFilter:
-                    ColorFilter.mode(Color(0XffC2904C), BlendMode.srcIn),
+                    const ColorFilter.mode(Color(0XffC2904C), BlendMode.srcIn),
               ),
             ),
             label: 'بنکس',
@@ -78,15 +87,15 @@ class _MainContentState extends State<MainContent> {
             icon: Padding(
               padding: const EdgeInsets.all(4.0),
               child: SvgPicture.asset(
-                'assets/icons/exchange_icon.svg',
+                'assets/icons/exchange.svg',
               ),
             ),
             activeIcon: Padding(
               padding: const EdgeInsets.all(4.0),
               child: SvgPicture.asset(
-                'assets/icons/exchange_icon.svg',
+                'assets/icons/exchange.svg',
                 colorFilter:
-                    ColorFilter.mode(Color(0XffC2904C), BlendMode.srcIn),
+                    const ColorFilter.mode(Color(0XffC2904C), BlendMode.srcIn),
               ),
             ),
             label: 'انتقال',
@@ -95,22 +104,22 @@ class _MainContentState extends State<MainContent> {
             icon: Padding(
               padding: const EdgeInsets.all(4.0),
               child: SvgPicture.asset(
-                'assets/icons/user_01_icon.svg',
+                'assets/icons/user-01.svg',
               ),
             ),
             activeIcon: Padding(
               padding: const EdgeInsets.all(4.0),
               child: SvgPicture.asset(
-                'assets/icons/user_01_icon.svg',
+                'assets/icons/user-01.svg',
                 colorFilter:
-                    ColorFilter.mode(Color(0XffC2904C), BlendMode.srcIn),
+                    const ColorFilter.mode(Color(0XffC2904C), BlendMode.srcIn),
               ),
             ),
             label: 'تنظیمات',
           ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: Color(0XffC2904C),
+        selectedItemColor: const Color(0XffC2904C),
         unselectedItemColor: Theme.of(context).colorScheme.onSurfaceVariant,
         selectedLabelStyle: Theme.of(context).textTheme.labelMedium?.copyWith(
               fontWeight: FontWeight.bold,

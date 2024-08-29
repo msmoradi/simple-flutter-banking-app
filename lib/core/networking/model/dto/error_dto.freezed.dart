@@ -24,8 +24,12 @@ mixin _$ErrorDto {
   int? get code => throw _privateConstructorUsedError;
   String get message => throw _privateConstructorUsedError;
 
+  /// Serializes this ErrorDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ErrorDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ErrorDtoCopyWith<ErrorDto> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -48,6 +52,8 @@ class _$ErrorDtoCopyWithImpl<$Res, $Val extends ErrorDto>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ErrorDto
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -91,6 +97,8 @@ class __$$ErrorDtoImplCopyWithImpl<$Res>
       _$ErrorDtoImpl _value, $Res Function(_$ErrorDtoImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ErrorDto
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -146,11 +154,13 @@ class _$ErrorDtoImpl implements _ErrorDto {
             (identical(other.message, message) || other.message == message));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, error, code, message);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ErrorDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ErrorDtoImplCopyWith<_$ErrorDtoImpl> get copyWith =>
@@ -179,8 +189,11 @@ abstract class _ErrorDto implements ErrorDto {
   int? get code;
   @override
   String get message;
+
+  /// Create a copy of ErrorDto
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ErrorDtoImplCopyWith<_$ErrorDtoImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

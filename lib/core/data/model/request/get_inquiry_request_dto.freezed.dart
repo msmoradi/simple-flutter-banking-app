@@ -23,8 +23,12 @@ mixin _$GetInquiryRequestDto {
   @JsonKey(name: 'postal-code')
   String get postalCode => throw _privateConstructorUsedError;
 
+  /// Serializes this GetInquiryRequestDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of GetInquiryRequestDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $GetInquiryRequestDtoCopyWith<GetInquiryRequestDto> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -49,6 +53,8 @@ class _$GetInquiryRequestDtoCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of GetInquiryRequestDto
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -82,6 +88,8 @@ class __$$GetInquiryRequestDtoImplCopyWithImpl<$Res>
       $Res Function(_$GetInquiryRequestDtoImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of GetInquiryRequestDto
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -123,11 +131,13 @@ class _$GetInquiryRequestDtoImpl implements _GetInquiryRequestDto {
                 other.postalCode == postalCode));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, postalCode);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of GetInquiryRequestDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$GetInquiryRequestDtoImplCopyWith<_$GetInquiryRequestDtoImpl>
@@ -154,8 +164,11 @@ abstract class _GetInquiryRequestDto implements GetInquiryRequestDto {
   @override
   @JsonKey(name: 'postal-code')
   String get postalCode;
+
+  /// Create a copy of GetInquiryRequestDto
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$GetInquiryRequestDtoImplCopyWith<_$GetInquiryRequestDtoImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

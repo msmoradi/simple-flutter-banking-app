@@ -24,8 +24,12 @@ mixin _$GetAddressRequestDto {
   int get size => throw _privateConstructorUsedError;
   List<String> get sort => throw _privateConstructorUsedError;
 
+  /// Serializes this GetAddressRequestDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of GetAddressRequestDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $GetAddressRequestDtoCopyWith<GetAddressRequestDto> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -50,6 +54,8 @@ class _$GetAddressRequestDtoCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of GetAddressRequestDto
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -93,6 +99,8 @@ class __$$GetAddressRequestDtoImplCopyWithImpl<$Res>
       $Res Function(_$GetAddressRequestDtoImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of GetAddressRequestDto
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -156,12 +164,14 @@ class _$GetAddressRequestDtoImpl implements _GetAddressRequestDto {
             const DeepCollectionEquality().equals(other._sort, _sort));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType, page, size, const DeepCollectionEquality().hash(_sort));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of GetAddressRequestDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$GetAddressRequestDtoImplCopyWith<_$GetAddressRequestDtoImpl>
@@ -192,8 +202,11 @@ abstract class _GetAddressRequestDto implements GetAddressRequestDto {
   int get size;
   @override
   List<String> get sort;
+
+  /// Create a copy of GetAddressRequestDto
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$GetAddressRequestDtoImplCopyWith<_$GetAddressRequestDtoImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

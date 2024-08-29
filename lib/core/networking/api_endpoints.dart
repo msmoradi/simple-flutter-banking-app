@@ -33,6 +33,28 @@ class ApiEndpoint {
     }
   }
 
+  static String card(CardEndpoint endpoint) {
+    const path = '/api/v1/app/card';
+    switch (endpoint) {
+      case CardEndpoint.ORDERS:
+        return '$path/orders';
+      case CardEndpoint.TYPES:
+        return '$path/types';
+      case CardEndpoint.SHIPPING_TIME_SLOTS:
+        return '$path/shipping-time-slots';
+    }
+  }
+
+  static String kyc(KYCEndpoint endpoint) {
+    const path = '/api/v1/app/kyc';
+    switch (endpoint) {
+      case KYCEndpoint.VIDEO:
+        return '$path/video';
+      case KYCEndpoint.IMAGE:
+        return '$path/image';
+    }
+  }
+
   static String address(AddressEndpoint endpoint) {
     const path = '/api/v1/app/address';
     switch (endpoint) {
@@ -58,4 +80,8 @@ enum AuthEndpoint {
 
 enum ProfileEndpoint { GET_PROFILE, POSTAL_CODE }
 
+enum CardEndpoint { ORDERS, TYPES, SHIPPING_TIME_SLOTS }
+
 enum AddressEndpoint { ADDRESS, STATES, INQUIRY, CITIES }
+
+enum KYCEndpoint { VIDEO, IMAGE }

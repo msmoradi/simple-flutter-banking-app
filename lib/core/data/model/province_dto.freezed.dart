@@ -23,8 +23,12 @@ mixin _$ProvinceDto {
   int get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
 
+  /// Serializes this ProvinceDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ProvinceDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ProvinceDtoCopyWith<ProvinceDto> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -48,6 +52,8 @@ class _$ProvinceDtoCopyWithImpl<$Res, $Val extends ProvinceDto>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ProvinceDto
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -86,6 +92,8 @@ class __$$ProvinceDtoImplCopyWithImpl<$Res>
       _$ProvinceDtoImpl _value, $Res Function(_$ProvinceDtoImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ProvinceDto
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -132,11 +140,13 @@ class _$ProvinceDtoImpl implements _ProvinceDto {
             (identical(other.name, name) || other.name == name));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, id, name);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ProvinceDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ProvinceDtoImplCopyWith<_$ProvinceDtoImpl> get copyWith =>
@@ -161,8 +171,11 @@ abstract class _ProvinceDto implements ProvinceDto {
   int get id;
   @override
   String get name;
+
+  /// Create a copy of ProvinceDto
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ProvinceDtoImplCopyWith<_$ProvinceDtoImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
