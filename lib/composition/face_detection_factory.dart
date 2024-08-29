@@ -1,3 +1,6 @@
+import 'package:banx/composition/kyc_status_page_factory.dart';
+import 'package:banx/composition/main_page_factory.dart';
+import 'package:banx/composition/onboarding_face_page_factory.dart';
 import 'package:banx/composition/select_card_page_factory.dart';
 import 'package:banx/feature/face_detection/presentation/view/face_detection_page.dart';
 import 'package:flutter/cupertino.dart';
@@ -12,11 +15,18 @@ class FaceDetectionPageFactory {
     Function(String message) showMessage,
   ) {
     return FaceDetectionPage(
-        showMessage:showMessage,
-      onNext: () {
-        context.push(
-          SelectCardPageFactory.path,
-        );
+      showMessage: showMessage,
+      homeLanding: () {
+        context.push(MainPageFactory.path);
+      },
+      waitingLanding: () {
+        context.push(KycStatusPageFactory.path);
+      },
+      faceDetectionLanding: () {
+        context.push(OnboardingFacePageFactory.path);
+      },
+      cardOrderingLanding: () {
+        context.push(SelectCardPageFactory.path);
       },
     );
   }

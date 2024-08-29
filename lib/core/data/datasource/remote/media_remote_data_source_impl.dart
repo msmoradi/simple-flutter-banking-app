@@ -12,10 +12,10 @@ class MediaRemoteDataSourceImpl implements MediaRemoteDataSource {
   MediaRemoteDataSourceImpl({required this.apiService});
 
   @override
-  Future<void> uploadImage(File file, Function(int, int) onSendProgress) async {
-    String fileName = file.path.split('/').last;
+  Future<void> uploadImage(String path, Function(int, int) onSendProgress) async {
+    String fileName = path.split('/').last;
     FormData formData = FormData.fromMap({
-      "file": await MultipartFile.fromFile(file.path, filename: fileName),
+      "file": await MultipartFile.fromFile(path, filename: fileName),
     });
 
     return await apiService.post(
@@ -27,10 +27,10 @@ class MediaRemoteDataSourceImpl implements MediaRemoteDataSource {
   }
 
   @override
-  Future<void> uploadVideo(File file, Function(int, int) onSendProgress) async {
-    String fileName = file.path.split('/').last;
+  Future<void> uploadVideo(String path, Function(int, int) onSendProgress) async {
+    String fileName = path.split('/').last;
     FormData formData = FormData.fromMap({
-      "video": await MultipartFile.fromFile(file.path, filename: fileName),
+      "video": await MultipartFile.fromFile(path, filename: fileName),
     });
 
     return await apiService.post(

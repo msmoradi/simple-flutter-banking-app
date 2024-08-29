@@ -1,5 +1,8 @@
 import 'dart:io';
 import 'package:banx/core/data/datasource/remote/media_remote_data_source.dart';
+import 'package:banx/core/data/mapper/response.mapper.dart';
+import 'package:banx/core/domain/entities/empty_entity.dart';
+import 'package:banx/core/domain/entity_wrapper.dart';
 import 'package:banx/core/domain/repository/media_repository.dart';
 import 'package:injectable/injectable.dart';
 
@@ -10,14 +13,26 @@ class MediaRepositoryImpl implements MediaRepository {
   MediaRepositoryImpl(this.mediaRemoteDataSource);
 
   @override
-  Future<void> uploadImage(
-      File image, Function(int, int) onSendProgress) async {
-    return await mediaRemoteDataSource.uploadImage(image, onSendProgress);
+  Future<EntityWrapper<EmptyEntity>> uploadImage({
+    required String path,
+    required Function(int, int) onSendProgress,
+  }) async {
+    return await mediaRemoteDataSource
+        .uploadImage(path, onSendProgress)
+        .mapResponseToEntityWrapper(mapper: (model) {
+      return EmptyEntity();
+    });
   }
 
   @override
-  Future<void> uploadVideo(
-      File video, Function(int, int) onSendProgress) async {
-    return await mediaRemoteDataSource.uploadVideo(video, onSendProgress);
+  Future<EntityWrapper<EmptyEntity>> uploadVideo({
+    required String path,
+    required Function(int, int) onSendProgress,
+  }) async {
+    return await mediaRemoteDataSource
+        .uploadVideo(path, onSendProgress)
+        .mapResponseToEntityWrapper(mapper: (model) {
+      return EmptyEntity();
+    });
   }
 }

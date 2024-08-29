@@ -44,7 +44,10 @@ class VerifyPasswordPage extends StatelessWidget {
   }
 
   void _handleStateChange(
-      BuildContext context, VerifyPasswordState state, showMessage) {
+    BuildContext context,
+    VerifyPasswordState state,
+    showMessage,
+  ) {
     switch (state) {
       case final VerifyPasswordFailure s:
         {

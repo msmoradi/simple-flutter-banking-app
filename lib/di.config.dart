@@ -68,6 +68,8 @@ import 'package:banx/feature/confirm_password/presentation/bloc/confirm_password
     as _i339;
 import 'package:banx/feature/enable_biometric/presentation/bloc/enable_biometric_bloc.dart'
     as _i807;
+import 'package:banx/feature/face_detection/presentation/bloc/face_detection_bloc.dart'
+    as _i887;
 import 'package:banx/feature/home/presentation/bloc/home_bloc.dart' as _i412;
 import 'package:banx/feature/identity/presentation/bloc/identity_bloc.dart'
     as _i665;
@@ -181,6 +183,10 @@ extension GetItInjectableX on _i174.GetIt {
         _i759.AddAddressBloc(addressRepository: gh<_i648.AddressRepository>()));
     gh.factory<_i699.CardOrderBloc>(
         () => _i699.CardOrderBloc(cardRepository: gh<_i831.CardRepository>()));
+    gh.factory<_i887.FaceDetectionBloc>(() => _i887.FaceDetectionBloc(
+          gh<_i654.MediaRepository>(),
+          gh<_i111.ProfileRepository>(),
+        ));
     gh.factory<_i798.VerifyOtpBloc>(() => _i798.VerifyOtpBloc(
         authenticationRepository: gh<_i474.AuthenticationRepository>()));
     gh.factory<_i665.IdentityBloc>(() => _i665.IdentityBloc(
