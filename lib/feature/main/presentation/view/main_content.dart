@@ -1,3 +1,4 @@
+import 'package:banx/feature/assist/presentation/view/assist_page.dart';
 import 'package:banx/feature/home/presentation/view/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -22,7 +23,7 @@ class _MainContentState extends State<MainContent> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: [
-        const Center(child: Text('دستیار')),
+        const AssistPage(),
         const Center(child: Text('کارت')),
         const HomePage(),
         const Center(child: Text('انتقال')),

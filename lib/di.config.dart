@@ -61,6 +61,7 @@ import 'package:banx/core/utils/localauth/local_auth_helper.dart' as _i877;
 import 'package:banx/di.dart' as _i0;
 import 'package:banx/feature/add_address/presentation/bloc/add_address_bloc.dart'
     as _i759;
+import 'package:banx/feature/assist/presentation/bloc/assist_bloc.dart' as _i20;
 import 'package:banx/feature/card_order/presentation/bloc/card_order_bloc.dart'
     as _i699;
 import 'package:banx/feature/confirm_password/presentation/bloc/confirm_password_bloc.dart'
@@ -98,6 +99,7 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i606.ResponseInterceptor>(() => _i606.ResponseInterceptor());
     gh.factory<_i535.InfoInterceptor>(() => _i535.InfoInterceptor());
     gh.factory<_i412.HomeBloc>(() => _i412.HomeBloc());
+    gh.factory<_i20.AssistBloc>(() => _i20.AssistBloc());
     gh.factory<_i381.MainBloc>(() => _i381.MainBloc());
     gh.lazySingleton<_i558.FlutterSecureStorage>(
         () => registerModule.flutterSecureStorage());
