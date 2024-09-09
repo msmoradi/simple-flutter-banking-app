@@ -57,14 +57,14 @@ class OnboardingPasswordPage extends StatelessWidget {
                       ),
                       const SizedBox(height: 50),
                       const InfoTextRowWidget(
-                        icon: Icons.person_outline,
+                        iconAsset: 'assets/icons/check-circle.svg',
                         title: 'تعریف رمز ۴ تا ۶ رقمی',
                         subtitle:
                             'برای دسترسی به حساب BNAX خود باید  یک رمز ورود ۴ تا ۶ رقمی تعریف کنید',
                       ),
                       const SizedBox(height: 24),
                       const InfoTextRowWidget(
-                        icon: Icons.person_4_outlined,
+                        iconAsset: 'assets/icons/check-circle.svg',
                         title: 'فعال‌سازی ورود بیومتریک',
                         subtitle:
                             'با فعال‌سازی FaceID یا Fingerprint تلفن همراه خود از ویژگی ورود سریع به وسیله سنسور بیومتریک دستگاه خود استفاده کنید',

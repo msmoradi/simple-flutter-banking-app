@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class InfoTextRowWidget extends StatelessWidget {
   final String title;
   final String subtitle;
-  final IconData? icon;
+  final String iconAsset;
+  final Color? backgroundColor;
 
   const InfoTextRowWidget({
     super.key,
     required this.title,
     required this.subtitle,
-    required this.icon,
+    required this.iconAsset,
+    this.backgroundColor,
   });
 
   @override
@@ -18,16 +21,21 @@ class InfoTextRowWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         CircleAvatar(
-          radius: 21,
-          backgroundColor: Theme.of(context).colorScheme.onSurface,
-          child: Icon(
-            icon,
-            size: 21.0,
-            color: Theme.of(context).colorScheme.surface,
+          radius: 23,
+          backgroundColor:
+              backgroundColor ?? Theme.of(context).colorScheme.onSurface,
+          child: SvgPicture.asset(
+            iconAsset,
+            colorFilter: ColorFilter.mode(
+              Theme.of(context).colorScheme.surface,
+              BlendMode.srcIn,
+            ),
+            width: 24,
+            height: 24,
           ),
         ),
         const SizedBox(
-          width: 12,
+          width: 16,
         ),
         Expanded(
           child: Column(
@@ -41,7 +49,7 @@ class InfoTextRowWidget extends StatelessWidget {
                     ),
               ),
               const SizedBox(
-                height: 4,
+                height: 10,
               ),
               Text(
                 subtitle,
