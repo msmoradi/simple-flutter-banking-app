@@ -10,7 +10,9 @@ class ConfirmPasswordPageFactory {
       {required BuildContext context,
       required GoRouterState state,
       required ConfirmPasswordExtra extra,
-      required Function(String message) showMessage}) {
+      required Function(String message) showMessage,
+      required Function(String deeplink) onDeeplinkLanding,
+      }) {
     return ConfirmPasswordPage(
       showMessage: showMessage,
       biometricLanding: () => context.push(
@@ -25,6 +27,7 @@ class ConfirmPasswordPageFactory {
   static GoRoute route({
     List<RouteBase> routes = const <RouteBase>[],
     required Function(String message) showMessage,
+    required Function(String deeplink) onDeeplinkLanding,
   }) {
     return GoRoute(
         path: (ConfirmPasswordPageFactory.path),
@@ -35,6 +38,7 @@ class ConfirmPasswordPageFactory {
             state: state,
             extra: extra,
             showMessage: showMessage,
+              onDeeplinkLanding:onDeeplinkLanding
           );
         },
         routes: routes);

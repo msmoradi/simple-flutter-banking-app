@@ -19,24 +19,13 @@ class EnableBiometricInProgress extends EnableBiometricState {
   List<Object?> get props => [];
 }
 
-class HomeLanding extends EnableBiometricState {
-  @override
-  List<Object?> get props => [];
-}
+class DeepLinkLanding extends EnableBiometricState {
+  final String deeplink;
 
-class WaitingLanding extends EnableBiometricState {
-  @override
-  List<Object?> get props => [];
-}
+  const DeepLinkLanding({required this.deeplink});
 
-class FaceDetectionLanding extends EnableBiometricState {
   @override
-  List<Object?> get props => [];
-}
-
-class CardOrderingLanding extends EnableBiometricState {
-  @override
-  List<Object?> get props => [];
+  List<Object?> get props => [deeplink];
 }
 
 class EnableBiometricValidated extends EnableBiometricState {

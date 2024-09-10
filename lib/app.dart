@@ -15,7 +15,9 @@ class App extends StatelessWidget {
     precacheImages(context);
     return ToastificationWrapper(
       child: FutureBuilder<GoRouter>(
-        future: _initializeRouter(showMessage: (message) {
+        future: _initializeRouter(onDeeplinkLanding: (deeplink) {
+          GoRouter.of(context).go(deeplink);
+        }, showMessage: (message) {
           toastification.show(
             type: ToastificationType.error,
             style: ToastificationStyle.fillColored,
@@ -51,11 +53,16 @@ class App extends StatelessWidget {
     );
   }
 
-  Future<GoRouter> _initializeRouter(
-      {required Function(String) showMessage}) async {
+  Future<GoRouter> _initializeRouter({
+    required Function(String) showMessage,
+    required Function(String) onDeeplinkLanding,
+  }) async {
     final banxConfig = getIt<BanxConfig>();
     return await getRouterConfig(
-        banxConfig: banxConfig, showMessage: showMessage);
+      banxConfig: banxConfig,
+      showMessage: showMessage,
+      onDeeplinkLanding: onDeeplinkLanding,
+    );
   }
 
   void precacheImages(BuildContext context) {

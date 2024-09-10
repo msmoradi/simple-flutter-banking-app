@@ -1,5 +1,4 @@
 import 'package:banx/composition/main_page_factory.dart';
-import 'package:banx/composition/onboarding_password_page_factory.dart';
 import 'package:banx/composition/verify_password_page_factory.dart';
 import 'package:banx/feature/verify_otp/presentation/view/verify_otp_page.dart';
 import 'package:flutter/cupertino.dart';
@@ -13,22 +12,16 @@ class VerifyOtpPageFactory {
     GoRouterState state,
     VerifyOtpExtra extra,
     Function(String message) showMessage,
+    Function(String deeplink) onDeeplinkLanding,
   ) {
     return VerifyOtpPage(
-      showMessage:showMessage,
+      showMessage: showMessage,
+      onDeeplinkLanding: onDeeplinkLanding,
       phoneNumber: extra.phoneNumber,
       codeLength: extra.codeLength,
       expiresIn: extra.expiresIn,
       onMainPage: () {
         context.push(MainPageFactory.path);
-      },
-      setPassword: () {
-        context.push(
-          OnboardingPasswordPageFactory.path,
-          extra: OnboardingPasswordExtra(
-            phoneNumber: extra.phoneNumber,
-          ),
-        );
       },
       verifyPassword: (refreshToken) {
         context.push(
@@ -42,12 +35,19 @@ class VerifyOtpPageFactory {
   static GoRoute route({
     List<RouteBase> routes = const <RouteBase>[],
     required Function(String message) showMessage,
+    required Function(String deeplink) onDeeplinkLanding,
   }) {
     return GoRoute(
         path: (VerifyOtpPageFactory.path),
         builder: (ctx, state) {
           final extra = state.extra as VerifyOtpExtra;
-          return VerifyOtpPageFactory.builder(ctx, state, extra, showMessage);
+          return VerifyOtpPageFactory.builder(
+            ctx,
+            state,
+            extra,
+            showMessage,
+            onDeeplinkLanding,
+          );
         },
         routes: routes);
   }

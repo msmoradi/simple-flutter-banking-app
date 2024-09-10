@@ -5,18 +5,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 
 class VerifyPasswordPage extends StatelessWidget {
-  final Function() homeLanding;
-  final Function() waitingLanding;
-  final Function() faceDetectionLanding;
-  final Function() cardOrderingLanding;
+  final Function(String) onDeeplinkLanding;
   final Function(String) showMessage;
 
   const VerifyPasswordPage({
     super.key,
-    required this.homeLanding,
-    required this.waitingLanding,
-    required this.faceDetectionLanding,
-    required this.cardOrderingLanding,
+    required this.onDeeplinkLanding,
     required this.showMessage,
   });
 
@@ -53,21 +47,9 @@ class VerifyPasswordPage extends StatelessWidget {
         {
           showMessage(s.message);
         }
-      case final HomeLanding s:
+      case final DeepLinkLanding s:
         {
-          homeLanding();
-        }
-      case final WaitingLanding s:
-        {
-          waitingLanding();
-        }
-      case final FaceDetectionLanding s:
-        {
-          faceDetectionLanding();
-        }
-      case final CardOrderingLanding s:
-        {
-          cardOrderingLanding();
+          onDeeplinkLanding(s.deeplink);
         }
     }
   }

@@ -10,9 +10,10 @@ class CardDeliveryPageFactory {
     required BuildContext context,
     required GoRouterState state,
     required Function(String message) showMessage,
+    required Function(String deeplink) onDeeplinkLanding,
   }) {
     return CardDeliveryPage(
-        showMessage:showMessage,
+      showMessage: showMessage,
       onAddAddress: () {
         context.push(
           AddAddressPageFactory.path,
@@ -24,6 +25,7 @@ class CardDeliveryPageFactory {
   static GoRoute route({
     List<RouteBase> routes = const <RouteBase>[],
     required Function(String message) showMessage,
+    required Function(String deeplink) onDeeplinkLanding,
   }) {
     return GoRoute(
         path: (CardDeliveryPageFactory.path),
@@ -32,6 +34,7 @@ class CardDeliveryPageFactory {
             context: ctx,
             state: state,
             showMessage: showMessage,
+            onDeeplinkLanding: onDeeplinkLanding,
           );
         },
         routes: routes);

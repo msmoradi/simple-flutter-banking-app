@@ -28,22 +28,11 @@ class VerifyPasswordInProgress extends VerifyPasswordState {
   List<Object?> get props => [];
 }
 
-class HomeLanding extends VerifyPasswordState {
-  @override
-  List<Object?> get props => [];
-}
+class DeepLinkLanding extends VerifyPasswordState {
+  final String deeplink;
 
-class WaitingLanding extends VerifyPasswordState {
-  @override
-  List<Object?> get props => [];
-}
+  const DeepLinkLanding({required this.deeplink});
 
-class FaceDetectionLanding extends VerifyPasswordState {
-  @override
-  List<Object?> get props => [];
-}
-
-class CardOrderingLanding extends VerifyPasswordState {
   @override
   List<Object?> get props => [];
 }

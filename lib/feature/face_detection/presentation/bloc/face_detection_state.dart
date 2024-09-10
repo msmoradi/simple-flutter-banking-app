@@ -26,22 +26,11 @@ class FaceDetectionInProgress extends FaceDetectionState {
   List<Object?> get props => [];
 }
 
-class HomeLanding extends FaceDetectionState {
-  @override
-  List<Object?> get props => [];
-}
+class DeepLinkLanding extends FaceDetectionState {
+  final String deeplink;
 
-class WaitingLanding extends FaceDetectionState {
-  @override
-  List<Object?> get props => [];
-}
+  const DeepLinkLanding({required this.deeplink});
 
-class FaceDetectionLanding extends FaceDetectionState {
   @override
-  List<Object?> get props => [];
-}
-
-class CardOrderingLanding extends FaceDetectionState {
-  @override
-  List<Object?> get props => [];
+  List<Object?> get props => [deeplink];
 }

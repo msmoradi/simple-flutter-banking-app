@@ -8,19 +8,13 @@ import '../bloc/enable_biometric_bloc.dart';
 
 class EnableBiometricPage extends StatelessWidget {
   final Function(String) showMessage;
-  final Function() homeLanding;
-  final Function() waitingLanding;
-  final Function() faceDetectionLanding;
-  final Function() cardOrderingLanding;
+  final Function(String) onDeeplinkLanding;
   final String password;
 
   const EnableBiometricPage({
     super.key,
     required this.showMessage,
-    required this.homeLanding,
-    required this.waitingLanding,
-    required this.faceDetectionLanding,
-    required this.cardOrderingLanding,
+    required this.onDeeplinkLanding,
     required this.password,
   });
 
@@ -146,21 +140,9 @@ class EnableBiometricPage extends StatelessWidget {
         {
           showMessage(s.message);
         }
-      case final HomeLanding s:
+      case final DeepLinkLanding s:
         {
-          homeLanding();
-        }
-      case final WaitingLanding s:
-        {
-          waitingLanding();
-        }
-      case final FaceDetectionLanding s:
-        {
-          faceDetectionLanding();
-        }
-      case final CardOrderingLanding s:
-        {
-          cardOrderingLanding();
+          onDeeplinkLanding(s.deeplink);
         }
     }
   }

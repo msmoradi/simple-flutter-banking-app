@@ -13,32 +13,28 @@ class FaceDetectionPageFactory {
     BuildContext context,
     GoRouterState state,
     Function(String message) showMessage,
+    Function(String deeplink) onDeeplinkLanding,
   ) {
     return FaceDetectionPage(
       showMessage: showMessage,
-      homeLanding: () {
-        context.push(MainPageFactory.path);
-      },
-      waitingLanding: () {
-        context.push(KycStatusPageFactory.path);
-      },
-      faceDetectionLanding: () {
-        context.push(OnboardingFacePageFactory.path);
-      },
-      cardOrderingLanding: () {
-        context.push(SelectCardPageFactory.path);
-      },
+      onDeeplinkLanding: onDeeplinkLanding,
     );
   }
 
   static GoRoute route({
     List<RouteBase> routes = const <RouteBase>[],
     required Function(String message) showMessage,
+    required Function(String deeplink) onDeeplinkLanding,
   }) {
     return GoRoute(
         path: (FaceDetectionPageFactory.path),
         builder: (ctx, state) {
-          return FaceDetectionPageFactory.builder(ctx, state, showMessage);
+          return FaceDetectionPageFactory.builder(
+            ctx,
+            state,
+            showMessage,
+            onDeeplinkLanding,
+          );
         },
         routes: routes);
   }

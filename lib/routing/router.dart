@@ -22,6 +22,7 @@ import 'package:go_router/go_router.dart';
 Future<GoRouter> getRouterConfig({
   required BanxConfig banxConfig,
   required Function(String) showMessage,
+  required Function(String deeplink) onDeeplinkLanding,
 }) async {
   final initialLocation = await getInitialLocation(banxConfig);
   return GoRouter(
@@ -29,22 +30,42 @@ Future<GoRouter> getRouterConfig({
     routes: <RouteBase>[
       RootPageFactory.route(showMessage: showMessage),
       PhonePageFactory.route(showMessage: showMessage),
-      KycStatusPageFactory.route(showMessage: showMessage),
-      FaceDetectionPageFactory.route(showMessage: showMessage),
+      KycStatusPageFactory.route(
+        showMessage: showMessage,
+        onDeeplinkLanding: onDeeplinkLanding,
+      ),
+      FaceDetectionPageFactory.route(showMessage: showMessage,
+        onDeeplinkLanding: onDeeplinkLanding,
+      ),
       OnboardingPasswordPageFactory.route(showMessage: showMessage),
       CreatePasswordPageFactory.route(showMessage: showMessage),
       AddAddressPageFactory.route(showMessage: showMessage),
-      CardDeliveryPageFactory.route(showMessage: showMessage),
+      CardDeliveryPageFactory.route(
+        showMessage: showMessage,
+        onDeeplinkLanding: onDeeplinkLanding,
+      ),
       CardDeliveryTimePageFactory.route(showMessage: showMessage),
       MapAddressPageFactory.route(showMessage: showMessage),
-      ConfirmPasswordPageFactory.route(showMessage: showMessage),
+      ConfirmPasswordPageFactory.route(
+        showMessage: showMessage,
+        onDeeplinkLanding: onDeeplinkLanding,
+      ),
       MainPageFactory.route(showMessage: showMessage),
       SelectCardPageFactory.route(showMessage: showMessage),
-      EnableBiometricPageFactory.route(showMessage: showMessage),
+      EnableBiometricPageFactory.route(
+        showMessage: showMessage,
+        onDeeplinkLanding: onDeeplinkLanding,
+      ),
       OnboardingFacePageFactory.route(showMessage: showMessage),
       IdentityPageFactory.route(showMessage: showMessage),
-      VerifyOtpPageFactory.route(showMessage: showMessage),
-      VerifyPasswordPageFactory.route(showMessage: showMessage),
+      VerifyOtpPageFactory.route(
+        showMessage: showMessage,
+        onDeeplinkLanding: onDeeplinkLanding,
+      ),
+      VerifyPasswordPageFactory.route(
+        showMessage: showMessage,
+        onDeeplinkLanding: onDeeplinkLanding,
+      ),
     ],
   );
 }

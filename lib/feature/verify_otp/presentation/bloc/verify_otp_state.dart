@@ -28,12 +28,11 @@ class VerifyOtpInProgress extends VerifyOtpState {
   List<Object?> get props => [];
 }
 
-class VerifyOtpSuccess extends VerifyOtpState {
-  @override
-  List<Object?> get props => [];
-}
+class DeepLinkLanding extends VerifyOtpState {
+  final String deeplink;
 
-class SetPassword extends VerifyOtpState {
+  const DeepLinkLanding({required this.deeplink});
+
   @override
   List<Object?> get props => [];
 }

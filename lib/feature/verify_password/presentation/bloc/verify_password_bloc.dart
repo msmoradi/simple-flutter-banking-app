@@ -92,7 +92,7 @@ class VerifyPasswordBloc
     try {
       final refreshToken = await tokenRepository.getRefreshToken() ?? "";
       final response = await authenticationRepository
-          .refresh(refreshToken: refreshToken, password: event.password)
+          .refresh(refreshToken: refreshToken)
           .then((value) async {
         if (value.isSuccess) {
           return await profileRepository.getProfile();
@@ -103,16 +103,7 @@ class VerifyPasswordBloc
       response.when(
           success: (response) {
             if (response is UserProfileEntity) {
-              switch (response.landingPage) {
-                case LandingPage.home:
-                  emit(HomeLanding());
-                case LandingPage.waiting:
-                  emit(WaitingLanding());
-                case LandingPage.faceDetection:
-                  emit(FaceDetectionLanding());
-                case LandingPage.cardOrdering:
-                  emit(CardOrderingLanding());
-              }
+              // handle deeplink
             }
           },
           partialSuccess: (message) => emit(VerifyPasswordFailure(message)),

@@ -1,4 +1,3 @@
-import 'package:banx/core/data/model/user_profile_response_dto.dart';
 import 'package:banx/core/domain/repository/profile_repository.dart';
 import 'package:banx/core/domain/repository/token_repository.dart';
 import 'package:bloc/bloc.dart';
@@ -48,16 +47,9 @@ class EnableBiometricBloc
       final response = await profileRepository.getProfile();
       response.when(
           success: (response) {
-            switch (response.landingPage) {
-              case LandingPage.home:
-                emit(HomeLanding());
-              case LandingPage.waiting:
-                emit(WaitingLanding());
-              case LandingPage.faceDetection:
-                emit(FaceDetectionLanding());
-              case LandingPage.cardOrdering:
-                emit(CardOrderingLanding());
-            }
+            // get profile
+            // handle deeplink
+            // emit DeepLinkLanding
           },
           partialSuccess: (message) => emit(EnableBiometricFailure(message)),
           networkError: (exception) =>

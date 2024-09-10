@@ -7,7 +7,7 @@ import 'package:get_it/get_it.dart';
 class VerifyOtpPage extends StatelessWidget {
   final Function() onBackPressed;
   final Function() onMainPage;
-  final Function() setPassword;
+  final Function(String) onDeeplinkLanding;
   final Function(String) verifyPassword;
   final Function(String) showMessage;
   final String phoneNumber;
@@ -21,7 +21,7 @@ class VerifyOtpPage extends StatelessWidget {
     required this.phoneNumber,
     required this.codeLength,
     required this.expiresIn,
-    required this.setPassword,
+    required this.onDeeplinkLanding,
     required this.verifyPassword,
     required this.showMessage,
   });
@@ -37,13 +37,9 @@ class VerifyOtpPage extends StatelessWidget {
               {
                 showMessage(s.message);
               }
-            case final VerifyOtpSuccess s:
+            case final DeepLinkLanding  s:
               {
-                onMainPage();
-              }
-            case final SetPassword s:
-              {
-                setPassword();
+                onDeeplinkLanding(s.deeplink);
               }
             case final VerifyPassword s:
               {

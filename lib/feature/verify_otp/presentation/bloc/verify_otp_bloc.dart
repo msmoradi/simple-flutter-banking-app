@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 
 part 'verify_otp_event.dart';
+
 part 'verify_otp_state.dart';
 
 @injectable
@@ -51,11 +52,10 @@ class VerifyOtpBloc extends Bloc<VerifyOtpEvent, VerifyOtpState> {
           otp: event.otp,
         );
         response.when(
-            success: (success) => switch (success.passwordAuthentication) {
-                  PasswordAuthentication.none => emit(VerifyOtpSuccess()),
-                  PasswordAuthentication.set => emit(SetPassword()),
-                  PasswordAuthentication.verify =>
-                    emit(VerifyPassword(refreshToken: success.refreshToken)),
+            success: (success) => {
+                  // get profile
+                  // handle deeplink
+                  // emit DeepLinkLanding
                 },
             partialSuccess: (message) => emit(VerifyOtpFailure(message)),
             networkError: (exception) =>

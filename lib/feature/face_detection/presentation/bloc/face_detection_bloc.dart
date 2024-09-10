@@ -7,6 +7,7 @@ import 'package:banx/core/domain/repository/profile_repository.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:injectable/injectable.dart';
 
 part 'face_detection_event.dart';
@@ -42,16 +43,9 @@ class FaceDetectionBloc extends Bloc<FaceDetectionEvent, FaceDetectionState> {
       response.when(
           success: (response) {
             if (response is UserProfileEntity) {
-              switch (response.landingPage) {
-                case LandingPage.home:
-                  emit(HomeLanding());
-                case LandingPage.waiting:
-                  emit(WaitingLanding());
-                case LandingPage.faceDetection:
-                  emit(FaceDetectionLanding());
-                case LandingPage.cardOrdering:
-                  emit(CardOrderingLanding());
-              }
+              // get profile
+              // handle deeplink
+              // emit DeepLinkLanding
             }
           },
           partialSuccess: (message) => emit(FaceDetectionFailure(message)),
