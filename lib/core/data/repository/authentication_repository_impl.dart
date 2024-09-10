@@ -31,8 +31,6 @@ class AuthenticationRepositoryImpl extends AuthenticationRepository {
       return VerifyOtpEntity(
         accessToken: model.accessToken,
         refreshToken: model.refreshToken,
-        passwordAuthentication:
-            stringToPasswordAuthentication(model.passwordAuthentication),
       );
     }).then((entityWrapper) async {
       if (entityWrapper is SuccessEntityWrapper<VerifyOtpEntity>) {
@@ -55,16 +53,13 @@ class AuthenticationRepositoryImpl extends AuthenticationRepository {
   @override
   Future<EntityWrapper<VerifyOtpEntity>> refresh({
     required String refreshToken,
-    required String password,
   }) {
     return authenticationRemoteDataSource
-        .refresh(refreshToken, password)
+        .refresh(refreshToken)
         .mapResponseToEntityWrapper(mapper: (model) {
       return VerifyOtpEntity(
         accessToken: model.accessToken,
         refreshToken: model.refreshToken,
-        passwordAuthentication:
-            stringToPasswordAuthentication(model.passwordAuthentication),
       );
     }).then((entityWrapper) async {
       if (entityWrapper is SuccessEntityWrapper<VerifyOtpEntity>) {

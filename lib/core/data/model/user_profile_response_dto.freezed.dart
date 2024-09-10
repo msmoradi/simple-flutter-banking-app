@@ -29,10 +29,10 @@ mixin _$UserProfileResponseDto {
   String? get username => throw _privateConstructorUsedError;
   String? get nationalID => throw _privateConstructorUsedError;
   String? get photoUrl => throw _privateConstructorUsedError;
+  bool? get hasPassword => throw _privateConstructorUsedError;
   String? get profileStatus => throw _privateConstructorUsedError;
-  LandingPage get landingPage => throw _privateConstructorUsedError;
+  RoutingButtonDto? get routingButton => throw _privateConstructorUsedError;
   String? get kycLevel => throw _privateConstructorUsedError;
-  KycState get kycState => throw _privateConstructorUsedError;
 
   /// Serializes this UserProfileResponseDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -59,12 +59,12 @@ abstract class $UserProfileResponseDtoCopyWith<$Res> {
       String? username,
       String? nationalID,
       String? photoUrl,
+      bool? hasPassword,
       String? profileStatus,
-      LandingPage landingPage,
-      String? kycLevel,
-      KycState kycState});
+      RoutingButtonDto? routingButton,
+      String? kycLevel});
 
-  $KycStateCopyWith<$Res> get kycState;
+  $RoutingButtonDtoCopyWith<$Res>? get routingButton;
 }
 
 /// @nodoc
@@ -91,10 +91,10 @@ class _$UserProfileResponseDtoCopyWithImpl<$Res,
     Object? username = freezed,
     Object? nationalID = freezed,
     Object? photoUrl = freezed,
+    Object? hasPassword = freezed,
     Object? profileStatus = freezed,
-    Object? landingPage = null,
+    Object? routingButton = freezed,
     Object? kycLevel = freezed,
-    Object? kycState = null,
   }) {
     return _then(_value.copyWith(
       firstName: freezed == firstName
@@ -129,22 +129,22 @@ class _$UserProfileResponseDtoCopyWithImpl<$Res,
           ? _value.photoUrl
           : photoUrl // ignore: cast_nullable_to_non_nullable
               as String?,
+      hasPassword: freezed == hasPassword
+          ? _value.hasPassword
+          : hasPassword // ignore: cast_nullable_to_non_nullable
+              as bool?,
       profileStatus: freezed == profileStatus
           ? _value.profileStatus
           : profileStatus // ignore: cast_nullable_to_non_nullable
               as String?,
-      landingPage: null == landingPage
-          ? _value.landingPage
-          : landingPage // ignore: cast_nullable_to_non_nullable
-              as LandingPage,
+      routingButton: freezed == routingButton
+          ? _value.routingButton
+          : routingButton // ignore: cast_nullable_to_non_nullable
+              as RoutingButtonDto?,
       kycLevel: freezed == kycLevel
           ? _value.kycLevel
           : kycLevel // ignore: cast_nullable_to_non_nullable
               as String?,
-      kycState: null == kycState
-          ? _value.kycState
-          : kycState // ignore: cast_nullable_to_non_nullable
-              as KycState,
     ) as $Val);
   }
 
@@ -152,9 +152,13 @@ class _$UserProfileResponseDtoCopyWithImpl<$Res,
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $KycStateCopyWith<$Res> get kycState {
-    return $KycStateCopyWith<$Res>(_value.kycState, (value) {
-      return _then(_value.copyWith(kycState: value) as $Val);
+  $RoutingButtonDtoCopyWith<$Res>? get routingButton {
+    if (_value.routingButton == null) {
+      return null;
+    }
+
+    return $RoutingButtonDtoCopyWith<$Res>(_value.routingButton!, (value) {
+      return _then(_value.copyWith(routingButton: value) as $Val);
     });
   }
 }
@@ -177,13 +181,13 @@ abstract class _$$UserProfileResponseDtoImplCopyWith<$Res>
       String? username,
       String? nationalID,
       String? photoUrl,
+      bool? hasPassword,
       String? profileStatus,
-      LandingPage landingPage,
-      String? kycLevel,
-      KycState kycState});
+      RoutingButtonDto? routingButton,
+      String? kycLevel});
 
   @override
-  $KycStateCopyWith<$Res> get kycState;
+  $RoutingButtonDtoCopyWith<$Res>? get routingButton;
 }
 
 /// @nodoc
@@ -209,10 +213,10 @@ class __$$UserProfileResponseDtoImplCopyWithImpl<$Res>
     Object? username = freezed,
     Object? nationalID = freezed,
     Object? photoUrl = freezed,
+    Object? hasPassword = freezed,
     Object? profileStatus = freezed,
-    Object? landingPage = null,
+    Object? routingButton = freezed,
     Object? kycLevel = freezed,
-    Object? kycState = null,
   }) {
     return _then(_$UserProfileResponseDtoImpl(
       firstName: freezed == firstName
@@ -247,22 +251,22 @@ class __$$UserProfileResponseDtoImplCopyWithImpl<$Res>
           ? _value.photoUrl
           : photoUrl // ignore: cast_nullable_to_non_nullable
               as String?,
+      hasPassword: freezed == hasPassword
+          ? _value.hasPassword
+          : hasPassword // ignore: cast_nullable_to_non_nullable
+              as bool?,
       profileStatus: freezed == profileStatus
           ? _value.profileStatus
           : profileStatus // ignore: cast_nullable_to_non_nullable
               as String?,
-      landingPage: null == landingPage
-          ? _value.landingPage
-          : landingPage // ignore: cast_nullable_to_non_nullable
-              as LandingPage,
+      routingButton: freezed == routingButton
+          ? _value.routingButton
+          : routingButton // ignore: cast_nullable_to_non_nullable
+              as RoutingButtonDto?,
       kycLevel: freezed == kycLevel
           ? _value.kycLevel
           : kycLevel // ignore: cast_nullable_to_non_nullable
               as String?,
-      kycState: null == kycState
-          ? _value.kycState
-          : kycState // ignore: cast_nullable_to_non_nullable
-              as KycState,
     ));
   }
 }
@@ -279,10 +283,10 @@ class _$UserProfileResponseDtoImpl implements _UserProfileResponseDto {
       required this.username,
       required this.nationalID,
       required this.photoUrl,
+      required this.hasPassword,
       required this.profileStatus,
-      required this.landingPage,
-      required this.kycLevel,
-      required this.kycState});
+      required this.routingButton,
+      required this.kycLevel});
 
   factory _$UserProfileResponseDtoImpl.fromJson(Map<String, dynamic> json) =>
       _$$UserProfileResponseDtoImplFromJson(json);
@@ -304,17 +308,17 @@ class _$UserProfileResponseDtoImpl implements _UserProfileResponseDto {
   @override
   final String? photoUrl;
   @override
+  final bool? hasPassword;
+  @override
   final String? profileStatus;
   @override
-  final LandingPage landingPage;
+  final RoutingButtonDto? routingButton;
   @override
   final String? kycLevel;
-  @override
-  final KycState kycState;
 
   @override
   String toString() {
-    return 'UserProfileResponseDto(firstName: $firstName, lastName: $lastName, firstNameEN: $firstNameEN, lastNameEN: $lastNameEN, phoneNumber: $phoneNumber, username: $username, nationalID: $nationalID, photoUrl: $photoUrl, profileStatus: $profileStatus, landingPage: $landingPage, kycLevel: $kycLevel, kycState: $kycState)';
+    return 'UserProfileResponseDto(firstName: $firstName, lastName: $lastName, firstNameEN: $firstNameEN, lastNameEN: $lastNameEN, phoneNumber: $phoneNumber, username: $username, nationalID: $nationalID, photoUrl: $photoUrl, hasPassword: $hasPassword, profileStatus: $profileStatus, routingButton: $routingButton, kycLevel: $kycLevel)';
   }
 
   @override
@@ -338,14 +342,14 @@ class _$UserProfileResponseDtoImpl implements _UserProfileResponseDto {
                 other.nationalID == nationalID) &&
             (identical(other.photoUrl, photoUrl) ||
                 other.photoUrl == photoUrl) &&
+            (identical(other.hasPassword, hasPassword) ||
+                other.hasPassword == hasPassword) &&
             (identical(other.profileStatus, profileStatus) ||
                 other.profileStatus == profileStatus) &&
-            (identical(other.landingPage, landingPage) ||
-                other.landingPage == landingPage) &&
+            (identical(other.routingButton, routingButton) ||
+                other.routingButton == routingButton) &&
             (identical(other.kycLevel, kycLevel) ||
-                other.kycLevel == kycLevel) &&
-            (identical(other.kycState, kycState) ||
-                other.kycState == kycState));
+                other.kycLevel == kycLevel));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -360,10 +364,10 @@ class _$UserProfileResponseDtoImpl implements _UserProfileResponseDto {
       username,
       nationalID,
       photoUrl,
+      hasPassword,
       profileStatus,
-      landingPage,
-      kycLevel,
-      kycState);
+      routingButton,
+      kycLevel);
 
   /// Create a copy of UserProfileResponseDto
   /// with the given fields replaced by the non-null parameter values.
@@ -392,10 +396,10 @@ abstract class _UserProfileResponseDto implements UserProfileResponseDto {
       required final String? username,
       required final String? nationalID,
       required final String? photoUrl,
+      required final bool? hasPassword,
       required final String? profileStatus,
-      required final LandingPage landingPage,
-      required final String? kycLevel,
-      required final KycState kycState}) = _$UserProfileResponseDtoImpl;
+      required final RoutingButtonDto? routingButton,
+      required final String? kycLevel}) = _$UserProfileResponseDtoImpl;
 
   factory _UserProfileResponseDto.fromJson(Map<String, dynamic> json) =
       _$UserProfileResponseDtoImpl.fromJson;
@@ -417,13 +421,13 @@ abstract class _UserProfileResponseDto implements UserProfileResponseDto {
   @override
   String? get photoUrl;
   @override
+  bool? get hasPassword;
+  @override
   String? get profileStatus;
   @override
-  LandingPage get landingPage;
+  RoutingButtonDto? get routingButton;
   @override
   String? get kycLevel;
-  @override
-  KycState get kycState;
 
   /// Create a copy of UserProfileResponseDto
   /// with the given fields replaced by the non-null parameter values.
@@ -431,221 +435,4 @@ abstract class _UserProfileResponseDto implements UserProfileResponseDto {
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$UserProfileResponseDtoImplCopyWith<_$UserProfileResponseDtoImpl>
       get copyWith => throw _privateConstructorUsedError;
-}
-
-KycState _$KycStateFromJson(Map<String, dynamic> json) {
-  return _KycState.fromJson(json);
-}
-
-/// @nodoc
-mixin _$KycState {
-  KYCStatus get identityChecked => throw _privateConstructorUsedError;
-  KYCStatus get livenessChecked => throw _privateConstructorUsedError;
-  KYCStatus get faceCompareChecked => throw _privateConstructorUsedError;
-  KYCStatus get sayahChecked => throw _privateConstructorUsedError;
-
-  /// Serializes this KycState to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of KycState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $KycStateCopyWith<KycState> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $KycStateCopyWith<$Res> {
-  factory $KycStateCopyWith(KycState value, $Res Function(KycState) then) =
-      _$KycStateCopyWithImpl<$Res, KycState>;
-  @useResult
-  $Res call(
-      {KYCStatus identityChecked,
-      KYCStatus livenessChecked,
-      KYCStatus faceCompareChecked,
-      KYCStatus sayahChecked});
-}
-
-/// @nodoc
-class _$KycStateCopyWithImpl<$Res, $Val extends KycState>
-    implements $KycStateCopyWith<$Res> {
-  _$KycStateCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of KycState
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? identityChecked = null,
-    Object? livenessChecked = null,
-    Object? faceCompareChecked = null,
-    Object? sayahChecked = null,
-  }) {
-    return _then(_value.copyWith(
-      identityChecked: null == identityChecked
-          ? _value.identityChecked
-          : identityChecked // ignore: cast_nullable_to_non_nullable
-              as KYCStatus,
-      livenessChecked: null == livenessChecked
-          ? _value.livenessChecked
-          : livenessChecked // ignore: cast_nullable_to_non_nullable
-              as KYCStatus,
-      faceCompareChecked: null == faceCompareChecked
-          ? _value.faceCompareChecked
-          : faceCompareChecked // ignore: cast_nullable_to_non_nullable
-              as KYCStatus,
-      sayahChecked: null == sayahChecked
-          ? _value.sayahChecked
-          : sayahChecked // ignore: cast_nullable_to_non_nullable
-              as KYCStatus,
-    ) as $Val);
-  }
-}
-
-/// @nodoc
-abstract class _$$KycStateImplCopyWith<$Res>
-    implements $KycStateCopyWith<$Res> {
-  factory _$$KycStateImplCopyWith(
-          _$KycStateImpl value, $Res Function(_$KycStateImpl) then) =
-      __$$KycStateImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {KYCStatus identityChecked,
-      KYCStatus livenessChecked,
-      KYCStatus faceCompareChecked,
-      KYCStatus sayahChecked});
-}
-
-/// @nodoc
-class __$$KycStateImplCopyWithImpl<$Res>
-    extends _$KycStateCopyWithImpl<$Res, _$KycStateImpl>
-    implements _$$KycStateImplCopyWith<$Res> {
-  __$$KycStateImplCopyWithImpl(
-      _$KycStateImpl _value, $Res Function(_$KycStateImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of KycState
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? identityChecked = null,
-    Object? livenessChecked = null,
-    Object? faceCompareChecked = null,
-    Object? sayahChecked = null,
-  }) {
-    return _then(_$KycStateImpl(
-      identityChecked: null == identityChecked
-          ? _value.identityChecked
-          : identityChecked // ignore: cast_nullable_to_non_nullable
-              as KYCStatus,
-      livenessChecked: null == livenessChecked
-          ? _value.livenessChecked
-          : livenessChecked // ignore: cast_nullable_to_non_nullable
-              as KYCStatus,
-      faceCompareChecked: null == faceCompareChecked
-          ? _value.faceCompareChecked
-          : faceCompareChecked // ignore: cast_nullable_to_non_nullable
-              as KYCStatus,
-      sayahChecked: null == sayahChecked
-          ? _value.sayahChecked
-          : sayahChecked // ignore: cast_nullable_to_non_nullable
-              as KYCStatus,
-    ));
-  }
-}
-
-/// @nodoc
-@JsonSerializable()
-class _$KycStateImpl implements _KycState {
-  const _$KycStateImpl(
-      {required this.identityChecked,
-      required this.livenessChecked,
-      required this.faceCompareChecked,
-      required this.sayahChecked});
-
-  factory _$KycStateImpl.fromJson(Map<String, dynamic> json) =>
-      _$$KycStateImplFromJson(json);
-
-  @override
-  final KYCStatus identityChecked;
-  @override
-  final KYCStatus livenessChecked;
-  @override
-  final KYCStatus faceCompareChecked;
-  @override
-  final KYCStatus sayahChecked;
-
-  @override
-  String toString() {
-    return 'KycState(identityChecked: $identityChecked, livenessChecked: $livenessChecked, faceCompareChecked: $faceCompareChecked, sayahChecked: $sayahChecked)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$KycStateImpl &&
-            (identical(other.identityChecked, identityChecked) ||
-                other.identityChecked == identityChecked) &&
-            (identical(other.livenessChecked, livenessChecked) ||
-                other.livenessChecked == livenessChecked) &&
-            (identical(other.faceCompareChecked, faceCompareChecked) ||
-                other.faceCompareChecked == faceCompareChecked) &&
-            (identical(other.sayahChecked, sayahChecked) ||
-                other.sayahChecked == sayahChecked));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(runtimeType, identityChecked, livenessChecked,
-      faceCompareChecked, sayahChecked);
-
-  /// Create a copy of KycState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$KycStateImplCopyWith<_$KycStateImpl> get copyWith =>
-      __$$KycStateImplCopyWithImpl<_$KycStateImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$KycStateImplToJson(
-      this,
-    );
-  }
-}
-
-abstract class _KycState implements KycState {
-  const factory _KycState(
-      {required final KYCStatus identityChecked,
-      required final KYCStatus livenessChecked,
-      required final KYCStatus faceCompareChecked,
-      required final KYCStatus sayahChecked}) = _$KycStateImpl;
-
-  factory _KycState.fromJson(Map<String, dynamic> json) =
-      _$KycStateImpl.fromJson;
-
-  @override
-  KYCStatus get identityChecked;
-  @override
-  KYCStatus get livenessChecked;
-  @override
-  KYCStatus get faceCompareChecked;
-  @override
-  KYCStatus get sayahChecked;
-
-  /// Create a copy of KycState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$KycStateImplCopyWith<_$KycStateImpl> get copyWith =>
-      throw _privateConstructorUsedError;
 }

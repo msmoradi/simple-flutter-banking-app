@@ -11,7 +11,6 @@ _$VerifyOtpResponseDtoImpl _$$VerifyOtpResponseDtoImplFromJson(
     _$VerifyOtpResponseDtoImpl(
       accessToken: json['accessToken'] as String,
       refreshToken: json['refreshToken'] as String,
-      passwordAuthentication: json['passwordAuthentication'] as String,
     );
 
 Map<String, dynamic> _$$VerifyOtpResponseDtoImplToJson(
@@ -19,5 +18,4 @@ Map<String, dynamic> _$$VerifyOtpResponseDtoImplToJson(
     <String, dynamic>{
       'accessToken': instance.accessToken,
       'refreshToken': instance.refreshToken,
-      'passwordAuthentication': instance.passwordAuthentication,
     };

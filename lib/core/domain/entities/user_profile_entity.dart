@@ -1,5 +1,6 @@
 import 'package:banx/core/data/model/user_profile_response_dto.dart';
 import 'package:banx/core/domain/entities/entity.dart';
+import 'package:banx/core/domain/entities/routing_button_entity.dart';
 
 class UserProfileEntity extends Entity {
   final String? firstName;
@@ -10,32 +11,24 @@ class UserProfileEntity extends Entity {
   final String? username;
   final String? nationalID;
   final String? photoUrl;
+  final bool? hasPassword;
   final String? profileStatus;
-  final LandingPage landingPage;
+  final RoutingButtonEntity? routingButtonEntity;
   final String? kycLevel;
-  final KycStateEntity kycState;
 
-  UserProfileEntity({
-    required this.firstName,
-    required this.lastName,
-    required this.firstNameEN,
-    required this.lastNameEN,
-    required this.phoneNumber,
-    required this.username,
-    required this.nationalID,
-    required this.photoUrl,
-    required this.profileStatus,
-    required this.landingPage,
-    required this.kycLevel,
-    required this.kycState,
-  });
+  UserProfileEntity(
+      {required this.firstName,
+      required this.lastName,
+      required this.firstNameEN,
+      required this.lastNameEN,
+      required this.phoneNumber,
+      required this.username,
+      required this.nationalID,
+      required this.photoUrl,
+      required this.hasPassword,
+      required this.profileStatus,
+      required this.routingButtonEntity,
+      required this.kycLevel});
 }
 
-class KycStateEntity {
-  KycStateEntity({
-    required KYCStatus identityChecked,
-    required KYCStatus livenessChecked,
-    required KYCStatus faceCompareChecked,
-    required KYCStatus sayahChecked,
-  });
-}
+

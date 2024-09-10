@@ -21,7 +21,6 @@ abstract class AuthenticationRepository {
 
   Future<EntityWrapper<VerifyOtpEntity>> refresh({
     required String refreshToken,
-    required String password,
   });
 
   Future<EntityWrapper<SignUpEntity>> signup({

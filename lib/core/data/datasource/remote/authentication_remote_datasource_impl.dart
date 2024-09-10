@@ -73,11 +73,9 @@ class AuthenticationRemoteDataSourceImpl
   @override
   Future<VerifyOtpResponseDto> refresh(
     String refreshToken,
-    String password,
   ) {
     final body = {
       'refreshToken': refreshToken,
-      'password': password,
     };
 
     return apiService.post(

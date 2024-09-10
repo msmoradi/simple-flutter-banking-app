@@ -8,7 +8,6 @@ class VerifyOtpResponseDto with _$VerifyOtpResponseDto {
   const factory VerifyOtpResponseDto({
     required String accessToken,
     required String refreshToken,
-    required String passwordAuthentication,
   }) = _VerifyOtpResponseDto;
 
   factory VerifyOtpResponseDto.fromJson(Map<String, dynamic> json) =>

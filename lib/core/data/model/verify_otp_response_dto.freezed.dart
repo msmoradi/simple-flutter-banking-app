@@ -22,7 +22,6 @@ VerifyOtpResponseDto _$VerifyOtpResponseDtoFromJson(Map<String, dynamic> json) {
 mixin _$VerifyOtpResponseDto {
   String get accessToken => throw _privateConstructorUsedError;
   String get refreshToken => throw _privateConstructorUsedError;
-  String get passwordAuthentication => throw _privateConstructorUsedError;
 
   /// Serializes this VerifyOtpResponseDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -40,8 +39,7 @@ abstract class $VerifyOtpResponseDtoCopyWith<$Res> {
           $Res Function(VerifyOtpResponseDto) then) =
       _$VerifyOtpResponseDtoCopyWithImpl<$Res, VerifyOtpResponseDto>;
   @useResult
-  $Res call(
-      {String accessToken, String refreshToken, String passwordAuthentication});
+  $Res call({String accessToken, String refreshToken});
 }
 
 /// @nodoc
@@ -62,7 +60,6 @@ class _$VerifyOtpResponseDtoCopyWithImpl<$Res,
   $Res call({
     Object? accessToken = null,
     Object? refreshToken = null,
-    Object? passwordAuthentication = null,
   }) {
     return _then(_value.copyWith(
       accessToken: null == accessToken
@@ -72,10 +69,6 @@ class _$VerifyOtpResponseDtoCopyWithImpl<$Res,
       refreshToken: null == refreshToken
           ? _value.refreshToken
           : refreshToken // ignore: cast_nullable_to_non_nullable
-              as String,
-      passwordAuthentication: null == passwordAuthentication
-          ? _value.passwordAuthentication
-          : passwordAuthentication // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -89,8 +82,7 @@ abstract class _$$VerifyOtpResponseDtoImplCopyWith<$Res>
       __$$VerifyOtpResponseDtoImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {String accessToken, String refreshToken, String passwordAuthentication});
+  $Res call({String accessToken, String refreshToken});
 }
 
 /// @nodoc
@@ -108,7 +100,6 @@ class __$$VerifyOtpResponseDtoImplCopyWithImpl<$Res>
   $Res call({
     Object? accessToken = null,
     Object? refreshToken = null,
-    Object? passwordAuthentication = null,
   }) {
     return _then(_$VerifyOtpResponseDtoImpl(
       accessToken: null == accessToken
@@ -119,10 +110,6 @@ class __$$VerifyOtpResponseDtoImplCopyWithImpl<$Res>
           ? _value.refreshToken
           : refreshToken // ignore: cast_nullable_to_non_nullable
               as String,
-      passwordAuthentication: null == passwordAuthentication
-          ? _value.passwordAuthentication
-          : passwordAuthentication // ignore: cast_nullable_to_non_nullable
-              as String,
     ));
   }
 }
@@ -131,9 +118,7 @@ class __$$VerifyOtpResponseDtoImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$VerifyOtpResponseDtoImpl implements _VerifyOtpResponseDto {
   const _$VerifyOtpResponseDtoImpl(
-      {required this.accessToken,
-      required this.refreshToken,
-      required this.passwordAuthentication});
+      {required this.accessToken, required this.refreshToken});
 
   factory _$VerifyOtpResponseDtoImpl.fromJson(Map<String, dynamic> json) =>
       _$$VerifyOtpResponseDtoImplFromJson(json);
@@ -142,12 +127,10 @@ class _$VerifyOtpResponseDtoImpl implements _VerifyOtpResponseDto {
   final String accessToken;
   @override
   final String refreshToken;
-  @override
-  final String passwordAuthentication;
 
   @override
   String toString() {
-    return 'VerifyOtpResponseDto(accessToken: $accessToken, refreshToken: $refreshToken, passwordAuthentication: $passwordAuthentication)';
+    return 'VerifyOtpResponseDto(accessToken: $accessToken, refreshToken: $refreshToken)';
   }
 
   @override
@@ -158,15 +141,12 @@ class _$VerifyOtpResponseDtoImpl implements _VerifyOtpResponseDto {
             (identical(other.accessToken, accessToken) ||
                 other.accessToken == accessToken) &&
             (identical(other.refreshToken, refreshToken) ||
-                other.refreshToken == refreshToken) &&
-            (identical(other.passwordAuthentication, passwordAuthentication) ||
-                other.passwordAuthentication == passwordAuthentication));
+                other.refreshToken == refreshToken));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, accessToken, refreshToken, passwordAuthentication);
+  int get hashCode => Object.hash(runtimeType, accessToken, refreshToken);
 
   /// Create a copy of VerifyOtpResponseDto
   /// with the given fields replaced by the non-null parameter values.
@@ -188,10 +168,8 @@ class _$VerifyOtpResponseDtoImpl implements _VerifyOtpResponseDto {
 
 abstract class _VerifyOtpResponseDto implements VerifyOtpResponseDto {
   const factory _VerifyOtpResponseDto(
-          {required final String accessToken,
-          required final String refreshToken,
-          required final String passwordAuthentication}) =
-      _$VerifyOtpResponseDtoImpl;
+      {required final String accessToken,
+      required final String refreshToken}) = _$VerifyOtpResponseDtoImpl;
 
   factory _VerifyOtpResponseDto.fromJson(Map<String, dynamic> json) =
       _$VerifyOtpResponseDtoImpl.fromJson;
@@ -200,8 +178,6 @@ abstract class _VerifyOtpResponseDto implements VerifyOtpResponseDto {
   String get accessToken;
   @override
   String get refreshToken;
-  @override
-  String get passwordAuthentication;
 
   /// Create a copy of VerifyOtpResponseDto
   /// with the given fields replaced by the non-null parameter values.

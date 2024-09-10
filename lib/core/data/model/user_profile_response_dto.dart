@@ -1,3 +1,4 @@
+import 'package:banx/core/data/model/response/routing_button_dto.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'user_profile_response_dto.freezed.dart';
@@ -15,47 +16,12 @@ class UserProfileResponseDto with _$UserProfileResponseDto {
     required String? username,
     required String? nationalID,
     required String? photoUrl,
+    required bool? hasPassword,
     required String? profileStatus,
-    required LandingPage landingPage,
+    required RoutingButtonDto? routingButton,
     required String? kycLevel,
-    required KycState kycState,
   }) = _UserProfileResponseDto;
 
   factory UserProfileResponseDto.fromJson(Map<String, dynamic> json) =>
       _$UserProfileResponseDtoFromJson(json);
-}
-
-@freezed
-class KycState with _$KycState {
-  const factory KycState({
-    required KYCStatus identityChecked,
-    required KYCStatus livenessChecked,
-    required KYCStatus faceCompareChecked,
-    required KYCStatus sayahChecked,
-  }) = _KycState;
-
-  factory KycState.fromJson(Map<String, dynamic> json) =>
-      _$KycStateFromJson(json);
-}
-
-enum KYCStatus {
-  @JsonValue('PENDING')
-  pending,
-  @JsonValue('CHECKING')
-  checking,
-  @JsonValue('SUCCEEDED')
-  succeeded,
-  @JsonValue('FAILED')
-  failed,
-}
-
-enum LandingPage {
-  @JsonValue('home')
-  home,
-  @JsonValue('waiting')
-  waiting,
-  @JsonValue('faceDetection')
-  faceDetection,
-  @JsonValue('cardOrdering')
-  cardOrdering,
 }

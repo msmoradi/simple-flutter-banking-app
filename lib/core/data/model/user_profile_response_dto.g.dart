@@ -17,10 +17,13 @@ _$UserProfileResponseDtoImpl _$$UserProfileResponseDtoImplFromJson(
       username: json['username'] as String?,
       nationalID: json['nationalID'] as String?,
       photoUrl: json['photoUrl'] as String?,
+      hasPassword: json['hasPassword'] as bool?,
       profileStatus: json['profileStatus'] as String?,
-      landingPage: $enumDecode(_$LandingPageEnumMap, json['landingPage']),
+      routingButton: json['routingButton'] == null
+          ? null
+          : RoutingButtonDto.fromJson(
+              json['routingButton'] as Map<String, dynamic>),
       kycLevel: json['kycLevel'] as String?,
-      kycState: KycState.fromJson(json['kycState'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$UserProfileResponseDtoImplToJson(
@@ -34,39 +37,8 @@ Map<String, dynamic> _$$UserProfileResponseDtoImplToJson(
       'username': instance.username,
       'nationalID': instance.nationalID,
       'photoUrl': instance.photoUrl,
+      'hasPassword': instance.hasPassword,
       'profileStatus': instance.profileStatus,
-      'landingPage': _$LandingPageEnumMap[instance.landingPage]!,
+      'routingButton': instance.routingButton,
       'kycLevel': instance.kycLevel,
-      'kycState': instance.kycState,
     };
-
-const _$LandingPageEnumMap = {
-  LandingPage.home: 'home',
-  LandingPage.waiting: 'waiting',
-  LandingPage.faceDetection: 'faceDetection',
-  LandingPage.cardOrdering: 'cardOrdering',
-};
-
-_$KycStateImpl _$$KycStateImplFromJson(Map<String, dynamic> json) =>
-    _$KycStateImpl(
-      identityChecked: $enumDecode(_$KYCStatusEnumMap, json['identityChecked']),
-      livenessChecked: $enumDecode(_$KYCStatusEnumMap, json['livenessChecked']),
-      faceCompareChecked:
-          $enumDecode(_$KYCStatusEnumMap, json['faceCompareChecked']),
-      sayahChecked: $enumDecode(_$KYCStatusEnumMap, json['sayahChecked']),
-    );
-
-Map<String, dynamic> _$$KycStateImplToJson(_$KycStateImpl instance) =>
-    <String, dynamic>{
-      'identityChecked': _$KYCStatusEnumMap[instance.identityChecked]!,
-      'livenessChecked': _$KYCStatusEnumMap[instance.livenessChecked]!,
-      'faceCompareChecked': _$KYCStatusEnumMap[instance.faceCompareChecked]!,
-      'sayahChecked': _$KYCStatusEnumMap[instance.sayahChecked]!,
-    };
-
-const _$KYCStatusEnumMap = {
-  KYCStatus.pending: 'PENDING',
-  KYCStatus.checking: 'CHECKING',
-  KYCStatus.succeeded: 'SUCCEEDED',
-  KYCStatus.failed: 'FAILED',
-};

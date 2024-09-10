@@ -20,7 +20,6 @@ abstract class AuthenticationRemoteDataSource {
 
   Future<VerifyOtpResponseDto> refresh(
     String refreshToken,
-    String password,
   );
 
   Future<SignUpResponseDto> signup(
