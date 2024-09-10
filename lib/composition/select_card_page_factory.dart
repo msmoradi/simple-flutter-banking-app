@@ -13,8 +13,9 @@ class SelectCardPageFactory {
     required Function(String message) showMessage,
   }) {
     return SelectCardPage(
-        showMessage:showMessage,
-      onNext: () {
+      showMessage: showMessage,
+      onSelectAddress: (address) {},
+      onAddAddress: () {
         context.push(
           AddAddressPageFactory.path,
         );
@@ -34,7 +35,7 @@ class SelectCardPageFactory {
             context: ctx,
             state: state,
             extra: extra,
-              showMessage:showMessage,
+            showMessage: showMessage,
           );
         },
         routes: routes);

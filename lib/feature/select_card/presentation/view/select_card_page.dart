@@ -1,189 +1,61 @@
 import 'package:banx/core/designsystem/widgets/button/fill/full_fill_button.dart';
 import 'package:banx/core/designsystem/widgets/card/credit_card.dart';
 import 'package:banx/core/designsystem/widgets/components/card_personalization_bottom_sheet.dart';
+import 'package:banx/core/domain/entities/address_entity.dart';
+import 'package:banx/feature/select_card/presentation/bloc/select_card_bloc.dart';
+import 'package:banx/feature/select_card/presentation/bloc/select_card_state.dart';
+import 'package:banx/feature/select_card/presentation/view/select_card_content.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_it/get_it.dart';
 
-class SelectCardPage extends StatefulWidget {
-  final Function() onNext;
+class SelectCardPage extends StatelessWidget {
+  final Function() onAddAddress;
+  final Function(AddressEntity) onSelectAddress;
   final Function(String) showMessage;
 
   const SelectCardPage({
     super.key,
-    required this.onNext,
+    required this.onAddAddress,
+    required this.onSelectAddress,
     required this.showMessage,
   });
 
   @override
-  State<SelectCardPage> createState() => _SelectCardPageState();
-}
-
-class _SelectCardPageState extends State<SelectCardPage> {
-  String _firstName = "Saeed";
-  String _lastName = "Moradi";
-
-  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        centerTitle: false,
-        automaticallyImplyLeading: false,
-        title: Text(
-          style: Theme.of(context)
-              .textTheme
-              .headlineMedium
-              ?.copyWith(fontWeight: FontWeight.bold),
-          'سفارش کارت',
-        ),
-      ),
-      body: SafeArea(
-        child: Column(
-          children: [
-            Expanded(
-              child: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    const SizedBox(
-                      height: 30,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 62.0),
-                      child: CreditCard(
-                        firstName: _firstName,
-                        lastName: _lastName,
-                        flipOnTouch: false,
-                        quarterTurns: 1,
-                        scale: 1.4,
-                      ),
-                    ),
-                    const SizedBox(
-                      width: double.infinity,
-                      height: 26,
-                    ),
-                    Text(
-                      'کارت فلزی  |  رنگ کربنی',
-                      style: Theme.of(context)
-                          .textTheme
-                          .headlineSmall
-                          ?.copyWith(
-                              color: Theme.of(context).colorScheme.primary),
-                      textAlign: TextAlign.center,
-                    ),
-                    const SizedBox(
-                      height: 12,
-                    ),
-                    Text(
-                      'کارت بانکی، عضو شبکه شتاب',
-                      textAlign: TextAlign.center,
-                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                          color:
-                              Theme.of(context).colorScheme.onSurfaceVariant),
-                    ),
-                  ],
-                ),
-              ),
+    return BlocProvider(
+      create: (context) => GetIt.instance<SelectCardBloc>(),
+      child: BlocConsumer<SelectCardBloc, SelectCardState>(
+        listener: (context, state) {
+          state.whenOrNull(
+            selectCardFailure: (message) => showMessage(message),
+            addAddress: () => onAddAddress(),
+            selectAddress: (address) => onSelectAddress(address),
+          );
+        },
+        builder: (context, state) {
+          return SelectCardContent(
+            showLoading: state is SelectCardInProgress,
+            onActionClick: () {
+              context.read<SelectCardBloc>().add(ActionClick());
+            },
+            showMessage: showMessage,
+            firstName: "firstName",
+            lastName: "lastName",
+            title: state.maybeWhen(
+              selectCardSuccess: (title, _, __, ___) => title,
+              orElse: () => "",
             ),
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  InkWell(
-                    onTap: () {
-                      showModalBottomSheet(
-                        enableDrag: false,
-                        showDragHandle: true,
-                        isScrollControlled: true,
-                        useSafeArea: true,
-                        shape: const RoundedRectangleBorder(
-                          borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(8.0),
-                              topRight: Radius.circular(8.0)),
-                        ),
-                        context: context,
-                        builder: (context) => CardPersonalizationBottomSheet(
-                          firstNameController:
-                              TextEditingController(text: _firstName),
-                          lastNameController:
-                              TextEditingController(text: _lastName),
-                          onButtonPressed: (firstName, lastName) {
-                            Navigator.of(context).pop();
-                            setState(() {
-                              _firstName = firstName;
-                              _lastName = lastName;
-                            });
-                          },
-                        ),
-                      );
-                    },
-                    child: Container(
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          color: Theme.of(context).colorScheme.outline,
-                        ),
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(8)),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 8.0, horizontal: 16),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'نام و نام خانوادگی درج شده روی کارت',
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .bodySmall
-                                      ?.copyWith(
-                                        color: Theme.of(context)
-                                            .colorScheme
-                                            .onSurfaceVariant,
-                                      ),
-                                ),
-                                const SizedBox(
-                                  height: 2,
-                                ),
-                                Text(
-                                  "$_firstName $_lastName",
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .titleMedium
-                                      ?.copyWith(
-                                        color: Theme.of(context)
-                                            .colorScheme
-                                            .primary,
-                                      ),
-                                ),
-                              ],
-                            ),
-                            Icon(
-                              Icons.mode_edit_outlined,
-                              size: 16.0,
-                              color: Theme.of(context)
-                                  .colorScheme
-                                  .onSurfaceVariant,
-                            )
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 16.0,
-                  ),
-                  PrimaryFillButton(
-                    label: 'سفارش کارت',
-                    onPressed: widget.onNext,
-                  ),
-                ],
-              ),
+            description: state.maybeWhen(
+              selectCardSuccess: (_, description, __, ___) => description,
+              orElse: () => "",
             ),
-          ],
-        ),
+            priceLabel: state.maybeWhen(
+              selectCardSuccess: (_, __, priceLabel, ___) => priceLabel,
+              orElse: () => "",
+            ),
+          );
+        },
       ),
     );
   }
