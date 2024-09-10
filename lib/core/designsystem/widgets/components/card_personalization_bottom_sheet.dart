@@ -21,7 +21,7 @@ class CardPersonalizationBottomSheet extends StatelessWidget {
         padding:
             EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
         child: Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: const EdgeInsets.symmetric(horizontal: 16.0),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -112,7 +112,8 @@ class CardPersonalizationBottomSheet extends StatelessWidget {
                   onButtonPressed(
                       firstNameController.text, lastNameController.text);
                 },
-              )
+              ),
+              const SizedBox(height: 24),
             ],
           ),
         ),

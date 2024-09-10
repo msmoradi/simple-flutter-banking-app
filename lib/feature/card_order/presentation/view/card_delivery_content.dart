@@ -26,7 +26,7 @@ class CardDeliveryContent extends StatelessWidget {
       ),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(16),
+          padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Column(
             children: [
               const SizedBox(height: 16),
@@ -60,6 +60,7 @@ class CardDeliveryContent extends StatelessWidget {
                 label: 'آدرس جدید',
                 isLoading: state is CardOrderInProgress,
               ),
+              const SizedBox(height: 24),
             ],
           ),
         ),

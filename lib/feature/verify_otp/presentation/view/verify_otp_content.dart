@@ -118,7 +118,7 @@ class _VerifyOtpContentState extends State<VerifyOtpContent> {
       ),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(16),
+          padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Column(
             children: [
               Expanded(
@@ -211,6 +211,7 @@ class _VerifyOtpContentState extends State<VerifyOtpContent> {
                       onPressed: null,
                       label: "ارسال دوباره کد | $_start ثانیه",
                     ),
+              const SizedBox(height: 24),
             ],
           ),
         ),

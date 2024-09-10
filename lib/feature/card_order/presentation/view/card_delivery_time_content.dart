@@ -132,7 +132,7 @@ class _CardDeliveryTimeContentState extends State<CardDeliveryTimeContent> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.all(16.0),
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: PrimaryFillButton(
                 onPressed: widget.onNext,
                 icon: Icons.thumb_up_outlined,
@@ -140,6 +140,7 @@ class _CardDeliveryTimeContentState extends State<CardDeliveryTimeContent> {
                 isLoading: widget.state is CardOrderInProgress,
               ),
             ),
+            const SizedBox(height: 24),
           ],
         ),
       ),

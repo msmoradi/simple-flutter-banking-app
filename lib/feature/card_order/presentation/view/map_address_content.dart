@@ -24,7 +24,7 @@ class MapAddressContent extends StatelessWidget {
       ),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(16),
+          padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Column(
             children: [
               const Spacer(),
@@ -33,6 +33,7 @@ class MapAddressContent extends StatelessWidget {
                 label: 'تأیید آدرس',
                 isLoading: state is CardOrderInProgress,
               ),
+              const SizedBox(height: 24),
             ],
           ),
         ),

@@ -33,7 +33,7 @@ class _AddAddressContentState extends State<AddAddressContent> {
       ),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(16),
+          padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Column(
             children: [
               Expanded(
@@ -68,6 +68,7 @@ class _AddAddressContentState extends State<AddAddressContent> {
                 label: 'بررسی کد پستی',
                 isLoading: widget.showLoading,
               ),
+              const SizedBox(height: 24),
             ],
           ),
         ),

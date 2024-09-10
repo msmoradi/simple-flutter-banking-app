@@ -28,7 +28,7 @@ class OnboardingPasswordPage extends StatelessWidget {
       ),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(16),
+          padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Column(
             children: [
               Expanded(
@@ -77,6 +77,7 @@ class OnboardingPasswordPage extends StatelessWidget {
                 label: 'تعریف رمز',
                 onPressed: onNext,
               ),
+              const SizedBox(height: 24)
             ],
           ),
         ),

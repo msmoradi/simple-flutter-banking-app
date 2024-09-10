@@ -31,7 +31,7 @@ class IdentityContent extends StatelessWidget {
       ),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(16),
+          padding: const EdgeInsets.symmetric(horizontal: 16),
           child: IdentityForm(
             phoneNumber: phoneNumber,
             needReferralCode: needReferralCode,

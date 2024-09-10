@@ -88,7 +88,7 @@ class EnableBiometricPage extends StatelessWidget {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.all(16.0),
+                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -122,6 +122,7 @@ class EnableBiometricPage extends StatelessWidget {
                             fillWidth: false,
                           ),
                         ),
+                        const SizedBox(height: 24),
                       ],
                     ),
                   )

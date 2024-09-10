@@ -38,7 +38,7 @@ class _PhoneContentState extends State<PhoneContent> {
       ),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(16),
+          padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Column(
             children: [
               Expanded(
@@ -46,7 +46,20 @@ class _PhoneContentState extends State<PhoneContent> {
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      const SizedBox(height: 16),
+                      Align(
+                        alignment: Alignment.centerRight,
+                        child: Text(
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyMedium
+                              ?.copyWith(
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .onSurfaceVariant),
+                          'شماره تلفن همراه به نام خودتان باشد',
+                        ),
+                      ),
+                      const SizedBox(height: 20),
                       Form(
                         key: _formKey,
                         child: Column(
@@ -136,6 +149,7 @@ class _PhoneContentState extends State<PhoneContent> {
                 label: translator.acceptAndContinue,
                 isLoading: widget.state is PhoneInProgress,
               ),
+              const SizedBox(height: 24),
             ],
           ),
         ),
