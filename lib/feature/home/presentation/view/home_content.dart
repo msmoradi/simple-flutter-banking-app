@@ -115,11 +115,9 @@ class _HomeContentState extends State<HomeContent> {
                 IconButton(
                   onPressed: () {},
                   icon: SvgPicture.asset(
-                    width: 32.0,
-                    height: 32.0,
                     'assets/icons/bell.svg',
                     colorFilter: ColorFilter.mode(
-                      Theme.of(context).colorScheme.onSurface,
+                      Theme.of(context).colorScheme.onPrimary,
                       BlendMode.srcIn,
                     ),
                   ),
@@ -127,11 +125,9 @@ class _HomeContentState extends State<HomeContent> {
                 IconButton(
                   onPressed: () {},
                   icon: SvgPicture.asset(
-                    width: 32.0,
-                    height: 32.0,
                     'assets/icons/help-circle.svg',
                     colorFilter: ColorFilter.mode(
-                      Theme.of(context).colorScheme.onSurface,
+                      Theme.of(context).colorScheme.onPrimary,
                       BlendMode.srcIn,
                     ),
                   ),

@@ -127,8 +127,6 @@ class KycStatusContent extends StatelessWidget {
                       Theme.of(context).colorScheme.onPrimary,
                       BlendMode.srcIn,
                     ),
-                    width: 24,
-                    height: 24,
                   ),
                   onPressed: onActionClick,
                 ),

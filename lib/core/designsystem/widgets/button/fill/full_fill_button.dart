@@ -25,7 +25,7 @@ class PrimaryFillButton extends StatelessWidget {
             ScaleTransition(scale: animation, child: child),
         child: isLoading
             ? SpinKitThreeBounce(
-                color: Theme.of(context).colorScheme.onPrimaryContainer,
+                color: Theme.of(context).colorScheme.onPrimary,
                 size: 30.0,
               )
             : Text(label));
