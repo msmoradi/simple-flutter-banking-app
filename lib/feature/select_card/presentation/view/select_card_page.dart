@@ -11,7 +11,7 @@ import 'package:get_it/get_it.dart';
 
 class SelectCardPage extends StatelessWidget {
   final Function() onAddAddress;
-  final Function(AddressEntity) onSelectAddress;
+  final Function(List<AddressEntity>) onSelectAddress;
   final Function(String) showMessage;
 
   const SelectCardPage({
@@ -30,7 +30,7 @@ class SelectCardPage extends StatelessWidget {
           state.whenOrNull(
             selectCardFailure: (message) => showMessage(message),
             addAddress: () => onAddAddress(),
-            selectAddress: (address) => onSelectAddress(address),
+            selectAddress: (addressList) => onSelectAddress(addressList),
           );
         },
         builder: (context, state) {

@@ -1,14 +1,22 @@
 import 'package:banx/core/designsystem/widgets/button/fill/full_fill_button.dart';
 import 'package:banx/core/designsystem/widgets/components/address_row.dart';
+import 'package:banx/core/domain/entities/address_entity.dart';
 import 'package:banx/feature/card_order/presentation/bloc/card_order_bloc.dart';
+import 'package:banx/feature/select_address/presentation/bloc/select_address_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
-class CardDeliveryContent extends StatelessWidget {
-  final CardOrderState state;
+class SelectAddressContent extends StatelessWidget {
+  final bool showLoading;
   final Function() onAddAddress;
+  final List<AddressEntity> addressList;
 
-  const CardDeliveryContent(
-      {super.key, required this.state, required this.onAddAddress});
+  const SelectAddressContent({
+    super.key,
+    required this.showLoading,
+    required this.onAddAddress,
+    required this.addressList,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -46,19 +54,23 @@ class CardDeliveryContent extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 16),
-              const Column(
-                children: [
-                  AddressRow(
-                      address:
-                          'شهر تهران، محله اکباتان، خیابان .شکوری غربی، بلوار شهید عبدالرحمان نفیسی ، فازیک بلوک A5، پلاک 0، طبقه 9، واحد 458'),
-                ],
+              Column(
+                children: addressList.map((address) {
+                  return AddressRow(address: address.address);
+                }).toList(),
               ),
               const Spacer(),
               PrimaryFillButton(
                 onPressed: onAddAddress,
-                icon: Icon(Icons.add_rounded),
+                icon: SvgPicture.asset(
+                  'assets/icons/plus.svg',
+                  colorFilter: ColorFilter.mode(
+                    Theme.of(context).colorScheme.onPrimary,
+                    BlendMode.srcIn,
+                  ),
+                ),
                 label: 'آدرس جدید',
-                isLoading: state is CardOrderInProgress,
+                isLoading: showLoading,
               ),
               const SizedBox(height: 16),
             ],

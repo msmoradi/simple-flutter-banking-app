@@ -1,5 +1,5 @@
 import 'package:banx/composition/add_address_page_factory.dart';
-import 'package:banx/composition/card_delivery_page_factory.dart';
+import 'package:banx/composition/select_address_page_factory.dart';
 import 'package:banx/composition/card_delivery_time_page_factory.dart';
 import 'package:banx/composition/confirm_password_page_factory.dart';
 import 'package:banx/composition/create_password_page_factory.dart';
@@ -35,15 +35,15 @@ Future<GoRouter> getRouterConfig({
         showMessage: showMessage,
         onDeeplinkLanding: onDeeplinkLanding,
       ),
-      FaceDetectionPageFactory.route(showMessage: showMessage,
+      FaceDetectionPageFactory.route(
+        showMessage: showMessage,
         onDeeplinkLanding: onDeeplinkLanding,
       ),
       OnboardingPasswordPageFactory.route(showMessage: showMessage),
       CreatePasswordPageFactory.route(showMessage: showMessage),
       AddAddressPageFactory.route(showMessage: showMessage),
-      CardDeliveryPageFactory.route(
+      SelectAddressPageFactory.route(
         showMessage: showMessage,
-        onDeeplinkLanding: onDeeplinkLanding,
       ),
       NationalSerialPageFactory.route(showMessage: showMessage),
       CardDeliveryTimePageFactory.route(showMessage: showMessage),

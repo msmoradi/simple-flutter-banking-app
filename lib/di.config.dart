@@ -79,6 +79,8 @@ import 'package:banx/feature/main/presentation/bloc/main_bloc.dart' as _i381;
 import 'package:banx/feature/national_serial/presentation/bloc/national_serial_bloc.dart'
     as _i61;
 import 'package:banx/feature/phone/presentation/bloc/phone_bloc.dart' as _i402;
+import 'package:banx/feature/select_address/presentation/bloc/select_address_bloc.dart'
+    as _i922;
 import 'package:banx/feature/select_card/presentation/bloc/select_card_bloc.dart'
     as _i266;
 import 'package:banx/feature/verify_otp/presentation/bloc/verify_otp_bloc.dart'
@@ -183,6 +185,8 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i759.AddAddressBloc>(() =>
         _i759.AddAddressBloc(addressRepository: gh<_i648.AddressRepository>()));
     gh.factory<_i61.NationalSerialBloc>(() => _i61.NationalSerialBloc(
+        addressRepository: gh<_i648.AddressRepository>()));
+    gh.factory<_i922.SelectAddressBloc>(() => _i922.SelectAddressBloc(
         addressRepository: gh<_i648.AddressRepository>()));
     gh.factory<_i699.CardOrderBloc>(
         () => _i699.CardOrderBloc(cardRepository: gh<_i831.CardRepository>()));

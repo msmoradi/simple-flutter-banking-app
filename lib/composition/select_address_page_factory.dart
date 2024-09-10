@@ -1,26 +1,21 @@
 import 'package:banx/composition/add_address_page_factory.dart';
-import 'package:banx/composition/select_address_page_factory.dart';
-import 'package:banx/feature/select_card/presentation/view/select_card_page.dart';
+import 'package:banx/core/domain/entities/address_entity.dart';
+import 'package:banx/feature/select_address/presentation/view/select_address_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 
-class SelectCardPageFactory {
-  static const path = "/select_card";
+class SelectAddressPageFactory {
+  static const path = "/select_address";
 
-  static SelectCardPage builder({
+  static SelectAddressPage builder({
     required BuildContext context,
     required GoRouterState state,
-    required SelectCardExtra? extra,
+    required SelectAddressExtra extra,
     required Function(String message) showMessage,
   }) {
-    return SelectCardPage(
+    return SelectAddressPage(
       showMessage: showMessage,
-      onSelectAddress: (addressList) {
-        context.push(SelectAddressPageFactory.path,
-            extra: SelectAddressExtra(
-              addressList: addressList,
-            ));
-      },
+      addressList: extra.addressList,
       onAddAddress: () {
         context.push(
           AddAddressPageFactory.path,
@@ -34,10 +29,13 @@ class SelectCardPageFactory {
     required Function(String message) showMessage,
   }) {
     return GoRoute(
-        path: (SelectCardPageFactory.path),
+        path: (SelectAddressPageFactory.path),
         builder: (ctx, state) {
-          final extra = state.extra as SelectCardExtra?;
-          return SelectCardPageFactory.builder(
+          final extra = state.extra != null
+              ? state.extra as SelectAddressExtra
+              : SelectAddressExtra(addressList: []);
+
+          return SelectAddressPageFactory.builder(
             context: ctx,
             state: state,
             extra: extra,
@@ -48,10 +46,10 @@ class SelectCardPageFactory {
   }
 }
 
-class SelectCardExtra {
-  final String sessionId;
+class SelectAddressExtra {
+  final List<AddressEntity> addressList;
 
-  SelectCardExtra({
-    required this.sessionId,
+  SelectAddressExtra({
+    required this.addressList,
   });
 }

@@ -13,7 +13,7 @@ class SelectCardState with _$SelectCardState {
   const factory SelectCardState.addAddress() = AddAddress;
 
   const factory SelectCardState.selectAddress(
-      {required AddressEntity address}) = SelectAddress;
+      {required List<AddressEntity> addressList}) = SelectAddress;
 
   const factory SelectCardState.selectCardSuccess({
     required String title,
