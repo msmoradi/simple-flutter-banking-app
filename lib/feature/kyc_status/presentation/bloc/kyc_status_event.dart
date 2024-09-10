@@ -8,18 +8,13 @@ abstract class KycStatusEvent extends Equatable {
 }
 
 class ActionClicked extends KycStatusEvent {
-  final String? deeplink;
-
-  const ActionClicked({
-    this.deeplink,
-  });
+  const ActionClicked();
 
   @override
   List<Object> get props => [];
 }
 
 class KycStatusSubmitted extends KycStatusEvent {
-
   @override
   List<Object> get props => [];
 }

@@ -24,8 +24,11 @@ class KycStatusBloc extends Bloc<KycStatusEvent, KycStatusState> {
     ActionClicked event,
     Emitter<KycStatusState> emit,
   ) async {
-    if (event.deeplink != null) {
-      emit(DeepLinkLanding(deeplink: event.deeplink!));
+    if (state is! KycStatusSuccess) return;
+
+    final deeplink = (state as KycStatusSuccess).deeplink;
+    if (deeplink != null) {
+      emit(DeepLinkLanding(deeplink: deeplink));
     } else {
       add(KycStatusSubmitted());
     }

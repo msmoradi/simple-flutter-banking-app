@@ -31,10 +31,7 @@ class KycStatusPage extends StatelessWidget {
             showLoading: state is KycStatusInProgress,
             onActionClick: () {
               context.read<KycStatusBloc>().add(
-                    ActionClicked(
-                      deeplink:
-                          state is KycStatusSuccess ? state.deeplink : null,
-                    ),
+                    const ActionClicked(),
                   );
             },
             showMessage: showMessage,
