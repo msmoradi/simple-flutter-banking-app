@@ -23,6 +23,7 @@ mixin _$ErrorDto {
   String? get error => throw _privateConstructorUsedError;
   int? get code => throw _privateConstructorUsedError;
   String get message => throw _privateConstructorUsedError;
+  ErrorAction get action => throw _privateConstructorUsedError;
 
   /// Serializes this ErrorDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -39,7 +40,7 @@ abstract class $ErrorDtoCopyWith<$Res> {
   factory $ErrorDtoCopyWith(ErrorDto value, $Res Function(ErrorDto) then) =
       _$ErrorDtoCopyWithImpl<$Res, ErrorDto>;
   @useResult
-  $Res call({String? error, int? code, String message});
+  $Res call({String? error, int? code, String message, ErrorAction action});
 }
 
 /// @nodoc
@@ -60,6 +61,7 @@ class _$ErrorDtoCopyWithImpl<$Res, $Val extends ErrorDto>
     Object? error = freezed,
     Object? code = freezed,
     Object? message = null,
+    Object? action = null,
   }) {
     return _then(_value.copyWith(
       error: freezed == error
@@ -74,6 +76,10 @@ class _$ErrorDtoCopyWithImpl<$Res, $Val extends ErrorDto>
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String,
+      action: null == action
+          ? _value.action
+          : action // ignore: cast_nullable_to_non_nullable
+              as ErrorAction,
     ) as $Val);
   }
 }
@@ -86,7 +92,7 @@ abstract class _$$ErrorDtoImplCopyWith<$Res>
       __$$ErrorDtoImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? error, int? code, String message});
+  $Res call({String? error, int? code, String message, ErrorAction action});
 }
 
 /// @nodoc
@@ -105,6 +111,7 @@ class __$$ErrorDtoImplCopyWithImpl<$Res>
     Object? error = freezed,
     Object? code = freezed,
     Object? message = null,
+    Object? action = null,
   }) {
     return _then(_$ErrorDtoImpl(
       error: freezed == error
@@ -119,6 +126,10 @@ class __$$ErrorDtoImplCopyWithImpl<$Res>
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String,
+      action: null == action
+          ? _value.action
+          : action // ignore: cast_nullable_to_non_nullable
+              as ErrorAction,
     ));
   }
 }
@@ -127,7 +138,10 @@ class __$$ErrorDtoImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ErrorDtoImpl implements _ErrorDto {
   const _$ErrorDtoImpl(
-      {required this.error, required this.code, required this.message});
+      {required this.error,
+      required this.code,
+      required this.message,
+      required this.action});
 
   factory _$ErrorDtoImpl.fromJson(Map<String, dynamic> json) =>
       _$$ErrorDtoImplFromJson(json);
@@ -138,10 +152,12 @@ class _$ErrorDtoImpl implements _ErrorDto {
   final int? code;
   @override
   final String message;
+  @override
+  final ErrorAction action;
 
   @override
   String toString() {
-    return 'ErrorDto(error: $error, code: $code, message: $message)';
+    return 'ErrorDto(error: $error, code: $code, message: $message, action: $action)';
   }
 
   @override
@@ -151,12 +167,13 @@ class _$ErrorDtoImpl implements _ErrorDto {
             other is _$ErrorDtoImpl &&
             (identical(other.error, error) || other.error == error) &&
             (identical(other.code, code) || other.code == code) &&
-            (identical(other.message, message) || other.message == message));
+            (identical(other.message, message) || other.message == message) &&
+            (identical(other.action, action) || other.action == action));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, error, code, message);
+  int get hashCode => Object.hash(runtimeType, error, code, message, action);
 
   /// Create a copy of ErrorDto
   /// with the given fields replaced by the non-null parameter values.
@@ -178,7 +195,8 @@ abstract class _ErrorDto implements ErrorDto {
   const factory _ErrorDto(
       {required final String? error,
       required final int? code,
-      required final String message}) = _$ErrorDtoImpl;
+      required final String message,
+      required final ErrorAction action}) = _$ErrorDtoImpl;
 
   factory _ErrorDto.fromJson(Map<String, dynamic> json) =
       _$ErrorDtoImpl.fromJson;
@@ -189,6 +207,8 @@ abstract class _ErrorDto implements ErrorDto {
   int? get code;
   @override
   String get message;
+  @override
+  ErrorAction get action;
 
   /// Create a copy of ErrorDto
   /// with the given fields replaced by the non-null parameter values.

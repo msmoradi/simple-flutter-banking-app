@@ -9,7 +9,19 @@ class ErrorDto with _$ErrorDto {
     required String? error,
     required int? code,
     required String message,
+    required ErrorAction action,
   }) = _ErrorDto;
 
   factory ErrorDto.fromJson(Map<String, dynamic> json) => _$ErrorDtoFromJson(json);
+}
+
+enum ErrorAction {
+  @JsonValue('LOGGED_OUT')
+  loggedOut,
+  @JsonValue('NFC_LOGIN')
+  nfcLogin,
+  @JsonValue('PASSWORD_LOGIN')
+  passwordLogin,
+  @JsonValue('TOAST')
+  toast
 }
