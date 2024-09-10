@@ -135,7 +135,7 @@ class _CardDeliveryTimeContentState extends State<CardDeliveryTimeContent> {
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: PrimaryFillButton(
                 onPressed: widget.onNext,
-                icon: Icons.thumb_up_outlined,
+                icon: Icon(Icons.thumb_up_outlined),
                 label: 'تأیید زمان و مکان دریافت کارت',
                 isLoading: widget.state is CardOrderInProgress,
               ),

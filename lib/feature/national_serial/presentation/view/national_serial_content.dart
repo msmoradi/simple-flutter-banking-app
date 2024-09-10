@@ -78,7 +78,7 @@ class _NationalSerialContentState extends State<NationalSerialContent> {
                         .add(CheckNationalSerialSubmitted(_nationalSerial!));
                   }
                 },
-                icon: Icons.search_outlined,
+                icon:Icon(Icons.search_outlined) ,
                 label: 'بررسی کد پستی',
                 isLoading: widget.showLoading,
               ),

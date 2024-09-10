@@ -64,7 +64,7 @@ class _AddAddressContentState extends State<AddAddressContent> {
                         .add(CheckPostalCodeSubmitted(_postalCode!));
                   }
                 },
-                icon: Icons.search_outlined,
+                icon: Icon(Icons.search_outlined),
                 label: 'بررسی کد پستی',
                 isLoading: widget.showLoading,
               ),

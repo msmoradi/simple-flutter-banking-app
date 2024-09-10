@@ -1,27 +1,33 @@
 import 'dart:async';
 import 'package:banx/core/data/datasource/remote/authentication_remote_datasource.dart';
+import 'package:banx/core/data/mapper/kyc_mapper.dart';
 import 'package:banx/core/data/mapper/response.mapper.dart';
-import 'package:banx/core/domain/entities/password_authentication.dart';
+import 'package:banx/core/domain/entities/entity.dart';
+import 'package:banx/core/domain/entities/kyc_state_entity.dart';
 import 'package:banx/core/domain/entities/password_entity.dart';
 import 'package:banx/core/domain/entities/send_otp_entity.dart';
 import 'package:banx/core/domain/entities/sign_up_entity.dart';
 import 'package:banx/core/domain/entities/verify_otp_entity.dart';
 import 'package:banx/core/domain/entity_wrapper.dart';
 import 'package:banx/core/domain/repository/authentication_repository.dart';
+import 'package:banx/core/domain/repository/profile_repository.dart';
 import 'package:banx/core/domain/repository/token_repository.dart';
 import 'package:injectable/injectable.dart';
 
 @LazySingleton(as: AuthenticationRepository)
 class AuthenticationRepositoryImpl extends AuthenticationRepository {
-  AuthenticationRepositoryImpl(
-      {required this.authenticationRemoteDataSource,
-      required this.tokenRepository});
-
   final AuthenticationRemoteDataSource authenticationRemoteDataSource;
   final TokenRepository tokenRepository;
+  final ProfileRepository profileRepository;
+
+  AuthenticationRepositoryImpl({
+    required this.authenticationRemoteDataSource,
+    required this.tokenRepository,
+    required this.profileRepository,
+  });
 
   @override
-  Future<EntityWrapper<VerifyOtpEntity>> verifyOtp({
+  Future<EntityWrapper<Entity>> verifyOtp({
     required String phoneNumber,
     required String otp,
   }) {
@@ -36,6 +42,7 @@ class AuthenticationRepositoryImpl extends AuthenticationRepository {
       if (entityWrapper is SuccessEntityWrapper<VerifyOtpEntity>) {
         await tokenRepository.saveAccessToken(entityWrapper.data.accessToken);
         await tokenRepository.saveRefreshToken(entityWrapper.data.refreshToken);
+        return await profileRepository.getProfile();
       }
       return entityWrapper;
     });
@@ -48,6 +55,13 @@ class AuthenticationRepositoryImpl extends AuthenticationRepository {
         .mapResponseToEntityWrapper(mapper: (model) {
       return PasswordEntity();
     });
+  }
+
+  @override
+  Future<EntityWrapper<KycStateEntity>> kyc() {
+    return authenticationRemoteDataSource
+        .kyc()
+        .mapResponseToEntityWrapper(mapper: (dto) => dto.toEntity());
   }
 
   @override

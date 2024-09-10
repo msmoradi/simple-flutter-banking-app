@@ -161,26 +161,17 @@ extension GetItInjectableX on _i174.GetIt {
           localAuthentication: gh<_i152.LocalAuthentication>(),
           tokenRepository: gh<_i232.TokenRepository>(),
         ));
+    gh.lazySingleton<_i648.AddressRepository>(() => _i794.AddressRepositoryImpl(
+        addressRemoteDataSource: gh<_i767.AddressRemoteDataSource>()));
+    gh.lazySingleton<_i654.MediaRepository>(
+        () => _i244.MediaRepositoryImpl(gh<_i665.MediaRemoteDataSource>()));
     gh.lazySingleton<_i474.AuthenticationRepository>(
         () => _i450.AuthenticationRepositoryImpl(
               authenticationRemoteDataSource:
                   gh<_i84.AuthenticationRemoteDataSource>(),
               tokenRepository: gh<_i232.TokenRepository>(),
+              profileRepository: gh<_i111.ProfileRepository>(),
             ));
-    gh.factory<_i339.ConfirmPasswordBloc>(() => _i339.ConfirmPasswordBloc(
-          authenticationRepository: gh<_i474.AuthenticationRepository>(),
-          profileRepository: gh<_i111.ProfileRepository>(),
-        ));
-    gh.lazySingleton<_i648.AddressRepository>(() => _i794.AddressRepositoryImpl(
-        addressRemoteDataSource: gh<_i767.AddressRemoteDataSource>()));
-    gh.lazySingleton<_i654.MediaRepository>(
-        () => _i244.MediaRepositoryImpl(gh<_i665.MediaRemoteDataSource>()));
-    gh.factory<_i67.VerifyPasswordBloc>(() => _i67.VerifyPasswordBloc(
-          authenticationRepository: gh<_i474.AuthenticationRepository>(),
-          tokenRepository: gh<_i232.TokenRepository>(),
-          profileRepository: gh<_i111.ProfileRepository>(),
-          localAuthentication: gh<_i877.LocalAuthHelper>(),
-        ));
     gh.factory<_i759.AddAddressBloc>(() =>
         _i759.AddAddressBloc(addressRepository: gh<_i648.AddressRepository>()));
     gh.factory<_i61.NationalSerialBloc>(() => _i61.NationalSerialBloc(
@@ -197,6 +188,16 @@ extension GetItInjectableX on _i174.GetIt {
         authenticationRepository: gh<_i474.AuthenticationRepository>()));
     gh.factory<_i402.PhoneBloc>(() => _i402.PhoneBloc(
         authenticationRepository: gh<_i474.AuthenticationRepository>()));
+    gh.factory<_i339.ConfirmPasswordBloc>(() => _i339.ConfirmPasswordBloc(
+          authenticationRepository: gh<_i474.AuthenticationRepository>(),
+          profileRepository: gh<_i111.ProfileRepository>(),
+        ));
+    gh.factory<_i67.VerifyPasswordBloc>(() => _i67.VerifyPasswordBloc(
+          authenticationRepository: gh<_i474.AuthenticationRepository>(),
+          tokenRepository: gh<_i232.TokenRepository>(),
+          profileRepository: gh<_i111.ProfileRepository>(),
+          localAuthentication: gh<_i877.LocalAuthHelper>(),
+        ));
     return this;
   }
 }

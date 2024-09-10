@@ -5,14 +5,14 @@ class InfoTextRowWidget extends StatelessWidget {
   final String title;
   final String subtitle;
   final String iconAsset;
-  final Color? backgroundColor;
+  final Color? background;
 
   const InfoTextRowWidget({
     super.key,
     required this.title,
     required this.subtitle,
     required this.iconAsset,
-    this.backgroundColor,
+    this.background,
   });
 
   @override
@@ -23,7 +23,7 @@ class InfoTextRowWidget extends StatelessWidget {
         CircleAvatar(
           radius: 23,
           backgroundColor:
-              backgroundColor ?? Theme.of(context).colorScheme.onSurface,
+              background ?? Theme.of(context).colorScheme.onSurface,
           child: SvgPicture.asset(
             iconAsset,
             colorFilter: ColorFilter.mode(

@@ -1,45 +1,52 @@
-import 'package:banx/core/designsystem/widgets/button/fill/full_fill_button.dart';
-import 'package:banx/core/designsystem/widgets/info_text_row.dart';
-import 'package:banx/feature/kyc_status/model/kyc_status.dart';
+import 'package:banx/feature/kyc_status/presentation/bloc/kyc_status_bloc.dart';
 import 'package:banx/feature/kyc_status/presentation/view/kyc_status_content.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_it/get_it.dart';
 
 class KycStatusPage extends StatelessWidget {
-  final Function() onNext;
   final Function(String) showMessage;
+  final Function(String) onDeeplinkLanding;
 
   const KycStatusPage({
     super.key,
-    required this.onNext,
+    required this.onDeeplinkLanding,
     required this.showMessage,
   });
 
   @override
   Widget build(BuildContext context) {
-    return KycStatusContent(
-      onActionClick: onNext,
-      showMessage: showMessage,
-      title: "احراز هویت و افتتاح حساب",
-      description: "استعلام از بانک مرکزی جهت افتتاح حساب در حال انجام است",
-      actionTitle: "ادامه فرآیند",
-      status: [
-        KycStatus(
-            title: "مالکیت شماره تلفن همراه",
-            description: "تطبیق شماره تلفن همراه و کدملی",
-            state: KycState.success),
-        KycStatus(
-            title: "شناسایی هویت",
-            description: "دریافت اطلاعات شما از ثبت احوال",
-            state: KycState.success),
-        KycStatus(
-            title: "احراز هویت",
-            description: "بررسی چهره و تطبیق آن با هویت شما",
-            state: KycState.failed),
-        KycStatus(
-            title: "استعلام از بانک مرکزی",
-            description: "بررسی عدم چک برگشتی و اقساط معوق بانکی",
-            state: KycState.waiting)
-      ],
+    return BlocProvider(
+      create: (context) => GetIt.instance<KycStatusBloc>(),
+      child: BlocConsumer<KycStatusBloc, KycStatusState>(
+        listener: (context, state) {
+          if (state is KycStatusFailure) {
+            showMessage(state.message);
+          } else if (state is DeepLinkLanding) {
+            onDeeplinkLanding(state.deeplink);
+          }
+        },
+        builder: (context, state) {
+          return KycStatusContent(
+            showLoading: state is KycStatusInProgress,
+            onActionClick: () {
+              context.read<KycStatusBloc>().add(
+                    ActionClicked(
+                      deeplink:
+                          state is KycStatusSuccess ? state.deeplink : null,
+                    ),
+                  );
+            },
+            showMessage: showMessage,
+            actionTitle: state is KycStatusSuccess ? state.actionTitle : "",
+            actionIcon: state is KycStatusSuccess ? state.actionIcon : "",
+            identity: state is KycStatusSuccess ? state.identity : null,
+            phoneNumber: state is KycStatusSuccess ? state.phoneNumber : null,
+            face: state is KycStatusSuccess ? state.face : null,
+            sayah: state is KycStatusSuccess ? state.sayah : null,
+          );
+        },
+      ),
     );
   }
 }

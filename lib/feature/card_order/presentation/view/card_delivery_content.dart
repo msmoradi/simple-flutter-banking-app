@@ -56,7 +56,7 @@ class CardDeliveryContent extends StatelessWidget {
               const Spacer(),
               PrimaryFillButton(
                 onPressed: onAddAddress,
-                icon: Icons.add_rounded,
+                icon: Icon(Icons.add_rounded),
                 label: 'آدرس جدید',
                 isLoading: state is CardOrderInProgress,
               ),

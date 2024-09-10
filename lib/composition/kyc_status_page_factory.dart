@@ -13,8 +13,8 @@ class KycStatusPageFactory {
     required Function(String deeplink) onDeeplinkLanding,
   }) {
     return KycStatusPage(
+      onDeeplinkLanding:onDeeplinkLanding,
       showMessage: showMessage,
-      onNext: () {},
     );
   }
 

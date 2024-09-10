@@ -20,6 +20,8 @@ class ApiEndpoint {
         return '$path/refresh';
       case AuthEndpoint.SIGN_UP:
         return '$path/otp/signup';
+        case AuthEndpoint.KYC:
+        return '$path/otp/kyc';
     }
   }
 
@@ -76,6 +78,7 @@ enum AuthEndpoint {
   PASSWORD,
   REFRESH,
   SIGN_UP,
+  KYC,
 }
 
 enum ProfileEndpoint { GET_PROFILE, POSTAL_CODE }

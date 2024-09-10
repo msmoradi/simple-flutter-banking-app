@@ -1,5 +1,6 @@
 import 'package:banx/core/data/datasource/remote/authentication_remote_datasource.dart';
 import 'package:banx/core/data/model/password_response_dto.dart';
+import 'package:banx/core/data/model/response/kyc_response_dto.dart';
 import 'package:banx/core/data/model/send_otp_response_dto.dart';
 import 'package:banx/core/data/model/sign_up_response_dto.dart';
 import 'package:banx/core/data/model/verify_otp_response_dto.dart';
@@ -68,6 +69,13 @@ class AuthenticationRemoteDataSourceImpl
         return PasswordResponseDto.empty();
       },
     );
+  }
+
+  @override
+  Future<KycResponseDto> kyc() {
+    return apiService.get(
+        endpoint: ApiEndpoint.auth(AuthEndpoint.KYC),
+        mapper: KycResponseDto.fromJson);
   }
 
   @override

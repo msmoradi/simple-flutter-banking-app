@@ -1,7 +1,9 @@
 import 'dart:async';
 
 import 'package:banx/core/data/model/user_profile_response_dto.dart';
+import 'package:banx/core/domain/entities/entity.dart';
 import 'package:banx/core/domain/entities/user_profile_entity.dart';
+import 'package:banx/core/domain/entity_wrapper.dart';
 import 'package:banx/core/domain/repository/media_repository.dart';
 import 'package:banx/core/domain/repository/profile_repository.dart';
 import 'package:bloc/bloc.dart';
@@ -30,7 +32,7 @@ class FaceDetectionBloc extends Bloc<FaceDetectionEvent, FaceDetectionState> {
       FaceDetectionSubmitted event, Emitter<FaceDetectionState> emit) async {
     emit(FaceDetectionInProgress());
     try {
-      final response = await mediaRepository
+      final EntityWrapper<Entity> response = await mediaRepository
           .uploadVideo(path: event.path, onSendProgress: (a, b) {})
           .then((value) async {
         if (value.isSuccess) {
@@ -41,11 +43,11 @@ class FaceDetectionBloc extends Bloc<FaceDetectionEvent, FaceDetectionState> {
       });
 
       response.when(
-          success: (response) {
-            if (response is UserProfileEntity) {
-              // get profile
-              // handle deeplink
-              // emit DeepLinkLanding
+          success: (entity) {
+            if (entity is UserProfileEntity) {
+              emit(
+                DeepLinkLanding(deeplink: entity.routingButtonEntity!.deeplink),
+              );
             }
           },
           partialSuccess: (message) => emit(FaceDetectionFailure(message)),

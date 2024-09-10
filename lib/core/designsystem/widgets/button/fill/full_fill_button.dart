@@ -4,7 +4,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 class PrimaryFillButton extends StatelessWidget {
   final VoidCallback? onPressed;
   final String label;
-  final IconData? icon;
+  final Widget? icon;
   final bool isLoading;
   final bool fillWidth;
 
@@ -34,7 +34,7 @@ class PrimaryFillButton extends StatelessWidget {
       child: icon != null
           ? FilledButton.icon(
               onPressed: isLoading ? null : onPressed,
-              icon: isLoading ? null : Icon(icon),
+              icon: isLoading ? null : icon,
               label: content,
             )
           : FilledButton(

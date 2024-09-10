@@ -1,4 +1,6 @@
-import 'package:banx/core/domain/entities/password_authentication.dart';
+import 'package:banx/core/domain/entities/entity.dart';
+import 'package:banx/core/domain/entities/user_profile_entity.dart';
+import 'package:banx/core/domain/entity_wrapper.dart';
 import 'package:banx/core/domain/repository/authentication_repository.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
@@ -47,16 +49,20 @@ class VerifyOtpBloc extends Bloc<VerifyOtpEvent, VerifyOtpState> {
     } else {
       emit(VerifyOtpInProgress());
       try {
-        final response = await authenticationRepository.verifyOtp(
+        final EntityWrapper<Entity> response =
+            await authenticationRepository.verifyOtp(
           phoneNumber: event.phoneNumber,
           otp: event.otp,
         );
         response.when(
-            success: (success) => {
-                  // get profile
-                  // handle deeplink
-                  // emit DeepLinkLanding
-                },
+            success: (entity) {
+              if (entity is UserProfileEntity) {
+                emit(
+                  DeepLinkLanding(
+                      deeplink: entity.routingButtonEntity!.deeplink),
+                );
+              }
+            },
             partialSuccess: (message) => emit(VerifyOtpFailure(message)),
             networkError: (exception) =>
                 emit(VerifyOtpFailure(exception.toString())));

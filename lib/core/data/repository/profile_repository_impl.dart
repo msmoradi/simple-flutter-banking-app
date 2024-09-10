@@ -2,7 +2,6 @@ import 'dart:async';
 import 'package:banx/core/data/datasource/local/profile_local_datasource.dart';
 import 'package:banx/core/data/datasource/remote/profile_remote_datasource.dart';
 import 'package:banx/core/data/mapper/response.mapper.dart';
-import 'package:banx/core/data/mapper/routing_button_mapper.dart';
 import 'package:banx/core/data/mapper/user_profile_mapper.dart';
 import 'package:banx/core/domain/entities/user_profile_entity.dart';
 import 'package:banx/core/domain/entity_wrapper.dart';
