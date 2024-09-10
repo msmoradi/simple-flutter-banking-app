@@ -15,20 +15,23 @@ class App extends StatelessWidget {
     precacheImages(context);
     return ToastificationWrapper(
       child: FutureBuilder<GoRouter>(
-        future: _initializeRouter(onDeeplinkLanding: (deeplink) {
-          GoRouter.of(context).go(deeplink);
-        }, showMessage: (message) {
-          toastification.show(
-            type: ToastificationType.error,
-            style: ToastificationStyle.fillColored,
-            alignment: Alignment.bottomCenter,
-            showProgressBar: false,
-            closeOnClick: true,
-            dragToClose: true,
-            title: Text(message),
-            autoCloseDuration: const Duration(seconds: 3),
-          );
-        }),
+        future: _initializeRouter(
+          onDeeplinkLanding: (deeplink) {
+            GoRouter.of(context).go(deeplink);
+          },
+          showMessage: (message) {
+            toastification.show(
+              type: ToastificationType.error,
+              style: ToastificationStyle.fillColored,
+              alignment: Alignment.bottomCenter,
+              showProgressBar: false,
+              closeOnClick: true,
+              dragToClose: true,
+              title: Text(message),
+              autoCloseDuration: const Duration(seconds: 3),
+            );
+          },
+        ),
         builder: (context, snapshot) {
           if (!snapshot.hasData) {
             return MaterialApp(
