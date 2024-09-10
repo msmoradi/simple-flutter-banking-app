@@ -77,7 +77,7 @@ class OnboardingPasswordPage extends StatelessWidget {
                 label: 'تعریف رمز',
                 onPressed: onNext,
               ),
-              const SizedBox(height: 24)
+              const SizedBox(height: 16)
             ],
           ),
         ),

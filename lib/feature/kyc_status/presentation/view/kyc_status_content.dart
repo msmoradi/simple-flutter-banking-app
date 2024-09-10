@@ -144,7 +144,7 @@ class KycStatusContent extends StatelessWidget {
                         onPressed: onActionClick,
                       ),
                     ),
-                    const SizedBox(height: 24),
+                    const SizedBox(height: 16),
                   ],
                 ),
         ),

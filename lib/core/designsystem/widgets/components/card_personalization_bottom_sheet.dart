@@ -113,7 +113,7 @@ class CardPersonalizationBottomSheet extends StatelessWidget {
                       firstNameController.text, lastNameController.text);
                 },
               ),
-              const SizedBox(height: 24),
+              const SizedBox(height: 16),
             ],
           ),
         ),

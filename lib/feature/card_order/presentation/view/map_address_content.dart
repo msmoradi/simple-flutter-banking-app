@@ -33,7 +33,7 @@ class MapAddressContent extends StatelessWidget {
                 label: 'تأیید آدرس',
                 isLoading: state is CardOrderInProgress,
               ),
-              const SizedBox(height: 24),
+              const SizedBox(height: 16),
             ],
           ),
         ),

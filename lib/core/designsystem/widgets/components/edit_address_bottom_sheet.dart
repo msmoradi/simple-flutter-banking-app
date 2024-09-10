@@ -95,7 +95,7 @@ class EditAddressBottomSheet extends StatelessWidget {
                   onButtonPressed(addressController.text);
                 },
               ),
-              const SizedBox(height: 24),
+              const SizedBox(height: 16),
             ],
           ),
         ),

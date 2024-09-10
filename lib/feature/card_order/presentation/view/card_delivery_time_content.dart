@@ -140,7 +140,7 @@ class _CardDeliveryTimeContentState extends State<CardDeliveryTimeContent> {
                 isLoading: widget.state is CardOrderInProgress,
               ),
             ),
-            const SizedBox(height: 24),
+            const SizedBox(height: 16),
           ],
         ),
       ),

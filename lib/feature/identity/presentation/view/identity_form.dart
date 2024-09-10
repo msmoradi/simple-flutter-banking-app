@@ -130,7 +130,7 @@ class _IdentityFormState extends State<IdentityForm> {
           label: translator.acceptAndContinue,
           isLoading: widget.showLoading,
         ),
-        const SizedBox(height: 24),
+        const SizedBox(height: 16),
       ],
     );
   }

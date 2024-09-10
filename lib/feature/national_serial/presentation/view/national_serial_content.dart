@@ -82,7 +82,7 @@ class _NationalSerialContentState extends State<NationalSerialContent> {
                 label: 'بررسی کد پستی',
                 isLoading: widget.showLoading,
               ),
-              const SizedBox(height: 24),
+              const SizedBox(height: 16),
             ],
           ),
         ),

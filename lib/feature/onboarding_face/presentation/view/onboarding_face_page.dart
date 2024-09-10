@@ -77,7 +77,7 @@ class OnboardingFacePage extends StatelessWidget {
                 label: 'متوجه شدم',
                 onPressed: onNext,
               ),
-              const SizedBox(height: 24),
+              const SizedBox(height: 16),
             ],
           ),
         ),

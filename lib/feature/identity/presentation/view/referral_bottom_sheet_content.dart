@@ -64,7 +64,7 @@ class WithOutReferralBottomSheetContent extends StatelessWidget {
               Navigator.of(context).pop();
             },
           ),
-          const SizedBox(height: 24),
+          const SizedBox(height: 16),
         ],
       ),
     );

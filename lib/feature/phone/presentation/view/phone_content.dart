@@ -149,7 +149,7 @@ class _PhoneContentState extends State<PhoneContent> {
                 label: translator.acceptAndContinue,
                 isLoading: widget.state is PhoneInProgress,
               ),
-              const SizedBox(height: 24),
+              const SizedBox(height: 16),
             ],
           ),
         ),

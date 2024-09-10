@@ -211,7 +211,7 @@ class _VerifyOtpContentState extends State<VerifyOtpContent> {
                       onPressed: null,
                       label: "ارسال دوباره کد | $_start ثانیه",
                     ),
-              const SizedBox(height: 24),
+              const SizedBox(height: 16),
             ],
           ),
         ),

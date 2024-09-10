@@ -60,7 +60,7 @@ class CardDeliveryContent extends StatelessWidget {
                 label: 'آدرس جدید',
                 isLoading: state is CardOrderInProgress,
               ),
-              const SizedBox(height: 24),
+              const SizedBox(height: 16),
             ],
           ),
         ),
