@@ -62,6 +62,7 @@ import 'package:banx/di.dart' as _i0;
 import 'package:banx/feature/add_address/presentation/bloc/add_address_bloc.dart'
     as _i759;
 import 'package:banx/feature/assist/presentation/bloc/assist_bloc.dart' as _i20;
+import 'package:banx/feature/bank/presentation/bloc/bank_bloc.dart' as _i864;
 import 'package:banx/feature/card_delivery_time/presentation/bloc/card_delivery_time_bloc.dart'
     as _i501;
 import 'package:banx/feature/check_postal_code/presentation/bloc/check_postal_code_bloc.dart'
@@ -113,6 +114,7 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i412.HomeBloc>(() => _i412.HomeBloc());
     gh.factory<_i20.AssistBloc>(() => _i20.AssistBloc());
     gh.factory<_i381.MainBloc>(() => _i381.MainBloc());
+    gh.factory<_i864.BankBloc>(() => _i864.BankBloc());
     gh.lazySingleton<_i558.FlutterSecureStorage>(
         () => registerModule.flutterSecureStorage());
     gh.lazySingleton<_i528.PrettyDioLogger>(

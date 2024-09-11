@@ -1,4 +1,5 @@
 import 'package:banx/feature/assist/presentation/view/assist_page.dart';
+import 'package:banx/feature/bank/presentation/view/bank_page.dart';
 import 'package:banx/feature/home/presentation/view/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -23,104 +24,114 @@ class _MainContentState extends State<MainContent> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: [
-        const AssistPage(),
-        const Center(child: Text('کارت')),
-        const HomePage(),
+        const BankPage(),
         const Center(child: Text('انتقال')),
-        const Center(child: Text('تنظیمات')),
+        const HomePage(),
+        const AssistPage(),
+        const Center(child: Text('پروفایل')),
       ][_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Padding(
-              padding: const EdgeInsets.all(4.0),
+              padding: const EdgeInsets.all(6.0),
               child: SvgPicture.asset(
-                'assets/icons/wave.svg',
+                'assets/icons/home.svg',
+                colorFilter: ColorFilter.mode(
+                    Theme.of(context).colorScheme.outline, BlendMode.srcIn),
               ),
             ),
             activeIcon: Padding(
-              padding: const EdgeInsets.all(4.0),
+              padding: const EdgeInsets.all(6.0),
               child: SvgPicture.asset(
-                'assets/icons/wave.svg',
-                colorFilter:
-                    const ColorFilter.mode(Color(0XffC2904C), BlendMode.srcIn),
+                'assets/icons/solid-home.svg',
+                colorFilter: ColorFilter.mode(
+                    Theme.of(context).colorScheme.primary, BlendMode.srcIn),
               ),
             ),
-            label: 'دستیار',
+            label: 'بانک',
           ),
           BottomNavigationBarItem(
             icon: Padding(
-              padding: const EdgeInsets.all(4.0),
-              child: SvgPicture.asset(
-                'assets/icons/credit-card.svg',
-              ),
-            ),
-            activeIcon: Padding(
-              padding: const EdgeInsets.all(4.0),
-              child: SvgPicture.asset(
-                'assets/icons/credit-card.svg',
-                colorFilter:
-                    const ColorFilter.mode(Color(0XffC2904C), BlendMode.srcIn),
-              ),
-            ),
-            label: 'کارت',
-          ),
-          BottomNavigationBarItem(
-            icon: Padding(
-              padding: const EdgeInsets.all(4.0),
-              child: SvgPicture.asset(
-                'assets/icons/banx.svg',
-              ),
-            ),
-            activeIcon: Padding(
-              padding: const EdgeInsets.all(4.0),
-              child: SvgPicture.asset(
-                'assets/icons/banx.svg',
-                colorFilter:
-                    const ColorFilter.mode(Color(0XffC2904C), BlendMode.srcIn),
-              ),
-            ),
-            label: 'بنکس',
-          ),
-          BottomNavigationBarItem(
-            icon: Padding(
-              padding: const EdgeInsets.all(4.0),
+              padding: const EdgeInsets.all(6.0),
               child: SvgPicture.asset(
                 'assets/icons/exchange.svg',
+                colorFilter: ColorFilter.mode(
+                    Theme.of(context).colorScheme.outline, BlendMode.srcIn),
               ),
             ),
             activeIcon: Padding(
-              padding: const EdgeInsets.all(4.0),
+              padding: const EdgeInsets.all(6.0),
               child: SvgPicture.asset(
                 'assets/icons/exchange.svg',
-                colorFilter:
-                    const ColorFilter.mode(Color(0XffC2904C), BlendMode.srcIn),
+                colorFilter: ColorFilter.mode(
+                    Theme.of(context).colorScheme.primary, BlendMode.srcIn),
               ),
             ),
             label: 'انتقال',
           ),
           BottomNavigationBarItem(
             icon: Padding(
-              padding: const EdgeInsets.all(4.0),
+              padding: const EdgeInsets.all(6.0),
               child: SvgPicture.asset(
-                'assets/icons/user-01.svg',
+                'assets/icons/banx.svg',
+                colorFilter: ColorFilter.mode(
+                    Theme.of(context).colorScheme.outline, BlendMode.srcIn),
               ),
             ),
             activeIcon: Padding(
-              padding: const EdgeInsets.all(4.0),
+              padding: const EdgeInsets.all(6.0),
               child: SvgPicture.asset(
-                'assets/icons/user-01.svg',
-                colorFilter:
-                    const ColorFilter.mode(Color(0XffC2904C), BlendMode.srcIn),
+                'assets/icons/banx.svg',
+                colorFilter: ColorFilter.mode(
+                    Theme.of(context).colorScheme.primary, BlendMode.srcIn),
               ),
             ),
-            label: 'تنظیمات',
+            label: 'بنکس',
+          ),
+          BottomNavigationBarItem(
+            icon: Padding(
+              padding: const EdgeInsets.all(6.0),
+              child: SvgPicture.asset(
+                'assets/icons/wave.svg',
+                colorFilter: ColorFilter.mode(
+                    Theme.of(context).colorScheme.outline, BlendMode.srcIn),
+              ),
+            ),
+            activeIcon: Padding(
+              padding: const EdgeInsets.all(6.0),
+              child: SvgPicture.asset(
+                'assets/icons/wave.svg',
+                colorFilter: ColorFilter.mode(
+                    Theme.of(context).colorScheme.primary, BlendMode.srcIn),
+              ),
+            ),
+            label: 'دستیار',
+          ),
+          BottomNavigationBarItem(
+            icon: Padding(
+              padding: const EdgeInsets.all(6.0),
+              child: SvgPicture.asset(
+                'assets/icons/user-01.svg',
+                colorFilter: ColorFilter.mode(
+                    Theme.of(context).colorScheme.outline, BlendMode.srcIn),
+              ),
+            ),
+            activeIcon: Padding(
+              padding: const EdgeInsets.all(6.0),
+              child: SvgPicture.asset(
+                'assets/icons/user-01.svg',
+                colorFilter: ColorFilter.mode(
+                    Theme.of(context).colorScheme.primary, BlendMode.srcIn),
+              ),
+            ),
+            label: 'پروفایل',
           ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: const Color(0XffC2904C),
-        unselectedItemColor: Theme.of(context).colorScheme.onSurfaceVariant,
+        selectedItemColor: Theme.of(context).colorScheme.primary,
+        unselectedItemColor: Theme.of(context).colorScheme.outline,
         selectedLabelStyle: Theme.of(context).textTheme.labelMedium?.copyWith(
               fontWeight: FontWeight.bold,
             ),
