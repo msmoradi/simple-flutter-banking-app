@@ -62,24 +62,28 @@ class _ConfirmPasswordContentState extends State<ConfirmPasswordContent> {
       ),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(16),
+          padding: const EdgeInsets.symmetric(horizontal: 16),
           child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
-                  "تأیید رمز عبور",
                   style: Theme.of(context)
                       .textTheme
-                      .headlineSmall
+                      .headlineMedium
                       ?.copyWith(fontWeight: FontWeight.bold),
+                  "تأیید رمز ورود",
                 ),
-                const SizedBox(height: 16),
-                Text(
-                  "رمز ورود خود را دوباره وارد کنید",
-                  style: Theme.of(context).textTheme.titleMedium,
-                  textAlign: TextAlign.center,
+                const SizedBox(height: 12),
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: Text(
+                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                          color: Theme.of(context).colorScheme.onSurfaceVariant,
+                        ),
+                    "رمز ورود خود را دوباره وارد کنید",
+                  ),
                 ),
                 const SizedBox(height: 56),
                 Form(
@@ -111,6 +115,7 @@ class _ConfirmPasswordContentState extends State<ConfirmPasswordContent> {
                   primaryIcon: Icons.arrow_circle_left_rounded,
                   isEnabled: pinController.text.length < 4,
                 ),
+                const SizedBox(height: 16),
               ],
             ),
           ),

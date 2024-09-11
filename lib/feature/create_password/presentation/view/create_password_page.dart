@@ -58,21 +58,28 @@ class _CreatePasswordPageState extends State<CreatePasswordPage> {
               .textTheme
               .headlineMedium
               ?.copyWith(fontWeight: FontWeight.bold),
-          "تعریف رمز عبور",
+          "تعریف رمز ورود",
         ),
       ),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(16),
+          padding: const EdgeInsets.symmetric(horizontal: 16),
           child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
               children: [
-                Text(
-                  "رمز ورود به اپلیکیشن باید ۴ رقم باشد",
-                  style: Theme.of(context).textTheme.titleMedium,
-                  textAlign: TextAlign.center,
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: Text(
+                    style:
+                    Theme.of(context).textTheme.bodyMedium?.copyWith(
+                      color: Theme.of(context)
+                          .colorScheme
+                          .onSurfaceVariant,
+                    ),
+                    "رمز ورود به اپلیکیشن باید ۴ رقم باشد",
+                  ),
                 ),
                 const SizedBox(height: 56),
                 Form(
@@ -101,6 +108,7 @@ class _CreatePasswordPageState extends State<CreatePasswordPage> {
                   primaryIcon: Icons.arrow_circle_left_rounded,
                   isEnabled: pinController.text.length < 4,
                 ),
+                const SizedBox(height: 16),
               ],
             ),
           ),
