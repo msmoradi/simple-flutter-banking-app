@@ -110,123 +110,129 @@ class _BankContentState extends State<BankContent> {
               const SizedBox(
                 height: 30.0,
               ),
-              TransactionCard(
-                image: CircleAvatar(
-                  radius: 24.0,
-                  backgroundColor:
-                      Theme.of(context).colorScheme.secondaryContainer,
-                  child: SvgPicture.asset(
-                    'assets/icons/arrow-circle-down-left.svg',
-                    colorFilter: ColorFilter.mode(
-                      Theme.of(context).colorScheme.onSurfaceVariant,
-                      BlendMode.srcIn,
-                    ),
-                  ),
-                ),
-                title: 'واریز به سپرده',
-                subtitle: 'شنبه، ۲۳ تیر ۱۴۰۳ | ۱۲:۲۲',
-                amount: '۵٬۵۰۰٬۰۰۰ ﷼',
-              ),
-              const SizedBox(
-                height: 10.0,
-              ),
-              TransactionCard(
-                  image: CircleAvatar(
-                    radius: 24.0,
-                    backgroundColor:
-                        Theme.of(context).colorScheme.surfaceContainerHighest,
-                    child: SvgPicture.asset(
-                      'assets/icons/arrow-circle-up-right.svg',
-                      colorFilter: ColorFilter.mode(
-                        Theme.of(context).colorScheme.onSurfaceVariant,
-                        BlendMode.srcIn,
+              ...List.generate(30, (index) {
+                return Column(children: [
+                  TransactionCard(
+                    image: CircleAvatar(
+                      radius: 24.0,
+                      backgroundColor:
+                          Theme.of(context).colorScheme.secondaryContainer,
+                      child: SvgPicture.asset(
+                        'assets/icons/arrow-circle-down-left.svg',
+                        colorFilter: ColorFilter.mode(
+                          Theme.of(context).colorScheme.onSurfaceVariant,
+                          BlendMode.srcIn,
+                        ),
                       ),
                     ),
+                    title: 'واریز به سپرده',
+                    subtitle: 'شنبه، ۲۳ تیر ۱۴۰۳ | ۱۲:۲۲',
+                    amount: '۵٬۵۰۰٬۰۰۰ ﷼',
                   ),
-                  title: 'برداشت از سپرده',
-                  subtitle: 'شنبه، ۲۳ تیر ۱۴۰۳ | ۱۲:۲۲',
-                  amount: '۱۰٬۰۰۰٬۰۰۰ ﷼'),
-              const SizedBox(
-                height: 10.0,
-              ),
-              TransactionCard(
-                image: CircleAvatar(
-                  radius: 24.0,
-                  backgroundColor:
-                      Theme.of(context).colorScheme.secondaryContainer,
-                  child: SvgPicture.asset(
-                    'assets/icons/arrow-circle-down-left.svg',
-                    colorFilter: ColorFilter.mode(
-                      Theme.of(context).colorScheme.onPrimary,
-                      BlendMode.srcIn,
-                    ),
+                  const SizedBox(
+                    height: 10.0,
                   ),
-                ),
-                title: 'واریز به سپرده',
-                subtitle: 'شنبه، ۲۳ تیر ۱۴۰۳ | ۱۲:۲۲',
-                amount: '۶۳٬۰۰۰٬۰۰۰ ﷼',
-              ),
-              const SizedBox(
-                height: 10.0,
-              ),
-              TransactionCard(
-                image: CircleAvatar(
-                  radius: 24.0,
-                  backgroundColor:
-                      Theme.of(context).colorScheme.secondaryContainer,
-                  child: SvgPicture.asset(
-                    'assets/icons/arrow-circle-down-left.svg',
-                    colorFilter: ColorFilter.mode(
-                      Theme.of(context).colorScheme.onPrimary,
-                      BlendMode.srcIn,
-                    ),
-                  ),
-                ),
-                title: 'واریز به سپرده',
-                subtitle: 'شنبه، ۲۳ تیر ۱۴۰۳ | ۱۲:۲۲',
-                amount: '۶٬۷۵۲٬۰۰۰ ﷼',
-              ),
-              const SizedBox(
-                height: 10.0,
-              ),
-              TransactionCard(
-                  image: CircleAvatar(
-                    radius: 24.0,
-                    backgroundColor:
-                        Theme.of(context).colorScheme.secondaryContainer,
-                    child: SvgPicture.asset(
-                      'assets/icons/arrow-circle-down-left.svg',
-                      colorFilter: ColorFilter.mode(
-                        Theme.of(context).colorScheme.onPrimary,
-                        BlendMode.srcIn,
+                  TransactionCard(
+                    image: CircleAvatar(
+                      radius: 24.0,
+                      backgroundColor:
+                          Theme.of(context).colorScheme.surfaceContainerHighest,
+                      child: SvgPicture.asset(
+                        'assets/icons/arrow-circle-up-right.svg',
+                        colorFilter: ColorFilter.mode(
+                          Theme.of(context).colorScheme.onSurfaceVariant,
+                          BlendMode.srcIn,
+                        ),
                       ),
                     ),
+                    title: 'برداشت از سپرده',
+                    subtitle: 'شنبه، ۲۳ تیر ۱۴۰۳ | ۱۲:۲۲',
+                    amount: '۱۰٬۰۰۰٬۰۰۰ ﷼',
                   ),
-                  title: 'واریز به سپرده',
-                  subtitle: 'شنبه، ۲۳ تیر ۱۴۰۳ | ۱۲:۲۲',
-                  amount: '۱۰٬۰۰۰٬۰۰۰ ﷼'),
-              const SizedBox(
-                height: 10.0,
-              ),
-              TransactionCard(
-                  image: CircleAvatar(
-                    radius: 24.0,
-                    backgroundColor:
-                        Theme.of(context).colorScheme.secondaryContainer,
-                    child: SvgPicture.asset(
-                      'assets/icons/arrow-circle-down-left.svg',
-                      colorFilter: ColorFilter.mode(
-                        Theme.of(context).colorScheme.onPrimary,
-                        BlendMode.srcIn,
+                  const SizedBox(
+                    height: 10.0,
+                  ),
+                  TransactionCard(
+                    image: CircleAvatar(
+                      radius: 24.0,
+                      backgroundColor:
+                          Theme.of(context).colorScheme.secondaryContainer,
+                      child: SvgPicture.asset(
+                        'assets/icons/arrow-circle-down-left.svg',
+                        colorFilter: ColorFilter.mode(
+                          Theme.of(context).colorScheme.onPrimary,
+                          BlendMode.srcIn,
+                        ),
                       ),
                     ),
+                    title: 'واریز به سپرده',
+                    subtitle: 'شنبه، ۲۳ تیر ۱۴۰۳ | ۱۲:۲۲',
+                    amount: '۶۳٬۰۰۰٬۰۰۰ ﷼',
                   ),
-                  title: 'واریز به سپرده',
-                  subtitle: 'شنبه، ۲۳ تیر ۱۴۰۳ | ۱۲:۲۲',
-                  amount: '۱۰٬۰۰۰٬۰۰۰ ﷼'),
-              const SizedBox(
-                height: 16.0,
-              ),
+                  const SizedBox(
+                    height: 10.0,
+                  ),
+                  TransactionCard(
+                    image: CircleAvatar(
+                      radius: 24.0,
+                      backgroundColor:
+                          Theme.of(context).colorScheme.secondaryContainer,
+                      child: SvgPicture.asset(
+                        'assets/icons/arrow-circle-down-left.svg',
+                        colorFilter: ColorFilter.mode(
+                          Theme.of(context).colorScheme.onPrimary,
+                          BlendMode.srcIn,
+                        ),
+                      ),
+                    ),
+                    title: 'واریز به سپرده',
+                    subtitle: 'شنبه، ۲۳ تیر ۱۴۰۳ | ۱۲:۲۲',
+                    amount: '۶٬۷۵۲٬۰۰۰ ﷼',
+                  ),
+                  const SizedBox(
+                    height: 10.0,
+                  ),
+                  TransactionCard(
+                    image: CircleAvatar(
+                      radius: 24.0,
+                      backgroundColor:
+                      Theme.of(context).colorScheme.surfaceContainerHighest,
+                      child: SvgPicture.asset(
+                        'assets/icons/arrow-circle-up-right.svg',
+                        colorFilter: ColorFilter.mode(
+                          Theme.of(context).colorScheme.onSurfaceVariant,
+                          BlendMode.srcIn,
+                        ),
+                      ),
+                    ),
+                    title: 'برداشت از سپرده',
+                    subtitle: 'شنبه، ۲۳ تیر ۱۴۰۳ | ۱۲:۲۲',
+                    amount: '۷۲٬۴۴۰٬۰۰۰ ﷼',
+                  ),
+                  const SizedBox(
+                    height: 10.0,
+                  ),
+                  TransactionCard(
+                      image: CircleAvatar(
+                        radius: 24.0,
+                        backgroundColor:
+                            Theme.of(context).colorScheme.secondaryContainer,
+                        child: SvgPicture.asset(
+                          'assets/icons/arrow-circle-down-left.svg',
+                          colorFilter: ColorFilter.mode(
+                            Theme.of(context).colorScheme.onPrimary,
+                            BlendMode.srcIn,
+                          ),
+                        ),
+                      ),
+                      title: 'واریز به سپرده',
+                      subtitle: 'شنبه، ۲۳ تیر ۱۴۰۳ | ۱۲:۲۲',
+                      amount: '۵۳٬۰۰۰٬۰۰۰ ﷼'),
+                  const SizedBox(
+                    height: 10.0,
+                  ),
+                ]);
+              }),
             ],
           ),
         ),
