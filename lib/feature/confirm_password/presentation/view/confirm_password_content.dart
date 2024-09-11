@@ -77,7 +77,7 @@ class _ConfirmPasswordContentState extends State<ConfirmPasswordContent> {
                 ),
                 const SizedBox(height: 16),
                 Text(
-                  "رمز ورود خود را مجدد وارد نمایید",
+                  "رمز ورود خود را دوباره وارد کنید",
                   style: Theme.of(context).textTheme.titleMedium,
                   textAlign: TextAlign.center,
                 ),
