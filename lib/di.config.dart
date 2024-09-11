@@ -113,8 +113,8 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i535.InfoInterceptor>(() => _i535.InfoInterceptor());
     gh.factory<_i412.HomeBloc>(() => _i412.HomeBloc());
     gh.factory<_i20.AssistBloc>(() => _i20.AssistBloc());
-    gh.factory<_i381.MainBloc>(() => _i381.MainBloc());
     gh.factory<_i864.BankBloc>(() => _i864.BankBloc());
+    gh.factory<_i381.MainBloc>(() => _i381.MainBloc());
     gh.lazySingleton<_i558.FlutterSecureStorage>(
         () => registerModule.flutterSecureStorage());
     gh.lazySingleton<_i528.PrettyDioLogger>(
@@ -182,9 +182,9 @@ extension GetItInjectableX on _i174.GetIt {
             ));
     gh.factory<_i61.NationalSerialBloc>(() => _i61.NationalSerialBloc(
         addressRepository: gh<_i648.AddressRepository>()));
-    gh.factory<_i922.SelectAddressBloc>(() => _i922.SelectAddressBloc(
-        addressRepository: gh<_i648.AddressRepository>()));
     gh.factory<_i230.CheckPostalCodeBloc>(() => _i230.CheckPostalCodeBloc(
+        addressRepository: gh<_i648.AddressRepository>()));
+    gh.factory<_i922.SelectAddressBloc>(() => _i922.SelectAddressBloc(
         addressRepository: gh<_i648.AddressRepository>()));
     gh.factory<_i759.AddAddressBloc>(() =>
         _i759.AddAddressBloc(addressRepository: gh<_i648.AddressRepository>()));
