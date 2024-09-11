@@ -1,10 +1,7 @@
-import 'package:banx/core/designsystem/widgets/components/action_row.dart';
-import 'package:banx/core/designsystem/widgets/components/custom_card.dart';
 import 'package:banx/core/designsystem/widgets/components/glass_morphism.dart';
-import 'package:banx/core/designsystem/widgets/components/simple_card.dart';
-import 'package:banx/core/designsystem/widgets/components/simple_card_row.dart';
-import 'package:banx/core/designsystem/widgets/components/title_row.dart';
-import 'package:banx/core/designsystem/widgets/components/transaction_card.dart';
+import 'package:banx/feature/home/presentation/view/gold_page.dart';
+import 'package:banx/feature/home/presentation/view/normal_page.dart';
+import 'package:banx/feature/home/presentation/view/saffron_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -16,185 +13,72 @@ class HomeContent extends StatefulWidget {
 }
 
 class _HomeContentState extends State<HomeContent> {
-  final widgetList = [
-    const SizedBox(
-      height: 24.0,
-    ),
-    const ActionRow(),
-    const SizedBox(
-      height: 30.0,
-    ),
-    const SimpleCardRow(),
-    const SizedBox(
-      height: 16.0,
-    ),
-    const CustomCard(),
-    const SizedBox(
-      height: 30.0,
-    ),
-    const TitleRow(
-      title: 'تراکنش‌ها',
-    ),
-    const SizedBox(
-      height: 10.0,
-    ),
-    TransactionCard(
-        image: Image.asset(
-          'assets/images/lite-coin-1.png',
-          width: 48.0,
-          height: 48.0,
-        ),
-        title: 'واریز به سپرده',
-        subtitle: 'شنبه، ۲۳ تیر ۱۴۰۳ | ۱۲:۲۲',
-        amount: '۱٬۲ گرم'),
-    const SizedBox(
-      height: 10.0,
-    ),
-    TransactionCard(
-        image: Image.asset(
-          'assets/images/lite-coin-1.png',
-          width: 48.0,
-          height: 48.0,
-        ),
-        title: 'واریز به سپرده',
-        subtitle: 'شنبه، ۲۳ تیر ۱۴۰۳ | ۱۲:۲۲',
-        amount: '۱٬۲ گرم'),
-    const SizedBox(
-      height: 10.0,
-    ),
-    TransactionCard(
-        image: Image.asset(
-          'assets/images/lite-coin-1.png',
-          width: 48.0,
-          height: 48.0,
-        ),
-        title: 'واریز به سپرده',
-        subtitle: 'شنبه، ۲۳ تیر ۱۴۰۳ | ۱۲:۲۲',
-        amount: '۱٬۲ گرم'),
-    const SizedBox(
-      height: 10.0,
-    ),
-    TransactionCard(
-        image: Image.asset(
-          'assets/images/lite-coin-1.png',
-          width: 48.0,
-          height: 48.0,
-        ),
-        title: 'واریز به سپرده',
-        subtitle: 'شنبه، ۲۳ تیر ۱۴۰۳ | ۱۲:۲۲',
-        amount: '۱٬۲ گرم'),
-    const SizedBox(
-      height: 10.0,
-    ),
-    TransactionCard(
-        image: Image.asset(
-          'assets/images/lite-coin-1.png',
-          width: 48.0,
-          height: 48.0,
-        ),
-        title: 'واریز به سپرده',
-        subtitle: 'شنبه، ۲۳ تیر ۱۴۰۳ | ۱۲:۲۲',
-        amount: '۱٬۲ گرم'),
-    const SizedBox(
-      height: 10.0,
-    ),
-    TransactionCard(
-        image: Image.asset(
-          'assets/images/lite-coin-1.png',
-          width: 48.0,
-          height: 48.0,
-        ),
-        title: 'واریز به سپرده',
-        subtitle: 'شنبه، ۲۳ تیر ۱۴۰۳ | ۱۲:۲۲',
-        amount: '۱٬۲ گرم'),
-    const SizedBox(
-      height: 10.0,
-    ),
-  ];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: CustomScrollView(
-        slivers: [
-          SliverAppBar(
-            surfaceTintColor: Colors.transparent,
-            pinned: true,
-            stretch: true,
-            title: const Text(
-              'روز بخیر مهرداد!',
+      appBar: AppBar(
+        surfaceTintColor: Colors.transparent,
+        title: const Text(
+          'روز بخیر مهرداد!',
+        ),
+        titleTextStyle: Theme.of(context).textTheme.labelLarge?.copyWith(
+              color: Theme.of(context).colorScheme.onSurface,
             ),
-            titleTextStyle: Theme.of(context).textTheme.labelLarge?.copyWith(
-                  color: Theme.of(context).colorScheme.onSurface,
-                ),
-            centerTitle: false,
-            leadingWidth: 48.0,
-            titleSpacing: 6.0,
-            leading: Padding(
-              padding: const EdgeInsets.only(right: 16.0),
-              child: Image.asset(
-                'assets/images/circle_avatar.png',
-              ),
-            ),
-            actions: [
-              IconButton(
-                onPressed: () {},
-                icon: SvgPicture.asset(
-                  'assets/icons/bell.svg',
-                  colorFilter: ColorFilter.mode(
-                    Theme.of(context).colorScheme.primary,
-                    BlendMode.srcIn,
-                  ),
-                ),
-              ),
-              IconButton(
-                onPressed: () {},
-                icon: SvgPicture.asset(
-                  'assets/icons/help-circle.svg',
-                  colorFilter: ColorFilter.mode(
-                    Theme.of(context).colorScheme.primary,
-                    BlendMode.srcIn,
-                  ),
-                ),
-              ),
-            ],
-            expandedHeight: kToolbarHeight + 300,
-            flexibleSpace: Padding(
-              padding: const EdgeInsets.only(top: kToolbarHeight * 2),
-              child: Stack(
-                alignment: AlignmentDirectional.bottomCenter,
-                children: [
-                  Image.asset(
-                    'assets/images/asset_shape.png',
-                    fit: BoxFit.fitHeight,
-                  ),
-                  const SizedBox(
-                    width: double.infinity,
-                    child: GlassRow(),
-                  )
-                ],
+        centerTitle: false,
+        leadingWidth: 48.0,
+        titleSpacing: 6.0,
+        leading: Padding(
+          padding: const EdgeInsets.only(right: 16.0),
+          child: Image.asset(
+            'assets/images/circle_avatar.png',
+          ),
+        ),
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: SvgPicture.asset(
+              'assets/icons/bell.svg',
+              colorFilter: ColorFilter.mode(
+                Theme.of(context).colorScheme.primary,
+                BlendMode.srcIn,
               ),
             ),
           ),
-          SliverPadding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0),
-            sliver: SliverList(
-              delegate: SliverChildBuilderDelegate(
-                (BuildContext context, int index) {
-                  return widgetList[index];
-                },
-                childCount: widgetList.length,
+          IconButton(
+            onPressed: () {},
+            icon: SvgPicture.asset(
+              'assets/icons/help-circle.svg',
+              colorFilter: ColorFilter.mode(
+                Theme.of(context).colorScheme.primary,
+                BlendMode.srcIn,
               ),
             ),
           ),
         ],
+      ),
+      body: PageView.custom(
+        childrenDelegate: SliverChildListDelegate(
+          [
+            NormalPage(),
+            GoldPage(),
+            SaffronPage(),
+          ],
+        ),
       ),
     );
   }
 }
 
 class GlassRow extends StatelessWidget {
-  const GlassRow({super.key});
+  final int currentPageIndex;
+  final String title;
+  final String subtitle;
+
+  GlassRow(
+      {super.key,
+      required this.currentPageIndex,
+      required this.title,
+      required this.subtitle});
 
   @override
   Widget build(BuildContext context) {
@@ -210,7 +94,7 @@ class GlassRow extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                'سپرده ریال',
+                title,
                 style: Theme.of(context)
                     .textTheme
                     .titleMedium
@@ -220,11 +104,10 @@ class GlassRow extends StatelessWidget {
                 height: 16.0,
               ),
               Text(
-                '۷۴٬۲۵۲٬۰۰۰ تومان',
-                style: Theme.of(context)
-                    .textTheme
-                    .headlineSmall
-                    ?.copyWith(color: Theme.of(context).colorScheme.primary),
+                subtitle,
+                style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                    fontWeight: FontWeight.bold,
+                    color: Theme.of(context).colorScheme.primary),
               ),
               const SizedBox(
                 height: 16.0,
@@ -233,7 +116,9 @@ class GlassRow extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   mainAxisSize: MainAxisSize.min,
-                  children: _buildPageIndicator(context),
+                  children: List.generate(3, (index) {
+                    return _indicator(currentPageIndex == index, context);
+                  }),
                 ),
               )
             ],
@@ -259,13 +144,5 @@ class GlassRow extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  List<Widget> _buildPageIndicator(BuildContext context) {
-    List<Widget> list = [];
-    for (int i = 0; i < 4; i++) {
-      list.add(i == 2 ? _indicator(true, context) : _indicator(false, context));
-    }
-    return list;
   }
 }
