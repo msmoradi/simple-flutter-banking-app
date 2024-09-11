@@ -4,7 +4,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 class SecondaryFillButton extends StatelessWidget {
   final VoidCallback? onPressed;
   final String label;
-  final IconData? icon;
+  final Widget? icon;
   final bool isLoading;
   final bool fillWidth;
 
@@ -19,41 +19,42 @@ class SecondaryFillButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final content = AnimatedSwitcher(
+        duration: const Duration(milliseconds: 400),
+        transitionBuilder: (child, animation) =>
+            ScaleTransition(scale: animation, child: child),
+        child: isLoading
+            ? SpinKitThreeBounce(
+                color: Theme.of(context).colorScheme.onSecondaryContainer,
+                size: 30.0,
+              )
+            : Text(
+                label,
+                style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                    color: Theme.of(context).colorScheme.onSecondaryContainer),
+              ));
     return SizedBox(
       width: fillWidth ? Size.infinite.width : null,
-      child: isLoading
-          ? FilledButton(
+      child: icon != null
+          ? FilledButton.icon(
               style: FilledButton.styleFrom(
                 backgroundColor: Theme.of(context)
                     .colorScheme
                     .secondaryContainer, // This is what you need!
               ),
-              onPressed: () {},
-              child: SpinKitThreeBounce(
-                color: Theme.of(context).colorScheme.onSecondaryContainer,
-                size: 30.0,
-              ),
+              onPressed: isLoading ? null : onPressed,
+              icon: isLoading ? null : icon,
+              label: content,
             )
-          : icon != null
-              ? FilledButton.icon(
-                  style: FilledButton.styleFrom(
-                    backgroundColor: Theme.of(context)
-                        .colorScheme
-                        .secondaryContainer, // This is what you need!
-                  ),
-                  onPressed: onPressed,
-                  icon: Icon(icon),
-                  label: Text(label),
-                )
-              : FilledButton(
-                  style: FilledButton.styleFrom(
-                    backgroundColor: Theme.of(context)
-                        .colorScheme
-                        .secondaryContainer, // This is what you need!
-                  ),
-                  onPressed: onPressed,
-                  child: Text(label),
-                ),
+          : FilledButton(
+              style: FilledButton.styleFrom(
+                backgroundColor: Theme.of(context)
+                    .colorScheme
+                    .secondaryContainer, // This is what you need!
+              ),
+              onPressed: isLoading ? null : onPressed,
+              child: content,
+            ),
     );
   }
 }

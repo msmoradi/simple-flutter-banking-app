@@ -28,16 +28,32 @@ class PrimaryFillButton extends StatelessWidget {
                 color: Theme.of(context).colorScheme.onPrimary,
                 size: 30.0,
               )
-            : Text(label));
+            : Text(
+                label,
+                style: Theme.of(context)
+                    .textTheme
+                    .labelLarge
+                    ?.copyWith(color: Theme.of(context).colorScheme.onPrimary),
+              ));
     return SizedBox(
       width: fillWidth ? Size.infinite.width : null,
       child: icon != null
           ? FilledButton.icon(
+              style: FilledButton.styleFrom(
+                backgroundColor: Theme.of(context)
+                    .colorScheme
+                    .primary, // This is what you need!
+              ),
               onPressed: isLoading ? null : onPressed,
               icon: isLoading ? null : icon,
               label: content,
             )
           : FilledButton(
+              style: FilledButton.styleFrom(
+                backgroundColor: Theme.of(context)
+                    .colorScheme
+                    .primary, // This is what you need!
+              ),
               onPressed: isLoading ? null : onPressed,
               child: content,
             ),
