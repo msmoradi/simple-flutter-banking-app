@@ -117,7 +117,209 @@ class _HomeContentState extends State<HomeContent> {
     ),
   ];
 
+  final goldWidgetList = [
+    const SizedBox(
+      height: 24.0,
+    ),
+    const ActionRow(),
+    const SizedBox(
+      height: 30.0,
+    ),
+    SimpleCardRow(
+      hist: const {
+        'نوسان قیمت': "(۰٬۲۵٪) ۱۱٬۴۰۰",
+        'قیمت لحظه‌ای': '۳٬۵۴۰٬۰۰۰ تومان',
+      },
+    ),
+    const SizedBox(
+      height: 30.0,
+    ),
+    const TitleRow(
+      title: 'تراکنش‌ها',
+    ),
+    const SizedBox(
+      height: 10.0,
+    ),
+    TransactionCard(
+        image: Image.asset(
+          'assets/images/lite-coin-1.png',
+          width: 48.0,
+          height: 48.0,
+        ),
+        title: 'واریز به سپرده',
+        subtitle: 'شنبه، ۲۳ تیر ۱۴۰۳ | ۱۲:۲۲',
+        amount: '۱٬۲ گرم'),
+    const SizedBox(
+      height: 10.0,
+    ),
+    TransactionCard(
+        image: Image.asset(
+          'assets/images/lite-coin-1.png',
+          width: 48.0,
+          height: 48.0,
+        ),
+        title: 'واریز به سپرده',
+        subtitle: 'شنبه، ۲۳ تیر ۱۴۰۳ | ۱۲:۲۲',
+        amount: '۱٬۲ گرم'),
+    const SizedBox(
+      height: 10.0,
+    ),
+    TransactionCard(
+        image: Image.asset(
+          'assets/images/lite-coin-1.png',
+          width: 48.0,
+          height: 48.0,
+        ),
+        title: 'واریز به سپرده',
+        subtitle: 'شنبه، ۲۳ تیر ۱۴۰۳ | ۱۲:۲۲',
+        amount: '۱٬۲ گرم'),
+    const SizedBox(
+      height: 10.0,
+    ),
+    TransactionCard(
+        image: Image.asset(
+          'assets/images/lite-coin-1.png',
+          width: 48.0,
+          height: 48.0,
+        ),
+        title: 'واریز به سپرده',
+        subtitle: 'شنبه، ۲۳ تیر ۱۴۰۳ | ۱۲:۲۲',
+        amount: '۱٬۲ گرم'),
+    const SizedBox(
+      height: 10.0,
+    ),
+    TransactionCard(
+        image: Image.asset(
+          'assets/images/lite-coin-1.png',
+          width: 48.0,
+          height: 48.0,
+        ),
+        title: 'واریز به سپرده',
+        subtitle: 'شنبه، ۲۳ تیر ۱۴۰۳ | ۱۲:۲۲',
+        amount: '۱٬۲ گرم'),
+    const SizedBox(
+      height: 10.0,
+    ),
+    TransactionCard(
+        image: Image.asset(
+          'assets/images/lite-coin-1.png',
+          width: 48.0,
+          height: 48.0,
+        ),
+        title: 'واریز به سپرده',
+        subtitle: 'شنبه، ۲۳ تیر ۱۴۰۳ | ۱۲:۲۲',
+        amount: '۱٬۲ گرم'),
+    const SizedBox(
+      height: 10.0,
+    ),
+  ];
+
+  final saffronWidgetList = [
+    const SizedBox(
+      height: 24.0,
+    ),
+    const ActionRow(),
+    const SizedBox(
+      height: 30.0,
+    ),
+    SimpleCardRow(
+      hist: const {
+        'نوسان قیمت': "(۰٬۲۵٪) ۱۱٬۴۰۰",
+        'قیمت لحظه‌ای': '۳٬۵۴۰٬۰۰۰ تومان',
+      },
+    ),
+    const SizedBox(
+      height: 30.0,
+    ),
+    const TitleRow(
+      title: 'تراکنش‌ها',
+    ),
+    const SizedBox(
+      height: 10.0,
+    ),
+    TransactionCard(
+        image: Image.asset(
+          'assets/images/lite-coin-1.png',
+          width: 48.0,
+          height: 48.0,
+        ),
+        title: 'واریز به سپرده',
+        subtitle: 'شنبه، ۲۳ تیر ۱۴۰۳ | ۱۲:۲۲',
+        amount: '۱٬۲ گرم'),
+    const SizedBox(
+      height: 10.0,
+    ),
+    TransactionCard(
+        image: Image.asset(
+          'assets/images/lite-coin-1.png',
+          width: 48.0,
+          height: 48.0,
+        ),
+        title: 'واریز به سپرده',
+        subtitle: 'شنبه، ۲۳ تیر ۱۴۰۳ | ۱۲:۲۲',
+        amount: '۱٬۲ گرم'),
+    const SizedBox(
+      height: 10.0,
+    ),
+    TransactionCard(
+        image: Image.asset(
+          'assets/images/lite-coin-1.png',
+          width: 48.0,
+          height: 48.0,
+        ),
+        title: 'واریز به سپرده',
+        subtitle: 'شنبه، ۲۳ تیر ۱۴۰۳ | ۱۲:۲۲',
+        amount: '۱٬۲ گرم'),
+    const SizedBox(
+      height: 10.0,
+    ),
+    TransactionCard(
+        image: Image.asset(
+          'assets/images/lite-coin-1.png',
+          width: 48.0,
+          height: 48.0,
+        ),
+        title: 'واریز به سپرده',
+        subtitle: 'شنبه، ۲۳ تیر ۱۴۰۳ | ۱۲:۲۲',
+        amount: '۱٬۲ گرم'),
+    const SizedBox(
+      height: 10.0,
+    ),
+    TransactionCard(
+        image: Image.asset(
+          'assets/images/lite-coin-1.png',
+          width: 48.0,
+          height: 48.0,
+        ),
+        title: 'واریز به سپرده',
+        subtitle: 'شنبه، ۲۳ تیر ۱۴۰۳ | ۱۲:۲۲',
+        amount: '۱٬۲ گرم'),
+    const SizedBox(
+      height: 10.0,
+    ),
+    TransactionCard(
+        image: Image.asset(
+          'assets/images/lite-coin-1.png',
+          width: 48.0,
+          height: 48.0,
+        ),
+        title: 'واریز به سپرده',
+        subtitle: 'شنبه، ۲۳ تیر ۱۴۰۳ | ۱۲:۲۲',
+        amount: '۱٬۲ گرم'),
+    const SizedBox(
+      height: 10.0,
+    ),
+  ];
+
+  List<List<Widget>> finalList = [];
+
   int _currentPageIndex = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    finalList = [widgetList, goldWidgetList, saffronWidgetList];
+  }
 
   void onPageChanged(index) {
     setState(() {
@@ -244,9 +446,9 @@ class _HomeContentState extends State<HomeContent> {
               sliver: SliverList(
                 delegate: SliverChildBuilderDelegate(
                   (BuildContext context, int index) {
-                    return widgetList[index];
+                    return finalList[_currentPageIndex][index];
                   },
-                  childCount: widgetList.length,
+                  childCount: finalList[_currentPageIndex].length,
                 ),
               ),
             ),
