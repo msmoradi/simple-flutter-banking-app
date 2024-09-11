@@ -1,25 +1,28 @@
-import 'package:banx/composition/add_address_page_factory.dart';
 import 'package:banx/composition/card_delivery_time_page_factory.dart';
+import 'package:banx/core/domain/entities/address_entity.dart';
+import 'package:banx/feature/add_address/presentation/view/add_address_page.dart';
 import 'package:banx/feature/check_postal_code/presentation/view/check_postal_code_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 
-class CheckPostalCodePageFactory {
-  static const path = "/check_postal_code";
+class AddAddressPageFactory {
+  static const path = "/add_address";
 
-  static CheckPostalCodePage builder(
+  static AddAddressPage builder(
       {required BuildContext context,
       required GoRouterState state,
-      required CheckPostalCodeExtra extra,
+      required AddAddressExtra extra,
       required Function(String message) showMessage}) {
-    return CheckPostalCodePage(
+    return AddAddressPage(
+      address: extra.address,
       showMessage: showMessage,
-      onAddAddress: (address) {
+      addressSelected: (address) {
         context.push(
-          AddAddressPageFactory.path,
-          extra: AddAddressExtra(
+          CardDeliveryTimePageFactory.path,
+          extra: CardDeliveryTimeExtra(
             address: address,
             cardTypeId: extra.cardTypeId,
+            cardShippingTimeSlots: [],
           ),
         );
       },
@@ -31,10 +34,10 @@ class CheckPostalCodePageFactory {
     required Function(String message) showMessage,
   }) {
     return GoRoute(
-        path: (CheckPostalCodePageFactory.path),
+        path: (AddAddressPageFactory.path),
         builder: (ctx, state) {
-          final extra = state.extra as CheckPostalCodeExtra;
-          return CheckPostalCodePageFactory.builder(
+          final extra = state.extra as AddAddressExtra;
+          return AddAddressPageFactory.builder(
             context: ctx,
             state: state,
             extra: extra,
@@ -45,10 +48,12 @@ class CheckPostalCodePageFactory {
   }
 }
 
-class CheckPostalCodeExtra {
+class AddAddressExtra {
   final int cardTypeId;
+  final AddressEntity address;
 
-  CheckPostalCodeExtra({
+  AddAddressExtra({
     required this.cardTypeId,
+    required this.address,
   });
 }

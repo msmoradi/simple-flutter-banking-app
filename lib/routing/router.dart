@@ -1,3 +1,4 @@
+import 'package:banx/composition/add_address_page_factory.dart';
 import 'package:banx/composition/check_postal_code_page_factory.dart';
 import 'package:banx/composition/select_address_page_factory.dart';
 import 'package:banx/composition/card_delivery_time_page_factory.dart';
@@ -30,6 +31,7 @@ Future<GoRouter> getRouterConfig({
     routes: <RouteBase>[
       RootPageFactory.route(showMessage: showMessage),
       PhonePageFactory.route(showMessage: showMessage),
+      AddAddressPageFactory.route(showMessage: showMessage),
       KycStatusPageFactory.route(
         showMessage: showMessage,
         onDeeplinkLanding: onDeeplinkLanding,
