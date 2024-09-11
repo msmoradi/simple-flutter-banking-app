@@ -46,11 +46,11 @@ class EnableBiometricBloc
       emit(EnableBiometricInProgress());
       final response = await profileRepository.getProfile();
       response.when(
-          success: (entity) {
-            emit(
-              DeepLinkLanding(deeplink: entity.routingButtonEntity!.deeplink),
-            );
-          },
+          success: (entity) => emit(
+                DeepLinkLanding(
+                  deeplink: entity.routingButtonEntity!.deeplink,
+                ),
+              ),
           partialSuccess: (message) => emit(EnableBiometricFailure(message)),
           networkError: (exception) =>
               emit(EnableBiometricFailure(exception.toString())));

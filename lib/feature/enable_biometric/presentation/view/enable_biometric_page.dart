@@ -30,7 +30,14 @@ class EnableBiometricPage extends StatelessWidget {
           return Scaffold(
             appBar: AppBar(
               centerTitle: false,
-              toolbarHeight: 0.0,
+              automaticallyImplyLeading: false,
+              title: Text(
+                style: Theme.of(context)
+                    .textTheme
+                    .headlineMedium
+                    ?.copyWith(fontWeight: FontWeight.bold),
+                "ورود بایومتریک",
+              ),
             ),
             body: SafeArea(
               child: Column(
@@ -41,39 +48,25 @@ class EnableBiometricPage extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         mainAxisSize: MainAxisSize.max,
                         children: [
-                          AspectRatio(
-                            aspectRatio: 1,
-                            child: Container(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 50.0),
+                          const SizedBox(height: 80),
+                          Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 40.0),
+                            child: Image.asset(
+                              "assets/images/unlock_img.png",
+                              fit: BoxFit.fitWidth,
                               width: double.infinity,
-                              child: Image.asset(
-                                "assets/images/enable_face.png",
-                                fit: BoxFit.fitWidth,
-                                width: 280,
-                                height: 280,
-                                alignment: Alignment.center,
-                              ),
+                              alignment: Alignment.center,
                             ),
-                          ),
-                          const SizedBox(height: 36),
-                          Text(
-                            style: Theme.of(context)
-                                .textTheme
-                                .headlineMedium
-                                ?.copyWith(
-                                    color:
-                                        Theme.of(context).colorScheme.primary),
-                            "فعال‌سازی ورود بایومتریک",
                           ),
                           const SizedBox(height: 30),
                           Padding(
                             padding:
-                                const EdgeInsets.symmetric(horizontal: 70.0),
+                                const EdgeInsets.symmetric(horizontal: 50.0),
                             child: Text(
                               style: Theme.of(context)
                                   .textTheme
-                                  .bodyMedium
+                                  .titleMedium
                                   ?.copyWith(
                                     color: Theme.of(context)
                                         .colorScheme
@@ -118,7 +111,7 @@ class EnableBiometricPage extends StatelessWidget {
                                         authNeeded: false,
                                       ),
                                     ),
-                            label: 'فعلاً نه',
+                            label: 'تمایل ندارم',
                             fillWidth: false,
                           ),
                         ),
