@@ -8,14 +8,12 @@ abstract class ConfirmPasswordEvent extends Equatable {
 }
 
 class ConfirmPasswordSubmitted extends ConfirmPasswordEvent {
-  final String phoneNumber;
   final String password;
 
   const ConfirmPasswordSubmitted({
-    required this.phoneNumber,
     required this.password,
   });
 
   @override
-  List<Object> get props => [phoneNumber];
+  List<Object> get props => [];
 }

@@ -4,14 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:pinput/pinput.dart';
 
 class CreatePasswordPage extends StatefulWidget {
-  final Function(String, String) onNext;
+  final Function(String) onNext;
   final Function(String) showMessage;
-  final String phoneNumber;
 
   const CreatePasswordPage({
     super.key,
     required this.onNext,
-    required this.phoneNumber,
     required this.showMessage,
   });
 
@@ -25,7 +23,7 @@ class _CreatePasswordPageState extends State<CreatePasswordPage> {
 
   void _onPrimaryTapped() async {
     if (formKey.currentState!.validate()) {
-      widget.onNext(widget.phoneNumber, pinController.text);
+      widget.onNext(pinController.text);
     }
   }
 

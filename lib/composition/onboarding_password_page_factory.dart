@@ -9,17 +9,13 @@ class OnboardingPasswordPageFactory {
   static OnboardingPasswordPage builder({
     required BuildContext context,
     required GoRouterState state,
-    required OnboardingPasswordExtra extra,
     required Function(String message) showMessage,
   }) {
     return OnboardingPasswordPage(
-        showMessage:showMessage,
+      showMessage: showMessage,
       onNext: () {
         context.push(
           CreatePasswordPageFactory.path,
-          extra: CreatePasswordExtra(
-            phoneNumber: extra.phoneNumber,
-          ),
         );
       },
     );
@@ -32,22 +28,12 @@ class OnboardingPasswordPageFactory {
     return GoRoute(
         path: (OnboardingPasswordPageFactory.path),
         builder: (ctx, state) {
-          final extra = state.extra as OnboardingPasswordExtra;
           return OnboardingPasswordPageFactory.builder(
             context: ctx,
             state: state,
-            extra: extra,
             showMessage: showMessage,
           );
         },
         routes: routes);
   }
-}
-
-class OnboardingPasswordExtra {
-  final String phoneNumber;
-
-  OnboardingPasswordExtra({
-    required this.phoneNumber,
-  });
 }

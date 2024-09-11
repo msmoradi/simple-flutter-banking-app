@@ -7,13 +7,11 @@ import 'package:pinput/pinput.dart';
 
 class ConfirmPasswordContent extends StatefulWidget {
   final String newPassword;
-  final String phoneNumber;
   final ConfirmPasswordState state;
 
   const ConfirmPasswordContent({
     super.key,
     required this.newPassword,
-    required this.phoneNumber,
     required this.state,
   });
 
@@ -29,7 +27,6 @@ class _ConfirmPasswordContentState extends State<ConfirmPasswordContent> {
     if (formKey.currentState!.validate()) {
       context.read<ConfirmPasswordBloc>().add(
             ConfirmPasswordSubmitted(
-              phoneNumber: widget.phoneNumber,
               password: pinController.text,
             ),
           );

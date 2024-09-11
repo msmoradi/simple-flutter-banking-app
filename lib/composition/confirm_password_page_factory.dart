@@ -19,7 +19,6 @@ class ConfirmPasswordPageFactory {
         EnableBiometricPageFactory.path,
         extra: EnableBiometricExtra(password: extra.newPassword),
       ),
-      phoneNumber: extra.phoneNumber,
       newPassword: extra.newPassword,
     );
   }
@@ -46,11 +45,9 @@ class ConfirmPasswordPageFactory {
 }
 
 class ConfirmPasswordExtra {
-  final String phoneNumber;
   final String newPassword;
 
   ConfirmPasswordExtra({
-    required this.phoneNumber,
     required this.newPassword,
   });
 }

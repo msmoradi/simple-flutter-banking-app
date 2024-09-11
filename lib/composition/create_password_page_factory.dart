@@ -9,20 +9,17 @@ class CreatePasswordPageFactory {
   static CreatePasswordPage builder(
       {required BuildContext context,
       required GoRouterState state,
-      required CreatePasswordExtra extra,
       required Function(String message) showMessage,}) {
     return CreatePasswordPage(
         showMessage:showMessage,
-      onNext: (phone, password) {
+      onNext: (password) {
         context.push(
           ConfirmPasswordPageFactory.path,
           extra: ConfirmPasswordExtra(
-            phoneNumber: phone,
             newPassword: password,
           ),
         );
       },
-      phoneNumber: extra.phoneNumber,
     );
   }
 
@@ -33,22 +30,12 @@ class CreatePasswordPageFactory {
     return GoRoute(
         path: (CreatePasswordPageFactory.path),
         builder: (ctx, state) {
-          final extra = state.extra as CreatePasswordExtra;
           return CreatePasswordPageFactory.builder(
             context: ctx,
             state: state,
-            extra: extra,
             showMessage: showMessage,
           );
         },
         routes: routes);
   }
-}
-
-class CreatePasswordExtra {
-  final String phoneNumber;
-
-  CreatePasswordExtra({
-    required this.phoneNumber,
-  });
 }

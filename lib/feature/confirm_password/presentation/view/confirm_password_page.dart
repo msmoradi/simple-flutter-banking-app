@@ -7,13 +7,11 @@ import 'package:get_it/get_it.dart';
 class ConfirmPasswordPage extends StatelessWidget {
   final Function() biometricLanding;
   final Function(String) showMessage;
-  final String phoneNumber;
   final String newPassword;
 
   const ConfirmPasswordPage({
     super.key,
     required this.biometricLanding,
-    required this.phoneNumber,
     required this.newPassword,
     required this.showMessage,
   });
@@ -30,7 +28,6 @@ class ConfirmPasswordPage extends StatelessWidget {
           return ConfirmPasswordContent(
             state: state,
             newPassword: newPassword,
-            phoneNumber: phoneNumber,
           );
         },
       ),
