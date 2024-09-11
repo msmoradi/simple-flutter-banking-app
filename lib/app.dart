@@ -8,14 +8,17 @@ import 'package:go_router/go_router.dart';
 import 'package:toastification/toastification.dart';
 
 class App extends StatelessWidget {
-  const App({super.key});
+  final bool refreshTokenExist;
+
+  const App({super.key, required this.refreshTokenExist});
 
   @override
   Widget build(BuildContext context) {
     precacheImages(context);
     return ToastificationWrapper(
-      child: FutureBuilder<GoRouter>(
-        future: _initializeRouter(
+      child: MaterialApp.router(
+        debugShowCheckedModeBanner: false,
+        routerConfig: getRouterConfig(
           onDeeplinkLanding: (deeplink) {
             GoRouter.of(context).go(deeplink);
           },
@@ -31,40 +34,14 @@ class App extends StatelessWidget {
               autoCloseDuration: const Duration(seconds: 3),
             );
           },
+          refreshTokenExist: refreshTokenExist,
         ),
-        builder: (context, snapshot) {
-          if (!snapshot.hasData) {
-            return MaterialApp(
-              debugShowCheckedModeBanner: false,
-              locale: const Locale('fa'),
-              theme: BanxTheme.light(),
-              darkTheme: BanxTheme.dark(),
-            );
-          } else {
-            return MaterialApp.router(
-              debugShowCheckedModeBanner: false,
-              routerConfig: snapshot.data!,
-              theme: BanxTheme.light(),
-              darkTheme: BanxTheme.dark(),
-              locale: const Locale('fa'),
-              localizationsDelegates: Translator.localizationsDelegates,
-              supportedLocales: Translator.supportedLocales,
-            );
-          }
-        },
+        theme: BanxTheme.light(),
+        darkTheme: BanxTheme.dark(),
+        locale: const Locale('fa'),
+        localizationsDelegates: Translator.localizationsDelegates,
+        supportedLocales: Translator.supportedLocales,
       ),
-    );
-  }
-
-  Future<GoRouter> _initializeRouter({
-    required Function(String) showMessage,
-    required Function(String) onDeeplinkLanding,
-  }) async {
-    final banxConfig = getIt<BanxConfig>();
-    return await getRouterConfig(
-      banxConfig: banxConfig,
-      showMessage: showMessage,
-      onDeeplinkLanding: onDeeplinkLanding,
     );
   }
 

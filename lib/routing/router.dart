@@ -17,15 +17,15 @@ import 'package:banx/composition/root_page_factory.dart';
 import 'package:banx/composition/select_card_page_factory.dart';
 import 'package:banx/composition/verify_otp_page_factory.dart';
 import 'package:banx/composition/verify_password_page_factory.dart';
-import 'package:banx/core/utils/configurations/banx_config.dart';
 import 'package:go_router/go_router.dart';
 
-Future<GoRouter> getRouterConfig({
-  required BanxConfig banxConfig,
+GoRouter getRouterConfig({
+  required bool refreshTokenExist,
   required Function(String) showMessage,
   required Function(String deeplink) onDeeplinkLanding,
-}) async {
-  final initialLocation = await getInitialLocation(banxConfig);
+}) {
+  final initialLocation =
+      getInitialLocation(refreshTokenExist: refreshTokenExist);
   return GoRouter(
     initialLocation: initialLocation,
     routes: <RouteBase>[
@@ -75,9 +75,10 @@ Future<GoRouter> getRouterConfig({
   );
 }
 
-Future<String> getInitialLocation(BanxConfig banxConfig) async {
-  final isRefreshTokenExist = await banxConfig.refreshTokenExist();
-  if (isRefreshTokenExist) {
+String getInitialLocation({
+  required bool refreshTokenExist,
+}) {
+  if (refreshTokenExist) {
     return MainPageFactory.path;
   } else {
     return MainPageFactory.path;
