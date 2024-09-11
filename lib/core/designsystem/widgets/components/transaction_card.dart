@@ -2,17 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 class TransactionCard extends StatelessWidget {
-  final String imagePath;
   final String title;
   final String subtitle;
-  final String gram;
+  final String amount;
+  final Widget image;
 
-  const TransactionCard(
-      {super.key,
-      required this.imagePath,
-      required this.title,
-      required this.subtitle,
-      required this.gram});
+  const TransactionCard({
+    super.key,
+    required this.title,
+    required this.subtitle,
+    required this.amount,
+    required this.image,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -25,11 +26,7 @@ class TransactionCard extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Image.asset(
-            imagePath,
-            width: 48.0,
-            height: 48.0,
-          ),
+          image,
           const SizedBox(
             width: 8.0,
           ),
@@ -44,10 +41,13 @@ class TransactionCard extends StatelessWidget {
                       .titleSmall
                       ?.copyWith(color: Theme.of(context).colorScheme.primary),
                 ),
+                const SizedBox(
+                  height: 4.0,
+                ),
                 Text(
                   subtitle,
-                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      color: Theme.of(context).colorScheme.onSurfaceVariant),
+                  style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                      color: Theme.of(context).colorScheme.surfaceTint),
                 ),
               ],
             ),
@@ -56,7 +56,7 @@ class TransactionCard extends StatelessWidget {
             width: 8.0,
           ),
           Text(
-            gram,
+            amount,
             style: Theme.of(context).textTheme.labelMedium?.copyWith(
                 fontWeight: FontWeight.bold,
                 color: Theme.of(context).colorScheme.onSurfaceVariant),

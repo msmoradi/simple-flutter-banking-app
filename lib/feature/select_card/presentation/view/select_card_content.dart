@@ -2,6 +2,7 @@ import 'package:banx/core/designsystem/widgets/button/fill/full_fill_button.dart
 import 'package:banx/core/designsystem/widgets/card/credit_card.dart';
 import 'package:banx/core/designsystem/widgets/components/loading_container.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class SelectCardContent extends StatelessWidget {
   final Function() onActionClick;
@@ -54,8 +55,15 @@ class SelectCardContent extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 62.0),
                         child: CreditCard(
-                          firstName: firstName,
-                          lastName: lastName,
+                          text: Text(
+                            "$firstName\n   $lastName",
+                            style: GoogleFonts.satisfy(
+                              color: Colors.white,
+                              fontSize: 24,
+                              fontWeight: FontWeight.w400,
+                              fontStyle: FontStyle.italic,
+                            ),
+                          ),
                           flipOnTouch: false,
                           quarterTurns: 1,
                           scale: 1.4,

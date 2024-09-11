@@ -12,7 +12,7 @@ class MainContent extends StatefulWidget {
 }
 
 class _MainContentState extends State<MainContent> {
-  int _selectedIndex = 2;
+  int _selectedIndex = 0;
 
   void _onItemTapped(int index) {
     setState(() {
@@ -27,7 +27,7 @@ class _MainContentState extends State<MainContent> {
         const BankPage(),
         const Center(child: Text('انتقال')),
         const HomePage(),
-        const AssistPage(),
+        const Center(child: Text('دستیار')),
         const Center(child: Text('پروفایل')),
       ][_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(

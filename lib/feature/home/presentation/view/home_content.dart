@@ -38,51 +38,75 @@ class _HomeContentState extends State<HomeContent> {
     const SizedBox(
       height: 10.0,
     ),
-    const TransactionCard(
-        imagePath: 'assets/images/lite-coin-1.png',
+    TransactionCard(
+        image: Image.asset(
+          'assets/images/lite-coin-1.png',
+          width: 48.0,
+          height: 48.0,
+        ),
         title: 'واریز به سپرده',
         subtitle: 'شنبه، ۲۳ تیر ۱۴۰۳ | ۱۲:۲۲',
-        gram: '۱٬۲ گرم'),
+        amount: '۱٬۲ گرم'),
     const SizedBox(
       height: 10.0,
     ),
-    const TransactionCard(
-        imagePath: 'assets/images/lite-coin-1.png',
+    TransactionCard(
+        image: Image.asset(
+          'assets/images/lite-coin-1.png',
+          width: 48.0,
+          height: 48.0,
+        ),
         title: 'واریز به سپرده',
         subtitle: 'شنبه، ۲۳ تیر ۱۴۰۳ | ۱۲:۲۲',
-        gram: '۱٬۲ گرم'),
+        amount: '۱٬۲ گرم'),
     const SizedBox(
       height: 10.0,
     ),
-    const TransactionCard(
-        imagePath: 'assets/images/lite-coin-1.png',
+    TransactionCard(
+        image: Image.asset(
+          'assets/images/lite-coin-1.png',
+          width: 48.0,
+          height: 48.0,
+        ),
         title: 'واریز به سپرده',
         subtitle: 'شنبه، ۲۳ تیر ۱۴۰۳ | ۱۲:۲۲',
-        gram: '۱٬۲ گرم'),
+        amount: '۱٬۲ گرم'),
     const SizedBox(
       height: 10.0,
     ),
-    const TransactionCard(
-        imagePath: 'assets/images/lite-coin-1.png',
+    TransactionCard(
+        image: Image.asset(
+          'assets/images/lite-coin-1.png',
+          width: 48.0,
+          height: 48.0,
+        ),
         title: 'واریز به سپرده',
         subtitle: 'شنبه، ۲۳ تیر ۱۴۰۳ | ۱۲:۲۲',
-        gram: '۱٬۲ گرم'),
+        amount: '۱٬۲ گرم'),
     const SizedBox(
       height: 10.0,
     ),
-    const TransactionCard(
-        imagePath: 'assets/images/lite-coin-1.png',
+    TransactionCard(
+        image: Image.asset(
+          'assets/images/lite-coin-1.png',
+          width: 48.0,
+          height: 48.0,
+        ),
         title: 'واریز به سپرده',
         subtitle: 'شنبه، ۲۳ تیر ۱۴۰۳ | ۱۲:۲۲',
-        gram: '۱٬۲ گرم'),
+        amount: '۱٬۲ گرم'),
     const SizedBox(
       height: 10.0,
     ),
-    const TransactionCard(
-        imagePath: 'assets/images/lite-coin-1.png',
+    TransactionCard(
+        image: Image.asset(
+          'assets/images/lite-coin-1.png',
+          width: 48.0,
+          height: 48.0,
+        ),
         title: 'واریز به سپرده',
         subtitle: 'شنبه، ۲۳ تیر ۱۴۰۳ | ۱۲:۲۲',
-        gram: '۱٬۲ گرم'),
+        amount: '۱٬۲ گرم'),
     const SizedBox(
       height: 10.0,
     ),
@@ -93,62 +117,62 @@ class _HomeContentState extends State<HomeContent> {
     return Scaffold(
       body: CustomScrollView(
         slivers: [
-          SliverPadding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0),
-            sliver: SliverAppBar(
-              surfaceTintColor: Colors.transparent,
-              pinned: true,
-              stretch: true,
-              title: Text(
-                'Cash Banx',
-                style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                      color: Theme.of(context).colorScheme.onSurface,
-                    ),
-              ),
-              centerTitle: true,
-              leading: Image.asset(
-                width: 48.0,
-                height: 48.0,
+          SliverAppBar(
+            surfaceTintColor: Colors.transparent,
+            pinned: true,
+            stretch: true,
+            title: const Text(
+              'روز بخیر مهرداد!',
+            ),
+            titleTextStyle: Theme.of(context).textTheme.labelLarge?.copyWith(
+                  color: Theme.of(context).colorScheme.onSurface,
+                ),
+            centerTitle: false,
+            leadingWidth: 48.0,
+            titleSpacing: 6.0,
+            leading: Padding(
+              padding: const EdgeInsets.only(right: 16.0),
+              child: Image.asset(
                 'assets/images/circle_avatar.png',
               ),
-              actions: [
-                IconButton(
-                  onPressed: () {},
-                  icon: SvgPicture.asset(
-                    'assets/icons/bell.svg',
-                    colorFilter: ColorFilter.mode(
-                      Theme.of(context).colorScheme.onPrimary,
-                      BlendMode.srcIn,
-                    ),
+            ),
+            actions: [
+              IconButton(
+                onPressed: () {},
+                icon: SvgPicture.asset(
+                  'assets/icons/bell.svg',
+                  colorFilter: ColorFilter.mode(
+                    Theme.of(context).colorScheme.primary,
+                    BlendMode.srcIn,
                   ),
                 ),
-                IconButton(
-                  onPressed: () {},
-                  icon: SvgPicture.asset(
-                    'assets/icons/help-circle.svg',
-                    colorFilter: ColorFilter.mode(
-                      Theme.of(context).colorScheme.onPrimary,
-                      BlendMode.srcIn,
-                    ),
+              ),
+              IconButton(
+                onPressed: () {},
+                icon: SvgPicture.asset(
+                  'assets/icons/help-circle.svg',
+                  colorFilter: ColorFilter.mode(
+                    Theme.of(context).colorScheme.primary,
+                    BlendMode.srcIn,
                   ),
                 ),
-              ],
-              expandedHeight: kToolbarHeight + 300,
-              flexibleSpace: Padding(
-                padding: const EdgeInsets.only(top: kToolbarHeight * 2),
-                child: Stack(
-                  alignment: AlignmentDirectional.bottomCenter,
-                  children: [
-                    Image.asset(
-                      'assets/images/asset_shape.png',
-                      fit: BoxFit.fitHeight,
-                    ),
-                    const SizedBox(
-                      width: double.infinity,
-                      child: GlassRow(),
-                    )
-                  ],
-                ),
+              ),
+            ],
+            expandedHeight: kToolbarHeight + 300,
+            flexibleSpace: Padding(
+              padding: const EdgeInsets.only(top: kToolbarHeight * 2),
+              child: Stack(
+                alignment: AlignmentDirectional.bottomCenter,
+                children: [
+                  Image.asset(
+                    'assets/images/asset_shape.png',
+                    fit: BoxFit.fitHeight,
+                  ),
+                  const SizedBox(
+                    width: double.infinity,
+                    child: GlassRow(),
+                  )
+                ],
               ),
             ),
           ),
