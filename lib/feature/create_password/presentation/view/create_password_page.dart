@@ -70,7 +70,7 @@ class _CreatePasswordPageState extends State<CreatePasswordPage> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
-                  "رمز ورود به اپلیکیشن باید بین ۴ الی ۶ رقم باشد",
+                  "رمز ورود به اپلیکیشن باید ۴ رقم باشد",
                   style: Theme.of(context).textTheme.titleMedium,
                   textAlign: TextAlign.center,
                 ),

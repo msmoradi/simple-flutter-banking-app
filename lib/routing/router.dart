@@ -78,8 +78,8 @@ Future<GoRouter> getRouterConfig({
 Future<String> getInitialLocation(BanxConfig banxConfig) async {
   final isRefreshTokenExist = await banxConfig.refreshTokenExist();
   if (isRefreshTokenExist) {
-    return OnboardingPasswordPageFactory.path;
+    return VerifyPasswordPageFactory.path;
   } else {
-    return OnboardingPasswordPageFactory.path;
+    return PhonePageFactory.path;
   }
 }
