@@ -1,5 +1,7 @@
 import 'package:banx/composition/kyc_status_page_factory.dart';
-import 'package:banx/feature/card_order/presentation/view/card_delivery_time_page.dart';
+import 'package:banx/core/domain/entities/address_entity.dart';
+import 'package:banx/core/domain/entities/shipping_time_entity.dart';
+import 'package:banx/feature/card_delivery_time/presentation/view/card_delivery_time_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 
@@ -11,9 +13,13 @@ class CardDeliveryTimePageFactory {
     required GoRouterState state,
     required CardDeliveryTimeExtra extra,
     required Function(String message) showMessage,
+    required Function(String deeplink) onDeeplinkLanding,
   }) {
     return CardDeliveryTimePage(
       address: extra.address,
+      cardShippingTimeSlots: extra.cardShippingTimeSlots,
+      cardTypeId: extra.cardTypeId,
+      onDeeplinkLanding: onDeeplinkLanding,
       showMessage: showMessage,
       onNext: () {
         context.push(KycStatusPageFactory.path, extra: KycStatusExtra());
@@ -24,6 +30,7 @@ class CardDeliveryTimePageFactory {
   static GoRoute route({
     List<RouteBase> routes = const <RouteBase>[],
     required Function(String message) showMessage,
+    required Function(String deeplink) onDeeplinkLanding,
   }) {
     return GoRoute(
         path: (CardDeliveryTimePageFactory.path),
@@ -31,6 +38,7 @@ class CardDeliveryTimePageFactory {
           final extra = state.extra as CardDeliveryTimeExtra;
           return CardDeliveryTimePageFactory.builder(
             context: ctx,
+            onDeeplinkLanding: onDeeplinkLanding,
             state: state,
             extra: extra,
             showMessage: showMessage,
@@ -41,9 +49,13 @@ class CardDeliveryTimePageFactory {
 }
 
 class CardDeliveryTimeExtra {
-  final String address;
+  final AddressEntity address;
+  final List<ShippingTimeEntity> cardShippingTimeSlots;
+  final int cardTypeId;
 
   CardDeliveryTimeExtra({
     required this.address,
+    required this.cardTypeId,
+    required this.cardShippingTimeSlots,
   });
 }

@@ -9,13 +9,18 @@ class AddAddressPageFactory {
   static AddAddressPage builder(
       {required BuildContext context,
       required GoRouterState state,
+      required AddAddressExtra extra,
       required Function(String message) showMessage}) {
     return AddAddressPage(
       showMessage: showMessage,
-      onNext: (address) {
+      onSelectDeliveryTime: (address) {
         context.push(
           CardDeliveryTimePageFactory.path,
-          extra: CardDeliveryTimeExtra(address: address),
+          extra: CardDeliveryTimeExtra(
+            address: address,
+            cardTypeId: extra.cardTypeId,
+            cardShippingTimeSlots: [],
+          ),
         );
       },
     );
@@ -28,12 +33,22 @@ class AddAddressPageFactory {
     return GoRoute(
         path: (AddAddressPageFactory.path),
         builder: (ctx, state) {
+          final extra = state.extra as AddAddressExtra;
           return AddAddressPageFactory.builder(
             context: ctx,
             state: state,
+            extra: extra,
             showMessage: showMessage,
           );
         },
         routes: routes);
   }
+}
+
+class AddAddressExtra {
+  final int cardTypeId;
+
+  AddAddressExtra({
+    required this.cardTypeId,
+  });
 }

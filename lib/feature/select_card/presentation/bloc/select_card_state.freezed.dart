@@ -21,21 +21,24 @@ mixin _$SelectCardState {
     required TResult Function(String message) selectCardFailure,
     required TResult Function() selectCardInProgress,
     required TResult Function() addAddress,
-    required TResult Function(List<AddressEntity> addressList) selectAddress,
-    required TResult Function(String title, String description,
+    required TResult Function(List<AddressEntity> addressList, int cardTypeId)
+        selectAddress,
+    required TResult Function(int id, String title, String description,
             String priceLabel, List<AddressEntity> addressList)
         selectCardSuccess,
     required TResult Function() selectCardValidated,
   }) =>
       throw _privateConstructorUsedError;
+
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String message)? selectCardFailure,
     TResult? Function()? selectCardInProgress,
     TResult? Function()? addAddress,
-    TResult? Function(List<AddressEntity> addressList)? selectAddress,
-    TResult? Function(String title, String description, String priceLabel,
-            List<AddressEntity> addressList)?
+    TResult? Function(List<AddressEntity> addressList, int cardTypeId)?
+        selectAddress,
+    TResult? Function(int id, String title, String description,
+            String priceLabel, List<AddressEntity> addressList)?
         selectCardSuccess,
     TResult? Function()? selectCardValidated,
   }) =>
@@ -45,14 +48,16 @@ mixin _$SelectCardState {
     TResult Function(String message)? selectCardFailure,
     TResult Function()? selectCardInProgress,
     TResult Function()? addAddress,
-    TResult Function(List<AddressEntity> addressList)? selectAddress,
-    TResult Function(String title, String description, String priceLabel,
-            List<AddressEntity> addressList)?
+    TResult Function(List<AddressEntity> addressList, int cardTypeId)?
+        selectAddress,
+    TResult Function(int id, String title, String description,
+            String priceLabel, List<AddressEntity> addressList)?
         selectCardSuccess,
     TResult Function()? selectCardValidated,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
+
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(SelectCardFailure value) selectCardFailure,
@@ -63,6 +68,7 @@ mixin _$SelectCardState {
     required TResult Function(SelectCardValidated value) selectCardValidated,
   }) =>
       throw _privateConstructorUsedError;
+
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(SelectCardFailure value)? selectCardFailure,
@@ -98,9 +104,9 @@ class _$SelectCardStateCopyWithImpl<$Res, $Val extends SelectCardState>
     implements $SelectCardStateCopyWith<$Res> {
   _$SelectCardStateCopyWithImpl(this._value, this._then);
 
-  // ignore: unused_field
+// ignore: unused_field
   final $Val _value;
-  // ignore: unused_field
+// ignore: unused_field
   final $Res Function($Val) _then;
 
   /// Create a copy of SelectCardState
@@ -179,8 +185,9 @@ class _$SelectCardFailureImpl implements SelectCardFailure {
     required TResult Function(String message) selectCardFailure,
     required TResult Function() selectCardInProgress,
     required TResult Function() addAddress,
-    required TResult Function(List<AddressEntity> addressList) selectAddress,
-    required TResult Function(String title, String description,
+    required TResult Function(List<AddressEntity> addressList, int cardTypeId)
+        selectAddress,
+    required TResult Function(int id, String title, String description,
             String priceLabel, List<AddressEntity> addressList)
         selectCardSuccess,
     required TResult Function() selectCardValidated,
@@ -194,9 +201,10 @@ class _$SelectCardFailureImpl implements SelectCardFailure {
     TResult? Function(String message)? selectCardFailure,
     TResult? Function()? selectCardInProgress,
     TResult? Function()? addAddress,
-    TResult? Function(List<AddressEntity> addressList)? selectAddress,
-    TResult? Function(String title, String description, String priceLabel,
-            List<AddressEntity> addressList)?
+    TResult? Function(List<AddressEntity> addressList, int cardTypeId)?
+        selectAddress,
+    TResult? Function(int id, String title, String description,
+            String priceLabel, List<AddressEntity> addressList)?
         selectCardSuccess,
     TResult? Function()? selectCardValidated,
   }) {
@@ -209,9 +217,10 @@ class _$SelectCardFailureImpl implements SelectCardFailure {
     TResult Function(String message)? selectCardFailure,
     TResult Function()? selectCardInProgress,
     TResult Function()? addAddress,
-    TResult Function(List<AddressEntity> addressList)? selectAddress,
-    TResult Function(String title, String description, String priceLabel,
-            List<AddressEntity> addressList)?
+    TResult Function(List<AddressEntity> addressList, int cardTypeId)?
+        selectAddress,
+    TResult Function(int id, String title, String description,
+            String priceLabel, List<AddressEntity> addressList)?
         selectCardSuccess,
     TResult Function()? selectCardValidated,
     required TResult orElse(),
@@ -324,8 +333,9 @@ class _$SelectCardInProgressImpl implements SelectCardInProgress {
     required TResult Function(String message) selectCardFailure,
     required TResult Function() selectCardInProgress,
     required TResult Function() addAddress,
-    required TResult Function(List<AddressEntity> addressList) selectAddress,
-    required TResult Function(String title, String description,
+    required TResult Function(List<AddressEntity> addressList, int cardTypeId)
+        selectAddress,
+    required TResult Function(int id, String title, String description,
             String priceLabel, List<AddressEntity> addressList)
         selectCardSuccess,
     required TResult Function() selectCardValidated,
@@ -339,9 +349,10 @@ class _$SelectCardInProgressImpl implements SelectCardInProgress {
     TResult? Function(String message)? selectCardFailure,
     TResult? Function()? selectCardInProgress,
     TResult? Function()? addAddress,
-    TResult? Function(List<AddressEntity> addressList)? selectAddress,
-    TResult? Function(String title, String description, String priceLabel,
-            List<AddressEntity> addressList)?
+    TResult? Function(List<AddressEntity> addressList, int cardTypeId)?
+        selectAddress,
+    TResult? Function(int id, String title, String description,
+            String priceLabel, List<AddressEntity> addressList)?
         selectCardSuccess,
     TResult? Function()? selectCardValidated,
   }) {
@@ -354,9 +365,10 @@ class _$SelectCardInProgressImpl implements SelectCardInProgress {
     TResult Function(String message)? selectCardFailure,
     TResult Function()? selectCardInProgress,
     TResult Function()? addAddress,
-    TResult Function(List<AddressEntity> addressList)? selectAddress,
-    TResult Function(String title, String description, String priceLabel,
-            List<AddressEntity> addressList)?
+    TResult Function(List<AddressEntity> addressList, int cardTypeId)?
+        selectAddress,
+    TResult Function(int id, String title, String description,
+            String priceLabel, List<AddressEntity> addressList)?
         selectCardSuccess,
     TResult Function()? selectCardValidated,
     required TResult orElse(),
@@ -459,8 +471,9 @@ class _$AddAddressImpl implements AddAddress {
     required TResult Function(String message) selectCardFailure,
     required TResult Function() selectCardInProgress,
     required TResult Function() addAddress,
-    required TResult Function(List<AddressEntity> addressList) selectAddress,
-    required TResult Function(String title, String description,
+    required TResult Function(List<AddressEntity> addressList, int cardTypeId)
+        selectAddress,
+    required TResult Function(int id, String title, String description,
             String priceLabel, List<AddressEntity> addressList)
         selectCardSuccess,
     required TResult Function() selectCardValidated,
@@ -474,9 +487,10 @@ class _$AddAddressImpl implements AddAddress {
     TResult? Function(String message)? selectCardFailure,
     TResult? Function()? selectCardInProgress,
     TResult? Function()? addAddress,
-    TResult? Function(List<AddressEntity> addressList)? selectAddress,
-    TResult? Function(String title, String description, String priceLabel,
-            List<AddressEntity> addressList)?
+    TResult? Function(List<AddressEntity> addressList, int cardTypeId)?
+        selectAddress,
+    TResult? Function(int id, String title, String description,
+            String priceLabel, List<AddressEntity> addressList)?
         selectCardSuccess,
     TResult? Function()? selectCardValidated,
   }) {
@@ -489,9 +503,10 @@ class _$AddAddressImpl implements AddAddress {
     TResult Function(String message)? selectCardFailure,
     TResult Function()? selectCardInProgress,
     TResult Function()? addAddress,
-    TResult Function(List<AddressEntity> addressList)? selectAddress,
-    TResult Function(String title, String description, String priceLabel,
-            List<AddressEntity> addressList)?
+    TResult Function(List<AddressEntity> addressList, int cardTypeId)?
+        selectAddress,
+    TResult Function(int id, String title, String description,
+            String priceLabel, List<AddressEntity> addressList)?
         selectCardSuccess,
     TResult Function()? selectCardValidated,
     required TResult orElse(),
@@ -556,7 +571,7 @@ abstract class _$$SelectAddressImplCopyWith<$Res> {
           _$SelectAddressImpl value, $Res Function(_$SelectAddressImpl) then) =
       __$$SelectAddressImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<AddressEntity> addressList});
+  $Res call({List<AddressEntity> addressList, int cardTypeId});
 }
 
 /// @nodoc
@@ -573,12 +588,17 @@ class __$$SelectAddressImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? addressList = null,
+    Object? cardTypeId = null,
   }) {
     return _then(_$SelectAddressImpl(
       addressList: null == addressList
           ? _value._addressList
           : addressList // ignore: cast_nullable_to_non_nullable
               as List<AddressEntity>,
+      cardTypeId: null == cardTypeId
+          ? _value.cardTypeId
+          : cardTypeId // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -586,20 +606,25 @@ class __$$SelectAddressImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$SelectAddressImpl implements SelectAddress {
-  const _$SelectAddressImpl({required final List<AddressEntity> addressList})
+  const _$SelectAddressImpl(
+      {required final List<AddressEntity> addressList,
+      required this.cardTypeId})
       : _addressList = addressList;
 
   final List<AddressEntity> _addressList;
   @override
   List<AddressEntity> get addressList {
     if (_addressList is EqualUnmodifiableListView) return _addressList;
-    // ignore: implicit_dynamic_type
+// ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_addressList);
   }
 
   @override
+  final int cardTypeId;
+
+  @override
   String toString() {
-    return 'SelectCardState.selectAddress(addressList: $addressList)';
+    return 'SelectCardState.selectAddress(addressList: $addressList, cardTypeId: $cardTypeId)';
   }
 
   @override
@@ -608,12 +633,14 @@ class _$SelectAddressImpl implements SelectAddress {
         (other.runtimeType == runtimeType &&
             other is _$SelectAddressImpl &&
             const DeepCollectionEquality()
-                .equals(other._addressList, _addressList));
+                .equals(other._addressList, _addressList) &&
+            (identical(other.cardTypeId, cardTypeId) ||
+                other.cardTypeId == cardTypeId));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(_addressList));
+  int get hashCode => Object.hash(runtimeType,
+      const DeepCollectionEquality().hash(_addressList), cardTypeId);
 
   /// Create a copy of SelectCardState
   /// with the given fields replaced by the non-null parameter values.
@@ -629,13 +656,14 @@ class _$SelectAddressImpl implements SelectAddress {
     required TResult Function(String message) selectCardFailure,
     required TResult Function() selectCardInProgress,
     required TResult Function() addAddress,
-    required TResult Function(List<AddressEntity> addressList) selectAddress,
-    required TResult Function(String title, String description,
+    required TResult Function(List<AddressEntity> addressList, int cardTypeId)
+        selectAddress,
+    required TResult Function(int id, String title, String description,
             String priceLabel, List<AddressEntity> addressList)
         selectCardSuccess,
     required TResult Function() selectCardValidated,
   }) {
-    return selectAddress(addressList);
+    return selectAddress(addressList, cardTypeId);
   }
 
   @override
@@ -644,13 +672,14 @@ class _$SelectAddressImpl implements SelectAddress {
     TResult? Function(String message)? selectCardFailure,
     TResult? Function()? selectCardInProgress,
     TResult? Function()? addAddress,
-    TResult? Function(List<AddressEntity> addressList)? selectAddress,
-    TResult? Function(String title, String description, String priceLabel,
-            List<AddressEntity> addressList)?
+    TResult? Function(List<AddressEntity> addressList, int cardTypeId)?
+        selectAddress,
+    TResult? Function(int id, String title, String description,
+            String priceLabel, List<AddressEntity> addressList)?
         selectCardSuccess,
     TResult? Function()? selectCardValidated,
   }) {
-    return selectAddress?.call(addressList);
+    return selectAddress?.call(addressList, cardTypeId);
   }
 
   @override
@@ -659,15 +688,16 @@ class _$SelectAddressImpl implements SelectAddress {
     TResult Function(String message)? selectCardFailure,
     TResult Function()? selectCardInProgress,
     TResult Function()? addAddress,
-    TResult Function(List<AddressEntity> addressList)? selectAddress,
-    TResult Function(String title, String description, String priceLabel,
-            List<AddressEntity> addressList)?
+    TResult Function(List<AddressEntity> addressList, int cardTypeId)?
+        selectAddress,
+    TResult Function(int id, String title, String description,
+            String priceLabel, List<AddressEntity> addressList)?
         selectCardSuccess,
     TResult Function()? selectCardValidated,
     required TResult orElse(),
   }) {
     if (selectAddress != null) {
-      return selectAddress(addressList);
+      return selectAddress(addressList, cardTypeId);
     }
     return orElse();
   }
@@ -717,10 +747,13 @@ class _$SelectAddressImpl implements SelectAddress {
 }
 
 abstract class SelectAddress implements SelectCardState {
-  const factory SelectAddress(
-      {required final List<AddressEntity> addressList}) = _$SelectAddressImpl;
+  const factory SelectAddress({
+    required final List<AddressEntity> addressList,
+    required final int cardTypeId,
+  }) = _$SelectAddressImpl;
 
   List<AddressEntity> get addressList;
+  int get cardTypeId;
 
   /// Create a copy of SelectCardState
   /// with the given fields replaced by the non-null parameter values.
@@ -736,7 +769,8 @@ abstract class _$$SelectCardSuccessImplCopyWith<$Res> {
       __$$SelectCardSuccessImplCopyWithImpl<$Res>;
   @useResult
   $Res call(
-      {String title,
+      {int id,
+      String title,
       String description,
       String priceLabel,
       List<AddressEntity> addressList});
@@ -755,12 +789,17 @@ class __$$SelectCardSuccessImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? title = null,
     Object? description = null,
     Object? priceLabel = null,
     Object? addressList = null,
   }) {
     return _then(_$SelectCardSuccessImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -785,12 +824,15 @@ class __$$SelectCardSuccessImplCopyWithImpl<$Res>
 
 class _$SelectCardSuccessImpl implements SelectCardSuccess {
   const _$SelectCardSuccessImpl(
-      {required this.title,
+      {required this.id,
+      required this.title,
       required this.description,
       required this.priceLabel,
       required final List<AddressEntity> addressList})
       : _addressList = addressList;
 
+  @override
+  final int id;
   @override
   final String title;
   @override
@@ -801,13 +843,13 @@ class _$SelectCardSuccessImpl implements SelectCardSuccess {
   @override
   List<AddressEntity> get addressList {
     if (_addressList is EqualUnmodifiableListView) return _addressList;
-    // ignore: implicit_dynamic_type
+// ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_addressList);
   }
 
   @override
   String toString() {
-    return 'SelectCardState.selectCardSuccess(title: $title, description: $description, priceLabel: $priceLabel, addressList: $addressList)';
+    return 'SelectCardState.selectCardSuccess(id: $id, title: $title, description: $description, priceLabel: $priceLabel, addressList: $addressList)';
   }
 
   @override
@@ -815,6 +857,7 @@ class _$SelectCardSuccessImpl implements SelectCardSuccess {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SelectCardSuccessImpl &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.description, description) ||
                 other.description == description) &&
@@ -825,8 +868,8 @@ class _$SelectCardSuccessImpl implements SelectCardSuccess {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, title, description, priceLabel,
-      const DeepCollectionEquality().hash(_addressList));
+  int get hashCode => Object.hash(runtimeType, id, title, description,
+      priceLabel, const DeepCollectionEquality().hash(_addressList));
 
   /// Create a copy of SelectCardState
   /// with the given fields replaced by the non-null parameter values.
@@ -843,13 +886,14 @@ class _$SelectCardSuccessImpl implements SelectCardSuccess {
     required TResult Function(String message) selectCardFailure,
     required TResult Function() selectCardInProgress,
     required TResult Function() addAddress,
-    required TResult Function(List<AddressEntity> addressList) selectAddress,
-    required TResult Function(String title, String description,
+    required TResult Function(List<AddressEntity> addressList, int cardTypeId)
+        selectAddress,
+    required TResult Function(int id, String title, String description,
             String priceLabel, List<AddressEntity> addressList)
         selectCardSuccess,
     required TResult Function() selectCardValidated,
   }) {
-    return selectCardSuccess(title, description, priceLabel, addressList);
+    return selectCardSuccess(id, title, description, priceLabel, addressList);
   }
 
   @override
@@ -858,13 +902,15 @@ class _$SelectCardSuccessImpl implements SelectCardSuccess {
     TResult? Function(String message)? selectCardFailure,
     TResult? Function()? selectCardInProgress,
     TResult? Function()? addAddress,
-    TResult? Function(List<AddressEntity> addressList)? selectAddress,
-    TResult? Function(String title, String description, String priceLabel,
-            List<AddressEntity> addressList)?
+    TResult? Function(List<AddressEntity> addressList, int cardTypeId)?
+        selectAddress,
+    TResult? Function(int id, String title, String description,
+            String priceLabel, List<AddressEntity> addressList)?
         selectCardSuccess,
     TResult? Function()? selectCardValidated,
   }) {
-    return selectCardSuccess?.call(title, description, priceLabel, addressList);
+    return selectCardSuccess?.call(
+        id, title, description, priceLabel, addressList);
   }
 
   @override
@@ -873,15 +919,16 @@ class _$SelectCardSuccessImpl implements SelectCardSuccess {
     TResult Function(String message)? selectCardFailure,
     TResult Function()? selectCardInProgress,
     TResult Function()? addAddress,
-    TResult Function(List<AddressEntity> addressList)? selectAddress,
-    TResult Function(String title, String description, String priceLabel,
-            List<AddressEntity> addressList)?
+    TResult Function(List<AddressEntity> addressList, int cardTypeId)?
+        selectAddress,
+    TResult Function(int id, String title, String description,
+            String priceLabel, List<AddressEntity> addressList)?
         selectCardSuccess,
     TResult Function()? selectCardValidated,
     required TResult orElse(),
   }) {
     if (selectCardSuccess != null) {
-      return selectCardSuccess(title, description, priceLabel, addressList);
+      return selectCardSuccess(id, title, description, priceLabel, addressList);
     }
     return orElse();
   }
@@ -932,12 +979,14 @@ class _$SelectCardSuccessImpl implements SelectCardSuccess {
 
 abstract class SelectCardSuccess implements SelectCardState {
   const factory SelectCardSuccess(
-          {required final String title,
+          {required final int id,
+          required final String title,
           required final String description,
           required final String priceLabel,
           required final List<AddressEntity> addressList}) =
       _$SelectCardSuccessImpl;
 
+  int get id;
   String get title;
   String get description;
   String get priceLabel;
@@ -995,8 +1044,9 @@ class _$SelectCardValidatedImpl implements SelectCardValidated {
     required TResult Function(String message) selectCardFailure,
     required TResult Function() selectCardInProgress,
     required TResult Function() addAddress,
-    required TResult Function(List<AddressEntity> addressList) selectAddress,
-    required TResult Function(String title, String description,
+    required TResult Function(List<AddressEntity> addressList, int cardTypeId)
+        selectAddress,
+    required TResult Function(int id, String title, String description,
             String priceLabel, List<AddressEntity> addressList)
         selectCardSuccess,
     required TResult Function() selectCardValidated,
@@ -1010,9 +1060,10 @@ class _$SelectCardValidatedImpl implements SelectCardValidated {
     TResult? Function(String message)? selectCardFailure,
     TResult? Function()? selectCardInProgress,
     TResult? Function()? addAddress,
-    TResult? Function(List<AddressEntity> addressList)? selectAddress,
-    TResult? Function(String title, String description, String priceLabel,
-            List<AddressEntity> addressList)?
+    TResult? Function(List<AddressEntity> addressList, int cardTypeId)?
+        selectAddress,
+    TResult? Function(int id, String title, String description,
+            String priceLabel, List<AddressEntity> addressList)?
         selectCardSuccess,
     TResult? Function()? selectCardValidated,
   }) {
@@ -1025,9 +1076,10 @@ class _$SelectCardValidatedImpl implements SelectCardValidated {
     TResult Function(String message)? selectCardFailure,
     TResult Function()? selectCardInProgress,
     TResult Function()? addAddress,
-    TResult Function(List<AddressEntity> addressList)? selectAddress,
-    TResult Function(String title, String description, String priceLabel,
-            List<AddressEntity> addressList)?
+    TResult Function(List<AddressEntity> addressList, int cardTypeId)?
+        selectAddress,
+    TResult Function(int id, String title, String description,
+            String priceLabel, List<AddressEntity> addressList)?
         selectCardSuccess,
     TResult Function()? selectCardValidated,
     required TResult orElse(),

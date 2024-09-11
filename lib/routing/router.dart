@@ -8,7 +8,6 @@ import 'package:banx/composition/face_detection_factory.dart';
 import 'package:banx/composition/identity_page_factory.dart';
 import 'package:banx/composition/kyc_status_page_factory.dart';
 import 'package:banx/composition/main_page_factory.dart';
-import 'package:banx/composition/map_address_page_factory.dart';
 import 'package:banx/composition/national_serial_page_factory.dart';
 import 'package:banx/composition/onboarding_face_page_factory.dart';
 import 'package:banx/composition/onboarding_password_page_factory.dart';
@@ -46,8 +45,10 @@ Future<GoRouter> getRouterConfig({
         showMessage: showMessage,
       ),
       NationalSerialPageFactory.route(showMessage: showMessage),
-      CardDeliveryTimePageFactory.route(showMessage: showMessage),
-      MapAddressPageFactory.route(showMessage: showMessage),
+      CardDeliveryTimePageFactory.route(
+        showMessage: showMessage,
+        onDeeplinkLanding: onDeeplinkLanding,
+      ),
       ConfirmPasswordPageFactory.route(
         showMessage: showMessage,
         onDeeplinkLanding: onDeeplinkLanding,

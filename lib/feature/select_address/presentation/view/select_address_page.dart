@@ -7,12 +7,14 @@ import 'package:get_it/get_it.dart';
 
 class SelectAddressPage extends StatelessWidget {
   final Function() onAddAddress;
+  final Function(AddressEntity) addressSelected;
   final Function(String) showMessage;
   final List<AddressEntity> addressList;
 
   const SelectAddressPage({
     super.key,
     required this.onAddAddress,
+    required this.addressSelected,
     required this.showMessage,
     required this.addressList,
   });

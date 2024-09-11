@@ -62,8 +62,8 @@ import 'package:banx/di.dart' as _i0;
 import 'package:banx/feature/add_address/presentation/bloc/add_address_bloc.dart'
     as _i759;
 import 'package:banx/feature/assist/presentation/bloc/assist_bloc.dart' as _i20;
-import 'package:banx/feature/card_order/presentation/bloc/card_order_bloc.dart'
-    as _i699;
+import 'package:banx/feature/card_delivery_time/presentation/bloc/card_delivery_time_bloc.dart'
+    as _i501;
 import 'package:banx/feature/confirm_password/presentation/bloc/confirm_password_bloc.dart'
     as _i339;
 import 'package:banx/feature/enable_biometric/presentation/bloc/enable_biometric_bloc.dart'
@@ -160,8 +160,6 @@ extension GetItInjectableX on _i174.GetIt {
           profileLocalDataSource: gh<_i904.ProfileLocalDataSource>(),
           profileRemoteDataSource: gh<_i264.ProfileRemoteDataSource>(),
         ));
-    gh.lazySingleton<_i831.CardRepository>(() => _i339.CardRepositoryImpl(
-        cardRemoteDataSource: gh<_i521.CardRemoteDataSource>()));
     gh.factory<_i807.EnableBiometricBloc>(() => _i807.EnableBiometricBloc(
           profileRepository: gh<_i111.ProfileRepository>(),
           localAuthentication: gh<_i152.LocalAuthentication>(),
@@ -171,10 +169,6 @@ extension GetItInjectableX on _i174.GetIt {
         addressRemoteDataSource: gh<_i767.AddressRemoteDataSource>()));
     gh.lazySingleton<_i654.MediaRepository>(
         () => _i244.MediaRepositoryImpl(gh<_i665.MediaRemoteDataSource>()));
-    gh.factory<_i266.SelectCardBloc>(() => _i266.SelectCardBloc(
-          cardRepository: gh<_i831.CardRepository>(),
-          addressRepository: gh<_i648.AddressRepository>(),
-        ));
     gh.lazySingleton<_i474.AuthenticationRepository>(
         () => _i450.AuthenticationRepositoryImpl(
               authenticationRemoteDataSource:
@@ -188,8 +182,12 @@ extension GetItInjectableX on _i174.GetIt {
         addressRepository: gh<_i648.AddressRepository>()));
     gh.factory<_i922.SelectAddressBloc>(() => _i922.SelectAddressBloc(
         addressRepository: gh<_i648.AddressRepository>()));
-    gh.factory<_i699.CardOrderBloc>(
-        () => _i699.CardOrderBloc(cardRepository: gh<_i831.CardRepository>()));
+    gh.lazySingleton<_i831.CardRepository>(() => _i339.CardRepositoryImpl(
+          cardRemoteDataSource: gh<_i521.CardRemoteDataSource>(),
+          profileRepository: gh<_i111.ProfileRepository>(),
+        ));
+    gh.factory<_i501.CardDeliveryTimeBloc>(() =>
+        _i501.CardDeliveryTimeBloc(cardRepository: gh<_i831.CardRepository>()));
     gh.factory<_i887.FaceDetectionBloc>(() => _i887.FaceDetectionBloc(
           gh<_i654.MediaRepository>(),
           gh<_i111.ProfileRepository>(),
@@ -205,6 +203,10 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i339.ConfirmPasswordBloc>(() => _i339.ConfirmPasswordBloc(
           authenticationRepository: gh<_i474.AuthenticationRepository>(),
           profileRepository: gh<_i111.ProfileRepository>(),
+        ));
+    gh.factory<_i266.SelectCardBloc>(() => _i266.SelectCardBloc(
+          cardRepository: gh<_i831.CardRepository>(),
+          addressRepository: gh<_i648.AddressRepository>(),
         ));
     gh.factory<_i67.VerifyPasswordBloc>(() => _i67.VerifyPasswordBloc(
           authenticationRepository: gh<_i474.AuthenticationRepository>(),

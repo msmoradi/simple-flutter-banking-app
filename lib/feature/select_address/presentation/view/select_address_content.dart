@@ -1,8 +1,6 @@
 import 'package:banx/core/designsystem/widgets/button/fill/full_fill_button.dart';
 import 'package:banx/core/designsystem/widgets/components/address_row.dart';
 import 'package:banx/core/domain/entities/address_entity.dart';
-import 'package:banx/feature/card_order/presentation/bloc/card_order_bloc.dart';
-import 'package:banx/feature/select_address/presentation/bloc/select_address_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 

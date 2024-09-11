@@ -1,3 +1,4 @@
+import 'package:banx/core/domain/entities/address_entity.dart';
 import 'package:banx/feature/add_address/presentation/view/add_address_content.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -6,12 +7,12 @@ import 'package:get_it/get_it.dart';
 import '../bloc/add_address_bloc.dart';
 
 class AddAddressPage extends StatelessWidget {
-  final Function(String) onNext;
+  final Function(AddressEntity) onSelectDeliveryTime;
   final Function(String) showMessage;
 
   const AddAddressPage({
     super.key,
-    required this.onNext,
+    required this.onSelectDeliveryTime,
     required this.showMessage,
   });
 
@@ -23,8 +24,8 @@ class AddAddressPage extends StatelessWidget {
         listener: (context, state) {
           if (state is AddAddressFailure) {
             showMessage(state.message);
-          } else if (state is AddAddressSuccess) {
-            onNext(state.address);
+          } else if (state is SelectDeliveryTime) {
+            onSelectDeliveryTime(state.address);
           }
         },
         builder: (context, state) {

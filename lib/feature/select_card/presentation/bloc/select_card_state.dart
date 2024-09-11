@@ -12,10 +12,13 @@ class SelectCardState with _$SelectCardState {
 
   const factory SelectCardState.addAddress() = AddAddress;
 
-  const factory SelectCardState.selectAddress(
-      {required List<AddressEntity> addressList}) = SelectAddress;
+  const factory SelectCardState.selectAddress({
+    required List<AddressEntity> addressList,
+    required int cardTypeId,
+  }) = SelectAddress;
 
   const factory SelectCardState.selectCardSuccess({
+    required int id,
     required String title,
     required String description,
     required String priceLabel,

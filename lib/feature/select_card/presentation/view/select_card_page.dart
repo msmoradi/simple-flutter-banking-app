@@ -11,7 +11,7 @@ import 'package:get_it/get_it.dart';
 
 class SelectCardPage extends StatelessWidget {
   final Function() onAddAddress;
-  final Function(List<AddressEntity>) onSelectAddress;
+  final Function(List<AddressEntity>, int) onSelectAddress;
   final Function(String) showMessage;
 
   const SelectCardPage({
@@ -30,7 +30,8 @@ class SelectCardPage extends StatelessWidget {
           state.whenOrNull(
             selectCardFailure: (message) => showMessage(message),
             addAddress: () => onAddAddress(),
-            selectAddress: (addressList) => onSelectAddress(addressList),
+            selectAddress: (addressList, cardTypeId) =>
+                onSelectAddress(addressList, cardTypeId),
           );
         },
         builder: (context, state) {
@@ -43,15 +44,15 @@ class SelectCardPage extends StatelessWidget {
             firstName: "firstName",
             lastName: "lastName",
             title: state.maybeWhen(
-              selectCardSuccess: (title, _, __, ___) => title,
+              selectCardSuccess: (_, title, __, ___, ____) => title,
               orElse: () => "",
             ),
             description: state.maybeWhen(
-              selectCardSuccess: (_, description, __, ___) => description,
+              selectCardSuccess: (_, __, description, ___, ____) => description,
               orElse: () => "",
             ),
             priceLabel: state.maybeWhen(
-              selectCardSuccess: (_, __, priceLabel, ___) => priceLabel,
+              selectCardSuccess: (_, __, ___, priceLabel, ____) => priceLabel,
               orElse: () => "",
             ),
           );

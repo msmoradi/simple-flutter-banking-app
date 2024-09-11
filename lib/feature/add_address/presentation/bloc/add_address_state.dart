@@ -24,10 +24,10 @@ class AddAddressValidated extends AddAddressState {
   List<Object?> get props => [];
 }
 
-class AddAddressSuccess extends AddAddressState {
-  final String address;
+class SelectDeliveryTime extends AddAddressState {
+  final AddressEntity address;
 
-  const AddAddressSuccess({required this.address});
+  const SelectDeliveryTime({required this.address});
 
   @override
   List<Object?> get props => [];

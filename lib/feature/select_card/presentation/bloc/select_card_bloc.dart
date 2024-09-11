@@ -31,15 +31,12 @@ class SelectCardBloc extends Bloc<SelectCardEvent, SelectCardState> {
     Emitter<SelectCardState> emit,
   ) async {
     state.whenOrNull(
-      selectCardSuccess: (_, __, priceLabel, ___) {
-        final selectCardSuccess = (state as SelectCardSuccess);
-        if (selectCardSuccess.addressList.isEmpty) {
+      selectCardSuccess: (id, _, __, ___, addressList) {
+        if (addressList.isEmpty) {
           emit(const AddAddress());
         } else {
           emit(
-            SelectAddress(
-              addressList: selectCardSuccess.addressList,
-            ),
+            SelectAddress(addressList: addressList, cardTypeId: id),
           );
         }
       },
@@ -77,6 +74,7 @@ class SelectCardBloc extends Bloc<SelectCardEvent, SelectCardState> {
         emit(
           SelectCardSuccess(
               title: card.title,
+              id: card.id,
               description: card.description,
               priceLabel: card.priceLabel,
               addressList: addressList),

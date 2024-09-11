@@ -15,11 +15,14 @@ class SelectCardPageFactory {
   }) {
     return SelectCardPage(
       showMessage: showMessage,
-      onSelectAddress: (addressList) {
-        context.push(SelectAddressPageFactory.path,
-            extra: SelectAddressExtra(
-              addressList: addressList,
-            ));
+      onSelectAddress: (addressList, cardTypeId) {
+        context.push(
+          SelectAddressPageFactory.path,
+          extra: SelectAddressExtra(
+            addressList: addressList,
+            cardTypeId: cardTypeId,
+          ),
+        );
       },
       onAddAddress: () {
         context.push(

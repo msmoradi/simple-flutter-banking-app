@@ -1,3 +1,4 @@
+import 'package:banx/core/domain/entities/address_entity.dart';
 import 'package:banx/core/domain/repository/address_repository.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
@@ -26,9 +27,9 @@ class AddAddressBloc extends Bloc<AddAddressEvent, AddAddressState> {
       final response =
           await addressRepository.getInquiry(postalCode: event.postalCode);
       response.when(
-          success: (response) {
+          success: (entity) {
             emit(
-              AddAddressSuccess(address: response.address),
+              SelectDeliveryTime(address: entity),
             );
           },
           partialSuccess: (message) => emit(AddAddressFailure(message)),

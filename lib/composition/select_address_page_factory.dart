@@ -1,4 +1,5 @@
 import 'package:banx/composition/add_address_page_factory.dart';
+import 'package:banx/composition/card_delivery_time_page_factory.dart';
 import 'package:banx/core/domain/entities/address_entity.dart';
 import 'package:banx/feature/select_address/presentation/view/select_address_page.dart';
 import 'package:flutter/cupertino.dart';
@@ -16,6 +17,14 @@ class SelectAddressPageFactory {
     return SelectAddressPage(
       showMessage: showMessage,
       addressList: extra.addressList,
+      addressSelected: (address) {
+        context.push(CardDeliveryTimePageFactory.path,
+            extra: CardDeliveryTimeExtra(
+              address: address,
+              cardTypeId: extra.cardTypeId,
+              cardShippingTimeSlots: [],
+            ));
+      },
       onAddAddress: () {
         context.push(
           AddAddressPageFactory.path,
@@ -31,10 +40,7 @@ class SelectAddressPageFactory {
     return GoRoute(
         path: (SelectAddressPageFactory.path),
         builder: (ctx, state) {
-          final extra = state.extra != null
-              ? state.extra as SelectAddressExtra
-              : SelectAddressExtra(addressList: []);
-
+          final extra = state.extra as SelectAddressExtra;
           return SelectAddressPageFactory.builder(
             context: ctx,
             state: state,
@@ -48,8 +54,10 @@ class SelectAddressPageFactory {
 
 class SelectAddressExtra {
   final List<AddressEntity> addressList;
+  final int cardTypeId;
 
   SelectAddressExtra({
     required this.addressList,
+    required this.cardTypeId,
   });
 }
