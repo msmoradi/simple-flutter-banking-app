@@ -1,27 +1,28 @@
 import 'package:banx/composition/card_delivery_time_page_factory.dart';
-import 'package:banx/feature/add_address/presentation/view/add_address_page.dart';
+import 'package:banx/feature/check_postal_code/presentation/view/check_postal_code_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 
-class AddAddressPageFactory {
+class CheckPostalCodePageFactory {
   static const path = "/add_address";
 
-  static AddAddressPage builder(
+  static CheckPostalCodePage builder(
       {required BuildContext context,
       required GoRouterState state,
-      required AddAddressExtra extra,
+      required CheckPostalCodeExtra extra,
       required Function(String message) showMessage}) {
-    return AddAddressPage(
+    return CheckPostalCodePage(
       showMessage: showMessage,
-      onSelectDeliveryTime: (address) {
-        context.push(
+      onAddAddress: (address) {
+        // TODO push add address page
+        /*context.push(
           CardDeliveryTimePageFactory.path,
           extra: CardDeliveryTimeExtra(
             address: address,
             cardTypeId: extra.cardTypeId,
             cardShippingTimeSlots: [],
           ),
-        );
+        );*/
       },
     );
   }
@@ -31,10 +32,10 @@ class AddAddressPageFactory {
     required Function(String message) showMessage,
   }) {
     return GoRoute(
-        path: (AddAddressPageFactory.path),
+        path: (CheckPostalCodePageFactory.path),
         builder: (ctx, state) {
-          final extra = state.extra as AddAddressExtra;
-          return AddAddressPageFactory.builder(
+          final extra = state.extra as CheckPostalCodeExtra;
+          return CheckPostalCodePageFactory.builder(
             context: ctx,
             state: state,
             extra: extra,
@@ -45,10 +46,10 @@ class AddAddressPageFactory {
   }
 }
 
-class AddAddressExtra {
+class CheckPostalCodeExtra {
   final int cardTypeId;
 
-  AddAddressExtra({
+  CheckPostalCodeExtra({
     required this.cardTypeId,
   });
 }

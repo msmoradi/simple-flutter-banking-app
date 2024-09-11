@@ -1,19 +1,19 @@
 import 'package:banx/core/designsystem/widgets/button/fill/full_fill_button.dart';
 import 'package:banx/core/designsystem/widgets/textfields/postal_code_text_field.dart';
-import 'package:banx/feature/add_address/presentation/bloc/add_address_bloc.dart';
+import 'package:banx/feature/check_postal_code/presentation/bloc/check_postal_code_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class AddAddressContent extends StatefulWidget {
+class CheckPostalCodeContent extends StatefulWidget {
   final bool showLoading;
 
-  const AddAddressContent({super.key, required this.showLoading});
+  const CheckPostalCodeContent({super.key, required this.showLoading});
 
   @override
-  State<AddAddressContent> createState() => _AddAddressContentState();
+  State<CheckPostalCodeContent> createState() => _CheckPostalCodeContentState();
 }
 
-class _AddAddressContentState extends State<AddAddressContent> {
+class _CheckPostalCodeContentState extends State<CheckPostalCodeContent> {
   final _formKey = GlobalKey<FormState>();
   String? _postalCode = "";
 
@@ -60,7 +60,7 @@ class _AddAddressContentState extends State<AddAddressContent> {
                     _formKey.currentState?.save();
                     FocusManager.instance.primaryFocus?.unfocus();
                     context
-                        .read<AddAddressBloc>()
+                        .read<CheckPostalCodeBloc>()
                         .add(CheckPostalCodeSubmitted(_postalCode!));
                   }
                 },

@@ -1,4 +1,4 @@
-import 'package:banx/composition/add_address_page_factory.dart';
+import 'package:banx/composition/check_postal_code_page_factory.dart';
 import 'package:banx/composition/select_address_page_factory.dart';
 import 'package:banx/feature/select_card/presentation/view/select_card_page.dart';
 import 'package:flutter/cupertino.dart';
@@ -10,7 +10,6 @@ class SelectCardPageFactory {
   static SelectCardPage builder({
     required BuildContext context,
     required GoRouterState state,
-    required SelectCardExtra? extra,
     required Function(String message) showMessage,
   }) {
     return SelectCardPage(
@@ -24,9 +23,10 @@ class SelectCardPageFactory {
           ),
         );
       },
-      onAddAddress: () {
+      onCheckPostalCode: (cardTypeId) {
         context.push(
-          AddAddressPageFactory.path,
+          CheckPostalCodePageFactory.path,
+          extra: CheckPostalCodeExtra(cardTypeId: cardTypeId),
         );
       },
     );
@@ -39,22 +39,12 @@ class SelectCardPageFactory {
     return GoRoute(
         path: (SelectCardPageFactory.path),
         builder: (ctx, state) {
-          final extra = state.extra as SelectCardExtra?;
           return SelectCardPageFactory.builder(
             context: ctx,
             state: state,
-            extra: extra,
             showMessage: showMessage,
           );
         },
         routes: routes);
   }
-}
-
-class SelectCardExtra {
-  final String sessionId;
-
-  SelectCardExtra({
-    required this.sessionId,
-  });
 }

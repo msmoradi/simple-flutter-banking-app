@@ -59,11 +59,11 @@ import 'package:banx/core/networking/interceptors/token_interceptor.dart'
 import 'package:banx/core/utils/configurations/banx_config.dart' as _i962;
 import 'package:banx/core/utils/localauth/local_auth_helper.dart' as _i877;
 import 'package:banx/di.dart' as _i0;
-import 'package:banx/feature/add_address/presentation/bloc/add_address_bloc.dart'
-    as _i759;
 import 'package:banx/feature/assist/presentation/bloc/assist_bloc.dart' as _i20;
 import 'package:banx/feature/card_delivery_time/presentation/bloc/card_delivery_time_bloc.dart'
     as _i501;
+import 'package:banx/feature/check_postal_code/presentation/bloc/check_postal_code_bloc.dart'
+    as _i230;
 import 'package:banx/feature/confirm_password/presentation/bloc/confirm_password_bloc.dart'
     as _i339;
 import 'package:banx/feature/enable_biometric/presentation/bloc/enable_biometric_bloc.dart'
@@ -176,11 +176,11 @@ extension GetItInjectableX on _i174.GetIt {
               tokenRepository: gh<_i232.TokenRepository>(),
               profileRepository: gh<_i111.ProfileRepository>(),
             ));
-    gh.factory<_i759.AddAddressBloc>(() =>
-        _i759.AddAddressBloc(addressRepository: gh<_i648.AddressRepository>()));
     gh.factory<_i61.NationalSerialBloc>(() => _i61.NationalSerialBloc(
         addressRepository: gh<_i648.AddressRepository>()));
     gh.factory<_i922.SelectAddressBloc>(() => _i922.SelectAddressBloc(
+        addressRepository: gh<_i648.AddressRepository>()));
+    gh.factory<_i230.CheckPostalCodeBloc>(() => _i230.CheckPostalCodeBloc(
         addressRepository: gh<_i648.AddressRepository>()));
     gh.lazySingleton<_i831.CardRepository>(() => _i339.CardRepositoryImpl(
           cardRemoteDataSource: gh<_i521.CardRemoteDataSource>(),

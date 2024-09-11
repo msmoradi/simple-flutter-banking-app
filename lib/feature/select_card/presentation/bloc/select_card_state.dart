@@ -10,7 +10,9 @@ class SelectCardState with _$SelectCardState {
 
   const factory SelectCardState.selectCardInProgress() = SelectCardInProgress;
 
-  const factory SelectCardState.addAddress() = AddAddress;
+  const factory SelectCardState.checkPostalCode({
+    required int cardTypeId,
+  }) = CheckPostalCode;
 
   const factory SelectCardState.selectAddress({
     required List<AddressEntity> addressList,

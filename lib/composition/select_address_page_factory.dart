@@ -1,4 +1,4 @@
-import 'package:banx/composition/add_address_page_factory.dart';
+import 'package:banx/composition/check_postal_code_page_factory.dart';
 import 'package:banx/composition/card_delivery_time_page_factory.dart';
 import 'package:banx/core/domain/entities/address_entity.dart';
 import 'package:banx/feature/select_address/presentation/view/select_address_page.dart';
@@ -27,7 +27,8 @@ class SelectAddressPageFactory {
       },
       onAddAddress: () {
         context.push(
-          AddAddressPageFactory.path,
+          CheckPostalCodePageFactory.path,
+          extra: CheckPostalCodeExtra(cardTypeId: extra.cardTypeId),
         );
       },
     );

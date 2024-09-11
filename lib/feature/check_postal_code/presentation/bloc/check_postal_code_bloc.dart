@@ -5,38 +5,38 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 
-part 'add_address_event.dart';
-part 'add_address_state.dart';
+part 'check_postal_code_event.dart';
+
+part 'check_postal_code_state.dart';
 
 @injectable
-class AddAddressBloc extends Bloc<AddAddressEvent, AddAddressState> {
+class CheckPostalCodeBloc
+    extends Bloc<CheckPostalCodeEvent, CheckPostalCodeState> {
   final AddressRepository addressRepository;
 
-  AddAddressBloc({
+  CheckPostalCodeBloc({
     required this.addressRepository,
-  }) : super(AddAddressValidated()) {
+  }) : super(CheckPostalCodeValidated()) {
     on<CheckPostalCodeSubmitted>(_onCheckPostalCodeSubmitted);
   }
 
   Future<void> _onCheckPostalCodeSubmitted(
     CheckPostalCodeSubmitted event,
-    Emitter<AddAddressState> emit,
+    Emitter<CheckPostalCodeState> emit,
   ) async {
-    emit(AddAddressInProgress());
+    emit(CheckPostalCodeInProgress());
     try {
       final response =
           await addressRepository.getInquiry(postalCode: event.postalCode);
       response.when(
-          success: (entity) {
-            emit(
-              SelectDeliveryTime(address: entity),
-            );
-          },
-          partialSuccess: (message) => emit(AddAddressFailure(message)),
+          success: (entity) => emit(
+                AddAddress(address: entity),
+              ),
+          partialSuccess: (message) => emit(CheckPostalCodeFailure(message)),
           networkError: (exception) =>
-              emit(AddAddressFailure(exception.toString())));
+              emit(CheckPostalCodeFailure(exception.toString())));
     } catch (e) {
-      emit(AddAddressFailure(e.toString()));
+      emit(CheckPostalCodeFailure(e.toString()));
     }
   }
 }

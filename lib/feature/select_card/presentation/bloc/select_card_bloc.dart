@@ -33,7 +33,9 @@ class SelectCardBloc extends Bloc<SelectCardEvent, SelectCardState> {
     state.whenOrNull(
       selectCardSuccess: (id, _, __, ___, addressList) {
         if (addressList.isEmpty) {
-          emit(const AddAddress());
+          emit(
+            CheckPostalCode(cardTypeId: id),
+          );
         } else {
           emit(
             SelectAddress(addressList: addressList, cardTypeId: id),

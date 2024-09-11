@@ -10,13 +10,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 
 class SelectCardPage extends StatelessWidget {
-  final Function() onAddAddress;
+  final Function(int) onCheckPostalCode;
   final Function(List<AddressEntity>, int) onSelectAddress;
   final Function(String) showMessage;
 
   const SelectCardPage({
     super.key,
-    required this.onAddAddress,
+    required this.onCheckPostalCode,
     required this.onSelectAddress,
     required this.showMessage,
   });
@@ -29,7 +29,7 @@ class SelectCardPage extends StatelessWidget {
         listener: (context, state) {
           state.whenOrNull(
             selectCardFailure: (message) => showMessage(message),
-            addAddress: () => onAddAddress(),
+            checkPostalCode: (cardTypeId) => onCheckPostalCode(cardTypeId),
             selectAddress: (addressList, cardTypeId) =>
                 onSelectAddress(addressList, cardTypeId),
           );
