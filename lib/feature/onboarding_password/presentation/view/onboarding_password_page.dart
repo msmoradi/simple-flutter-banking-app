@@ -35,40 +35,40 @@ class OnboardingPasswordPage extends StatelessWidget {
                 child: SingleChildScrollView(
                   child: Column(
                     children: [
+                      Align(
+                        alignment: Alignment.centerRight,
+                        child: Text(
+                          style:
+                              Theme.of(context).textTheme.bodyMedium?.copyWith(
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .onSurfaceVariant,
+                                  ),
+                          "دسترسی امن و سریع به حساب",
+                        ),
+                      ),
+                      const SizedBox(height: 80),
+                      const InfoTextRowWidget(
+                        iconAsset: 'assets/icons/unlock.svg',
+                        title: 'تعریف رمز ۴ رقمی',
+                        subtitle:
+                            'برای دسترسی به حساب خود در بنکس، باید یک رمز ورود ۴ رقمی تعریف کنید',
+                      ),
+                      const SizedBox(height: 30),
+                      const InfoTextRowWidget(
+                        iconAsset: 'assets/icons/faceid.svg',
+                        title: 'بایومتریک',
+                        subtitle:
+                            'با فعال‌سازی FaceID یا Fingerprint تلفن همراه خود از ویژگی ورود سریع با سنسور بایومتریک استفاده کنید',
+                      ),
+                      const SizedBox(height: 50),
                       Image.asset(
-                        "assets/images/image-key.png",
+                        "assets/images/lock_img.png",
                         fit: BoxFit.fitWidth,
                         width: double.infinity,
                         alignment: Alignment.center,
                       ),
-                      const SizedBox(height: 24),
-                      Align(
-                        alignment: Alignment.centerRight,
-                        child: Text(
-                          style: Theme.of(context)
-                              .textTheme
-                              .headlineMedium
-                              ?.copyWith(
-                                fontWeight: FontWeight.bold,
-                                color: Theme.of(context).colorScheme.primary,
-                              ),
-                          "دسترسی امن و سریع به حساب",
-                        ),
-                      ),
                       const SizedBox(height: 50),
-                      const InfoTextRowWidget(
-                        iconAsset: 'assets/icons/check-circle.svg',
-                        title: 'تعریف رمز ۴ تا ۶ رقمی',
-                        subtitle:
-                            'برای دسترسی به حساب BNAX خود باید  یک رمز ورود ۴ تا ۶ رقمی تعریف کنید',
-                      ),
-                      const SizedBox(height: 24),
-                      const InfoTextRowWidget(
-                        iconAsset: 'assets/icons/check-circle.svg',
-                        title: 'فعال‌سازی ورود بیومتریک',
-                        subtitle:
-                            'با فعال‌سازی FaceID یا Fingerprint تلفن همراه خود از ویژگی ورود سریع به وسیله سنسور بیومتریک دستگاه خود استفاده کنید',
-                      ),
                     ],
                   ),
                 ),
