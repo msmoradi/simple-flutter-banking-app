@@ -1,5 +1,4 @@
 import 'package:banx/composition/add_address_page_factory.dart';
-import 'package:banx/composition/card_delivery_time_page_factory.dart';
 import 'package:banx/feature/check_postal_code/presentation/view/check_postal_code_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';

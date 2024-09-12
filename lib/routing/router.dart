@@ -1,4 +1,5 @@
 import 'package:banx/composition/add_address_page_factory.dart';
+import 'package:banx/composition/card_activation_otp_page_factory.dart';
 import 'package:banx/composition/check_postal_code_page_factory.dart';
 import 'package:banx/composition/select_address_page_factory.dart';
 import 'package:banx/composition/card_delivery_time_page_factory.dart';
@@ -43,6 +44,7 @@ GoRouter getRouterConfig({
       OnboardingPasswordPageFactory.route(showMessage: showMessage),
       CreatePasswordPageFactory.route(showMessage: showMessage),
       CheckPostalCodePageFactory.route(showMessage: showMessage),
+      CardActivationOtpPageFactory.route(showMessage: showMessage),
       SelectAddressPageFactory.route(
         showMessage: showMessage,
       ),
