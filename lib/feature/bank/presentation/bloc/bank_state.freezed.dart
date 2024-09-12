@@ -19,6 +19,7 @@ mixin _$BankState {
   BankStatus get status => throw _privateConstructorUsedError;
   BankCardStatus get bankCardStatus => throw _privateConstructorUsedError;
   List<Widget> get widgets => throw _privateConstructorUsedError;
+  String get errorMessage => throw _privateConstructorUsedError;
 
   /// Create a copy of BankState
   /// with the given fields replaced by the non-null parameter values.
@@ -33,7 +34,10 @@ abstract class $BankStateCopyWith<$Res> {
       _$BankStateCopyWithImpl<$Res, BankState>;
   @useResult
   $Res call(
-      {BankStatus status, BankCardStatus bankCardStatus, List<Widget> widgets});
+      {BankStatus status,
+      BankCardStatus bankCardStatus,
+      List<Widget> widgets,
+      String errorMessage});
 }
 
 /// @nodoc
@@ -54,6 +58,7 @@ class _$BankStateCopyWithImpl<$Res, $Val extends BankState>
     Object? status = null,
     Object? bankCardStatus = null,
     Object? widgets = null,
+    Object? errorMessage = null,
   }) {
     return _then(_value.copyWith(
       status: null == status
@@ -68,6 +73,10 @@ class _$BankStateCopyWithImpl<$Res, $Val extends BankState>
           ? _value.widgets
           : widgets // ignore: cast_nullable_to_non_nullable
               as List<Widget>,
+      errorMessage: null == errorMessage
+          ? _value.errorMessage
+          : errorMessage // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -81,7 +90,10 @@ abstract class _$$BankStateImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {BankStatus status, BankCardStatus bankCardStatus, List<Widget> widgets});
+      {BankStatus status,
+      BankCardStatus bankCardStatus,
+      List<Widget> widgets,
+      String errorMessage});
 }
 
 /// @nodoc
@@ -100,6 +112,7 @@ class __$$BankStateImplCopyWithImpl<$Res>
     Object? status = null,
     Object? bankCardStatus = null,
     Object? widgets = null,
+    Object? errorMessage = null,
   }) {
     return _then(_$BankStateImpl(
       status: null == status
@@ -114,6 +127,10 @@ class __$$BankStateImplCopyWithImpl<$Res>
           ? _value._widgets
           : widgets // ignore: cast_nullable_to_non_nullable
               as List<Widget>,
+      errorMessage: null == errorMessage
+          ? _value.errorMessage
+          : errorMessage // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -124,7 +141,8 @@ class _$BankStateImpl extends _BankState {
   const _$BankStateImpl(
       {required this.status,
       required this.bankCardStatus,
-      required final List<Widget> widgets})
+      required final List<Widget> widgets,
+      required this.errorMessage})
       : _widgets = widgets,
         super._();
 
@@ -141,8 +159,11 @@ class _$BankStateImpl extends _BankState {
   }
 
   @override
+  final String errorMessage;
+
+  @override
   String toString() {
-    return 'BankState(status: $status, bankCardStatus: $bankCardStatus, widgets: $widgets)';
+    return 'BankState(status: $status, bankCardStatus: $bankCardStatus, widgets: $widgets, errorMessage: $errorMessage)';
   }
 
   @override
@@ -153,12 +174,14 @@ class _$BankStateImpl extends _BankState {
             (identical(other.status, status) || other.status == status) &&
             (identical(other.bankCardStatus, bankCardStatus) ||
                 other.bankCardStatus == bankCardStatus) &&
-            const DeepCollectionEquality().equals(other._widgets, _widgets));
+            const DeepCollectionEquality().equals(other._widgets, _widgets) &&
+            (identical(other.errorMessage, errorMessage) ||
+                other.errorMessage == errorMessage));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, status, bankCardStatus,
-      const DeepCollectionEquality().hash(_widgets));
+      const DeepCollectionEquality().hash(_widgets), errorMessage);
 
   /// Create a copy of BankState
   /// with the given fields replaced by the non-null parameter values.
@@ -173,7 +196,8 @@ abstract class _BankState extends BankState {
   const factory _BankState(
       {required final BankStatus status,
       required final BankCardStatus bankCardStatus,
-      required final List<Widget> widgets}) = _$BankStateImpl;
+      required final List<Widget> widgets,
+      required final String errorMessage}) = _$BankStateImpl;
   const _BankState._() : super._();
 
   @override
@@ -182,6 +206,8 @@ abstract class _BankState extends BankState {
   BankCardStatus get bankCardStatus;
   @override
   List<Widget> get widgets;
+  @override
+  String get errorMessage;
 
   /// Create a copy of BankState
   /// with the given fields replaced by the non-null parameter values.

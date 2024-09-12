@@ -14,12 +14,18 @@ class BankBloc extends Bloc<BankEvent, BankState> {
           status: BankStatus.initial,
           bankCardStatus: BankCardStatus.ordered,
           widgets: [],
+          errorMessage: '',
         )) {
     on<BankXClick>(_onBankXClick);
   }
 
   Future<void> _onBankXClick(BankXClick event, Emitter<BankState> emit) async {
     try {
+      if (state.bankCardStatus == BankCardStatus.delivered) {
+        emit(state.copyWith(status: BankStatus.cardActivation));
+        return;
+      }
+
       emit(state.copyWith(status: BankStatus.loading));
       await Future.delayed(const Duration(seconds: 2));
       if (state.bankCardStatus == BankCardStatus.ordered) {
@@ -29,13 +35,14 @@ class BankBloc extends Bloc<BankEvent, BankState> {
         emit(state.copyWith(
             status: BankStatus.initial,
             bankCardStatus: BankCardStatus.delivered));
-      } else if (state.bankCardStatus == BankCardStatus.delivered) {
-        emit(state.copyWith(
-            status: BankStatus.initial,
-            bankCardStatus: BankCardStatus.activated));
       }
-    } catch (_) {
-      emit(state.copyWith(status: BankStatus.failure));
+    } catch (e) {
+      emit(
+        state.copyWith(
+          status: BankStatus.failure,
+          errorMessage: e.toString(),
+        ),
+      );
     }
   }
 }

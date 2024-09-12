@@ -63,6 +63,10 @@ import 'package:banx/feature/add_address/presentation/bloc/add_address_bloc.dart
     as _i759;
 import 'package:banx/feature/assist/presentation/bloc/assist_bloc.dart' as _i20;
 import 'package:banx/feature/bank/presentation/bloc/bank_bloc.dart' as _i864;
+import 'package:banx/feature/card_activation/presentation/bloc/card_activation_bloc.dart'
+    as _i582;
+import 'package:banx/feature/card_activation_otp/presentation/bloc/card_activation_otp_bloc.dart'
+    as _i260;
 import 'package:banx/feature/card_delivery_time/presentation/bloc/card_delivery_time_bloc.dart'
     as _i501;
 import 'package:banx/feature/check_postal_code/presentation/bloc/check_postal_code_bloc.dart'
@@ -205,6 +209,10 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i402.PhoneBloc>(() => _i402.PhoneBloc(
         authenticationRepository: gh<_i474.AuthenticationRepository>()));
     gh.factory<_i618.KycStatusBloc>(() => _i618.KycStatusBloc(
+        authenticationRepository: gh<_i474.AuthenticationRepository>()));
+    gh.factory<_i582.CardActivationBloc>(() => _i582.CardActivationBloc(
+        authenticationRepository: gh<_i474.AuthenticationRepository>()));
+    gh.factory<_i260.CardActivationOtpBloc>(() => _i260.CardActivationOtpBloc(
         authenticationRepository: gh<_i474.AuthenticationRepository>()));
     gh.factory<_i339.ConfirmPasswordBloc>(() => _i339.ConfirmPasswordBloc(
           authenticationRepository: gh<_i474.AuthenticationRepository>(),

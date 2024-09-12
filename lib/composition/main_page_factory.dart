@@ -1,3 +1,4 @@
+import 'package:banx/composition/card_activation_page_factory.dart';
 import 'package:banx/feature/main/presentation/view/main_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
@@ -10,7 +11,12 @@ class MainPageFactory {
       required GoRouterState state,
       required MainExtra? extra,
       required Function(String message) showMessage}) {
-    return const MainPage();
+    return MainPage(
+      showMessage: showMessage,
+      cardActivation: () {
+        context.push(CardActivationPageFactory.path);
+      },
+    );
   }
 
   static GoRoute route({

@@ -4,7 +4,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'bank_state.freezed.dart';
 
-enum BankStatus { initial, success, failure, loading }
+enum BankStatus { initial, success, failure, loading, cardActivation }
 
 enum BankCardStatus {
   ordered, // سفارش داده شده
@@ -22,6 +22,7 @@ class BankState with _$BankState {
     required BankStatus status,
     required BankCardStatus bankCardStatus,
     required List<Widget> widgets,
+    required String errorMessage,
   }) = _BankState;
 
   bool get showCardDeliveryButton {

@@ -5,8 +5,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 
 class MainPage extends StatelessWidget {
+  final Function(String) showMessage;
+  final VoidCallback cardActivation;
+
   const MainPage({
     super.key,
+    required this.showMessage,
+    required this.cardActivation,
   });
 
   @override
@@ -15,7 +20,10 @@ class MainPage extends StatelessWidget {
       create: (context) => GetIt.instance<MainBloc>(),
       child: BlocBuilder<MainBloc, MainState>(
         builder: (context, state) {
-          return const MainContent();
+          return MainContent(
+            showMessage: showMessage,
+            cardActivation: cardActivation,
+          );
         },
       ),
     );

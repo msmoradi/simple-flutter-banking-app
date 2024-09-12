@@ -5,7 +5,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class MainContent extends StatefulWidget {
-  const MainContent({super.key});
+  final Function(String) showMessage;
+  final VoidCallback cardActivation;
+
+  const MainContent({
+    super.key,
+    required this.showMessage,
+    required this.cardActivation,
+  });
 
   @override
   State<MainContent> createState() => _MainContentState();
@@ -24,7 +31,10 @@ class _MainContentState extends State<MainContent> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: [
-        const BankPage(),
+        BankPage(
+          showMessage: widget.showMessage,
+          cardActivation: widget.cardActivation,
+        ),
         const Center(child: Text('انتقال')),
         const HomePage(),
         const Center(child: Text('دستیار')),
