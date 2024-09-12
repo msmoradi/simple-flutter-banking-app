@@ -6,3 +6,6 @@ abstract class BankEvent extends Equatable {
   @override
   List<Object> get props => [];
 }
+
+
+class BankXClick extends BankEvent {}

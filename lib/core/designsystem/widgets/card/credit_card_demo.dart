@@ -9,12 +9,14 @@ class CreditCardDemo extends StatefulWidget {
   final bool flipOnTouch;
   final double scale;
   final int quarterTurns;
+  final String frontPath;
 
   const CreditCardDemo(
       {super.key,
-      required this.flipOnTouch,
+      this.flipOnTouch = false,
       this.scale = 1.0,
-      this.quarterTurns = 0});
+      this.quarterTurns = 0,
+      this.frontPath = 'assets/images/banx-card-active-balance.png'});
 
   @override
   State<CreditCardDemo> createState() => _CreditCardState();
@@ -45,7 +47,7 @@ class _CreditCardState extends State<CreditCardDemo> {
             fill: Fill.fillFront,
             direction: FlipDirection.HORIZONTAL,
             front: Image.asset(
-              "assets/images/banx-card-active-balance.png",
+              widget.frontPath,
               fit: BoxFit.fitWidth,
               width: cardWidth,
               height: cardHeight,

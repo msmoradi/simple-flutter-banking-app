@@ -1,12 +1,41 @@
+import 'dart:async';
+
+import 'package:banx/feature/bank/presentation/bloc/bank_state.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 
 part 'bank_event.dart';
-part 'bank_state.dart';
 
 @injectable
 class BankBloc extends Bloc<BankEvent, BankState> {
-  BankBloc() : super(const BankSuccess());
+  BankBloc()
+      : super(const BankState(
+          status: BankStatus.initial,
+          bankCardStatus: BankCardStatus.ordered,
+          widgets: [],
+        )) {
+    on<BankXClick>(_onBankXClick);
+  }
+
+  Future<void> _onBankXClick(BankXClick event, Emitter<BankState> emit) async {
+    try {
+      emit(state.copyWith(status: BankStatus.loading));
+      await Future.delayed(const Duration(seconds: 2));
+      if (state.bankCardStatus == BankCardStatus.ordered) {
+        emit(state.copyWith(
+            status: BankStatus.initial, bankCardStatus: BankCardStatus.issued));
+      } else if (state.bankCardStatus == BankCardStatus.issued) {
+        emit(state.copyWith(
+            status: BankStatus.initial,
+            bankCardStatus: BankCardStatus.delivered));
+      } else if (state.bankCardStatus == BankCardStatus.delivered) {
+        emit(state.copyWith(
+            status: BankStatus.initial,
+            bankCardStatus: BankCardStatus.activated));
+      }
+    } catch (_) {
+      emit(state.copyWith(status: BankStatus.failure));
+    }
+  }
 }

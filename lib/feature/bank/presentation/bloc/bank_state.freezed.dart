@@ -1,0 +1,192 @@
+// coverage:ignore-file
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
+
+part of 'bank_state.dart';
+
+// **************************************************************************
+// FreezedGenerator
+// **************************************************************************
+
+T _$identity<T>(T value) => value;
+
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+
+/// @nodoc
+mixin _$BankState {
+  BankStatus get status => throw _privateConstructorUsedError;
+  BankCardStatus get bankCardStatus => throw _privateConstructorUsedError;
+  List<Widget> get transactions => throw _privateConstructorUsedError;
+
+  /// Create a copy of BankState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $BankStateCopyWith<BankState> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $BankStateCopyWith<$Res> {
+  factory $BankStateCopyWith(BankState value, $Res Function(BankState) then) =
+      _$BankStateCopyWithImpl<$Res, BankState>;
+  @useResult
+  $Res call(
+      {BankStatus status, BankCardStatus bankCardStatus, List<Widget> widgets});
+}
+
+/// @nodoc
+class _$BankStateCopyWithImpl<$Res, $Val extends BankState>
+    implements $BankStateCopyWith<$Res> {
+  _$BankStateCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of BankState
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? status = null,
+    Object? bankCardStatus = null,
+    Object? widgets = null,
+  }) {
+    return _then(_value.copyWith(
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as BankStatus,
+      bankCardStatus: null == bankCardStatus
+          ? _value.bankCardStatus
+          : bankCardStatus // ignore: cast_nullable_to_non_nullable
+              as BankCardStatus,
+      widgets: null == widgets
+          ? _value.transactions
+          : widgets // ignore: cast_nullable_to_non_nullable
+              as List<Widget>,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$BankStateImplCopyWith<$Res>
+    implements $BankStateCopyWith<$Res> {
+  factory _$$BankStateImplCopyWith(
+          _$BankStateImpl value, $Res Function(_$BankStateImpl) then) =
+      __$$BankStateImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {BankStatus status, BankCardStatus bankCardStatus, List<Widget> widgets});
+}
+
+/// @nodoc
+class __$$BankStateImplCopyWithImpl<$Res>
+    extends _$BankStateCopyWithImpl<$Res, _$BankStateImpl>
+    implements _$$BankStateImplCopyWith<$Res> {
+  __$$BankStateImplCopyWithImpl(
+      _$BankStateImpl _value, $Res Function(_$BankStateImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of BankState
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? status = null,
+    Object? bankCardStatus = null,
+    Object? widgets = null,
+  }) {
+    return _then(_$BankStateImpl(
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as BankStatus,
+      bankCardStatus: null == bankCardStatus
+          ? _value.bankCardStatus
+          : bankCardStatus // ignore: cast_nullable_to_non_nullable
+              as BankCardStatus,
+      widgets: null == widgets
+          ? _value._widgets
+          : widgets // ignore: cast_nullable_to_non_nullable
+              as List<Widget>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$BankStateImpl extends _BankState {
+  const _$BankStateImpl(
+      {required this.status,
+      required this.bankCardStatus,
+      required final List<Widget> widgets})
+      : _widgets = widgets,
+        super._();
+
+  @override
+  final BankStatus status;
+  @override
+  final BankCardStatus bankCardStatus;
+  final List<Widget> _widgets;
+  @override
+  List<Widget> get transactions {
+    if (_widgets is EqualUnmodifiableListView) return _widgets;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_widgets);
+  }
+
+  @override
+  String toString() {
+    return 'BankState(status: $status, bankCardStatus: $bankCardStatus, widgets: $transactions)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$BankStateImpl &&
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.bankCardStatus, bankCardStatus) ||
+                other.bankCardStatus == bankCardStatus) &&
+            const DeepCollectionEquality().equals(other._widgets, _widgets));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, status, bankCardStatus,
+      const DeepCollectionEquality().hash(_widgets));
+
+  /// Create a copy of BankState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$BankStateImplCopyWith<_$BankStateImpl> get copyWith =>
+      __$$BankStateImplCopyWithImpl<_$BankStateImpl>(this, _$identity);
+}
+
+abstract class _BankState extends BankState {
+  const factory _BankState(
+      {required final BankStatus status,
+      required final BankCardStatus bankCardStatus,
+      required final List<Widget> widgets}) = _$BankStateImpl;
+  const _BankState._() : super._();
+
+  @override
+  BankStatus get status;
+  @override
+  BankCardStatus get bankCardStatus;
+  @override
+  List<Widget> get transactions;
+
+  /// Create a copy of BankState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$BankStateImplCopyWith<_$BankStateImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}

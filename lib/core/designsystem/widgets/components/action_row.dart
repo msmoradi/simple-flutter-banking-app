@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 class ActionRow extends StatelessWidget {
-  const ActionRow({super.key});
+  final VoidCallback? actionClick;
+
+  const ActionRow({super.key, this.actionClick});
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +34,7 @@ class ActionRow extends StatelessWidget {
               color: Theme.of(context).colorScheme.onPrimary,
               size: 24.0,
             ),
-            onPressed: () {},
+            onPressed: actionClick,
           ),
         ),
         const SizedBox(height: 10.0),

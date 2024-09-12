@@ -20,7 +20,9 @@ class _HomeContentState extends State<HomeContent> {
     const SizedBox(
       height: 24.0,
     ),
-    const ActionRow(),
+    ActionRow(
+      actionClick: () {},
+    ),
     const SizedBox(
       height: 30.0,
     ),
@@ -121,7 +123,9 @@ class _HomeContentState extends State<HomeContent> {
     const SizedBox(
       height: 24.0,
     ),
-    const ActionRow(),
+    ActionRow(
+      actionClick: () {},
+    ),
     const SizedBox(
       height: 30.0,
     ),
@@ -218,7 +222,9 @@ class _HomeContentState extends State<HomeContent> {
     const SizedBox(
       height: 24.0,
     ),
-    const ActionRow(),
+    ActionRow(
+      actionClick: () {},
+    ),
     const SizedBox(
       height: 30.0,
     ),
@@ -374,8 +380,7 @@ class _HomeContentState extends State<HomeContent> {
           slivers: [
             SliverAppBar(
               surfaceTintColor: Colors.transparent,
-              stretch: true,
-              expandedHeight: kToolbarHeight + 300,
+              expandedHeight: 344,
               flexibleSpace: PageView.custom(
                 onPageChanged: onPageChanged,
                 childrenDelegate: SliverChildListDelegate([
@@ -383,8 +388,10 @@ class _HomeContentState extends State<HomeContent> {
                     alignment: AlignmentDirectional.bottomCenter,
                     children: [
                       Image.asset(
-                        'assets/images/asset_shape.png',
+                        'assets/images/cash_banx.png',
                         fit: BoxFit.fitHeight,
+                        width: 393,
+                        height: 344,
                       ),
                       SizedBox(
                         width: double.infinity,
@@ -400,8 +407,10 @@ class _HomeContentState extends State<HomeContent> {
                     alignment: AlignmentDirectional.bottomCenter,
                     children: [
                       Image.asset(
-                        'assets/images/gold_asset_shape.png',
+                        'assets/images/gold_banx.png',
                         fit: BoxFit.fitHeight,
+                        width: 393,
+                        height: 344,
                       ),
                       SizedBox(
                         width: double.infinity,
@@ -417,8 +426,10 @@ class _HomeContentState extends State<HomeContent> {
                     alignment: AlignmentDirectional.bottomCenter,
                     children: [
                       Image.asset(
-                        'assets/images/asset_shape.png',
+                        'assets/images/saffron_banx.png',
                         fit: BoxFit.fitHeight,
+                        width: 393,
+                        height: 344,
                       ),
                       SizedBox(
                         width: double.infinity,
