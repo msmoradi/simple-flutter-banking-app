@@ -10,7 +10,7 @@ class ActionRow extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           _buildIconColumn(Icons.add, 'واریز', context),
           _buildIconColumn(Icons.arrow_downward, 'برداشت', context),
@@ -21,30 +21,32 @@ class ActionRow extends StatelessWidget {
     );
   }
 
-  Column _buildIconColumn(
+  Widget _buildIconColumn(
       IconData iconData, String label, BuildContext context) {
-    return Column(
-      children: [
-        CircleAvatar(
-          radius: 24.0,
-          backgroundColor: Theme.of(context).colorScheme.primary,
-          child: IconButton(
-            icon: Icon(
-              iconData,
-              color: Theme.of(context).colorScheme.onPrimary,
-              size: 24.0,
-            ),
-            onPressed: actionClick,
-          ),
-        ),
-        const SizedBox(height: 10.0),
-        Text(
-          label,
-          style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                color: Theme.of(context).colorScheme.onSurfaceVariant,
+    return Expanded(
+      child: Column(
+        children: [
+          CircleAvatar(
+            radius: 24.0,
+            backgroundColor: Theme.of(context).colorScheme.primary,
+            child: IconButton(
+              icon: Icon(
+                iconData,
+                color: Theme.of(context).colorScheme.onPrimary,
+                size: 24.0,
               ),
-        ),
-      ],
+              onPressed: actionClick,
+            ),
+          ),
+          const SizedBox(height: 10.0),
+          Text(
+            label,
+            style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                  color: Theme.of(context).colorScheme.onSurfaceVariant,
+                ),
+          ),
+        ],
+      ),
     );
   }
 }
