@@ -18,7 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$BankState {
   BankStatus get status => throw _privateConstructorUsedError;
   BankCardStatus get bankCardStatus => throw _privateConstructorUsedError;
-  List<Widget> get transactions => throw _privateConstructorUsedError;
+  List<Widget> get widgets => throw _privateConstructorUsedError;
 
   /// Create a copy of BankState
   /// with the given fields replaced by the non-null parameter values.
@@ -65,7 +65,7 @@ class _$BankStateCopyWithImpl<$Res, $Val extends BankState>
           : bankCardStatus // ignore: cast_nullable_to_non_nullable
               as BankCardStatus,
       widgets: null == widgets
-          ? _value.transactions
+          ? _value.widgets
           : widgets // ignore: cast_nullable_to_non_nullable
               as List<Widget>,
     ) as $Val);
@@ -134,7 +134,7 @@ class _$BankStateImpl extends _BankState {
   final BankCardStatus bankCardStatus;
   final List<Widget> _widgets;
   @override
-  List<Widget> get transactions {
+  List<Widget> get widgets {
     if (_widgets is EqualUnmodifiableListView) return _widgets;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_widgets);
@@ -142,7 +142,7 @@ class _$BankStateImpl extends _BankState {
 
   @override
   String toString() {
-    return 'BankState(status: $status, bankCardStatus: $bankCardStatus, widgets: $transactions)';
+    return 'BankState(status: $status, bankCardStatus: $bankCardStatus, widgets: $widgets)';
   }
 
   @override
@@ -181,7 +181,7 @@ abstract class _BankState extends BankState {
   @override
   BankCardStatus get bankCardStatus;
   @override
-  List<Widget> get transactions;
+  List<Widget> get widgets;
 
   /// Create a copy of BankState
   /// with the given fields replaced by the non-null parameter values.

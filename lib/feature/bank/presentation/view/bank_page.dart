@@ -20,7 +20,7 @@ class BankPage extends StatelessWidget {
           return BankContent(
             showLoading: state.status == BankStatus.loading,
             cardFrontPath: state.cardFrontPath,
-            transactions: state.transactions,
+            transactions: state.widgets,
             bankCardStatus: state.bankCardStatus,
             showCardDeliveryContainer: state.showCardDeliveryContainer,
             showCardDeliveryButton: state.showCardDeliveryButton,
