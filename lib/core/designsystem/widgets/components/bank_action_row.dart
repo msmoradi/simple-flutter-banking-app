@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class BankActionRow extends StatelessWidget {
-  final Function() actionClick;
+class ActionEntity {
+  final String icon;
+  final String title;
+  final VoidCallback? actionClick;
 
-  const BankActionRow({super.key, required this.actionClick});
+  ActionEntity({required this.icon, required this.title, this.actionClick});
+}
+
+class BankActionRow extends StatelessWidget {
+  final List<ActionEntity> actions;
+
+  const BankActionRow({super.key, required this.actions});
 
   @override
   Widget build(BuildContext context) {
@@ -15,18 +22,34 @@ class BankActionRow extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            _buildIconColumn('assets/icons/plus.svg', 'افزایش موجودی', context),
-            _buildIconColumn('assets/icons/exchange.svg', 'انتقال وجه', context),
-            _buildIconColumn('assets/icons/lock.svg', 'رمز کارت', context),
-            _buildIconColumn('assets/icons/grid.svg', 'بیشتر', context),
+            ...actions.map((item) {
+              return RoundedAction(
+                iconPath: item.icon,
+                title: item.title,
+                actionClick: item.actionClick,
+              );
+            }),
           ],
         ),
       ),
     );
   }
+}
 
-  Widget _buildIconColumn(
-      String iconAsset, String label, BuildContext context) {
+class RoundedAction extends StatelessWidget {
+  final String iconPath;
+  final String title;
+  final VoidCallback? actionClick;
+
+  const RoundedAction({
+    super.key,
+    required this.iconPath,
+    required this.title,
+    this.actionClick,
+  });
+
+  @override
+  Widget build(BuildContext context) {
     return Expanded(
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -36,7 +59,7 @@ class BankActionRow extends StatelessWidget {
             backgroundColor: Theme.of(context).colorScheme.primary,
             child: IconButton(
               icon: SvgPicture.asset(
-                iconAsset,
+                iconPath,
                 width: 24.0,
                 height: 24.0,
                 colorFilter: ColorFilter.mode(
@@ -49,7 +72,7 @@ class BankActionRow extends StatelessWidget {
           ),
           const SizedBox(height: 10.0),
           Text(
-            label,
+            title,
             style: Theme.of(context).textTheme.labelMedium?.copyWith(
                   color: Theme.of(context).colorScheme.onSurfaceVariant,
                 ),

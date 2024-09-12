@@ -1,4 +1,4 @@
-import 'package:banx/core/designsystem/widgets/components/action_row.dart';
+import 'package:banx/core/designsystem/widgets/components/bank_action_row.dart';
 import 'package:banx/core/designsystem/widgets/components/custom_card.dart';
 import 'package:banx/core/designsystem/widgets/components/dot_indicator_row.dart';
 import 'package:banx/core/designsystem/widgets/components/simple_card_row.dart';
@@ -20,8 +20,13 @@ class _HomeContentState extends State<HomeContent> {
     const SizedBox(
       height: 24.0,
     ),
-    ActionRow(
-      actionClick: () {},
+    BankActionRow(
+      actions: [
+        ActionEntity(icon: 'assets/icons/plus.svg', title: 'واریز'),
+        ActionEntity(icon: 'assets/icons/arrow-down.svg', title: 'برداشت'),
+        ActionEntity(icon: 'assets/icons/exchange.svg', title: 'انتقال'),
+        ActionEntity(icon: 'assets/icons/grid.svg', title: 'بیشتر'),
+      ],
     ),
     const SizedBox(
       height: 30.0,
@@ -123,8 +128,13 @@ class _HomeContentState extends State<HomeContent> {
     const SizedBox(
       height: 24.0,
     ),
-    ActionRow(
-      actionClick: () {},
+    BankActionRow(
+      actions: [
+        ActionEntity(icon: 'assets/icons/plus.svg', title: 'واریز'),
+        ActionEntity(icon: 'assets/icons/arrow-down.svg', title: 'برداشت'),
+        ActionEntity(icon: 'assets/icons/exchange.svg', title: 'انتقال'),
+        ActionEntity(icon: 'assets/icons/grid.svg', title: 'بیشتر'),
+      ],
     ),
     const SizedBox(
       height: 30.0,
@@ -222,8 +232,13 @@ class _HomeContentState extends State<HomeContent> {
     const SizedBox(
       height: 24.0,
     ),
-    ActionRow(
-      actionClick: () {},
+    BankActionRow(
+      actions: [
+        ActionEntity(icon: 'assets/icons/plus.svg', title: 'واریز'),
+        ActionEntity(icon: 'assets/icons/arrow-down.svg', title: 'برداشت'),
+        ActionEntity(icon: 'assets/icons/exchange.svg', title: 'انتقال'),
+        ActionEntity(icon: 'assets/icons/grid.svg', title: 'بیشتر'),
+      ],
     ),
     const SizedBox(
       height: 30.0,

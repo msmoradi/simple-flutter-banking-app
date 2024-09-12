@@ -1,5 +1,4 @@
 import 'package:banx/core/designsystem/widgets/card/credit_card_demo.dart';
-import 'package:banx/core/designsystem/widgets/components/action_row.dart';
 import 'package:banx/core/designsystem/widgets/components/bank_action_row.dart';
 import 'package:banx/core/designsystem/widgets/components/card_delivery_state.dart';
 import 'package:banx/core/designsystem/widgets/components/title_row.dart';
@@ -111,7 +110,24 @@ class BankContent extends StatelessWidget {
                       height: 24.0,
                     ),
                     BankActionRow(
-                      actionClick: onCardDeliveryActionClick,
+                      actions: [
+                        ActionEntity(
+                            icon: 'assets/icons/plus.svg',
+                            title: 'افزایش موجودی',
+                            actionClick: onCardDeliveryActionClick),
+                        ActionEntity(
+                            icon: 'assets/icons/exchange.svg',
+                            title: 'انتقال وجه',
+                            actionClick: onCardDeliveryActionClick),
+                        ActionEntity(
+                            icon: 'assets/icons/lock.svg',
+                            title: 'رمز کارت',
+                            actionClick: onCardDeliveryActionClick),
+                        ActionEntity(
+                            icon: 'assets/icons/grid.svg',
+                            title: 'بیشتر',
+                            actionClick: onCardDeliveryActionClick),
+                      ],
                     ),
                     showCardDeliveryContainer
                         ? Padding(
