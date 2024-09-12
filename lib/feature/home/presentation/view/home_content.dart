@@ -260,7 +260,7 @@ class _HomeContentState extends State<HomeContent> {
     ),
     TransactionCard(
         image: Image.asset(
-          'assets/images/lite-coin-1.png',
+          'assets/images/lite-coin-4.png',
           width: 48.0,
           height: 48.0,
         ),
@@ -272,7 +272,7 @@ class _HomeContentState extends State<HomeContent> {
     ),
     TransactionCard(
         image: Image.asset(
-          'assets/images/lite-coin-1.png',
+          'assets/images/lite-coin-4.png',
           width: 48.0,
           height: 48.0,
         ),
@@ -284,7 +284,7 @@ class _HomeContentState extends State<HomeContent> {
     ),
     TransactionCard(
         image: Image.asset(
-          'assets/images/lite-coin-1.png',
+          'assets/images/lite-coin-4.png',
           width: 48.0,
           height: 48.0,
         ),
@@ -296,7 +296,7 @@ class _HomeContentState extends State<HomeContent> {
     ),
     TransactionCard(
         image: Image.asset(
-          'assets/images/lite-coin-1.png',
+          'assets/images/lite-coin-4.png',
           width: 48.0,
           height: 48.0,
         ),
@@ -308,7 +308,7 @@ class _HomeContentState extends State<HomeContent> {
     ),
     TransactionCard(
         image: Image.asset(
-          'assets/images/lite-coin-1.png',
+          'assets/images/lite-coin-4.png',
           width: 48.0,
           height: 48.0,
         ),
@@ -320,7 +320,7 @@ class _HomeContentState extends State<HomeContent> {
     ),
     TransactionCard(
         image: Image.asset(
-          'assets/images/lite-coin-1.png',
+          'assets/images/lite-coin-4.png',
           width: 48.0,
           height: 48.0,
         ),
