@@ -1,4 +1,5 @@
 import 'package:banx/core/designsystem/widgets/card/credit_card.dart';
+import 'package:banx/core/designsystem/widgets/card/credit_card_demo.dart';
 import 'package:banx/core/designsystem/widgets/components/action_row.dart';
 import 'package:banx/core/designsystem/widgets/components/card_delivery_state.dart';
 import 'package:banx/core/designsystem/widgets/components/title_row.dart';
@@ -74,29 +75,9 @@ class BankContent extends StatelessWidget {
             const SizedBox(
               height: 24.0,
             ),
-            Center(
-              child: CreditCard(
-                text: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "موجودی حساب",
-                      style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                          fontWeight: FontWeight.bold,
-                          color:
-                              Theme.of(context).colorScheme.onPrimaryContainer),
-                    ),
-                    const SizedBox(height: 4),
-                    Text(
-                      textDirection: TextDirection.rtl,
-                      "۱۲٬۴۰۵۶٬۹۸۷ ﷼",
-                      style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                          fontWeight: FontWeight.bold,
-                          color: Theme.of(context).colorScheme.onPrimary),
-                    ),
-                  ],
-                ),
-                flipOnTouch: false,
+            const Center(
+              child: CreditCardDemo(
+                flipOnTouch: true,
                 quarterTurns: 0,
                 scale: 1.1,
               ),
