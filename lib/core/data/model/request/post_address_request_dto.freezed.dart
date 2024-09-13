@@ -31,7 +31,8 @@ mixin _$PostAddressRequestDto {
   String get floor => throw _privateConstructorUsedError;
   String get unit => throw _privateConstructorUsedError;
   String get houseName => throw _privateConstructorUsedError;
-  String get cityId => throw _privateConstructorUsedError;
+  int get cityId => throw _privateConstructorUsedError;
+  int get provinceId => throw _privateConstructorUsedError;
 
   /// Serializes this PostAddressRequestDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -60,7 +61,8 @@ abstract class $PostAddressRequestDtoCopyWith<$Res> {
       String floor,
       String unit,
       String houseName,
-      String cityId});
+      int cityId,
+      int provinceId});
 }
 
 /// @nodoc
@@ -90,6 +92,7 @@ class _$PostAddressRequestDtoCopyWithImpl<$Res,
     Object? unit = null,
     Object? houseName = null,
     Object? cityId = null,
+    Object? provinceId = null,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -135,7 +138,11 @@ class _$PostAddressRequestDtoCopyWithImpl<$Res,
       cityId: null == cityId
           ? _value.cityId
           : cityId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
+      provinceId: null == provinceId
+          ? _value.provinceId
+          : provinceId // ignore: cast_nullable_to_non_nullable
+              as int,
     ) as $Val);
   }
 }
@@ -160,7 +167,8 @@ abstract class _$$PostAddressRequestDtoImplCopyWith<$Res>
       String floor,
       String unit,
       String houseName,
-      String cityId});
+      int cityId,
+      int provinceId});
 }
 
 /// @nodoc
@@ -188,6 +196,7 @@ class __$$PostAddressRequestDtoImplCopyWithImpl<$Res>
     Object? unit = null,
     Object? houseName = null,
     Object? cityId = null,
+    Object? provinceId = null,
   }) {
     return _then(_$PostAddressRequestDtoImpl(
       id: freezed == id
@@ -233,7 +242,11 @@ class __$$PostAddressRequestDtoImplCopyWithImpl<$Res>
       cityId: null == cityId
           ? _value.cityId
           : cityId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
+      provinceId: null == provinceId
+          ? _value.provinceId
+          : provinceId // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -252,7 +265,8 @@ class _$PostAddressRequestDtoImpl implements _PostAddressRequestDto {
       required this.floor,
       required this.unit,
       required this.houseName,
-      required this.cityId});
+      required this.cityId,
+      required this.provinceId});
 
   factory _$PostAddressRequestDtoImpl.fromJson(Map<String, dynamic> json) =>
       _$$PostAddressRequestDtoImplFromJson(json);
@@ -278,11 +292,13 @@ class _$PostAddressRequestDtoImpl implements _PostAddressRequestDto {
   @override
   final String houseName;
   @override
-  final String cityId;
+  final int cityId;
+  @override
+  final int provinceId;
 
   @override
   String toString() {
-    return 'PostAddressRequestDto(id: $id, accountId: $accountId, postalCode: $postalCode, address: $address, region: $region, street: $street, plaque: $plaque, floor: $floor, unit: $unit, houseName: $houseName, cityId: $cityId)';
+    return 'PostAddressRequestDto(id: $id, accountId: $accountId, postalCode: $postalCode, address: $address, region: $region, street: $street, plaque: $plaque, floor: $floor, unit: $unit, houseName: $houseName, cityId: $cityId, provinceId: $provinceId)';
   }
 
   @override
@@ -303,13 +319,27 @@ class _$PostAddressRequestDtoImpl implements _PostAddressRequestDto {
             (identical(other.unit, unit) || other.unit == unit) &&
             (identical(other.houseName, houseName) ||
                 other.houseName == houseName) &&
-            (identical(other.cityId, cityId) || other.cityId == cityId));
+            (identical(other.cityId, cityId) || other.cityId == cityId) &&
+            (identical(other.provinceId, provinceId) ||
+                other.provinceId == provinceId));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, accountId, postalCode,
-      address, region, street, plaque, floor, unit, houseName, cityId);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      accountId,
+      postalCode,
+      address,
+      region,
+      street,
+      plaque,
+      floor,
+      unit,
+      houseName,
+      cityId,
+      provinceId);
 
   /// Create a copy of PostAddressRequestDto
   /// with the given fields replaced by the non-null parameter values.
@@ -340,7 +370,8 @@ abstract class _PostAddressRequestDto implements PostAddressRequestDto {
       required final String floor,
       required final String unit,
       required final String houseName,
-      required final String cityId}) = _$PostAddressRequestDtoImpl;
+      required final int cityId,
+      required final int provinceId}) = _$PostAddressRequestDtoImpl;
 
   factory _PostAddressRequestDto.fromJson(Map<String, dynamic> json) =
       _$PostAddressRequestDtoImpl.fromJson;
@@ -366,7 +397,9 @@ abstract class _PostAddressRequestDto implements PostAddressRequestDto {
   @override
   String get houseName;
   @override
-  String get cityId;
+  int get cityId;
+  @override
+  int get provinceId;
 
   /// Create a copy of PostAddressRequestDto
   /// with the given fields replaced by the non-null parameter values.

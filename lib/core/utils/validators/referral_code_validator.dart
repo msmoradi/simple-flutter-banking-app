@@ -1,4 +1,4 @@
-import 'package:banx/core/domain/entities/ReferralCode.dart';
+import 'package:banx/core/domain/entities/referral_code.dart';
 import 'package:flutter/material.dart';
 
 import 'base/validation_error.dart';

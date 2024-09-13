@@ -1,4 +1,6 @@
+import 'package:banx/core/domain/entities/city_entity.dart';
 import 'package:banx/core/domain/entities/entity.dart';
+import 'package:banx/core/domain/entities/state_entity.dart';
 
 class AddressEntity extends Entity {
   final int? id;
@@ -11,7 +13,8 @@ class AddressEntity extends Entity {
   final String floor;
   final String unit;
   final String houseName;
-  final String cityId;
+  final CityEntity city;
+  final ProvinceEntity province;
 
   AddressEntity({
     this.id,
@@ -24,6 +27,7 @@ class AddressEntity extends Entity {
     required this.floor,
     required this.unit,
     required this.houseName,
-    required this.cityId,
+    required this.city,
+    required this.province,
   });
 }

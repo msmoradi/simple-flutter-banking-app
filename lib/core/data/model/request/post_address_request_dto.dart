@@ -16,7 +16,8 @@ class PostAddressRequestDto with _$PostAddressRequestDto {
     required String floor,
     required String unit,
     required String houseName,
-    required String cityId,
+    required int cityId,
+    required int provinceId,
   }) = _PostAddressRequestDto;
 
   factory PostAddressRequestDto.fromJson(Map<String, dynamic> json) => _$PostAddressRequestDtoFromJson(json);

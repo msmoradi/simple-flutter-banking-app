@@ -51,7 +51,8 @@ class AddressRemoteDataSourceImpl extends AddressRemoteDataSource {
       floor: addressDto.floor,
       unit: addressDto.unit,
       houseName: addressDto.houseName,
-      cityId: addressDto.cityId,
+      cityId: addressDto.cityDto.id,
+      provinceId: addressDto.provinceDto.id,
     ).toJson();
 
     return apiService.post(

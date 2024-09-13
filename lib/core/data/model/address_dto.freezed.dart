@@ -30,7 +30,8 @@ mixin _$AddressDto {
   String get floor => throw _privateConstructorUsedError;
   String get unit => throw _privateConstructorUsedError;
   String get houseName => throw _privateConstructorUsedError;
-  String get cityId => throw _privateConstructorUsedError;
+  CityDto get cityDto => throw _privateConstructorUsedError;
+  ProvinceDto get provinceDto => throw _privateConstructorUsedError;
 
   /// Serializes this AddressDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -59,7 +60,11 @@ abstract class $AddressDtoCopyWith<$Res> {
       String floor,
       String unit,
       String houseName,
-      String cityId});
+      CityDto cityDto,
+      ProvinceDto provinceDto});
+
+  $CityDtoCopyWith<$Res> get cityDto;
+  $ProvinceDtoCopyWith<$Res> get provinceDto;
 }
 
 /// @nodoc
@@ -87,7 +92,8 @@ class _$AddressDtoCopyWithImpl<$Res, $Val extends AddressDto>
     Object? floor = null,
     Object? unit = null,
     Object? houseName = null,
-    Object? cityId = null,
+    Object? cityDto = null,
+    Object? provinceDto = null,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -130,11 +136,35 @@ class _$AddressDtoCopyWithImpl<$Res, $Val extends AddressDto>
           ? _value.houseName
           : houseName // ignore: cast_nullable_to_non_nullable
               as String,
-      cityId: null == cityId
-          ? _value.cityId
-          : cityId // ignore: cast_nullable_to_non_nullable
-              as String,
+      cityDto: null == cityDto
+          ? _value.cityDto
+          : cityDto // ignore: cast_nullable_to_non_nullable
+              as CityDto,
+      provinceDto: null == provinceDto
+          ? _value.provinceDto
+          : provinceDto // ignore: cast_nullable_to_non_nullable
+              as ProvinceDto,
     ) as $Val);
+  }
+
+  /// Create a copy of AddressDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $CityDtoCopyWith<$Res> get cityDto {
+    return $CityDtoCopyWith<$Res>(_value.cityDto, (value) {
+      return _then(_value.copyWith(cityDto: value) as $Val);
+    });
+  }
+
+  /// Create a copy of AddressDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ProvinceDtoCopyWith<$Res> get provinceDto {
+    return $ProvinceDtoCopyWith<$Res>(_value.provinceDto, (value) {
+      return _then(_value.copyWith(provinceDto: value) as $Val);
+    });
   }
 }
 
@@ -157,7 +187,13 @@ abstract class _$$AddressDtoImplCopyWith<$Res>
       String floor,
       String unit,
       String houseName,
-      String cityId});
+      CityDto cityDto,
+      ProvinceDto provinceDto});
+
+  @override
+  $CityDtoCopyWith<$Res> get cityDto;
+  @override
+  $ProvinceDtoCopyWith<$Res> get provinceDto;
 }
 
 /// @nodoc
@@ -183,7 +219,8 @@ class __$$AddressDtoImplCopyWithImpl<$Res>
     Object? floor = null,
     Object? unit = null,
     Object? houseName = null,
-    Object? cityId = null,
+    Object? cityDto = null,
+    Object? provinceDto = null,
   }) {
     return _then(_$AddressDtoImpl(
       id: freezed == id
@@ -226,10 +263,14 @@ class __$$AddressDtoImplCopyWithImpl<$Res>
           ? _value.houseName
           : houseName // ignore: cast_nullable_to_non_nullable
               as String,
-      cityId: null == cityId
-          ? _value.cityId
-          : cityId // ignore: cast_nullable_to_non_nullable
-              as String,
+      cityDto: null == cityDto
+          ? _value.cityDto
+          : cityDto // ignore: cast_nullable_to_non_nullable
+              as CityDto,
+      provinceDto: null == provinceDto
+          ? _value.provinceDto
+          : provinceDto // ignore: cast_nullable_to_non_nullable
+              as ProvinceDto,
     ));
   }
 }
@@ -248,7 +289,8 @@ class _$AddressDtoImpl implements _AddressDto {
       required this.floor,
       required this.unit,
       required this.houseName,
-      required this.cityId});
+      required this.cityDto,
+      required this.provinceDto});
 
   factory _$AddressDtoImpl.fromJson(Map<String, dynamic> json) =>
       _$$AddressDtoImplFromJson(json);
@@ -274,11 +316,13 @@ class _$AddressDtoImpl implements _AddressDto {
   @override
   final String houseName;
   @override
-  final String cityId;
+  final CityDto cityDto;
+  @override
+  final ProvinceDto provinceDto;
 
   @override
   String toString() {
-    return 'AddressDto(id: $id, accountId: $accountId, postalCode: $postalCode, address: $address, region: $region, street: $street, plaque: $plaque, floor: $floor, unit: $unit, houseName: $houseName, cityId: $cityId)';
+    return 'AddressDto(id: $id, accountId: $accountId, postalCode: $postalCode, address: $address, region: $region, street: $street, plaque: $plaque, floor: $floor, unit: $unit, houseName: $houseName, cityDto: $cityDto, provinceDto: $provinceDto)';
   }
 
   @override
@@ -299,13 +343,27 @@ class _$AddressDtoImpl implements _AddressDto {
             (identical(other.unit, unit) || other.unit == unit) &&
             (identical(other.houseName, houseName) ||
                 other.houseName == houseName) &&
-            (identical(other.cityId, cityId) || other.cityId == cityId));
+            (identical(other.cityDto, cityDto) || other.cityDto == cityDto) &&
+            (identical(other.provinceDto, provinceDto) ||
+                other.provinceDto == provinceDto));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, accountId, postalCode,
-      address, region, street, plaque, floor, unit, houseName, cityId);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      accountId,
+      postalCode,
+      address,
+      region,
+      street,
+      plaque,
+      floor,
+      unit,
+      houseName,
+      cityDto,
+      provinceDto);
 
   /// Create a copy of AddressDto
   /// with the given fields replaced by the non-null parameter values.
@@ -335,7 +393,8 @@ abstract class _AddressDto implements AddressDto {
       required final String floor,
       required final String unit,
       required final String houseName,
-      required final String cityId}) = _$AddressDtoImpl;
+      required final CityDto cityDto,
+      required final ProvinceDto provinceDto}) = _$AddressDtoImpl;
 
   factory _AddressDto.fromJson(Map<String, dynamic> json) =
       _$AddressDtoImpl.fromJson;
@@ -361,7 +420,9 @@ abstract class _AddressDto implements AddressDto {
   @override
   String get houseName;
   @override
-  String get cityId;
+  CityDto get cityDto;
+  @override
+  ProvinceDto get provinceDto;
 
   /// Create a copy of AddressDto
   /// with the given fields replaced by the non-null parameter values.

@@ -1,7 +1,9 @@
 import 'package:banx/core/domain/entities/address_entity.dart';
+import 'package:banx/core/domain/entities/city_entity.dart';
 import 'package:banx/core/domain/entities/generic_list_entity.dart';
 import 'package:banx/core/domain/entities/post_address_entity.dart';
 import 'package:banx/core/domain/entities/put_address_entity.dart';
+import 'package:banx/core/domain/entities/state_entity.dart';
 import 'package:banx/core/domain/entity_wrapper.dart';
 
 abstract class AddressRepository {
@@ -18,7 +20,8 @@ abstract class AddressRepository {
     required String floor,
     required String unit,
     required String houseName,
-    required String cityId,
+    required CityEntity city,
+    required ProvinceEntity province,
   });
 
   Future<EntityWrapper<PutAddressEntity>> putAddress();

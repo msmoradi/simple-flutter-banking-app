@@ -19,7 +19,8 @@ _$PostAddressRequestDtoImpl _$$PostAddressRequestDtoImplFromJson(
       floor: json['floor'] as String,
       unit: json['unit'] as String,
       houseName: json['houseName'] as String,
-      cityId: json['cityId'] as String,
+      cityId: (json['cityId'] as num).toInt(),
+      provinceId: (json['provinceId'] as num).toInt(),
     );
 
 Map<String, dynamic> _$$PostAddressRequestDtoImplToJson(
@@ -36,4 +37,5 @@ Map<String, dynamic> _$$PostAddressRequestDtoImplToJson(
       'unit': instance.unit,
       'houseName': instance.houseName,
       'cityId': instance.cityId,
+      'provinceId': instance.provinceId,
     };

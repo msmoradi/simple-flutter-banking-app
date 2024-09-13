@@ -18,7 +18,8 @@ class AddressDto with _$AddressDto {
     required String floor,
     required String unit,
     required String houseName,
-    required String cityId,
+    required CityDto cityDto,
+    required ProvinceDto provinceDto,
   }) = _AddressDto;
 
   factory AddressDto.fromJson(Map<String, dynamic> json) => _$AddressDtoFromJson(json);

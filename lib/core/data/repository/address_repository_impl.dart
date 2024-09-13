@@ -5,10 +5,14 @@ import 'package:banx/core/data/mapper/address_mapper.dart';
 import 'package:banx/core/data/mapper/generic_list_mapper.dart';
 import 'package:banx/core/data/mapper/response.mapper.dart';
 import 'package:banx/core/data/model/address_dto.dart';
+import 'package:banx/core/data/model/city_dto.dart';
+import 'package:banx/core/data/model/province_dto.dart';
 import 'package:banx/core/domain/entities/address_entity.dart';
+import 'package:banx/core/domain/entities/city_entity.dart';
 import 'package:banx/core/domain/entities/generic_list_entity.dart';
 import 'package:banx/core/domain/entities/post_address_entity.dart';
 import 'package:banx/core/domain/entities/put_address_entity.dart';
+import 'package:banx/core/domain/entities/state_entity.dart';
 import 'package:banx/core/domain/entity_wrapper.dart';
 import 'package:banx/core/domain/repository/address_repository.dart';
 import 'package:injectable/injectable.dart';
@@ -39,7 +43,8 @@ class AddressRepositoryImpl extends AddressRepository {
     required String floor,
     required String unit,
     required String houseName,
-    required String cityId,
+    required CityEntity city,
+    required ProvinceEntity province,
   }) {
     return addressRemoteDataSource
         .postAddress(
@@ -54,7 +59,8 @@ class AddressRepositoryImpl extends AddressRepository {
                 floor: floor,
                 unit: unit,
                 houseName: houseName,
-                cityId: cityId))
+                cityDto: CityDto(id: city.id, name: city.name),
+                provinceDto: ProvinceDto(id: province.id, name: province.name)))
         .mapResponseToEntityWrapper(mapper: (model) {
       return PostAddressEntity();
     });
