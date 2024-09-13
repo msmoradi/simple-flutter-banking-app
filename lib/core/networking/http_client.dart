@@ -14,6 +14,7 @@ abstract class HTTPClient {
   Future<T> post<T>(
       {required String endpoint,
       Object? data,
+      Options? options,
       ProgressCallback? onSendProgress,
       ProgressCallback? onReceiveProgress,
       required T Function(Map<String, dynamic>? response) mapper});

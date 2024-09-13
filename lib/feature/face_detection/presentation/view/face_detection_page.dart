@@ -25,7 +25,13 @@ class FaceDetectionPage extends StatelessWidget {
           _handleStateChange(context, state, showMessage);
         },
         builder: (context, state) {
-          return const CameraPage();
+          return CameraPage(
+            onVideoRecorded: (path) {
+              context
+                  .read<FaceDetectionBloc>()
+                  .add(FaceDetectionSubmitted(path));
+            },
+          );
         },
       ),
     );

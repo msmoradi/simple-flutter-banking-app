@@ -1,10 +1,14 @@
-import 'package:banx/feature/face_detection/presentation/bloc/face_detection_bloc.dart';
+import 'dart:io';
+
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:path/path.dart' as path;
 
 class CameraPage extends StatefulWidget {
-  const CameraPage({Key? key}) : super(key: key);
+  final Function(String) onVideoRecorded;
+
+  const CameraPage({super.key, required this.onVideoRecorded});
 
   @override
   _CameraPageState createState() => _CameraPageState();
@@ -39,15 +43,17 @@ class _CameraPageState extends State<CameraPage> {
   _recordVideo(BuildContext context) async {
     if (_isRecording) {
       final file = await _cameraController.stopVideoRecording();
+      final File tempFile = File(file.path); // Convert XFile to File
+
+      final directory = await getTemporaryDirectory();
+      final newVideoPath = path.join(
+          directory.path, '${DateTime.now().millisecondsSinceEpoch}.mp4');
+
+      final File mp4File = await tempFile.rename(newVideoPath);
+
       setState(() => _isRecording = false);
 
-      context.read<FaceDetectionBloc>().add(FaceDetectionSubmitted(file.path));
-
-      /*   final route = MaterialPageRoute(
-        fullscreenDialog: true,
-        builder: (_) => VideoPage(filePath: file.path),
-      );
-      Navigator.push(context, route);*/
+      widget.onVideoRecorded(mp4File.path);
     } else {
       await _cameraController.prepareForVideoRecording();
       await _cameraController.startVideoRecording();
