@@ -18,9 +18,8 @@ _$AddressDtoImpl _$$AddressDtoImplFromJson(Map<String, dynamic> json) =>
       floor: json['floor'] as String,
       unit: json['unit'] as String,
       houseName: json['houseName'] as String,
-      cityDto: CityDto.fromJson(json['cityDto'] as Map<String, dynamic>),
-      provinceDto:
-          ProvinceDto.fromJson(json['provinceDto'] as Map<String, dynamic>),
+      city: CityDto.fromJson(json['city'] as Map<String, dynamic>),
+      province: ProvinceDto.fromJson(json['province'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$AddressDtoImplToJson(_$AddressDtoImpl instance) =>
@@ -35,6 +34,6 @@ Map<String, dynamic> _$$AddressDtoImplToJson(_$AddressDtoImpl instance) =>
       'floor': instance.floor,
       'unit': instance.unit,
       'houseName': instance.houseName,
-      'cityDto': instance.cityDto,
-      'provinceDto': instance.provinceDto,
+      'city': instance.city,
+      'province': instance.province,
     };

@@ -10,7 +10,7 @@ class GenericListEntity<T> extends Entity {
   final int size;
   final List<T> content;
   final int number;
-  final List<SortEntity> sort;
+  final SortEntity sort;
   final bool empty;
 
   GenericListEntity({
@@ -34,7 +34,7 @@ class PageableEntity extends Entity {
   final bool paged;
   final int pageNumber;
   final int offset;
-  final List<SortEntity> sort;
+  final SortEntity sort;
 
   PageableEntity({
     required this.unpaged,
@@ -47,17 +47,23 @@ class PageableEntity extends Entity {
 }
 
 class SortEntity extends Entity {
-  final String direction;
-  final String nullHandling;
-  final bool ascending;
-  final String property;
-  final bool ignoreCase;
+  final bool empty;
+  final bool unsorted;
+  final bool sorted;
+  final String? direction;
+  final String? nullHandling;
+  final bool? ascending;
+  final String? property;
+  final bool? ignoreCase;
 
   SortEntity({
-    required this.direction,
-    required this.nullHandling,
-    required this.ascending,
-    required this.property,
-    required this.ignoreCase,
+    required this.empty,
+    required this.unsorted,
+    required this.sorted,
+    this.direction,
+    this.nullHandling,
+    this.ascending,
+    this.property,
+    this.ignoreCase,
   });
 }

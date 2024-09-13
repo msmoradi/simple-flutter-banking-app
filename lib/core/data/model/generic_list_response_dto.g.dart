@@ -20,9 +20,7 @@ _$GenericListResponseDtoImpl<T> _$$GenericListResponseDtoImplFromJson<T>(
       size: (json['size'] as num).toInt(),
       content: (json['content'] as List<dynamic>).map(fromJsonT).toList(),
       number: (json['number'] as num).toInt(),
-      sort: (json['sort'] as List<dynamic>)
-          .map((e) => Sort.fromJson(e as Map<String, dynamic>))
-          .toList(),
+      sort: Sort.fromJson(json['sort'] as Map<String, dynamic>),
       empty: json['empty'] as bool,
     );
 
@@ -51,9 +49,7 @@ _$PageableImpl _$$PageableImplFromJson(Map<String, dynamic> json) =>
       paged: json['paged'] as bool,
       pageNumber: (json['pageNumber'] as num).toInt(),
       offset: (json['offset'] as num).toInt(),
-      sort: (json['sort'] as List<dynamic>)
-          .map((e) => Sort.fromJson(e as Map<String, dynamic>))
-          .toList(),
+      sort: Sort.fromJson(json['sort'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$PageableImplToJson(_$PageableImpl instance) =>
@@ -67,18 +63,14 @@ Map<String, dynamic> _$$PageableImplToJson(_$PageableImpl instance) =>
     };
 
 _$SortImpl _$$SortImplFromJson(Map<String, dynamic> json) => _$SortImpl(
-      direction: json['direction'] as String,
-      nullHandling: json['nullHandling'] as String,
-      ascending: json['ascending'] as bool,
-      property: json['property'] as String,
-      ignoreCase: json['ignoreCase'] as bool,
+      empty: json['empty'] as bool,
+      unsorted: json['unsorted'] as bool,
+      sorted: json['sorted'] as bool,
     );
 
 Map<String, dynamic> _$$SortImplToJson(_$SortImpl instance) =>
     <String, dynamic>{
-      'direction': instance.direction,
-      'nullHandling': instance.nullHandling,
-      'ascending': instance.ascending,
-      'property': instance.property,
-      'ignoreCase': instance.ignoreCase,
+      'empty': instance.empty,
+      'unsorted': instance.unsorted,
+      'sorted': instance.sorted,
     };

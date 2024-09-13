@@ -15,7 +15,7 @@ class GenericListResponseDto<T> with _$GenericListResponseDto<T> {
     required int size,
     required List<T> content,
     required int number,
-    required List<Sort> sort,
+    required Sort sort,
     required bool empty,
   }) = _GenericListResponseDto<T>;
 
@@ -32,7 +32,7 @@ class Pageable with _$Pageable {
     required bool paged,
     required int pageNumber,
     required int offset,
-    required List<Sort> sort,
+    required Sort sort,
   }) = _Pageable;
 
   factory Pageable.fromJson(Map<String, dynamic> json) =>
@@ -42,11 +42,9 @@ class Pageable with _$Pageable {
 @freezed
 class Sort with _$Sort {
   const factory Sort({
-    required String direction,
-    required String nullHandling,
-    required bool ascending,
-    required String property,
-    required bool ignoreCase,
+    required bool empty,
+    required bool unsorted,
+    required bool sorted,
   }) = _Sort;
 
   factory Sort.fromJson(Map<String, dynamic> json) => _$SortFromJson(json);

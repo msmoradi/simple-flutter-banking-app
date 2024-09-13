@@ -19,8 +19,8 @@ extension AddressDtoMapper on AddressDto {
       floor: floor,
       unit: unit,
       houseName: houseName,
-      city: cityDto.toEntity(),
-      province: provinceDto.toEntity(),
+      city: city.toEntity(),
+      province: province.toEntity(),
     );
   }
 }

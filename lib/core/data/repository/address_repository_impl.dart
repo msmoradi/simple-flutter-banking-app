@@ -26,8 +26,8 @@ class AddressRepositoryImpl extends AddressRepository {
   @override
   Future<EntityWrapper<GenericListEntity<AddressEntity>>> getAddress() {
     return addressRemoteDataSource.getAddress().mapResponseToEntityWrapper(
-        mapper: (model) {
-      return model.toEntity((item) => (item).toEntity());
+        mapper: (genericDto) {
+      return genericDto.toEntity((itemDto) => (itemDto).toEntity());
     });
   }
 
@@ -59,8 +59,8 @@ class AddressRepositoryImpl extends AddressRepository {
                 floor: floor,
                 unit: unit,
                 houseName: houseName,
-                cityDto: CityDto(id: city.id, name: city.name),
-                provinceDto: ProvinceDto(id: province.id, name: province.name)))
+                city: CityDto(id: city.id, name: city.name),
+                province: ProvinceDto(id: province.id, name: province.name)))
         .mapResponseToEntityWrapper(mapper: (model) {
       return PostAddressEntity();
     });

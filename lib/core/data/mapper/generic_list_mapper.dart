@@ -14,13 +14,13 @@ extension GenericListResponseDtoMapper<T> on GenericListResponseDto<T> {
       size: size,
       content: content.map(contentMapper).toList(),
       number: number,
-      sort: sort.map((s) => s.toEntity()).toList(),
+      sort: sort.toEntity(),
       empty: empty,
     );
   }
 }
 
-extension PageableDtoMapper on Pageable {
+extension PageableMapper on Pageable {
   PageableEntity toEntity() {
     return PageableEntity(
       unpaged: unpaged,
@@ -28,19 +28,17 @@ extension PageableDtoMapper on Pageable {
       paged: paged,
       pageNumber: pageNumber,
       offset: offset,
-      sort: sort.map((s) => s.toEntity()).toList(),
+      sort: sort.toEntity(),
     );
   }
 }
 
-extension SortDtoMapper on Sort {
+extension SortMapper on Sort {
   SortEntity toEntity() {
     return SortEntity(
-      direction: direction,
-      nullHandling: nullHandling,
-      ascending: ascending,
-      property: property,
-      ignoreCase: ignoreCase,
+      empty: empty,
+      unsorted: unsorted,
+      sorted: sorted,
     );
   }
 }

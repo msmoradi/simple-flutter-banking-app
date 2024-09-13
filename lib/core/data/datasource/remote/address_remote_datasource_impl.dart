@@ -21,7 +21,7 @@ class AddressRemoteDataSourceImpl extends AddressRemoteDataSource {
     final requestParameters = const GetAddressRequestDto(
       page: 0,
       size: 1,
-      sort: ["id", "desc"],
+      sort: ["id,desc"],
     ).toJson();
 
     return apiService.get(
@@ -51,8 +51,8 @@ class AddressRemoteDataSourceImpl extends AddressRemoteDataSource {
       floor: addressDto.floor,
       unit: addressDto.unit,
       houseName: addressDto.houseName,
-      cityId: addressDto.cityDto.id,
-      provinceId: addressDto.provinceDto.id,
+      cityId: addressDto.city.id,
+      provinceId: addressDto.province.id,
     ).toJson();
 
     return apiService.post(

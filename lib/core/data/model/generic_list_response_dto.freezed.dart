@@ -30,7 +30,7 @@ mixin _$GenericListResponseDto<T> {
   int get size => throw _privateConstructorUsedError;
   List<T> get content => throw _privateConstructorUsedError;
   int get number => throw _privateConstructorUsedError;
-  List<Sort> get sort => throw _privateConstructorUsedError;
+  Sort get sort => throw _privateConstructorUsedError;
   bool get empty => throw _privateConstructorUsedError;
 
   /// Serializes this GenericListResponseDto to a JSON map.
@@ -60,10 +60,11 @@ abstract class $GenericListResponseDtoCopyWith<T, $Res> {
       int size,
       List<T> content,
       int number,
-      List<Sort> sort,
+      Sort sort,
       bool empty});
 
   $PageableCopyWith<$Res> get pageable;
+  $SortCopyWith<$Res> get sort;
 }
 
 /// @nodoc
@@ -134,7 +135,7 @@ class _$GenericListResponseDtoCopyWithImpl<T, $Res,
       sort: null == sort
           ? _value.sort
           : sort // ignore: cast_nullable_to_non_nullable
-              as List<Sort>,
+              as Sort,
       empty: null == empty
           ? _value.empty
           : empty // ignore: cast_nullable_to_non_nullable
@@ -149,6 +150,16 @@ class _$GenericListResponseDtoCopyWithImpl<T, $Res,
   $PageableCopyWith<$Res> get pageable {
     return $PageableCopyWith<$Res>(_value.pageable, (value) {
       return _then(_value.copyWith(pageable: value) as $Val);
+    });
+  }
+
+  /// Create a copy of GenericListResponseDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $SortCopyWith<$Res> get sort {
+    return $SortCopyWith<$Res>(_value.sort, (value) {
+      return _then(_value.copyWith(sort: value) as $Val);
     });
   }
 }
@@ -172,11 +183,13 @@ abstract class _$$GenericListResponseDtoImplCopyWith<T, $Res>
       int size,
       List<T> content,
       int number,
-      List<Sort> sort,
+      Sort sort,
       bool empty});
 
   @override
   $PageableCopyWith<$Res> get pageable;
+  @override
+  $SortCopyWith<$Res> get sort;
 }
 
 /// @nodoc
@@ -244,9 +257,9 @@ class __$$GenericListResponseDtoImplCopyWithImpl<T, $Res>
           : number // ignore: cast_nullable_to_non_nullable
               as int,
       sort: null == sort
-          ? _value._sort
+          ? _value.sort
           : sort // ignore: cast_nullable_to_non_nullable
-              as List<Sort>,
+              as Sort,
       empty: null == empty
           ? _value.empty
           : empty // ignore: cast_nullable_to_non_nullable
@@ -268,10 +281,9 @@ class _$GenericListResponseDtoImpl<T> implements _GenericListResponseDto<T> {
       required this.size,
       required final List<T> content,
       required this.number,
-      required final List<Sort> sort,
+      required this.sort,
       required this.empty})
-      : _content = content,
-        _sort = sort;
+      : _content = content;
 
   factory _$GenericListResponseDtoImpl.fromJson(
           Map<String, dynamic> json, T Function(Object?) fromJsonT) =>
@@ -301,14 +313,8 @@ class _$GenericListResponseDtoImpl<T> implements _GenericListResponseDto<T> {
 
   @override
   final int number;
-  final List<Sort> _sort;
   @override
-  List<Sort> get sort {
-    if (_sort is EqualUnmodifiableListView) return _sort;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_sort);
-  }
-
+  final Sort sort;
   @override
   final bool empty;
 
@@ -335,7 +341,7 @@ class _$GenericListResponseDtoImpl<T> implements _GenericListResponseDto<T> {
             (identical(other.size, size) || other.size == size) &&
             const DeepCollectionEquality().equals(other._content, _content) &&
             (identical(other.number, number) || other.number == number) &&
-            const DeepCollectionEquality().equals(other._sort, _sort) &&
+            (identical(other.sort, sort) || other.sort == sort) &&
             (identical(other.empty, empty) || other.empty == empty));
   }
 
@@ -352,7 +358,7 @@ class _$GenericListResponseDtoImpl<T> implements _GenericListResponseDto<T> {
       size,
       const DeepCollectionEquality().hash(_content),
       number,
-      const DeepCollectionEquality().hash(_sort),
+      sort,
       empty);
 
   /// Create a copy of GenericListResponseDto
@@ -381,7 +387,7 @@ abstract class _GenericListResponseDto<T> implements GenericListResponseDto<T> {
       required final int size,
       required final List<T> content,
       required final int number,
-      required final List<Sort> sort,
+      required final Sort sort,
       required final bool empty}) = _$GenericListResponseDtoImpl<T>;
 
   factory _GenericListResponseDto.fromJson(
@@ -407,7 +413,7 @@ abstract class _GenericListResponseDto<T> implements GenericListResponseDto<T> {
   @override
   int get number;
   @override
-  List<Sort> get sort;
+  Sort get sort;
   @override
   bool get empty;
 
@@ -430,7 +436,7 @@ mixin _$Pageable {
   bool get paged => throw _privateConstructorUsedError;
   int get pageNumber => throw _privateConstructorUsedError;
   int get offset => throw _privateConstructorUsedError;
-  List<Sort> get sort => throw _privateConstructorUsedError;
+  Sort get sort => throw _privateConstructorUsedError;
 
   /// Serializes this Pageable to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -453,7 +459,9 @@ abstract class $PageableCopyWith<$Res> {
       bool paged,
       int pageNumber,
       int offset,
-      List<Sort> sort});
+      Sort sort});
+
+  $SortCopyWith<$Res> get sort;
 }
 
 /// @nodoc
@@ -502,8 +510,18 @@ class _$PageableCopyWithImpl<$Res, $Val extends Pageable>
       sort: null == sort
           ? _value.sort
           : sort // ignore: cast_nullable_to_non_nullable
-              as List<Sort>,
+              as Sort,
     ) as $Val);
+  }
+
+  /// Create a copy of Pageable
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $SortCopyWith<$Res> get sort {
+    return $SortCopyWith<$Res>(_value.sort, (value) {
+      return _then(_value.copyWith(sort: value) as $Val);
+    });
   }
 }
 
@@ -521,7 +539,10 @@ abstract class _$$PageableImplCopyWith<$Res>
       bool paged,
       int pageNumber,
       int offset,
-      List<Sort> sort});
+      Sort sort});
+
+  @override
+  $SortCopyWith<$Res> get sort;
 }
 
 /// @nodoc
@@ -566,9 +587,9 @@ class __$$PageableImplCopyWithImpl<$Res>
           : offset // ignore: cast_nullable_to_non_nullable
               as int,
       sort: null == sort
-          ? _value._sort
+          ? _value.sort
           : sort // ignore: cast_nullable_to_non_nullable
-              as List<Sort>,
+              as Sort,
     ));
   }
 }
@@ -582,8 +603,7 @@ class _$PageableImpl implements _Pageable {
       required this.paged,
       required this.pageNumber,
       required this.offset,
-      required final List<Sort> sort})
-      : _sort = sort;
+      required this.sort});
 
   factory _$PageableImpl.fromJson(Map<String, dynamic> json) =>
       _$$PageableImplFromJson(json);
@@ -598,13 +618,8 @@ class _$PageableImpl implements _Pageable {
   final int pageNumber;
   @override
   final int offset;
-  final List<Sort> _sort;
   @override
-  List<Sort> get sort {
-    if (_sort is EqualUnmodifiableListView) return _sort;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_sort);
-  }
+  final Sort sort;
 
   @override
   String toString() {
@@ -623,13 +638,13 @@ class _$PageableImpl implements _Pageable {
             (identical(other.pageNumber, pageNumber) ||
                 other.pageNumber == pageNumber) &&
             (identical(other.offset, offset) || other.offset == offset) &&
-            const DeepCollectionEquality().equals(other._sort, _sort));
+            (identical(other.sort, sort) || other.sort == sort));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, unpaged, pageSize, paged,
-      pageNumber, offset, const DeepCollectionEquality().hash(_sort));
+  int get hashCode => Object.hash(
+      runtimeType, unpaged, pageSize, paged, pageNumber, offset, sort);
 
   /// Create a copy of Pageable
   /// with the given fields replaced by the non-null parameter values.
@@ -654,7 +669,7 @@ abstract class _Pageable implements Pageable {
       required final bool paged,
       required final int pageNumber,
       required final int offset,
-      required final List<Sort> sort}) = _$PageableImpl;
+      required final Sort sort}) = _$PageableImpl;
 
   factory _Pageable.fromJson(Map<String, dynamic> json) =
       _$PageableImpl.fromJson;
@@ -670,7 +685,7 @@ abstract class _Pageable implements Pageable {
   @override
   int get offset;
   @override
-  List<Sort> get sort;
+  Sort get sort;
 
   /// Create a copy of Pageable
   /// with the given fields replaced by the non-null parameter values.
@@ -686,11 +701,9 @@ Sort _$SortFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Sort {
-  String get direction => throw _privateConstructorUsedError;
-  String get nullHandling => throw _privateConstructorUsedError;
-  bool get ascending => throw _privateConstructorUsedError;
-  String get property => throw _privateConstructorUsedError;
-  bool get ignoreCase => throw _privateConstructorUsedError;
+  bool get empty => throw _privateConstructorUsedError;
+  bool get unsorted => throw _privateConstructorUsedError;
+  bool get sorted => throw _privateConstructorUsedError;
 
   /// Serializes this Sort to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -706,12 +719,7 @@ abstract class $SortCopyWith<$Res> {
   factory $SortCopyWith(Sort value, $Res Function(Sort) then) =
       _$SortCopyWithImpl<$Res, Sort>;
   @useResult
-  $Res call(
-      {String direction,
-      String nullHandling,
-      bool ascending,
-      String property,
-      bool ignoreCase});
+  $Res call({bool empty, bool unsorted, bool sorted});
 }
 
 /// @nodoc
@@ -729,32 +737,22 @@ class _$SortCopyWithImpl<$Res, $Val extends Sort>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? direction = null,
-    Object? nullHandling = null,
-    Object? ascending = null,
-    Object? property = null,
-    Object? ignoreCase = null,
+    Object? empty = null,
+    Object? unsorted = null,
+    Object? sorted = null,
   }) {
     return _then(_value.copyWith(
-      direction: null == direction
-          ? _value.direction
-          : direction // ignore: cast_nullable_to_non_nullable
-              as String,
-      nullHandling: null == nullHandling
-          ? _value.nullHandling
-          : nullHandling // ignore: cast_nullable_to_non_nullable
-              as String,
-      ascending: null == ascending
-          ? _value.ascending
-          : ascending // ignore: cast_nullable_to_non_nullable
+      empty: null == empty
+          ? _value.empty
+          : empty // ignore: cast_nullable_to_non_nullable
               as bool,
-      property: null == property
-          ? _value.property
-          : property // ignore: cast_nullable_to_non_nullable
-              as String,
-      ignoreCase: null == ignoreCase
-          ? _value.ignoreCase
-          : ignoreCase // ignore: cast_nullable_to_non_nullable
+      unsorted: null == unsorted
+          ? _value.unsorted
+          : unsorted // ignore: cast_nullable_to_non_nullable
+              as bool,
+      sorted: null == sorted
+          ? _value.sorted
+          : sorted // ignore: cast_nullable_to_non_nullable
               as bool,
     ) as $Val);
   }
@@ -767,12 +765,7 @@ abstract class _$$SortImplCopyWith<$Res> implements $SortCopyWith<$Res> {
       __$$SortImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {String direction,
-      String nullHandling,
-      bool ascending,
-      String property,
-      bool ignoreCase});
+  $Res call({bool empty, bool unsorted, bool sorted});
 }
 
 /// @nodoc
@@ -787,32 +780,22 @@ class __$$SortImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? direction = null,
-    Object? nullHandling = null,
-    Object? ascending = null,
-    Object? property = null,
-    Object? ignoreCase = null,
+    Object? empty = null,
+    Object? unsorted = null,
+    Object? sorted = null,
   }) {
     return _then(_$SortImpl(
-      direction: null == direction
-          ? _value.direction
-          : direction // ignore: cast_nullable_to_non_nullable
-              as String,
-      nullHandling: null == nullHandling
-          ? _value.nullHandling
-          : nullHandling // ignore: cast_nullable_to_non_nullable
-              as String,
-      ascending: null == ascending
-          ? _value.ascending
-          : ascending // ignore: cast_nullable_to_non_nullable
+      empty: null == empty
+          ? _value.empty
+          : empty // ignore: cast_nullable_to_non_nullable
               as bool,
-      property: null == property
-          ? _value.property
-          : property // ignore: cast_nullable_to_non_nullable
-              as String,
-      ignoreCase: null == ignoreCase
-          ? _value.ignoreCase
-          : ignoreCase // ignore: cast_nullable_to_non_nullable
+      unsorted: null == unsorted
+          ? _value.unsorted
+          : unsorted // ignore: cast_nullable_to_non_nullable
+              as bool,
+      sorted: null == sorted
+          ? _value.sorted
+          : sorted // ignore: cast_nullable_to_non_nullable
               as bool,
     ));
   }
@@ -822,29 +805,21 @@ class __$$SortImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$SortImpl implements _Sort {
   const _$SortImpl(
-      {required this.direction,
-      required this.nullHandling,
-      required this.ascending,
-      required this.property,
-      required this.ignoreCase});
+      {required this.empty, required this.unsorted, required this.sorted});
 
   factory _$SortImpl.fromJson(Map<String, dynamic> json) =>
       _$$SortImplFromJson(json);
 
   @override
-  final String direction;
+  final bool empty;
   @override
-  final String nullHandling;
+  final bool unsorted;
   @override
-  final bool ascending;
-  @override
-  final String property;
-  @override
-  final bool ignoreCase;
+  final bool sorted;
 
   @override
   String toString() {
-    return 'Sort(direction: $direction, nullHandling: $nullHandling, ascending: $ascending, property: $property, ignoreCase: $ignoreCase)';
+    return 'Sort(empty: $empty, unsorted: $unsorted, sorted: $sorted)';
   }
 
   @override
@@ -852,22 +827,15 @@ class _$SortImpl implements _Sort {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SortImpl &&
-            (identical(other.direction, direction) ||
-                other.direction == direction) &&
-            (identical(other.nullHandling, nullHandling) ||
-                other.nullHandling == nullHandling) &&
-            (identical(other.ascending, ascending) ||
-                other.ascending == ascending) &&
-            (identical(other.property, property) ||
-                other.property == property) &&
-            (identical(other.ignoreCase, ignoreCase) ||
-                other.ignoreCase == ignoreCase));
+            (identical(other.empty, empty) || other.empty == empty) &&
+            (identical(other.unsorted, unsorted) ||
+                other.unsorted == unsorted) &&
+            (identical(other.sorted, sorted) || other.sorted == sorted));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, direction, nullHandling, ascending, property, ignoreCase);
+  int get hashCode => Object.hash(runtimeType, empty, unsorted, sorted);
 
   /// Create a copy of Sort
   /// with the given fields replaced by the non-null parameter values.
@@ -887,24 +855,18 @@ class _$SortImpl implements _Sort {
 
 abstract class _Sort implements Sort {
   const factory _Sort(
-      {required final String direction,
-      required final String nullHandling,
-      required final bool ascending,
-      required final String property,
-      required final bool ignoreCase}) = _$SortImpl;
+      {required final bool empty,
+      required final bool unsorted,
+      required final bool sorted}) = _$SortImpl;
 
   factory _Sort.fromJson(Map<String, dynamic> json) = _$SortImpl.fromJson;
 
   @override
-  String get direction;
+  bool get empty;
   @override
-  String get nullHandling;
+  bool get unsorted;
   @override
-  bool get ascending;
-  @override
-  String get property;
-  @override
-  bool get ignoreCase;
+  bool get sorted;
 
   /// Create a copy of Sort
   /// with the given fields replaced by the non-null parameter values.
