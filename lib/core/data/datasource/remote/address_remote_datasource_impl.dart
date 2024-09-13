@@ -37,8 +37,22 @@ class AddressRemoteDataSourceImpl extends AddressRemoteDataSource {
   }
 
   @override
-  Future<PostAddressResponseDto> postAddress({required String postalCode}) {
-    final dataRequest = PostAddressRequestDto(postalCode: postalCode).toJson();
+  Future<PostAddressResponseDto> postAddress({
+    required AddressDto addressDto,
+  }) {
+    final dataRequest = PostAddressRequestDto(
+      id: addressDto.id,
+      accountId: addressDto.accountId,
+      postalCode: addressDto.postalCode,
+      address: addressDto.address,
+      region: addressDto.region,
+      street: addressDto.street,
+      plaque: addressDto.plaque,
+      floor: addressDto.floor,
+      unit: addressDto.unit,
+      houseName: addressDto.houseName,
+      cityId: addressDto.cityId,
+    ).toJson();
 
     return apiService.post(
         endpoint: ApiEndpoint.address(AddressEndpoint.ADDRESS),

@@ -7,8 +7,19 @@ import 'package:banx/core/domain/entity_wrapper.dart';
 abstract class AddressRepository {
   Future<EntityWrapper<GenericListEntity<AddressEntity>>> getAddress();
 
-  Future<EntityWrapper<PostAddressEntity>> postAddress(
-      {required String postalCode});
+  Future<EntityWrapper<PostAddressEntity>> postAddress({
+    int? id,
+    int? accountId,
+    required String postalCode,
+    required String address,
+    required String region,
+    required String street,
+    required String plaque,
+    required String floor,
+    required String unit,
+    required String houseName,
+    required String cityId,
+  });
 
   Future<EntityWrapper<PutAddressEntity>> putAddress();
 

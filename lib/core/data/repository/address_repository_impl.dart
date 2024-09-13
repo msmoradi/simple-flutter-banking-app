@@ -4,6 +4,7 @@ import 'package:banx/core/data/datasource/remote/address_remote_datasource.dart'
 import 'package:banx/core/data/mapper/address_mapper.dart';
 import 'package:banx/core/data/mapper/generic_list_mapper.dart';
 import 'package:banx/core/data/mapper/response.mapper.dart';
+import 'package:banx/core/data/model/address_dto.dart';
 import 'package:banx/core/domain/entities/address_entity.dart';
 import 'package:banx/core/domain/entities/generic_list_entity.dart';
 import 'package:banx/core/domain/entities/post_address_entity.dart';
@@ -27,10 +28,33 @@ class AddressRepositoryImpl extends AddressRepository {
   }
 
   @override
-  Future<EntityWrapper<PostAddressEntity>> postAddress(
-      {required String postalCode}) {
+  Future<EntityWrapper<PostAddressEntity>> postAddress({
+    int? id,
+    int? accountId,
+    required String postalCode,
+    required String address,
+    required String region,
+    required String street,
+    required String plaque,
+    required String floor,
+    required String unit,
+    required String houseName,
+    required String cityId,
+  }) {
     return addressRemoteDataSource
-        .postAddress(postalCode: postalCode)
+        .postAddress(
+            addressDto: AddressDto(
+                id: id,
+                accountId: accountId,
+                postalCode: postalCode,
+                address: address,
+                region: region,
+                street: street,
+                plaque: plaque,
+                floor: floor,
+                unit: unit,
+                houseName: houseName,
+                cityId: cityId))
         .mapResponseToEntityWrapper(mapper: (model) {
       return PostAddressEntity();
     });

@@ -21,7 +21,17 @@ PostAddressRequestDto _$PostAddressRequestDtoFromJson(
 
 /// @nodoc
 mixin _$PostAddressRequestDto {
+  int? get id => throw _privateConstructorUsedError;
+  int? get accountId => throw _privateConstructorUsedError;
   String get postalCode => throw _privateConstructorUsedError;
+  String get address => throw _privateConstructorUsedError;
+  String get region => throw _privateConstructorUsedError;
+  String get street => throw _privateConstructorUsedError;
+  String get plaque => throw _privateConstructorUsedError;
+  String get floor => throw _privateConstructorUsedError;
+  String get unit => throw _privateConstructorUsedError;
+  String get houseName => throw _privateConstructorUsedError;
+  String get cityId => throw _privateConstructorUsedError;
 
   /// Serializes this PostAddressRequestDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -39,7 +49,18 @@ abstract class $PostAddressRequestDtoCopyWith<$Res> {
           $Res Function(PostAddressRequestDto) then) =
       _$PostAddressRequestDtoCopyWithImpl<$Res, PostAddressRequestDto>;
   @useResult
-  $Res call({String postalCode});
+  $Res call(
+      {int? id,
+      int? accountId,
+      String postalCode,
+      String address,
+      String region,
+      String street,
+      String plaque,
+      String floor,
+      String unit,
+      String houseName,
+      String cityId});
 }
 
 /// @nodoc
@@ -58,12 +79,62 @@ class _$PostAddressRequestDtoCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = freezed,
+    Object? accountId = freezed,
     Object? postalCode = null,
+    Object? address = null,
+    Object? region = null,
+    Object? street = null,
+    Object? plaque = null,
+    Object? floor = null,
+    Object? unit = null,
+    Object? houseName = null,
+    Object? cityId = null,
   }) {
     return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      accountId: freezed == accountId
+          ? _value.accountId
+          : accountId // ignore: cast_nullable_to_non_nullable
+              as int?,
       postalCode: null == postalCode
           ? _value.postalCode
           : postalCode // ignore: cast_nullable_to_non_nullable
+              as String,
+      address: null == address
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
+              as String,
+      region: null == region
+          ? _value.region
+          : region // ignore: cast_nullable_to_non_nullable
+              as String,
+      street: null == street
+          ? _value.street
+          : street // ignore: cast_nullable_to_non_nullable
+              as String,
+      plaque: null == plaque
+          ? _value.plaque
+          : plaque // ignore: cast_nullable_to_non_nullable
+              as String,
+      floor: null == floor
+          ? _value.floor
+          : floor // ignore: cast_nullable_to_non_nullable
+              as String,
+      unit: null == unit
+          ? _value.unit
+          : unit // ignore: cast_nullable_to_non_nullable
+              as String,
+      houseName: null == houseName
+          ? _value.houseName
+          : houseName // ignore: cast_nullable_to_non_nullable
+              as String,
+      cityId: null == cityId
+          ? _value.cityId
+          : cityId // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -78,7 +149,18 @@ abstract class _$$PostAddressRequestDtoImplCopyWith<$Res>
       __$$PostAddressRequestDtoImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String postalCode});
+  $Res call(
+      {int? id,
+      int? accountId,
+      String postalCode,
+      String address,
+      String region,
+      String street,
+      String plaque,
+      String floor,
+      String unit,
+      String houseName,
+      String cityId});
 }
 
 /// @nodoc
@@ -95,12 +177,62 @@ class __$$PostAddressRequestDtoImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = freezed,
+    Object? accountId = freezed,
     Object? postalCode = null,
+    Object? address = null,
+    Object? region = null,
+    Object? street = null,
+    Object? plaque = null,
+    Object? floor = null,
+    Object? unit = null,
+    Object? houseName = null,
+    Object? cityId = null,
   }) {
     return _then(_$PostAddressRequestDtoImpl(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      accountId: freezed == accountId
+          ? _value.accountId
+          : accountId // ignore: cast_nullable_to_non_nullable
+              as int?,
       postalCode: null == postalCode
           ? _value.postalCode
           : postalCode // ignore: cast_nullable_to_non_nullable
+              as String,
+      address: null == address
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
+              as String,
+      region: null == region
+          ? _value.region
+          : region // ignore: cast_nullable_to_non_nullable
+              as String,
+      street: null == street
+          ? _value.street
+          : street // ignore: cast_nullable_to_non_nullable
+              as String,
+      plaque: null == plaque
+          ? _value.plaque
+          : plaque // ignore: cast_nullable_to_non_nullable
+              as String,
+      floor: null == floor
+          ? _value.floor
+          : floor // ignore: cast_nullable_to_non_nullable
+              as String,
+      unit: null == unit
+          ? _value.unit
+          : unit // ignore: cast_nullable_to_non_nullable
+              as String,
+      houseName: null == houseName
+          ? _value.houseName
+          : houseName // ignore: cast_nullable_to_non_nullable
+              as String,
+      cityId: null == cityId
+          ? _value.cityId
+          : cityId // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -109,17 +241,48 @@ class __$$PostAddressRequestDtoImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$PostAddressRequestDtoImpl implements _PostAddressRequestDto {
-  const _$PostAddressRequestDtoImpl({required this.postalCode});
+  const _$PostAddressRequestDtoImpl(
+      {this.id,
+      this.accountId,
+      required this.postalCode,
+      required this.address,
+      required this.region,
+      required this.street,
+      required this.plaque,
+      required this.floor,
+      required this.unit,
+      required this.houseName,
+      required this.cityId});
 
   factory _$PostAddressRequestDtoImpl.fromJson(Map<String, dynamic> json) =>
       _$$PostAddressRequestDtoImplFromJson(json);
 
   @override
+  final int? id;
+  @override
+  final int? accountId;
+  @override
   final String postalCode;
+  @override
+  final String address;
+  @override
+  final String region;
+  @override
+  final String street;
+  @override
+  final String plaque;
+  @override
+  final String floor;
+  @override
+  final String unit;
+  @override
+  final String houseName;
+  @override
+  final String cityId;
 
   @override
   String toString() {
-    return 'PostAddressRequestDto(postalCode: $postalCode)';
+    return 'PostAddressRequestDto(id: $id, accountId: $accountId, postalCode: $postalCode, address: $address, region: $region, street: $street, plaque: $plaque, floor: $floor, unit: $unit, houseName: $houseName, cityId: $cityId)';
   }
 
   @override
@@ -127,13 +290,26 @@ class _$PostAddressRequestDtoImpl implements _PostAddressRequestDto {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$PostAddressRequestDtoImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.accountId, accountId) ||
+                other.accountId == accountId) &&
             (identical(other.postalCode, postalCode) ||
-                other.postalCode == postalCode));
+                other.postalCode == postalCode) &&
+            (identical(other.address, address) || other.address == address) &&
+            (identical(other.region, region) || other.region == region) &&
+            (identical(other.street, street) || other.street == street) &&
+            (identical(other.plaque, plaque) || other.plaque == plaque) &&
+            (identical(other.floor, floor) || other.floor == floor) &&
+            (identical(other.unit, unit) || other.unit == unit) &&
+            (identical(other.houseName, houseName) ||
+                other.houseName == houseName) &&
+            (identical(other.cityId, cityId) || other.cityId == cityId));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, postalCode);
+  int get hashCode => Object.hash(runtimeType, id, accountId, postalCode,
+      address, region, street, plaque, floor, unit, houseName, cityId);
 
   /// Create a copy of PostAddressRequestDto
   /// with the given fields replaced by the non-null parameter values.
@@ -153,14 +329,44 @@ class _$PostAddressRequestDtoImpl implements _PostAddressRequestDto {
 }
 
 abstract class _PostAddressRequestDto implements PostAddressRequestDto {
-  const factory _PostAddressRequestDto({required final String postalCode}) =
-      _$PostAddressRequestDtoImpl;
+  const factory _PostAddressRequestDto(
+      {final int? id,
+      final int? accountId,
+      required final String postalCode,
+      required final String address,
+      required final String region,
+      required final String street,
+      required final String plaque,
+      required final String floor,
+      required final String unit,
+      required final String houseName,
+      required final String cityId}) = _$PostAddressRequestDtoImpl;
 
   factory _PostAddressRequestDto.fromJson(Map<String, dynamic> json) =
       _$PostAddressRequestDtoImpl.fromJson;
 
   @override
+  int? get id;
+  @override
+  int? get accountId;
+  @override
   String get postalCode;
+  @override
+  String get address;
+  @override
+  String get region;
+  @override
+  String get street;
+  @override
+  String get plaque;
+  @override
+  String get floor;
+  @override
+  String get unit;
+  @override
+  String get houseName;
+  @override
+  String get cityId;
 
   /// Create a copy of PostAddressRequestDto
   /// with the given fields replaced by the non-null parameter values.

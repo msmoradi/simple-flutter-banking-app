@@ -6,7 +6,17 @@ part 'post_address_request_dto.g.dart';
 @freezed
 class PostAddressRequestDto with _$PostAddressRequestDto {
   const factory PostAddressRequestDto({
+    int? id,
+    int? accountId,
     required String postalCode,
+    required String address,
+    required String region,
+    required String street,
+    required String plaque,
+    required String floor,
+    required String unit,
+    required String houseName,
+    required String cityId,
   }) = _PostAddressRequestDto;
 
   factory PostAddressRequestDto.fromJson(Map<String, dynamic> json) => _$PostAddressRequestDtoFromJson(json);
