@@ -1,3 +1,4 @@
+import 'package:banx/core/domain/repository/profile_repository.dart';
 import 'package:banx/core/domain/repository/token_repository.dart';
 import 'package:banx/core/networking/api_endpoints.dart';
 import 'package:banx/core/networking/interceptors/info_interceptor.dart';
@@ -50,9 +51,14 @@ abstract class RegisterModule {
 
   @preResolve
   @lazySingleton
-  Future<BanxConfig> banxConfig(TokenRepository tokenRepository) async {
-    final config = BanxConfig(tokenRepository: tokenRepository);
-    return config;
+  Future<BanxConfig> banxConfig(
+    TokenRepository tokenRepository,
+    ProfileRepository profileRepository,
+  ) async {
+    return BanxConfig(
+      tokenRepository: tokenRepository,
+      profileRepository: profileRepository,
+    );
   }
 
   @lazySingleton

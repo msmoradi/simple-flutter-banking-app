@@ -131,17 +131,13 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.lazySingleton<_i877.LocalAuthHelper>(() =>
         registerModule.localAuthHelperImpl(gh<_i152.LocalAuthentication>()));
-    gh.singleton<_i232.TokenRepository>(() => _i205.TokenRepositoryImpl(
+    gh.lazySingleton<_i232.TokenRepository>(() => _i205.TokenRepositoryImpl(
         secureStorage: gh<_i558.FlutterSecureStorage>()));
     gh.factory<_i450.TokenInterceptor>(() =>
         _i450.TokenInterceptor(tokenRepository: gh<_i232.TokenRepository>()));
-    gh.singleton<_i904.ProfileLocalDataSource>(() =>
+    gh.lazySingleton<_i904.ProfileLocalDataSource>(() =>
         _i335.ProfileLocalDataSourceImpl(
             secureStorage: gh<_i558.FlutterSecureStorage>()));
-    await gh.lazySingletonAsync<_i962.BanxConfig>(
-      () => registerModule.banxConfig(gh<_i232.TokenRepository>()),
-      preResolve: true,
-    );
     gh.lazySingleton<_i361.Dio>(() => registerModule.dio(
           gh<String>(instanceName: 'BaseUrl'),
           gh<_i606.ResponseInterceptor>(),
@@ -162,12 +158,19 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i84.AuthenticationRemoteDataSource>(() =>
         _i149.AuthenticationRemoteDataSourceImpl(
             apiService: gh<_i1033.HTTPClient>()));
-    gh.singleton<_i264.ProfileRemoteDataSource>(() =>
+    gh.lazySingleton<_i264.ProfileRemoteDataSource>(() =>
         _i192.ProfileRemoteDataSourceImpl(apiService: gh<_i1033.HTTPClient>()));
-    gh.singleton<_i111.ProfileRepository>(() => _i728.ProfileRepositoryImpl(
+    gh.lazySingleton<_i111.ProfileRepository>(() => _i728.ProfileRepositoryImpl(
           profileLocalDataSource: gh<_i904.ProfileLocalDataSource>(),
           profileRemoteDataSource: gh<_i264.ProfileRemoteDataSource>(),
         ));
+    await gh.lazySingletonAsync<_i962.BanxConfig>(
+      () => registerModule.banxConfig(
+        gh<_i232.TokenRepository>(),
+        gh<_i111.ProfileRepository>(),
+      ),
+      preResolve: true,
+    );
     gh.factory<_i807.EnableBiometricBloc>(() => _i807.EnableBiometricBloc(
           profileRepository: gh<_i111.ProfileRepository>(),
           localAuthentication: gh<_i152.LocalAuthentication>(),

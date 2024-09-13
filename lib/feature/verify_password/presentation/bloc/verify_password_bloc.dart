@@ -90,13 +90,13 @@ class VerifyPasswordBloc
     emit(VerifyPasswordInProgress());
     try {
       final refreshToken = await tokenRepository.getRefreshToken() ?? "";
-      final refreshResponse =
-          await authenticationRepository.refresh(refreshToken: refreshToken);
+
       final response = await authenticationRepository
           .refresh(refreshToken: refreshToken)
           .then((value) async {
         if (value.isSuccess) {
-          return await profileRepository.getProfile();
+          return await authenticationRepository.postPassword(
+              password: event.password);
         } else {
           return value;
         }
@@ -104,7 +104,10 @@ class VerifyPasswordBloc
       response.when(
           success: (response) {
             if (response is UserProfileEntity) {
-              // handle deeplink
+              emit(
+                DeepLinkLanding(
+                    deeplink: response.routingButtonEntity!.deeplink),
+              );
             }
           },
           partialSuccess: (message) => emit(VerifyPasswordFailure(message)),

@@ -31,11 +31,15 @@ class ProfileLocalDataSourceImpl extends ProfileLocalDataSource {
     final username = await secureStorage.read(key: _usernameKey);
     final nationalID = await secureStorage.read(key: _nationalIDKey);
     final photoUrl = await secureStorage.read(key: _photoUrlKey);
-    final hasPassword = (await secureStorage.read(key: _hasPasswordKey)) == 'true';
+    final hasPassword =
+        (await secureStorage.read(key: _hasPasswordKey)) == 'true';
     final profileStatus = await secureStorage.read(key: _profileStatusKey);
     final kycLevel = await secureStorage.read(key: _kycLevelKey);
 
-    if (firstName == null && lastName == null) {
+    if (firstName?.isNotEmpty == false &&
+        lastName?.isNotEmpty == false &&
+        phoneNumber?.isNotEmpty == false &&
+        nationalID?.isNotEmpty == false) {
       return null; // Handle the case when no profile exists
     }
 
@@ -65,8 +69,10 @@ class ProfileLocalDataSourceImpl extends ProfileLocalDataSource {
     await secureStorage.write(key: _usernameKey, value: profile.username);
     await secureStorage.write(key: _nationalIDKey, value: profile.nationalID);
     await secureStorage.write(key: _photoUrlKey, value: profile.photoUrl);
-    await secureStorage.write(key: _hasPasswordKey, value: profile.hasPassword.toString());
-    await secureStorage.write(key: _profileStatusKey, value: profile.profileStatus);
+    await secureStorage.write(
+        key: _hasPasswordKey, value: profile.hasPassword.toString());
+    await secureStorage.write(
+        key: _profileStatusKey, value: profile.profileStatus);
     await secureStorage.write(key: _kycLevelKey, value: profile.kycLevel);
   }
 }
