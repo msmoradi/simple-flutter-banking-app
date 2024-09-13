@@ -1,9 +1,7 @@
+import 'package:banx/core/domain/entities/user_profile_entity.dart';
+
 abstract class ProfileLocalDataSource {
-  Future<void> saveFirstName(String? firstName);
+  Future<UserProfileEntity?> getProfile();
 
-  Future<void> savePhotoUrl(String? photoUrl);
-
-  Future<String?> getFirstName();
-
-  Future<String?> getPhotoUrl();
+  Future<void> saveProfile(UserProfileEntity profile);
 }

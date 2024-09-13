@@ -2,7 +2,7 @@ import 'package:banx/core/domain/repository/token_repository.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:injectable/injectable.dart';
 
-@Singleton(as: TokenRepository)
+@LazySingleton(as: TokenRepository)
 class TokenRepositoryImpl implements TokenRepository {
   final FlutterSecureStorage secureStorage;
 

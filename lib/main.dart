@@ -1,6 +1,7 @@
 import 'package:banx/app.dart';
+import 'package:banx/core/domain/entities/user_profile_entity.dart';
+import 'package:banx/core/domain/repository/profile_repository.dart';
 import 'package:banx/core/domain/repository/token_repository.dart';
-import 'package:banx/core/utils/configurations/banx_config.dart';
 import 'package:banx/di.dart';
 import 'package:flutter/material.dart';
 
@@ -9,16 +10,18 @@ void main() async {
   configureDependencies();
 
   final tokenRepository = getIt<TokenRepository>();
+  final profileRepository = getIt<ProfileRepository>();
 
-  final String? password = await tokenRepository.getPassword();
-  final refreshTokenExist = password?.isNotEmpty ?? false;
+  final UserProfileEntity? profile = await profileRepository.getLocalProfile();
+  final String? refreshToken = await tokenRepository.getRefreshToken();
+  final verifyPassword = profile != null && (refreshToken?.isNotEmpty ?? false);
 
-  runApp(App(refreshTokenExist: refreshTokenExist));
+  runApp(App(verifyPassword: verifyPassword));
 }
 
 void restartApp() async {
   final tokenRepository = getIt<TokenRepository>();
   await tokenRepository.clearTokens();
 
-  runApp(const App(refreshTokenExist: false));
+  runApp(const App(verifyPassword: false));
 }

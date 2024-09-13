@@ -41,13 +41,12 @@ class VerifyPasswordBloc
     Emitter<VerifyPasswordState> emit,
   ) async {
     final showBiometric = await enableBiometrics();
-    final firstName = await profileRepository.getFirstName();
-    final photoUrl = await profileRepository.getPhotoUrl();
+    final profile = await profileRepository.getLocalProfile();
     try {
       emit(VerifyPasswordInitial(
         showBiometric: showBiometric,
-        firstName: firstName ?? 'تست',
-        photoUrl: photoUrl ?? 'https://i.pravatar.cc/300',
+        firstName: profile?.firstName ?? 'تست',
+        photoUrl: profile?.photoUrl ?? 'https://i.pravatar.cc/300',
       ));
     } catch (e) {
       emit(VerifyPasswordFailure(e.toString()));
@@ -91,7 +90,8 @@ class VerifyPasswordBloc
     emit(VerifyPasswordInProgress());
     try {
       final refreshToken = await tokenRepository.getRefreshToken() ?? "";
-      final refreshResponse = await authenticationRepository.refresh(refreshToken: refreshToken);
+      final refreshResponse =
+          await authenticationRepository.refresh(refreshToken: refreshToken);
       final response = await authenticationRepository
           .refresh(refreshToken: refreshToken)
           .then((value) async {

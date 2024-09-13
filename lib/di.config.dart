@@ -135,7 +135,7 @@ extension GetItInjectableX on _i174.GetIt {
         secureStorage: gh<_i558.FlutterSecureStorage>()));
     gh.factory<_i450.TokenInterceptor>(() =>
         _i450.TokenInterceptor(tokenRepository: gh<_i232.TokenRepository>()));
-    gh.lazySingleton<_i904.ProfileLocalDataSource>(() =>
+    gh.singleton<_i904.ProfileLocalDataSource>(() =>
         _i335.ProfileLocalDataSourceImpl(
             secureStorage: gh<_i558.FlutterSecureStorage>()));
     await gh.lazySingletonAsync<_i962.BanxConfig>(
@@ -162,9 +162,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i84.AuthenticationRemoteDataSource>(() =>
         _i149.AuthenticationRemoteDataSourceImpl(
             apiService: gh<_i1033.HTTPClient>()));
-    gh.lazySingleton<_i264.ProfileRemoteDataSource>(() =>
+    gh.singleton<_i264.ProfileRemoteDataSource>(() =>
         _i192.ProfileRemoteDataSourceImpl(apiService: gh<_i1033.HTTPClient>()));
-    gh.lazySingleton<_i111.ProfileRepository>(() => _i728.ProfileRepositoryImpl(
+    gh.singleton<_i111.ProfileRepository>(() => _i728.ProfileRepositoryImpl(
           profileLocalDataSource: gh<_i904.ProfileLocalDataSource>(),
           profileRemoteDataSource: gh<_i264.ProfileRemoteDataSource>(),
         ));
@@ -204,17 +204,17 @@ extension GetItInjectableX on _i174.GetIt {
           gh<_i654.MediaRepository>(),
           gh<_i111.ProfileRepository>(),
         ));
+    gh.factory<_i582.CardActivationBloc>(() => _i582.CardActivationBloc(
+        authenticationRepository: gh<_i474.AuthenticationRepository>()));
     gh.factory<_i798.VerifyOtpBloc>(() => _i798.VerifyOtpBloc(
         authenticationRepository: gh<_i474.AuthenticationRepository>()));
     gh.factory<_i665.IdentityBloc>(() => _i665.IdentityBloc(
         authenticationRepository: gh<_i474.AuthenticationRepository>()));
+    gh.factory<_i260.CardActivationOtpBloc>(() => _i260.CardActivationOtpBloc(
+        authenticationRepository: gh<_i474.AuthenticationRepository>()));
     gh.factory<_i402.PhoneBloc>(() => _i402.PhoneBloc(
         authenticationRepository: gh<_i474.AuthenticationRepository>()));
     gh.factory<_i618.KycStatusBloc>(() => _i618.KycStatusBloc(
-        authenticationRepository: gh<_i474.AuthenticationRepository>()));
-    gh.factory<_i582.CardActivationBloc>(() => _i582.CardActivationBloc(
-        authenticationRepository: gh<_i474.AuthenticationRepository>()));
-    gh.factory<_i260.CardActivationOtpBloc>(() => _i260.CardActivationOtpBloc(
         authenticationRepository: gh<_i474.AuthenticationRepository>()));
     gh.factory<_i339.ConfirmPasswordBloc>(() => _i339.ConfirmPasswordBloc(
           authenticationRepository: gh<_i474.AuthenticationRepository>(),

@@ -21,11 +21,11 @@ import 'package:banx/composition/verify_password_page_factory.dart';
 import 'package:go_router/go_router.dart';
 
 GoRouter getRouterConfig({
-  required bool refreshTokenExist,
+  required bool verifyPassword,
   required Function(String) showMessage,
 }) {
   final initialLocation =
-      getInitialLocation(refreshTokenExist: refreshTokenExist);
+      getInitialLocation(verifyPassword: verifyPassword);
   return GoRouter(
     initialLocation: initialLocation,
     routes: <RouteBase>[
@@ -54,9 +54,9 @@ GoRouter getRouterConfig({
 }
 
 String getInitialLocation({
-  required bool refreshTokenExist,
+  required bool verifyPassword,
 }) {
-  if (refreshTokenExist) {
+  if (verifyPassword) {
     return VerifyPasswordPageFactory.path;
   } else {
     return PhonePageFactory.path;

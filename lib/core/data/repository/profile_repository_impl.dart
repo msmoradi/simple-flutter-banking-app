@@ -10,13 +10,18 @@ import 'package:injectable/injectable.dart';
 
 @LazySingleton(as: ProfileRepository)
 class ProfileRepositoryImpl extends ProfileRepository {
+  final ProfileRemoteDataSource profileRemoteDataSource;
+  final ProfileLocalDataSource profileLocalDataSource;
+
   ProfileRepositoryImpl({
     required this.profileLocalDataSource,
     required this.profileRemoteDataSource,
   });
 
-  final ProfileRemoteDataSource profileRemoteDataSource;
-  final ProfileLocalDataSource profileLocalDataSource;
+  @override
+  Future<UserProfileEntity?> getLocalProfile() {
+    return profileLocalDataSource.getProfile();
+  }
 
   @override
   Future<EntityWrapper<UserProfileEntity>> getProfile() {
@@ -25,30 +30,9 @@ class ProfileRepositoryImpl extends ProfileRepository {
       return model.toEntity();
     }).then((entityWrapper) async {
       if (entityWrapper is SuccessEntityWrapper<UserProfileEntity>) {
-        await saveFirstName(entityWrapper.data.firstName);
-        await savePhotoUrl(entityWrapper.data.photoUrl);
+        await profileLocalDataSource.saveProfile(entityWrapper.data);
       }
       return entityWrapper;
     });
-  }
-
-  @override
-  Future<String?> getFirstName() {
-    return profileLocalDataSource.getFirstName();
-  }
-
-  @override
-  Future<String?> getPhotoUrl() {
-    return profileLocalDataSource.getPhotoUrl();
-  }
-
-  @override
-  Future<void> saveFirstName(String? firstName) {
-    return profileLocalDataSource.saveFirstName(firstName);
-  }
-
-  @override
-  Future<void> savePhotoUrl(String? photoUrl) {
-    return profileLocalDataSource.saveFirstName(photoUrl);
   }
 }

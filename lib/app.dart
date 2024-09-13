@@ -8,9 +8,9 @@ import 'package:go_router/go_router.dart';
 import 'package:toastification/toastification.dart';
 
 class App extends StatelessWidget {
-  final bool refreshTokenExist;
+  final bool verifyPassword;
 
-  const App({super.key, required this.refreshTokenExist});
+  const App({super.key, required this.verifyPassword});
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +31,7 @@ class App extends StatelessWidget {
               autoCloseDuration: const Duration(seconds: 3),
             );
           },
-          refreshTokenExist: refreshTokenExist,
+          verifyPassword: verifyPassword,
         ),
         theme: BanxTheme.light(),
         darkTheme: BanxTheme.dark(),
