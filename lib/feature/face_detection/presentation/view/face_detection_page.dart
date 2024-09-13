@@ -6,11 +6,13 @@ import 'package:get_it/get_it.dart';
 
 class FaceDetectionPage extends StatelessWidget {
   final Function(String) onDeeplinkLanding;
+  final Function() onKycStatus;
   final Function(String) showMessage;
 
   const FaceDetectionPage({
     super.key,
     required this.onDeeplinkLanding,
+    required this.onKycStatus,
     required this.showMessage,
   });
 
@@ -42,6 +44,10 @@ class FaceDetectionPage extends StatelessWidget {
       case final DeepLinkLanding s:
         {
           onDeeplinkLanding(s.deeplink);
+        }
+      case final KycStatus s:
+        {
+          onKycStatus();
         }
     }
   }

@@ -32,23 +32,19 @@ class FaceDetectionBloc extends Bloc<FaceDetectionEvent, FaceDetectionState> {
       FaceDetectionSubmitted event, Emitter<FaceDetectionState> emit) async {
     emit(FaceDetectionInProgress());
     try {
-      final EntityWrapper<Entity> response = await mediaRepository
-          .uploadVideo(path: event.path, onSendProgress: (a, b) {})
-          .then((value) async {
-        if (value.isSuccess) {
-          return await profileRepository.getProfile();
-        } else {
-          return value;
-        }
-      });
+      final EntityWrapper<Entity> response = await mediaRepository.uploadVideo(
+          path: event.path, onSendProgress: (a, b) {});
 
       response.when(
           success: (entity) {
-            if (entity is UserProfileEntity) {
+            /*if (entity is UserProfileEntity) {
               emit(
                 DeepLinkLanding(deeplink: entity.routingButtonEntity!.deeplink),
               );
-            }
+            }*/
+            emit(
+              KycStatus(),
+            );
           },
           partialSuccess: (message) => emit(FaceDetectionFailure(message)),
           networkError: (exception) =>

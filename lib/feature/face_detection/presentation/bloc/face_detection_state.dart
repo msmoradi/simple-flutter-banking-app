@@ -34,3 +34,8 @@ class DeepLinkLanding extends FaceDetectionState {
   @override
   List<Object?> get props => [deeplink];
 }
+
+class KycStatus extends FaceDetectionState {
+  @override
+  List<Object?> get props => [];
+}
