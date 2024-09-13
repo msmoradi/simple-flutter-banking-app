@@ -11,11 +11,14 @@ class AddressDto with _$AddressDto {
     int? id,
     int? accountId,
     required String postalCode,
-    required double latitude,
-    required double longitude,
     required String address,
-    required CityDto city,
-    required ProvinceDto province,
+    required String region,
+    required String street,
+    required String plaque,
+    required String floor,
+    required String unit,
+    required String houseName,
+    required String cityId,
   }) = _AddressDto;
 
   factory AddressDto.fromJson(Map<String, dynamic> json) => _$AddressDtoFromJson(json);

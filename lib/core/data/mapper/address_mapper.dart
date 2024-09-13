@@ -10,13 +10,16 @@ extension AddressDtoMapper on AddressDto {
   AddressEntity toEntity() {
     return AddressEntity(
       id: id,
-      accountId: accountId,
+      accountId: id,
       postalCode: postalCode,
-      latitude: latitude,
-      longitude: longitude,
       address: address,
-      city: city.toEntity(),
-      province: province.toEntity(),
+      region: region,
+      street: street,
+      plaque: plaque,
+      floor: floor,
+      unit: unit,
+      houseName: houseName,
+      cityId: cityId,
     );
   }
 }
@@ -35,21 +38,6 @@ extension ProvinceDtoMapper on ProvinceDto {
     return ProvinceEntity(
       id: id,
       name: name,
-    );
-  }
-}
-
-extension GetInquiryResponseDtoMapper on GetInquiryResponseDto {
-  AddressEntity toEntity() {
-    return AddressEntity(
-      id: address.id,
-      accountId: address.accountId,
-      postalCode: address.postalCode,
-      latitude: address.latitude,
-      longitude: address.longitude,
-      address: address.address,
-      city: address.city.toEntity(),
-      province: address.province.toEntity(),
     );
   }
 }

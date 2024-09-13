@@ -23,11 +23,14 @@ mixin _$AddressDto {
   int? get id => throw _privateConstructorUsedError;
   int? get accountId => throw _privateConstructorUsedError;
   String get postalCode => throw _privateConstructorUsedError;
-  double get latitude => throw _privateConstructorUsedError;
-  double get longitude => throw _privateConstructorUsedError;
   String get address => throw _privateConstructorUsedError;
-  CityDto get city => throw _privateConstructorUsedError;
-  ProvinceDto get province => throw _privateConstructorUsedError;
+  String get region => throw _privateConstructorUsedError;
+  String get street => throw _privateConstructorUsedError;
+  String get plaque => throw _privateConstructorUsedError;
+  String get floor => throw _privateConstructorUsedError;
+  String get unit => throw _privateConstructorUsedError;
+  String get houseName => throw _privateConstructorUsedError;
+  String get cityId => throw _privateConstructorUsedError;
 
   /// Serializes this AddressDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -49,14 +52,14 @@ abstract class $AddressDtoCopyWith<$Res> {
       {int? id,
       int? accountId,
       String postalCode,
-      double latitude,
-      double longitude,
       String address,
-      CityDto city,
-      ProvinceDto province});
-
-  $CityDtoCopyWith<$Res> get city;
-  $ProvinceDtoCopyWith<$Res> get province;
+      String region,
+      String street,
+      String plaque,
+      String floor,
+      String unit,
+      String houseName,
+      String cityId});
 }
 
 /// @nodoc
@@ -77,11 +80,14 @@ class _$AddressDtoCopyWithImpl<$Res, $Val extends AddressDto>
     Object? id = freezed,
     Object? accountId = freezed,
     Object? postalCode = null,
-    Object? latitude = null,
-    Object? longitude = null,
     Object? address = null,
-    Object? city = null,
-    Object? province = null,
+    Object? region = null,
+    Object? street = null,
+    Object? plaque = null,
+    Object? floor = null,
+    Object? unit = null,
+    Object? houseName = null,
+    Object? cityId = null,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -96,47 +102,39 @@ class _$AddressDtoCopyWithImpl<$Res, $Val extends AddressDto>
           ? _value.postalCode
           : postalCode // ignore: cast_nullable_to_non_nullable
               as String,
-      latitude: null == latitude
-          ? _value.latitude
-          : latitude // ignore: cast_nullable_to_non_nullable
-              as double,
-      longitude: null == longitude
-          ? _value.longitude
-          : longitude // ignore: cast_nullable_to_non_nullable
-              as double,
       address: null == address
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
               as String,
-      city: null == city
-          ? _value.city
-          : city // ignore: cast_nullable_to_non_nullable
-              as CityDto,
-      province: null == province
-          ? _value.province
-          : province // ignore: cast_nullable_to_non_nullable
-              as ProvinceDto,
+      region: null == region
+          ? _value.region
+          : region // ignore: cast_nullable_to_non_nullable
+              as String,
+      street: null == street
+          ? _value.street
+          : street // ignore: cast_nullable_to_non_nullable
+              as String,
+      plaque: null == plaque
+          ? _value.plaque
+          : plaque // ignore: cast_nullable_to_non_nullable
+              as String,
+      floor: null == floor
+          ? _value.floor
+          : floor // ignore: cast_nullable_to_non_nullable
+              as String,
+      unit: null == unit
+          ? _value.unit
+          : unit // ignore: cast_nullable_to_non_nullable
+              as String,
+      houseName: null == houseName
+          ? _value.houseName
+          : houseName // ignore: cast_nullable_to_non_nullable
+              as String,
+      cityId: null == cityId
+          ? _value.cityId
+          : cityId // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
-  }
-
-  /// Create a copy of AddressDto
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $CityDtoCopyWith<$Res> get city {
-    return $CityDtoCopyWith<$Res>(_value.city, (value) {
-      return _then(_value.copyWith(city: value) as $Val);
-    });
-  }
-
-  /// Create a copy of AddressDto
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $ProvinceDtoCopyWith<$Res> get province {
-    return $ProvinceDtoCopyWith<$Res>(_value.province, (value) {
-      return _then(_value.copyWith(province: value) as $Val);
-    });
   }
 }
 
@@ -152,16 +150,14 @@ abstract class _$$AddressDtoImplCopyWith<$Res>
       {int? id,
       int? accountId,
       String postalCode,
-      double latitude,
-      double longitude,
       String address,
-      CityDto city,
-      ProvinceDto province});
-
-  @override
-  $CityDtoCopyWith<$Res> get city;
-  @override
-  $ProvinceDtoCopyWith<$Res> get province;
+      String region,
+      String street,
+      String plaque,
+      String floor,
+      String unit,
+      String houseName,
+      String cityId});
 }
 
 /// @nodoc
@@ -180,11 +176,14 @@ class __$$AddressDtoImplCopyWithImpl<$Res>
     Object? id = freezed,
     Object? accountId = freezed,
     Object? postalCode = null,
-    Object? latitude = null,
-    Object? longitude = null,
     Object? address = null,
-    Object? city = null,
-    Object? province = null,
+    Object? region = null,
+    Object? street = null,
+    Object? plaque = null,
+    Object? floor = null,
+    Object? unit = null,
+    Object? houseName = null,
+    Object? cityId = null,
   }) {
     return _then(_$AddressDtoImpl(
       id: freezed == id
@@ -199,26 +198,38 @@ class __$$AddressDtoImplCopyWithImpl<$Res>
           ? _value.postalCode
           : postalCode // ignore: cast_nullable_to_non_nullable
               as String,
-      latitude: null == latitude
-          ? _value.latitude
-          : latitude // ignore: cast_nullable_to_non_nullable
-              as double,
-      longitude: null == longitude
-          ? _value.longitude
-          : longitude // ignore: cast_nullable_to_non_nullable
-              as double,
       address: null == address
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
               as String,
-      city: null == city
-          ? _value.city
-          : city // ignore: cast_nullable_to_non_nullable
-              as CityDto,
-      province: null == province
-          ? _value.province
-          : province // ignore: cast_nullable_to_non_nullable
-              as ProvinceDto,
+      region: null == region
+          ? _value.region
+          : region // ignore: cast_nullable_to_non_nullable
+              as String,
+      street: null == street
+          ? _value.street
+          : street // ignore: cast_nullable_to_non_nullable
+              as String,
+      plaque: null == plaque
+          ? _value.plaque
+          : plaque // ignore: cast_nullable_to_non_nullable
+              as String,
+      floor: null == floor
+          ? _value.floor
+          : floor // ignore: cast_nullable_to_non_nullable
+              as String,
+      unit: null == unit
+          ? _value.unit
+          : unit // ignore: cast_nullable_to_non_nullable
+              as String,
+      houseName: null == houseName
+          ? _value.houseName
+          : houseName // ignore: cast_nullable_to_non_nullable
+              as String,
+      cityId: null == cityId
+          ? _value.cityId
+          : cityId // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -230,11 +241,14 @@ class _$AddressDtoImpl implements _AddressDto {
       {this.id,
       this.accountId,
       required this.postalCode,
-      required this.latitude,
-      required this.longitude,
       required this.address,
-      required this.city,
-      required this.province});
+      required this.region,
+      required this.street,
+      required this.plaque,
+      required this.floor,
+      required this.unit,
+      required this.houseName,
+      required this.cityId});
 
   factory _$AddressDtoImpl.fromJson(Map<String, dynamic> json) =>
       _$$AddressDtoImplFromJson(json);
@@ -246,19 +260,25 @@ class _$AddressDtoImpl implements _AddressDto {
   @override
   final String postalCode;
   @override
-  final double latitude;
-  @override
-  final double longitude;
-  @override
   final String address;
   @override
-  final CityDto city;
+  final String region;
   @override
-  final ProvinceDto province;
+  final String street;
+  @override
+  final String plaque;
+  @override
+  final String floor;
+  @override
+  final String unit;
+  @override
+  final String houseName;
+  @override
+  final String cityId;
 
   @override
   String toString() {
-    return 'AddressDto(id: $id, accountId: $accountId, postalCode: $postalCode, latitude: $latitude, longitude: $longitude, address: $address, city: $city, province: $province)';
+    return 'AddressDto(id: $id, accountId: $accountId, postalCode: $postalCode, address: $address, region: $region, street: $street, plaque: $plaque, floor: $floor, unit: $unit, houseName: $houseName, cityId: $cityId)';
   }
 
   @override
@@ -271,20 +291,21 @@ class _$AddressDtoImpl implements _AddressDto {
                 other.accountId == accountId) &&
             (identical(other.postalCode, postalCode) ||
                 other.postalCode == postalCode) &&
-            (identical(other.latitude, latitude) ||
-                other.latitude == latitude) &&
-            (identical(other.longitude, longitude) ||
-                other.longitude == longitude) &&
             (identical(other.address, address) || other.address == address) &&
-            (identical(other.city, city) || other.city == city) &&
-            (identical(other.province, province) ||
-                other.province == province));
+            (identical(other.region, region) || other.region == region) &&
+            (identical(other.street, street) || other.street == street) &&
+            (identical(other.plaque, plaque) || other.plaque == plaque) &&
+            (identical(other.floor, floor) || other.floor == floor) &&
+            (identical(other.unit, unit) || other.unit == unit) &&
+            (identical(other.houseName, houseName) ||
+                other.houseName == houseName) &&
+            (identical(other.cityId, cityId) || other.cityId == cityId));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, id, accountId, postalCode,
-      latitude, longitude, address, city, province);
+      address, region, street, plaque, floor, unit, houseName, cityId);
 
   /// Create a copy of AddressDto
   /// with the given fields replaced by the non-null parameter values.
@@ -307,11 +328,14 @@ abstract class _AddressDto implements AddressDto {
       {final int? id,
       final int? accountId,
       required final String postalCode,
-      required final double latitude,
-      required final double longitude,
       required final String address,
-      required final CityDto city,
-      required final ProvinceDto province}) = _$AddressDtoImpl;
+      required final String region,
+      required final String street,
+      required final String plaque,
+      required final String floor,
+      required final String unit,
+      required final String houseName,
+      required final String cityId}) = _$AddressDtoImpl;
 
   factory _AddressDto.fromJson(Map<String, dynamic> json) =
       _$AddressDtoImpl.fromJson;
@@ -323,15 +347,21 @@ abstract class _AddressDto implements AddressDto {
   @override
   String get postalCode;
   @override
-  double get latitude;
-  @override
-  double get longitude;
-  @override
   String get address;
   @override
-  CityDto get city;
+  String get region;
   @override
-  ProvinceDto get province;
+  String get street;
+  @override
+  String get plaque;
+  @override
+  String get floor;
+  @override
+  String get unit;
+  @override
+  String get houseName;
+  @override
+  String get cityId;
 
   /// Create a copy of AddressDto
   /// with the given fields replaced by the non-null parameter values.

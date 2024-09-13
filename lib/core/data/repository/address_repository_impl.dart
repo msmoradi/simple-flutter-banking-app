@@ -56,7 +56,7 @@ class AddressRepositoryImpl extends AddressRepository {
     return addressRemoteDataSource
         .getInquiry(postalCode: postalCode)
         .mapResponseToEntityWrapper(mapper: (model) {
-      return model.toEntity();
+      return model.address.toEntity();
     });
   }
 
