@@ -332,6 +332,110 @@ class _HomeContentState extends State<HomeContent> {
     ),
   ];
 
+  final diamondWidgetList = [
+    const SizedBox(
+      height: 24.0,
+    ),
+    BankActionRow(
+      actions: [
+        ActionEntity(icon: 'assets/icons/plus.svg', title: 'واریز'),
+        ActionEntity(icon: 'assets/icons/arrow-down.svg', title: 'برداشت'),
+        ActionEntity(icon: 'assets/icons/exchange.svg', title: 'انتقال'),
+        ActionEntity(icon: 'assets/icons/grid.svg', title: 'بیشتر'),
+      ],
+    ),
+    const SizedBox(
+      height: 30.0,
+    ),
+    SimpleCardRow(
+      hist: const {
+        'نوسان قیمت': "(۰٬۲۵٪) ۱۱٬۴۰۰",
+        'قیمت لحظه‌ای': '۳٬۵۴۰٬۰۰۰ تومان',
+      },
+    ),
+    const SizedBox(
+      height: 30.0,
+    ),
+    const TitleRow(
+      title: 'تراکنش‌ها',
+    ),
+    const SizedBox(
+      height: 10.0,
+    ),
+    TransactionCard(
+        image: Image.asset(
+          'assets/images/lite-coin-4.png',
+          width: 48.0,
+          height: 48.0,
+        ),
+        title: 'واریز به سپرده',
+        subtitle: 'شنبه، ۲۳ تیر ۱۴۰۳ | ۱۲:۲۲',
+        amount: '۱٬۲ گرم'),
+    const SizedBox(
+      height: 10.0,
+    ),
+    TransactionCard(
+        image: Image.asset(
+          'assets/images/lite-coin-4.png',
+          width: 48.0,
+          height: 48.0,
+        ),
+        title: 'واریز به سپرده',
+        subtitle: 'شنبه، ۲۳ تیر ۱۴۰۳ | ۱۲:۲۲',
+        amount: '۱٬۲ گرم'),
+    const SizedBox(
+      height: 10.0,
+    ),
+    TransactionCard(
+        image: Image.asset(
+          'assets/images/lite-coin-4.png',
+          width: 48.0,
+          height: 48.0,
+        ),
+        title: 'واریز به سپرده',
+        subtitle: 'شنبه، ۲۳ تیر ۱۴۰۳ | ۱۲:۲۲',
+        amount: '۱٬۲ گرم'),
+    const SizedBox(
+      height: 10.0,
+    ),
+    TransactionCard(
+        image: Image.asset(
+          'assets/images/lite-coin-4.png',
+          width: 48.0,
+          height: 48.0,
+        ),
+        title: 'واریز به سپرده',
+        subtitle: 'شنبه، ۲۳ تیر ۱۴۰۳ | ۱۲:۲۲',
+        amount: '۱٬۲ گرم'),
+    const SizedBox(
+      height: 10.0,
+    ),
+    TransactionCard(
+        image: Image.asset(
+          'assets/images/lite-coin-4.png',
+          width: 48.0,
+          height: 48.0,
+        ),
+        title: 'واریز به سپرده',
+        subtitle: 'شنبه، ۲۳ تیر ۱۴۰۳ | ۱۲:۲۲',
+        amount: '۱٬۲ گرم'),
+    const SizedBox(
+      height: 10.0,
+    ),
+    TransactionCard(
+        image: Image.asset(
+          'assets/images/lite-coin-4.png',
+          width: 48.0,
+          height: 48.0,
+        ),
+        title: 'واریز به سپرده',
+        subtitle: 'شنبه، ۲۳ تیر ۱۴۰۳ | ۱۲:۲۲',
+        amount: '۱٬۲ گرم'),
+    const SizedBox(
+      height: 10.0,
+    ),
+  ];
+
   List<List<Widget>> finalList = [];
 
   int _currentPageIndex = 0;
@@ -339,7 +443,12 @@ class _HomeContentState extends State<HomeContent> {
   @override
   void initState() {
     super.initState();
-    finalList = [widgetList, goldWidgetList, saffronWidgetList];
+    finalList = [
+      widgetList,
+      goldWidgetList,
+      saffronWidgetList,
+      diamondWidgetList
+    ];
   }
 
   void onPageChanged(index) {
@@ -412,8 +521,8 @@ class _HomeContentState extends State<HomeContent> {
                         width: double.infinity,
                         child: GlassRow(
                           currentPageIndex: 0,
-                          subtitle: '۷۴٬۲۵۲٬۰۰۰ تومان',
-                          title: 'سپرده ضد تورم',
+                          subtitle: '۱٬۳۳۵٬۶۸۳٬۲۳۵ ریالء',
+                          title: 'موجودی سپرده ضد تورم',
                         ),
                       )
                     ],
@@ -431,8 +540,8 @@ class _HomeContentState extends State<HomeContent> {
                         width: double.infinity,
                         child: GlassRow(
                           currentPageIndex: 1,
-                          subtitle: '۲۰ گرم ~ ۷۴٬۲۵۲٬۰۰۰ تومان',
-                          title: 'سپرده طلا',
+                          subtitle: '۲۰ گرم ~ ۷۴۲٬۵۲۶٬۷۰۰ ریالء',
+                          title: 'موجودی سپرده طلا',
                         ),
                       )
                     ],
@@ -450,8 +559,27 @@ class _HomeContentState extends State<HomeContent> {
                         width: double.infinity,
                         child: GlassRow(
                           currentPageIndex: 2,
-                          subtitle: '۵۰۰ گرم ~ ۵۲٬۳۱۰٬۵۰۰ تومان',
-                          title: 'سپرده زعفران',
+                          subtitle: '۵۰۰۵۰۰ گرم ~ ۵۲۳٬۰۱۰٬۵۰۰ ریالء',
+                          title: 'موجودی سپرده زعفران',
+                        ),
+                      )
+                    ],
+                  ),
+                  Stack(
+                    alignment: AlignmentDirectional.bottomCenter,
+                    children: [
+                      Image.asset(
+                        'assets/images/diamond_banx.png',
+                        fit: BoxFit.fitHeight,
+                        width: 393,
+                        height: 344,
+                      ),
+                      SizedBox(
+                        width: double.infinity,
+                        child: GlassRow(
+                          currentPageIndex: 2,
+                          subtitle: '۱۰ گرم ~ ۴۶٬۱۱۵٬۵۱۰ ریالء',
+                          title: 'موجودی سپرده الماس',
                         ),
                       )
                     ],
@@ -463,8 +591,9 @@ class _HomeContentState extends State<HomeContent> {
               padding: const EdgeInsets.symmetric(vertical: 8.0),
               sliver: SliverToBoxAdapter(
                 child: Center(
-                    child:
-                        DotIndicatorRow(currentPageIndex: _currentPageIndex)),
+                    child: DotIndicatorRow(
+                        currentPageIndex: _currentPageIndex,
+                        numberOfDotIndicator: finalList.length)),
               ),
             ),
             SliverPadding(

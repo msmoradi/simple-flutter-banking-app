@@ -81,7 +81,7 @@ String getInitialLocation({
   required bool refreshTokenExist,
 }) {
   if (refreshTokenExist) {
-    return PhonePageFactory.path;
+    return VerifyPasswordPageFactory.path;
   } else {
     return PhonePageFactory.path;
   }
