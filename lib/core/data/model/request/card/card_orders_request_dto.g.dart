@@ -12,7 +12,6 @@ _$OrdersRequestDtoImpl _$$OrdersRequestDtoImplFromJson(
       addressId: (json['addressId'] as num).toInt(),
       typeId: (json['typeId'] as num).toInt(),
       cardShippingTimeSlotId: (json['cardShippingTimeSlotId'] as num).toInt(),
-      label: json['label'] as String,
     );
 
 Map<String, dynamic> _$$OrdersRequestDtoImplToJson(
@@ -21,5 +20,4 @@ Map<String, dynamic> _$$OrdersRequestDtoImplToJson(
       'addressId': instance.addressId,
       'typeId': instance.typeId,
       'cardShippingTimeSlotId': instance.cardShippingTimeSlotId,
-      'label': instance.label,
     };

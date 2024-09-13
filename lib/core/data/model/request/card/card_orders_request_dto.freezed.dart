@@ -23,7 +23,6 @@ mixin _$CardOrdersRequestDto {
   int get addressId => throw _privateConstructorUsedError;
   int get typeId => throw _privateConstructorUsedError;
   int get cardShippingTimeSlotId => throw _privateConstructorUsedError;
-  String get label => throw _privateConstructorUsedError;
 
   /// Serializes this CardOrdersRequestDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -41,8 +40,7 @@ abstract class $CardOrdersRequestDtoCopyWith<$Res> {
           $Res Function(CardOrdersRequestDto) then) =
       _$CardOrdersRequestDtoCopyWithImpl<$Res, CardOrdersRequestDto>;
   @useResult
-  $Res call(
-      {int addressId, int typeId, int cardShippingTimeSlotId, String label});
+  $Res call({int addressId, int typeId, int cardShippingTimeSlotId});
 }
 
 /// @nodoc
@@ -64,7 +62,6 @@ class _$CardOrdersRequestDtoCopyWithImpl<$Res,
     Object? addressId = null,
     Object? typeId = null,
     Object? cardShippingTimeSlotId = null,
-    Object? label = null,
   }) {
     return _then(_value.copyWith(
       addressId: null == addressId
@@ -79,10 +76,6 @@ class _$CardOrdersRequestDtoCopyWithImpl<$Res,
           ? _value.cardShippingTimeSlotId
           : cardShippingTimeSlotId // ignore: cast_nullable_to_non_nullable
               as int,
-      label: null == label
-          ? _value.label
-          : label // ignore: cast_nullable_to_non_nullable
-              as String,
     ) as $Val);
   }
 }
@@ -95,8 +88,7 @@ abstract class _$$OrdersRequestDtoImplCopyWith<$Res>
       __$$OrdersRequestDtoImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {int addressId, int typeId, int cardShippingTimeSlotId, String label});
+  $Res call({int addressId, int typeId, int cardShippingTimeSlotId});
 }
 
 /// @nodoc
@@ -115,7 +107,6 @@ class __$$OrdersRequestDtoImplCopyWithImpl<$Res>
     Object? addressId = null,
     Object? typeId = null,
     Object? cardShippingTimeSlotId = null,
-    Object? label = null,
   }) {
     return _then(_$OrdersRequestDtoImpl(
       addressId: null == addressId
@@ -130,10 +121,6 @@ class __$$OrdersRequestDtoImplCopyWithImpl<$Res>
           ? _value.cardShippingTimeSlotId
           : cardShippingTimeSlotId // ignore: cast_nullable_to_non_nullable
               as int,
-      label: null == label
-          ? _value.label
-          : label // ignore: cast_nullable_to_non_nullable
-              as String,
     ));
   }
 }
@@ -144,8 +131,7 @@ class _$OrdersRequestDtoImpl implements _OrdersRequestDto {
   const _$OrdersRequestDtoImpl(
       {required this.addressId,
       required this.typeId,
-      required this.cardShippingTimeSlotId,
-      required this.label});
+      required this.cardShippingTimeSlotId});
 
   factory _$OrdersRequestDtoImpl.fromJson(Map<String, dynamic> json) =>
       _$$OrdersRequestDtoImplFromJson(json);
@@ -156,12 +142,10 @@ class _$OrdersRequestDtoImpl implements _OrdersRequestDto {
   final int typeId;
   @override
   final int cardShippingTimeSlotId;
-  @override
-  final String label;
 
   @override
   String toString() {
-    return 'CardOrdersRequestDto(addressId: $addressId, typeId: $typeId, cardShippingTimeSlotId: $cardShippingTimeSlotId, label: $label)';
+    return 'CardOrdersRequestDto(addressId: $addressId, typeId: $typeId, cardShippingTimeSlotId: $cardShippingTimeSlotId)';
   }
 
   @override
@@ -173,14 +157,13 @@ class _$OrdersRequestDtoImpl implements _OrdersRequestDto {
                 other.addressId == addressId) &&
             (identical(other.typeId, typeId) || other.typeId == typeId) &&
             (identical(other.cardShippingTimeSlotId, cardShippingTimeSlotId) ||
-                other.cardShippingTimeSlotId == cardShippingTimeSlotId) &&
-            (identical(other.label, label) || other.label == label));
+                other.cardShippingTimeSlotId == cardShippingTimeSlotId));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, addressId, typeId, cardShippingTimeSlotId, label);
+  int get hashCode =>
+      Object.hash(runtimeType, addressId, typeId, cardShippingTimeSlotId);
 
   /// Create a copy of CardOrdersRequestDto
   /// with the given fields replaced by the non-null parameter values.
@@ -203,8 +186,7 @@ abstract class _OrdersRequestDto implements CardOrdersRequestDto {
   const factory _OrdersRequestDto(
       {required final int addressId,
       required final int typeId,
-      required final int cardShippingTimeSlotId,
-      required final String label}) = _$OrdersRequestDtoImpl;
+      required final int cardShippingTimeSlotId}) = _$OrdersRequestDtoImpl;
 
   factory _OrdersRequestDto.fromJson(Map<String, dynamic> json) =
       _$OrdersRequestDtoImpl.fromJson;
@@ -215,8 +197,6 @@ abstract class _OrdersRequestDto implements CardOrdersRequestDto {
   int get typeId;
   @override
   int get cardShippingTimeSlotId;
-  @override
-  String get label;
 
   /// Create a copy of CardOrdersRequestDto
   /// with the given fields replaced by the non-null parameter values.

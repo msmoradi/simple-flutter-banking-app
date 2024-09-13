@@ -9,8 +9,6 @@ part of 'post_address_request_dto.dart';
 _$PostAddressRequestDtoImpl _$$PostAddressRequestDtoImplFromJson(
         Map<String, dynamic> json) =>
     _$PostAddressRequestDtoImpl(
-      id: (json['id'] as num?)?.toInt(),
-      accountId: (json['accountId'] as num?)?.toInt(),
       postalCode: json['postalCode'] as String,
       address: json['address'] as String,
       region: json['region'] as String,
@@ -26,8 +24,6 @@ _$PostAddressRequestDtoImpl _$$PostAddressRequestDtoImplFromJson(
 Map<String, dynamic> _$$PostAddressRequestDtoImplToJson(
         _$PostAddressRequestDtoImpl instance) =>
     <String, dynamic>{
-      'id': instance.id,
-      'accountId': instance.accountId,
       'postalCode': instance.postalCode,
       'address': instance.address,
       'region': instance.region,

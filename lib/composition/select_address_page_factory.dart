@@ -17,12 +17,12 @@ class SelectAddressPageFactory {
     return SelectAddressPage(
       showMessage: showMessage,
       addressList: extra.addressList,
-      addressSelected: (address) {
+      addressSelected: (address, cardShippingTimeSlots) {
         context.push(CardDeliveryTimePageFactory.path,
             extra: CardDeliveryTimeExtra(
               address: address,
               cardTypeId: extra.cardTypeId,
-              cardShippingTimeSlots: [],
+              cardShippingTimeSlots: cardShippingTimeSlots,
             ));
       },
       onAddAddress: () {

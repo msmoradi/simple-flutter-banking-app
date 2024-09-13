@@ -44,7 +44,7 @@ class VerifyPasswordBloc
     final firstName = await profileRepository.getFirstName();
     final photoUrl = await profileRepository.getPhotoUrl();
     try {
-      emit.call(VerifyPasswordInitial(
+      emit(VerifyPasswordInitial(
         showBiometric: showBiometric,
         firstName: firstName ?? 'تست',
         photoUrl: photoUrl ?? 'https://i.pravatar.cc/300',
@@ -91,6 +91,7 @@ class VerifyPasswordBloc
     emit(VerifyPasswordInProgress());
     try {
       final refreshToken = await tokenRepository.getRefreshToken() ?? "";
+      final refreshResponse = await authenticationRepository.refresh(refreshToken: refreshToken);
       final response = await authenticationRepository
           .refresh(refreshToken: refreshToken)
           .then((value) async {

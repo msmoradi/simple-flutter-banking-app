@@ -1,34 +1,38 @@
-import 'package:banx/core/domain/repository/address_repository.dart';
+import 'package:banx/core/domain/entities/address_entity.dart';
+import 'package:banx/core/domain/entities/shipping_time_entity.dart';
+import 'package:banx/core/domain/repository/card_repository.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 
 part 'select_address_event.dart';
+
 part 'select_address_state.dart';
 
 @injectable
 class SelectAddressBloc extends Bloc<SelectAddressEvent, SelectAddressState> {
-  final AddressRepository addressRepository;
+  final CardRepository cardRepository;
 
   SelectAddressBloc({
-    required this.addressRepository,
+    required this.cardRepository,
   }) : super(SelectAddressValidated()) {
-    on<CheckPostalCodeSubmitted>(_onCheckPostalCodeSubmitted);
+    on<AddressSelected>(_onAddressSelected);
   }
 
-  Future<void> _onCheckPostalCodeSubmitted(
-    CheckPostalCodeSubmitted event,
+  Future<void> _onAddressSelected(
+    AddressSelected event,
     Emitter<SelectAddressState> emit,
   ) async {
     emit(SelectAddressInProgress());
     try {
-      final response =
-          await addressRepository.getInquiry(postalCode: event.postalCode);
+      final response = await cardRepository.shippingTimeSlots();
       response.when(
-          success: (response) {
+          success: (entity) {
             emit(
-              SelectAddressSuccess(address: response.address),
+              SelectAddressSuccess(
+                  address: event.addressEntity,
+                  cardShippingTimeSlots: entity.cardShippingTimeSlots),
             );
           },
           partialSuccess: (message) => emit(SelectAddressFailure(message)),

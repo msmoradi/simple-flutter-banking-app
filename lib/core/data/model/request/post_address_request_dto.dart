@@ -6,8 +6,6 @@ part 'post_address_request_dto.g.dart';
 @freezed
 class PostAddressRequestDto with _$PostAddressRequestDto {
   const factory PostAddressRequestDto({
-    int? id,
-    int? accountId,
     required String postalCode,
     required String address,
     required String region,

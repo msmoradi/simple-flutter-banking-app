@@ -188,16 +188,18 @@ extension GetItInjectableX on _i174.GetIt {
         addressRepository: gh<_i648.AddressRepository>()));
     gh.factory<_i230.CheckPostalCodeBloc>(() => _i230.CheckPostalCodeBloc(
         addressRepository: gh<_i648.AddressRepository>()));
-    gh.factory<_i922.SelectAddressBloc>(() => _i922.SelectAddressBloc(
-        addressRepository: gh<_i648.AddressRepository>()));
-    gh.factory<_i759.AddAddressBloc>(() =>
-        _i759.AddAddressBloc(addressRepository: gh<_i648.AddressRepository>()));
     gh.lazySingleton<_i831.CardRepository>(() => _i339.CardRepositoryImpl(
           cardRemoteDataSource: gh<_i521.CardRemoteDataSource>(),
           profileRepository: gh<_i111.ProfileRepository>(),
         ));
+    gh.factory<_i759.AddAddressBloc>(() => _i759.AddAddressBloc(
+          addressRepository: gh<_i648.AddressRepository>(),
+          cardRepository: gh<_i831.CardRepository>(),
+        ));
     gh.factory<_i501.CardDeliveryTimeBloc>(() =>
         _i501.CardDeliveryTimeBloc(cardRepository: gh<_i831.CardRepository>()));
+    gh.factory<_i922.SelectAddressBloc>(() =>
+        _i922.SelectAddressBloc(cardRepository: gh<_i831.CardRepository>()));
     gh.factory<_i887.FaceDetectionBloc>(() => _i887.FaceDetectionBloc(
           gh<_i654.MediaRepository>(),
           gh<_i111.ProfileRepository>(),

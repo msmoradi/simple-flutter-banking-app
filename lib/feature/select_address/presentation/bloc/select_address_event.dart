@@ -7,10 +7,10 @@ abstract class SelectAddressEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class CheckPostalCodeSubmitted extends SelectAddressEvent {
-  final String postalCode;
+class AddressSelected extends SelectAddressEvent {
+  final AddressEntity addressEntity;
 
-  const CheckPostalCodeSubmitted(this.postalCode);
+  const AddressSelected(this.addressEntity);
 
   @override
   List<Object> get props => [];

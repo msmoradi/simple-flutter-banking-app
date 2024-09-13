@@ -30,10 +30,9 @@ class CardDeliveryTimeBloc
     emit(CardDeliveryTimeInProgress());
     try {
       final response = await cardRepository.orders(
-        addressId: 0,
-        typeId: 0,
-        cardShippingTimeSlotId: 10,
-        label: "label",
+        addressId: event.addressId,
+        typeId: event.typeId,
+        cardShippingTimeSlotId: event.cardShippingTimeSlotId,
       );
       response.when(
           success: (entity) {

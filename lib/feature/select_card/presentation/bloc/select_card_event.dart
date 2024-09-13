@@ -14,7 +14,9 @@ class Init extends SelectCardEvent {
 }
 
 class ActionClick extends SelectCardEvent {
+  final int cardTypeId;
 
+  ActionClick({required this.cardTypeId});
   @override
   List<Object> get props => [];
 }

@@ -25,9 +25,13 @@ class SelectAddressValidated extends SelectAddressState {
 }
 
 class SelectAddressSuccess extends SelectAddressState {
-  final String address;
+  final AddressEntity address;
+  final List<ShippingTimeEntity> cardShippingTimeSlots;
 
-  const SelectAddressSuccess({required this.address});
+  const SelectAddressSuccess({
+    required this.address,
+    required this.cardShippingTimeSlots,
+  });
 
   @override
   List<Object?> get props => [];

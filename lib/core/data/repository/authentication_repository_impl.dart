@@ -34,18 +34,16 @@ class AuthenticationRepositoryImpl extends AuthenticationRepository {
     return authenticationRemoteDataSource
         .verifyOtp(phoneNumber, otp)
         .mapResponseToEntityWrapper(mapper: (model) {
-      return VerifyOtpEntity(
+      return TokenEntity(
         accessToken: model.accessToken,
         refreshToken: model.refreshToken,
       );
     }).then((entityWrapper) async {
-      if (entityWrapper is SuccessEntityWrapper<VerifyOtpEntity>) {
-        await tokenRepository.saveAccessToken(entityWrapper.data.accessToken);
+      if (entityWrapper is SuccessEntityWrapper<TokenEntity>) {
 
-        if (entityWrapper.data.refreshToken != null) {
-          await tokenRepository
-              .saveRefreshToken(entityWrapper.data.refreshToken!);
-        }
+        await saveTokens(
+            accessToken: entityWrapper.data.accessToken,
+            refreshToken: entityWrapper.data.refreshToken);
 
         return await profileRepository.getProfile();
       }
@@ -60,17 +58,14 @@ class AuthenticationRepositoryImpl extends AuthenticationRepository {
     return authenticationRemoteDataSource
         .postPassword(password)
         .mapResponseToEntityWrapper(mapper: (model) {
-      return VerifyOtpEntity(
+      return TokenEntity(
         accessToken: model.accessToken,
       );
     }).then((entityWrapper) async {
-      if (entityWrapper is SuccessEntityWrapper<VerifyOtpEntity>) {
-        await tokenRepository.saveAccessToken(entityWrapper.data.accessToken);
-
-        if (entityWrapper.data.refreshToken != null) {
-          await tokenRepository
-              .saveRefreshToken(entityWrapper.data.refreshToken!);
-        }
+      if (entityWrapper is SuccessEntityWrapper<TokenEntity>) {
+        await saveTokens(
+            accessToken: entityWrapper.data.accessToken,
+            refreshToken: entityWrapper.data.refreshToken);
 
         return await profileRepository.getProfile();
       }
@@ -107,24 +102,21 @@ class AuthenticationRepositoryImpl extends AuthenticationRepository {
   }
 
   @override
-  Future<EntityWrapper<VerifyOtpEntity>> refresh({
+  Future<EntityWrapper<TokenEntity>> refresh({
     required String refreshToken,
   }) {
     return authenticationRemoteDataSource
         .refresh(refreshToken)
         .mapResponseToEntityWrapper(mapper: (model) {
-      return VerifyOtpEntity(
+      return TokenEntity(
         accessToken: model.accessToken,
         refreshToken: model.refreshToken,
       );
     }).then((entityWrapper) async {
-      if (entityWrapper is SuccessEntityWrapper<VerifyOtpEntity>) {
-        await tokenRepository.saveAccessToken(entityWrapper.data.accessToken);
-
-        if (entityWrapper.data.refreshToken != null) {
-          await tokenRepository
-              .saveRefreshToken(entityWrapper.data.refreshToken!);
-        }
+      if (entityWrapper is SuccessEntityWrapper<TokenEntity>) {
+        await saveTokens(
+            accessToken: entityWrapper.data.accessToken,
+            refreshToken: entityWrapper.data.refreshToken);
       }
       return entityWrapper;
     });
@@ -163,5 +155,15 @@ class AuthenticationRepositoryImpl extends AuthenticationRepository {
         codeLength: model.codeLength,
       );
     });
+  }
+
+  Future<void> saveTokens({String? accessToken, String? refreshToken}) async {
+    if (accessToken != null) {
+      await tokenRepository.saveAccessToken(accessToken);
+    }
+
+    if (refreshToken != null) {
+      await tokenRepository.saveRefreshToken(refreshToken);
+    }
   }
 }

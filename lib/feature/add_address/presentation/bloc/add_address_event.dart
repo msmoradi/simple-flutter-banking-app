@@ -8,9 +8,9 @@ abstract class AddAddressEvent extends Equatable {
 }
 
 class AddAddressSubmitted extends AddAddressEvent {
-  final String postalCode;
+  final AddressEntity addressEntity;
 
-  const AddAddressSubmitted(this.postalCode);
+  const AddAddressSubmitted(this.addressEntity);
 
   @override
   List<Object> get props => [];

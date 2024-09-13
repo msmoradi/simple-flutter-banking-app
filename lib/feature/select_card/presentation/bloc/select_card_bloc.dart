@@ -30,19 +30,29 @@ class SelectCardBloc extends Bloc<SelectCardEvent, SelectCardState> {
     ActionClick event,
     Emitter<SelectCardState> emit,
   ) async {
-    state.whenOrNull(
-      selectCardSuccess: (id, _, __, ___, addressList) {
-        if (addressList.isEmpty) {
-          emit(
-            CheckPostalCode(cardTypeId: id),
-          );
-        } else {
-          emit(
-            SelectAddress(addressList: addressList, cardTypeId: id),
-          );
-        }
-      },
-    );
+    emit(const ButtonInProgress());
+
+    try {
+      final response = await addressRepository.getAddress();
+      response.when(
+          success: (entity) {
+            if (entity.size == 0) {
+              emit(
+                CheckPostalCode(cardTypeId: event.cardTypeId),
+              );
+            } else {
+              emit(
+                SelectAddress(
+                    addressList: entity.content, cardTypeId: event.cardTypeId),
+              );
+            }
+          },
+          partialSuccess: (message) => emit(SelectCardFailure(message)),
+          networkError: (exception) =>
+              emit(SelectCardFailure(exception.toString())));
+    } catch (e) {
+      emit(SelectCardFailure(e.toString()));
+    }
   }
 
   Future<void> _onInit(
@@ -51,39 +61,21 @@ class SelectCardBloc extends Bloc<SelectCardEvent, SelectCardState> {
   ) async {
     emit(const SelectCardInProgress());
     try {
-      final responses = await Future.wait([
-        cardRepository.types(),
-        addressRepository.getAddress(),
-      ]);
-
-      final cardTypesResponse =
-          responses[0] as EntityWrapper<CardTypesResponseEntity>;
-
-      final getAddressResponse =
-          responses[1] as EntityWrapper<GenericListEntity<AddressEntity>>;
-
-      if (cardTypesResponse.isSuccess && getAddressResponse.isSuccess) {
-        final card =
-            (cardTypesResponse as SuccessEntityWrapper<CardTypesResponseEntity>)
-                .data
-                .cardTypes[0];
-
-        final addressList = (getAddressResponse
-                as SuccessEntityWrapper<GenericListEntity<AddressEntity>>)
-            .data
-            .content;
-
-        emit(
-          SelectCardSuccess(
-              title: card.title,
-              id: card.id,
-              description: card.description,
-              priceLabel: card.priceLabel,
-              addressList: addressList),
-        );
-      } else {
-        emit(const SelectCardFailure('Error fetching data.'));
-      }
+      final responses = await cardRepository.types();
+      responses.when(
+          success: (entity) {
+            final card = entity.cardTypes.first;
+            emit(
+              SelectCardSuccess(
+                  title: card.title,
+                  id: card.id,
+                  description: card.description,
+                  priceLabel: card.priceLabel),
+            );
+          },
+          partialSuccess: (message) => emit(SelectCardFailure(message)),
+          networkError: (exception) =>
+              emit(SelectCardFailure(exception.toString())));
     } catch (e) {
       emit(SelectCardFailure(e.toString()));
     }

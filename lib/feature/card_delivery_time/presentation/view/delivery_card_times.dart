@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 
 class DeliveryCardTimes extends StatefulWidget {
   final List<ShippingTimeEntity> cardShippingTimeSlots;
+  final Function(int) onItemSelected;
 
   const DeliveryCardTimes({
     super.key,
     required this.cardShippingTimeSlots,
+    required this.onItemSelected,
   });
 
   @override
@@ -14,12 +16,13 @@ class DeliveryCardTimes extends StatefulWidget {
 }
 
 class _DeliveryCardTimesState extends State<DeliveryCardTimes> {
-  int _selectedTime = 1;
+  int? _selectedTime;
 
   void _onRadioSelected(int value) {
     setState(() {
       _selectedTime = value;
     });
+    widget.onItemSelected(value);
   }
 
   Widget _buildRadioRow(
@@ -34,7 +37,8 @@ class _DeliveryCardTimesState extends State<DeliveryCardTimes> {
               const SizedBox(width: 10),
               Radio<int>(
                 value: timeSlot.id,
-                groupValue: _selectedTime,
+                groupValue:
+                    _selectedTime ?? widget.cardShippingTimeSlots.first.id,
                 onChanged: (int? value) {
                   setState(() {
                     _selectedTime = value!;

@@ -6,8 +6,8 @@ import 'package:banx/feature/card_delivery_time/presentation/view/delivery_card_
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class CardDeliveryTimeContent extends StatelessWidget {
-  final Function() onActionClick;
+class CardDeliveryTimeContent extends StatefulWidget {
+  final Function(int) onActionClick;
   final bool showLoading;
   final AddressEntity address;
   final List<ShippingTimeEntity> cardShippingTimeSlots;
@@ -19,6 +19,20 @@ class CardDeliveryTimeContent extends StatelessWidget {
     required this.address,
     required this.cardShippingTimeSlots,
   });
+
+  @override
+  State<CardDeliveryTimeContent> createState() =>
+      _CardDeliveryTimeContentState();
+}
+
+class _CardDeliveryTimeContentState extends State<CardDeliveryTimeContent> {
+  int? _selectedTime;
+
+  void _onRadioSelected(int value) {
+    setState(() {
+      _selectedTime = value;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -68,7 +82,7 @@ class CardDeliveryTimeContent extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(horizontal: 16.0),
                       child: AddressRow(
                         onEditPressed: () {},
-                        address: address.address,
+                        address: widget.address.address,
                       ),
                     ),
                     const SizedBox(height: 32),
@@ -94,7 +108,8 @@ class CardDeliveryTimeContent extends StatelessWidget {
                       ),
                     ),
                     DeliveryCardTimes(
-                      cardShippingTimeSlots: cardShippingTimeSlots,
+                      cardShippingTimeSlots: widget.cardShippingTimeSlots,
+                      onItemSelected: _onRadioSelected,
                     )
                   ],
                 ),
@@ -103,7 +118,8 @@ class CardDeliveryTimeContent extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: PrimaryFillButton(
-                onPressed: onActionClick,
+                onPressed: widget.onActionClick(
+                    _selectedTime ?? widget.cardShippingTimeSlots.first.id),
                 icon: SvgPicture.asset(
                   'assets/icons/thumb-up.svg',
                   colorFilter: ColorFilter.mode(
@@ -112,7 +128,7 @@ class CardDeliveryTimeContent extends StatelessWidget {
                   ),
                 ),
                 label: 'تأیید زمان و مکان دریافت کارت',
-                isLoading: showLoading,
+                isLoading: widget.showLoading,
               ),
             ),
             const SizedBox(height: 16),

@@ -8,6 +8,7 @@ class SelectCardContent extends StatelessWidget {
   final Function() onActionClick;
   final Function(String) showMessage;
   final bool showLoading;
+  final bool buttonLoading;
   final String firstName;
   final String lastName;
   final String title;
@@ -24,6 +25,7 @@ class SelectCardContent extends StatelessWidget {
     required this.description,
     required this.priceLabel,
     required this.showLoading,
+    required this.buttonLoading,
   });
 
   @override
@@ -112,6 +114,7 @@ class SelectCardContent extends StatelessWidget {
                 child: PrimaryFillButton(
                   label: "سفارش رایگان کارت فلزی",
                   onPressed: onActionClick,
+                  isLoading: buttonLoading,
                 ),
               ),
               const SizedBox(height: 16),

@@ -41,8 +41,6 @@ class AddressRemoteDataSourceImpl extends AddressRemoteDataSource {
     required AddressDto addressDto,
   }) {
     final dataRequest = PostAddressRequestDto(
-      id: addressDto.id,
-      accountId: addressDto.accountId,
       postalCode: addressDto.postalCode,
       address: addressDto.address,
       region: addressDto.region,

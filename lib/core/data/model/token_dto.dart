@@ -6,7 +6,7 @@ part 'token_dto.g.dart';
 @freezed
 class TokenDto with _$TokenDto {
   const factory TokenDto({
-    required String accessToken,
+    String? accessToken,
     String? refreshToken,
   }) = _TokenDto;
 

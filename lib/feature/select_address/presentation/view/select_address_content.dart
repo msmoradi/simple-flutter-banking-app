@@ -1,5 +1,6 @@
 import 'package:banx/core/designsystem/widgets/button/fill/full_fill_button.dart';
 import 'package:banx/core/designsystem/widgets/components/address_row.dart';
+import 'package:banx/core/designsystem/widgets/components/loading_container.dart';
 import 'package:banx/core/domain/entities/address_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -8,12 +9,14 @@ class SelectAddressContent extends StatelessWidget {
   final bool showLoading;
   final Function() onAddAddress;
   final List<AddressEntity> addressList;
+  final Function(AddressEntity) addressSelected;
 
   const SelectAddressContent({
     super.key,
     required this.showLoading,
     required this.onAddAddress,
     required this.addressList,
+    required this.addressSelected,
   });
 
   @override
@@ -52,10 +55,17 @@ class SelectAddressContent extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 16),
-              Column(
-                children: addressList.map((address) {
-                  return AddressRow(address: address.address);
-                }).toList(),
+              LoadingContainer(
+                showLoading: showLoading,
+                content: Column(
+                  children: addressList.map((address) {
+                    return GestureDetector(
+                        onTap: () {
+                          addressSelected(address);
+                        },
+                        child: AddressRow(address: address.address));
+                  }).toList(),
+                ),
               ),
               const Spacer(),
               PrimaryFillButton(
@@ -68,7 +78,6 @@ class SelectAddressContent extends StatelessWidget {
                   ),
                 ),
                 label: 'آدرس جدید',
-                isLoading: showLoading,
               ),
               const SizedBox(height: 16),
             ],

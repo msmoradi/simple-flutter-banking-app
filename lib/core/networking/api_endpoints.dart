@@ -65,7 +65,7 @@ class ApiEndpoint {
       case AddressEndpoint.STATES:
         return '$path/states';
       case AddressEndpoint.INQUIRY:
-        return '$path/inquery';
+        return '$path/inquiry';
       case AddressEndpoint.CITIES:
         return '$path/cities';
     }

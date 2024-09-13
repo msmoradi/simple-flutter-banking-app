@@ -1,10 +1,10 @@
 import 'package:banx/core/domain/entities/entity.dart';
 
-class VerifyOtpEntity extends Entity {
-  final String accessToken;
+class TokenEntity extends Entity {
+  final String? accessToken;
   final String? refreshToken;
 
-  VerifyOtpEntity({
+  TokenEntity({
     required this.accessToken,
     this.refreshToken,
   });

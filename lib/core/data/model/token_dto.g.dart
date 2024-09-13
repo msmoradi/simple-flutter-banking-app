@@ -8,7 +8,7 @@ part of 'token_dto.dart';
 
 _$TokenDtoImpl _$$TokenDtoImplFromJson(Map<String, dynamic> json) =>
     _$TokenDtoImpl(
-      accessToken: json['accessToken'] as String,
+      accessToken: json['accessToken'] as String?,
       refreshToken: json['refreshToken'] as String?,
     );
 

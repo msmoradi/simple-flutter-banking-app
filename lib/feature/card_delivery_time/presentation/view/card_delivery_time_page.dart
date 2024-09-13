@@ -45,10 +45,13 @@ class CardDeliveryTimePage extends StatelessWidget {
         builder: (context, state) {
           return CardDeliveryTimeContent(
             showLoading: state is CardDeliveryTimeInProgress,
-            onActionClick: () {
-              context
-                  .read<CardDeliveryTimeBloc>()
-                  .add(const CardDeliveryTimeSubmitted());
+            onActionClick: (cardShippingTimeSlotId) {
+              context.read<CardDeliveryTimeBloc>().add(
+                    CardDeliveryTimeSubmitted(
+                        addressId: address.id!,
+                        typeId: cardTypeId,
+                        cardShippingTimeSlotId: cardShippingTimeSlotId),
+                  );
             },
             address: address,
             cardShippingTimeSlots: cardShippingTimeSlots,

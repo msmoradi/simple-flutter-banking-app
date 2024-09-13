@@ -26,8 +26,12 @@ class AddAddressValidated extends AddAddressState {
 
 class AddressSelected extends AddAddressState {
   final AddressEntity address;
+  final List<ShippingTimeEntity> cardShippingTimeSlots;
 
-  const AddressSelected({required this.address});
+  const AddressSelected({
+    required this.address,
+    required this.cardShippingTimeSlots,
+  });
 
   @override
   List<Object?> get props => [];

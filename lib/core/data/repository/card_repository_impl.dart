@@ -25,14 +25,12 @@ class CardRepositoryImpl extends CardRepository {
     required int addressId,
     required int typeId,
     required int cardShippingTimeSlotId,
-    required String label,
   }) {
     return cardRemoteDataSource
         .orders(
             addressId: addressId,
             typeId: typeId,
-            cardShippingTimeSlotId: cardShippingTimeSlotId,
-            label: label)
+            cardShippingTimeSlotId: cardShippingTimeSlotId)
         .mapResponseToEntityWrapper(mapper: (model) {
       return EmptyEntity();
     }).then((entityWrapper) async {

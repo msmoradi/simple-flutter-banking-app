@@ -1,14 +1,18 @@
 import 'package:banx/core/designsystem/widgets/button/fill/full_fill_button.dart';
-import 'package:banx/core/designsystem/widgets/textfields/postal_code_text_field.dart';
-import 'package:banx/feature/add_address/presentation/bloc/add_address_bloc.dart';
-import 'package:banx/feature/check_postal_code/presentation/bloc/check_postal_code_bloc.dart';
+import 'package:banx/core/domain/entities/address_entity.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AddAddressContent extends StatefulWidget {
+  final Function(AddressEntity updatedAddress) onAddAddressSubmitted;
   final bool showLoading;
+  final AddressEntity addressEntity;
 
-  const AddAddressContent({super.key, required this.showLoading});
+  const AddAddressContent({
+    super.key,
+    required this.showLoading,
+    required this.onAddAddressSubmitted,
+    required this.addressEntity,
+  });
 
   @override
   State<AddAddressContent> createState() => _AddAddressContentState();
@@ -16,7 +20,47 @@ class AddAddressContent extends StatefulWidget {
 
 class _AddAddressContentState extends State<AddAddressContent> {
   final _formKey = GlobalKey<FormState>();
-  String? _postalCode = "";
+
+  // Create TextEditingControllers for each field
+  late TextEditingController _addressController;
+  late TextEditingController _regionController;
+  late TextEditingController _streetController;
+  late TextEditingController _plaqueController;
+  late TextEditingController _floorController;
+  late TextEditingController _unitController;
+  late TextEditingController _houseNameController;
+
+  @override
+  void initState() {
+    super.initState();
+
+    // Initialize the TextEditingControllers with the initial values from AddressEntity
+    _addressController =
+        TextEditingController(text: widget.addressEntity.address);
+    _regionController =
+        TextEditingController(text: widget.addressEntity.region);
+    _streetController =
+        TextEditingController(text: widget.addressEntity.street);
+    _plaqueController =
+        TextEditingController(text: widget.addressEntity.plaque);
+    _floorController = TextEditingController(text: widget.addressEntity.floor);
+    _unitController = TextEditingController(text: widget.addressEntity.unit);
+    _houseNameController =
+        TextEditingController(text: widget.addressEntity.houseName);
+  }
+
+  @override
+  void dispose() {
+    // Dispose of the controllers when the widget is disposed
+    _addressController.dispose();
+    _regionController.dispose();
+    _streetController.dispose();
+    _plaqueController.dispose();
+    _floorController.dispose();
+    _unitController.dispose();
+    _houseNameController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -45,140 +89,100 @@ class _AddAddressContentState extends State<AddAddressContent> {
                       Align(
                         alignment: Alignment.centerRight,
                         child: Text(
-                          style:
-                              Theme.of(context).textTheme.bodyMedium?.copyWith(
-                                    color: Theme.of(context)
-                                        .colorScheme
-                                        .onSurfaceVariant,
-                                  ),
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyMedium
+                              ?.copyWith(
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .onSurfaceVariant),
                           'درصورت نیاز آدرس را ویرایش و ذخیره کنید',
                         ),
                       ),
-                      const SizedBox(
-                        height: 16.0,
-                      ),
+                      const SizedBox(height: 16.0),
                       Form(
                         key: _formKey,
                         child: Column(
                           children: [
+                            // Pre-populated address field
                             TextFormField(
+                              controller: _regionController,
                               autofocus: true,
                               keyboardType: TextInputType.multiline,
                               maxLines: null,
                               readOnly: true,
                               enabled: false,
-                              onFieldSubmitted: (text) {},
-                              decoration: const InputDecoration(
-                                hintText: "تهران، تهران، پیروزی",
-                              ),
-                              validator: (value) {
-                                return value?.isNotEmpty == true
-                                    ? null
-                                    : 'نام باید پر شود';
-                              },
                             ),
-                            const SizedBox(
-                              height: 16.0,
-                            ),
+                            const SizedBox(height: 16.0),
+
+                            // Pre-populated region field
                             TextFormField(
+                              controller: _streetController,
                               autofocus: true,
                               keyboardType: TextInputType.multiline,
                               maxLines: null,
-                              onFieldSubmitted: (text) {},
                               decoration: const InputDecoration(
-                                hintText: "خیابان اصلی و فرعی",
-                              ),
-                              validator: (value) {
-                                return value?.isNotEmpty == true
-                                    ? null
-                                    : 'نام باید پر شود';
-                              },
+                                  hintText: "خیابان اصلی و فرعی"),
                             ),
-                            const SizedBox(
-                              height: 16.0,
-                            ),
+                            const SizedBox(height: 16.0),
+
+                            // Pre-populated street and plaque fields
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Expanded(
                                   child: TextFormField(
+                                    controller: _plaqueController,
                                     autofocus: true,
                                     maxLines: null,
-                                    onFieldSubmitted: (text) {},
                                     keyboardType: TextInputType.number,
-                                    decoration: const InputDecoration(
-                                      hintText: "پلاک",
-                                    ),
-                                    validator: (value) {
-                                      return value?.isNotEmpty == true
-                                          ? null
-                                          : 'نام باید پر شود';
-                                    },
+                                    decoration:
+                                        const InputDecoration(hintText: "پلاک"),
                                   ),
                                 ),
-                                const SizedBox(
-                                  width: 16.0,
-                                ),
+                                const SizedBox(width: 16.0),
                                 Expanded(
                                   child: TextFormField(
+                                    controller: _houseNameController,
                                     autofocus: true,
                                     keyboardType: TextInputType.text,
                                     maxLines: null,
-                                    onFieldSubmitted: (text) {},
                                     decoration: const InputDecoration(
                                       hintText: "نام ساختمان یا بلوک",
                                     ),
-                                    validator: (value) {
-                                      return value?.isNotEmpty == true
-                                          ? null
-                                          : 'نام باید پر شود';
-                                    },
                                   ),
                                 ),
                               ],
                             ),
-                            const SizedBox(
-                              height: 16.0,
-                            ),
+                            const SizedBox(height: 16.0),
+
+                            // Pre-populated floor and unit fields
                             Row(
                               children: [
                                 Expanded(
                                   child: TextFormField(
+                                    controller: _floorController,
                                     autofocus: true,
                                     keyboardType: TextInputType.number,
                                     maxLines: null,
-                                    onFieldSubmitted: (text) {},
-                                    decoration: const InputDecoration(
-                                      hintText: "طبقه",
-                                    ),
-                                    validator: (value) {
-                                      return value?.isNotEmpty == true
-                                          ? null
-                                          : 'نام باید پر شود';
-                                    },
+                                    decoration:
+                                        const InputDecoration(hintText: "طبقه"),
                                   ),
                                 ),
-                                const SizedBox(
-                                  width: 16.0,
-                                ),
+                                const SizedBox(width: 16.0),
                                 Expanded(
                                   child: TextFormField(
+                                    controller: _unitController,
                                     autofocus: true,
                                     keyboardType: TextInputType.number,
                                     maxLines: null,
-                                    onFieldSubmitted: (text) {},
-                                    decoration: const InputDecoration(
-                                      hintText: "واحد",
-                                    ),
-                                    validator: (value) {
-                                      return value?.isNotEmpty == true
-                                          ? null
-                                          : 'نام باید پر شود';
-                                    },
+                                    decoration:
+                                        const InputDecoration(hintText: "واحد"),
                                   ),
                                 ),
                               ],
                             ),
+                            const SizedBox(height: 16.0),
                           ],
                         ),
                       ),
@@ -187,14 +191,32 @@ class _AddAddressContentState extends State<AddAddressContent> {
                 ),
               ),
               const SizedBox(height: 16),
+
+              // PrimaryFillButton to submit the form
               PrimaryFillButton(
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
                     _formKey.currentState?.save();
                     FocusManager.instance.primaryFocus?.unfocus();
-                    context
-                        .read<AddAddressBloc>()
-                        .add(AddAddressSubmitted(_postalCode!));
+
+                    // Update the AddressEntity with new values from the text fields
+                    final updatedAddress = AddressEntity(
+                      id: widget.addressEntity.id,
+                      accountId: widget.addressEntity.accountId,
+                      postalCode: widget.addressEntity.postalCode,
+                      address: _addressController.text,
+                      region: _regionController.text,
+                      street: _streetController.text,
+                      plaque: _plaqueController.text,
+                      floor: _floorController.text,
+                      unit: _unitController.text,
+                      houseName: _houseNameController.text,
+                      city: widget.addressEntity.city,
+                      province: widget.addressEntity.province,
+                    );
+
+                    // Call the submission callback with the updated address
+                    widget.onAddAddressSubmitted(updatedAddress);
                   }
                 },
                 label: 'تأیید و ادامه',

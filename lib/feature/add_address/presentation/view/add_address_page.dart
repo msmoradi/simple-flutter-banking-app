@@ -33,6 +33,12 @@ class AddAddressPage extends StatelessWidget {
         builder: (context, state) {
           return AddAddressContent(
             showLoading: state is AddAddressInProgress,
+            addressEntity: address,
+            onAddAddressSubmitted: (addressEntity){
+              context
+                  .read<AddAddressBloc>()
+                  .add(AddAddressSubmitted(addressEntity));
+            },
           );
         },
       ),

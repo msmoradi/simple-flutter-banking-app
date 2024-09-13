@@ -10,6 +10,8 @@ class SelectCardState with _$SelectCardState {
 
   const factory SelectCardState.selectCardInProgress() = SelectCardInProgress;
 
+  const factory SelectCardState.buttonInProgress() = ButtonInProgress;
+
   const factory SelectCardState.checkPostalCode({
     required int cardTypeId,
   }) = CheckPostalCode;
@@ -24,7 +26,6 @@ class SelectCardState with _$SelectCardState {
     required String title,
     required String description,
     required String priceLabel,
-    required List<AddressEntity> addressList,
   }) = SelectCardSuccess;
 
   const factory SelectCardState.selectCardValidated() = SelectCardValidated;

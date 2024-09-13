@@ -21,8 +21,6 @@ PostAddressRequestDto _$PostAddressRequestDtoFromJson(
 
 /// @nodoc
 mixin _$PostAddressRequestDto {
-  int? get id => throw _privateConstructorUsedError;
-  int? get accountId => throw _privateConstructorUsedError;
   String get postalCode => throw _privateConstructorUsedError;
   String get address => throw _privateConstructorUsedError;
   String get region => throw _privateConstructorUsedError;
@@ -51,9 +49,7 @@ abstract class $PostAddressRequestDtoCopyWith<$Res> {
       _$PostAddressRequestDtoCopyWithImpl<$Res, PostAddressRequestDto>;
   @useResult
   $Res call(
-      {int? id,
-      int? accountId,
-      String postalCode,
+      {String postalCode,
       String address,
       String region,
       String street,
@@ -81,8 +77,6 @@ class _$PostAddressRequestDtoCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
-    Object? accountId = freezed,
     Object? postalCode = null,
     Object? address = null,
     Object? region = null,
@@ -95,14 +89,6 @@ class _$PostAddressRequestDtoCopyWithImpl<$Res,
     Object? provinceId = null,
   }) {
     return _then(_value.copyWith(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int?,
-      accountId: freezed == accountId
-          ? _value.accountId
-          : accountId // ignore: cast_nullable_to_non_nullable
-              as int?,
       postalCode: null == postalCode
           ? _value.postalCode
           : postalCode // ignore: cast_nullable_to_non_nullable
@@ -157,9 +143,7 @@ abstract class _$$PostAddressRequestDtoImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int? id,
-      int? accountId,
-      String postalCode,
+      {String postalCode,
       String address,
       String region,
       String street,
@@ -185,8 +169,6 @@ class __$$PostAddressRequestDtoImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
-    Object? accountId = freezed,
     Object? postalCode = null,
     Object? address = null,
     Object? region = null,
@@ -199,14 +181,6 @@ class __$$PostAddressRequestDtoImplCopyWithImpl<$Res>
     Object? provinceId = null,
   }) {
     return _then(_$PostAddressRequestDtoImpl(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int?,
-      accountId: freezed == accountId
-          ? _value.accountId
-          : accountId // ignore: cast_nullable_to_non_nullable
-              as int?,
       postalCode: null == postalCode
           ? _value.postalCode
           : postalCode // ignore: cast_nullable_to_non_nullable
@@ -255,9 +229,7 @@ class __$$PostAddressRequestDtoImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$PostAddressRequestDtoImpl implements _PostAddressRequestDto {
   const _$PostAddressRequestDtoImpl(
-      {this.id,
-      this.accountId,
-      required this.postalCode,
+      {required this.postalCode,
       required this.address,
       required this.region,
       required this.street,
@@ -271,10 +243,6 @@ class _$PostAddressRequestDtoImpl implements _PostAddressRequestDto {
   factory _$PostAddressRequestDtoImpl.fromJson(Map<String, dynamic> json) =>
       _$$PostAddressRequestDtoImplFromJson(json);
 
-  @override
-  final int? id;
-  @override
-  final int? accountId;
   @override
   final String postalCode;
   @override
@@ -298,7 +266,7 @@ class _$PostAddressRequestDtoImpl implements _PostAddressRequestDto {
 
   @override
   String toString() {
-    return 'PostAddressRequestDto(id: $id, accountId: $accountId, postalCode: $postalCode, address: $address, region: $region, street: $street, plaque: $plaque, floor: $floor, unit: $unit, houseName: $houseName, cityId: $cityId, provinceId: $provinceId)';
+    return 'PostAddressRequestDto(postalCode: $postalCode, address: $address, region: $region, street: $street, plaque: $plaque, floor: $floor, unit: $unit, houseName: $houseName, cityId: $cityId, provinceId: $provinceId)';
   }
 
   @override
@@ -306,9 +274,6 @@ class _$PostAddressRequestDtoImpl implements _PostAddressRequestDto {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$PostAddressRequestDtoImpl &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.accountId, accountId) ||
-                other.accountId == accountId) &&
             (identical(other.postalCode, postalCode) ||
                 other.postalCode == postalCode) &&
             (identical(other.address, address) || other.address == address) &&
@@ -326,20 +291,8 @@ class _$PostAddressRequestDtoImpl implements _PostAddressRequestDto {
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      id,
-      accountId,
-      postalCode,
-      address,
-      region,
-      street,
-      plaque,
-      floor,
-      unit,
-      houseName,
-      cityId,
-      provinceId);
+  int get hashCode => Object.hash(runtimeType, postalCode, address, region,
+      street, plaque, floor, unit, houseName, cityId, provinceId);
 
   /// Create a copy of PostAddressRequestDto
   /// with the given fields replaced by the non-null parameter values.
@@ -360,9 +313,7 @@ class _$PostAddressRequestDtoImpl implements _PostAddressRequestDto {
 
 abstract class _PostAddressRequestDto implements PostAddressRequestDto {
   const factory _PostAddressRequestDto(
-      {final int? id,
-      final int? accountId,
-      required final String postalCode,
+      {required final String postalCode,
       required final String address,
       required final String region,
       required final String street,
@@ -376,10 +327,6 @@ abstract class _PostAddressRequestDto implements PostAddressRequestDto {
   factory _PostAddressRequestDto.fromJson(Map<String, dynamic> json) =
       _$PostAddressRequestDtoImpl.fromJson;
 
-  @override
-  int? get id;
-  @override
-  int? get accountId;
   @override
   String get postalCode;
   @override

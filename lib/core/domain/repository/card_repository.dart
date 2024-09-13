@@ -8,7 +8,6 @@ abstract class CardRepository {
     required int addressId,
     required int typeId,
     required int cardShippingTimeSlotId,
-    required String label,
   });
 
   Future<EntityWrapper<CardTypesResponseEntity>> types();

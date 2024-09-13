@@ -37,22 +37,27 @@ class SelectCardPage extends StatelessWidget {
         builder: (context, state) {
           return SelectCardContent(
             showLoading: state is SelectCardInProgress,
+            buttonLoading: state is ButtonInProgress,
             onActionClick: () {
-              context.read<SelectCardBloc>().add(ActionClick());
+              state.whenOrNull(
+                selectCardSuccess: (id, __, _, ___) => context
+                    .read<SelectCardBloc>()
+                    .add(ActionClick(cardTypeId: id)),
+              );
             },
             showMessage: showMessage,
             firstName: "firstName",
             lastName: "lastName",
             title: state.maybeWhen(
-              selectCardSuccess: (_, title, __, ___, ____) => title,
+              selectCardSuccess: (_, title, __, ___) => title,
               orElse: () => "",
             ),
             description: state.maybeWhen(
-              selectCardSuccess: (_, __, description, ___, ____) => description,
+              selectCardSuccess: (_, __, description, ___) => description,
               orElse: () => "",
             ),
             priceLabel: state.maybeWhen(
-              selectCardSuccess: (_, __, ___, priceLabel, ____) => priceLabel,
+              selectCardSuccess: (_, __, ___, priceLabel) => priceLabel,
               orElse: () => "",
             ),
           );

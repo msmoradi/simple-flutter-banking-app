@@ -15,6 +15,7 @@ class InfoInterceptor extends Interceptor {
     options.headers.addAll({
       "platform": platformInfo["platform"],
       "client-type": "customer",
+      "locale": "fa",
       "app-version": platformInfo["appVersion"],
       "app-version-code": platformInfo["appVersionCode"],
       "device-uid": platformInfo["deviceUid"],

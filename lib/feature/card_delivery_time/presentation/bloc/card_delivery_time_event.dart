@@ -8,7 +8,15 @@ abstract class CardDeliveryTimeEvent extends Equatable {
 }
 
 class CardDeliveryTimeSubmitted extends CardDeliveryTimeEvent {
-  const CardDeliveryTimeSubmitted();
+  final int addressId;
+  final int typeId;
+  final int cardShippingTimeSlotId;
+
+  const CardDeliveryTimeSubmitted({
+    required this.addressId,
+    required this.typeId,
+    required this.cardShippingTimeSlotId,
+  });
 
   @override
   List<Object> get props => [];

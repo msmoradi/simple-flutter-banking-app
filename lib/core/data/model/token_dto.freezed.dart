@@ -20,7 +20,7 @@ TokenDto _$TokenDtoFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$TokenDto {
-  String get accessToken => throw _privateConstructorUsedError;
+  String? get accessToken => throw _privateConstructorUsedError;
   String? get refreshToken => throw _privateConstructorUsedError;
 
   /// Serializes this TokenDto to a JSON map.
@@ -38,7 +38,7 @@ abstract class $TokenDtoCopyWith<$Res> {
   factory $TokenDtoCopyWith(TokenDto value, $Res Function(TokenDto) then) =
       _$TokenDtoCopyWithImpl<$Res, TokenDto>;
   @useResult
-  $Res call({String accessToken, String? refreshToken});
+  $Res call({String? accessToken, String? refreshToken});
 }
 
 /// @nodoc
@@ -56,14 +56,14 @@ class _$TokenDtoCopyWithImpl<$Res, $Val extends TokenDto>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? accessToken = null,
+    Object? accessToken = freezed,
     Object? refreshToken = freezed,
   }) {
     return _then(_value.copyWith(
-      accessToken: null == accessToken
+      accessToken: freezed == accessToken
           ? _value.accessToken
           : accessToken // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       refreshToken: freezed == refreshToken
           ? _value.refreshToken
           : refreshToken // ignore: cast_nullable_to_non_nullable
@@ -80,7 +80,7 @@ abstract class _$$TokenDtoImplCopyWith<$Res>
       __$$TokenDtoImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String accessToken, String? refreshToken});
+  $Res call({String? accessToken, String? refreshToken});
 }
 
 /// @nodoc
@@ -96,14 +96,14 @@ class __$$TokenDtoImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? accessToken = null,
+    Object? accessToken = freezed,
     Object? refreshToken = freezed,
   }) {
     return _then(_$TokenDtoImpl(
-      accessToken: null == accessToken
+      accessToken: freezed == accessToken
           ? _value.accessToken
           : accessToken // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       refreshToken: freezed == refreshToken
           ? _value.refreshToken
           : refreshToken // ignore: cast_nullable_to_non_nullable
@@ -115,13 +115,13 @@ class __$$TokenDtoImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$TokenDtoImpl implements _TokenDto {
-  const _$TokenDtoImpl({required this.accessToken, this.refreshToken});
+  const _$TokenDtoImpl({this.accessToken, this.refreshToken});
 
   factory _$TokenDtoImpl.fromJson(Map<String, dynamic> json) =>
       _$$TokenDtoImplFromJson(json);
 
   @override
-  final String accessToken;
+  final String? accessToken;
   @override
   final String? refreshToken;
 
@@ -163,14 +163,13 @@ class _$TokenDtoImpl implements _TokenDto {
 
 abstract class _TokenDto implements TokenDto {
   const factory _TokenDto(
-      {required final String accessToken,
-      final String? refreshToken}) = _$TokenDtoImpl;
+      {final String? accessToken, final String? refreshToken}) = _$TokenDtoImpl;
 
   factory _TokenDto.fromJson(Map<String, dynamic> json) =
       _$TokenDtoImpl.fromJson;
 
   @override
-  String get accessToken;
+  String? get accessToken;
   @override
   String? get refreshToken;
 

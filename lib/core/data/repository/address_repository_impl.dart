@@ -8,11 +8,9 @@ import 'package:banx/core/data/model/address_dto.dart';
 import 'package:banx/core/data/model/city_dto.dart';
 import 'package:banx/core/data/model/province_dto.dart';
 import 'package:banx/core/domain/entities/address_entity.dart';
-import 'package:banx/core/domain/entities/city_entity.dart';
+import 'package:banx/core/domain/entities/empty_entity.dart';
 import 'package:banx/core/domain/entities/generic_list_entity.dart';
-import 'package:banx/core/domain/entities/post_address_entity.dart';
 import 'package:banx/core/domain/entities/put_address_entity.dart';
-import 'package:banx/core/domain/entities/state_entity.dart';
 import 'package:banx/core/domain/entity_wrapper.dart';
 import 'package:banx/core/domain/repository/address_repository.dart';
 import 'package:injectable/injectable.dart';
@@ -32,37 +30,27 @@ class AddressRepositoryImpl extends AddressRepository {
   }
 
   @override
-  Future<EntityWrapper<PostAddressEntity>> postAddress({
-    int? id,
-    int? accountId,
-    required String postalCode,
-    required String address,
-    required String region,
-    required String street,
-    required String plaque,
-    required String floor,
-    required String unit,
-    required String houseName,
-    required CityEntity city,
-    required ProvinceEntity province,
+  Future<EntityWrapper<EmptyEntity>> postAddress({
+    required AddressEntity addressEntity,
   }) {
     return addressRemoteDataSource
         .postAddress(
             addressDto: AddressDto(
-                id: id,
-                accountId: accountId,
-                postalCode: postalCode,
-                address: address,
-                region: region,
-                street: street,
-                plaque: plaque,
-                floor: floor,
-                unit: unit,
-                houseName: houseName,
-                city: CityDto(id: city.id, name: city.name),
-                province: ProvinceDto(id: province.id, name: province.name)))
+                postalCode: addressEntity.postalCode,
+                address: addressEntity.address,
+                region: addressEntity.region,
+                street: addressEntity.street,
+                plaque: addressEntity.plaque,
+                floor: addressEntity.floor,
+                unit: addressEntity.unit,
+                houseName: addressEntity.houseName,
+                city: CityDto(
+                    id: addressEntity.city.id, name: addressEntity.city.name),
+                province: ProvinceDto(
+                    id: addressEntity.province.id,
+                    name: addressEntity.province.name)))
         .mapResponseToEntityWrapper(mapper: (model) {
-      return PostAddressEntity();
+      return EmptyEntity();
     });
   }
 

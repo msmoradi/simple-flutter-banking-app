@@ -20,11 +20,12 @@ mixin _$SelectCardState {
   TResult when<TResult extends Object?>({
     required TResult Function(String message) selectCardFailure,
     required TResult Function() selectCardInProgress,
+    required TResult Function() buttonInProgress,
     required TResult Function(int cardTypeId) checkPostalCode,
     required TResult Function(List<AddressEntity> addressList, int cardTypeId)
         selectAddress,
-    required TResult Function(int id, String title, String description,
-            String priceLabel, List<AddressEntity> addressList)
+    required TResult Function(
+            int id, String title, String description, String priceLabel)
         selectCardSuccess,
     required TResult Function() selectCardValidated,
   }) =>
@@ -33,11 +34,12 @@ mixin _$SelectCardState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String message)? selectCardFailure,
     TResult? Function()? selectCardInProgress,
+    TResult? Function()? buttonInProgress,
     TResult? Function(int cardTypeId)? checkPostalCode,
     TResult? Function(List<AddressEntity> addressList, int cardTypeId)?
         selectAddress,
-    TResult? Function(int id, String title, String description,
-            String priceLabel, List<AddressEntity> addressList)?
+    TResult? Function(
+            int id, String title, String description, String priceLabel)?
         selectCardSuccess,
     TResult? Function()? selectCardValidated,
   }) =>
@@ -46,11 +48,12 @@ mixin _$SelectCardState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String message)? selectCardFailure,
     TResult Function()? selectCardInProgress,
+    TResult Function()? buttonInProgress,
     TResult Function(int cardTypeId)? checkPostalCode,
     TResult Function(List<AddressEntity> addressList, int cardTypeId)?
         selectAddress,
-    TResult Function(int id, String title, String description,
-            String priceLabel, List<AddressEntity> addressList)?
+    TResult Function(
+            int id, String title, String description, String priceLabel)?
         selectCardSuccess,
     TResult Function()? selectCardValidated,
     required TResult orElse(),
@@ -60,6 +63,7 @@ mixin _$SelectCardState {
   TResult map<TResult extends Object?>({
     required TResult Function(SelectCardFailure value) selectCardFailure,
     required TResult Function(SelectCardInProgress value) selectCardInProgress,
+    required TResult Function(ButtonInProgress value) buttonInProgress,
     required TResult Function(CheckPostalCode value) checkPostalCode,
     required TResult Function(SelectAddress value) selectAddress,
     required TResult Function(SelectCardSuccess value) selectCardSuccess,
@@ -70,6 +74,7 @@ mixin _$SelectCardState {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(SelectCardFailure value)? selectCardFailure,
     TResult? Function(SelectCardInProgress value)? selectCardInProgress,
+    TResult? Function(ButtonInProgress value)? buttonInProgress,
     TResult? Function(CheckPostalCode value)? checkPostalCode,
     TResult? Function(SelectAddress value)? selectAddress,
     TResult? Function(SelectCardSuccess value)? selectCardSuccess,
@@ -80,6 +85,7 @@ mixin _$SelectCardState {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(SelectCardFailure value)? selectCardFailure,
     TResult Function(SelectCardInProgress value)? selectCardInProgress,
+    TResult Function(ButtonInProgress value)? buttonInProgress,
     TResult Function(CheckPostalCode value)? checkPostalCode,
     TResult Function(SelectAddress value)? selectAddress,
     TResult Function(SelectCardSuccess value)? selectCardSuccess,
@@ -181,11 +187,12 @@ class _$SelectCardFailureImpl implements SelectCardFailure {
   TResult when<TResult extends Object?>({
     required TResult Function(String message) selectCardFailure,
     required TResult Function() selectCardInProgress,
+    required TResult Function() buttonInProgress,
     required TResult Function(int cardTypeId) checkPostalCode,
     required TResult Function(List<AddressEntity> addressList, int cardTypeId)
         selectAddress,
-    required TResult Function(int id, String title, String description,
-            String priceLabel, List<AddressEntity> addressList)
+    required TResult Function(
+            int id, String title, String description, String priceLabel)
         selectCardSuccess,
     required TResult Function() selectCardValidated,
   }) {
@@ -197,11 +204,12 @@ class _$SelectCardFailureImpl implements SelectCardFailure {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String message)? selectCardFailure,
     TResult? Function()? selectCardInProgress,
+    TResult? Function()? buttonInProgress,
     TResult? Function(int cardTypeId)? checkPostalCode,
     TResult? Function(List<AddressEntity> addressList, int cardTypeId)?
         selectAddress,
-    TResult? Function(int id, String title, String description,
-            String priceLabel, List<AddressEntity> addressList)?
+    TResult? Function(
+            int id, String title, String description, String priceLabel)?
         selectCardSuccess,
     TResult? Function()? selectCardValidated,
   }) {
@@ -213,11 +221,12 @@ class _$SelectCardFailureImpl implements SelectCardFailure {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String message)? selectCardFailure,
     TResult Function()? selectCardInProgress,
+    TResult Function()? buttonInProgress,
     TResult Function(int cardTypeId)? checkPostalCode,
     TResult Function(List<AddressEntity> addressList, int cardTypeId)?
         selectAddress,
-    TResult Function(int id, String title, String description,
-            String priceLabel, List<AddressEntity> addressList)?
+    TResult Function(
+            int id, String title, String description, String priceLabel)?
         selectCardSuccess,
     TResult Function()? selectCardValidated,
     required TResult orElse(),
@@ -233,6 +242,7 @@ class _$SelectCardFailureImpl implements SelectCardFailure {
   TResult map<TResult extends Object?>({
     required TResult Function(SelectCardFailure value) selectCardFailure,
     required TResult Function(SelectCardInProgress value) selectCardInProgress,
+    required TResult Function(ButtonInProgress value) buttonInProgress,
     required TResult Function(CheckPostalCode value) checkPostalCode,
     required TResult Function(SelectAddress value) selectAddress,
     required TResult Function(SelectCardSuccess value) selectCardSuccess,
@@ -246,6 +256,7 @@ class _$SelectCardFailureImpl implements SelectCardFailure {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(SelectCardFailure value)? selectCardFailure,
     TResult? Function(SelectCardInProgress value)? selectCardInProgress,
+    TResult? Function(ButtonInProgress value)? buttonInProgress,
     TResult? Function(CheckPostalCode value)? checkPostalCode,
     TResult? Function(SelectAddress value)? selectAddress,
     TResult? Function(SelectCardSuccess value)? selectCardSuccess,
@@ -259,6 +270,7 @@ class _$SelectCardFailureImpl implements SelectCardFailure {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(SelectCardFailure value)? selectCardFailure,
     TResult Function(SelectCardInProgress value)? selectCardInProgress,
+    TResult Function(ButtonInProgress value)? buttonInProgress,
     TResult Function(CheckPostalCode value)? checkPostalCode,
     TResult Function(SelectAddress value)? selectAddress,
     TResult Function(SelectCardSuccess value)? selectCardSuccess,
@@ -329,11 +341,12 @@ class _$SelectCardInProgressImpl implements SelectCardInProgress {
   TResult when<TResult extends Object?>({
     required TResult Function(String message) selectCardFailure,
     required TResult Function() selectCardInProgress,
+    required TResult Function() buttonInProgress,
     required TResult Function(int cardTypeId) checkPostalCode,
     required TResult Function(List<AddressEntity> addressList, int cardTypeId)
         selectAddress,
-    required TResult Function(int id, String title, String description,
-            String priceLabel, List<AddressEntity> addressList)
+    required TResult Function(
+            int id, String title, String description, String priceLabel)
         selectCardSuccess,
     required TResult Function() selectCardValidated,
   }) {
@@ -345,11 +358,12 @@ class _$SelectCardInProgressImpl implements SelectCardInProgress {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String message)? selectCardFailure,
     TResult? Function()? selectCardInProgress,
+    TResult? Function()? buttonInProgress,
     TResult? Function(int cardTypeId)? checkPostalCode,
     TResult? Function(List<AddressEntity> addressList, int cardTypeId)?
         selectAddress,
-    TResult? Function(int id, String title, String description,
-            String priceLabel, List<AddressEntity> addressList)?
+    TResult? Function(
+            int id, String title, String description, String priceLabel)?
         selectCardSuccess,
     TResult? Function()? selectCardValidated,
   }) {
@@ -361,11 +375,12 @@ class _$SelectCardInProgressImpl implements SelectCardInProgress {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String message)? selectCardFailure,
     TResult Function()? selectCardInProgress,
+    TResult Function()? buttonInProgress,
     TResult Function(int cardTypeId)? checkPostalCode,
     TResult Function(List<AddressEntity> addressList, int cardTypeId)?
         selectAddress,
-    TResult Function(int id, String title, String description,
-            String priceLabel, List<AddressEntity> addressList)?
+    TResult Function(
+            int id, String title, String description, String priceLabel)?
         selectCardSuccess,
     TResult Function()? selectCardValidated,
     required TResult orElse(),
@@ -381,6 +396,7 @@ class _$SelectCardInProgressImpl implements SelectCardInProgress {
   TResult map<TResult extends Object?>({
     required TResult Function(SelectCardFailure value) selectCardFailure,
     required TResult Function(SelectCardInProgress value) selectCardInProgress,
+    required TResult Function(ButtonInProgress value) buttonInProgress,
     required TResult Function(CheckPostalCode value) checkPostalCode,
     required TResult Function(SelectAddress value) selectAddress,
     required TResult Function(SelectCardSuccess value) selectCardSuccess,
@@ -394,6 +410,7 @@ class _$SelectCardInProgressImpl implements SelectCardInProgress {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(SelectCardFailure value)? selectCardFailure,
     TResult? Function(SelectCardInProgress value)? selectCardInProgress,
+    TResult? Function(ButtonInProgress value)? buttonInProgress,
     TResult? Function(CheckPostalCode value)? checkPostalCode,
     TResult? Function(SelectAddress value)? selectAddress,
     TResult? Function(SelectCardSuccess value)? selectCardSuccess,
@@ -407,6 +424,7 @@ class _$SelectCardInProgressImpl implements SelectCardInProgress {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(SelectCardFailure value)? selectCardFailure,
     TResult Function(SelectCardInProgress value)? selectCardInProgress,
+    TResult Function(ButtonInProgress value)? buttonInProgress,
     TResult Function(CheckPostalCode value)? checkPostalCode,
     TResult Function(SelectAddress value)? selectAddress,
     TResult Function(SelectCardSuccess value)? selectCardSuccess,
@@ -422,6 +440,150 @@ class _$SelectCardInProgressImpl implements SelectCardInProgress {
 
 abstract class SelectCardInProgress implements SelectCardState {
   const factory SelectCardInProgress() = _$SelectCardInProgressImpl;
+}
+
+/// @nodoc
+abstract class _$$ButtonInProgressImplCopyWith<$Res> {
+  factory _$$ButtonInProgressImplCopyWith(_$ButtonInProgressImpl value,
+          $Res Function(_$ButtonInProgressImpl) then) =
+      __$$ButtonInProgressImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ButtonInProgressImplCopyWithImpl<$Res>
+    extends _$SelectCardStateCopyWithImpl<$Res, _$ButtonInProgressImpl>
+    implements _$$ButtonInProgressImplCopyWith<$Res> {
+  __$$ButtonInProgressImplCopyWithImpl(_$ButtonInProgressImpl _value,
+      $Res Function(_$ButtonInProgressImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of SelectCardState
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$ButtonInProgressImpl implements ButtonInProgress {
+  const _$ButtonInProgressImpl();
+
+  @override
+  String toString() {
+    return 'SelectCardState.buttonInProgress()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$ButtonInProgressImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String message) selectCardFailure,
+    required TResult Function() selectCardInProgress,
+    required TResult Function() buttonInProgress,
+    required TResult Function(int cardTypeId) checkPostalCode,
+    required TResult Function(List<AddressEntity> addressList, int cardTypeId)
+        selectAddress,
+    required TResult Function(
+            int id, String title, String description, String priceLabel)
+        selectCardSuccess,
+    required TResult Function() selectCardValidated,
+  }) {
+    return buttonInProgress();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String message)? selectCardFailure,
+    TResult? Function()? selectCardInProgress,
+    TResult? Function()? buttonInProgress,
+    TResult? Function(int cardTypeId)? checkPostalCode,
+    TResult? Function(List<AddressEntity> addressList, int cardTypeId)?
+        selectAddress,
+    TResult? Function(
+            int id, String title, String description, String priceLabel)?
+        selectCardSuccess,
+    TResult? Function()? selectCardValidated,
+  }) {
+    return buttonInProgress?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String message)? selectCardFailure,
+    TResult Function()? selectCardInProgress,
+    TResult Function()? buttonInProgress,
+    TResult Function(int cardTypeId)? checkPostalCode,
+    TResult Function(List<AddressEntity> addressList, int cardTypeId)?
+        selectAddress,
+    TResult Function(
+            int id, String title, String description, String priceLabel)?
+        selectCardSuccess,
+    TResult Function()? selectCardValidated,
+    required TResult orElse(),
+  }) {
+    if (buttonInProgress != null) {
+      return buttonInProgress();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(SelectCardFailure value) selectCardFailure,
+    required TResult Function(SelectCardInProgress value) selectCardInProgress,
+    required TResult Function(ButtonInProgress value) buttonInProgress,
+    required TResult Function(CheckPostalCode value) checkPostalCode,
+    required TResult Function(SelectAddress value) selectAddress,
+    required TResult Function(SelectCardSuccess value) selectCardSuccess,
+    required TResult Function(SelectCardValidated value) selectCardValidated,
+  }) {
+    return buttonInProgress(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(SelectCardFailure value)? selectCardFailure,
+    TResult? Function(SelectCardInProgress value)? selectCardInProgress,
+    TResult? Function(ButtonInProgress value)? buttonInProgress,
+    TResult? Function(CheckPostalCode value)? checkPostalCode,
+    TResult? Function(SelectAddress value)? selectAddress,
+    TResult? Function(SelectCardSuccess value)? selectCardSuccess,
+    TResult? Function(SelectCardValidated value)? selectCardValidated,
+  }) {
+    return buttonInProgress?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(SelectCardFailure value)? selectCardFailure,
+    TResult Function(SelectCardInProgress value)? selectCardInProgress,
+    TResult Function(ButtonInProgress value)? buttonInProgress,
+    TResult Function(CheckPostalCode value)? checkPostalCode,
+    TResult Function(SelectAddress value)? selectAddress,
+    TResult Function(SelectCardSuccess value)? selectCardSuccess,
+    TResult Function(SelectCardValidated value)? selectCardValidated,
+    required TResult orElse(),
+  }) {
+    if (buttonInProgress != null) {
+      return buttonInProgress(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ButtonInProgress implements SelectCardState {
+  const factory ButtonInProgress() = _$ButtonInProgressImpl;
 }
 
 /// @nodoc
@@ -496,11 +658,12 @@ class _$CheckPostalCodeImpl implements CheckPostalCode {
   TResult when<TResult extends Object?>({
     required TResult Function(String message) selectCardFailure,
     required TResult Function() selectCardInProgress,
+    required TResult Function() buttonInProgress,
     required TResult Function(int cardTypeId) checkPostalCode,
     required TResult Function(List<AddressEntity> addressList, int cardTypeId)
         selectAddress,
-    required TResult Function(int id, String title, String description,
-            String priceLabel, List<AddressEntity> addressList)
+    required TResult Function(
+            int id, String title, String description, String priceLabel)
         selectCardSuccess,
     required TResult Function() selectCardValidated,
   }) {
@@ -512,11 +675,12 @@ class _$CheckPostalCodeImpl implements CheckPostalCode {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String message)? selectCardFailure,
     TResult? Function()? selectCardInProgress,
+    TResult? Function()? buttonInProgress,
     TResult? Function(int cardTypeId)? checkPostalCode,
     TResult? Function(List<AddressEntity> addressList, int cardTypeId)?
         selectAddress,
-    TResult? Function(int id, String title, String description,
-            String priceLabel, List<AddressEntity> addressList)?
+    TResult? Function(
+            int id, String title, String description, String priceLabel)?
         selectCardSuccess,
     TResult? Function()? selectCardValidated,
   }) {
@@ -528,11 +692,12 @@ class _$CheckPostalCodeImpl implements CheckPostalCode {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String message)? selectCardFailure,
     TResult Function()? selectCardInProgress,
+    TResult Function()? buttonInProgress,
     TResult Function(int cardTypeId)? checkPostalCode,
     TResult Function(List<AddressEntity> addressList, int cardTypeId)?
         selectAddress,
-    TResult Function(int id, String title, String description,
-            String priceLabel, List<AddressEntity> addressList)?
+    TResult Function(
+            int id, String title, String description, String priceLabel)?
         selectCardSuccess,
     TResult Function()? selectCardValidated,
     required TResult orElse(),
@@ -548,6 +713,7 @@ class _$CheckPostalCodeImpl implements CheckPostalCode {
   TResult map<TResult extends Object?>({
     required TResult Function(SelectCardFailure value) selectCardFailure,
     required TResult Function(SelectCardInProgress value) selectCardInProgress,
+    required TResult Function(ButtonInProgress value) buttonInProgress,
     required TResult Function(CheckPostalCode value) checkPostalCode,
     required TResult Function(SelectAddress value) selectAddress,
     required TResult Function(SelectCardSuccess value) selectCardSuccess,
@@ -561,6 +727,7 @@ class _$CheckPostalCodeImpl implements CheckPostalCode {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(SelectCardFailure value)? selectCardFailure,
     TResult? Function(SelectCardInProgress value)? selectCardInProgress,
+    TResult? Function(ButtonInProgress value)? buttonInProgress,
     TResult? Function(CheckPostalCode value)? checkPostalCode,
     TResult? Function(SelectAddress value)? selectAddress,
     TResult? Function(SelectCardSuccess value)? selectCardSuccess,
@@ -574,6 +741,7 @@ class _$CheckPostalCodeImpl implements CheckPostalCode {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(SelectCardFailure value)? selectCardFailure,
     TResult Function(SelectCardInProgress value)? selectCardInProgress,
+    TResult Function(ButtonInProgress value)? buttonInProgress,
     TResult Function(CheckPostalCode value)? checkPostalCode,
     TResult Function(SelectAddress value)? selectAddress,
     TResult Function(SelectCardSuccess value)? selectCardSuccess,
@@ -690,11 +858,12 @@ class _$SelectAddressImpl implements SelectAddress {
   TResult when<TResult extends Object?>({
     required TResult Function(String message) selectCardFailure,
     required TResult Function() selectCardInProgress,
+    required TResult Function() buttonInProgress,
     required TResult Function(int cardTypeId) checkPostalCode,
     required TResult Function(List<AddressEntity> addressList, int cardTypeId)
         selectAddress,
-    required TResult Function(int id, String title, String description,
-            String priceLabel, List<AddressEntity> addressList)
+    required TResult Function(
+            int id, String title, String description, String priceLabel)
         selectCardSuccess,
     required TResult Function() selectCardValidated,
   }) {
@@ -706,11 +875,12 @@ class _$SelectAddressImpl implements SelectAddress {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String message)? selectCardFailure,
     TResult? Function()? selectCardInProgress,
+    TResult? Function()? buttonInProgress,
     TResult? Function(int cardTypeId)? checkPostalCode,
     TResult? Function(List<AddressEntity> addressList, int cardTypeId)?
         selectAddress,
-    TResult? Function(int id, String title, String description,
-            String priceLabel, List<AddressEntity> addressList)?
+    TResult? Function(
+            int id, String title, String description, String priceLabel)?
         selectCardSuccess,
     TResult? Function()? selectCardValidated,
   }) {
@@ -722,11 +892,12 @@ class _$SelectAddressImpl implements SelectAddress {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String message)? selectCardFailure,
     TResult Function()? selectCardInProgress,
+    TResult Function()? buttonInProgress,
     TResult Function(int cardTypeId)? checkPostalCode,
     TResult Function(List<AddressEntity> addressList, int cardTypeId)?
         selectAddress,
-    TResult Function(int id, String title, String description,
-            String priceLabel, List<AddressEntity> addressList)?
+    TResult Function(
+            int id, String title, String description, String priceLabel)?
         selectCardSuccess,
     TResult Function()? selectCardValidated,
     required TResult orElse(),
@@ -742,6 +913,7 @@ class _$SelectAddressImpl implements SelectAddress {
   TResult map<TResult extends Object?>({
     required TResult Function(SelectCardFailure value) selectCardFailure,
     required TResult Function(SelectCardInProgress value) selectCardInProgress,
+    required TResult Function(ButtonInProgress value) buttonInProgress,
     required TResult Function(CheckPostalCode value) checkPostalCode,
     required TResult Function(SelectAddress value) selectAddress,
     required TResult Function(SelectCardSuccess value) selectCardSuccess,
@@ -755,6 +927,7 @@ class _$SelectAddressImpl implements SelectAddress {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(SelectCardFailure value)? selectCardFailure,
     TResult? Function(SelectCardInProgress value)? selectCardInProgress,
+    TResult? Function(ButtonInProgress value)? buttonInProgress,
     TResult? Function(CheckPostalCode value)? checkPostalCode,
     TResult? Function(SelectAddress value)? selectAddress,
     TResult? Function(SelectCardSuccess value)? selectCardSuccess,
@@ -768,6 +941,7 @@ class _$SelectAddressImpl implements SelectAddress {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(SelectCardFailure value)? selectCardFailure,
     TResult Function(SelectCardInProgress value)? selectCardInProgress,
+    TResult Function(ButtonInProgress value)? buttonInProgress,
     TResult Function(CheckPostalCode value)? checkPostalCode,
     TResult Function(SelectAddress value)? selectAddress,
     TResult Function(SelectCardSuccess value)? selectCardSuccess,
@@ -802,12 +976,7 @@ abstract class _$$SelectCardSuccessImplCopyWith<$Res> {
           $Res Function(_$SelectCardSuccessImpl) then) =
       __$$SelectCardSuccessImplCopyWithImpl<$Res>;
   @useResult
-  $Res call(
-      {int id,
-      String title,
-      String description,
-      String priceLabel,
-      List<AddressEntity> addressList});
+  $Res call({int id, String title, String description, String priceLabel});
 }
 
 /// @nodoc
@@ -827,7 +996,6 @@ class __$$SelectCardSuccessImplCopyWithImpl<$Res>
     Object? title = null,
     Object? description = null,
     Object? priceLabel = null,
-    Object? addressList = null,
   }) {
     return _then(_$SelectCardSuccessImpl(
       id: null == id
@@ -846,10 +1014,6 @@ class __$$SelectCardSuccessImplCopyWithImpl<$Res>
           ? _value.priceLabel
           : priceLabel // ignore: cast_nullable_to_non_nullable
               as String,
-      addressList: null == addressList
-          ? _value._addressList
-          : addressList // ignore: cast_nullable_to_non_nullable
-              as List<AddressEntity>,
     ));
   }
 }
@@ -861,9 +1025,7 @@ class _$SelectCardSuccessImpl implements SelectCardSuccess {
       {required this.id,
       required this.title,
       required this.description,
-      required this.priceLabel,
-      required final List<AddressEntity> addressList})
-      : _addressList = addressList;
+      required this.priceLabel});
 
   @override
   final int id;
@@ -873,17 +1035,10 @@ class _$SelectCardSuccessImpl implements SelectCardSuccess {
   final String description;
   @override
   final String priceLabel;
-  final List<AddressEntity> _addressList;
-  @override
-  List<AddressEntity> get addressList {
-    if (_addressList is EqualUnmodifiableListView) return _addressList;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_addressList);
-  }
 
   @override
   String toString() {
-    return 'SelectCardState.selectCardSuccess(id: $id, title: $title, description: $description, priceLabel: $priceLabel, addressList: $addressList)';
+    return 'SelectCardState.selectCardSuccess(id: $id, title: $title, description: $description, priceLabel: $priceLabel)';
   }
 
   @override
@@ -896,14 +1051,12 @@ class _$SelectCardSuccessImpl implements SelectCardSuccess {
             (identical(other.description, description) ||
                 other.description == description) &&
             (identical(other.priceLabel, priceLabel) ||
-                other.priceLabel == priceLabel) &&
-            const DeepCollectionEquality()
-                .equals(other._addressList, _addressList));
+                other.priceLabel == priceLabel));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, title, description,
-      priceLabel, const DeepCollectionEquality().hash(_addressList));
+  int get hashCode =>
+      Object.hash(runtimeType, id, title, description, priceLabel);
 
   /// Create a copy of SelectCardState
   /// with the given fields replaced by the non-null parameter values.
@@ -919,15 +1072,16 @@ class _$SelectCardSuccessImpl implements SelectCardSuccess {
   TResult when<TResult extends Object?>({
     required TResult Function(String message) selectCardFailure,
     required TResult Function() selectCardInProgress,
+    required TResult Function() buttonInProgress,
     required TResult Function(int cardTypeId) checkPostalCode,
     required TResult Function(List<AddressEntity> addressList, int cardTypeId)
         selectAddress,
-    required TResult Function(int id, String title, String description,
-            String priceLabel, List<AddressEntity> addressList)
+    required TResult Function(
+            int id, String title, String description, String priceLabel)
         selectCardSuccess,
     required TResult Function() selectCardValidated,
   }) {
-    return selectCardSuccess(id, title, description, priceLabel, addressList);
+    return selectCardSuccess(id, title, description, priceLabel);
   }
 
   @override
@@ -935,16 +1089,16 @@ class _$SelectCardSuccessImpl implements SelectCardSuccess {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String message)? selectCardFailure,
     TResult? Function()? selectCardInProgress,
+    TResult? Function()? buttonInProgress,
     TResult? Function(int cardTypeId)? checkPostalCode,
     TResult? Function(List<AddressEntity> addressList, int cardTypeId)?
         selectAddress,
-    TResult? Function(int id, String title, String description,
-            String priceLabel, List<AddressEntity> addressList)?
+    TResult? Function(
+            int id, String title, String description, String priceLabel)?
         selectCardSuccess,
     TResult? Function()? selectCardValidated,
   }) {
-    return selectCardSuccess?.call(
-        id, title, description, priceLabel, addressList);
+    return selectCardSuccess?.call(id, title, description, priceLabel);
   }
 
   @override
@@ -952,17 +1106,18 @@ class _$SelectCardSuccessImpl implements SelectCardSuccess {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String message)? selectCardFailure,
     TResult Function()? selectCardInProgress,
+    TResult Function()? buttonInProgress,
     TResult Function(int cardTypeId)? checkPostalCode,
     TResult Function(List<AddressEntity> addressList, int cardTypeId)?
         selectAddress,
-    TResult Function(int id, String title, String description,
-            String priceLabel, List<AddressEntity> addressList)?
+    TResult Function(
+            int id, String title, String description, String priceLabel)?
         selectCardSuccess,
     TResult Function()? selectCardValidated,
     required TResult orElse(),
   }) {
     if (selectCardSuccess != null) {
-      return selectCardSuccess(id, title, description, priceLabel, addressList);
+      return selectCardSuccess(id, title, description, priceLabel);
     }
     return orElse();
   }
@@ -972,6 +1127,7 @@ class _$SelectCardSuccessImpl implements SelectCardSuccess {
   TResult map<TResult extends Object?>({
     required TResult Function(SelectCardFailure value) selectCardFailure,
     required TResult Function(SelectCardInProgress value) selectCardInProgress,
+    required TResult Function(ButtonInProgress value) buttonInProgress,
     required TResult Function(CheckPostalCode value) checkPostalCode,
     required TResult Function(SelectAddress value) selectAddress,
     required TResult Function(SelectCardSuccess value) selectCardSuccess,
@@ -985,6 +1141,7 @@ class _$SelectCardSuccessImpl implements SelectCardSuccess {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(SelectCardFailure value)? selectCardFailure,
     TResult? Function(SelectCardInProgress value)? selectCardInProgress,
+    TResult? Function(ButtonInProgress value)? buttonInProgress,
     TResult? Function(CheckPostalCode value)? checkPostalCode,
     TResult? Function(SelectAddress value)? selectAddress,
     TResult? Function(SelectCardSuccess value)? selectCardSuccess,
@@ -998,6 +1155,7 @@ class _$SelectCardSuccessImpl implements SelectCardSuccess {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(SelectCardFailure value)? selectCardFailure,
     TResult Function(SelectCardInProgress value)? selectCardInProgress,
+    TResult Function(ButtonInProgress value)? buttonInProgress,
     TResult Function(CheckPostalCode value)? checkPostalCode,
     TResult Function(SelectAddress value)? selectAddress,
     TResult Function(SelectCardSuccess value)? selectCardSuccess,
@@ -1013,18 +1171,15 @@ class _$SelectCardSuccessImpl implements SelectCardSuccess {
 
 abstract class SelectCardSuccess implements SelectCardState {
   const factory SelectCardSuccess(
-          {required final int id,
-          required final String title,
-          required final String description,
-          required final String priceLabel,
-          required final List<AddressEntity> addressList}) =
-      _$SelectCardSuccessImpl;
+      {required final int id,
+      required final String title,
+      required final String description,
+      required final String priceLabel}) = _$SelectCardSuccessImpl;
 
   int get id;
   String get title;
   String get description;
   String get priceLabel;
-  List<AddressEntity> get addressList;
 
   /// Create a copy of SelectCardState
   /// with the given fields replaced by the non-null parameter values.
@@ -1077,11 +1232,12 @@ class _$SelectCardValidatedImpl implements SelectCardValidated {
   TResult when<TResult extends Object?>({
     required TResult Function(String message) selectCardFailure,
     required TResult Function() selectCardInProgress,
+    required TResult Function() buttonInProgress,
     required TResult Function(int cardTypeId) checkPostalCode,
     required TResult Function(List<AddressEntity> addressList, int cardTypeId)
         selectAddress,
-    required TResult Function(int id, String title, String description,
-            String priceLabel, List<AddressEntity> addressList)
+    required TResult Function(
+            int id, String title, String description, String priceLabel)
         selectCardSuccess,
     required TResult Function() selectCardValidated,
   }) {
@@ -1093,11 +1249,12 @@ class _$SelectCardValidatedImpl implements SelectCardValidated {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String message)? selectCardFailure,
     TResult? Function()? selectCardInProgress,
+    TResult? Function()? buttonInProgress,
     TResult? Function(int cardTypeId)? checkPostalCode,
     TResult? Function(List<AddressEntity> addressList, int cardTypeId)?
         selectAddress,
-    TResult? Function(int id, String title, String description,
-            String priceLabel, List<AddressEntity> addressList)?
+    TResult? Function(
+            int id, String title, String description, String priceLabel)?
         selectCardSuccess,
     TResult? Function()? selectCardValidated,
   }) {
@@ -1109,11 +1266,12 @@ class _$SelectCardValidatedImpl implements SelectCardValidated {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String message)? selectCardFailure,
     TResult Function()? selectCardInProgress,
+    TResult Function()? buttonInProgress,
     TResult Function(int cardTypeId)? checkPostalCode,
     TResult Function(List<AddressEntity> addressList, int cardTypeId)?
         selectAddress,
-    TResult Function(int id, String title, String description,
-            String priceLabel, List<AddressEntity> addressList)?
+    TResult Function(
+            int id, String title, String description, String priceLabel)?
         selectCardSuccess,
     TResult Function()? selectCardValidated,
     required TResult orElse(),
@@ -1129,6 +1287,7 @@ class _$SelectCardValidatedImpl implements SelectCardValidated {
   TResult map<TResult extends Object?>({
     required TResult Function(SelectCardFailure value) selectCardFailure,
     required TResult Function(SelectCardInProgress value) selectCardInProgress,
+    required TResult Function(ButtonInProgress value) buttonInProgress,
     required TResult Function(CheckPostalCode value) checkPostalCode,
     required TResult Function(SelectAddress value) selectAddress,
     required TResult Function(SelectCardSuccess value) selectCardSuccess,
@@ -1142,6 +1301,7 @@ class _$SelectCardValidatedImpl implements SelectCardValidated {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(SelectCardFailure value)? selectCardFailure,
     TResult? Function(SelectCardInProgress value)? selectCardInProgress,
+    TResult? Function(ButtonInProgress value)? buttonInProgress,
     TResult? Function(CheckPostalCode value)? checkPostalCode,
     TResult? Function(SelectAddress value)? selectAddress,
     TResult? Function(SelectCardSuccess value)? selectCardSuccess,
@@ -1155,6 +1315,7 @@ class _$SelectCardValidatedImpl implements SelectCardValidated {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(SelectCardFailure value)? selectCardFailure,
     TResult Function(SelectCardInProgress value)? selectCardInProgress,
+    TResult Function(ButtonInProgress value)? buttonInProgress,
     TResult Function(CheckPostalCode value)? checkPostalCode,
     TResult Function(SelectAddress value)? selectAddress,
     TResult Function(SelectCardSuccess value)? selectCardSuccess,
