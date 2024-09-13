@@ -10,14 +10,24 @@ part 'kyc_response_dto.g.dart';
 class KycResponseDto with _$KycResponseDto {
   const factory KycResponseDto({
     required RoutingButtonDto routingButton,
-    required KYCStatusDto identity,
-    required KYCStatusDto phoneNumber,
-    required KYCStatusDto face,
-    required KYCStatusDto sayah,
+    required KycStateDto state,
   }) = _KycResponseDto;
 
   factory KycResponseDto.fromJson(Map<String, dynamic> json) =>
       _$KycResponseDtoFromJson(json);
+}
+
+@freezed
+class KycStateDto with _$KycStateDto {
+  const factory KycStateDto({
+    required KYCStatusDto identityStatus,
+    required KYCStatusDto phoneStatus,
+    required KYCStatusDto faceStatus,
+    required KYCStatusDto sayahStatus,
+  }) = _KycStateDto;
+
+  factory KycStateDto.fromJson(Map<String, dynamic> json) =>
+      _$KycStateDtoFromJson(json);
 }
 
 @freezed

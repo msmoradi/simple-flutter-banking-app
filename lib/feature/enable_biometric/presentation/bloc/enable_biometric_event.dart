@@ -10,10 +10,12 @@ abstract class EnableBiometricEvent extends Equatable {
 class EnableBiometricSubmitted extends EnableBiometricEvent {
   final bool authNeeded;
   final String password;
+  final String deeplink;
 
   const EnableBiometricSubmitted({
     required this.authNeeded,
     required this.password,
+    required this.deeplink,
   });
 
   @override

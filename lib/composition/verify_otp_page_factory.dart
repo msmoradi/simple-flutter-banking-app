@@ -14,11 +14,12 @@ class VerifyOtpPageFactory {
     int codeLength,
     int expiresIn,
     Function(String message) showMessage,
-    Function(String deeplink) onDeeplinkLanding,
   ) {
     return VerifyOtpPage(
       showMessage: showMessage,
-      onDeeplinkLanding: onDeeplinkLanding,
+      onDeeplinkLanding: (deeplink) {
+        context.go(deeplink);
+      },
       phoneNumber: phoneNumber,
       codeLength: codeLength,
       expiresIn: expiresIn,
@@ -37,7 +38,6 @@ class VerifyOtpPageFactory {
   static GoRoute route({
     List<RouteBase> routes = const <RouteBase>[],
     required Function(String message) showMessage,
-    required Function(String deeplink) onDeeplinkLanding,
   }) {
     return GoRoute(
         path: (VerifyOtpPageFactory.path),
@@ -54,7 +54,6 @@ class VerifyOtpPageFactory {
             codeLength,
             expiresIn,
             showMessage,
-            onDeeplinkLanding,
           );
         },
         routes: routes);

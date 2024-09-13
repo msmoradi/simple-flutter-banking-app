@@ -10,30 +10,31 @@ class EnableBiometricPageFactory {
     required GoRouterState state,
     required EnableBiometricExtra extra,
     required Function(String message) showMessage,
-    required Function(String deeplink) onDeeplinkLanding,
   }) {
     return EnableBiometricPage(
       showMessage: showMessage,
-      onDeeplinkLanding: onDeeplinkLanding,
+      onDeeplinkLanding: (deeplink) {
+        context.go(deeplink);
+      },
       password: extra.password,
+      deeplink: extra.deeplink,
     );
   }
 
   static GoRoute route({
     List<RouteBase> routes = const <RouteBase>[],
     required Function(String message) showMessage,
-    required Function(String deeplink) onDeeplinkLanding,
   }) {
     return GoRoute(
         path: (EnableBiometricPageFactory.path),
         builder: (ctx, state) {
           final extra = state.extra as EnableBiometricExtra;
           return EnableBiometricPageFactory.builder(
-              context: ctx,
-              state: state,
-              extra: extra,
-              showMessage: showMessage,
-              onDeeplinkLanding: onDeeplinkLanding);
+            context: ctx,
+            state: state,
+            extra: extra,
+            showMessage: showMessage,
+          );
         },
         routes: routes);
   }
@@ -41,6 +42,10 @@ class EnableBiometricPageFactory {
 
 class EnableBiometricExtra {
   final String password;
+  final String deeplink;
 
-  EnableBiometricExtra({required this.password});
+  EnableBiometricExtra({
+    required this.password,
+    required this.deeplink,
+  });
 }

@@ -16,7 +16,7 @@ Future<Map<String, String>> getPlatformInfo() async {
 
   if (Platform.isAndroid) {
     AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
-    deviceUid = androidInfo.id; // Use fallback if androidId is null
+    deviceUid = androidInfo.id.replaceAll(".", "_"); // Use fallback if androidId is null
     deviceBrand = androidInfo.brand;
     deviceModel = androidInfo.model;
   } else if (Platform.isIOS) {

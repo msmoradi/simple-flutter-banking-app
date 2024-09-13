@@ -8,10 +8,11 @@ class KycStatusPageFactory {
   static KycStatusPage builder({
     required BuildContext context,
     required Function(String message) showMessage,
-    required Function(String deeplink) onDeeplinkLanding,
   }) {
     return KycStatusPage(
-      onDeeplinkLanding: onDeeplinkLanding,
+      onDeeplinkLanding: (deeplink) {
+        context.go(deeplink);
+      },
       showMessage: showMessage,
     );
   }
@@ -19,7 +20,6 @@ class KycStatusPageFactory {
   static GoRoute route({
     List<RouteBase> routes = const <RouteBase>[],
     required Function(String message) showMessage,
-    required Function(String deeplink) onDeeplinkLanding,
   }) {
     return GoRoute(
         path: (KycStatusPageFactory.path),
@@ -27,7 +27,6 @@ class KycStatusPageFactory {
           return KycStatusPageFactory.builder(
             context: ctx,
             showMessage: showMessage,
-            onDeeplinkLanding: onDeeplinkLanding,
           );
         },
         routes: routes);

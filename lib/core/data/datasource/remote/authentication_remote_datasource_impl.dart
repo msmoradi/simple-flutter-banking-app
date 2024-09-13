@@ -1,9 +1,9 @@
 import 'package:banx/core/data/datasource/remote/authentication_remote_datasource.dart';
-import 'package:banx/core/data/model/password_response_dto.dart';
+import 'package:banx/core/data/model/empty_response_dto.dart';
 import 'package:banx/core/data/model/response/kyc_response_dto.dart';
 import 'package:banx/core/data/model/send_otp_response_dto.dart';
 import 'package:banx/core/data/model/sign_up_response_dto.dart';
-import 'package:banx/core/data/model/verify_otp_response_dto.dart';
+import 'package:banx/core/data/model/token_dto.dart';
 import 'package:banx/core/networking/api_endpoints.dart';
 import 'package:banx/core/networking/http_client.dart';
 import 'package:dio/dio.dart';
@@ -36,7 +36,7 @@ class AuthenticationRemoteDataSourceImpl
   }
 
   @override
-  Future<VerifyOtpResponseDto> verifyOtp(
+  Future<TokenDto> verifyOtp(
     String phoneNumber,
     String otp,
   ) {
@@ -49,7 +49,7 @@ class AuthenticationRemoteDataSourceImpl
       data: body,
       mapper: (response) {
         if (response != null) {
-          return VerifyOtpResponseDto.fromJson(response);
+          return TokenDto.fromJson(response);
         }
         throw NotNullableError('verifyOtp response should not be null');
       },
@@ -57,7 +57,7 @@ class AuthenticationRemoteDataSourceImpl
   }
 
   @override
-  Future<PasswordResponseDto> password(String password) {
+  Future<EmptyResponseDto> putPassword(String password) {
     final body = {
       'password': password,
     };
@@ -66,7 +66,25 @@ class AuthenticationRemoteDataSourceImpl
       endpoint: ApiEndpoint.auth(AuthEndpoint.PASSWORD),
       data: body,
       mapper: (_) {
-        return PasswordResponseDto.empty();
+        return EmptyResponseDto.empty();
+      },
+    );
+  }
+
+  @override
+  Future<TokenDto> postPassword(String password) {
+    final body = {
+      'password': password,
+    };
+
+    return apiService.post(
+      endpoint: ApiEndpoint.auth(AuthEndpoint.PASSWORD),
+      data: body,
+      mapper: (response) {
+        if (response != null) {
+          return TokenDto.fromJson(response);
+        }
+        throw NotNullableError('postPassword response should not be null');
       },
     );
   }
@@ -74,12 +92,12 @@ class AuthenticationRemoteDataSourceImpl
   @override
   Future<KycResponseDto> kyc() {
     return apiService.get(
-        endpoint: ApiEndpoint.auth(AuthEndpoint.KYC),
+        endpoint: ApiEndpoint.kyc(KYCEndpoint.KYC),
         mapper: KycResponseDto.fromJson);
   }
 
   @override
-  Future<VerifyOtpResponseDto> refresh(
+  Future<TokenDto> refresh(
     String refreshToken,
   ) {
     final body = {
@@ -91,7 +109,7 @@ class AuthenticationRemoteDataSourceImpl
       data: body,
       mapper: (response) {
         if (response != null) {
-          return VerifyOtpResponseDto.fromJson(response);
+          return TokenDto.fromJson(response);
         }
         throw NotNullableError('refresh response should not be null');
       },
@@ -109,7 +127,6 @@ class AuthenticationRemoteDataSourceImpl
       'phoneNumber': phoneNumber,
       'nationalId': nationalId,
       'birthDate': birthDate,
-      'referralCode': referralCode,
     };
 
     return apiService.post(

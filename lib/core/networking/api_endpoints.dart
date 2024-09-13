@@ -20,8 +20,6 @@ class ApiEndpoint {
         return '$path/refresh';
       case AuthEndpoint.SIGN_UP:
         return '$path/otp/signup';
-        case AuthEndpoint.KYC:
-        return '$path/otp/kyc';
     }
   }
 
@@ -54,6 +52,8 @@ class ApiEndpoint {
         return '$path/video';
       case KYCEndpoint.IMAGE:
         return '$path/image';
+      case KYCEndpoint.KYC:
+        return path;
     }
   }
 
@@ -78,7 +78,6 @@ enum AuthEndpoint {
   PASSWORD,
   REFRESH,
   SIGN_UP,
-  KYC,
 }
 
 enum ProfileEndpoint { GET_PROFILE, POSTAL_CODE }
@@ -87,4 +86,4 @@ enum CardEndpoint { ORDERS, TYPES, SHIPPING_TIME_SLOTS }
 
 enum AddressEndpoint { ADDRESS, STATES, INQUIRY, CITIES }
 
-enum KYCEndpoint { VIDEO, IMAGE }
+enum KYCEndpoint { VIDEO, IMAGE, KYC }

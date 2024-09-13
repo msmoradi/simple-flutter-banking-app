@@ -10,21 +10,34 @@ _$KycResponseDtoImpl _$$KycResponseDtoImplFromJson(Map<String, dynamic> json) =>
     _$KycResponseDtoImpl(
       routingButton: RoutingButtonDto.fromJson(
           json['routingButton'] as Map<String, dynamic>),
-      identity: KYCStatusDto.fromJson(json['identity'] as Map<String, dynamic>),
-      phoneNumber:
-          KYCStatusDto.fromJson(json['phoneNumber'] as Map<String, dynamic>),
-      face: KYCStatusDto.fromJson(json['face'] as Map<String, dynamic>),
-      sayah: KYCStatusDto.fromJson(json['sayah'] as Map<String, dynamic>),
+      state: KycStateDto.fromJson(json['state'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$KycResponseDtoImplToJson(
         _$KycResponseDtoImpl instance) =>
     <String, dynamic>{
       'routingButton': instance.routingButton,
-      'identity': instance.identity,
-      'phoneNumber': instance.phoneNumber,
-      'face': instance.face,
-      'sayah': instance.sayah,
+      'state': instance.state,
+    };
+
+_$KycStateDtoImpl _$$KycStateDtoImplFromJson(Map<String, dynamic> json) =>
+    _$KycStateDtoImpl(
+      identityStatus:
+          KYCStatusDto.fromJson(json['identityStatus'] as Map<String, dynamic>),
+      phoneStatus:
+          KYCStatusDto.fromJson(json['phoneStatus'] as Map<String, dynamic>),
+      faceStatus:
+          KYCStatusDto.fromJson(json['faceStatus'] as Map<String, dynamic>),
+      sayahStatus:
+          KYCStatusDto.fromJson(json['sayahStatus'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$$KycStateDtoImplToJson(_$KycStateDtoImpl instance) =>
+    <String, dynamic>{
+      'identityStatus': instance.identityStatus,
+      'phoneStatus': instance.phoneStatus,
+      'faceStatus': instance.faceStatus,
+      'sayahStatus': instance.sayahStatus,
     };
 
 _$KYCStatusImpl _$$KYCStatusImplFromJson(Map<String, dynamic> json) =>

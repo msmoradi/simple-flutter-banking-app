@@ -2,9 +2,9 @@ import 'dart:async';
 import 'package:banx/core/data/datasource/remote/authentication_remote_datasource.dart';
 import 'package:banx/core/data/mapper/kyc_mapper.dart';
 import 'package:banx/core/data/mapper/response.mapper.dart';
+import 'package:banx/core/domain/entities/empty_entity.dart';
 import 'package:banx/core/domain/entities/entity.dart';
 import 'package:banx/core/domain/entities/kyc_state_entity.dart';
-import 'package:banx/core/domain/entities/password_entity.dart';
 import 'package:banx/core/domain/entities/send_otp_entity.dart';
 import 'package:banx/core/domain/entities/sign_up_entity.dart';
 import 'package:banx/core/domain/entities/verify_otp_entity.dart';
@@ -41,7 +41,12 @@ class AuthenticationRepositoryImpl extends AuthenticationRepository {
     }).then((entityWrapper) async {
       if (entityWrapper is SuccessEntityWrapper<VerifyOtpEntity>) {
         await tokenRepository.saveAccessToken(entityWrapper.data.accessToken);
-        await tokenRepository.saveRefreshToken(entityWrapper.data.refreshToken);
+
+        if (entityWrapper.data.refreshToken != null) {
+          await tokenRepository
+              .saveRefreshToken(entityWrapper.data.refreshToken!);
+        }
+
         return await profileRepository.getProfile();
       }
       return entityWrapper;
@@ -49,11 +54,48 @@ class AuthenticationRepositoryImpl extends AuthenticationRepository {
   }
 
   @override
-  Future<EntityWrapper<PasswordEntity>> password({required String password}) {
+  Future<EntityWrapper<Entity>> postPassword({
+    required String password,
+  }) {
     return authenticationRemoteDataSource
-        .password(password)
+        .postPassword(password)
         .mapResponseToEntityWrapper(mapper: (model) {
-      return PasswordEntity();
+      return VerifyOtpEntity(
+        accessToken: model.accessToken,
+      );
+    }).then((entityWrapper) async {
+      if (entityWrapper is SuccessEntityWrapper<VerifyOtpEntity>) {
+        await tokenRepository.saveAccessToken(entityWrapper.data.accessToken);
+
+        if (entityWrapper.data.refreshToken != null) {
+          await tokenRepository
+              .saveRefreshToken(entityWrapper.data.refreshToken!);
+        }
+
+        return await profileRepository.getProfile();
+      }
+      return entityWrapper;
+    });
+  }
+
+  @override
+  Future<EntityWrapper<Entity>> putPassword({
+    required String password,
+  }) {
+    return authenticationRemoteDataSource
+        .putPassword(password)
+        .mapResponseToEntityWrapper(mapper: (model) {
+      return EmptyEntity();
+    }).then((entityWrapper) async {
+      if (entityWrapper is SuccessEntityWrapper<EmptyEntity>) {
+        final postResponse = await postPassword(password: password);
+        if (postResponse.isSuccess) {
+          return await profileRepository.getProfile();
+        } else {
+          return postResponse;
+        }
+      }
+      return entityWrapper;
     });
   }
 
@@ -78,7 +120,11 @@ class AuthenticationRepositoryImpl extends AuthenticationRepository {
     }).then((entityWrapper) async {
       if (entityWrapper is SuccessEntityWrapper<VerifyOtpEntity>) {
         await tokenRepository.saveAccessToken(entityWrapper.data.accessToken);
-        await tokenRepository.saveRefreshToken(entityWrapper.data.refreshToken);
+
+        if (entityWrapper.data.refreshToken != null) {
+          await tokenRepository
+              .saveRefreshToken(entityWrapper.data.refreshToken!);
+        }
       }
       return entityWrapper;
     });

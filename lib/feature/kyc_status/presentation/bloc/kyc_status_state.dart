@@ -49,7 +49,8 @@ class KycStatusSuccess extends KycStatusState {
   });
 
   @override
-  List<Object?> get props => [deeplink, actionTitle, actionIcon, identity, phoneNumber, face, sayah];
+  List<Object?> get props =>
+      [deeplink, actionTitle, actionIcon, identity, phoneNumber, face, sayah];
 
   KycStatusSuccess copyWith({
     String? deeplink,
@@ -70,9 +71,4 @@ class KycStatusSuccess extends KycStatusState {
       sayah: sayah ?? this.sayah,
     );
   }
-}
-
-class KycStatusValidated extends KycStatusState {
-  @override
-  List<Object?> get props => [];
 }

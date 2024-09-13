@@ -1,20 +1,18 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'verify_otp_response_dto.dart';
+part of 'token_dto.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$VerifyOtpResponseDtoImpl _$$VerifyOtpResponseDtoImplFromJson(
-        Map<String, dynamic> json) =>
-    _$VerifyOtpResponseDtoImpl(
+_$TokenDtoImpl _$$TokenDtoImplFromJson(Map<String, dynamic> json) =>
+    _$TokenDtoImpl(
       accessToken: json['accessToken'] as String,
-      refreshToken: json['refreshToken'] as String,
+      refreshToken: json['refreshToken'] as String?,
     );
 
-Map<String, dynamic> _$$VerifyOtpResponseDtoImplToJson(
-        _$VerifyOtpResponseDtoImpl instance) =>
+Map<String, dynamic> _$$TokenDtoImplToJson(_$TokenDtoImpl instance) =>
     <String, dynamic>{
       'accessToken': instance.accessToken,
       'refreshToken': instance.refreshToken,

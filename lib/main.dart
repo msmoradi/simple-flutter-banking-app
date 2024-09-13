@@ -10,8 +10,8 @@ void main() async {
 
   final tokenRepository = getIt<TokenRepository>();
 
-  final String? refreshToken = await tokenRepository.getRefreshToken();
-  final refreshTokenExist = refreshToken?.isNotEmpty ?? false;
+  final String? password = await tokenRepository.getPassword();
+  final refreshTokenExist = password?.isNotEmpty ?? false;
 
   runApp(App(refreshTokenExist: refreshTokenExist));
 }

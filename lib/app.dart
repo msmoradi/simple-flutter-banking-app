@@ -19,9 +19,6 @@ class App extends StatelessWidget {
       child: MaterialApp.router(
         debugShowCheckedModeBanner: false,
         routerConfig: getRouterConfig(
-          onDeeplinkLanding: (deeplink) {
-            GoRouter.of(context).go(deeplink);
-          },
           showMessage: (message) {
             toastification.show(
               type: ToastificationType.error,

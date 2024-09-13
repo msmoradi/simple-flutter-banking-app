@@ -20,8 +20,12 @@ class ConfirmPasswordInProgress extends ConfirmPasswordState {
 }
 
 class BiometricLanding extends ConfirmPasswordState {
+  final String deeplink;
+
+  const BiometricLanding({required this.deeplink});
+
   @override
-  List<Object?> get props => [];
+  List<Object?> get props => [deeplink];
 }
 
 class ConfirmPasswordValidated extends ConfirmPasswordState {

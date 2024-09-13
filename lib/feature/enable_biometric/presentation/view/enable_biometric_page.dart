@@ -10,12 +10,14 @@ class EnableBiometricPage extends StatelessWidget {
   final Function(String) showMessage;
   final Function(String) onDeeplinkLanding;
   final String password;
+  final String deeplink;
 
   const EnableBiometricPage({
     super.key,
     required this.showMessage,
     required this.onDeeplinkLanding,
     required this.password,
+    required this.deeplink,
   });
 
   @override
@@ -93,6 +95,7 @@ class EnableBiometricPage extends StatelessWidget {
                                       EnableBiometricSubmitted(
                                         password: password,
                                         authNeeded: true,
+                                        deeplink: deeplink,
                                       ),
                                     ),
                             label: 'فعال‌سازی',
@@ -109,6 +112,7 @@ class EnableBiometricPage extends StatelessWidget {
                                       EnableBiometricSubmitted(
                                         password: password,
                                         authNeeded: false,
+                                        deeplink: deeplink,
                                       ),
                                     ),
                             label: 'تمایل ندارم',

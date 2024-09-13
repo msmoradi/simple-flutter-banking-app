@@ -6,18 +6,19 @@ import 'package:go_router/go_router.dart';
 class ConfirmPasswordPageFactory {
   static const path = "/confirm_password";
 
-  static ConfirmPasswordPage builder(
-      {required BuildContext context,
-      required GoRouterState state,
-      required ConfirmPasswordExtra extra,
-      required Function(String message) showMessage,
-      required Function(String deeplink) onDeeplinkLanding,
-      }) {
+  static ConfirmPasswordPage builder({
+    required BuildContext context,
+    required ConfirmPasswordExtra extra,
+    required Function(String message) showMessage,
+  }) {
     return ConfirmPasswordPage(
       showMessage: showMessage,
-      biometricLanding: () => context.push(
+      biometricLanding: (deeplink) => context.push(
         EnableBiometricPageFactory.path,
-        extra: EnableBiometricExtra(password: extra.newPassword),
+        extra: EnableBiometricExtra(
+          password: extra.newPassword,
+          deeplink: deeplink,
+        ),
       ),
       newPassword: extra.newPassword,
     );
@@ -26,7 +27,6 @@ class ConfirmPasswordPageFactory {
   static GoRoute route({
     List<RouteBase> routes = const <RouteBase>[],
     required Function(String message) showMessage,
-    required Function(String deeplink) onDeeplinkLanding,
   }) {
     return GoRoute(
         path: (ConfirmPasswordPageFactory.path),
@@ -34,10 +34,8 @@ class ConfirmPasswordPageFactory {
           final extra = state.extra as ConfirmPasswordExtra;
           return ConfirmPasswordPageFactory.builder(
             context: ctx,
-            state: state,
             extra: extra,
             showMessage: showMessage,
-              onDeeplinkLanding:onDeeplinkLanding
           );
         },
         routes: routes);

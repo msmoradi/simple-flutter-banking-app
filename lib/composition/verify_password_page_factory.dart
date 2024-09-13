@@ -9,18 +9,18 @@ class VerifyPasswordPageFactory {
     BuildContext context,
     GoRouterState state,
     Function(String message) showMessage,
-    Function(String deeplink) onDeeplinkLanding,
   ) {
     return VerifyPasswordPage(
       showMessage: showMessage,
-      onDeeplinkLanding: onDeeplinkLanding,
+      onDeeplinkLanding: (deeplink) {
+        context.go(deeplink);
+      },
     );
   }
 
   static GoRoute route({
     List<RouteBase> routes = const <RouteBase>[],
     required Function(String message) showMessage,
-    required Function(String deeplink) onDeeplinkLanding,
   }) {
     return GoRoute(
         path: (VerifyPasswordPageFactory.path),
@@ -29,7 +29,6 @@ class VerifyPasswordPageFactory {
             ctx,
             state,
             showMessage,
-            onDeeplinkLanding,
           );
         },
         routes: routes);

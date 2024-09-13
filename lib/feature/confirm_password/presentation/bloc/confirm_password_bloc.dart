@@ -1,3 +1,4 @@
+import 'package:banx/core/domain/entities/user_profile_entity.dart';
 import 'package:banx/core/domain/repository/authentication_repository.dart';
 import 'package:banx/core/domain/repository/profile_repository.dart';
 import 'package:bloc/bloc.dart';
@@ -28,9 +29,15 @@ class ConfirmPasswordBloc
     emit(ConfirmPasswordInProgress());
     try {
       final response =
-          await authenticationRepository.password(password: event.password);
+          await authenticationRepository.putPassword(password: event.password);
       response.when(
-          success: (response) => emit(BiometricLanding()),
+          success: (entity) {
+            if (entity is UserProfileEntity) {
+              emit(
+                BiometricLanding(deeplink: entity.routingButtonEntity!.deeplink),
+              );
+            }
+          },
           partialSuccess: (message) => emit(ConfirmPasswordFailure(message)),
           networkError: (exception) =>
               emit(ConfirmPasswordFailure(exception.toString())));

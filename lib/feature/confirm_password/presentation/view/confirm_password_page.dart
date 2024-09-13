@@ -5,7 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 
 class ConfirmPasswordPage extends StatelessWidget {
-  final Function() biometricLanding;
+  final Function(String) biometricLanding;
   final Function(String) showMessage;
   final String newPassword;
 
@@ -42,7 +42,7 @@ class ConfirmPasswordPage extends StatelessWidget {
         }
       case final BiometricLanding s:
         {
-          biometricLanding();
+          biometricLanding(s.deeplink);
         }
     }
   }

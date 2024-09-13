@@ -1,15 +1,15 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'password_response_dto.dart';
+part of 'empty_response_dto.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$PasswordResponseDtoImpl _$$PasswordResponseDtoImplFromJson(
+_$EmptyResponseDtoImpl _$$EmptyResponseDtoImplFromJson(
         Map<String, dynamic> json) =>
-    _$PasswordResponseDtoImpl();
+    _$EmptyResponseDtoImpl();
 
-Map<String, dynamic> _$$PasswordResponseDtoImplToJson(
-        _$PasswordResponseDtoImpl instance) =>
+Map<String, dynamic> _$$EmptyResponseDtoImplToJson(
+        _$EmptyResponseDtoImpl instance) =>
     <String, dynamic>{};

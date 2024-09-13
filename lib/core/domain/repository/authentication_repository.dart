@@ -1,6 +1,5 @@
 import 'package:banx/core/domain/entities/entity.dart';
 import 'package:banx/core/domain/entities/kyc_state_entity.dart';
-import 'package:banx/core/domain/entities/password_entity.dart';
 import 'package:banx/core/domain/entities/send_otp_entity.dart';
 import 'package:banx/core/domain/entities/sign_up_entity.dart';
 import 'package:banx/core/domain/entities/verify_otp_entity.dart';
@@ -16,7 +15,11 @@ abstract class AuthenticationRepository {
     required String otp,
   });
 
-  Future<EntityWrapper<PasswordEntity>> password({
+  Future<EntityWrapper<Entity>> postPassword({
+    required String password,
+  });
+
+  Future<EntityWrapper<Entity>> putPassword({
     required String password,
   });
 

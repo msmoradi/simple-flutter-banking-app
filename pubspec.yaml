@@ -43,6 +43,7 @@ dependencies:
   smart_auth: ^2.0.0
   flutter_svg: ^2.0.10+1
   nfc_manager: ^3.5.0
+  uuid: ^4.4.2
 
 dev_dependencies:
   flutter_test:

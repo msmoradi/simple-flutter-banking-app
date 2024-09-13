@@ -14,7 +14,7 @@ class KycStatusBloc extends Bloc<KycStatusEvent, KycStatusState> {
   final AuthenticationRepository authenticationRepository;
 
   KycStatusBloc({required this.authenticationRepository})
-      : super(KycStatusValidated()) {
+      : super(KycStatusInProgress()) {
     on<ActionClicked>(_onActionClicked);
     on<KycStatusSubmitted>(_onKycStatusSubmitted);
     add(KycStatusSubmitted());
@@ -38,17 +38,16 @@ class KycStatusBloc extends Bloc<KycStatusEvent, KycStatusState> {
     KycStatusSubmitted event,
     Emitter<KycStatusState> emit,
   ) async {
-    emit(KycStatusInProgress());
     try {
       final response = await authenticationRepository.kyc();
 
       response.when(
           success: (entity) {
             final KycStatusSuccess kycStatusSuccess = KycStatusSuccess(
-                identity: entity.identity,
-                phoneNumber: entity.phoneNumber,
-                face: entity.face,
-                sayah: entity.sayah);
+                identity: entity.state.identity,
+                phoneNumber: entity.state.phoneNumber,
+                face: entity.state.face,
+                sayah: entity.state.sayah);
 
             if (entity.routingButton != null) {
               emit(

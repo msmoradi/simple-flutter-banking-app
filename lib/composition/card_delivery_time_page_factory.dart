@@ -10,16 +10,16 @@ class CardDeliveryTimePageFactory {
 
   static CardDeliveryTimePage builder({
     required BuildContext context,
-    required GoRouterState state,
     required CardDeliveryTimeExtra extra,
     required Function(String message) showMessage,
-    required Function(String deeplink) onDeeplinkLanding,
   }) {
     return CardDeliveryTimePage(
       address: extra.address,
       cardShippingTimeSlots: extra.cardShippingTimeSlots,
       cardTypeId: extra.cardTypeId,
-      onDeeplinkLanding: onDeeplinkLanding,
+      onDeeplinkLanding: (deeplink) {
+        context.go(deeplink);
+      },
       showMessage: showMessage,
       onNext: () {
         context.push(KycStatusPageFactory.path);
@@ -30,7 +30,6 @@ class CardDeliveryTimePageFactory {
   static GoRoute route({
     List<RouteBase> routes = const <RouteBase>[],
     required Function(String message) showMessage,
-    required Function(String deeplink) onDeeplinkLanding,
   }) {
     return GoRoute(
         path: (CardDeliveryTimePageFactory.path),
@@ -38,8 +37,6 @@ class CardDeliveryTimePageFactory {
           final extra = state.extra as CardDeliveryTimeExtra;
           return CardDeliveryTimePageFactory.builder(
             context: ctx,
-            onDeeplinkLanding: onDeeplinkLanding,
-            state: state,
             extra: extra,
             showMessage: showMessage,
           );

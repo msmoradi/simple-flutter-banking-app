@@ -9,12 +9,12 @@ class FaceDetectionPageFactory {
   static FaceDetectionPage builder(
     BuildContext context,
     Function(String message) showMessage,
-    Function(String deeplink) onDeeplinkLanding,
   ) {
     return FaceDetectionPage(
       showMessage: showMessage,
-      onDeeplinkLanding: onDeeplinkLanding,
-      onKycStatus: () {
+      onDeeplinkLanding: (deeplink) {
+        context.go(deeplink);
+      },      onKycStatus: () {
         context.push(KycStatusPageFactory.path);
       },
     );
@@ -23,7 +23,6 @@ class FaceDetectionPageFactory {
   static GoRoute route({
     List<RouteBase> routes = const <RouteBase>[],
     required Function(String message) showMessage,
-    required Function(String deeplink) onDeeplinkLanding,
   }) {
     return GoRoute(
       path: (FaceDetectionPageFactory.path),
@@ -31,7 +30,6 @@ class FaceDetectionPageFactory {
         return FaceDetectionPageFactory.builder(
           context,
           showMessage,
-          onDeeplinkLanding,
         );
       },
       routes: routes,

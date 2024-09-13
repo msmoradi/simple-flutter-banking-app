@@ -21,10 +21,7 @@ KycResponseDto _$KycResponseDtoFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$KycResponseDto {
   RoutingButtonDto get routingButton => throw _privateConstructorUsedError;
-  KYCStatusDto get identity => throw _privateConstructorUsedError;
-  KYCStatusDto get phoneNumber => throw _privateConstructorUsedError;
-  KYCStatusDto get face => throw _privateConstructorUsedError;
-  KYCStatusDto get sayah => throw _privateConstructorUsedError;
+  KycStateDto get state => throw _privateConstructorUsedError;
 
   /// Serializes this KycResponseDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -42,18 +39,10 @@ abstract class $KycResponseDtoCopyWith<$Res> {
           KycResponseDto value, $Res Function(KycResponseDto) then) =
       _$KycResponseDtoCopyWithImpl<$Res, KycResponseDto>;
   @useResult
-  $Res call(
-      {RoutingButtonDto routingButton,
-      KYCStatusDto identity,
-      KYCStatusDto phoneNumber,
-      KYCStatusDto face,
-      KYCStatusDto sayah});
+  $Res call({RoutingButtonDto routingButton, KycStateDto state});
 
   $RoutingButtonDtoCopyWith<$Res> get routingButton;
-  $KYCStatusDtoCopyWith<$Res> get identity;
-  $KYCStatusDtoCopyWith<$Res> get phoneNumber;
-  $KYCStatusDtoCopyWith<$Res> get face;
-  $KYCStatusDtoCopyWith<$Res> get sayah;
+  $KycStateDtoCopyWith<$Res> get state;
 }
 
 /// @nodoc
@@ -72,32 +61,17 @@ class _$KycResponseDtoCopyWithImpl<$Res, $Val extends KycResponseDto>
   @override
   $Res call({
     Object? routingButton = null,
-    Object? identity = null,
-    Object? phoneNumber = null,
-    Object? face = null,
-    Object? sayah = null,
+    Object? state = null,
   }) {
     return _then(_value.copyWith(
       routingButton: null == routingButton
           ? _value.routingButton
           : routingButton // ignore: cast_nullable_to_non_nullable
               as RoutingButtonDto,
-      identity: null == identity
-          ? _value.identity
-          : identity // ignore: cast_nullable_to_non_nullable
-              as KYCStatusDto,
-      phoneNumber: null == phoneNumber
-          ? _value.phoneNumber
-          : phoneNumber // ignore: cast_nullable_to_non_nullable
-              as KYCStatusDto,
-      face: null == face
-          ? _value.face
-          : face // ignore: cast_nullable_to_non_nullable
-              as KYCStatusDto,
-      sayah: null == sayah
-          ? _value.sayah
-          : sayah // ignore: cast_nullable_to_non_nullable
-              as KYCStatusDto,
+      state: null == state
+          ? _value.state
+          : state // ignore: cast_nullable_to_non_nullable
+              as KycStateDto,
     ) as $Val);
   }
 
@@ -115,39 +89,9 @@ class _$KycResponseDtoCopyWithImpl<$Res, $Val extends KycResponseDto>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $KYCStatusDtoCopyWith<$Res> get identity {
-    return $KYCStatusDtoCopyWith<$Res>(_value.identity, (value) {
-      return _then(_value.copyWith(identity: value) as $Val);
-    });
-  }
-
-  /// Create a copy of KycResponseDto
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $KYCStatusDtoCopyWith<$Res> get phoneNumber {
-    return $KYCStatusDtoCopyWith<$Res>(_value.phoneNumber, (value) {
-      return _then(_value.copyWith(phoneNumber: value) as $Val);
-    });
-  }
-
-  /// Create a copy of KycResponseDto
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $KYCStatusDtoCopyWith<$Res> get face {
-    return $KYCStatusDtoCopyWith<$Res>(_value.face, (value) {
-      return _then(_value.copyWith(face: value) as $Val);
-    });
-  }
-
-  /// Create a copy of KycResponseDto
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $KYCStatusDtoCopyWith<$Res> get sayah {
-    return $KYCStatusDtoCopyWith<$Res>(_value.sayah, (value) {
-      return _then(_value.copyWith(sayah: value) as $Val);
+  $KycStateDtoCopyWith<$Res> get state {
+    return $KycStateDtoCopyWith<$Res>(_value.state, (value) {
+      return _then(_value.copyWith(state: value) as $Val);
     });
   }
 }
@@ -160,23 +104,12 @@ abstract class _$$KycResponseDtoImplCopyWith<$Res>
       __$$KycResponseDtoImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {RoutingButtonDto routingButton,
-      KYCStatusDto identity,
-      KYCStatusDto phoneNumber,
-      KYCStatusDto face,
-      KYCStatusDto sayah});
+  $Res call({RoutingButtonDto routingButton, KycStateDto state});
 
   @override
   $RoutingButtonDtoCopyWith<$Res> get routingButton;
   @override
-  $KYCStatusDtoCopyWith<$Res> get identity;
-  @override
-  $KYCStatusDtoCopyWith<$Res> get phoneNumber;
-  @override
-  $KYCStatusDtoCopyWith<$Res> get face;
-  @override
-  $KYCStatusDtoCopyWith<$Res> get sayah;
+  $KycStateDtoCopyWith<$Res> get state;
 }
 
 /// @nodoc
@@ -193,32 +126,17 @@ class __$$KycResponseDtoImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? routingButton = null,
-    Object? identity = null,
-    Object? phoneNumber = null,
-    Object? face = null,
-    Object? sayah = null,
+    Object? state = null,
   }) {
     return _then(_$KycResponseDtoImpl(
       routingButton: null == routingButton
           ? _value.routingButton
           : routingButton // ignore: cast_nullable_to_non_nullable
               as RoutingButtonDto,
-      identity: null == identity
-          ? _value.identity
-          : identity // ignore: cast_nullable_to_non_nullable
-              as KYCStatusDto,
-      phoneNumber: null == phoneNumber
-          ? _value.phoneNumber
-          : phoneNumber // ignore: cast_nullable_to_non_nullable
-              as KYCStatusDto,
-      face: null == face
-          ? _value.face
-          : face // ignore: cast_nullable_to_non_nullable
-              as KYCStatusDto,
-      sayah: null == sayah
-          ? _value.sayah
-          : sayah // ignore: cast_nullable_to_non_nullable
-              as KYCStatusDto,
+      state: null == state
+          ? _value.state
+          : state // ignore: cast_nullable_to_non_nullable
+              as KycStateDto,
     ));
   }
 }
@@ -227,11 +145,7 @@ class __$$KycResponseDtoImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$KycResponseDtoImpl implements _KycResponseDto {
   const _$KycResponseDtoImpl(
-      {required this.routingButton,
-      required this.identity,
-      required this.phoneNumber,
-      required this.face,
-      required this.sayah});
+      {required this.routingButton, required this.state});
 
   factory _$KycResponseDtoImpl.fromJson(Map<String, dynamic> json) =>
       _$$KycResponseDtoImplFromJson(json);
@@ -239,17 +153,11 @@ class _$KycResponseDtoImpl implements _KycResponseDto {
   @override
   final RoutingButtonDto routingButton;
   @override
-  final KYCStatusDto identity;
-  @override
-  final KYCStatusDto phoneNumber;
-  @override
-  final KYCStatusDto face;
-  @override
-  final KYCStatusDto sayah;
+  final KycStateDto state;
 
   @override
   String toString() {
-    return 'KycResponseDto(routingButton: $routingButton, identity: $identity, phoneNumber: $phoneNumber, face: $face, sayah: $sayah)';
+    return 'KycResponseDto(routingButton: $routingButton, state: $state)';
   }
 
   @override
@@ -259,18 +167,12 @@ class _$KycResponseDtoImpl implements _KycResponseDto {
             other is _$KycResponseDtoImpl &&
             (identical(other.routingButton, routingButton) ||
                 other.routingButton == routingButton) &&
-            (identical(other.identity, identity) ||
-                other.identity == identity) &&
-            (identical(other.phoneNumber, phoneNumber) ||
-                other.phoneNumber == phoneNumber) &&
-            (identical(other.face, face) || other.face == face) &&
-            (identical(other.sayah, sayah) || other.sayah == sayah));
+            (identical(other.state, state) || other.state == state));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, routingButton, identity, phoneNumber, face, sayah);
+  int get hashCode => Object.hash(runtimeType, routingButton, state);
 
   /// Create a copy of KycResponseDto
   /// with the given fields replaced by the non-null parameter values.
@@ -292,10 +194,7 @@ class _$KycResponseDtoImpl implements _KycResponseDto {
 abstract class _KycResponseDto implements KycResponseDto {
   const factory _KycResponseDto(
       {required final RoutingButtonDto routingButton,
-      required final KYCStatusDto identity,
-      required final KYCStatusDto phoneNumber,
-      required final KYCStatusDto face,
-      required final KYCStatusDto sayah}) = _$KycResponseDtoImpl;
+      required final KycStateDto state}) = _$KycResponseDtoImpl;
 
   factory _KycResponseDto.fromJson(Map<String, dynamic> json) =
       _$KycResponseDtoImpl.fromJson;
@@ -303,19 +202,285 @@ abstract class _KycResponseDto implements KycResponseDto {
   @override
   RoutingButtonDto get routingButton;
   @override
-  KYCStatusDto get identity;
-  @override
-  KYCStatusDto get phoneNumber;
-  @override
-  KYCStatusDto get face;
-  @override
-  KYCStatusDto get sayah;
+  KycStateDto get state;
 
   /// Create a copy of KycResponseDto
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$KycResponseDtoImplCopyWith<_$KycResponseDtoImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+KycStateDto _$KycStateDtoFromJson(Map<String, dynamic> json) {
+  return _KycStateDto.fromJson(json);
+}
+
+/// @nodoc
+mixin _$KycStateDto {
+  KYCStatusDto get identityStatus => throw _privateConstructorUsedError;
+  KYCStatusDto get phoneStatus => throw _privateConstructorUsedError;
+  KYCStatusDto get faceStatus => throw _privateConstructorUsedError;
+  KYCStatusDto get sayahStatus => throw _privateConstructorUsedError;
+
+  /// Serializes this KycStateDto to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+
+  /// Create a copy of KycStateDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $KycStateDtoCopyWith<KycStateDto> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $KycStateDtoCopyWith<$Res> {
+  factory $KycStateDtoCopyWith(
+          KycStateDto value, $Res Function(KycStateDto) then) =
+      _$KycStateDtoCopyWithImpl<$Res, KycStateDto>;
+  @useResult
+  $Res call(
+      {KYCStatusDto identityStatus,
+      KYCStatusDto phoneStatus,
+      KYCStatusDto faceStatus,
+      KYCStatusDto sayahStatus});
+
+  $KYCStatusDtoCopyWith<$Res> get identityStatus;
+  $KYCStatusDtoCopyWith<$Res> get phoneStatus;
+  $KYCStatusDtoCopyWith<$Res> get faceStatus;
+  $KYCStatusDtoCopyWith<$Res> get sayahStatus;
+}
+
+/// @nodoc
+class _$KycStateDtoCopyWithImpl<$Res, $Val extends KycStateDto>
+    implements $KycStateDtoCopyWith<$Res> {
+  _$KycStateDtoCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of KycStateDto
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? identityStatus = null,
+    Object? phoneStatus = null,
+    Object? faceStatus = null,
+    Object? sayahStatus = null,
+  }) {
+    return _then(_value.copyWith(
+      identityStatus: null == identityStatus
+          ? _value.identityStatus
+          : identityStatus // ignore: cast_nullable_to_non_nullable
+              as KYCStatusDto,
+      phoneStatus: null == phoneStatus
+          ? _value.phoneStatus
+          : phoneStatus // ignore: cast_nullable_to_non_nullable
+              as KYCStatusDto,
+      faceStatus: null == faceStatus
+          ? _value.faceStatus
+          : faceStatus // ignore: cast_nullable_to_non_nullable
+              as KYCStatusDto,
+      sayahStatus: null == sayahStatus
+          ? _value.sayahStatus
+          : sayahStatus // ignore: cast_nullable_to_non_nullable
+              as KYCStatusDto,
+    ) as $Val);
+  }
+
+  /// Create a copy of KycStateDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $KYCStatusDtoCopyWith<$Res> get identityStatus {
+    return $KYCStatusDtoCopyWith<$Res>(_value.identityStatus, (value) {
+      return _then(_value.copyWith(identityStatus: value) as $Val);
+    });
+  }
+
+  /// Create a copy of KycStateDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $KYCStatusDtoCopyWith<$Res> get phoneStatus {
+    return $KYCStatusDtoCopyWith<$Res>(_value.phoneStatus, (value) {
+      return _then(_value.copyWith(phoneStatus: value) as $Val);
+    });
+  }
+
+  /// Create a copy of KycStateDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $KYCStatusDtoCopyWith<$Res> get faceStatus {
+    return $KYCStatusDtoCopyWith<$Res>(_value.faceStatus, (value) {
+      return _then(_value.copyWith(faceStatus: value) as $Val);
+    });
+  }
+
+  /// Create a copy of KycStateDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $KYCStatusDtoCopyWith<$Res> get sayahStatus {
+    return $KYCStatusDtoCopyWith<$Res>(_value.sayahStatus, (value) {
+      return _then(_value.copyWith(sayahStatus: value) as $Val);
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$$KycStateDtoImplCopyWith<$Res>
+    implements $KycStateDtoCopyWith<$Res> {
+  factory _$$KycStateDtoImplCopyWith(
+          _$KycStateDtoImpl value, $Res Function(_$KycStateDtoImpl) then) =
+      __$$KycStateDtoImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {KYCStatusDto identityStatus,
+      KYCStatusDto phoneStatus,
+      KYCStatusDto faceStatus,
+      KYCStatusDto sayahStatus});
+
+  @override
+  $KYCStatusDtoCopyWith<$Res> get identityStatus;
+  @override
+  $KYCStatusDtoCopyWith<$Res> get phoneStatus;
+  @override
+  $KYCStatusDtoCopyWith<$Res> get faceStatus;
+  @override
+  $KYCStatusDtoCopyWith<$Res> get sayahStatus;
+}
+
+/// @nodoc
+class __$$KycStateDtoImplCopyWithImpl<$Res>
+    extends _$KycStateDtoCopyWithImpl<$Res, _$KycStateDtoImpl>
+    implements _$$KycStateDtoImplCopyWith<$Res> {
+  __$$KycStateDtoImplCopyWithImpl(
+      _$KycStateDtoImpl _value, $Res Function(_$KycStateDtoImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of KycStateDto
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? identityStatus = null,
+    Object? phoneStatus = null,
+    Object? faceStatus = null,
+    Object? sayahStatus = null,
+  }) {
+    return _then(_$KycStateDtoImpl(
+      identityStatus: null == identityStatus
+          ? _value.identityStatus
+          : identityStatus // ignore: cast_nullable_to_non_nullable
+              as KYCStatusDto,
+      phoneStatus: null == phoneStatus
+          ? _value.phoneStatus
+          : phoneStatus // ignore: cast_nullable_to_non_nullable
+              as KYCStatusDto,
+      faceStatus: null == faceStatus
+          ? _value.faceStatus
+          : faceStatus // ignore: cast_nullable_to_non_nullable
+              as KYCStatusDto,
+      sayahStatus: null == sayahStatus
+          ? _value.sayahStatus
+          : sayahStatus // ignore: cast_nullable_to_non_nullable
+              as KYCStatusDto,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$KycStateDtoImpl implements _KycStateDto {
+  const _$KycStateDtoImpl(
+      {required this.identityStatus,
+      required this.phoneStatus,
+      required this.faceStatus,
+      required this.sayahStatus});
+
+  factory _$KycStateDtoImpl.fromJson(Map<String, dynamic> json) =>
+      _$$KycStateDtoImplFromJson(json);
+
+  @override
+  final KYCStatusDto identityStatus;
+  @override
+  final KYCStatusDto phoneStatus;
+  @override
+  final KYCStatusDto faceStatus;
+  @override
+  final KYCStatusDto sayahStatus;
+
+  @override
+  String toString() {
+    return 'KycStateDto(identityStatus: $identityStatus, phoneStatus: $phoneStatus, faceStatus: $faceStatus, sayahStatus: $sayahStatus)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$KycStateDtoImpl &&
+            (identical(other.identityStatus, identityStatus) ||
+                other.identityStatus == identityStatus) &&
+            (identical(other.phoneStatus, phoneStatus) ||
+                other.phoneStatus == phoneStatus) &&
+            (identical(other.faceStatus, faceStatus) ||
+                other.faceStatus == faceStatus) &&
+            (identical(other.sayahStatus, sayahStatus) ||
+                other.sayahStatus == sayahStatus));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, identityStatus, phoneStatus, faceStatus, sayahStatus);
+
+  /// Create a copy of KycStateDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$KycStateDtoImplCopyWith<_$KycStateDtoImpl> get copyWith =>
+      __$$KycStateDtoImplCopyWithImpl<_$KycStateDtoImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$KycStateDtoImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _KycStateDto implements KycStateDto {
+  const factory _KycStateDto(
+      {required final KYCStatusDto identityStatus,
+      required final KYCStatusDto phoneStatus,
+      required final KYCStatusDto faceStatus,
+      required final KYCStatusDto sayahStatus}) = _$KycStateDtoImpl;
+
+  factory _KycStateDto.fromJson(Map<String, dynamic> json) =
+      _$KycStateDtoImpl.fromJson;
+
+  @override
+  KYCStatusDto get identityStatus;
+  @override
+  KYCStatusDto get phoneStatus;
+  @override
+  KYCStatusDto get faceStatus;
+  @override
+  KYCStatusDto get sayahStatus;
+
+  /// Create a copy of KycStateDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$KycStateDtoImplCopyWith<_$KycStateDtoImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
