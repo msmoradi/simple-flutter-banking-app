@@ -30,6 +30,6 @@ abstract class AuthenticationRepository {
     required String phoneNumber,
     required String nationalId,
     required String birthDate,
-    required String referralCode,
+    String? referralCode,
   });
 }

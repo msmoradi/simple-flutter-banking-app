@@ -89,10 +89,14 @@ class AuthenticationRepositoryImpl extends AuthenticationRepository {
     required String phoneNumber,
     required String nationalId,
     required String birthDate,
-    required String referralCode,
+    String? referralCode,
   }) {
     return authenticationRemoteDataSource
-        .signup(phoneNumber, nationalId, birthDate, referralCode)
+        .signup(
+            phoneNumber: phoneNumber,
+            nationalId: nationalId,
+            birthDate: birthDate,
+            referralCode: referralCode)
         .mapResponseToEntityWrapper(mapper: (model) {
       return SignUpEntity(
         expiresIn: model.expiresIn,

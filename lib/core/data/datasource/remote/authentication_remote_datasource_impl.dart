@@ -99,12 +99,12 @@ class AuthenticationRemoteDataSourceImpl
   }
 
   @override
-  Future<SignUpResponseDto> signup(
-    String phoneNumber,
-    String nationalId,
-    String birthDate,
-    String referralCode,
-  ) {
+  Future<SignUpResponseDto> signup({
+    required String phoneNumber,
+    required String nationalId,
+    required String birthDate,
+    String? referralCode,
+  }) {
     final body = {
       'phoneNumber': phoneNumber,
       'nationalId': nationalId,

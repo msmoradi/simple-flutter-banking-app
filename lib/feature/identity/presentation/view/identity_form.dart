@@ -86,26 +86,27 @@ class _IdentityFormState extends State<IdentityForm> {
                           },
                         ),
                         const SizedBox(height: 16),
-                        ReferralCodeTextField(
-                          needValidation: widget.needReferralCode,
-                          controller: referralController,
-                          onSuffixPressed: () {
-                            showModalBottomSheet(
-                              enableDrag: false,
-                              showDragHandle: true,
-                              isScrollControlled: true,
-                              useSafeArea: true,
-                              shape: const RoundedRectangleBorder(
-                                borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(8.0),
-                                    topRight: Radius.circular(8.0)),
-                              ),
-                              context: context,
-                              builder: (context) =>
-                                  const WithOutReferralBottomSheetContent(),
-                            );
-                          },
-                        )
+                        if (widget.needReferralCode)
+                          ReferralCodeTextField(
+                            needValidation: widget.needReferralCode,
+                            controller: referralController,
+                            onSuffixPressed: () {
+                              showModalBottomSheet(
+                                enableDrag: false,
+                                showDragHandle: true,
+                                isScrollControlled: true,
+                                useSafeArea: true,
+                                shape: const RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.only(
+                                      topLeft: Radius.circular(8.0),
+                                      topRight: Radius.circular(8.0)),
+                                ),
+                                context: context,
+                                builder: (context) =>
+                                    const WithOutReferralBottomSheetContent(),
+                              );
+                            },
+                          )
                       ],
                     )),
               ],

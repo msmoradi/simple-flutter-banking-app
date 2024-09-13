@@ -24,10 +24,10 @@ abstract class AuthenticationRemoteDataSource {
 
   Future<KycResponseDto> kyc();
 
-  Future<SignUpResponseDto> signup(
-    String phoneNumber,
-    String nationalId,
-    String birthDate,
-    String referralCode,
-  );
+  Future<SignUpResponseDto> signup({
+    required String phoneNumber,
+    required String nationalId,
+    required String birthDate,
+    String? referralCode,
+  });
 }

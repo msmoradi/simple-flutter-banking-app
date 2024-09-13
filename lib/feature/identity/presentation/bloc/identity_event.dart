@@ -11,15 +11,15 @@ class IdentitySubmitted extends IdentityEvent {
   final String phoneNumber;
   final String birthDate;
   final String nationalId;
-  final String referral;
+  final String? referral;
 
   const IdentitySubmitted({
     required this.phoneNumber,
     required this.nationalId,
     required this.birthDate,
-    required this.referral,
+    this.referral,
   });
 
   @override
-  List<Object> get props => [phoneNumber, birthDate, nationalId, referral];
+  List<Object> get props => [phoneNumber, birthDate, nationalId];
 }
