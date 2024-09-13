@@ -5,19 +5,21 @@ import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 
 class CardActivationOtpPageFactory {
-  static const path = "/cardActivationOtp";
+  static const startPath = "/cardActivationOtp";
+  static const path = "$startPath/:phoneNumber/:codeLength/:expiresIn";
 
   static CardActivationOtpPage builder(
     BuildContext context,
-    GoRouterState state,
-    CardActivationOtpExtra extra,
+    String phoneNumber,
+    int codeLength,
+    int expiresIn,
     Function(String message) showMessage,
   ) {
     return CardActivationOtpPage(
       showMessage: showMessage,
-      phoneNumber: extra.phoneNumber,
-      codeLength: extra.codeLength,
-      expiresIn: extra.expiresIn,
+      phoneNumber: phoneNumber,
+      codeLength: codeLength,
+      expiresIn: expiresIn,
       onMainPage: () {
         context.push(MainPageFactory.path);
       },
@@ -37,26 +39,19 @@ class CardActivationOtpPageFactory {
     return GoRoute(
         path: (CardActivationOtpPageFactory.path),
         builder: (ctx, state) {
-          final extra = state.extra as CardActivationOtpExtra;
+          final phoneNumber = state.pathParameters['phoneNumber'] ?? "";
+          final codeLength =
+              int.tryParse(state.pathParameters['codeLength'] ?? "") ?? 0;
+          final expiresIn =
+              int.tryParse(state.pathParameters['expiresIn'] ?? "") ?? 0;
           return CardActivationOtpPageFactory.builder(
             ctx,
-            state,
-            extra,
+            phoneNumber,
+            codeLength,
+            expiresIn,
             showMessage,
           );
         },
         routes: routes);
   }
-}
-
-class CardActivationOtpExtra {
-  final String phoneNumber;
-  final int codeLength;
-  final int expiresIn;
-
-  CardActivationOtpExtra({
-    required this.phoneNumber,
-    required this.codeLength,
-    required this.expiresIn,
-  });
 }

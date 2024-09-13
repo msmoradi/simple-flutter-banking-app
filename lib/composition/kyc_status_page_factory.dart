@@ -7,13 +7,11 @@ class KycStatusPageFactory {
 
   static KycStatusPage builder({
     required BuildContext context,
-    required GoRouterState state,
-    required KycStatusExtra? extra,
     required Function(String message) showMessage,
     required Function(String deeplink) onDeeplinkLanding,
   }) {
     return KycStatusPage(
-      onDeeplinkLanding:onDeeplinkLanding,
+      onDeeplinkLanding: onDeeplinkLanding,
       showMessage: showMessage,
     );
   }
@@ -26,19 +24,12 @@ class KycStatusPageFactory {
     return GoRoute(
         path: (KycStatusPageFactory.path),
         builder: (ctx, state) {
-          final KycStatusExtra? extra = state.extra as KycStatusExtra?;
           return KycStatusPageFactory.builder(
             context: ctx,
-            state: state,
-            extra: extra,
             showMessage: showMessage,
             onDeeplinkLanding: onDeeplinkLanding,
           );
         },
         routes: routes);
   }
-}
-
-class KycStatusExtra {
-  KycStatusExtra();
 }

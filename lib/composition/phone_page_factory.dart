@@ -13,21 +13,16 @@ class PhonePageFactory {
     required Function(String message) showMessage,
   }) {
     return PhonePage(
-        showMessage:showMessage,
+      showMessage: showMessage,
       onIdentity: (phoneNumber, needReferralCode) {
-        context.push(IdentityPageFactory.path,
-            extra: IdentityExtra(
-              phoneNumber: phoneNumber,
-              needReferralCode: needReferralCode,
-            ));
+        context.push(
+          "${IdentityPageFactory.startPath}/$phoneNumber/$needReferralCode",
+        );
       },
       onVerifyOtp: (phoneNumber, expiresIn, codeLength) {
-        context.push(VerifyOtpPageFactory.path,
-            extra: VerifyOtpExtra(
-              phoneNumber: phoneNumber,
-              expiresIn: expiresIn,
-              codeLength: codeLength,
-            ));
+        context.push(
+          "${VerifyOtpPageFactory.startPath}/$phoneNumber/$codeLength/$expiresIn",
+        );
       },
     );
   }

@@ -5,21 +5,23 @@ import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 
 class VerifyOtpPageFactory {
-  static const path = "/verifyOtp";
+  static const startPath = "/verifyOtp";
+  static const path = "$startPath/:phoneNumber/:codeLength/:expiresIn";
 
   static VerifyOtpPage builder(
     BuildContext context,
-    GoRouterState state,
-    VerifyOtpExtra extra,
+    String phoneNumber,
+    int codeLength,
+    int expiresIn,
     Function(String message) showMessage,
     Function(String deeplink) onDeeplinkLanding,
   ) {
     return VerifyOtpPage(
       showMessage: showMessage,
       onDeeplinkLanding: onDeeplinkLanding,
-      phoneNumber: extra.phoneNumber,
-      codeLength: extra.codeLength,
-      expiresIn: extra.expiresIn,
+      phoneNumber: phoneNumber,
+      codeLength: codeLength,
+      expiresIn: expiresIn,
       onMainPage: () {
         context.push(MainPageFactory.path);
       },
@@ -40,27 +42,21 @@ class VerifyOtpPageFactory {
     return GoRoute(
         path: (VerifyOtpPageFactory.path),
         builder: (ctx, state) {
-          final extra = state.extra as VerifyOtpExtra;
+          final phoneNumber = state.pathParameters['phoneNumber'] ?? "";
+          final codeLength =
+              int.tryParse(state.pathParameters['codeLength'] ?? "") ?? 0;
+          final expiresIn =
+              int.tryParse(state.pathParameters['expiresIn'] ?? "") ?? 0;
+
           return VerifyOtpPageFactory.builder(
             ctx,
-            state,
-            extra,
+            phoneNumber,
+            codeLength,
+            expiresIn,
             showMessage,
             onDeeplinkLanding,
           );
         },
         routes: routes);
   }
-}
-
-class VerifyOtpExtra {
-  final String phoneNumber;
-  final int codeLength;
-  final int expiresIn;
-
-  VerifyOtpExtra({
-    required this.phoneNumber,
-    required this.codeLength,
-    required this.expiresIn,
-  });
 }

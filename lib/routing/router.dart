@@ -15,7 +15,6 @@ import 'package:banx/composition/national_serial_page_factory.dart';
 import 'package:banx/composition/onboarding_face_page_factory.dart';
 import 'package:banx/composition/onboarding_password_page_factory.dart';
 import 'package:banx/composition/phone_page_factory.dart';
-import 'package:banx/composition/root_page_factory.dart';
 import 'package:banx/composition/select_card_page_factory.dart';
 import 'package:banx/composition/verify_otp_page_factory.dart';
 import 'package:banx/composition/verify_password_page_factory.dart';
@@ -31,7 +30,6 @@ GoRouter getRouterConfig({
   return GoRouter(
     initialLocation: initialLocation,
     routes: <RouteBase>[
-      RootPageFactory.route(showMessage: showMessage),
       PhonePageFactory.route(showMessage: showMessage),
       AddAddressPageFactory.route(showMessage: showMessage),
       KycStatusPageFactory.route(
@@ -83,8 +81,8 @@ String getInitialLocation({
   required bool refreshTokenExist,
 }) {
   if (refreshTokenExist) {
-    return MainPageFactory.path;
+    return PhonePageFactory.path;
   } else {
-    return MainPageFactory.path;
+    return PhonePageFactory.path;
   }
 }

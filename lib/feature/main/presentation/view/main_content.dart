@@ -7,11 +7,13 @@ import 'package:flutter_svg/flutter_svg.dart';
 class MainContent extends StatefulWidget {
   final Function(String) showMessage;
   final VoidCallback cardActivation;
+  final int initTabIndex;
 
   const MainContent({
     super.key,
     required this.showMessage,
     required this.cardActivation,
+    required this.initTabIndex,
   });
 
   @override
@@ -19,7 +21,7 @@ class MainContent extends StatefulWidget {
 }
 
 class _MainContentState extends State<MainContent> {
-  int _selectedIndex = 2;
+  int? _selectedIndex;
 
   void _onItemTapped(int index) {
     setState(() {
@@ -39,7 +41,7 @@ class _MainContentState extends State<MainContent> {
         const HomePage(),
         const Center(child: Text('دستیار')),
         const Center(child: Text('پروفایل')),
-      ][_selectedIndex],
+      ][_selectedIndex ?? widget.initTabIndex],
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         items: <BottomNavigationBarItem>[
@@ -139,7 +141,7 @@ class _MainContentState extends State<MainContent> {
             label: 'پروفایل',
           ),
         ],
-        currentIndex: _selectedIndex,
+        currentIndex: _selectedIndex ?? widget.initTabIndex,
         selectedItemColor: Theme.of(context).colorScheme.primary,
         unselectedItemColor: Theme.of(context).colorScheme.outline,
         selectedLabelStyle: Theme.of(context).textTheme.labelMedium?.copyWith(

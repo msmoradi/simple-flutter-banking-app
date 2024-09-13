@@ -29,20 +29,12 @@ class CardActivationBloc
           phoneNumber: event.CardActivationNumber);
       response.when(
           success: (response) {
-            if (response.needSignup) {
-              emit(
-                Identity(
-                    CardActivationNumber: event.CardActivationNumber,
-                    needReferralCode: response.needReferralCode!),
-              );
-            } else {
-              emit(
-                VerifyOtpSuccess(
-                    CardActivationNumber: event.CardActivationNumber,
-                    expiresIn: response.expiresIn!,
-                    codeLength: response.codeLength!),
-              );
-            }
+            emit(
+              VerifyOtpSuccess(
+                  CardActivationNumber: event.CardActivationNumber,
+                  expiresIn: response.expiresIn!,
+                  codeLength: response.codeLength!),
+            );
           },
           partialSuccess: (message) => emit(CardActivationFailure(message)),
           networkError: (exception) =>

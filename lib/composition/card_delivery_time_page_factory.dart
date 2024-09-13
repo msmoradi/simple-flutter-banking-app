@@ -22,7 +22,7 @@ class CardDeliveryTimePageFactory {
       onDeeplinkLanding: onDeeplinkLanding,
       showMessage: showMessage,
       onNext: () {
-        context.push(KycStatusPageFactory.path, extra: KycStatusExtra());
+        context.push(KycStatusPageFactory.path);
       },
     );
   }

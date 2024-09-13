@@ -4,15 +4,16 @@ import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 
 class MainPageFactory {
-  static const path = "/main";
+  static const startPath = "/main";
+  static const path = "$startPath/:initTabIndex";
 
   static MainPage builder(
       {required BuildContext context,
-      required GoRouterState state,
-      required MainExtra? extra,
+      required int initTabIndex,
       required Function(String message) showMessage}) {
     return MainPage(
       showMessage: showMessage,
+      initTabIndex: initTabIndex,
       cardActivation: () {
         context.push(CardActivationPageFactory.path);
       },
@@ -26,17 +27,14 @@ class MainPageFactory {
     return GoRoute(
         path: (MainPageFactory.path),
         builder: (ctx, state) {
-          final extra = state.extra as MainExtra?;
+          final initTabIndex =
+              int.tryParse(state.pathParameters['initTabIndex'] ?? "") ?? 0;
           return MainPageFactory.builder(
-              context: ctx,
-              state: state,
-              extra: extra,
-              showMessage: showMessage);
+            context: ctx,
+            initTabIndex: initTabIndex,
+            showMessage: showMessage,
+          );
         },
         routes: routes);
   }
-}
-
-class MainExtra {
-  MainExtra();
 }

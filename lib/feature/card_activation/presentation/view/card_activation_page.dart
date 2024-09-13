@@ -7,13 +7,11 @@ import '../bloc/card_activation_bloc.dart';
 
 class CardActivationPage extends StatelessWidget {
   final Function(String, int, int) onVerifyOtp;
-  final Function(String, bool) onIdentity;
   final Function(String) showMessage;
 
   const CardActivationPage({
     super.key,
     required this.onVerifyOtp,
-    required this.onIdentity,
     required this.showMessage,
   });
 
@@ -31,8 +29,6 @@ class CardActivationPage extends StatelessWidget {
               state.expiresIn,
               state.codeLength,
             );
-          } else if (state is Identity) {
-            onIdentity(state.CardActivationNumber, state.needReferralCode);
           }
         },
         builder: (context, state) {
