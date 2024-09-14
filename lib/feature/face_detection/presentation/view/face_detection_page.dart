@@ -1,17 +1,16 @@
 import 'package:banx/feature/face_detection/presentation/bloc/face_detection_bloc.dart';
-import 'package:banx/feature/face_detection/presentation/view/camera_page.dart';
+import 'package:banx/feature/face_detection/presentation/bloc/face_detection_state.dart';
+import 'package:banx/feature/face_detection/presentation/view/camera_v2_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 
 class FaceDetectionPage extends StatelessWidget {
-  final Function(String) onDeeplinkLanding;
   final Function() onKycStatus;
   final Function(String) showMessage;
 
   const FaceDetectionPage({
     super.key,
-    required this.onDeeplinkLanding,
     required this.onKycStatus,
     required this.showMessage,
   });
@@ -22,11 +21,18 @@ class FaceDetectionPage extends StatelessWidget {
       create: (context) => GetIt.instance<FaceDetectionBloc>(),
       child: BlocConsumer<FaceDetectionBloc, FaceDetectionState>(
         listener: (context, state) {
-          _handleStateChange(context, state, showMessage);
+          if (state.status == FaceDetectionStatus.failure) {
+            showMessage(state.errorMessage);
+          } else if (state.status == FaceDetectionStatus.kyc) {
+            onKycStatus();
+          }
         },
         builder: (context, state) {
-          return CameraPage(
+          return FlutterCamera(
+            loading: state.status == FaceDetectionStatus.loading,
+            progress: state.progress,
             onVideoRecorded: (path) {
+              print('::::::::::::::::::::::::;; dkdkkd $path');
               context
                   .read<FaceDetectionBloc>()
                   .add(FaceDetectionSubmitted(path));
@@ -35,26 +41,5 @@ class FaceDetectionPage extends StatelessWidget {
         },
       ),
     );
-  }
-
-  void _handleStateChange(
-    BuildContext context,
-    FaceDetectionState state,
-    showMessage,
-  ) {
-    switch (state) {
-      case final FaceDetectionFailure s:
-        {
-          showMessage(s.message);
-        }
-      case final DeepLinkLanding s:
-        {
-          onDeeplinkLanding(s.deeplink);
-        }
-      case final KycStatus s:
-        {
-          onKycStatus();
-        }
-    }
   }
 }

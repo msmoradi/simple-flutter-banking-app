@@ -66,5 +66,7 @@
     <string>We need access to the camera to record videos.</string>
     <key>NSPhotoLibraryUsageDescription</key>
     <string>We need access to save videos to your gallery.</string>
+    <key>NSMicrophoneUsageDescription</key>
+    <string>Can I use the mic please?</string>
 </dict>
 </plist>
