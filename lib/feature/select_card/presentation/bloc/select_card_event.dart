@@ -8,15 +8,13 @@ abstract class SelectCardEvent extends Equatable {
 }
 
 class Init extends SelectCardEvent {
-
   @override
   List<Object> get props => [];
 }
 
 class ActionClick extends SelectCardEvent {
-  final int cardTypeId;
+  const ActionClick();
 
-  ActionClick({required this.cardTypeId});
   @override
   List<Object> get props => [];
 }

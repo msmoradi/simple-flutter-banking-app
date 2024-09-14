@@ -11,13 +11,13 @@ import 'package:get_it/get_it.dart';
 
 class SelectCardPage extends StatelessWidget {
   final Function(int) onCheckPostalCode;
-  final Function(List<AddressEntity>, int) onSelectAddress;
+  final Function(List<AddressEntity>, int) onCardSelected;
   final Function(String) showMessage;
 
   const SelectCardPage({
     super.key,
     required this.onCheckPostalCode,
-    required this.onSelectAddress,
+    required this.onCardSelected,
     required this.showMessage,
   });
 
@@ -31,8 +31,8 @@ class SelectCardPage extends StatelessWidget {
             showMessage(state.errorMessage);
           } else if (state.status == SelectCardStatus.checkPostalCode) {
             onCheckPostalCode(state.cardTypeId);
-          } else if (state.status == SelectCardStatus.selectAddress) {
-            onSelectAddress(state.addressList, state.cardTypeId);
+          } else if (state.status == SelectCardStatus.cardSelected) {
+            onCardSelected(state.addressList, state.cardTypeId);
           }
         },
         builder: (context, state) {
@@ -42,7 +42,7 @@ class SelectCardPage extends StatelessWidget {
             onActionClick: () {
               context
                   .read<SelectCardBloc>()
-                  .add(ActionClick(cardTypeId: state.cardTypeId));
+                  .add(const ActionClick());
             },
             showMessage: showMessage,
             firstName: "firstName",

@@ -18,9 +18,8 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$SelectCardState {
   SelectCardStatus get status => throw _privateConstructorUsedError;
   String get errorMessage => throw _privateConstructorUsedError;
-  int get cardTypeId => throw _privateConstructorUsedError;
   List<AddressEntity> get addressList => throw _privateConstructorUsedError;
-  int get id => throw _privateConstructorUsedError;
+  int get cardTypeId => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
   String get priceLabel => throw _privateConstructorUsedError;
@@ -41,9 +40,8 @@ abstract class $SelectCardStateCopyWith<$Res> {
   $Res call(
       {SelectCardStatus status,
       String errorMessage,
-      int cardTypeId,
       List<AddressEntity> addressList,
-      int id,
+      int cardTypeId,
       String title,
       String description,
       String priceLabel});
@@ -66,9 +64,8 @@ class _$SelectCardStateCopyWithImpl<$Res, $Val extends SelectCardState>
   $Res call({
     Object? status = null,
     Object? errorMessage = null,
-    Object? cardTypeId = null,
     Object? addressList = null,
-    Object? id = null,
+    Object? cardTypeId = null,
     Object? title = null,
     Object? description = null,
     Object? priceLabel = null,
@@ -82,17 +79,13 @@ class _$SelectCardStateCopyWithImpl<$Res, $Val extends SelectCardState>
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
               as String,
-      cardTypeId: null == cardTypeId
-          ? _value.cardTypeId
-          : cardTypeId // ignore: cast_nullable_to_non_nullable
-              as int,
       addressList: null == addressList
           ? _value.addressList
           : addressList // ignore: cast_nullable_to_non_nullable
               as List<AddressEntity>,
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
+      cardTypeId: null == cardTypeId
+          ? _value.cardTypeId
+          : cardTypeId // ignore: cast_nullable_to_non_nullable
               as int,
       title: null == title
           ? _value.title
@@ -121,9 +114,8 @@ abstract class _$$SelectCardStateImplCopyWith<$Res>
   $Res call(
       {SelectCardStatus status,
       String errorMessage,
-      int cardTypeId,
       List<AddressEntity> addressList,
-      int id,
+      int cardTypeId,
       String title,
       String description,
       String priceLabel});
@@ -144,9 +136,8 @@ class __$$SelectCardStateImplCopyWithImpl<$Res>
   $Res call({
     Object? status = null,
     Object? errorMessage = null,
-    Object? cardTypeId = null,
     Object? addressList = null,
-    Object? id = null,
+    Object? cardTypeId = null,
     Object? title = null,
     Object? description = null,
     Object? priceLabel = null,
@@ -160,17 +151,13 @@ class __$$SelectCardStateImplCopyWithImpl<$Res>
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
               as String,
-      cardTypeId: null == cardTypeId
-          ? _value.cardTypeId
-          : cardTypeId // ignore: cast_nullable_to_non_nullable
-              as int,
       addressList: null == addressList
           ? _value._addressList
           : addressList // ignore: cast_nullable_to_non_nullable
               as List<AddressEntity>,
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
+      cardTypeId: null == cardTypeId
+          ? _value.cardTypeId
+          : cardTypeId // ignore: cast_nullable_to_non_nullable
               as int,
       title: null == title
           ? _value.title
@@ -194,9 +181,8 @@ class _$SelectCardStateImpl implements _SelectCardState {
   const _$SelectCardStateImpl(
       {this.status = SelectCardStatus.pageLoading,
       this.errorMessage = '',
-      this.cardTypeId = 0,
       final List<AddressEntity> addressList = const [],
-      this.id = 0,
+      this.cardTypeId = 0,
       this.title = '',
       this.description = '',
       this.priceLabel = ''})
@@ -208,9 +194,6 @@ class _$SelectCardStateImpl implements _SelectCardState {
   @override
   @JsonKey()
   final String errorMessage;
-  @override
-  @JsonKey()
-  final int cardTypeId;
   final List<AddressEntity> _addressList;
   @override
   @JsonKey()
@@ -222,7 +205,7 @@ class _$SelectCardStateImpl implements _SelectCardState {
 
   @override
   @JsonKey()
-  final int id;
+  final int cardTypeId;
   @override
   @JsonKey()
   final String title;
@@ -235,7 +218,7 @@ class _$SelectCardStateImpl implements _SelectCardState {
 
   @override
   String toString() {
-    return 'SelectCardState(status: $status, errorMessage: $errorMessage, cardTypeId: $cardTypeId, addressList: $addressList, id: $id, title: $title, description: $description, priceLabel: $priceLabel)';
+    return 'SelectCardState(status: $status, errorMessage: $errorMessage, addressList: $addressList, cardTypeId: $cardTypeId, title: $title, description: $description, priceLabel: $priceLabel)';
   }
 
   @override
@@ -246,11 +229,10 @@ class _$SelectCardStateImpl implements _SelectCardState {
             (identical(other.status, status) || other.status == status) &&
             (identical(other.errorMessage, errorMessage) ||
                 other.errorMessage == errorMessage) &&
-            (identical(other.cardTypeId, cardTypeId) ||
-                other.cardTypeId == cardTypeId) &&
             const DeepCollectionEquality()
                 .equals(other._addressList, _addressList) &&
-            (identical(other.id, id) || other.id == id) &&
+            (identical(other.cardTypeId, cardTypeId) ||
+                other.cardTypeId == cardTypeId) &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.description, description) ||
                 other.description == description) &&
@@ -263,9 +245,8 @@ class _$SelectCardStateImpl implements _SelectCardState {
       runtimeType,
       status,
       errorMessage,
-      cardTypeId,
       const DeepCollectionEquality().hash(_addressList),
-      id,
+      cardTypeId,
       title,
       description,
       priceLabel);
@@ -284,9 +265,8 @@ abstract class _SelectCardState implements SelectCardState {
   const factory _SelectCardState(
       {final SelectCardStatus status,
       final String errorMessage,
-      final int cardTypeId,
       final List<AddressEntity> addressList,
-      final int id,
+      final int cardTypeId,
       final String title,
       final String description,
       final String priceLabel}) = _$SelectCardStateImpl;
@@ -296,11 +276,9 @@ abstract class _SelectCardState implements SelectCardState {
   @override
   String get errorMessage;
   @override
-  int get cardTypeId;
-  @override
   List<AddressEntity> get addressList;
   @override
-  int get id;
+  int get cardTypeId;
   @override
   String get title;
   @override

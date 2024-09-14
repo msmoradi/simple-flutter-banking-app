@@ -14,7 +14,7 @@ class SelectCardPageFactory {
   }) {
     return SelectCardPage(
       showMessage: showMessage,
-      onSelectAddress: (addressList, cardTypeId) {
+      onCardSelected: (addressList, cardTypeId) {
         context.push(
           SelectAddressPageFactory.path,
           extra: SelectAddressExtra(

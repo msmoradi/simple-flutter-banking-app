@@ -9,7 +9,7 @@ enum SelectCardStatus {
   pageLoading,
   buttonLoading,
   checkPostalCode,
-  selectAddress
+  cardSelected
 }
 
 @freezed
@@ -18,10 +18,8 @@ class SelectCardState with _$SelectCardState {
   const factory SelectCardState({
     @Default(SelectCardStatus.pageLoading) SelectCardStatus status,
     @Default('') String errorMessage,
-    @Default(0) int cardTypeId,
     @Default([]) List<AddressEntity> addressList,
-
-    @Default(0) int id,
+    @Default(0) int cardTypeId,
     @Default('') String title,
     @Default('') String description,
     @Default('') String priceLabel,

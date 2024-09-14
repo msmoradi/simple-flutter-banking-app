@@ -35,15 +35,15 @@ class SelectCardBloc extends Bloc<SelectCardEvent, SelectCardState> {
             emit(
               state.copyWith(
                 status: SelectCardStatus.checkPostalCode,
-                cardTypeId: event.cardTypeId,
+                cardTypeId: state.cardTypeId,
               ),
             );
           } else {
             emit(
               state.copyWith(
-                status: SelectCardStatus.selectAddress,
+                status: SelectCardStatus.cardSelected,
                 addressList: entity.content,
-                cardTypeId: event.cardTypeId,
+                cardTypeId: state.cardTypeId,
               ),
             );
           }
@@ -84,7 +84,7 @@ class SelectCardBloc extends Bloc<SelectCardEvent, SelectCardState> {
             state.copyWith(
               status: SelectCardStatus.initial,
               title: card.title,
-              id: card.id,
+              cardTypeId: card.id,
               description: card.description,
               priceLabel: card.priceLabel,
             ),
