@@ -34,6 +34,13 @@ class _CreatePasswordPageState extends State<CreatePasswordPage> {
     });
   }
 
+  void _onBackspace() {
+    if (!mounted) return;
+    setState(() {
+      pinController.delete();
+    });
+  }
+
   @override
   void initState() {
     super.initState();
@@ -103,7 +110,7 @@ class _CreatePasswordPageState extends State<CreatePasswordPage> {
                 const SizedBox(height: 56),
                 CustomKeypad(
                   onKeyTapped: _onKeyTapped,
-                  onBackspace: pinController.delete,
+                  onBackspace: _onBackspace,
                   onPrimaryTapped: _onPrimaryTapped,
                   primaryIcon: Icons.arrow_circle_left_rounded,
                   isEnabled: pinController.text.length < 4,

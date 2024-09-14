@@ -30,10 +30,14 @@ class _VerifyPasswordContentState extends State<VerifyPasswordContent> {
   late final TextEditingController pinController;
 
   void _onKeyTapped(String key) {
-    pinController.text += key;
+    if (!mounted) return;
+    setState(() {
+      pinController.text += key;
+    });
   }
 
   void _onBackspace() {
+    if (!mounted) return;
     setState(() {
       pinController.delete();
     });

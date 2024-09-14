@@ -40,6 +40,13 @@ class _ConfirmPasswordContentState extends State<ConfirmPasswordContent> {
     });
   }
 
+  void _onBackspace() {
+    if (!mounted) return;
+    setState(() {
+      pinController.delete();
+    });
+  }
+
   @override
   void initState() {
     super.initState();
@@ -110,7 +117,7 @@ class _ConfirmPasswordContentState extends State<ConfirmPasswordContent> {
                 const SizedBox(height: 56),
                 CustomKeypad(
                   onKeyTapped: _onKeyTapped,
-                  onBackspace: pinController.delete,
+                  onBackspace: _onBackspace,
                   onPrimaryTapped: _onPrimaryTapped,
                   primaryIcon: Icons.arrow_circle_left_rounded,
                   isEnabled: pinController.text.length < 4,
