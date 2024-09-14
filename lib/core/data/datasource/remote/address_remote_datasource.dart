@@ -6,7 +6,7 @@ import 'package:banx/core/data/model/get_inquiry_response_dto.dart';
 abstract class AddressRemoteDataSource {
   Future<GenericListResponseDto<AddressDto>> getAddress();
 
-  Future<AddressDto> postAddress({
+  Future<GetInquiryResponseDto> postAddress({
     required AddressDto addressDto,
   });
 

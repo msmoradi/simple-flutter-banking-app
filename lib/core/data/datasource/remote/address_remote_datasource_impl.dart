@@ -38,7 +38,7 @@ class AddressRemoteDataSourceImpl extends AddressRemoteDataSource {
   }
 
   @override
-  Future<AddressDto> postAddress({
+  Future<GetInquiryResponseDto> postAddress({
     required AddressDto addressDto,
   }) {
     final dataRequest = PostAddressRequestDto(
@@ -59,7 +59,7 @@ class AddressRemoteDataSourceImpl extends AddressRemoteDataSource {
       data: dataRequest,
       mapper: (response) {
         if (response != null) {
-          return AddressDto.fromJson(response);
+          return GetInquiryResponseDto.fromJson(response);
         }
         throw NotNullableError('add address response should not be null');
       },

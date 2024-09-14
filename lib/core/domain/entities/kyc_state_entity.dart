@@ -1,5 +1,5 @@
 import 'package:banx/core/domain/entities/entity.dart';
-import 'package:banx/core/domain/entities/kyc_status_dto.dart';
+import 'package:banx/core/domain/entities/kyc_status_entity.dart';
 import 'package:banx/core/domain/entities/routing_button_entity.dart';
 
 class KycStateEntity extends Entity {

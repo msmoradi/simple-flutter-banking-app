@@ -1,8 +1,7 @@
 import 'package:banx/core/data/mapper/routing_button_mapper.dart';
 import 'package:banx/core/data/model/response/kyc_response_dto.dart';
 import 'package:banx/core/domain/entities/kyc_state_entity.dart';
-import 'package:banx/core/domain/entities/kyc_status_dto.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:banx/core/domain/entities/kyc_status_entity.dart';
 
 extension KycResponseMapper on KycResponseDto {
   KycStateEntity toEntity() {

@@ -1,78 +1,23 @@
-part of 'kyc_status_bloc.dart';
+import 'package:banx/core/domain/entities/kyc_status_entity.dart';
+import 'package:flutter/material.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-@immutable
-abstract class KycStatusState extends Equatable {
-  const KycStatusState();
-}
+part 'kyc_status_state.freezed.dart';
 
-class KycStatusFailure extends KycStatusState {
-  final String message;
+enum KycStatusStatus { initial, failure, loading, deepLinkLanding }
 
-  const KycStatusFailure(this.message);
-
-  @override
-  List<Object?> get props => [];
-}
-
-class KycStatusInProgress extends KycStatusState {
-  @override
-  List<Object?> get props => [];
-}
-
-class DeepLinkLanding extends KycStatusState {
-  final String deeplink;
-
-  const DeepLinkLanding({required this.deeplink});
-
-  @override
-  List<Object?> get props => [];
-}
-
-class KycStatusSuccess extends KycStatusState {
-  final String? deeplink;
-  final String actionTitle;
-  final String actionIcon;
-  final IconAlignment iconAlignment;
-
-  final KYCStatusEntity identity;
-  final KYCStatusEntity phoneNumber;
-  final KYCStatusEntity face;
-  final KYCStatusEntity sayah;
-
-  const KycStatusSuccess({
-    this.deeplink = null,
-    this.actionTitle = "",
-    this.actionIcon = "",
-    this.iconAlignment = IconAlignment.end,
-    required this.identity,
-    required this.phoneNumber,
-    required this.face,
-    required this.sayah,
-  });
-
-  @override
-  List<Object?> get props =>
-      [deeplink, actionTitle, actionIcon, identity, phoneNumber, face, sayah];
-
-  KycStatusSuccess copyWith({
+@freezed
+class KycStatusState with _$KycStatusState {
+  const factory KycStatusState({
+    @Default(KycStatusStatus.loading) KycStatusStatus status,
+    @Default('') String errorMessage,
     String? deeplink,
-    String? actionTitle,
-    String? actionIcon,
-    IconAlignment? iconAlignment,
-    KYCStatusEntity? identity,
-    KYCStatusEntity? phoneNumber,
-    KYCStatusEntity? face,
-    KYCStatusEntity? sayah,
-  }) {
-    return KycStatusSuccess(
-      deeplink: deeplink ?? this.deeplink,
-      actionTitle: actionTitle ?? this.actionTitle,
-      actionIcon: actionIcon ?? this.actionIcon,
-      iconAlignment: iconAlignment ?? this.iconAlignment,
-      identity: identity ?? this.identity,
-      phoneNumber: phoneNumber ?? this.phoneNumber,
-      face: face ?? this.face,
-      sayah: sayah ?? this.sayah,
-    );
-  }
+    @Default('') String actionTitle,
+    @Default('') String actionIcon,
+    @Default(IconAlignment.end) IconAlignment iconAlignment,
+    @Default(KYCStatusEntity()) KYCStatusEntity identity,
+    @Default(KYCStatusEntity()) KYCStatusEntity phoneNumber,
+    @Default(KYCStatusEntity()) KYCStatusEntity face,
+    @Default(KYCStatusEntity()) KYCStatusEntity sayah,
+  }) = _KycStatusState;
 }

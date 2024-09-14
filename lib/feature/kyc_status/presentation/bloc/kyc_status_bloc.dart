@@ -1,20 +1,20 @@
-import 'package:banx/core/domain/entities/kyc_status_dto.dart';
+import 'package:banx/core/domain/entities/kyc_status_entity.dart';
 import 'package:banx/core/domain/repository/authentication_repository.dart';
+import 'package:banx/feature/kyc_status/presentation/bloc/kyc_status_state.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
 part 'kyc_status_event.dart';
-
-part 'kyc_status_state.dart';
 
 @injectable
 class KycStatusBloc extends Bloc<KycStatusEvent, KycStatusState> {
   final AuthenticationRepository authenticationRepository;
 
   KycStatusBloc({required this.authenticationRepository})
-      : super(KycStatusInProgress()) {
+      : super(const KycStatusState()) {
     on<ActionClicked>(_onActionClicked);
     on<KycStatusSubmitted>(_onKycStatusSubmitted);
     add(KycStatusSubmitted());
@@ -24,11 +24,8 @@ class KycStatusBloc extends Bloc<KycStatusEvent, KycStatusState> {
     ActionClicked event,
     Emitter<KycStatusState> emit,
   ) async {
-    if (state is! KycStatusSuccess) return;
-
-    final deeplink = (state as KycStatusSuccess).deeplink;
-    if (deeplink != null) {
-      emit(DeepLinkLanding(deeplink: deeplink));
+    if (state.deeplink != null) {
+      emit(state.copyWith(status: KycStatusStatus.deepLinkLanding));
     } else {
       add(KycStatusSubmitted());
     }
@@ -39,39 +36,59 @@ class KycStatusBloc extends Bloc<KycStatusEvent, KycStatusState> {
     Emitter<KycStatusState> emit,
   ) async {
     try {
+      emit(state.copyWith(status: KycStatusStatus.loading));
       final response = await authenticationRepository.kyc();
 
       response.when(
-          success: (entity) {
-            final KycStatusSuccess kycStatusSuccess = KycStatusSuccess(
+        success: (entity) {
+          emit(
+            state.copyWith(
                 identity: entity.state.identity,
                 phoneNumber: entity.state.phoneNumber,
                 face: entity.state.face,
-                sayah: entity.state.sayah);
+                sayah: entity.state.sayah),
+          );
 
-            if (entity.routingButton != null) {
-              emit(
-                kycStatusSuccess.copyWith(
-                    deeplink: entity.routingButton!.deeplink,
-                    actionTitle: entity.routingButton!.title!,
-                    actionIcon: "arrow-left",
-                    iconAlignment: IconAlignment.end),
-              );
-            } else {
-              emit(
-                kycStatusSuccess.copyWith(
-                    deeplink: null,
-                    actionTitle: "به‌روزرسانی وضعیت",
-                    actionIcon: "refresh-ccw",
-                    iconAlignment: IconAlignment.start),
-              );
-            }
-          },
-          partialSuccess: (message) => emit(KycStatusFailure(message)),
-          networkError: (exception) =>
-              emit(KycStatusFailure(exception.toString())));
+          if (entity.routingButton != null) {
+            emit(
+              state.copyWith(
+                  status: KycStatusStatus.initial,
+                  deeplink: entity.routingButton!.deeplink,
+                  actionTitle: entity.routingButton!.title!,
+                  actionIcon: "arrow-left",
+                  iconAlignment: IconAlignment.end),
+            );
+          } else {
+            emit(
+              state.copyWith(
+                  status: KycStatusStatus.initial,
+                  deeplink: null,
+                  actionTitle: "به‌روزرسانی وضعیت",
+                  actionIcon: "refresh-ccw",
+                  iconAlignment: IconAlignment.start),
+            );
+          }
+        },
+        partialSuccess: (message) => emit(
+          state.copyWith(
+            status: KycStatusStatus.failure,
+            errorMessage: message,
+          ),
+        ),
+        networkError: (exception) => emit(
+          state.copyWith(
+            status: KycStatusStatus.failure,
+            errorMessage: exception.toString(),
+          ),
+        ),
+      );
     } catch (e) {
-      emit(KycStatusFailure(e.toString()));
+      emit(
+        state.copyWith(
+          status: KycStatusStatus.failure,
+          errorMessage: e.toString(),
+        ),
+      );
     }
   }
 }

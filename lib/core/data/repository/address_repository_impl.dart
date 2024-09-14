@@ -49,7 +49,7 @@ class AddressRepositoryImpl extends AddressRepository {
                     id: addressEntity.province.id,
                     name: addressEntity.province.name)))
         .mapResponseToEntityWrapper(mapper: (dto) {
-      return dto.toEntity();
+      return dto.address.toEntity();
     });
   }
 

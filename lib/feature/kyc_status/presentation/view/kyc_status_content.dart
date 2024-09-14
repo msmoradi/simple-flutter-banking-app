@@ -1,7 +1,7 @@
 import 'package:banx/core/designsystem/widgets/button/fill/full_fill_button.dart';
 import 'package:banx/core/designsystem/widgets/components/loading_container.dart';
 import 'package:banx/core/designsystem/widgets/info_text_row.dart';
-import 'package:banx/core/domain/entities/kyc_status_dto.dart';
+import 'package:banx/core/domain/entities/kyc_status_entity.dart';
 import 'package:banx/feature/kyc_status/mapper/kyc_state_mapper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -14,10 +14,10 @@ class KycStatusContent extends StatelessWidget {
   final String actionTitle;
   final String actionIcon;
   final IconAlignment iconAlignment;
-  final KYCStatusEntity? identity;
-  final KYCStatusEntity? phoneNumber;
-  final KYCStatusEntity? face;
-  final KYCStatusEntity? sayah;
+  final KYCStatusEntity identity;
+  final KYCStatusEntity phoneNumber;
+  final KYCStatusEntity face;
+  final KYCStatusEntity sayah;
 
   const KycStatusContent({
     super.key,
@@ -27,10 +27,10 @@ class KycStatusContent extends StatelessWidget {
     required this.actionIcon,
     required this.iconAlignment,
     required this.showLoading,
-    this.identity,
-    this.phoneNumber,
-    this.face,
-    this.sayah,
+    required this.identity,
+    required this.phoneNumber,
+    required this.face,
+    required this.sayah,
   });
 
   @override
@@ -86,36 +86,36 @@ class KycStatusContent extends StatelessWidget {
                                   ),
                                   const SizedBox(height: 40),
                                   InfoTextRowWidget(
-                                    iconAsset: identity!.status.toIconAssets(),
-                                    title: identity!.title,
-                                    subtitle: identity!.description,
-                                    background: identity!.status
+                                    iconAsset: identity.status.toIconAssets(),
+                                    title: identity.title,
+                                    subtitle: identity.description,
+                                    background: identity.status
                                         .toBackgroundColor(context),
                                   ),
                                   const SizedBox(height: 30),
                                   InfoTextRowWidget(
                                     iconAsset:
-                                        phoneNumber!.status.toIconAssets(),
-                                    title: phoneNumber!.title,
-                                    subtitle: phoneNumber!.description,
-                                    background: phoneNumber!.status
+                                        phoneNumber.status.toIconAssets(),
+                                    title: phoneNumber.title,
+                                    subtitle: phoneNumber.description,
+                                    background: phoneNumber.status
                                         .toBackgroundColor(context),
                                   ),
                                   const SizedBox(height: 30),
                                   InfoTextRowWidget(
-                                    iconAsset: face!.status.toIconAssets(),
-                                    title: face!.title,
-                                    subtitle: face!.description,
+                                    iconAsset: face.status.toIconAssets(),
+                                    title: face.title,
+                                    subtitle: face.description,
                                     background:
-                                        face!.status.toBackgroundColor(context),
+                                        face.status.toBackgroundColor(context),
                                   ),
                                   const SizedBox(height: 30),
                                   InfoTextRowWidget(
-                                    iconAsset: sayah!.status.toIconAssets(),
-                                    title: sayah!.title,
-                                    subtitle: sayah!.description,
-                                    background: sayah!.status
-                                        .toBackgroundColor(context),
+                                    iconAsset: sayah.status.toIconAssets(),
+                                    title: sayah.title,
+                                    subtitle: sayah.description,
+                                    background:
+                                        sayah.status.toBackgroundColor(context),
                                   ),
                                 ],
                               ),
