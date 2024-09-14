@@ -14,11 +14,11 @@ class VerifyPasswordState with _$VerifyPasswordState {
   const VerifyPasswordState._();
 
   const factory VerifyPasswordState({
-    required VerifyPasswordStatus status,
-    String? errorMessage,
-    String? deeplink,
-    bool? showBiometric,
-    String? name,
-    String? photoUrl,
+    @Default(VerifyPasswordStatus.initial) VerifyPasswordStatus status,
+    @Default('') String errorMessage,
+    @Default('') String deeplink,
+    @Default(false) bool showBiometric,
+    @Default('') String name,
+    @Default('') String photoUrl,
   }) = _VerifyPasswordState;
 }

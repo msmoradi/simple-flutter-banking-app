@@ -22,21 +22,17 @@ class VerifyPasswordPage extends StatelessWidget {
       child: BlocConsumer<VerifyPasswordBloc, VerifyPasswordState>(
         listener: (context, state) {
           if (state.status == VerifyPasswordStatus.failure) {
-            if (state.errorMessage != null) {
-              showMessage(state.errorMessage!);
-            }
+            showMessage(state.errorMessage);
           } else if (state.status == VerifyPasswordStatus.deepLinkLanding) {
-            if (state.deeplink != null) {
-              onDeeplinkLanding(state.deeplink!);
-            }
+            onDeeplinkLanding(state.deeplink);
           }
         },
         builder: (context, state) {
           return VerifyPasswordContent(
             showMessage: showMessage,
-            showBiometric: state.showBiometric ?? false,
-            firstName: state.name ?? "",
-            photoUrl: state.photoUrl ?? "",
+            showBiometric: state.showBiometric,
+            firstName: state.name,
+            photoUrl: state.photoUrl,
             showLoading: state.status == VerifyPasswordStatus.loading,
           );
         },

@@ -17,11 +17,11 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$VerifyPasswordState {
   VerifyPasswordStatus get status => throw _privateConstructorUsedError;
-  String? get errorMessage => throw _privateConstructorUsedError;
-  String? get deeplink => throw _privateConstructorUsedError;
-  bool? get showBiometric => throw _privateConstructorUsedError;
-  String? get name => throw _privateConstructorUsedError;
-  String? get photoUrl => throw _privateConstructorUsedError;
+  String get errorMessage => throw _privateConstructorUsedError;
+  String get deeplink => throw _privateConstructorUsedError;
+  bool get showBiometric => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
+  String get photoUrl => throw _privateConstructorUsedError;
 
   /// Create a copy of VerifyPasswordState
   /// with the given fields replaced by the non-null parameter values.
@@ -38,11 +38,11 @@ abstract class $VerifyPasswordStateCopyWith<$Res> {
   @useResult
   $Res call(
       {VerifyPasswordStatus status,
-      String? errorMessage,
-      String? deeplink,
-      bool? showBiometric,
-      String? name,
-      String? photoUrl});
+      String errorMessage,
+      String deeplink,
+      bool showBiometric,
+      String name,
+      String photoUrl});
 }
 
 /// @nodoc
@@ -61,37 +61,37 @@ class _$VerifyPasswordStateCopyWithImpl<$Res, $Val extends VerifyPasswordState>
   @override
   $Res call({
     Object? status = null,
-    Object? errorMessage = freezed,
-    Object? deeplink = freezed,
-    Object? showBiometric = freezed,
-    Object? name = freezed,
-    Object? photoUrl = freezed,
+    Object? errorMessage = null,
+    Object? deeplink = null,
+    Object? showBiometric = null,
+    Object? name = null,
+    Object? photoUrl = null,
   }) {
     return _then(_value.copyWith(
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as VerifyPasswordStatus,
-      errorMessage: freezed == errorMessage
+      errorMessage: null == errorMessage
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
-              as String?,
-      deeplink: freezed == deeplink
+              as String,
+      deeplink: null == deeplink
           ? _value.deeplink
           : deeplink // ignore: cast_nullable_to_non_nullable
-              as String?,
-      showBiometric: freezed == showBiometric
+              as String,
+      showBiometric: null == showBiometric
           ? _value.showBiometric
           : showBiometric // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      name: freezed == name
+              as bool,
+      name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String?,
-      photoUrl: freezed == photoUrl
+              as String,
+      photoUrl: null == photoUrl
           ? _value.photoUrl
           : photoUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
     ) as $Val);
   }
 }
@@ -106,11 +106,11 @@ abstract class _$$VerifyPasswordStateImplCopyWith<$Res>
   @useResult
   $Res call(
       {VerifyPasswordStatus status,
-      String? errorMessage,
-      String? deeplink,
-      bool? showBiometric,
-      String? name,
-      String? photoUrl});
+      String errorMessage,
+      String deeplink,
+      bool showBiometric,
+      String name,
+      String photoUrl});
 }
 
 /// @nodoc
@@ -127,37 +127,37 @@ class __$$VerifyPasswordStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? status = null,
-    Object? errorMessage = freezed,
-    Object? deeplink = freezed,
-    Object? showBiometric = freezed,
-    Object? name = freezed,
-    Object? photoUrl = freezed,
+    Object? errorMessage = null,
+    Object? deeplink = null,
+    Object? showBiometric = null,
+    Object? name = null,
+    Object? photoUrl = null,
   }) {
     return _then(_$VerifyPasswordStateImpl(
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as VerifyPasswordStatus,
-      errorMessage: freezed == errorMessage
+      errorMessage: null == errorMessage
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
-              as String?,
-      deeplink: freezed == deeplink
+              as String,
+      deeplink: null == deeplink
           ? _value.deeplink
           : deeplink // ignore: cast_nullable_to_non_nullable
-              as String?,
-      showBiometric: freezed == showBiometric
+              as String,
+      showBiometric: null == showBiometric
           ? _value.showBiometric
           : showBiometric // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      name: freezed == name
+              as bool,
+      name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String?,
-      photoUrl: freezed == photoUrl
+              as String,
+      photoUrl: null == photoUrl
           ? _value.photoUrl
           : photoUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
     ));
   }
 }
@@ -166,26 +166,32 @@ class __$$VerifyPasswordStateImplCopyWithImpl<$Res>
 
 class _$VerifyPasswordStateImpl extends _VerifyPasswordState {
   const _$VerifyPasswordStateImpl(
-      {required this.status,
-      this.errorMessage,
-      this.deeplink,
-      this.showBiometric,
-      this.name,
-      this.photoUrl})
+      {this.status = VerifyPasswordStatus.initial,
+      this.errorMessage = '',
+      this.deeplink = '',
+      this.showBiometric = false,
+      this.name = '',
+      this.photoUrl = ''})
       : super._();
 
   @override
+  @JsonKey()
   final VerifyPasswordStatus status;
   @override
-  final String? errorMessage;
+  @JsonKey()
+  final String errorMessage;
   @override
-  final String? deeplink;
+  @JsonKey()
+  final String deeplink;
   @override
-  final bool? showBiometric;
+  @JsonKey()
+  final bool showBiometric;
   @override
-  final String? name;
+  @JsonKey()
+  final String name;
   @override
-  final String? photoUrl;
+  @JsonKey()
+  final String photoUrl;
 
   @override
   String toString() {
@@ -225,26 +231,26 @@ class _$VerifyPasswordStateImpl extends _VerifyPasswordState {
 
 abstract class _VerifyPasswordState extends VerifyPasswordState {
   const factory _VerifyPasswordState(
-      {required final VerifyPasswordStatus status,
-      final String? errorMessage,
-      final String? deeplink,
-      final bool? showBiometric,
-      final String? name,
-      final String? photoUrl}) = _$VerifyPasswordStateImpl;
+      {final VerifyPasswordStatus status,
+      final String errorMessage,
+      final String deeplink,
+      final bool showBiometric,
+      final String name,
+      final String photoUrl}) = _$VerifyPasswordStateImpl;
   const _VerifyPasswordState._() : super._();
 
   @override
   VerifyPasswordStatus get status;
   @override
-  String? get errorMessage;
+  String get errorMessage;
   @override
-  String? get deeplink;
+  String get deeplink;
   @override
-  bool? get showBiometric;
+  bool get showBiometric;
   @override
-  String? get name;
+  String get name;
   @override
-  String? get photoUrl;
+  String get photoUrl;
 
   /// Create a copy of VerifyPasswordState
   /// with the given fields replaced by the non-null parameter values.
