@@ -32,23 +32,22 @@ class AddAddressBloc extends Bloc<AddAddressEvent, AddAddressState> {
       final response = await addressRepository
           .postAddress(addressEntity: event.addressEntity)
           .then((entityWrapper) async {
-        if (entityWrapper is SuccessEntityWrapper<EmptyEntity>) {
+        if (entityWrapper is SuccessEntityWrapper<AddressEntity>) {
+          emit(state.copyWith(address: entityWrapper.data));
           return await cardRepository.shippingTimeSlots();
         }
         return entityWrapper;
       });
       response.when(
-          success: (entity) {
-            if (entity is CardShippingTimeSlotsEntity) {
-              emit(
-                state.copyWith(
+        success: (entity) {
+          if (entity is CardShippingTimeSlotsEntity) {
+            emit(
+              state.copyWith(
                   status: AddAddressStatus.addressSelected,
-                    address: event.addressEntity,
-                    cardShippingTimeSlots: entity.cardShippingTimeSlots
-                )
-              );
-            }
-          },
+                  cardShippingTimeSlots: entity.cardShippingTimeSlots),
+            );
+          }
+        },
         partialSuccess: (message) => emit(
           state.copyWith(
             status: AddAddressStatus.failure,

@@ -10,7 +10,6 @@ import 'package:banx/core/data/model/province_dto.dart';
 import 'package:banx/core/domain/entities/address_entity.dart';
 import 'package:banx/core/domain/entities/empty_entity.dart';
 import 'package:banx/core/domain/entities/generic_list_entity.dart';
-import 'package:banx/core/domain/entities/put_address_entity.dart';
 import 'package:banx/core/domain/entity_wrapper.dart';
 import 'package:banx/core/domain/repository/address_repository.dart';
 import 'package:injectable/injectable.dart';
@@ -30,7 +29,7 @@ class AddressRepositoryImpl extends AddressRepository {
   }
 
   @override
-  Future<EntityWrapper<EmptyEntity>> postAddress({
+  Future<EntityWrapper<AddressEntity>> postAddress({
     required AddressEntity addressEntity,
   }) {
     return addressRemoteDataSource
@@ -49,23 +48,9 @@ class AddressRepositoryImpl extends AddressRepository {
                 province: ProvinceDto(
                     id: addressEntity.province.id,
                     name: addressEntity.province.name)))
-        .mapResponseToEntityWrapper(mapper: (model) {
-      return EmptyEntity();
+        .mapResponseToEntityWrapper(mapper: (dto) {
+      return dto.toEntity();
     });
-  }
-
-  @override
-  Future<EntityWrapper<PutAddressEntity>> putAddress() {
-    return addressRemoteDataSource.putAddress().mapResponseToEntityWrapper(
-        mapper: (model) {
-      return PutAddressEntity();
-    });
-  }
-
-  @override
-  Future<EntityWrapper<PutAddressEntity>> getCities() {
-    // TODO: implement getCities
-    throw UnimplementedError();
   }
 
   @override
@@ -79,7 +64,19 @@ class AddressRepositoryImpl extends AddressRepository {
   }
 
   @override
-  Future<EntityWrapper<PutAddressEntity>> getStates() {
+  Future<EntityWrapper<EmptyEntity>> putAddress() {
+    // TODO: implement getCities
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<EntityWrapper<EmptyEntity>> getCities() {
+    // TODO: implement getCities
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<EntityWrapper<EmptyEntity>> getStates() {
     // TODO: implement getStates
     throw UnimplementedError();
   }
