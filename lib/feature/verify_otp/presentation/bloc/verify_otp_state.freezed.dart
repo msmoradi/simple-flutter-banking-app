@@ -138,13 +138,12 @@ class __$$VerifyOtpStateImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$VerifyOtpStateImpl extends _VerifyOtpState {
+class _$VerifyOtpStateImpl implements _VerifyOtpState {
   const _$VerifyOtpStateImpl(
       {this.status = VerifyOtpStatus.initial,
       this.errorMessage = '',
       this.otpErrorMessage = '',
-      this.deeplink = ''})
-      : super._();
+      this.deeplink = ''});
 
   @override
   @JsonKey()
@@ -192,13 +191,12 @@ class _$VerifyOtpStateImpl extends _VerifyOtpState {
           this, _$identity);
 }
 
-abstract class _VerifyOtpState extends VerifyOtpState {
+abstract class _VerifyOtpState implements VerifyOtpState {
   const factory _VerifyOtpState(
       {final VerifyOtpStatus status,
       final String errorMessage,
       final String otpErrorMessage,
       final String deeplink}) = _$VerifyOtpStateImpl;
-  const _VerifyOtpState._() : super._();
 
   @override
   VerifyOtpStatus get status;

@@ -164,15 +164,14 @@ class __$$PhoneStateImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$PhoneStateImpl extends _PhoneState {
+class _$PhoneStateImpl implements _PhoneState {
   const _$PhoneStateImpl(
       {this.status = PhoneStatus.initial,
       this.errorMessage = '',
       this.phoneNumber = '',
       this.expiresIn = 0,
       this.codeLength = 0,
-      this.needReferralCode = false})
-      : super._();
+      this.needReferralCode = false});
 
   @override
   @JsonKey()
@@ -229,7 +228,7 @@ class _$PhoneStateImpl extends _PhoneState {
       __$$PhoneStateImplCopyWithImpl<_$PhoneStateImpl>(this, _$identity);
 }
 
-abstract class _PhoneState extends PhoneState {
+abstract class _PhoneState implements PhoneState {
   const factory _PhoneState(
       {final PhoneStatus status,
       final String errorMessage,
@@ -237,7 +236,6 @@ abstract class _PhoneState extends PhoneState {
       final int expiresIn,
       final int codeLength,
       final bool needReferralCode}) = _$PhoneStateImpl;
-  const _PhoneState._() : super._();
 
   @override
   PhoneStatus get status;

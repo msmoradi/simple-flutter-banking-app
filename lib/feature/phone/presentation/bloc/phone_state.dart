@@ -6,7 +6,6 @@ enum PhoneStatus { initial, failure, loading, verifyOtp, identity }
 
 @freezed
 class PhoneState with _$PhoneState {
-  const PhoneState._();
 
   const factory PhoneState({
     @Default(PhoneStatus.initial) PhoneStatus status,

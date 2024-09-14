@@ -3,6 +3,14 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'select_card_state.freezed.dart';
 
+enum VerifyPasswordStatus {
+  initial,
+  failure,
+  loading,
+  deepLinkLanding
+}
+
+
 @freezed
 class SelectCardState with _$SelectCardState {
   const factory SelectCardState.selectCardFailure(String message) =

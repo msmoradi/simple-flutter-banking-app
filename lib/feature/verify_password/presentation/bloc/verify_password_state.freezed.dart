@@ -164,15 +164,14 @@ class __$$VerifyPasswordStateImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$VerifyPasswordStateImpl extends _VerifyPasswordState {
+class _$VerifyPasswordStateImpl implements _VerifyPasswordState {
   const _$VerifyPasswordStateImpl(
       {this.status = VerifyPasswordStatus.initial,
       this.errorMessage = '',
       this.deeplink = '',
       this.showBiometric = false,
       this.name = '',
-      this.photoUrl = ''})
-      : super._();
+      this.photoUrl = ''});
 
   @override
   @JsonKey()
@@ -229,7 +228,7 @@ class _$VerifyPasswordStateImpl extends _VerifyPasswordState {
           this, _$identity);
 }
 
-abstract class _VerifyPasswordState extends VerifyPasswordState {
+abstract class _VerifyPasswordState implements VerifyPasswordState {
   const factory _VerifyPasswordState(
       {final VerifyPasswordStatus status,
       final String errorMessage,
@@ -237,7 +236,6 @@ abstract class _VerifyPasswordState extends VerifyPasswordState {
       final bool showBiometric,
       final String name,
       final String photoUrl}) = _$VerifyPasswordStateImpl;
-  const _VerifyPasswordState._() : super._();
 
   @override
   VerifyPasswordStatus get status;

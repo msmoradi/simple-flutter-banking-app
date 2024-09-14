@@ -2,12 +2,10 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'verify_otp_state.freezed.dart';
 
-enum VerifyOtpStatus { initial,failure, loading, deepLinkLanding , otpError}
+enum VerifyOtpStatus { initial, failure, loading, deepLinkLanding, otpError }
 
 @freezed
 class VerifyOtpState with _$VerifyOtpState {
-  const VerifyOtpState._();
-
   const factory VerifyOtpState({
     @Default(VerifyOtpStatus.initial) VerifyOtpStatus status,
     @Default('') String errorMessage,
