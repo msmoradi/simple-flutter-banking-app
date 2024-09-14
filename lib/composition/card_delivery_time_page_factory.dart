@@ -1,6 +1,8 @@
 import 'package:banx/composition/kyc_status_page_factory.dart';
 import 'package:banx/core/domain/entities/address_entity.dart';
+import 'package:banx/core/domain/entities/city_entity.dart';
 import 'package:banx/core/domain/entities/shipping_time_entity.dart';
+import 'package:banx/core/domain/entities/state_entity.dart';
 import 'package:banx/feature/card_delivery_time/presentation/view/card_delivery_time_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
@@ -34,7 +36,36 @@ class CardDeliveryTimePageFactory {
     return GoRoute(
         path: (CardDeliveryTimePageFactory.path),
         builder: (ctx, state) {
-          final extra = state.extra as CardDeliveryTimeExtra;
+          final extra = state.extra != null
+              ? state.extra as CardDeliveryTimeExtra
+              : CardDeliveryTimeExtra(
+                  address: AddressEntity(
+                    id: 10,
+                    accountId: 3,
+                    postalCode: "postalCode",
+                    address: "address",
+                    region: "region",
+                    street: "street",
+                    plaque: "plaque",
+                    floor: "floor",
+                    unit: "unit",
+                    houseName: "houseName",
+                    city: CityEntity(id: 1, name: "name"),
+                    province: ProvinceEntity(id: 2, name: "name"),
+                  ),
+                  cardShippingTimeSlots: [
+                    ShippingTimeEntity(
+                        id: 0, datetime: 'شنبه، ۸ اردیبهشت - ۹ الی ۱۵'),
+                    ShippingTimeEntity(
+                        id: 1, datetime: 'شنبه، ۸ اردیبهشت - ۹ الی ۱۵'),
+                    ShippingTimeEntity(
+                        id: 2, datetime: 'شنبه، ۸ اردیبهشت - ۹ الی ۱۵'),
+                    ShippingTimeEntity(
+                        id: 3, datetime: 'شنبه، ۸ اردیبهشت - ۹ الی ۱۵'),
+                    ShippingTimeEntity(
+                        id: 4, datetime: 'شنبه، ۸ اردیبهشت - ۹ الی ۱۵'),
+                  ],
+                  cardTypeId: 1);
           return CardDeliveryTimePageFactory.builder(
             context: ctx,
             extra: extra,
