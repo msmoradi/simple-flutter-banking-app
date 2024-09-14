@@ -1,4 +1,5 @@
 import 'package:banx/feature/verify_password/presentation/bloc/verify_password_bloc.dart';
+import 'package:banx/feature/verify_password/presentation/bloc/verify_password_state.dart';
 import 'package:banx/feature/verify_password/presentation/view/verify_password_content.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -20,37 +21,26 @@ class VerifyPasswordPage extends StatelessWidget {
       create: (context) => GetIt.instance<VerifyPasswordBloc>(),
       child: BlocConsumer<VerifyPasswordBloc, VerifyPasswordState>(
         listener: (context, state) {
-          _handleStateChange(context, state, showMessage);
+          if (state.status == VerifyPasswordStatus.failure) {
+            if (state.errorMessage != null) {
+              showMessage(state.errorMessage!);
+            }
+          } else if (state.status == VerifyPasswordStatus.deepLinkLanding) {
+            if (state.deeplink != null) {
+              onDeeplinkLanding(state.deeplink!);
+            }
+          }
         },
         builder: (context, state) {
           return VerifyPasswordContent(
             showMessage: showMessage,
-            showBiometric:
-                state is VerifyPasswordInitial ? state.showBiometric : false,
-            firstName: state is VerifyPasswordInitial ? state.firstName : "",
-            photoUrl: state is VerifyPasswordInitial ? state.photoUrl : "",
-            showLoading: state is VerifyPasswordInProgress,
-            pin: state is PinExist ? state.password : "",
+            showBiometric: state.showBiometric ?? false,
+            firstName: state.name ?? "",
+            photoUrl: state.photoUrl ?? "",
+            showLoading: state.status == VerifyPasswordStatus.loading,
           );
         },
       ),
     );
-  }
-
-  void _handleStateChange(
-    BuildContext context,
-    VerifyPasswordState state,
-    showMessage,
-  ) {
-    switch (state) {
-      case final VerifyPasswordFailure s:
-        {
-          showMessage(s.message);
-        }
-      case final DeepLinkLanding s:
-        {
-          onDeeplinkLanding(s.deeplink);
-        }
-    }
   }
 }

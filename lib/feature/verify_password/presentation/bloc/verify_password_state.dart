@@ -1,53 +1,24 @@
-part of 'verify_password_bloc.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-@immutable
-abstract class VerifyPasswordState extends Equatable {
-  const VerifyPasswordState();
+part 'verify_password_state.freezed.dart';
+
+enum VerifyPasswordStatus {
+  initial,
+  failure,
+  loading,
+  deepLinkLanding
 }
 
-class VerifyPasswordFailure extends VerifyPasswordState {
-  final String message;
+@freezed
+class VerifyPasswordState with _$VerifyPasswordState {
+  const VerifyPasswordState._();
 
-  const VerifyPasswordFailure(this.message);
-
-  @override
-  List<Object?> get props => [];
-}
-
-class PinExist extends VerifyPasswordState {
-  final String password;
-
-  const PinExist(this.password);
-
-  @override
-  List<Object?> get props => [];
-}
-
-class VerifyPasswordInProgress extends VerifyPasswordState {
-  @override
-  List<Object?> get props => [];
-}
-
-class DeepLinkLanding extends VerifyPasswordState {
-  final String deeplink;
-
-  const DeepLinkLanding({required this.deeplink});
-
-  @override
-  List<Object?> get props => [];
-}
-
-class VerifyPasswordInitial extends VerifyPasswordState {
-  final bool showBiometric;
-  final String firstName;
-  final String photoUrl;
-
-  const VerifyPasswordInitial({
-    required this.showBiometric,
-    this.firstName = "",
-    this.photoUrl = "",
-  });
-
-  @override
-  List<Object?> get props => [];
+  const factory VerifyPasswordState({
+    required VerifyPasswordStatus status,
+    String? errorMessage,
+    String? deeplink,
+    bool? showBiometric,
+    String? name,
+    String? photoUrl,
+  }) = _VerifyPasswordState;
 }

@@ -9,7 +9,6 @@ import 'package:pinput/pinput.dart';
 class VerifyPasswordContent extends StatefulWidget {
   final bool showLoading;
   final bool showBiometric;
-  final String pin;
   final String firstName;
   final String photoUrl;
   final Function(String) showMessage;
@@ -18,7 +17,6 @@ class VerifyPasswordContent extends StatefulWidget {
     super.key,
     required this.showLoading,
     required this.showMessage,
-    required this.pin,
     required this.showBiometric,
     required this.firstName,
     required this.photoUrl,
@@ -32,8 +30,12 @@ class _VerifyPasswordContentState extends State<VerifyPasswordContent> {
   late final TextEditingController pinController;
 
   void _onKeyTapped(String key) {
+    pinController.text += key;
+  }
+
+  void _onBackspace() {
     setState(() {
-      pinController.text += key;
+      pinController.delete();
     });
   }
 
@@ -47,14 +49,6 @@ class _VerifyPasswordContentState extends State<VerifyPasswordContent> {
   void dispose() {
     pinController.dispose();
     super.dispose();
-  }
-
-  @override
-  void didUpdateWidget(VerifyPasswordContent oldWidget) {
-    if (widget.pin != oldWidget.pin) {
-      pinController.text = widget.pin;
-    }
-    super.didUpdateWidget(oldWidget);
   }
 
   @override
@@ -89,10 +83,12 @@ class _VerifyPasswordContentState extends State<VerifyPasswordContent> {
                               const SizedBox(
                                 height: 16.0,
                               ),
-                              CircleAvatar(
-                                radius: 40.0,
-                                backgroundImage: NetworkImage(widget.photoUrl),
-                              ),
+                              if (widget.photoUrl.isNotEmpty)
+                                CircleAvatar(
+                                  radius: 40.0,
+                                  backgroundImage:
+                                      NetworkImage(widget.photoUrl),
+                                ),
                               const SizedBox(height: 16),
                               Text(
                                 "روز بخیر، ${widget.firstName}",
@@ -127,7 +123,7 @@ class _VerifyPasswordContentState extends State<VerifyPasswordContent> {
                               const SizedBox(height: 32),
                               CustomKeypad(
                                 onKeyTapped: _onKeyTapped,
-                                onBackspace: pinController.delete,
+                                onBackspace: _onBackspace,
                                 onPrimaryTapped: () =>
                                     context.read<VerifyPasswordBloc>().add(
                                           const BiometricsSubmitted(),
