@@ -1,5 +1,6 @@
 import 'package:banx/core/domain/entities/address_entity.dart';
 import 'package:banx/core/domain/entities/shipping_time_entity.dart';
+import 'package:banx/feature/card_delivery_time/presentation/bloc/card_delivery_time_state.dart';
 import 'package:banx/feature/card_delivery_time/presentation/view/card_delivery_time_content.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -31,26 +32,22 @@ class CardDeliveryTimePage extends StatelessWidget {
       create: (context) => GetIt.instance<CardDeliveryTimeBloc>(),
       child: BlocConsumer<CardDeliveryTimeBloc, CardDeliveryTimeState>(
         listener: (context, state) {
-          switch (state) {
-            case final CardDeliveryTimeFailure s:
-              {
-                showMessage(s.message);
-              }
-            case final DeepLinkLanding s:
-              {
-                onDeeplinkLanding(s.deeplink);
-              }
+          if (state.status == CardDeliveryTimeStatus.failure) {
+            showMessage(state.errorMessage);
+          } else if (state.status == CardDeliveryTimeStatus.deepLinkLanding) {
+            onDeeplinkLanding(state.deeplink);
           }
         },
         builder: (context, state) {
           return CardDeliveryTimeContent(
-            showLoading: state is CardDeliveryTimeInProgress,
+            showLoading: state.status == CardDeliveryTimeStatus.loading,
             onActionClick: (cardShippingTimeSlotId) {
               context.read<CardDeliveryTimeBloc>().add(
                     CardDeliveryTimeSubmitted(
-                        addressId: address.id!,
-                        typeId: cardTypeId,
-                        cardShippingTimeSlotId: cardShippingTimeSlotId),
+                      addressId: address.id!,
+                      typeId: cardTypeId,
+                      cardShippingTimeSlotId: cardShippingTimeSlotId,
+                    ),
                   );
             },
             address: address,

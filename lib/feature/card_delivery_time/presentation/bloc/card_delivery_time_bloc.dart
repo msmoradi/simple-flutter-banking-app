@@ -1,16 +1,13 @@
 import 'dart:async';
 
-import 'package:banx/core/domain/entities/shipping_time_entity.dart';
 import 'package:banx/core/domain/entities/user_profile_entity.dart';
 import 'package:banx/core/domain/repository/card_repository.dart';
+import 'package:banx/feature/card_delivery_time/presentation/bloc/card_delivery_time_state.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 
 part 'card_delivery_time_event.dart';
-
-part 'card_delivery_time_state.dart';
 
 @injectable
 class CardDeliveryTimeBloc
@@ -19,7 +16,7 @@ class CardDeliveryTimeBloc
 
   CardDeliveryTimeBloc({
     required this.cardRepository,
-  }) : super(CardDeliveryTimeValidated()) {
+  }) : super(const CardDeliveryTimeState()) {
     on<CardDeliveryTimeSubmitted>(_onCardDeliveryTimeSubmitted);
   }
 
@@ -27,7 +24,7 @@ class CardDeliveryTimeBloc
     CardDeliveryTimeSubmitted event,
     Emitter<CardDeliveryTimeState> emit,
   ) async {
-    emit(CardDeliveryTimeInProgress());
+    emit(state.copyWith(status: CardDeliveryTimeStatus.loading));
     try {
       final response = await cardRepository.orders(
         addressId: event.addressId,
@@ -38,15 +35,27 @@ class CardDeliveryTimeBloc
           success: (entity) {
             if (entity is UserProfileEntity) {
               emit(
-                DeepLinkLanding(deeplink: entity.routingButtonEntity!.deeplink),
+                state.copyWith(
+                    status: CardDeliveryTimeStatus.deepLinkLanding,
+                    deeplink: entity.routingButtonEntity!.deeplink),
               );
             }
           },
-          partialSuccess: (message) => emit(CardDeliveryTimeFailure(message)),
-          networkError: (exception) =>
-              emit(CardDeliveryTimeFailure(exception.toString())));
+          partialSuccess: (message) => emit(
+                state.copyWith(
+                    status: CardDeliveryTimeStatus.failure,
+                    errorMessage: message),
+              ),
+          networkError: (exception) => emit(
+                state.copyWith(
+                    status: CardDeliveryTimeStatus.failure,
+                    errorMessage: exception.toString()),
+              ));
     } catch (e) {
-      emit(CardDeliveryTimeFailure(e.toString()));
+      emit(
+        state.copyWith(
+            status: CardDeliveryTimeStatus.failure, errorMessage: e.toString()),
+      );
     }
   }
 }
