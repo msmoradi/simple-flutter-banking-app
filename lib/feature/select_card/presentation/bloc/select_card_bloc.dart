@@ -31,7 +31,7 @@ class SelectCardBloc extends Bloc<SelectCardEvent, SelectCardState> {
       final response = await addressRepository.getAddress();
       response.when(
         success: (entity) {
-          if (entity.size == 0) {
+          if (entity.content.isEmpty) {
             emit(
               state.copyWith(
                 status: SelectCardStatus.checkPostalCode,
