@@ -1,11 +1,10 @@
 import 'package:banx/core/domain/repository/authentication_repository.dart';
+import 'package:banx/feature/phone/presentation/bloc/phone_state.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 
 part 'phone_event.dart';
-part 'phone_state.dart';
 
 @injectable
 class PhoneBloc extends Bloc<PhoneEvent, PhoneState> {
@@ -13,7 +12,7 @@ class PhoneBloc extends Bloc<PhoneEvent, PhoneState> {
 
   PhoneBloc({
     required this.authenticationRepository,
-  }) : super(PhoneValidated()) {
+  }) : super(const PhoneState()) {
     on<PhoneSubmitted>(_onPhoneSubmitted);
   }
 
@@ -21,32 +20,46 @@ class PhoneBloc extends Bloc<PhoneEvent, PhoneState> {
     PhoneSubmitted event,
     Emitter<PhoneState> emit,
   ) async {
-    emit(PhoneInProgress());
+    emit(state.copyWith(status: PhoneStatus.loading));
     try {
       final response = await authenticationRepository.sendOtp(
           phoneNumber: event.phoneNumber);
       response.when(
           success: (response) {
             if (response.needSignup) {
-              emit(
-                Identity(
-                    phoneNumber: event.phoneNumber,
-                    needReferralCode: response.needReferralCode!),
-              );
+              emit(state.copyWith(
+                status: PhoneStatus.identity,
+                needReferralCode: response.needReferralCode ?? false,
+              ));
             } else {
               emit(
-                VerifyOtpSuccess(
+                state.copyWith(
+                    status: PhoneStatus.verifyOtp,
                     phoneNumber: event.phoneNumber,
                     expiresIn: response.expiresIn!,
                     codeLength: response.codeLength!),
               );
             }
           },
-          partialSuccess: (message) => emit(PhoneFailure(message)),
-          networkError: (exception) =>
-              emit(PhoneFailure(exception.toString())));
+          partialSuccess: (message) => emit(
+                state.copyWith(
+                  status: PhoneStatus.failure,
+                  errorMessage: message,
+                ),
+              ),
+          networkError: (exception) => emit(
+                state.copyWith(
+                  status: PhoneStatus.failure,
+                  errorMessage: exception.toString(),
+                ),
+              ));
     } catch (e) {
-      emit(PhoneFailure(e.toString()));
+      emit(
+        state.copyWith(
+          status: PhoneStatus.failure,
+          errorMessage: e.toString(),
+        ),
+      );
     }
   }
 }

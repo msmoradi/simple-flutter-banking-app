@@ -1,53 +1,19 @@
-part of 'phone_bloc.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-@immutable
-abstract class PhoneState extends Equatable {
-  const PhoneState();
-}
+part 'phone_state.freezed.dart';
 
-class PhoneFailure extends PhoneState {
-  final String message;
+enum PhoneStatus { initial, failure, loading, verifyOtp, identity }
 
-  const PhoneFailure(this.message);
+@freezed
+class PhoneState with _$PhoneState {
+  const PhoneState._();
 
-  @override
-  List<Object?> get props => [];
-}
-
-class PhoneInProgress extends PhoneState {
-  @override
-  List<Object?> get props => [];
-}
-
-class VerifyOtpSuccess extends PhoneState {
-  final String phoneNumber;
-  final int expiresIn;
-  final int codeLength;
-
-  const VerifyOtpSuccess({
-    required this.phoneNumber,
-    required this.expiresIn,
-    required this.codeLength,
-  });
-
-  @override
-  List<Object?> get props => [phoneNumber, expiresIn, codeLength];
-}
-
-class Identity extends PhoneState {
-  final String phoneNumber;
-  final bool needReferralCode;
-
-  const Identity({
-    required this.phoneNumber,
-    required this.needReferralCode,
-  });
-
-  @override
-  List<Object?> get props => [phoneNumber, needReferralCode];
-}
-
-class PhoneValidated extends PhoneState {
-  @override
-  List<Object?> get props => [];
+  const factory PhoneState({
+    @Default(PhoneStatus.initial) PhoneStatus status,
+    @Default('') String errorMessage,
+    @Default('') String phoneNumber,
+    @Default(0) int expiresIn,
+    @Default(0) int codeLength,
+    @Default(false) bool needReferralCode,
+  }) = _PhoneState;
 }
