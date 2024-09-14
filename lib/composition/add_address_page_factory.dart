@@ -15,13 +15,13 @@ class AddAddressPageFactory {
     return AddAddressPage(
       address: extra.address,
       showMessage: showMessage,
-      addressSelected: (address) {
+      addressSelected: (address,cardShippingTimeSlots) {
         context.push(
           CardDeliveryTimePageFactory.path,
           extra: CardDeliveryTimeExtra(
             address: address,
             cardTypeId: extra.cardTypeId,
-            cardShippingTimeSlots: [],
+            cardShippingTimeSlots: cardShippingTimeSlots,
           ),
         );
       },

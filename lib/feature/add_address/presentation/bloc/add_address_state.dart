@@ -1,38 +1,17 @@
-part of 'add_address_bloc.dart';
+import 'package:banx/core/domain/entities/address_entity.dart';
+import 'package:banx/core/domain/entities/shipping_time_entity.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-@immutable
-abstract class AddAddressState extends Equatable {
-  const AddAddressState();
-}
+part 'add_address_state.freezed.dart';
 
-class AddAddressFailure extends AddAddressState {
-  final String message;
+enum AddAddressStatus { initial, failure, loading, addressSelected }
 
-  const AddAddressFailure(this.message);
-
-  @override
-  List<Object?> get props => [];
-}
-
-class AddAddressInProgress extends AddAddressState {
-  @override
-  List<Object?> get props => [];
-}
-
-class AddAddressValidated extends AddAddressState {
-  @override
-  List<Object?> get props => [];
-}
-
-class AddressSelected extends AddAddressState {
-  final AddressEntity address;
-  final List<ShippingTimeEntity> cardShippingTimeSlots;
-
-  const AddressSelected({
-    required this.address,
-    required this.cardShippingTimeSlots,
-  });
-
-  @override
-  List<Object?> get props => [];
+@freezed
+class AddAddressState with _$AddAddressState {
+  const factory AddAddressState({
+    @Default(AddAddressStatus.initial) AddAddressStatus status,
+    @Default('') String errorMessage,
+    @Default([]) List<ShippingTimeEntity> cardShippingTimeSlots,
+    AddressEntity? address,
+  }) = _AddAddressState;
 }
