@@ -44,10 +44,13 @@ abstract class RegisterModule {
 
   @lazySingleton
   FlutterSecureStorage flutterSecureStorage() => const FlutterSecureStorage(
-      iOptions: IOSOptions(accessibility: KeychainAccessibility.first_unlock),
-      aOptions: AndroidOptions(
-        encryptedSharedPreferences: true,
-      ));
+        iOptions: IOSOptions(
+            accountName: "Banx",
+            accessibility: KeychainAccessibility.first_unlock),
+        aOptions: AndroidOptions(
+          encryptedSharedPreferences: true,
+        ),
+      );
 
   @preResolve
   @lazySingleton
