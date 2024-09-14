@@ -29,6 +29,7 @@ class PhoneBloc extends Bloc<PhoneEvent, PhoneState> {
             if (response.needSignup) {
               emit(state.copyWith(
                 status: PhoneStatus.identity,
+                phoneNumber: event.phoneNumber,
                 needReferralCode: response.needReferralCode ?? false,
               ));
             } else {
