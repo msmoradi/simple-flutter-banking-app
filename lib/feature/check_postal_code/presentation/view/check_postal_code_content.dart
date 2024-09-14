@@ -3,6 +3,7 @@ import 'package:banx/core/designsystem/widgets/textfields/postal_code_text_field
 import 'package:banx/feature/check_postal_code/presentation/bloc/check_postal_code_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class CheckPostalCodeContent extends StatefulWidget {
   final bool showLoading;
@@ -64,7 +65,17 @@ class _CheckPostalCodeContentState extends State<CheckPostalCodeContent> {
                         .add(CheckPostalCodeSubmitted(_postalCode!));
                   }
                 },
-                icon: Icon(Icons.search_outlined),
+                iconAlignment: IconAlignment.start,
+                icon: SvgPicture.asset(
+                  'assets/icons/search.svg',
+                  colorFilter: ColorFilter.mode(
+                    Theme
+                        .of(context)
+                        .colorScheme
+                        .onPrimary,
+                    BlendMode.srcIn,
+                  ),
+                ),
                 label: 'بررسی کد پستی',
                 isLoading: widget.showLoading,
               ),

@@ -13,6 +13,7 @@ class KycStatusContent extends StatelessWidget {
   final bool showLoading;
   final String actionTitle;
   final String actionIcon;
+  final IconAlignment iconAlignment;
   final KYCStatusEntity? identity;
   final KYCStatusEntity? phoneNumber;
   final KYCStatusEntity? face;
@@ -24,6 +25,7 @@ class KycStatusContent extends StatelessWidget {
     required this.showMessage,
     required this.actionTitle,
     required this.actionIcon,
+    required this.iconAlignment,
     required this.showLoading,
     this.identity,
     this.phoneNumber,
@@ -133,6 +135,7 @@ class KycStatusContent extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(horizontal: 16.0),
                       child: PrimaryFillButton(
                         label: actionTitle,
+                        iconAlignment: iconAlignment,
                         icon: SvgPicture.asset(
                           "assets/icons/$actionIcon.svg",
                           colorFilter: ColorFilter.mode(

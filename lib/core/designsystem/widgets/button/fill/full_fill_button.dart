@@ -7,12 +7,14 @@ class PrimaryFillButton extends StatelessWidget {
   final Widget? icon;
   final bool isLoading;
   final bool fillWidth;
+  final IconAlignment iconAlignment;
 
   const PrimaryFillButton({
     super.key,
     this.onPressed,
     required this.label,
     this.icon,
+    this.iconAlignment = IconAlignment.end,
     this.isLoading = false,
     this.fillWidth = true,
   });
@@ -39,6 +41,7 @@ class PrimaryFillButton extends StatelessWidget {
       width: fillWidth ? Size.infinite.width : null,
       child: icon != null
           ? FilledButton.icon(
+              iconAlignment: iconAlignment,
               style: FilledButton.styleFrom(
                 backgroundColor: Theme.of(context)
                     .colorScheme

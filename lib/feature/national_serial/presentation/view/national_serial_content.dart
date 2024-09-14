@@ -3,6 +3,7 @@ import 'package:banx/core/designsystem/widgets/textfields/national_id_text_field
 import 'package:banx/feature/national_serial/presentation/bloc/national_serial_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class NationalSerialContent extends StatefulWidget {
   final bool showLoading;
@@ -48,9 +49,9 @@ class _NationalSerialContentState extends State<NationalSerialContent> {
                               .textTheme
                               .bodyMedium
                               ?.copyWith(
-                              color: Theme.of(context)
-                                  .colorScheme
-                                  .onSurfaceVariant),
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .onSurfaceVariant),
                           'سریال پشت کارت ملی خود را بدقت وارد کنید',
                         ),
                       ),
@@ -78,7 +79,14 @@ class _NationalSerialContentState extends State<NationalSerialContent> {
                         .add(CheckNationalSerialSubmitted(_nationalSerial!));
                   }
                 },
-                icon:Icon(Icons.search_outlined) ,
+                iconAlignment: IconAlignment.start,
+                icon: SvgPicture.asset(
+                  'assets/icons/search.svg',
+                  colorFilter: ColorFilter.mode(
+                    Theme.of(context).colorScheme.onPrimary,
+                    BlendMode.srcIn,
+                  ),
+                ),
                 label: 'بررسی کد پستی',
                 isLoading: widget.showLoading,
               ),

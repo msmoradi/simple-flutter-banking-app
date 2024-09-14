@@ -135,6 +135,7 @@ class _CardDeliveryTimeContentState extends State<CardDeliveryTimeContent> {
                     _selectedTime ?? widget.cardShippingTimeSlots.first.id,
                   );
                 },
+                iconAlignment: IconAlignment.start,
                 icon: SvgPicture.asset(
                   'assets/icons/thumb-up.svg',
                   colorFilter: ColorFilter.mode(

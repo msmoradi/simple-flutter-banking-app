@@ -37,6 +37,9 @@ class KycStatusPage extends StatelessWidget {
             showMessage: showMessage,
             actionTitle: state is KycStatusSuccess ? state.actionTitle : "",
             actionIcon: state is KycStatusSuccess ? state.actionIcon : "",
+            iconAlignment: state is KycStatusSuccess
+                ? state.iconAlignment
+                : IconAlignment.end,
             identity: state is KycStatusSuccess ? state.identity : null,
             phoneNumber: state is KycStatusSuccess ? state.phoneNumber : null,
             face: state is KycStatusSuccess ? state.face : null,

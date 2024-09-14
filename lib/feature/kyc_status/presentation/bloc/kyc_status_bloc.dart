@@ -52,18 +52,18 @@ class KycStatusBloc extends Bloc<KycStatusEvent, KycStatusState> {
             if (entity.routingButton != null) {
               emit(
                 kycStatusSuccess.copyWith(
-                  deeplink: entity.routingButton!.deeplink,
-                  actionTitle: entity.routingButton!.title!,
-                  actionIcon: "arrow-left",
-                ),
+                    deeplink: entity.routingButton!.deeplink,
+                    actionTitle: entity.routingButton!.title!,
+                    actionIcon: "arrow-left",
+                    iconAlignment: IconAlignment.end),
               );
             } else {
               emit(
                 kycStatusSuccess.copyWith(
-                  deeplink: null,
-                  actionTitle: "به‌روزرسانی وضعیت",
-                  actionIcon: "refresh-ccw",
-                ),
+                    deeplink: null,
+                    actionTitle: "به‌روزرسانی وضعیت",
+                    actionIcon: "refresh-ccw",
+                    iconAlignment: IconAlignment.start),
               );
             }
           },

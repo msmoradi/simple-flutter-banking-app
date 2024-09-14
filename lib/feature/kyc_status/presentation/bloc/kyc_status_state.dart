@@ -32,6 +32,7 @@ class KycStatusSuccess extends KycStatusState {
   final String? deeplink;
   final String actionTitle;
   final String actionIcon;
+  final IconAlignment iconAlignment;
 
   final KYCStatusEntity identity;
   final KYCStatusEntity phoneNumber;
@@ -42,6 +43,7 @@ class KycStatusSuccess extends KycStatusState {
     this.deeplink = null,
     this.actionTitle = "",
     this.actionIcon = "",
+    this.iconAlignment = IconAlignment.end,
     required this.identity,
     required this.phoneNumber,
     required this.face,
@@ -56,6 +58,7 @@ class KycStatusSuccess extends KycStatusState {
     String? deeplink,
     String? actionTitle,
     String? actionIcon,
+    IconAlignment? iconAlignment,
     KYCStatusEntity? identity,
     KYCStatusEntity? phoneNumber,
     KYCStatusEntity? face,
@@ -65,6 +68,7 @@ class KycStatusSuccess extends KycStatusState {
       deeplink: deeplink ?? this.deeplink,
       actionTitle: actionTitle ?? this.actionTitle,
       actionIcon: actionIcon ?? this.actionIcon,
+      iconAlignment: iconAlignment ?? this.iconAlignment,
       identity: identity ?? this.identity,
       phoneNumber: phoneNumber ?? this.phoneNumber,
       face: face ?? this.face,
