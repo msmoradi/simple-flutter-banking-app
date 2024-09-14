@@ -3,38 +3,27 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'select_card_state.freezed.dart';
 
-enum VerifyPasswordStatus {
+enum SelectCardStatus {
   initial,
   failure,
-  loading,
-  deepLinkLanding
+  pageLoading,
+  buttonLoading,
+  checkPostalCode,
+  selectAddress
 }
-
 
 @freezed
 class SelectCardState with _$SelectCardState {
-  const factory SelectCardState.selectCardFailure(String message) =
-      SelectCardFailure;
 
-  const factory SelectCardState.selectCardInProgress() = SelectCardInProgress;
+  const factory SelectCardState({
+    @Default(SelectCardStatus.pageLoading) SelectCardStatus status,
+    @Default('') String errorMessage,
+    @Default(0) int cardTypeId,
+    @Default([]) List<AddressEntity> addressList,
 
-  const factory SelectCardState.buttonInProgress() = ButtonInProgress;
-
-  const factory SelectCardState.checkPostalCode({
-    required int cardTypeId,
-  }) = CheckPostalCode;
-
-  const factory SelectCardState.selectAddress({
-    required List<AddressEntity> addressList,
-    required int cardTypeId,
-  }) = SelectAddress;
-
-  const factory SelectCardState.selectCardSuccess({
-    required int id,
-    required String title,
-    required String description,
-    required String priceLabel,
-  }) = SelectCardSuccess;
-
-  const factory SelectCardState.selectCardValidated() = SelectCardValidated;
+    @Default(0) int id,
+    @Default('') String title,
+    @Default('') String description,
+    @Default('') String priceLabel,
+  }) = _SelectCardState;
 }

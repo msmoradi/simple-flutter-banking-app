@@ -16,82 +16,19 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$SelectCardState {
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(String message) selectCardFailure,
-    required TResult Function() selectCardInProgress,
-    required TResult Function() buttonInProgress,
-    required TResult Function(int cardTypeId) checkPostalCode,
-    required TResult Function(List<AddressEntity> addressList, int cardTypeId)
-        selectAddress,
-    required TResult Function(
-            int id, String title, String description, String priceLabel)
-        selectCardSuccess,
-    required TResult Function() selectCardValidated,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String message)? selectCardFailure,
-    TResult? Function()? selectCardInProgress,
-    TResult? Function()? buttonInProgress,
-    TResult? Function(int cardTypeId)? checkPostalCode,
-    TResult? Function(List<AddressEntity> addressList, int cardTypeId)?
-        selectAddress,
-    TResult? Function(
-            int id, String title, String description, String priceLabel)?
-        selectCardSuccess,
-    TResult? Function()? selectCardValidated,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String message)? selectCardFailure,
-    TResult Function()? selectCardInProgress,
-    TResult Function()? buttonInProgress,
-    TResult Function(int cardTypeId)? checkPostalCode,
-    TResult Function(List<AddressEntity> addressList, int cardTypeId)?
-        selectAddress,
-    TResult Function(
-            int id, String title, String description, String priceLabel)?
-        selectCardSuccess,
-    TResult Function()? selectCardValidated,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(SelectCardFailure value) selectCardFailure,
-    required TResult Function(SelectCardInProgress value) selectCardInProgress,
-    required TResult Function(ButtonInProgress value) buttonInProgress,
-    required TResult Function(CheckPostalCode value) checkPostalCode,
-    required TResult Function(SelectAddress value) selectAddress,
-    required TResult Function(SelectCardSuccess value) selectCardSuccess,
-    required TResult Function(SelectCardValidated value) selectCardValidated,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(SelectCardFailure value)? selectCardFailure,
-    TResult? Function(SelectCardInProgress value)? selectCardInProgress,
-    TResult? Function(ButtonInProgress value)? buttonInProgress,
-    TResult? Function(CheckPostalCode value)? checkPostalCode,
-    TResult? Function(SelectAddress value)? selectAddress,
-    TResult? Function(SelectCardSuccess value)? selectCardSuccess,
-    TResult? Function(SelectCardValidated value)? selectCardValidated,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(SelectCardFailure value)? selectCardFailure,
-    TResult Function(SelectCardInProgress value)? selectCardInProgress,
-    TResult Function(ButtonInProgress value)? buttonInProgress,
-    TResult Function(CheckPostalCode value)? checkPostalCode,
-    TResult Function(SelectAddress value)? selectAddress,
-    TResult Function(SelectCardSuccess value)? selectCardSuccess,
-    TResult Function(SelectCardValidated value)? selectCardValidated,
-    required TResult orElse(),
-  }) =>
+  SelectCardStatus get status => throw _privateConstructorUsedError;
+  String get errorMessage => throw _privateConstructorUsedError;
+  int get cardTypeId => throw _privateConstructorUsedError;
+  List<AddressEntity> get addressList => throw _privateConstructorUsedError;
+  int get id => throw _privateConstructorUsedError;
+  String get title => throw _privateConstructorUsedError;
+  String get description => throw _privateConstructorUsedError;
+  String get priceLabel => throw _privateConstructorUsedError;
+
+  /// Create a copy of SelectCardState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $SelectCardStateCopyWith<SelectCardState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -100,6 +37,16 @@ abstract class $SelectCardStateCopyWith<$Res> {
   factory $SelectCardStateCopyWith(
           SelectCardState value, $Res Function(SelectCardState) then) =
       _$SelectCardStateCopyWithImpl<$Res, SelectCardState>;
+  @useResult
+  $Res call(
+      {SelectCardStatus status,
+      String errorMessage,
+      int cardTypeId,
+      List<AddressEntity> addressList,
+      int id,
+      String title,
+      String description,
+      String priceLabel});
 }
 
 /// @nodoc
@@ -114,890 +61,113 @@ class _$SelectCardStateCopyWithImpl<$Res, $Val extends SelectCardState>
 
   /// Create a copy of SelectCardState
   /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-abstract class _$$SelectCardFailureImplCopyWith<$Res> {
-  factory _$$SelectCardFailureImplCopyWith(_$SelectCardFailureImpl value,
-          $Res Function(_$SelectCardFailureImpl) then) =
-      __$$SelectCardFailureImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({String message});
-}
-
-/// @nodoc
-class __$$SelectCardFailureImplCopyWithImpl<$Res>
-    extends _$SelectCardStateCopyWithImpl<$Res, _$SelectCardFailureImpl>
-    implements _$$SelectCardFailureImplCopyWith<$Res> {
-  __$$SelectCardFailureImplCopyWithImpl(_$SelectCardFailureImpl _value,
-      $Res Function(_$SelectCardFailureImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of SelectCardState
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? message = null,
-  }) {
-    return _then(_$SelectCardFailureImpl(
-      null == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$SelectCardFailureImpl implements SelectCardFailure {
-  const _$SelectCardFailureImpl(this.message);
-
-  @override
-  final String message;
-
-  @override
-  String toString() {
-    return 'SelectCardState.selectCardFailure(message: $message)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$SelectCardFailureImpl &&
-            (identical(other.message, message) || other.message == message));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, message);
-
-  /// Create a copy of SelectCardState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$SelectCardFailureImplCopyWith<_$SelectCardFailureImpl> get copyWith =>
-      __$$SelectCardFailureImplCopyWithImpl<_$SelectCardFailureImpl>(
-          this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(String message) selectCardFailure,
-    required TResult Function() selectCardInProgress,
-    required TResult Function() buttonInProgress,
-    required TResult Function(int cardTypeId) checkPostalCode,
-    required TResult Function(List<AddressEntity> addressList, int cardTypeId)
-        selectAddress,
-    required TResult Function(
-            int id, String title, String description, String priceLabel)
-        selectCardSuccess,
-    required TResult Function() selectCardValidated,
-  }) {
-    return selectCardFailure(message);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String message)? selectCardFailure,
-    TResult? Function()? selectCardInProgress,
-    TResult? Function()? buttonInProgress,
-    TResult? Function(int cardTypeId)? checkPostalCode,
-    TResult? Function(List<AddressEntity> addressList, int cardTypeId)?
-        selectAddress,
-    TResult? Function(
-            int id, String title, String description, String priceLabel)?
-        selectCardSuccess,
-    TResult? Function()? selectCardValidated,
-  }) {
-    return selectCardFailure?.call(message);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String message)? selectCardFailure,
-    TResult Function()? selectCardInProgress,
-    TResult Function()? buttonInProgress,
-    TResult Function(int cardTypeId)? checkPostalCode,
-    TResult Function(List<AddressEntity> addressList, int cardTypeId)?
-        selectAddress,
-    TResult Function(
-            int id, String title, String description, String priceLabel)?
-        selectCardSuccess,
-    TResult Function()? selectCardValidated,
-    required TResult orElse(),
-  }) {
-    if (selectCardFailure != null) {
-      return selectCardFailure(message);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(SelectCardFailure value) selectCardFailure,
-    required TResult Function(SelectCardInProgress value) selectCardInProgress,
-    required TResult Function(ButtonInProgress value) buttonInProgress,
-    required TResult Function(CheckPostalCode value) checkPostalCode,
-    required TResult Function(SelectAddress value) selectAddress,
-    required TResult Function(SelectCardSuccess value) selectCardSuccess,
-    required TResult Function(SelectCardValidated value) selectCardValidated,
-  }) {
-    return selectCardFailure(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(SelectCardFailure value)? selectCardFailure,
-    TResult? Function(SelectCardInProgress value)? selectCardInProgress,
-    TResult? Function(ButtonInProgress value)? buttonInProgress,
-    TResult? Function(CheckPostalCode value)? checkPostalCode,
-    TResult? Function(SelectAddress value)? selectAddress,
-    TResult? Function(SelectCardSuccess value)? selectCardSuccess,
-    TResult? Function(SelectCardValidated value)? selectCardValidated,
-  }) {
-    return selectCardFailure?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(SelectCardFailure value)? selectCardFailure,
-    TResult Function(SelectCardInProgress value)? selectCardInProgress,
-    TResult Function(ButtonInProgress value)? buttonInProgress,
-    TResult Function(CheckPostalCode value)? checkPostalCode,
-    TResult Function(SelectAddress value)? selectAddress,
-    TResult Function(SelectCardSuccess value)? selectCardSuccess,
-    TResult Function(SelectCardValidated value)? selectCardValidated,
-    required TResult orElse(),
-  }) {
-    if (selectCardFailure != null) {
-      return selectCardFailure(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class SelectCardFailure implements SelectCardState {
-  const factory SelectCardFailure(final String message) =
-      _$SelectCardFailureImpl;
-
-  String get message;
-
-  /// Create a copy of SelectCardState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$SelectCardFailureImplCopyWith<_$SelectCardFailureImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$SelectCardInProgressImplCopyWith<$Res> {
-  factory _$$SelectCardInProgressImplCopyWith(_$SelectCardInProgressImpl value,
-          $Res Function(_$SelectCardInProgressImpl) then) =
-      __$$SelectCardInProgressImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$SelectCardInProgressImplCopyWithImpl<$Res>
-    extends _$SelectCardStateCopyWithImpl<$Res, _$SelectCardInProgressImpl>
-    implements _$$SelectCardInProgressImplCopyWith<$Res> {
-  __$$SelectCardInProgressImplCopyWithImpl(_$SelectCardInProgressImpl _value,
-      $Res Function(_$SelectCardInProgressImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of SelectCardState
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-
-class _$SelectCardInProgressImpl implements SelectCardInProgress {
-  const _$SelectCardInProgressImpl();
-
-  @override
-  String toString() {
-    return 'SelectCardState.selectCardInProgress()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$SelectCardInProgressImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(String message) selectCardFailure,
-    required TResult Function() selectCardInProgress,
-    required TResult Function() buttonInProgress,
-    required TResult Function(int cardTypeId) checkPostalCode,
-    required TResult Function(List<AddressEntity> addressList, int cardTypeId)
-        selectAddress,
-    required TResult Function(
-            int id, String title, String description, String priceLabel)
-        selectCardSuccess,
-    required TResult Function() selectCardValidated,
-  }) {
-    return selectCardInProgress();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String message)? selectCardFailure,
-    TResult? Function()? selectCardInProgress,
-    TResult? Function()? buttonInProgress,
-    TResult? Function(int cardTypeId)? checkPostalCode,
-    TResult? Function(List<AddressEntity> addressList, int cardTypeId)?
-        selectAddress,
-    TResult? Function(
-            int id, String title, String description, String priceLabel)?
-        selectCardSuccess,
-    TResult? Function()? selectCardValidated,
-  }) {
-    return selectCardInProgress?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String message)? selectCardFailure,
-    TResult Function()? selectCardInProgress,
-    TResult Function()? buttonInProgress,
-    TResult Function(int cardTypeId)? checkPostalCode,
-    TResult Function(List<AddressEntity> addressList, int cardTypeId)?
-        selectAddress,
-    TResult Function(
-            int id, String title, String description, String priceLabel)?
-        selectCardSuccess,
-    TResult Function()? selectCardValidated,
-    required TResult orElse(),
-  }) {
-    if (selectCardInProgress != null) {
-      return selectCardInProgress();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(SelectCardFailure value) selectCardFailure,
-    required TResult Function(SelectCardInProgress value) selectCardInProgress,
-    required TResult Function(ButtonInProgress value) buttonInProgress,
-    required TResult Function(CheckPostalCode value) checkPostalCode,
-    required TResult Function(SelectAddress value) selectAddress,
-    required TResult Function(SelectCardSuccess value) selectCardSuccess,
-    required TResult Function(SelectCardValidated value) selectCardValidated,
-  }) {
-    return selectCardInProgress(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(SelectCardFailure value)? selectCardFailure,
-    TResult? Function(SelectCardInProgress value)? selectCardInProgress,
-    TResult? Function(ButtonInProgress value)? buttonInProgress,
-    TResult? Function(CheckPostalCode value)? checkPostalCode,
-    TResult? Function(SelectAddress value)? selectAddress,
-    TResult? Function(SelectCardSuccess value)? selectCardSuccess,
-    TResult? Function(SelectCardValidated value)? selectCardValidated,
-  }) {
-    return selectCardInProgress?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(SelectCardFailure value)? selectCardFailure,
-    TResult Function(SelectCardInProgress value)? selectCardInProgress,
-    TResult Function(ButtonInProgress value)? buttonInProgress,
-    TResult Function(CheckPostalCode value)? checkPostalCode,
-    TResult Function(SelectAddress value)? selectAddress,
-    TResult Function(SelectCardSuccess value)? selectCardSuccess,
-    TResult Function(SelectCardValidated value)? selectCardValidated,
-    required TResult orElse(),
-  }) {
-    if (selectCardInProgress != null) {
-      return selectCardInProgress(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class SelectCardInProgress implements SelectCardState {
-  const factory SelectCardInProgress() = _$SelectCardInProgressImpl;
-}
-
-/// @nodoc
-abstract class _$$ButtonInProgressImplCopyWith<$Res> {
-  factory _$$ButtonInProgressImplCopyWith(_$ButtonInProgressImpl value,
-          $Res Function(_$ButtonInProgressImpl) then) =
-      __$$ButtonInProgressImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$ButtonInProgressImplCopyWithImpl<$Res>
-    extends _$SelectCardStateCopyWithImpl<$Res, _$ButtonInProgressImpl>
-    implements _$$ButtonInProgressImplCopyWith<$Res> {
-  __$$ButtonInProgressImplCopyWithImpl(_$ButtonInProgressImpl _value,
-      $Res Function(_$ButtonInProgressImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of SelectCardState
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-
-class _$ButtonInProgressImpl implements ButtonInProgress {
-  const _$ButtonInProgressImpl();
-
-  @override
-  String toString() {
-    return 'SelectCardState.buttonInProgress()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$ButtonInProgressImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(String message) selectCardFailure,
-    required TResult Function() selectCardInProgress,
-    required TResult Function() buttonInProgress,
-    required TResult Function(int cardTypeId) checkPostalCode,
-    required TResult Function(List<AddressEntity> addressList, int cardTypeId)
-        selectAddress,
-    required TResult Function(
-            int id, String title, String description, String priceLabel)
-        selectCardSuccess,
-    required TResult Function() selectCardValidated,
-  }) {
-    return buttonInProgress();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String message)? selectCardFailure,
-    TResult? Function()? selectCardInProgress,
-    TResult? Function()? buttonInProgress,
-    TResult? Function(int cardTypeId)? checkPostalCode,
-    TResult? Function(List<AddressEntity> addressList, int cardTypeId)?
-        selectAddress,
-    TResult? Function(
-            int id, String title, String description, String priceLabel)?
-        selectCardSuccess,
-    TResult? Function()? selectCardValidated,
-  }) {
-    return buttonInProgress?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String message)? selectCardFailure,
-    TResult Function()? selectCardInProgress,
-    TResult Function()? buttonInProgress,
-    TResult Function(int cardTypeId)? checkPostalCode,
-    TResult Function(List<AddressEntity> addressList, int cardTypeId)?
-        selectAddress,
-    TResult Function(
-            int id, String title, String description, String priceLabel)?
-        selectCardSuccess,
-    TResult Function()? selectCardValidated,
-    required TResult orElse(),
-  }) {
-    if (buttonInProgress != null) {
-      return buttonInProgress();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(SelectCardFailure value) selectCardFailure,
-    required TResult Function(SelectCardInProgress value) selectCardInProgress,
-    required TResult Function(ButtonInProgress value) buttonInProgress,
-    required TResult Function(CheckPostalCode value) checkPostalCode,
-    required TResult Function(SelectAddress value) selectAddress,
-    required TResult Function(SelectCardSuccess value) selectCardSuccess,
-    required TResult Function(SelectCardValidated value) selectCardValidated,
-  }) {
-    return buttonInProgress(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(SelectCardFailure value)? selectCardFailure,
-    TResult? Function(SelectCardInProgress value)? selectCardInProgress,
-    TResult? Function(ButtonInProgress value)? buttonInProgress,
-    TResult? Function(CheckPostalCode value)? checkPostalCode,
-    TResult? Function(SelectAddress value)? selectAddress,
-    TResult? Function(SelectCardSuccess value)? selectCardSuccess,
-    TResult? Function(SelectCardValidated value)? selectCardValidated,
-  }) {
-    return buttonInProgress?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(SelectCardFailure value)? selectCardFailure,
-    TResult Function(SelectCardInProgress value)? selectCardInProgress,
-    TResult Function(ButtonInProgress value)? buttonInProgress,
-    TResult Function(CheckPostalCode value)? checkPostalCode,
-    TResult Function(SelectAddress value)? selectAddress,
-    TResult Function(SelectCardSuccess value)? selectCardSuccess,
-    TResult Function(SelectCardValidated value)? selectCardValidated,
-    required TResult orElse(),
-  }) {
-    if (buttonInProgress != null) {
-      return buttonInProgress(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class ButtonInProgress implements SelectCardState {
-  const factory ButtonInProgress() = _$ButtonInProgressImpl;
-}
-
-/// @nodoc
-abstract class _$$CheckPostalCodeImplCopyWith<$Res> {
-  factory _$$CheckPostalCodeImplCopyWith(_$CheckPostalCodeImpl value,
-          $Res Function(_$CheckPostalCodeImpl) then) =
-      __$$CheckPostalCodeImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({int cardTypeId});
-}
-
-/// @nodoc
-class __$$CheckPostalCodeImplCopyWithImpl<$Res>
-    extends _$SelectCardStateCopyWithImpl<$Res, _$CheckPostalCodeImpl>
-    implements _$$CheckPostalCodeImplCopyWith<$Res> {
-  __$$CheckPostalCodeImplCopyWithImpl(
-      _$CheckPostalCodeImpl _value, $Res Function(_$CheckPostalCodeImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of SelectCardState
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
+    Object? status = null,
+    Object? errorMessage = null,
     Object? cardTypeId = null,
-  }) {
-    return _then(_$CheckPostalCodeImpl(
-      cardTypeId: null == cardTypeId
-          ? _value.cardTypeId
-          : cardTypeId // ignore: cast_nullable_to_non_nullable
-              as int,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$CheckPostalCodeImpl implements CheckPostalCode {
-  const _$CheckPostalCodeImpl({required this.cardTypeId});
-
-  @override
-  final int cardTypeId;
-
-  @override
-  String toString() {
-    return 'SelectCardState.checkPostalCode(cardTypeId: $cardTypeId)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$CheckPostalCodeImpl &&
-            (identical(other.cardTypeId, cardTypeId) ||
-                other.cardTypeId == cardTypeId));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, cardTypeId);
-
-  /// Create a copy of SelectCardState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$CheckPostalCodeImplCopyWith<_$CheckPostalCodeImpl> get copyWith =>
-      __$$CheckPostalCodeImplCopyWithImpl<_$CheckPostalCodeImpl>(
-          this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(String message) selectCardFailure,
-    required TResult Function() selectCardInProgress,
-    required TResult Function() buttonInProgress,
-    required TResult Function(int cardTypeId) checkPostalCode,
-    required TResult Function(List<AddressEntity> addressList, int cardTypeId)
-        selectAddress,
-    required TResult Function(
-            int id, String title, String description, String priceLabel)
-        selectCardSuccess,
-    required TResult Function() selectCardValidated,
-  }) {
-    return checkPostalCode(cardTypeId);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String message)? selectCardFailure,
-    TResult? Function()? selectCardInProgress,
-    TResult? Function()? buttonInProgress,
-    TResult? Function(int cardTypeId)? checkPostalCode,
-    TResult? Function(List<AddressEntity> addressList, int cardTypeId)?
-        selectAddress,
-    TResult? Function(
-            int id, String title, String description, String priceLabel)?
-        selectCardSuccess,
-    TResult? Function()? selectCardValidated,
-  }) {
-    return checkPostalCode?.call(cardTypeId);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String message)? selectCardFailure,
-    TResult Function()? selectCardInProgress,
-    TResult Function()? buttonInProgress,
-    TResult Function(int cardTypeId)? checkPostalCode,
-    TResult Function(List<AddressEntity> addressList, int cardTypeId)?
-        selectAddress,
-    TResult Function(
-            int id, String title, String description, String priceLabel)?
-        selectCardSuccess,
-    TResult Function()? selectCardValidated,
-    required TResult orElse(),
-  }) {
-    if (checkPostalCode != null) {
-      return checkPostalCode(cardTypeId);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(SelectCardFailure value) selectCardFailure,
-    required TResult Function(SelectCardInProgress value) selectCardInProgress,
-    required TResult Function(ButtonInProgress value) buttonInProgress,
-    required TResult Function(CheckPostalCode value) checkPostalCode,
-    required TResult Function(SelectAddress value) selectAddress,
-    required TResult Function(SelectCardSuccess value) selectCardSuccess,
-    required TResult Function(SelectCardValidated value) selectCardValidated,
-  }) {
-    return checkPostalCode(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(SelectCardFailure value)? selectCardFailure,
-    TResult? Function(SelectCardInProgress value)? selectCardInProgress,
-    TResult? Function(ButtonInProgress value)? buttonInProgress,
-    TResult? Function(CheckPostalCode value)? checkPostalCode,
-    TResult? Function(SelectAddress value)? selectAddress,
-    TResult? Function(SelectCardSuccess value)? selectCardSuccess,
-    TResult? Function(SelectCardValidated value)? selectCardValidated,
-  }) {
-    return checkPostalCode?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(SelectCardFailure value)? selectCardFailure,
-    TResult Function(SelectCardInProgress value)? selectCardInProgress,
-    TResult Function(ButtonInProgress value)? buttonInProgress,
-    TResult Function(CheckPostalCode value)? checkPostalCode,
-    TResult Function(SelectAddress value)? selectAddress,
-    TResult Function(SelectCardSuccess value)? selectCardSuccess,
-    TResult Function(SelectCardValidated value)? selectCardValidated,
-    required TResult orElse(),
-  }) {
-    if (checkPostalCode != null) {
-      return checkPostalCode(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class CheckPostalCode implements SelectCardState {
-  const factory CheckPostalCode({required final int cardTypeId}) =
-      _$CheckPostalCodeImpl;
-
-  int get cardTypeId;
-
-  /// Create a copy of SelectCardState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$CheckPostalCodeImplCopyWith<_$CheckPostalCodeImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$SelectAddressImplCopyWith<$Res> {
-  factory _$$SelectAddressImplCopyWith(
-          _$SelectAddressImpl value, $Res Function(_$SelectAddressImpl) then) =
-      __$$SelectAddressImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({List<AddressEntity> addressList, int cardTypeId});
-}
-
-/// @nodoc
-class __$$SelectAddressImplCopyWithImpl<$Res>
-    extends _$SelectCardStateCopyWithImpl<$Res, _$SelectAddressImpl>
-    implements _$$SelectAddressImplCopyWith<$Res> {
-  __$$SelectAddressImplCopyWithImpl(
-      _$SelectAddressImpl _value, $Res Function(_$SelectAddressImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of SelectCardState
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
     Object? addressList = null,
-    Object? cardTypeId = null,
-  }) {
-    return _then(_$SelectAddressImpl(
-      addressList: null == addressList
-          ? _value._addressList
-          : addressList // ignore: cast_nullable_to_non_nullable
-              as List<AddressEntity>,
-      cardTypeId: null == cardTypeId
-          ? _value.cardTypeId
-          : cardTypeId // ignore: cast_nullable_to_non_nullable
-              as int,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$SelectAddressImpl implements SelectAddress {
-  const _$SelectAddressImpl(
-      {required final List<AddressEntity> addressList,
-      required this.cardTypeId})
-      : _addressList = addressList;
-
-  final List<AddressEntity> _addressList;
-  @override
-  List<AddressEntity> get addressList {
-    if (_addressList is EqualUnmodifiableListView) return _addressList;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_addressList);
-  }
-
-  @override
-  final int cardTypeId;
-
-  @override
-  String toString() {
-    return 'SelectCardState.selectAddress(addressList: $addressList, cardTypeId: $cardTypeId)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$SelectAddressImpl &&
-            const DeepCollectionEquality()
-                .equals(other._addressList, _addressList) &&
-            (identical(other.cardTypeId, cardTypeId) ||
-                other.cardTypeId == cardTypeId));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType,
-      const DeepCollectionEquality().hash(_addressList), cardTypeId);
-
-  /// Create a copy of SelectCardState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$SelectAddressImplCopyWith<_$SelectAddressImpl> get copyWith =>
-      __$$SelectAddressImplCopyWithImpl<_$SelectAddressImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(String message) selectCardFailure,
-    required TResult Function() selectCardInProgress,
-    required TResult Function() buttonInProgress,
-    required TResult Function(int cardTypeId) checkPostalCode,
-    required TResult Function(List<AddressEntity> addressList, int cardTypeId)
-        selectAddress,
-    required TResult Function(
-            int id, String title, String description, String priceLabel)
-        selectCardSuccess,
-    required TResult Function() selectCardValidated,
-  }) {
-    return selectAddress(addressList, cardTypeId);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String message)? selectCardFailure,
-    TResult? Function()? selectCardInProgress,
-    TResult? Function()? buttonInProgress,
-    TResult? Function(int cardTypeId)? checkPostalCode,
-    TResult? Function(List<AddressEntity> addressList, int cardTypeId)?
-        selectAddress,
-    TResult? Function(
-            int id, String title, String description, String priceLabel)?
-        selectCardSuccess,
-    TResult? Function()? selectCardValidated,
-  }) {
-    return selectAddress?.call(addressList, cardTypeId);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String message)? selectCardFailure,
-    TResult Function()? selectCardInProgress,
-    TResult Function()? buttonInProgress,
-    TResult Function(int cardTypeId)? checkPostalCode,
-    TResult Function(List<AddressEntity> addressList, int cardTypeId)?
-        selectAddress,
-    TResult Function(
-            int id, String title, String description, String priceLabel)?
-        selectCardSuccess,
-    TResult Function()? selectCardValidated,
-    required TResult orElse(),
-  }) {
-    if (selectAddress != null) {
-      return selectAddress(addressList, cardTypeId);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(SelectCardFailure value) selectCardFailure,
-    required TResult Function(SelectCardInProgress value) selectCardInProgress,
-    required TResult Function(ButtonInProgress value) buttonInProgress,
-    required TResult Function(CheckPostalCode value) checkPostalCode,
-    required TResult Function(SelectAddress value) selectAddress,
-    required TResult Function(SelectCardSuccess value) selectCardSuccess,
-    required TResult Function(SelectCardValidated value) selectCardValidated,
-  }) {
-    return selectAddress(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(SelectCardFailure value)? selectCardFailure,
-    TResult? Function(SelectCardInProgress value)? selectCardInProgress,
-    TResult? Function(ButtonInProgress value)? buttonInProgress,
-    TResult? Function(CheckPostalCode value)? checkPostalCode,
-    TResult? Function(SelectAddress value)? selectAddress,
-    TResult? Function(SelectCardSuccess value)? selectCardSuccess,
-    TResult? Function(SelectCardValidated value)? selectCardValidated,
-  }) {
-    return selectAddress?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(SelectCardFailure value)? selectCardFailure,
-    TResult Function(SelectCardInProgress value)? selectCardInProgress,
-    TResult Function(ButtonInProgress value)? buttonInProgress,
-    TResult Function(CheckPostalCode value)? checkPostalCode,
-    TResult Function(SelectAddress value)? selectAddress,
-    TResult Function(SelectCardSuccess value)? selectCardSuccess,
-    TResult Function(SelectCardValidated value)? selectCardValidated,
-    required TResult orElse(),
-  }) {
-    if (selectAddress != null) {
-      return selectAddress(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class SelectAddress implements SelectCardState {
-  const factory SelectAddress(
-      {required final List<AddressEntity> addressList,
-      required final int cardTypeId}) = _$SelectAddressImpl;
-
-  List<AddressEntity> get addressList;
-  int get cardTypeId;
-
-  /// Create a copy of SelectCardState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$SelectAddressImplCopyWith<_$SelectAddressImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$SelectCardSuccessImplCopyWith<$Res> {
-  factory _$$SelectCardSuccessImplCopyWith(_$SelectCardSuccessImpl value,
-          $Res Function(_$SelectCardSuccessImpl) then) =
-      __$$SelectCardSuccessImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({int id, String title, String description, String priceLabel});
-}
-
-/// @nodoc
-class __$$SelectCardSuccessImplCopyWithImpl<$Res>
-    extends _$SelectCardStateCopyWithImpl<$Res, _$SelectCardSuccessImpl>
-    implements _$$SelectCardSuccessImplCopyWith<$Res> {
-  __$$SelectCardSuccessImplCopyWithImpl(_$SelectCardSuccessImpl _value,
-      $Res Function(_$SelectCardSuccessImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of SelectCardState
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
     Object? id = null,
     Object? title = null,
     Object? description = null,
     Object? priceLabel = null,
   }) {
-    return _then(_$SelectCardSuccessImpl(
+    return _then(_value.copyWith(
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as SelectCardStatus,
+      errorMessage: null == errorMessage
+          ? _value.errorMessage
+          : errorMessage // ignore: cast_nullable_to_non_nullable
+              as String,
+      cardTypeId: null == cardTypeId
+          ? _value.cardTypeId
+          : cardTypeId // ignore: cast_nullable_to_non_nullable
+              as int,
+      addressList: null == addressList
+          ? _value.addressList
+          : addressList // ignore: cast_nullable_to_non_nullable
+              as List<AddressEntity>,
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
+      description: null == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String,
+      priceLabel: null == priceLabel
+          ? _value.priceLabel
+          : priceLabel // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$SelectCardStateImplCopyWith<$Res>
+    implements $SelectCardStateCopyWith<$Res> {
+  factory _$$SelectCardStateImplCopyWith(_$SelectCardStateImpl value,
+          $Res Function(_$SelectCardStateImpl) then) =
+      __$$SelectCardStateImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {SelectCardStatus status,
+      String errorMessage,
+      int cardTypeId,
+      List<AddressEntity> addressList,
+      int id,
+      String title,
+      String description,
+      String priceLabel});
+}
+
+/// @nodoc
+class __$$SelectCardStateImplCopyWithImpl<$Res>
+    extends _$SelectCardStateCopyWithImpl<$Res, _$SelectCardStateImpl>
+    implements _$$SelectCardStateImplCopyWith<$Res> {
+  __$$SelectCardStateImplCopyWithImpl(
+      _$SelectCardStateImpl _value, $Res Function(_$SelectCardStateImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of SelectCardState
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? status = null,
+    Object? errorMessage = null,
+    Object? cardTypeId = null,
+    Object? addressList = null,
+    Object? id = null,
+    Object? title = null,
+    Object? description = null,
+    Object? priceLabel = null,
+  }) {
+    return _then(_$SelectCardStateImpl(
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as SelectCardStatus,
+      errorMessage: null == errorMessage
+          ? _value.errorMessage
+          : errorMessage // ignore: cast_nullable_to_non_nullable
+              as String,
+      cardTypeId: null == cardTypeId
+          ? _value.cardTypeId
+          : cardTypeId // ignore: cast_nullable_to_non_nullable
+              as int,
+      addressList: null == addressList
+          ? _value._addressList
+          : addressList // ignore: cast_nullable_to_non_nullable
+              as List<AddressEntity>,
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -1020,32 +190,66 @@ class __$$SelectCardSuccessImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$SelectCardSuccessImpl implements SelectCardSuccess {
-  const _$SelectCardSuccessImpl(
-      {required this.id,
-      required this.title,
-      required this.description,
-      required this.priceLabel});
+class _$SelectCardStateImpl implements _SelectCardState {
+  const _$SelectCardStateImpl(
+      {this.status = SelectCardStatus.pageLoading,
+      this.errorMessage = '',
+      this.cardTypeId = 0,
+      final List<AddressEntity> addressList = const [],
+      this.id = 0,
+      this.title = '',
+      this.description = '',
+      this.priceLabel = ''})
+      : _addressList = addressList;
 
   @override
+  @JsonKey()
+  final SelectCardStatus status;
+  @override
+  @JsonKey()
+  final String errorMessage;
+  @override
+  @JsonKey()
+  final int cardTypeId;
+  final List<AddressEntity> _addressList;
+  @override
+  @JsonKey()
+  List<AddressEntity> get addressList {
+    if (_addressList is EqualUnmodifiableListView) return _addressList;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_addressList);
+  }
+
+  @override
+  @JsonKey()
   final int id;
   @override
+  @JsonKey()
   final String title;
   @override
+  @JsonKey()
   final String description;
   @override
+  @JsonKey()
   final String priceLabel;
 
   @override
   String toString() {
-    return 'SelectCardState.selectCardSuccess(id: $id, title: $title, description: $description, priceLabel: $priceLabel)';
+    return 'SelectCardState(status: $status, errorMessage: $errorMessage, cardTypeId: $cardTypeId, addressList: $addressList, id: $id, title: $title, description: $description, priceLabel: $priceLabel)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$SelectCardSuccessImpl &&
+            other is _$SelectCardStateImpl &&
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.errorMessage, errorMessage) ||
+                other.errorMessage == errorMessage) &&
+            (identical(other.cardTypeId, cardTypeId) ||
+                other.cardTypeId == cardTypeId) &&
+            const DeepCollectionEquality()
+                .equals(other._addressList, _addressList) &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.description, description) ||
@@ -1055,280 +259,59 @@ class _$SelectCardSuccessImpl implements SelectCardSuccess {
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, id, title, description, priceLabel);
+  int get hashCode => Object.hash(
+      runtimeType,
+      status,
+      errorMessage,
+      cardTypeId,
+      const DeepCollectionEquality().hash(_addressList),
+      id,
+      title,
+      description,
+      priceLabel);
 
   /// Create a copy of SelectCardState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$SelectCardSuccessImplCopyWith<_$SelectCardSuccessImpl> get copyWith =>
-      __$$SelectCardSuccessImplCopyWithImpl<_$SelectCardSuccessImpl>(
+  _$$SelectCardStateImplCopyWith<_$SelectCardStateImpl> get copyWith =>
+      __$$SelectCardStateImplCopyWithImpl<_$SelectCardStateImpl>(
           this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(String message) selectCardFailure,
-    required TResult Function() selectCardInProgress,
-    required TResult Function() buttonInProgress,
-    required TResult Function(int cardTypeId) checkPostalCode,
-    required TResult Function(List<AddressEntity> addressList, int cardTypeId)
-        selectAddress,
-    required TResult Function(
-            int id, String title, String description, String priceLabel)
-        selectCardSuccess,
-    required TResult Function() selectCardValidated,
-  }) {
-    return selectCardSuccess(id, title, description, priceLabel);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String message)? selectCardFailure,
-    TResult? Function()? selectCardInProgress,
-    TResult? Function()? buttonInProgress,
-    TResult? Function(int cardTypeId)? checkPostalCode,
-    TResult? Function(List<AddressEntity> addressList, int cardTypeId)?
-        selectAddress,
-    TResult? Function(
-            int id, String title, String description, String priceLabel)?
-        selectCardSuccess,
-    TResult? Function()? selectCardValidated,
-  }) {
-    return selectCardSuccess?.call(id, title, description, priceLabel);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String message)? selectCardFailure,
-    TResult Function()? selectCardInProgress,
-    TResult Function()? buttonInProgress,
-    TResult Function(int cardTypeId)? checkPostalCode,
-    TResult Function(List<AddressEntity> addressList, int cardTypeId)?
-        selectAddress,
-    TResult Function(
-            int id, String title, String description, String priceLabel)?
-        selectCardSuccess,
-    TResult Function()? selectCardValidated,
-    required TResult orElse(),
-  }) {
-    if (selectCardSuccess != null) {
-      return selectCardSuccess(id, title, description, priceLabel);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(SelectCardFailure value) selectCardFailure,
-    required TResult Function(SelectCardInProgress value) selectCardInProgress,
-    required TResult Function(ButtonInProgress value) buttonInProgress,
-    required TResult Function(CheckPostalCode value) checkPostalCode,
-    required TResult Function(SelectAddress value) selectAddress,
-    required TResult Function(SelectCardSuccess value) selectCardSuccess,
-    required TResult Function(SelectCardValidated value) selectCardValidated,
-  }) {
-    return selectCardSuccess(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(SelectCardFailure value)? selectCardFailure,
-    TResult? Function(SelectCardInProgress value)? selectCardInProgress,
-    TResult? Function(ButtonInProgress value)? buttonInProgress,
-    TResult? Function(CheckPostalCode value)? checkPostalCode,
-    TResult? Function(SelectAddress value)? selectAddress,
-    TResult? Function(SelectCardSuccess value)? selectCardSuccess,
-    TResult? Function(SelectCardValidated value)? selectCardValidated,
-  }) {
-    return selectCardSuccess?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(SelectCardFailure value)? selectCardFailure,
-    TResult Function(SelectCardInProgress value)? selectCardInProgress,
-    TResult Function(ButtonInProgress value)? buttonInProgress,
-    TResult Function(CheckPostalCode value)? checkPostalCode,
-    TResult Function(SelectAddress value)? selectAddress,
-    TResult Function(SelectCardSuccess value)? selectCardSuccess,
-    TResult Function(SelectCardValidated value)? selectCardValidated,
-    required TResult orElse(),
-  }) {
-    if (selectCardSuccess != null) {
-      return selectCardSuccess(this);
-    }
-    return orElse();
-  }
 }
 
-abstract class SelectCardSuccess implements SelectCardState {
-  const factory SelectCardSuccess(
-      {required final int id,
-      required final String title,
-      required final String description,
-      required final String priceLabel}) = _$SelectCardSuccessImpl;
+abstract class _SelectCardState implements SelectCardState {
+  const factory _SelectCardState(
+      {final SelectCardStatus status,
+      final String errorMessage,
+      final int cardTypeId,
+      final List<AddressEntity> addressList,
+      final int id,
+      final String title,
+      final String description,
+      final String priceLabel}) = _$SelectCardStateImpl;
 
+  @override
+  SelectCardStatus get status;
+  @override
+  String get errorMessage;
+  @override
+  int get cardTypeId;
+  @override
+  List<AddressEntity> get addressList;
+  @override
   int get id;
+  @override
   String get title;
+  @override
   String get description;
+  @override
   String get priceLabel;
 
   /// Create a copy of SelectCardState
   /// with the given fields replaced by the non-null parameter values.
+  @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$SelectCardSuccessImplCopyWith<_$SelectCardSuccessImpl> get copyWith =>
+  _$$SelectCardStateImplCopyWith<_$SelectCardStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$SelectCardValidatedImplCopyWith<$Res> {
-  factory _$$SelectCardValidatedImplCopyWith(_$SelectCardValidatedImpl value,
-          $Res Function(_$SelectCardValidatedImpl) then) =
-      __$$SelectCardValidatedImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$SelectCardValidatedImplCopyWithImpl<$Res>
-    extends _$SelectCardStateCopyWithImpl<$Res, _$SelectCardValidatedImpl>
-    implements _$$SelectCardValidatedImplCopyWith<$Res> {
-  __$$SelectCardValidatedImplCopyWithImpl(_$SelectCardValidatedImpl _value,
-      $Res Function(_$SelectCardValidatedImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of SelectCardState
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-
-class _$SelectCardValidatedImpl implements SelectCardValidated {
-  const _$SelectCardValidatedImpl();
-
-  @override
-  String toString() {
-    return 'SelectCardState.selectCardValidated()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$SelectCardValidatedImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(String message) selectCardFailure,
-    required TResult Function() selectCardInProgress,
-    required TResult Function() buttonInProgress,
-    required TResult Function(int cardTypeId) checkPostalCode,
-    required TResult Function(List<AddressEntity> addressList, int cardTypeId)
-        selectAddress,
-    required TResult Function(
-            int id, String title, String description, String priceLabel)
-        selectCardSuccess,
-    required TResult Function() selectCardValidated,
-  }) {
-    return selectCardValidated();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String message)? selectCardFailure,
-    TResult? Function()? selectCardInProgress,
-    TResult? Function()? buttonInProgress,
-    TResult? Function(int cardTypeId)? checkPostalCode,
-    TResult? Function(List<AddressEntity> addressList, int cardTypeId)?
-        selectAddress,
-    TResult? Function(
-            int id, String title, String description, String priceLabel)?
-        selectCardSuccess,
-    TResult? Function()? selectCardValidated,
-  }) {
-    return selectCardValidated?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String message)? selectCardFailure,
-    TResult Function()? selectCardInProgress,
-    TResult Function()? buttonInProgress,
-    TResult Function(int cardTypeId)? checkPostalCode,
-    TResult Function(List<AddressEntity> addressList, int cardTypeId)?
-        selectAddress,
-    TResult Function(
-            int id, String title, String description, String priceLabel)?
-        selectCardSuccess,
-    TResult Function()? selectCardValidated,
-    required TResult orElse(),
-  }) {
-    if (selectCardValidated != null) {
-      return selectCardValidated();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(SelectCardFailure value) selectCardFailure,
-    required TResult Function(SelectCardInProgress value) selectCardInProgress,
-    required TResult Function(ButtonInProgress value) buttonInProgress,
-    required TResult Function(CheckPostalCode value) checkPostalCode,
-    required TResult Function(SelectAddress value) selectAddress,
-    required TResult Function(SelectCardSuccess value) selectCardSuccess,
-    required TResult Function(SelectCardValidated value) selectCardValidated,
-  }) {
-    return selectCardValidated(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(SelectCardFailure value)? selectCardFailure,
-    TResult? Function(SelectCardInProgress value)? selectCardInProgress,
-    TResult? Function(ButtonInProgress value)? buttonInProgress,
-    TResult? Function(CheckPostalCode value)? checkPostalCode,
-    TResult? Function(SelectAddress value)? selectAddress,
-    TResult? Function(SelectCardSuccess value)? selectCardSuccess,
-    TResult? Function(SelectCardValidated value)? selectCardValidated,
-  }) {
-    return selectCardValidated?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(SelectCardFailure value)? selectCardFailure,
-    TResult Function(SelectCardInProgress value)? selectCardInProgress,
-    TResult Function(ButtonInProgress value)? buttonInProgress,
-    TResult Function(CheckPostalCode value)? checkPostalCode,
-    TResult Function(SelectAddress value)? selectAddress,
-    TResult Function(SelectCardSuccess value)? selectCardSuccess,
-    TResult Function(SelectCardValidated value)? selectCardValidated,
-    required TResult orElse(),
-  }) {
-    if (selectCardValidated != null) {
-      return selectCardValidated(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class SelectCardValidated implements SelectCardState {
-  const factory SelectCardValidated() = _$SelectCardValidatedImpl;
 }

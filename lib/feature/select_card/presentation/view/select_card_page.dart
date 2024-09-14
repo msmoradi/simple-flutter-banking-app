@@ -27,39 +27,29 @@ class SelectCardPage extends StatelessWidget {
       create: (context) => GetIt.instance<SelectCardBloc>(),
       child: BlocConsumer<SelectCardBloc, SelectCardState>(
         listener: (context, state) {
-          state.whenOrNull(
-            selectCardFailure: (message) => showMessage(message),
-            checkPostalCode: (cardTypeId) => onCheckPostalCode(cardTypeId),
-            selectAddress: (addressList, cardTypeId) =>
-                onSelectAddress(addressList, cardTypeId),
-          );
+          if (state.status == SelectCardStatus.failure) {
+            showMessage(state.errorMessage);
+          } else if (state.status == SelectCardStatus.checkPostalCode) {
+            onCheckPostalCode(state.cardTypeId);
+          } else if (state.status == SelectCardStatus.selectAddress) {
+            onSelectAddress(state.addressList, state.cardTypeId);
+          }
         },
         builder: (context, state) {
           return SelectCardContent(
-            showLoading: state is SelectCardInProgress,
-            buttonLoading: state is ButtonInProgress,
+            showLoading: state.status == SelectCardStatus.pageLoading,
+            buttonLoading: state.status == SelectCardStatus.buttonLoading,
             onActionClick: () {
-              state.whenOrNull(
-                selectCardSuccess: (id, __, _, ___) => context
-                    .read<SelectCardBloc>()
-                    .add(ActionClick(cardTypeId: id)),
-              );
+              context
+                  .read<SelectCardBloc>()
+                  .add(ActionClick(cardTypeId: state.cardTypeId));
             },
             showMessage: showMessage,
             firstName: "firstName",
             lastName: "lastName",
-            title: state.maybeWhen(
-              selectCardSuccess: (_, title, __, ___) => title,
-              orElse: () => "",
-            ),
-            description: state.maybeWhen(
-              selectCardSuccess: (_, __, description, ___) => description,
-              orElse: () => "",
-            ),
-            priceLabel: state.maybeWhen(
-              selectCardSuccess: (_, __, ___, priceLabel) => priceLabel,
-              orElse: () => "",
-            ),
+            title: state.title,
+            description: state.description,
+            priceLabel: state.priceLabel,
           );
         },
       ),

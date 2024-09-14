@@ -1,9 +1,5 @@
 import 'dart:async';
 
-import 'package:banx/core/domain/entities/address_entity.dart';
-import 'package:banx/core/domain/entities/card_types_entity.dart';
-import 'package:banx/core/domain/entities/generic_list_entity.dart';
-import 'package:banx/core/domain/entity_wrapper.dart';
 import 'package:banx/core/domain/repository/address_repository.dart';
 import 'package:banx/core/domain/repository/card_repository.dart';
 import 'package:banx/feature/select_card/presentation/bloc/select_card_state.dart';
@@ -20,7 +16,7 @@ class SelectCardBloc extends Bloc<SelectCardEvent, SelectCardState> {
 
   SelectCardBloc(
       {required this.cardRepository, required this.addressRepository})
-      : super(const SelectCardValidated()) {
+      : super(const SelectCardState()) {
     on<Init>(_onInit);
     on<ActionClick>(_onActionClick);
     add(Init());
@@ -30,28 +26,48 @@ class SelectCardBloc extends Bloc<SelectCardEvent, SelectCardState> {
     ActionClick event,
     Emitter<SelectCardState> emit,
   ) async {
-    emit(const ButtonInProgress());
-
+    emit(state.copyWith(status: SelectCardStatus.buttonLoading));
     try {
       final response = await addressRepository.getAddress();
       response.when(
-          success: (entity) {
-            if (entity.size == 0) {
-              emit(
-                CheckPostalCode(cardTypeId: event.cardTypeId),
-              );
-            } else {
-              emit(
-                SelectAddress(
-                    addressList: entity.content, cardTypeId: event.cardTypeId),
-              );
-            }
-          },
-          partialSuccess: (message) => emit(SelectCardFailure(message)),
-          networkError: (exception) =>
-              emit(SelectCardFailure(exception.toString())));
+        success: (entity) {
+          if (entity.size == 0) {
+            emit(
+              state.copyWith(
+                status: SelectCardStatus.checkPostalCode,
+                cardTypeId: event.cardTypeId,
+              ),
+            );
+          } else {
+            emit(
+              state.copyWith(
+                status: SelectCardStatus.selectAddress,
+                addressList: entity.content,
+                cardTypeId: event.cardTypeId,
+              ),
+            );
+          }
+        },
+        partialSuccess: (message) => emit(
+          state.copyWith(
+            status: SelectCardStatus.failure,
+            errorMessage: message,
+          ),
+        ),
+        networkError: (exception) => emit(
+          state.copyWith(
+            status: SelectCardStatus.failure,
+            errorMessage: exception.toString(),
+          ),
+        ),
+      );
     } catch (e) {
-      emit(SelectCardFailure(e.toString()));
+      emit(
+        state.copyWith(
+          status: SelectCardStatus.failure,
+          errorMessage: e.toString(),
+        ),
+      );
     }
   }
 
@@ -59,25 +75,41 @@ class SelectCardBloc extends Bloc<SelectCardEvent, SelectCardState> {
     Init event,
     Emitter<SelectCardState> emit,
   ) async {
-    emit(const SelectCardInProgress());
     try {
       final responses = await cardRepository.types();
       responses.when(
-          success: (entity) {
-            final card = entity.cardTypes.first;
-            emit(
-              SelectCardSuccess(
-                  title: card.title,
-                  id: card.id,
-                  description: card.description,
-                  priceLabel: card.priceLabel),
-            );
-          },
-          partialSuccess: (message) => emit(SelectCardFailure(message)),
-          networkError: (exception) =>
-              emit(SelectCardFailure(exception.toString())));
+        success: (entity) {
+          final card = entity.cardTypes.first;
+          emit(
+            state.copyWith(
+              status: SelectCardStatus.initial,
+              title: card.title,
+              id: card.id,
+              description: card.description,
+              priceLabel: card.priceLabel,
+            ),
+          );
+        },
+        partialSuccess: (message) => emit(
+          state.copyWith(
+            status: SelectCardStatus.failure,
+            errorMessage: message,
+          ),
+        ),
+        networkError: (exception) => emit(
+          state.copyWith(
+            status: SelectCardStatus.failure,
+            errorMessage: exception.toString(),
+          ),
+        ),
+      );
     } catch (e) {
-      emit(SelectCardFailure(e.toString()));
+      emit(
+        state.copyWith(
+          status: SelectCardStatus.failure,
+          errorMessage: e.toString(),
+        ),
+      );
     }
   }
 }
