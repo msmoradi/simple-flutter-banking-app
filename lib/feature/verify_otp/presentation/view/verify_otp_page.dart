@@ -1,4 +1,5 @@
 import 'package:banx/feature/verify_otp/presentation/bloc/verify_otp_bloc.dart';
+import 'package:banx/feature/verify_otp/presentation/bloc/verify_otp_state.dart';
 import 'package:banx/feature/verify_otp/presentation/view/verify_otp_content.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -32,28 +33,21 @@ class VerifyOtpPage extends StatelessWidget {
       create: (context) => GetIt.instance<VerifyOtpBloc>(),
       child: BlocConsumer<VerifyOtpBloc, VerifyOtpState>(
         listener: (context, state) {
-          switch (state) {
-            case final VerifyOtpFailure s:
-              {
-                showMessage(s.message);
-              }
-            case final DeepLinkLanding  s:
-              {
-                onDeeplinkLanding(s.deeplink);
-              }
-            case final VerifyPassword s:
-              {
-                verifyPassword(s.refreshToken);
-              }
+          if (state.status == VerifyOtpStatus.failure) {
+            showMessage(state.errorMessage);
+          } else if (state.status == VerifyOtpStatus.deepLinkLanding) {
+            onDeeplinkLanding(state.deeplink);
           }
         },
         builder: (context, state) {
           return VerifyOtpContent(
-            state: state,
+            showLoading: state.status == VerifyOtpStatus.loading,
             phoneNumber: phoneNumber,
             codeLength: codeLength,
             expiresIn: expiresIn,
-            errorMessage: state is OtpError ? state.message : null,
+            errorMessage: state.status == VerifyOtpStatus.otpError
+                ? state.otpErrorMessage
+                : null,
           );
         },
       ),

@@ -1,52 +1,17 @@
-part of 'verify_otp_bloc.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-@immutable
-abstract class VerifyOtpState extends Equatable {
-  const VerifyOtpState();
-}
+part 'verify_otp_state.freezed.dart';
 
-class VerifyOtpFailure extends VerifyOtpState {
-  final String message;
+enum VerifyOtpStatus { initial,failure, loading, deepLinkLanding , otpError}
 
-  const VerifyOtpFailure(this.message);
+@freezed
+class VerifyOtpState with _$VerifyOtpState {
+  const VerifyOtpState._();
 
-  @override
-  List<Object?> get props => [];
-}
-
-class OtpError extends VerifyOtpState {
-  final String message;
-
-  const OtpError(this.message);
-
-  @override
-  List<Object?> get props => [];
-}
-
-class VerifyOtpInProgress extends VerifyOtpState {
-  @override
-  List<Object?> get props => [];
-}
-
-class DeepLinkLanding extends VerifyOtpState {
-  final String deeplink;
-
-  const DeepLinkLanding({required this.deeplink});
-
-  @override
-  List<Object?> get props => [];
-}
-
-class VerifyPassword extends VerifyOtpState {
-  final String refreshToken;
-
-  const VerifyPassword({required this.refreshToken});
-
-  @override
-  List<Object?> get props => [];
-}
-
-class VerifyOtpValidated extends VerifyOtpState {
-  @override
-  List<Object?> get props => [];
+  const factory VerifyOtpState({
+    @Default(VerifyOtpStatus.initial) VerifyOtpStatus status,
+    @Default('') String errorMessage,
+    @Default('') String otpErrorMessage,
+    @Default('') String deeplink,
+  }) = _VerifyOtpState;
 }

@@ -11,17 +11,17 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:smart_auth/smart_auth.dart';
 
 class VerifyOtpContent extends StatefulWidget {
-  final VerifyOtpState state;
   final String phoneNumber;
   final int codeLength;
   final int expiresIn;
+  final bool showLoading;
   final String? errorMessage;
 
   const VerifyOtpContent({
     super.key,
-    required this.state,
     required this.phoneNumber,
     required this.codeLength,
+    required this.showLoading,
     required this.expiresIn,
     this.errorMessage,
   });
@@ -170,7 +170,7 @@ class _VerifyOtpContentState extends State<VerifyOtpContent> {
                           child: Center(
                             child: RoundedWithShadowInput(
                               controller: pinController,
-                              readOnly: widget.state is VerifyOtpInProgress,
+                              readOnly: widget.showLoading,
                               errorText: widget.errorMessage,
                               smsRetriever: smsRetrieverImpl,
                               forceErrorState: widget.errorMessage != null,
@@ -194,7 +194,7 @@ class _VerifyOtpContentState extends State<VerifyOtpContent> {
               PrimaryFillButton(
                 onPressed: _onSubmitTapped,
                 label: translator.acceptAndContinue,
-                isLoading: widget.state is VerifyOtpInProgress,
+                isLoading: widget.showLoading,
               ),
               const SizedBox(height: 16),
               _isButtonEnabled
