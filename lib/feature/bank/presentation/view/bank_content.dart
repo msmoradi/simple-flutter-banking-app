@@ -113,7 +113,7 @@ class BankContent extends StatelessWidget {
                       actions: [
                         ActionEntity(
                             icon: 'assets/icons/plus.svg',
-                            title: 'افزایش موجودی',
+                            title: 'واریز',
                             actionClick: onCardDeliveryActionClick),
                         ActionEntity(
                             icon: 'assets/icons/exchange.svg',

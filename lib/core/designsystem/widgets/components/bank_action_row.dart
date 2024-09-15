@@ -73,6 +73,7 @@ class RoundedAction extends StatelessWidget {
           const SizedBox(height: 10.0),
           Text(
             title,
+            textAlign: TextAlign.center,
             style: Theme.of(context).textTheme.labelMedium?.copyWith(
                   color: Theme.of(context).colorScheme.onSurfaceVariant,
                 ),
