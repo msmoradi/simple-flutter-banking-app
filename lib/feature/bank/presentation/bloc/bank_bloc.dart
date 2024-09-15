@@ -21,10 +21,10 @@ class BankBloc extends Bloc<BankEvent, BankState> {
 
   Future<void> _onBankXClick(BankXClick event, Emitter<BankState> emit) async {
     try {
-      if (state.bankCardStatus == BankCardStatus.delivered) {
+      /*if (state.bankCardStatus == BankCardStatus.delivered) {
         emit(state.copyWith(status: BankStatus.cardActivation));
         return;
-      }
+      }*/
 
       emit(state.copyWith(status: BankStatus.loading));
       await Future.delayed(const Duration(seconds: 2));
@@ -35,6 +35,10 @@ class BankBloc extends Bloc<BankEvent, BankState> {
         emit(state.copyWith(
             status: BankStatus.initial,
             bankCardStatus: BankCardStatus.delivered));
+      } else if (state.bankCardStatus == BankCardStatus.delivered) {
+        emit(state.copyWith(
+            status: BankStatus.initial,
+            bankCardStatus: BankCardStatus.activated));
       }
     } catch (e) {
       emit(
