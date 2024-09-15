@@ -78,7 +78,7 @@ class _ConfirmPasswordContentState extends State<ConfirmPasswordContent> {
                 Text(
                   style: Theme.of(context)
                       .textTheme
-                      .headlineMedium
+                      .headlineSmall
                       ?.copyWith(fontWeight: FontWeight.bold),
                   "تأیید رمز ورود",
                 ),

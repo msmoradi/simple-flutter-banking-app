@@ -25,7 +25,7 @@ class WithOutReferralBottomSheetContent extends StatelessWidget {
           Align(
             alignment: Alignment.centerRight,
             child: Text(
-              style: Theme.of(context).textTheme.headlineMedium,
+              style: Theme.of(context).textTheme.headlineSmall,
               'دریافت دعوتنامه',
             ),
           ),

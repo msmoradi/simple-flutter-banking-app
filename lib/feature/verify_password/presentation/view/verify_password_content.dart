@@ -98,7 +98,7 @@ class _VerifyPasswordContentState extends State<VerifyPasswordContent> {
                                 "روز بخیر، ${widget.firstName}",
                                 style: Theme.of(context)
                                     .textTheme
-                                    .headlineMedium
+                                    .headlineSmall
                                     ?.copyWith(
                                       fontWeight: FontWeight.bold,
                                       color:

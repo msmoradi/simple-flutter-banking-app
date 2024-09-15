@@ -112,7 +112,7 @@ class _CardActivationOtpContentState extends State<CardActivationOtpContent> {
         title: Text(
           style: Theme.of(context)
               .textTheme
-              .headlineMedium
+              .headlineSmall
               ?.copyWith(fontWeight: FontWeight.bold),
           "تأیید تلفن همراه",
         ),

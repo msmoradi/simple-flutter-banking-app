@@ -93,7 +93,7 @@ class CustomCard extends StatelessWidget {
                   'تا ۲۵٪ روز شمار',
                   maxLines: 2,
                   textAlign: TextAlign.center,
-                  style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                  style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                         fontWeight: FontWeight.bold,
                         color: Theme.of(context).colorScheme.primary,
                       ),

@@ -71,7 +71,7 @@ class _AddAddressContentState extends State<AddAddressContent> {
         title: Text(
           style: Theme.of(context)
               .textTheme
-              .headlineMedium
+              .headlineSmall
               ?.copyWith(fontWeight: FontWeight.bold),
           'آدرس دریافت کارت',
         ),

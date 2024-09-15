@@ -111,7 +111,7 @@ class _VerifyOtpContentState extends State<VerifyOtpContent> {
         title: Text(
           style: Theme.of(context)
               .textTheme
-              .headlineMedium
+              .headlineSmall
               ?.copyWith(fontWeight: FontWeight.bold),
           "تأیید تلفن همراه",
         ),

@@ -31,7 +31,7 @@ class _PhoneContentState extends State<PhoneContent> {
         title: Text(
           style: Theme.of(context)
               .textTheme
-              .headlineMedium
+              .headlineSmall
               ?.copyWith(fontWeight: FontWeight.bold),
           translator.mobilePhoneNumber,
         ),

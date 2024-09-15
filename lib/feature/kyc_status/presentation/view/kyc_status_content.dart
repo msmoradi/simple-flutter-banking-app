@@ -42,7 +42,7 @@ class KycStatusContent extends StatelessWidget {
         title: Text(
           style: Theme.of(context)
               .textTheme
-              .headlineMedium
+              .headlineSmall
               ?.copyWith(fontWeight: FontWeight.bold),
           "احراز هویت و افتتاح حساب",
         ),

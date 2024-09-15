@@ -21,7 +21,7 @@ class OnboardingPasswordPage extends StatelessWidget {
         title: Text(
           style: Theme.of(context)
               .textTheme
-              .headlineMedium
+              .headlineSmall
               ?.copyWith(fontWeight: FontWeight.bold),
           "رمز ورود",
         ),

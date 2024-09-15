@@ -27,7 +27,7 @@ class _NationalSerialContentState extends State<NationalSerialContent> {
         title: Text(
           style: Theme.of(context)
               .textTheme
-              .headlineMedium
+              .headlineSmall
               ?.copyWith(fontWeight: FontWeight.bold),
           'سریال کارت ملی',
         ),
