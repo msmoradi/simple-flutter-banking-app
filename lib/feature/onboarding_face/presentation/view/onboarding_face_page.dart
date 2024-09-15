@@ -1,6 +1,7 @@
 import 'package:banx/core/designsystem/widgets/button/fill/full_fill_button.dart';
 import 'package:banx/core/designsystem/widgets/info_text_row.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class OnboardingFacePage extends StatelessWidget {
   final Function() onNext;
@@ -35,49 +36,57 @@ class OnboardingFacePage extends StatelessWidget {
                 child: SingleChildScrollView(
                   child: Column(
                     children: [
+                      Align(
+                        alignment: Alignment.centerRight,
+                        child: Text(
+                          style:
+                          Theme.of(context).textTheme.bodyMedium?.copyWith(
+                            color: Theme.of(context)
+                                .colorScheme
+                                .onSurfaceVariant,
+                          ),
+                          "جهت احراز هویت دقیق به نکات زیر دقت کنید",
+                        ),
+                      ),
+                      const SizedBox(height: 80),
+                      const InfoTextRowWidget(
+                        iconAsset: 'assets/icons/faceid.svg',
+                        title: 'حرکت چهره',
+                        subtitle:
+                        'سر خود را مقابل دوربین به چپ و راست حرکت دهید تا پیام تأیید روی صفحه نمایش داده شود',
+                      ),
+                      const SizedBox(height: 30),
+                      const InfoTextRowWidget(
+                        iconAsset: 'assets/icons/bulb-on.svg',
+                        title: 'نور محیط و پس‌زمینه',
+                        subtitle:
+                        'در زمان ثبت ویدئو، لطفا نور محیط، کافی و پس‌زمینه شما سفید باشد',
+                      ),
+                      const SizedBox(height: 50),
                       Image.asset(
                         "assets/images/onboarding_face.png",
                         fit: BoxFit.fitWidth,
                         width: double.infinity,
                         alignment: Alignment.center,
                       ),
-                      const SizedBox(height: 24),
-                      Align(
-                        alignment: Alignment.centerRight,
-                        child: Text(
-                          style: Theme.of(context)
-                              .textTheme
-                              .headlineMedium
-                              ?.copyWith(
-                                fontWeight: FontWeight.bold,
-                                color: Theme.of(context).colorScheme.primary,
-                              ),
-                          "به نکات زیر دقت کنید",
-                        ),
-                      ),
                       const SizedBox(height: 50),
-                      const InfoTextRowWidget(
-                        iconAsset: 'assets/icons/check-circle.svg',
-                        title: 'انجام حرکت چهره',
-                        subtitle:
-                            'سر خود را در مقابل دوربین به سمت چپ و راست بچرخاندید تا پیام تأیید روی صفحه نمایش داده شود',
-                      ),
-                      const SizedBox(height: 24),
-                      const InfoTextRowWidget(
-                        iconAsset: 'assets/icons/check-circle.svg',
-                        title: 'نور و پس زمینه محیط',
-                        subtitle:
-                            'در زمان ثبت ویدئو نور محیط کافی باشد و پس زمینه شما دیوار سفید باشد',
-                      ),
                     ],
                   ),
                 ),
               ),
               PrimaryFillButton(
+                iconAlignment: IconAlignment.start,
+                icon: SvgPicture.asset(
+                  'assets/icons/thumb-up.svg',
+                  colorFilter: ColorFilter.mode(
+                    Theme.of(context).colorScheme.onPrimary,
+                    BlendMode.srcIn,
+                  ),
+                ),
                 label: 'متوجه شدم',
                 onPressed: onNext,
               ),
-              const SizedBox(height: 16),
+              const SizedBox(height: 16)
             ],
           ),
         ),
