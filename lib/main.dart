@@ -14,7 +14,9 @@ void main() async {
 
   final UserProfileEntity? profile = await profileRepository.getLocalProfile();
   final String? refreshToken = await tokenRepository.getRefreshToken();
-  final verifyPassword = profile != null && (refreshToken?.isNotEmpty ?? false);
+  final bool hasPassword = profile?.hasPassword ?? false;
+  final bool hasRefresh = refreshToken?.isNotEmpty ?? false;
+  final bool verifyPassword = hasPassword && hasRefresh;
 
   runApp(App(verifyPassword: verifyPassword));
 }

@@ -1,41 +1,14 @@
-part of 'face_detection_bloc.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-@immutable
-abstract class FaceDetectionState extends Equatable {
-  const FaceDetectionState();
-}
+part 'face_detection_state.freezed.dart';
 
-class FaceDetectionSuccess extends FaceDetectionState {
-  const FaceDetectionSuccess();
+enum FaceDetectionStatus { initial, failure, loading, kyc }
 
-  @override
-  List<Object?> get props => [];
-}
-
-class FaceDetectionFailure extends FaceDetectionState {
-  final String message;
-
-  const FaceDetectionFailure(this.message);
-
-  @override
-  List<Object?> get props => [];
-}
-
-class FaceDetectionInProgress extends FaceDetectionState {
-  @override
-  List<Object?> get props => [];
-}
-
-class DeepLinkLanding extends FaceDetectionState {
-  final String deeplink;
-
-  const DeepLinkLanding({required this.deeplink});
-
-  @override
-  List<Object?> get props => [deeplink];
-}
-
-class KycStatus extends FaceDetectionState {
-  @override
-  List<Object?> get props => [];
+@freezed
+class FaceDetectionState with _$FaceDetectionState {
+  const factory FaceDetectionState({
+    @Default(FaceDetectionStatus.initial) FaceDetectionStatus status,
+    @Default('') String errorMessage,
+    @Default(0) int progress,
+  }) = _FaceDetectionState;
 }

@@ -2,14 +2,12 @@ import 'package:banx/core/domain/entities/entity.dart';
 import 'package:banx/core/domain/entities/user_profile_entity.dart';
 import 'package:banx/core/domain/entity_wrapper.dart';
 import 'package:banx/core/domain/repository/authentication_repository.dart';
+import 'package:banx/feature/verify_otp/presentation/bloc/verify_otp_state.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 
 part 'verify_otp_event.dart';
-
-part 'verify_otp_state.dart';
 
 @injectable
 class VerifyOtpBloc extends Bloc<VerifyOtpEvent, VerifyOtpState> {
@@ -17,7 +15,7 @@ class VerifyOtpBloc extends Bloc<VerifyOtpEvent, VerifyOtpState> {
 
   VerifyOtpBloc({
     required this.authenticationRepository,
-  }) : super(VerifyOtpValidated()) {
+  }) : super(const VerifyOtpState()) {
     on<VerifyOtpSubmitted>(_onVerifyOtpSubmitted);
     on<ResendCode>(_onResendCode);
   }
@@ -31,12 +29,28 @@ class VerifyOtpBloc extends Bloc<VerifyOtpEvent, VerifyOtpState> {
         phoneNumber: event.phoneNumber,
       );
       response.when(
-          success: (success) => emit(VerifyOtpValidated()),
-          partialSuccess: (message) => emit(VerifyOtpFailure(message)),
-          networkError: (exception) =>
-              emit(VerifyOtpFailure(exception.toString())));
+        success: (success) =>
+            emit(state.copyWith(status: VerifyOtpStatus.initial)),
+        partialSuccess: (message) => emit(
+          state.copyWith(
+            status: VerifyOtpStatus.failure,
+            errorMessage: message,
+          ),
+        ),
+        networkError: (exception) => emit(
+          state.copyWith(
+            status: VerifyOtpStatus.failure,
+            errorMessage: exception.toString(),
+          ),
+        ),
+      );
     } catch (e) {
-      emit(VerifyOtpFailure(e.toString()));
+      emit(
+        state.copyWith(
+          status: VerifyOtpStatus.failure,
+          errorMessage: e.toString(),
+        ),
+      );
     }
   }
 
@@ -45,9 +59,15 @@ class VerifyOtpBloc extends Bloc<VerifyOtpEvent, VerifyOtpState> {
     Emitter<VerifyOtpState> emit,
   ) async {
     if (event.otp.length != event.codeLength) {
-      emit(const OtpError('کد پیامک شده را وارد نمایید'));
+      emit(state.copyWith(
+          status: VerifyOtpStatus.otpError,
+          otpErrorMessage: 'کد پیامک شده را وارد نمایید'));
     } else {
-      emit(VerifyOtpInProgress());
+      emit(
+        state.copyWith(
+          status: VerifyOtpStatus.loading,
+        ),
+      );
       try {
         final EntityWrapper<Entity> response =
             await authenticationRepository.verifyOtp(
@@ -55,19 +75,35 @@ class VerifyOtpBloc extends Bloc<VerifyOtpEvent, VerifyOtpState> {
           otp: event.otp,
         );
         response.when(
-            success: (entity) {
-              if (entity is UserProfileEntity) {
-                emit(
-                  DeepLinkLanding(
-                      deeplink: entity.routingButtonEntity!.deeplink),
-                );
-              }
-            },
-            partialSuccess: (message) => emit(VerifyOtpFailure(message)),
-            networkError: (exception) =>
-                emit(VerifyOtpFailure(exception.toString())));
+          success: (entity) {
+            if (entity is UserProfileEntity) {
+              emit(
+                state.copyWith(
+                    status: VerifyOtpStatus.deepLinkLanding,
+                    deeplink: entity.routingButtonEntity!.deeplink),
+              );
+            }
+          },
+          partialSuccess: (message) => emit(
+            state.copyWith(
+              status: VerifyOtpStatus.failure,
+              errorMessage: message,
+            ),
+          ),
+          networkError: (exception) => emit(
+            state.copyWith(
+              status: VerifyOtpStatus.failure,
+              errorMessage: exception.toString(),
+            ),
+          ),
+        );
       } catch (e) {
-        emit(VerifyOtpFailure(e.toString()));
+        emit(
+          state.copyWith(
+            status: VerifyOtpStatus.failure,
+            errorMessage: e.toString(),
+          ),
+        );
       }
     }
   }

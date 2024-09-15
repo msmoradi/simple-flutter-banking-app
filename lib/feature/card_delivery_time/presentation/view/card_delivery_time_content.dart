@@ -41,7 +41,8 @@ class _CardDeliveryTimeContentState extends State<CardDeliveryTimeContent> {
         centerTitle: false,
         automaticallyImplyLeading: false,
         title: Text(
-          style: Theme.of(context)
+          style: Theme
+              .of(context)
               .textTheme
               .headlineMedium
               ?.copyWith(fontWeight: FontWeight.bold),
@@ -68,12 +69,16 @@ class _CardDeliveryTimeContentState extends State<CardDeliveryTimeContent> {
                         alignment: Alignment.centerRight,
                         child: Text(
                           'آدرس دریافت کارت',
-                          style: Theme.of(context)
+                          style: Theme
+                              .of(context)
                               .textTheme
                               .headlineSmall
                               ?.copyWith(
-                                  fontWeight: FontWeight.bold,
-                                  color: Theme.of(context).colorScheme.primary),
+                              fontWeight: FontWeight.bold,
+                              color: Theme
+                                  .of(context)
+                                  .colorScheme
+                                  .primary),
                         ),
                       ),
                     ),
@@ -89,7 +94,10 @@ class _CardDeliveryTimeContentState extends State<CardDeliveryTimeContent> {
                     Container(
                       height: 12,
                       color:
-                          Theme.of(context).colorScheme.surfaceContainerHighest,
+                      Theme
+                          .of(context)
+                          .colorScheme
+                          .surfaceContainerHighest,
                     ),
                     const SizedBox(height: 32),
                     Padding(
@@ -98,12 +106,16 @@ class _CardDeliveryTimeContentState extends State<CardDeliveryTimeContent> {
                         alignment: Alignment.centerRight,
                         child: Text(
                           'زمان دریافت کارت',
-                          style: Theme.of(context)
+                          style: Theme
+                              .of(context)
                               .textTheme
                               .headlineSmall
                               ?.copyWith(
-                                  fontWeight: FontWeight.bold,
-                                  color: Theme.of(context).colorScheme.primary),
+                              fontWeight: FontWeight.bold,
+                              color: Theme
+                                  .of(context)
+                                  .colorScheme
+                                  .primary),
                         ),
                       ),
                     ),
@@ -118,12 +130,19 @@ class _CardDeliveryTimeContentState extends State<CardDeliveryTimeContent> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: PrimaryFillButton(
-                onPressed: widget.onActionClick(
-                    _selectedTime ?? widget.cardShippingTimeSlots.first.id),
+                onPressed: () {
+                  widget.onActionClick(
+                    _selectedTime ?? widget.cardShippingTimeSlots.first.id,
+                  );
+                },
+                iconAlignment: IconAlignment.start,
                 icon: SvgPicture.asset(
                   'assets/icons/thumb-up.svg',
                   colorFilter: ColorFilter.mode(
-                    Theme.of(context).colorScheme.onPrimary,
+                    Theme
+                        .of(context)
+                        .colorScheme
+                        .onPrimary,
                     BlendMode.srcIn,
                   ),
                 ),

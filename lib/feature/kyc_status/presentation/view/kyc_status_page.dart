@@ -1,4 +1,5 @@
 import 'package:banx/feature/kyc_status/presentation/bloc/kyc_status_bloc.dart';
+import 'package:banx/feature/kyc_status/presentation/bloc/kyc_status_state.dart';
 import 'package:banx/feature/kyc_status/presentation/view/kyc_status_content.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -20,27 +21,28 @@ class KycStatusPage extends StatelessWidget {
       create: (context) => GetIt.instance<KycStatusBloc>(),
       child: BlocConsumer<KycStatusBloc, KycStatusState>(
         listener: (context, state) {
-          if (state is KycStatusFailure) {
-            showMessage(state.message);
-          } else if (state is DeepLinkLanding) {
-            onDeeplinkLanding(state.deeplink);
+          if (state.status == KycStatusStatus.failure) {
+            showMessage(state.errorMessage);
+          } else if (state.status == KycStatusStatus.deepLinkLanding) {
+            if (state.deeplink != null) {
+              onDeeplinkLanding(state.deeplink!);
+            }
           }
         },
         builder: (context, state) {
           return KycStatusContent(
-            showLoading: state is KycStatusInProgress,
+            showLoading: state.status == KycStatusStatus.loading,
             onActionClick: () {
-              context.read<KycStatusBloc>().add(
-                    const ActionClicked(),
-                  );
+              context.read<KycStatusBloc>().add(const ActionClicked());
             },
             showMessage: showMessage,
-            actionTitle: state is KycStatusSuccess ? state.actionTitle : "",
-            actionIcon: state is KycStatusSuccess ? state.actionIcon : "",
-            identity: state is KycStatusSuccess ? state.identity : null,
-            phoneNumber: state is KycStatusSuccess ? state.phoneNumber : null,
-            face: state is KycStatusSuccess ? state.face : null,
-            sayah: state is KycStatusSuccess ? state.sayah : null,
+            actionTitle: state.actionTitle,
+            actionIcon: state.actionIcon,
+            iconAlignment: state.iconAlignment,
+            identity: state.identity,
+            phoneNumber: state.phoneNumber,
+            face: state.face,
+            sayah: state.sayah,
           );
         },
       ),

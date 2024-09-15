@@ -1,34 +1,16 @@
-part of 'card_delivery_time_bloc.dart';
 
-@immutable
-abstract class CardDeliveryTimeState extends Equatable {
-  const CardDeliveryTimeState();
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+part 'card_delivery_time_state.freezed.dart';
+
+enum CardDeliveryTimeStatus { initial, failure, loading, deepLinkLanding }
+
+@freezed
+class CardDeliveryTimeState with _$CardDeliveryTimeState {
+  const factory CardDeliveryTimeState({
+    @Default(CardDeliveryTimeStatus.initial) CardDeliveryTimeStatus status,
+    @Default('') String errorMessage,
+    @Default('') String deeplink,
+  }) = _CardDeliveryTimeState;
 }
 
-class CardDeliveryTimeFailure extends CardDeliveryTimeState {
-  final String message;
-
-  const CardDeliveryTimeFailure(this.message);
-
-  @override
-  List<Object?> get props => [];
-}
-
-class CardDeliveryTimeInProgress extends CardDeliveryTimeState {
-  @override
-  List<Object?> get props => [];
-}
-
-class DeepLinkLanding extends CardDeliveryTimeState {
-  final String deeplink;
-
-  const DeepLinkLanding({required this.deeplink});
-
-  @override
-  List<Object> get props => [deeplink];
-}
-
-class CardDeliveryTimeValidated extends CardDeliveryTimeState {
-  @override
-  List<Object?> get props => [];
-}

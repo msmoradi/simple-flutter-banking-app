@@ -34,7 +34,7 @@ class CardDeliveryTimePageFactory {
     return GoRoute(
         path: (CardDeliveryTimePageFactory.path),
         builder: (ctx, state) {
-          final extra = state.extra as CardDeliveryTimeExtra;
+          final extra = state.extra  as CardDeliveryTimeExtra;
           return CardDeliveryTimePageFactory.builder(
             context: ctx,
             extra: extra,

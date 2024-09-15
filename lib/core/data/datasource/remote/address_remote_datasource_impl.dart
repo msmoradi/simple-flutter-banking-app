@@ -1,13 +1,14 @@
 import 'package:banx/core/data/datasource/remote/address_remote_datasource.dart';
 import 'package:banx/core/data/model/address_dto.dart';
+import 'package:banx/core/data/model/empty_response_dto.dart';
 import 'package:banx/core/data/model/generic_list_response_dto.dart';
 import 'package:banx/core/data/model/get_inquiry_response_dto.dart';
-import 'package:banx/core/data/model/post_address_response_dto.dart';
 import 'package:banx/core/data/model/request/get_address_request_dto.dart';
 import 'package:banx/core/data/model/request/get_inquiry_request_dto.dart';
 import 'package:banx/core/data/model/request/post_address_request_dto.dart';
 import 'package:banx/core/networking/api_endpoints.dart';
 import 'package:banx/core/networking/http_client.dart';
+import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 
 @LazySingleton(as: AddressRemoteDataSource)
@@ -37,7 +38,7 @@ class AddressRemoteDataSourceImpl extends AddressRemoteDataSource {
   }
 
   @override
-  Future<PostAddressResponseDto> postAddress({
+  Future<GetInquiryResponseDto> postAddress({
     required AddressDto addressDto,
   }) {
     final dataRequest = PostAddressRequestDto(
@@ -54,32 +55,15 @@ class AddressRemoteDataSourceImpl extends AddressRemoteDataSource {
     ).toJson();
 
     return apiService.post(
-        endpoint: ApiEndpoint.address(AddressEndpoint.ADDRESS),
-        data: dataRequest,
-        mapper: (_) {
-          return PostAddressResponseDto.empty();
-        });
-  }
-
-  @override
-  Future<PostAddressResponseDto> putAddress() {
-    final body = {
-      'password': "",
-    };
-
-    return apiService.put(
       endpoint: ApiEndpoint.address(AddressEndpoint.ADDRESS),
-      data: body,
-      mapper: (_) {
-        return PostAddressResponseDto.empty();
+      data: dataRequest,
+      mapper: (response) {
+        if (response != null) {
+          return GetInquiryResponseDto.fromJson(response);
+        }
+        throw NotNullableError('add address response should not be null');
       },
     );
-  }
-
-  @override
-  Future<PostAddressResponseDto> getCities() {
-    // TODO: implement getCities
-    throw UnimplementedError();
   }
 
   @override
@@ -96,7 +80,28 @@ class AddressRemoteDataSourceImpl extends AddressRemoteDataSource {
   }
 
   @override
-  Future<PostAddressResponseDto> getStates() {
+  Future<EmptyResponseDto> putAddress() {
+    final body = {
+      'password': "",
+    };
+
+    return apiService.put(
+      endpoint: ApiEndpoint.address(AddressEndpoint.ADDRESS),
+      data: body,
+      mapper: (_) {
+        return EmptyResponseDto.empty();
+      },
+    );
+  }
+
+  @override
+  Future<EmptyResponseDto> getCities() {
+    // TODO: implement getCities
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<EmptyResponseDto> getStates() {
     // TODO: implement getStates
     throw UnimplementedError();
   }

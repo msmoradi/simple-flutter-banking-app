@@ -27,11 +27,11 @@ class _DeliveryCardTimesState extends State<DeliveryCardTimes> {
 
   Widget _buildRadioRow(
       {required ShippingTimeEntity timeSlot, required bool needDivider}) {
-    return InkWell(
-      onTap: () => _onRadioSelected(timeSlot.id),
-      child: Column(
-        children: [
-          Row(
+    return Column(
+      children: [
+        InkWell(
+          onTap: () => _onRadioSelected(timeSlot.id),
+          child: Row(
             children: <Widget>[
               Expanded(child: Text(timeSlot.datetime)),
               const SizedBox(width: 10),
@@ -40,17 +40,14 @@ class _DeliveryCardTimesState extends State<DeliveryCardTimes> {
                 groupValue:
                     _selectedTime ?? widget.cardShippingTimeSlots.first.id,
                 onChanged: (int? value) {
-                  setState(() {
-                    _selectedTime = value!;
-                  });
                 },
                 activeColor: Colors.brown,
               ),
             ],
           ),
-          if (needDivider) const Divider(),
-        ],
-      ),
+        ),
+        if (needDivider) const Divider(),
+      ],
     );
   }
 

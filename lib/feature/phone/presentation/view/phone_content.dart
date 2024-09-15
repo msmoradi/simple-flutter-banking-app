@@ -7,9 +7,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class PhoneContent extends StatefulWidget {
-  final PhoneState state;
+  final bool showLoading;
 
-  const PhoneContent({super.key, required this.state});
+  const PhoneContent({super.key, required this.showLoading});
 
   @override
   State<PhoneContent> createState() => _PhoneContentState();
@@ -147,7 +147,7 @@ class _PhoneContentState extends State<PhoneContent> {
                   }
                 },
                 label: translator.acceptAndContinue,
-                isLoading: widget.state is PhoneInProgress,
+                isLoading: widget.showLoading,
               ),
               const SizedBox(height: 16),
             ],

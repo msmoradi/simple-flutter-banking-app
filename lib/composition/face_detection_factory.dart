@@ -12,9 +12,7 @@ class FaceDetectionPageFactory {
   ) {
     return FaceDetectionPage(
       showMessage: showMessage,
-      onDeeplinkLanding: (deeplink) {
-        context.go(deeplink);
-      },      onKycStatus: () {
+      onKycStatus: () {
         context.push(KycStatusPageFactory.path);
       },
     );

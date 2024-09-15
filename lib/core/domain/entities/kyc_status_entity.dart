@@ -6,9 +6,9 @@ class KYCStatusEntity extends Entity {
   final String title;
   final String description;
 
-  KYCStatusEntity({
-    required this.status,
-    required this.title,
-    required this.description,
-  });
+  const KYCStatusEntity({
+    this.status = KYCStatus.pending,
+    this.title = "",
+    this.description = "",
+  }) : super();
 }

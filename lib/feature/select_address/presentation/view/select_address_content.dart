@@ -70,6 +70,7 @@ class SelectAddressContent extends StatelessWidget {
               const Spacer(),
               PrimaryFillButton(
                 onPressed: onAddAddress,
+                iconAlignment: IconAlignment.start,
                 icon: SvgPicture.asset(
                   'assets/icons/plus.svg',
                   colorFilter: ColorFilter.mode(
