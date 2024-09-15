@@ -21,12 +21,7 @@ class CardActivationOtpPageFactory {
       codeLength: codeLength,
       expiresIn: expiresIn,
       onMainPage: () {
-        context.push(MainPageFactory.path);
-      },
-      verifyPassword: (refreshToken) {
-        context.push(
-          VerifyPasswordPageFactory.path,
-        );
+        context.go(MainPageFactory.path);
       },
       onBackPressed: context.pop,
     );

@@ -26,12 +26,12 @@ class CardActivationBloc
     emit(CardActivationInProgress());
     try {
       final response = await authenticationRepository.sendOtp(
-          phoneNumber: event.CardActivationNumber);
+          phoneNumber: event.cardActivationNumber);
       response.when(
           success: (response) {
             emit(
               VerifyOtpSuccess(
-                  CardActivationNumber: event.CardActivationNumber,
+                  cardActivationNumber: event.cardActivationNumber,
                   expiresIn: response.expiresIn!,
                   codeLength: response.codeLength!),
             );

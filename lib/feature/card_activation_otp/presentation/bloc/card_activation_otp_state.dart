@@ -28,10 +28,10 @@ class CardActivationOtpInProgress extends CardActivationOtpState {
   List<Object?> get props => [];
 }
 
-class VerifyPassword extends CardActivationOtpState {
+class MainPage extends CardActivationOtpState {
   final String refreshToken;
 
-  const VerifyPassword({required this.refreshToken});
+  const MainPage({required this.refreshToken});
 
   @override
   List<Object?> get props => [];

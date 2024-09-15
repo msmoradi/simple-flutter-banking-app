@@ -20,18 +20,18 @@ class CardActivationInProgress extends CardActivationState {
 }
 
 class VerifyOtpSuccess extends CardActivationState {
-  final String CardActivationNumber;
+  final String cardActivationNumber;
   final int expiresIn;
   final int codeLength;
 
   const VerifyOtpSuccess({
-    required this.CardActivationNumber,
+    required this.cardActivationNumber,
     required this.expiresIn,
     required this.codeLength,
   });
 
   @override
-  List<Object?> get props => [CardActivationNumber, expiresIn, codeLength];
+  List<Object?> get props => [cardActivationNumber, expiresIn, codeLength];
 }
 
 class CardActivationValidated extends CardActivationState {

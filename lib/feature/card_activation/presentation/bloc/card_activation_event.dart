@@ -8,10 +8,10 @@ abstract class CardActivationEvent extends Equatable {
 }
 
 class CardActivationSubmitted extends CardActivationEvent {
-  final String CardActivationNumber;
+  final String cardActivationNumber;
 
-  const CardActivationSubmitted(this.CardActivationNumber);
+  const CardActivationSubmitted(this.cardActivationNumber);
 
   @override
-  List<Object> get props => [CardActivationNumber];
+  List<Object> get props => [cardActivationNumber];
 }

@@ -25,7 +25,7 @@ class CardActivationPage extends StatelessWidget {
             showMessage(state.message);
           } else if (state is VerifyOtpSuccess) {
             onVerifyOtp(
-              state.CardActivationNumber,
+              state.cardActivationNumber,
               state.expiresIn,
               state.codeLength,
             );

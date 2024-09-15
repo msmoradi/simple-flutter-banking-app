@@ -7,7 +7,6 @@ import 'package:get_it/get_it.dart';
 class CardActivationOtpPage extends StatelessWidget {
   final Function() onBackPressed;
   final Function() onMainPage;
-  final Function(String) verifyPassword;
   final Function(String) showMessage;
   final String phoneNumber;
   final int codeLength;
@@ -20,7 +19,6 @@ class CardActivationOtpPage extends StatelessWidget {
     required this.phoneNumber,
     required this.codeLength,
     required this.expiresIn,
-    required this.verifyPassword,
     required this.showMessage,
   });
 
@@ -35,9 +33,9 @@ class CardActivationOtpPage extends StatelessWidget {
               {
                 showMessage(s.message);
               }
-            case final VerifyPassword s:
+            case final MainPage s:
               {
-                verifyPassword(s.refreshToken);
+                onMainPage();
               }
           }
         },
