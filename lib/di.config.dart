@@ -121,7 +121,6 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i20.AssistBloc>(() => _i20.AssistBloc());
     gh.factory<_i864.BankBloc>(() => _i864.BankBloc());
     gh.factory<_i381.MainBloc>(() => _i381.MainBloc());
-    gh.factory<_i804.ProfileBloc>(() => _i804.ProfileBloc());
     gh.lazySingleton<_i558.FlutterSecureStorage>(
         () => registerModule.flutterSecureStorage());
     gh.lazySingleton<_i528.PrettyDioLogger>(
@@ -183,6 +182,8 @@ extension GetItInjectableX on _i174.GetIt {
         addressRemoteDataSource: gh<_i767.AddressRemoteDataSource>()));
     gh.lazySingleton<_i654.MediaRepository>(
         () => _i244.MediaRepositoryImpl(gh<_i665.MediaRemoteDataSource>()));
+    gh.factory<_i804.ProfileBloc>(() =>
+        _i804.ProfileBloc(profileRepository: gh<_i111.ProfileRepository>()));
     gh.lazySingleton<_i474.AuthenticationRepository>(
         () => _i450.AuthenticationRepositoryImpl(
               authenticationRemoteDataSource:

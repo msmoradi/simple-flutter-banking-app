@@ -6,12 +6,14 @@ class ProfileContent extends StatelessWidget {
   final String userProfile;
   final String fullName;
   final String userName;
+  final VoidCallback onExitClick;
 
   const ProfileContent({
     super.key,
     required this.userProfile,
     required this.fullName,
     required this.userName,
+    required this.onExitClick,
   });
 
   @override
@@ -67,7 +69,8 @@ class ProfileContent extends StatelessWidget {
               const SizedBox(height: 16),
               const Divider(),
               const SizedBox(height: 30),
-              const MenuList(), // Use the new MenuList widget
+              MenuList(onExitClick: onExitClick),
+              // Use the new MenuList widget
             ],
           ),
         )),
@@ -119,7 +122,7 @@ class ProfileHeader extends StatelessWidget {
             onPressed: () {},
             fillWidth: false,
             buttonHeight: ButtonHeight.small,
-            label :'ویرایش',
+            label: 'ویرایش',
           ),
         ],
       ),
@@ -128,7 +131,9 @@ class ProfileHeader extends StatelessWidget {
 }
 
 class MenuList extends StatelessWidget {
-  const MenuList({super.key});
+  final VoidCallback onExitClick;
+
+  const MenuList({super.key, required this.onExitClick});
 
   @override
   Widget build(BuildContext context) {
@@ -178,7 +183,7 @@ class MenuList extends StatelessWidget {
         MenuItem(
           iconPath: 'assets/icons/logout.svg',
           label: 'خروج از حساب کاربری',
-          onTap: () {},
+          onTap: onExitClick,
         ),
       ],
     );

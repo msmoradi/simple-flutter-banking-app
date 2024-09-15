@@ -20,6 +20,9 @@ class ProfilePage extends StatelessWidget {
             userProfile: state.userProfile,
             fullName: state.fullName,
             userName: state.userName,
+            onExitClick: (){
+              context.read<ProfileBloc>().add(ExitClick());
+            },
           );
         },
       ),
