@@ -86,6 +86,8 @@ import 'package:banx/feature/main/presentation/bloc/main_bloc.dart' as _i381;
 import 'package:banx/feature/national_serial/presentation/bloc/national_serial_bloc.dart'
     as _i61;
 import 'package:banx/feature/phone/presentation/bloc/phone_bloc.dart' as _i402;
+import 'package:banx/feature/profile/presentation/bloc/profile_bloc.dart'
+    as _i804;
 import 'package:banx/feature/select_address/presentation/bloc/select_address_bloc.dart'
     as _i922;
 import 'package:banx/feature/select_card/presentation/bloc/select_card_bloc.dart'
@@ -119,6 +121,7 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i20.AssistBloc>(() => _i20.AssistBloc());
     gh.factory<_i864.BankBloc>(() => _i864.BankBloc());
     gh.factory<_i381.MainBloc>(() => _i381.MainBloc());
+    gh.factory<_i804.ProfileBloc>(() => _i804.ProfileBloc());
     gh.lazySingleton<_i558.FlutterSecureStorage>(
         () => registerModule.flutterSecureStorage());
     gh.lazySingleton<_i528.PrettyDioLogger>(

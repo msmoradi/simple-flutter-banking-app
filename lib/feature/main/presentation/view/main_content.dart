@@ -1,6 +1,7 @@
 import 'package:banx/feature/assist/presentation/view/assist_page.dart';
 import 'package:banx/feature/bank/presentation/view/bank_page.dart';
 import 'package:banx/feature/home/presentation/view/home_page.dart';
+import 'package:banx/feature/profile/presentation/view/profile_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -40,7 +41,7 @@ class _MainContentState extends State<MainContent> {
         const Center(child: Text('انتقال')),
         const HomePage(),
         const Center(child: Text('دستیار')),
-        const Center(child: Text('پروفایل')),
+        const ProfilePage(),
       ][_selectedIndex ?? widget.initTabIndex],
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
