@@ -45,6 +45,20 @@ class ApiEndpoint {
     }
   }
 
+  static String passkeys(PasskeysEndpoint endpoint) {
+    const path = '/api/v1/app/auth/passkeys';
+    switch(endpoint){
+      case PasskeysEndpoint.ATTESTATION_RESULT:
+        return '$path/attestation/result';
+      case PasskeysEndpoint.ATTESTATION_OPTIONS:
+        return '$path/attestation/options';
+      case PasskeysEndpoint.ASSERTION_RESULT:
+        return '$path/assertion/result';
+      case PasskeysEndpoint.ASSERTION_OPTIONS:
+        return '$path/assertion/options';
+    }
+  }
+
   static String kyc(KYCEndpoint endpoint) {
     const path = '/api/v1/app/kyc';
     switch (endpoint) {
@@ -83,6 +97,13 @@ enum AuthEndpoint {
 enum ProfileEndpoint { GET_PROFILE, POSTAL_CODE }
 
 enum CardEndpoint { ORDERS, TYPES, SHIPPING_TIME_SLOTS }
+
+enum PasskeysEndpoint {
+  ATTESTATION_RESULT,
+  ATTESTATION_OPTIONS,
+  ASSERTION_RESULT,
+  ASSERTION_OPTIONS
+}
 
 enum AddressEndpoint { ADDRESS, STATES, INQUIRY, CITIES }
 
