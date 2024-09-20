@@ -9,7 +9,9 @@ import 'package:banx/core/domain/entities/passkey_attestation.dart';
 import 'package:banx/core/domain/entities/passkey_attestation_options.dart';
 import 'package:banx/core/domain/repository/passkey_repository.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:injectable/injectable.dart';
 
+@LazySingleton(as: PasskeyRepository)
 class PasskeyRepositoryImpl implements PasskeyRepository {
   final PasskeyRemoteDataSource remoteDataSource;
   final FlutterSecureStorage secureStorage;

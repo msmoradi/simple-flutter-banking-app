@@ -10,7 +10,9 @@ import 'package:banx/core/data/model/response/webauthn/passkey_attestation_respo
 import 'package:banx/core/networking/api_endpoints.dart';
 import 'package:banx/core/networking/http_client.dart';
 import 'package:dio/dio.dart';
+import 'package:injectable/injectable.dart';
 
+@LazySingleton(as: PasskeyRemoteDataSource)
 class PasskeyRemoteDataSourceImpl implements PasskeyRemoteDataSource {
   final HTTPClient apiService;
 
