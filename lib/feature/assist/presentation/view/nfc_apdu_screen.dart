@@ -70,6 +70,7 @@ class _NfcApduScreenState extends State<NfcApduScreen> {
   bool _isSessionActive = false;
   bool _isLoading = false;
   List<String> _history = [];
+  final int _historyLimit = 20; // Limit for command history
 
   @override
   void dispose() {
@@ -92,7 +93,8 @@ class _NfcApduScreenState extends State<NfcApduScreen> {
     String data = response.substring(0, response.length - 4);
 
     // Get the description for the status words
-    String statusDescription = statusWordDescriptions[sw1sw2] ?? 'Unknown status word.';
+    String statusDescription =
+        statusWordDescriptions[sw1sw2] ?? 'Unknown status word.';
 
     // Build the result string
     String result = 'Status Word: $sw1sw2\n$statusDescription';
@@ -109,6 +111,14 @@ class _NfcApduScreenState extends State<NfcApduScreen> {
       _isLoading = true;
     });
     try {
+      var availability = await FlutterNfcKit.nfcAvailability;
+      if (availability != NFCAvailability.available) {
+        setState(() {
+          _nfcResult = 'NFC is not available or not enabled on this device.';
+        });
+        return;
+      }
+
       _currentTag = await FlutterNfcKit.poll();
       setState(() {
         _isSessionActive = true;
@@ -161,7 +171,12 @@ class _NfcApduScreenState extends State<NfcApduScreen> {
 
       setState(() {
         _nfcResult = parsedResponse;
-        _history.add('Command: $apduCommand\nResponse: $parsedResponse');
+        _history.insert(0, 'Command: $apduCommand\nResponse: $parsedResponse');
+
+        // Limit the history to the most recent entries
+        if (_history.length > _historyLimit) {
+          _history.removeLast();
+        }
       });
     } catch (e) {
       setState(() {
@@ -202,9 +217,11 @@ class _NfcApduScreenState extends State<NfcApduScreen> {
       appBar: AppBar(
         title: Text('NFC APDU Sender'),
       ),
-      body: Padding(
+      body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Column(
+          // Align children to the start
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               'Select APDU Command:',
@@ -246,10 +263,11 @@ class _NfcApduScreenState extends State<NfcApduScreen> {
               ),
             ),
             SizedBox(height: 20),
-            if (_isLoading)
-              CircularProgressIndicator(),
+            if (_isLoading) Center(child: CircularProgressIndicator()),
             if (!_isLoading)
+              // Stretch buttons to full width
               Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   ElevatedButton(
                     onPressed: _isSessionActive ? null : _startNfcSession,
@@ -266,31 +284,27 @@ class _NfcApduScreenState extends State<NfcApduScreen> {
                 ],
               ),
             SizedBox(height: 20),
-            Expanded(
-              child: SingleChildScrollView(
-                child: Text(
-                  _nfcResult,
-                  style: TextStyle(fontSize: 16),
-                ),
-              ),
+            Text(
+              _nfcResult,
+              style: TextStyle(fontSize: 16),
             ),
             SizedBox(height: 10),
             Text(
               'Command History:',
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
-            Expanded(
-              child: ListView.builder(
-                itemCount: _history.length,
-                itemBuilder: (context, index) {
-                  return Card(
-                    margin: EdgeInsets.symmetric(vertical: 4.0),
-                    child: ListTile(
-                      title: Text(_history[index]),
-                    ),
-                  );
-                },
-              ),
+            ListView.builder(
+              physics: NeverScrollableScrollPhysics(),
+              shrinkWrap: true,
+              itemCount: _history.length,
+              itemBuilder: (context, index) {
+                return Card(
+                  margin: EdgeInsets.symmetric(vertical: 4.0),
+                  child: ListTile(
+                    title: Text(_history[index]),
+                  ),
+                );
+              },
             ),
           ],
         ),
