@@ -40,7 +40,7 @@ class _MainContentState extends State<MainContent> {
         ),
         const Center(child: Text('انتقال')),
         const HomePage(),
-        const Center(child: Text('دستیار')),
+        const AssistPage(),
         const ProfilePage(),
       ][_selectedIndex ?? widget.initTabIndex],
       bottomNavigationBar: BottomNavigationBar(

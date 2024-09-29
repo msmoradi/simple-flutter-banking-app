@@ -68,5 +68,13 @@
     <string>We need access to save videos to your gallery.</string>
     <key>NSMicrophoneUsageDescription</key>
     <string>Can I use the mic please?</string>
+
+   <key>com.apple.developer.nfc.readersession.formats</key>
+   <array>
+       <string>NDEF</string>
+       <string>TAG</string>
+       <string>ISO7816</string>
+   </array>
+
 </dict>
 </plist>

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_nfc_kit/flutter_nfc_kit.dart';
+import 'dart:async';
 
-// Define a class to hold APDU command information
 class ApduCommand {
   final String name;
   final String command;
@@ -14,7 +14,6 @@ class ApduCommand {
   });
 }
 
-// Create a list of popular APDU commands
 final List<ApduCommand> apduCommands = [
   ApduCommand(
     name: 'Select Payment Application',
@@ -34,26 +33,8 @@ final List<ApduCommand> apduCommands = [
   // Add more commands as needed
 ];
 
-// Map of status words to descriptions
 final Map<String, String> statusWordDescriptions = {
   '9000': 'Success: The operation completed successfully.',
-  '6200': 'Warning: No information given.',
-  '6283': 'Warning: End of file or record reached before reading Le bytes.',
-  '6300': 'Error: Authentication failed.',
-  '6581': 'Error: Memory failure.',
-  '6700': 'Error: Wrong length.',
-  '6982': 'Error: Security condition not satisfied.',
-  '6A81': 'Error: Function not supported.',
-  '6A82': 'Error: File not found.',
-  '6A83': 'Error: Record not found.',
-  '6A84': 'Error: Not enough memory space.',
-  '6A85': 'Error: Lc inconsistent with TLV structure.',
-  '6A86': 'Error: Incorrect parameters P1-P2.',
-  '6A88': 'Error: Referenced data not found.',
-  '6B00': 'Error: Wrong parameters P1-P2.',
-  '6D00': 'Error: Instruction code not supported or invalid.',
-  '6E00': 'Error: Class not supported.',
-  '6F00': 'Error: Unknown error.',
   // Add more status words as needed
 };
 
@@ -64,17 +45,25 @@ class NfcApduScreen extends StatefulWidget {
 
 class _NfcApduScreenState extends State<NfcApduScreen> {
   final TextEditingController _apduController = TextEditingController();
-  String _nfcResult = 'No data';
+  String _nfcResult = 'Waiting for NFC tag...';
   ApduCommand? _selectedCommand;
   NFCTag? _currentTag;
   bool _isSessionActive = false;
   bool _isLoading = false;
   List<String> _history = [];
-  final int _historyLimit = 20; // Limit for command history
+  final int _historyLimit = 10; // Limit for command history
+  Timer? _checkTagTimer;
+
+  @override
+  void initState() {
+    super.initState();
+    _startNfcSession();
+  }
 
   @override
   void dispose() {
     _apduController.dispose();
+    _checkTagTimer?.cancel();
     super.dispose();
   }
 
@@ -119,15 +108,26 @@ class _NfcApduScreenState extends State<NfcApduScreen> {
         return;
       }
 
-      _currentTag = await FlutterNfcKit.poll();
+      _currentTag = await FlutterNfcKit.poll(
+        timeout: Duration(seconds: 20), // Adjust as needed
+      );
+
       setState(() {
         _isSessionActive = true;
-        _nfcResult = 'NFC Session started. Ready to send commands.';
+        _nfcResult = 'NFC Tag detected. Ready to send commands.';
+      });
+
+      // Start periodic checks
+      _checkTagTimer = Timer.periodic(Duration(seconds: 2), (timer) {
+        _checkTagPresence();
       });
     } catch (e) {
       setState(() {
         _nfcResult = 'Error starting NFC session: $e';
       });
+      // Optionally restart session after delay
+      await Future.delayed(Duration(seconds: 1));
+      await _startNfcSession();
     } finally {
       setState(() {
         _isLoading = false;
@@ -135,12 +135,40 @@ class _NfcApduScreenState extends State<NfcApduScreen> {
     }
   }
 
+  Future<void> _checkTagPresence() async {
+    try {
+      // Send a simple APDU command (e.g., GET DATA with no effect)
+      await FlutterNfcKit.transceive('00B0000000');
+    } catch (e) {
+      // Assume the tag has been removed
+      setState(() {
+        _nfcResult = 'NFC tag removed. Waiting for NFC tag...';
+        _isSessionActive = false;
+        _currentTag = null;
+      });
+
+      // Cancel the timer
+      _checkTagTimer?.cancel();
+      _checkTagTimer = null;
+
+      // Restart NFC session
+      await _startNfcSession();
+    }
+  }
+
   Future<void> _sendApduCommand() async {
     if (!_isSessionActive || _currentTag == null) {
       setState(() {
-        _nfcResult = 'Please start an NFC session first.';
+        _nfcResult = 'Waiting for NFC tag...';
       });
-      return;
+      // Try to restart the session
+      await _startNfcSession();
+      if (!_isSessionActive) {
+        setState(() {
+          _nfcResult = 'Unable to start NFC session.';
+        });
+        return;
+      }
     }
 
     setState(() {
@@ -181,7 +209,16 @@ class _NfcApduScreenState extends State<NfcApduScreen> {
     } catch (e) {
       setState(() {
         _nfcResult = 'Error: $e';
+        _isSessionActive = false;
+        _currentTag = null;
       });
+
+      // Cancel the timer
+      _checkTagTimer?.cancel();
+      _checkTagTimer = null;
+
+      // Restart NFC session
+      await _startNfcSession();
     } finally {
       setState(() {
         _isLoading = false;
@@ -200,6 +237,10 @@ class _NfcApduScreenState extends State<NfcApduScreen> {
         _currentTag = null;
         _nfcResult = 'NFC Session ended.';
       });
+
+      // Cancel the timer
+      _checkTagTimer?.cancel();
+      _checkTagTimer = null;
     } catch (e) {
       setState(() {
         _nfcResult = 'Error ending NFC session: $e';
@@ -263,26 +304,12 @@ class _NfcApduScreenState extends State<NfcApduScreen> {
               ),
             ),
             SizedBox(height: 20),
-            if (_isLoading) Center(child: CircularProgressIndicator()),
-            if (!_isLoading)
-              // Stretch buttons to full width
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  ElevatedButton(
-                    onPressed: _isSessionActive ? null : _startNfcSession,
-                    child: Text('Start NFC Session'),
-                  ),
-                  ElevatedButton(
-                    onPressed: _isSessionActive ? _stopNfcSession : null,
-                    child: Text('Stop NFC Session'),
-                  ),
-                  ElevatedButton(
-                    onPressed: _isSessionActive ? _sendApduCommand : null,
-                    child: Text('Send APDU Command'),
-                  ),
-                ],
-              ),
+            if (_isLoading)
+              Center(child: CircularProgressIndicator()),
+            ElevatedButton(
+              onPressed: _sendApduCommand,
+              child: Text('Send APDU Command'),
+            ),
             SizedBox(height: 20),
             Text(
               _nfcResult,
