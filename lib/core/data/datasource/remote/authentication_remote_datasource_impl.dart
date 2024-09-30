@@ -97,26 +97,6 @@ class AuthenticationRemoteDataSourceImpl
   }
 
   @override
-  Future<TokenDto> refresh(
-    String refreshToken,
-  ) {
-    final body = {
-      'refreshToken': refreshToken,
-    };
-
-    return apiService.post(
-      endpoint: ApiEndpoint.auth(AuthEndpoint.REFRESH),
-      data: body,
-      mapper: (response) {
-        if (response != null) {
-          return TokenDto.fromJson(response);
-        }
-        throw NotNullableError('refresh response should not be null');
-      },
-    );
-  }
-
-  @override
   Future<SignUpResponseDto> signup({
     required String phoneNumber,
     required String nationalId,

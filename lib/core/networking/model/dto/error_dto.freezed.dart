@@ -23,7 +23,7 @@ mixin _$ErrorDto {
   String? get error => throw _privateConstructorUsedError;
   int? get code => throw _privateConstructorUsedError;
   String get message => throw _privateConstructorUsedError;
-  ErrorAction get action => throw _privateConstructorUsedError;
+  ErrorAction? get action => throw _privateConstructorUsedError;
 
   /// Serializes this ErrorDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -40,7 +40,7 @@ abstract class $ErrorDtoCopyWith<$Res> {
   factory $ErrorDtoCopyWith(ErrorDto value, $Res Function(ErrorDto) then) =
       _$ErrorDtoCopyWithImpl<$Res, ErrorDto>;
   @useResult
-  $Res call({String? error, int? code, String message, ErrorAction action});
+  $Res call({String? error, int? code, String message, ErrorAction? action});
 }
 
 /// @nodoc
@@ -61,7 +61,7 @@ class _$ErrorDtoCopyWithImpl<$Res, $Val extends ErrorDto>
     Object? error = freezed,
     Object? code = freezed,
     Object? message = null,
-    Object? action = null,
+    Object? action = freezed,
   }) {
     return _then(_value.copyWith(
       error: freezed == error
@@ -76,10 +76,10 @@ class _$ErrorDtoCopyWithImpl<$Res, $Val extends ErrorDto>
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String,
-      action: null == action
+      action: freezed == action
           ? _value.action
           : action // ignore: cast_nullable_to_non_nullable
-              as ErrorAction,
+              as ErrorAction?,
     ) as $Val);
   }
 }
@@ -92,7 +92,7 @@ abstract class _$$ErrorDtoImplCopyWith<$Res>
       __$$ErrorDtoImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? error, int? code, String message, ErrorAction action});
+  $Res call({String? error, int? code, String message, ErrorAction? action});
 }
 
 /// @nodoc
@@ -111,7 +111,7 @@ class __$$ErrorDtoImplCopyWithImpl<$Res>
     Object? error = freezed,
     Object? code = freezed,
     Object? message = null,
-    Object? action = null,
+    Object? action = freezed,
   }) {
     return _then(_$ErrorDtoImpl(
       error: freezed == error
@@ -126,10 +126,10 @@ class __$$ErrorDtoImplCopyWithImpl<$Res>
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String,
-      action: null == action
+      action: freezed == action
           ? _value.action
           : action // ignore: cast_nullable_to_non_nullable
-              as ErrorAction,
+              as ErrorAction?,
     ));
   }
 }
@@ -153,7 +153,7 @@ class _$ErrorDtoImpl implements _ErrorDto {
   @override
   final String message;
   @override
-  final ErrorAction action;
+  final ErrorAction? action;
 
   @override
   String toString() {
@@ -196,7 +196,7 @@ abstract class _ErrorDto implements ErrorDto {
       {required final String? error,
       required final int? code,
       required final String message,
-      required final ErrorAction action}) = _$ErrorDtoImpl;
+      required final ErrorAction? action}) = _$ErrorDtoImpl;
 
   factory _ErrorDto.fromJson(Map<String, dynamic> json) =
       _$ErrorDtoImpl.fromJson;
@@ -208,7 +208,7 @@ abstract class _ErrorDto implements ErrorDto {
   @override
   String get message;
   @override
-  ErrorAction get action;
+  ErrorAction? get action;
 
   /// Create a copy of ErrorDto
   /// with the given fields replaced by the non-null parameter values.

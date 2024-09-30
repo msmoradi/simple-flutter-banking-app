@@ -11,7 +11,7 @@ _$ErrorDtoImpl _$$ErrorDtoImplFromJson(Map<String, dynamic> json) =>
       error: json['error'] as String?,
       code: (json['code'] as num?)?.toInt(),
       message: json['message'] as String,
-      action: $enumDecode(_$ErrorActionEnumMap, json['action']),
+      action: $enumDecodeNullable(_$ErrorActionEnumMap, json['action']),
     );
 
 Map<String, dynamic> _$$ErrorDtoImplToJson(_$ErrorDtoImpl instance) =>
@@ -19,7 +19,7 @@ Map<String, dynamic> _$$ErrorDtoImplToJson(_$ErrorDtoImpl instance) =>
       'error': instance.error,
       'code': instance.code,
       'message': instance.message,
-      'action': _$ErrorActionEnumMap[instance.action]!,
+      'action': _$ErrorActionEnumMap[instance.action],
     };
 
 const _$ErrorActionEnumMap = {

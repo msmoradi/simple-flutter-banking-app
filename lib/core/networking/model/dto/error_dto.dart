@@ -9,7 +9,7 @@ class ErrorDto with _$ErrorDto {
     required String? error,
     required int? code,
     required String message,
-    required ErrorAction action,
+    required ErrorAction? action,
   }) = _ErrorDto;
 
   factory ErrorDto.fromJson(Map<String, dynamic> json) => _$ErrorDtoFromJson(json);

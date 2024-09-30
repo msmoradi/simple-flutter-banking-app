@@ -1,3 +1,5 @@
+// auth_interceptor.dart
+
 import 'package:banx/core/domain/repository/token_repository.dart';
 import 'package:banx/core/networking/api_endpoints.dart';
 import 'package:banx/core/networking/model/dto/error_action_handler.dart';
@@ -15,12 +17,13 @@ class AuthInterceptor extends Interceptor {
   final Lock _lock = Lock();
   final Logger logger;
 
-  AuthInterceptor(
-      {required this.tokenRepository,
-      @Named('RefreshDio') required this.refreshDio,
-      required this.logger});
+  AuthInterceptor({
+    required this.tokenRepository,
+    @Named('RefreshDio') required this.refreshDio,
+    required this.logger,
+  });
 
-  // Setter to inject the main Dio instance
+  /// Setter to inject the main Dio instance to avoid circular dependencies.
   void setDio(Dio dio) {
     _dio = dio;
   }
@@ -32,7 +35,10 @@ class AuthInterceptor extends Interceptor {
       final String? token = await tokenRepository.getAccessToken();
       if (token != null) {
         options.headers["Authorization"] = "Bearer $token";
-        logger.d("Authorization header added.");
+        logger.d("Authorization header added for request: ${options.path}");
+      } else {
+        logger.w(
+            "No access token found. Proceeding without Authorization header.");
       }
       handler.next(options); // Proceed with the request
     } catch (e, stackTrace) {
@@ -63,6 +69,9 @@ class AuthInterceptor extends Interceptor {
       return;
     }
 
+    logger.w(
+        "Received error response with status code $statusCode for request: ${error.requestOptions.path}");
+
     switch (statusCode) {
       case 403:
         await _handleForbidden(error, responseData, handler);
@@ -81,13 +90,13 @@ class AuthInterceptor extends Interceptor {
       ErrorInterceptorHandler handler) async {
     try {
       final errorDto = ErrorDto.fromJson(responseData);
+      logger.e(
+          "403 Forbidden Error: ${errorDto.message}. Initiating handleErrorAction with action: ${errorDto.action}");
       handleErrorAction(errorDto.action);
-      logger.w("403 Forbidden: ${errorDto.message}");
     } catch (e, stackTrace) {
       logger.e("Failed to parse ErrorDto from 403 response",
           error: e, stackTrace: stackTrace);
     }
-    handler.next(error);
   }
 
   /// Handles 401 Unauthorized responses by attempting to refresh the token.
@@ -95,6 +104,8 @@ class AuthInterceptor extends Interceptor {
       DioException error, ErrorInterceptorHandler handler) async {
     // Prevent multiple retries
     if (error.requestOptions.extra['retried'] == true) {
+      logger.w(
+          "Request ${error.requestOptions.path} has already been retried. Passing the error along.");
       handler.next(error);
       return;
     }
@@ -103,30 +114,31 @@ class AuthInterceptor extends Interceptor {
 
     await _lock.synchronized(() async {
       try {
-        final currentAccessToken = await tokenRepository.getAccessToken() ?? "";
+        final currentAccessToken = await tokenRepository.getAccessToken();
         final authHeader =
             error.requestOptions.headers['Authorization'] as String?;
 
         // Check if another request has already refreshed the token
         if (authHeader != null && authHeader != 'Bearer $currentAccessToken') {
           logger.i(
-              "Access token already refreshed by another request. Retrying original request.");
+              "Access token already refreshed by another request. Retrying original request: ${error.requestOptions.path}");
           await _retryRequest(
-              error.requestOptions, handler, currentAccessToken);
+              error.requestOptions, handler, currentAccessToken ?? "");
           return;
         }
 
         // Proceed to refresh the token
         final refreshToken = await tokenRepository.getRefreshToken();
         if (refreshToken == null) {
-          logger
-              .w("No refresh token available. Unable to refresh access token.");
+          logger.w(
+              "No refresh token available. Unable to refresh access token for request: ${error.requestOptions.path}");
           handleErrorAction(null); // Or handle as per your app's logic
           handler.next(error);
           return;
         }
 
-        logger.i("Attempting to refresh access token.");
+        logger.i(
+            "Attempting to refresh access token for request: ${error.requestOptions.path}");
         final refreshResponse = await refreshDio.post(
           ApiEndpoint.auth(AuthEndpoint.REFRESH),
           data: {'refreshToken': refreshToken},
@@ -139,13 +151,15 @@ class AuthInterceptor extends Interceptor {
           await _handleRefreshForbidden(refreshResponse.data, error, handler);
         } else {
           logger.w(
-              "Unexpected status code during token refresh: ${refreshResponse.statusCode}");
+              "Unexpected status code ${refreshResponse.statusCode} during token refresh for request: ${error.requestOptions.path}");
           handleErrorAction(null); // Or handle as per your app's logic
           handler.next(error);
         }
       } catch (e, stackTrace) {
-        logger.e("Error during token refresh",
-            error: e, stackTrace: stackTrace);
+        logger.e(
+            "Error during token refresh for request: ${error.requestOptions.path}",
+            error: e,
+            stackTrace: stackTrace);
         handleErrorAction(null); // Or handle as per your app's logic
         handler.next(error);
       }
@@ -171,6 +185,8 @@ class AuthInterceptor extends Interceptor {
         },
       );
 
+      logger.i(
+          "Retrying original request: ${updatedRequestOptions.path} with new access token.");
       await _retryRequest(updatedRequestOptions, handler, newAccessToken);
     } else {
       logger.e("Token refresh response missing tokens.");
@@ -193,8 +209,9 @@ class AuthInterceptor extends Interceptor {
       ErrorInterceptorHandler handler) async {
     try {
       final errorDto = ErrorDto.fromJson(responseData);
+      logger.e(
+          "Token refresh failed with 403 Forbidden: ${errorDto.message}. Initiating handleErrorAction with action: ${errorDto.action}");
       handleErrorAction(errorDto.action);
-      logger.w("Token refresh failed with 403 Forbidden: ${errorDto.message}");
     } catch (e, stackTrace) {
       logger.e("Failed to parse ErrorDto from 403 refresh response",
           error: e, stackTrace: stackTrace);
@@ -211,11 +228,13 @@ class AuthInterceptor extends Interceptor {
   Future<void> _retryRequest(RequestOptions requestOptions,
       ErrorInterceptorHandler handler, String accessToken) async {
     try {
+      logger
+          .i("Retrying request: ${requestOptions.path} with new access token.");
       final response = await _dio!.fetch(requestOptions);
-      logger.i("Retrying original request with new access token.");
+      logger.i("Request: ${requestOptions.path} retried successfully.");
       handler.resolve(response);
     } catch (e, stackTrace) {
-      logger.e("Failed to retry request after token refresh",
+      logger.e("Failed to retry request: ${requestOptions.path}",
           error: e, stackTrace: stackTrace);
       handler.next(e is DioException
           ? e
@@ -229,6 +248,13 @@ class AuthInterceptor extends Interceptor {
 
   /// Handles error actions based on the [ErrorAction] enum.
   void handleErrorAction(ErrorAction? action) {
+    if (action == null) {
+      logger.w("No ErrorAction provided. Skipping action handling.");
+      return;
+    }
+
+    logger.i("Handling ErrorAction: $action");
     ErrorActionHandler().performAction(action);
+    logger.i("ErrorAction: $action handled successfully.");
   }
 }

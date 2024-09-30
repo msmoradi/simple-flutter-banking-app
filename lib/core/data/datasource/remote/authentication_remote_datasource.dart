@@ -13,10 +13,6 @@ abstract class AuthenticationRemoteDataSource {
     String password,
   );
 
-  Future<TokenDto> refresh(
-    String refreshToken,
-  );
-
   Future<TokenDto> verifyOtp(
     String phoneNumber,
     String otp,

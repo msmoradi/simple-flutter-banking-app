@@ -23,10 +23,6 @@ abstract class AuthenticationRepository {
     required String password,
   });
 
-  Future<EntityWrapper<TokenEntity>> refresh({
-    required String refreshToken,
-  });
-
   Future<EntityWrapper<KycStateEntity>> kyc();
 
   Future<EntityWrapper<SignUpEntity>> signup({

@@ -102,27 +102,6 @@ class AuthenticationRepositoryImpl extends AuthenticationRepository {
   }
 
   @override
-  Future<EntityWrapper<TokenEntity>> refresh({
-    required String refreshToken,
-  }) {
-    return authenticationRemoteDataSource
-        .refresh(refreshToken)
-        .mapResponseToEntityWrapper(mapper: (model) {
-      return TokenEntity(
-        accessToken: model.accessToken,
-        refreshToken: model.refreshToken,
-      );
-    }).then((entityWrapper) async {
-      if (entityWrapper is SuccessEntityWrapper<TokenEntity>) {
-        await saveTokens(
-            accessToken: entityWrapper.data.accessToken,
-            refreshToken: entityWrapper.data.refreshToken);
-      }
-      return entityWrapper;
-    });
-  }
-
-  @override
   Future<EntityWrapper<SignUpEntity>> signup({
     required String phoneNumber,
     required String nationalId,

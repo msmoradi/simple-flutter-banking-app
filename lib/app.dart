@@ -1,10 +1,8 @@
 import 'package:banx/core/designsystem/theme/theme.dart';
-import 'package:banx/core/utils/configurations/banx_config.dart';
 import 'package:banx/core/utils/l10n/app_localizations.dart';
-import 'package:banx/di.dart';
+import 'package:banx/error_action_listener.dart';
 import 'package:banx/routing/router.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:toastification/toastification.dart';
 
 class App extends StatelessWidget {
@@ -14,30 +12,53 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final _router = getRouterConfig(
+      showMessage: (message) {
+        toastification.show(
+          type: ToastificationType.error,
+          style: ToastificationStyle.fillColored,
+          alignment: Alignment.bottomCenter,
+          showProgressBar: false,
+          closeOnClick: true,
+          dragToClose: true,
+          title: Text(message),
+          autoCloseDuration: const Duration(seconds: 3),
+        );
+      },
+      verifyPassword: verifyPassword,
+    );
+
     precacheImages(context);
     return ToastificationWrapper(
       child: MaterialApp.router(
         debugShowCheckedModeBanner: false,
-        routerConfig: getRouterConfig(
-          showMessage: (message) {
-            toastification.show(
-              type: ToastificationType.error,
-              style: ToastificationStyle.fillColored,
-              alignment: Alignment.bottomCenter,
-              showProgressBar: false,
-              closeOnClick: true,
-              dragToClose: true,
-              title: Text(message),
-              autoCloseDuration: const Duration(seconds: 3),
-            );
-          },
-          verifyPassword: verifyPassword,
-        ),
+        routerConfig: _router,
         theme: BanxTheme.light(),
         darkTheme: BanxTheme.dark(),
         locale: const Locale('fa'),
         localizationsDelegates: Translator.localizationsDelegates,
         supportedLocales: Translator.supportedLocales,
+        builder: (context, child) {
+          // Wrap with a listener widget to handle ErrorActions
+          return ErrorActionListener(
+            navigate: (path) {
+              _router.go(path);
+            },
+            showMessage: (message) {
+              toastification.show(
+                type: ToastificationType.error,
+                style: ToastificationStyle.fillColored,
+                alignment: Alignment.bottomCenter,
+                showProgressBar: false,
+                closeOnClick: true,
+                dragToClose: true,
+                title: Text(message),
+                autoCloseDuration: const Duration(seconds: 3),
+              );
+            },
+            child: child!,
+          );
+        },
       ),
     );
   }

@@ -50,12 +50,10 @@ import 'package:banx/core/domain/repository/profile_repository.dart' as _i111;
 import 'package:banx/core/domain/repository/token_repository.dart' as _i232;
 import 'package:banx/core/networking/api_service.dart' as _i243;
 import 'package:banx/core/networking/http_client.dart' as _i1033;
+import 'package:banx/core/networking/interceptors/auth_interceptor.dart'
+    as _i287;
 import 'package:banx/core/networking/interceptors/info_interceptor.dart'
     as _i535;
-import 'package:banx/core/networking/interceptors/response_interceptor.dart'
-    as _i606;
-import 'package:banx/core/networking/interceptors/token_interceptor.dart'
-    as _i450;
 import 'package:banx/core/utils/configurations/banx_config.dart' as _i962;
 import 'package:banx/core/utils/localauth/local_auth_helper.dart' as _i877;
 import 'package:banx/di.dart' as _i0;
@@ -101,6 +99,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart' as _i558;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 import 'package:local_auth/local_auth.dart' as _i152;
+import 'package:logger/logger.dart' as _i974;
 import 'package:pretty_dio_logger/pretty_dio_logger.dart' as _i528;
 
 extension GetItInjectableX on _i174.GetIt {
@@ -115,12 +114,12 @@ extension GetItInjectableX on _i174.GetIt {
       environmentFilter,
     );
     final registerModule = _$RegisterModule();
-    gh.factory<_i606.ResponseInterceptor>(() => _i606.ResponseInterceptor());
     gh.factory<_i535.InfoInterceptor>(() => _i535.InfoInterceptor());
     gh.factory<_i412.HomeBloc>(() => _i412.HomeBloc());
     gh.factory<_i20.AssistBloc>(() => _i20.AssistBloc());
     gh.factory<_i864.BankBloc>(() => _i864.BankBloc());
     gh.factory<_i381.MainBloc>(() => _i381.MainBloc());
+    gh.lazySingleton<_i974.Logger>(() => registerModule.logger());
     gh.lazySingleton<_i558.FlutterSecureStorage>(
         () => registerModule.flutterSecureStorage());
     gh.lazySingleton<_i528.PrettyDioLogger>(
@@ -135,17 +134,26 @@ extension GetItInjectableX on _i174.GetIt {
         registerModule.localAuthHelperImpl(gh<_i152.LocalAuthentication>()));
     gh.lazySingleton<_i232.TokenRepository>(() => _i205.TokenRepositoryImpl(
         secureStorage: gh<_i558.FlutterSecureStorage>()));
-    gh.factory<_i450.TokenInterceptor>(() =>
-        _i450.TokenInterceptor(tokenRepository: gh<_i232.TokenRepository>()));
+    gh.lazySingleton<_i361.Dio>(
+      () => registerModule.refreshDio(
+        gh<String>(instanceName: 'BaseUrl'),
+        gh<_i528.PrettyDioLogger>(),
+      ),
+      instanceName: 'RefreshDio',
+    );
+    gh.lazySingleton<_i287.AuthInterceptor>(() => _i287.AuthInterceptor(
+          tokenRepository: gh<_i232.TokenRepository>(),
+          refreshDio: gh<_i361.Dio>(instanceName: 'RefreshDio'),
+          logger: gh<_i974.Logger>(),
+        ));
     gh.lazySingleton<_i904.ProfileLocalDataSource>(() =>
         _i335.ProfileLocalDataSourceImpl(
             secureStorage: gh<_i558.FlutterSecureStorage>()));
     gh.lazySingleton<_i361.Dio>(() => registerModule.dio(
           gh<String>(instanceName: 'BaseUrl'),
-          gh<_i606.ResponseInterceptor>(),
-          gh<_i450.TokenInterceptor>(),
-          gh<_i535.InfoInterceptor>(),
           gh<_i528.PrettyDioLogger>(),
+          gh<_i535.InfoInterceptor>(),
+          gh<_i287.AuthInterceptor>(),
         ));
     gh.lazySingleton<_i1033.HTTPClient>(() => _i243.ApiService(
           dio: gh<_i361.Dio>(),

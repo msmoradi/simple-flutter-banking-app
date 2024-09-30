@@ -90,18 +90,8 @@ class VerifyPasswordBloc
   ) async {
     emit(state.copyWith(status: VerifyPasswordStatus.loading));
     try {
-      final refreshToken = await tokenRepository.getRefreshToken() ?? "";
-
-      final response = await authenticationRepository
-          .refresh(refreshToken: refreshToken)
-          .then((value) async {
-        if (value.isSuccess) {
-          return await authenticationRepository.postPassword(
-              password: event.password);
-        } else {
-          return value;
-        }
-      });
+      final response =
+          await authenticationRepository.postPassword(password: event.password);
       response.when(
         success: (response) {
           if (response is UserProfileEntity) {
