@@ -92,7 +92,7 @@ class AuthInterceptor extends Interceptor {
       final errorDto = ErrorDto.fromJson(responseData);
       logger.e(
           "403 Forbidden Error: ${errorDto.message}. Initiating handleErrorAction with action: ${errorDto.action}");
-      handleErrorAction(errorDto.action);
+      handleErrorAction(errorDto);
     } catch (e, stackTrace) {
       logger.e("Failed to parse ErrorDto from 403 response",
           error: e, stackTrace: stackTrace);
@@ -211,7 +211,7 @@ class AuthInterceptor extends Interceptor {
       final errorDto = ErrorDto.fromJson(responseData);
       logger.e(
           "Token refresh failed with 403 Forbidden: ${errorDto.message}. Initiating handleErrorAction with action: ${errorDto.action}");
-      handleErrorAction(errorDto.action);
+      handleErrorAction(errorDto);
     } catch (e, stackTrace) {
       logger.e("Failed to parse ErrorDto from 403 refresh response",
           error: e, stackTrace: stackTrace);
@@ -247,14 +247,16 @@ class AuthInterceptor extends Interceptor {
   }
 
   /// Handles error actions based on the [ErrorAction] enum.
-  void handleErrorAction(ErrorAction? action) {
-    if (action == null) {
+  void handleErrorAction(ErrorDto? errorDto) {
+    if (errorDto == null || errorDto.action == null) {
       logger.w("No ErrorAction provided. Skipping action handling.");
       return;
     }
 
-    logger.i("Handling ErrorAction: $action");
-    ErrorActionHandler().performAction(action);
-    logger.i("ErrorAction: $action handled successfully.");
+    logger.i("Handling ErrorAction: $errorDto.action");
+    ErrorActionHandler().performAction(
+      action: errorDto.action!,
+      message: errorDto.message,
+    );
   }
 }

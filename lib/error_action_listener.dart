@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:banx/core/networking/model/dto/error_action_event.dart';
 import 'package:banx/core/networking/model/dto/error_action_handler.dart';
 import 'package:banx/core/networking/model/dto/error_dto.dart';
 import 'package:banx/main.dart';
@@ -10,7 +11,7 @@ class ErrorActionListener extends StatefulWidget {
   final Function(String) navigate;
   final Function(String) showMessage;
 
-  ErrorActionListener({
+  const ErrorActionListener({
     Key? key,
     required this.child,
     required this.navigate,
@@ -22,31 +23,29 @@ class ErrorActionListener extends StatefulWidget {
 }
 
 class _ErrorActionListenerState extends State<ErrorActionListener> {
-  late StreamSubscription<ErrorAction?> _subscription;
+  late StreamSubscription<ErrorActionEvent> _subscription;
 
   @override
   void initState() {
     super.initState();
-    _subscription = ErrorActionHandler().actions.listen((ErrorAction? action) {
-      if (action != null) {
-        switch (action) {
-          case ErrorAction.loggedOut:
-            restartApp();
-            break;
-          case ErrorAction.nfcLogin:
-            _showNfcLoginDialog();
-            break;
-          case ErrorAction.passwordLogin:
-            widget.navigate(VerifyPasswordPageFactory.path);
-            break;
-          case ErrorAction.toast:
-            // i need to pass error message here
-            final String errorMessage = "";
-            widget.showMessage(errorMessage);
-            break;
-          default:
-            break;
-        }
+    _subscription =
+        ErrorActionHandler().actions.listen((ErrorActionEvent event) {
+      final action = event.action;
+      switch (action) {
+        case ErrorAction.loggedOut:
+          restartApp();
+          break;
+        case ErrorAction.nfcLogin:
+          _showNfcLoginDialog();
+          break;
+        case ErrorAction.passwordLogin:
+          widget.navigate(VerifyPasswordPageFactory.path);
+          break;
+        case ErrorAction.toast:
+          widget.showMessage(event.message);
+          break;
+        default:
+          break;
       }
     });
   }
@@ -58,21 +57,7 @@ class _ErrorActionListenerState extends State<ErrorActionListener> {
   }
 
   /// Displays an NFC Login Dialog
-  void _showNfcLoginDialog() {
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: const Text('NFC Login'),
-        content: const Text('Please authenticate using NFC.'),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.of(context).pop(),
-            child: const Text('OK'),
-          ),
-        ],
-      ),
-    );
-  }
+  void _showNfcLoginDialog() {}
 
   @override
   Widget build(BuildContext context) {
