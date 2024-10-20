@@ -85,7 +85,7 @@ class _CardActivationContentState extends State<CardActivationContent> {
                               maxLines: 1,
                               decoration: const InputDecoration(
                                   prefixIcon: Icon(Icons.credit_card_outlined),
-                                  hintText: "شماره ۱۶ رقمی کارت"),
+                                  labelText: "شماره ۱۶ رقمی کارت"),
                             )
                           ],
                         ),

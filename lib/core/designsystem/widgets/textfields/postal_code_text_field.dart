@@ -34,7 +34,7 @@ class _PostalCodeTextFieldState extends State<PostalCodeTextField> {
       keyboardType: TextInputType.number,
       decoration: const InputDecoration(
         prefixIcon: Icon(Icons.location_on_outlined),
-        hintText: 'کدپستی ۱۰ رقمی',
+        labelText: 'کدپستی ۱۰ رقمی',
       ),
       validator: (value) {
         return context.validateFiled(PostalCodeValidator(value));

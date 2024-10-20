@@ -31,7 +31,7 @@ class CardPersonalizationBottomSheet extends StatelessWidget {
                 onFieldSubmitted: (text) {},
                 keyboardType: TextInputType.name,
                 decoration: const InputDecoration(
-                  hintText: "نام درج شده روی کارت",
+                  labelText: "نام درج شده روی کارت",
                 ),
                 validator: (value) {
                   return value?.isNotEmpty == true ? null : 'نام باید پر شود';
@@ -46,7 +46,7 @@ class CardPersonalizationBottomSheet extends StatelessWidget {
                 onFieldSubmitted: (text) {},
                 keyboardType: TextInputType.name,
                 decoration: const InputDecoration(
-                  hintText: "نام‌خانوادگی درج شده روی کارت",
+                  labelText: "نام‌خانوادگی درج شده روی کارت",
                 ),
                 validator: (value) {
                   return value?.isNotEmpty == true

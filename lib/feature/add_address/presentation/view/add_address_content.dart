@@ -122,7 +122,7 @@ class _AddAddressContentState extends State<AddAddressContent> {
                               keyboardType: TextInputType.multiline,
                               maxLines: null,
                               decoration: const InputDecoration(
-                                  hintText: "خیابان اصلی و فرعی"),
+                                  labelText: "خیابان اصلی و فرعی"),
                             ),
                             const SizedBox(height: 16.0),
 
@@ -137,7 +137,7 @@ class _AddAddressContentState extends State<AddAddressContent> {
                                     maxLines: null,
                                     keyboardType: TextInputType.number,
                                     decoration:
-                                        const InputDecoration(hintText: "پلاک"),
+                                        const InputDecoration(labelText: "پلاک"),
                                   ),
                                 ),
                                 const SizedBox(width: 16.0),
@@ -148,7 +148,7 @@ class _AddAddressContentState extends State<AddAddressContent> {
                                     keyboardType: TextInputType.text,
                                     maxLines: null,
                                     decoration: const InputDecoration(
-                                      hintText: "نام ساختمان یا بلوک",
+                                      labelText: "نام ساختمان یا بلوک",
                                     ),
                                   ),
                                 ),
@@ -166,7 +166,7 @@ class _AddAddressContentState extends State<AddAddressContent> {
                                     keyboardType: TextInputType.number,
                                     maxLines: null,
                                     decoration:
-                                        const InputDecoration(hintText: "طبقه"),
+                                        const InputDecoration(labelText: "طبقه"),
                                   ),
                                 ),
                                 const SizedBox(width: 16.0),
@@ -177,7 +177,7 @@ class _AddAddressContentState extends State<AddAddressContent> {
                                     keyboardType: TextInputType.number,
                                     maxLines: null,
                                     decoration:
-                                        const InputDecoration(hintText: "واحد"),
+                                        const InputDecoration(labelText: "واحد"),
                                   ),
                                 ),
                               ],

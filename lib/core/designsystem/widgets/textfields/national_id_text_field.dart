@@ -33,7 +33,7 @@ class _NationalIdTextFieldState extends State<NationalIdTextField> {
       keyboardType: TextInputType.number,
       decoration: const InputDecoration(
         prefixIcon: Icon(Icons.person_outline),
-        hintText: "کدملی ۱۰ رقمی",
+        labelText: "کدملی ۱۰ رقمی",
       ),
       validator: (value) {
         return context.validateFiled(NationalIdValidator(value));

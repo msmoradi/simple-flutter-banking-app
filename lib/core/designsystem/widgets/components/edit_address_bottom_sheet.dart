@@ -31,7 +31,7 @@ class EditAddressBottomSheet extends StatelessWidget {
                 controller: addressController,
                 onFieldSubmitted: (text) {},
                 decoration: const InputDecoration(
-                  hintText: "ادرس تحویل کارت",
+                  labelText: "ادرس تحویل کارت",
                 ),
                 validator: (value) {
                   return value?.isNotEmpty == true ? null : 'نام باید پر شود';

@@ -29,7 +29,7 @@ class _BirthdayTextFieldState extends State<BirthdayTextField> {
       onFieldSubmitted: widget.onFieldSubmitted,
       decoration: const InputDecoration(
         prefixIcon: Icon(Icons.calendar_today_outlined),
-        hintText: "تاریخ تولد",
+        labelText: "تاریخ تولد",
       ),
     );
   }

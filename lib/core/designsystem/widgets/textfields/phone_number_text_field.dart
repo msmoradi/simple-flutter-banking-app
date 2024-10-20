@@ -35,7 +35,7 @@ class _PhoneNumberTextFieldState extends State<PhoneNumberTextField> {
       keyboardType: TextInputType.number,
       decoration: InputDecoration(
         prefixIcon: const Icon(Icons.phone_iphone),
-        hintText: context.getTranslator().mobilePhoneNumber,
+        labelText: context.getTranslator().mobilePhoneNumber,
       ),
       validator: (value) {
         return context.validateFiled(PhoneNumberValidator(value));

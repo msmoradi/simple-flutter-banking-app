@@ -300,7 +300,7 @@ class _NfcApduScreenState extends State<NfcApduScreen> {
             TextField(
               controller: _apduController,
               decoration: InputDecoration(
-                hintText: 'e.g., 00A4040007A0000002471001',
+                labelText: 'e.g., 00A4040007A0000002471001',
               ),
             ),
             SizedBox(height: 20),

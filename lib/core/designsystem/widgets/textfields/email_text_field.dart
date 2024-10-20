@@ -33,7 +33,7 @@ class _EmailTextFieldState extends State<EmailTextField> {
       onFieldSubmitted: widget.onFieldSubmitted,
       keyboardType: TextInputType.emailAddress,
       decoration: InputDecoration(
-        hintText: context.getTranslator().email,
+        labelText: context.getTranslator().email,
       ),
       validator: (value) {
         return context.validateFiled(EmailValidator(value));

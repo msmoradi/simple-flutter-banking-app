@@ -42,7 +42,7 @@ class _ReferralCodeTextFieldState extends State<ReferralCodeTextField> {
           icon: const Icon(Icons.info_outline),
         ),
         prefixIcon: const Icon(Icons.person_2_outlined),
-        hintText: 'کد دعوت',
+        labelText: 'کد دعوت',
       ),
       validator: (value) {
         if (widget.needValidation) {
