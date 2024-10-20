@@ -32,6 +32,8 @@ class ProfileContent extends StatelessWidget {
           IconButton(
             onPressed: () {},
             icon: SvgPicture.asset(
+              width: 32,
+              height: 32,
               'assets/icons/bell.svg',
               colorFilter: ColorFilter.mode(
                 Theme.of(context).colorScheme.primary,
@@ -42,6 +44,8 @@ class ProfileContent extends StatelessWidget {
           IconButton(
             onPressed: () {},
             icon: SvgPicture.asset(
+              width: 32,
+              height: 32,
               'assets/icons/help-circle.svg',
               colorFilter: ColorFilter.mode(
                 Theme.of(context).colorScheme.primary,

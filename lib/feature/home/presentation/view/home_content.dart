@@ -482,6 +482,8 @@ class _HomeContentState extends State<HomeContent> {
               onPressed: () {},
               icon: SvgPicture.asset(
                 'assets/icons/bell.svg',
+                width: 32,
+                height: 32,
                 colorFilter: ColorFilter.mode(
                   Theme.of(context).colorScheme.primary,
                   BlendMode.srcIn,
@@ -491,6 +493,8 @@ class _HomeContentState extends State<HomeContent> {
             IconButton(
               onPressed: () {},
               icon: SvgPicture.asset(
+                width: 32,
+                height: 32,
                 'assets/icons/help-circle.svg',
                 colorFilter: ColorFilter.mode(
                   Theme.of(context).colorScheme.primary,
