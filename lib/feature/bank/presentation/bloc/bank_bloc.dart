@@ -27,7 +27,7 @@ class BankBloc extends Bloc<BankEvent, BankState> {
       }*/
 
       emit(state.copyWith(status: BankStatus.loading));
-      await Future.delayed(const Duration(seconds: 2));
+      await Future.delayed(const Duration(milliseconds: 200));
       if (state.bankCardStatus == BankCardStatus.ordered) {
         emit(state.copyWith(
             status: BankStatus.initial, bankCardStatus: BankCardStatus.issued));
