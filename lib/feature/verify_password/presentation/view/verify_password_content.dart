@@ -66,94 +66,88 @@ class _VerifyPasswordContentState extends State<VerifyPasswordContent> {
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
-          child: AnimatedSwitcher(
-            duration: const Duration(milliseconds: 200),
-            transitionBuilder: (child, animation) =>
-                ScaleTransition(scale: animation, child: child),
-            child: widget.showLoading
-                ? Center(
-                    child: LoadingAnimationWidget.threeRotatingDots(
-                      color: Theme.of(context).colorScheme.onSurfaceVariant,
-                      size: 70.0,
-                    ),
-                  )
-                : Column(
-                    children: [
-                      Expanded(
-                        child: SingleChildScrollView(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              const SizedBox(
-                                height: 16.0,
+          child: widget.showLoading
+              ? Center(
+                  child: LoadingAnimationWidget.waveDots(
+                    color: Theme.of(context).colorScheme.onSurfaceVariant,
+                    size: 100.0,
+                  ),
+                )
+              : Column(
+                  children: [
+                    Expanded(
+                      child: SingleChildScrollView(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const SizedBox(
+                              height: 16.0,
+                            ),
+                            if (widget.photoUrl.isNotEmpty)
+                              CircleAvatar(
+                                radius: 40.0,
+                                backgroundImage: NetworkImage(widget.photoUrl),
                               ),
-                              if (widget.photoUrl.isNotEmpty)
-                                CircleAvatar(
-                                  radius: 40.0,
-                                  backgroundImage:
-                                      NetworkImage(widget.photoUrl),
-                                ),
-                              const SizedBox(height: 16),
-                              Text(
-                                "روز بخیر، ${widget.firstName}",
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .headlineSmall
-                                    ?.copyWith(
-                                      fontWeight: FontWeight.bold,
-                                      color:
-                                          Theme.of(context).colorScheme.primary,
-                                    ),
-                              ),
-                              const SizedBox(height: 58),
-                              Directionality(
-                                textDirection: TextDirection.ltr,
-                                child: Center(
-                                  child: RoundedWithShadowInput(
-                                    obscureText: true,
-                                    controller: pinController,
-                                    useNativeKeyboard: false,
-                                    length: 4,
-                                    onCompleted: (password) {
-                                      context.read<VerifyPasswordBloc>().add(
-                                            VerifyPasswordSubmitted(
-                                              password: password,
-                                            ),
-                                          );
-                                    },
+                            const SizedBox(height: 16),
+                            Text(
+                              "روز بخیر، ${widget.firstName}",
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .headlineSmall
+                                  ?.copyWith(
+                                    fontWeight: FontWeight.bold,
+                                    color:
+                                        Theme.of(context).colorScheme.primary,
                                   ),
+                            ),
+                            const SizedBox(height: 58),
+                            Directionality(
+                              textDirection: TextDirection.ltr,
+                              child: Center(
+                                child: RoundedWithShadowInput(
+                                  obscureText: true,
+                                  controller: pinController,
+                                  useNativeKeyboard: false,
+                                  length: 4,
+                                  onCompleted: (password) {
+                                    context.read<VerifyPasswordBloc>().add(
+                                          VerifyPasswordSubmitted(
+                                            password: password,
+                                          ),
+                                        );
+                                  },
                                 ),
                               ),
-                              const SizedBox(height: 32),
-                              CustomKeypad(
-                                onKeyTapped: _onKeyTapped,
-                                onBackspace: _onBackspace,
-                                onPrimaryTapped: () =>
-                                    context.read<VerifyPasswordBloc>().add(
-                                          const BiometricsSubmitted(),
-                                        ),
-                                primaryIcon: widget.showBiometric
-                                    ? Icons.fingerprint_rounded
-                                    : null,
-                                isEnabled: pinController.text.length < 4,
-                              ),
-                            ],
-                          ),
+                            ),
+                            const SizedBox(height: 32),
+                            CustomKeypad(
+                              onKeyTapped: _onKeyTapped,
+                              onBackspace: _onBackspace,
+                              onPrimaryTapped: () =>
+                                  context.read<VerifyPasswordBloc>().add(
+                                        const BiometricsSubmitted(),
+                                      ),
+                              primaryIcon: widget.showBiometric
+                                  ? Icons.fingerprint_rounded
+                                  : null,
+                              isEnabled: pinController.text.length < 4,
+                            ),
+                          ],
                         ),
                       ),
-                      Text(
-                        "رمز ورود خود را فراموش کردید؟",
-                        style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                              fontWeight: FontWeight.w600,
-                              color: Theme.of(context).colorScheme.primary,
-                            ),
-                      ),
-                      const SizedBox(
-                        height: 16.0,
-                      )
-                    ],
-                  ),
-          ),
+                    ),
+                    Text(
+                      "رمز ورود خود را فراموش کردید؟",
+                      style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                            fontWeight: FontWeight.w600,
+                            color: Theme.of(context).colorScheme.primary,
+                          ),
+                    ),
+                    const SizedBox(
+                      height: 16.0,
+                    )
+                  ],
+                ),
         ),
       ),
     );

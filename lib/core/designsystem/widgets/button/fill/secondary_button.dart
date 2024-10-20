@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 class SecondaryFillButton extends StatelessWidget {
   final VoidCallback? onPressed;
@@ -19,20 +19,16 @@ class SecondaryFillButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final content = AnimatedSwitcher(
-        duration: const Duration(milliseconds: 400),
-        transitionBuilder: (child, animation) =>
-            ScaleTransition(scale: animation, child: child),
-        child: isLoading
-            ? SpinKitThreeBounce(
-                color: Theme.of(context).colorScheme.onSecondaryContainer,
-                size: 30.0,
-              )
-            : Text(
-                label,
-                style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                    color: Theme.of(context).colorScheme.onSecondaryContainer),
-              ));
+    final content = isLoading
+        ? LoadingAnimationWidget.waveDots(
+            color: Theme.of(context).colorScheme.onSecondaryContainer,
+            size: 50.0,
+          )
+        : Text(
+            label,
+            style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                color: Theme.of(context).colorScheme.onSecondaryContainer),
+          );
     return SizedBox(
       width: fillWidth ? Size.infinite.width : null,
       child: icon != null

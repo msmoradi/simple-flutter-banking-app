@@ -55,30 +55,25 @@ class ProfileContent extends StatelessWidget {
           ),
         ],
       ),
-      body: AnimatedSwitcher(
-        duration: const Duration(milliseconds: 200),
-        transitionBuilder: (child, animation) =>
-            ScaleTransition(scale: animation, child: child),
-        child: SafeArea(
-            child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(height: 16),
-              ProfileHeader(
-                userProfile: userProfile,
-                fullName: fullName,
-                userName: userName,
-              ),
-              const SizedBox(height: 16),
-              const Divider(),
-              const SizedBox(height: 30),
-              MenuList(onExitClick: onExitClick),
-              // Use the new MenuList widget
-            ],
-          ),
-        )),
-      ),
+      body: SafeArea(
+          child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const SizedBox(height: 16),
+            ProfileHeader(
+              userProfile: userProfile,
+              fullName: fullName,
+              userName: userName,
+            ),
+            const SizedBox(height: 16),
+            const Divider(),
+            const SizedBox(height: 30),
+            MenuList(onExitClick: onExitClick),
+            // Use the new MenuList widget
+          ],
+        ),
+      )),
     );
   }
 }
