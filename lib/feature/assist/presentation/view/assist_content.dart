@@ -1,15 +1,5 @@
-import 'dart:io';
-
-import 'package:banx/feature/assist/presentation/ndef_record/raw_record_setting.dart';
-import 'package:banx/feature/assist/presentation/ndef_record/text_record_setting.dart';
-import 'package:banx/feature/assist/presentation/ndef_record/uri_record_setting.dart';
-import 'package:banx/feature/assist/presentation/view/nfc_apdu_screen.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_nfc_kit/flutter_nfc_kit.dart';
-import 'package:ndef/ndef.dart' as ndef;
-import 'package:ndef/utilities.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class AssistContent extends StatefulWidget {
   const AssistContent({super.key});
@@ -18,154 +8,170 @@ class AssistContent extends StatefulWidget {
   State<AssistContent> createState() => _AssistContentState();
 }
 
-class _AssistContentState extends State<AssistContent>
-    with SingleTickerProviderStateMixin {
-  String _platformVersion = '';
-  NFCAvailability _availability = NFCAvailability.not_supported;
-  NFCTag? _tag;
-  String? _result, _writeResult, _mifareResult;
-  late TabController _tabController;
-  List<ndef.NDEFRecord>? _records;
-
+class _AssistContentState extends State<AssistContent> {
   @override
-  void dispose() {
-    _tabController.dispose();
-    super.dispose();
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        surfaceTintColor: Colors.transparent,
+        title: const Text('دستیار هوشمند'),
+        titleTextStyle: Theme.of(context).textTheme.headlineSmall?.copyWith(
+              color: Theme.of(context).colorScheme.primary,
+              fontWeight: FontWeight.bold,
+            ),
+        centerTitle: false,
+        automaticallyImplyLeading: false,
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: SvgPicture.asset(
+              width: 32,
+              height: 32,
+              'assets/icons/search.svg',
+              colorFilter: ColorFilter.mode(
+                Theme.of(context).colorScheme.primary,
+                BlendMode.srcIn,
+              ),
+            ),
+          ),
+          IconButton(
+            onPressed: () {},
+            icon: SvgPicture.asset(
+              width: 32,
+              height: 32,
+              'assets/icons/help-circle.svg',
+              colorFilter: ColorFilter.mode(
+                Theme.of(context).colorScheme.primary,
+                BlendMode.srcIn,
+              ),
+            ),
+          ),
+        ],
+      ),
+      body: SafeArea(
+          child: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+          child: Column(
+            children: [
+              Align(
+                alignment: Alignment.centerRight,
+                child: Text(
+                  'موضوعی که در آن به کمک نیاز دارید را انتخاب کنید',
+                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                      color: Theme.of(context).colorScheme.onSurfaceVariant),
+                ),
+              ),
+              const SizedBox(height: 24),
+              GridView.count(
+                crossAxisCount: 2,
+                shrinkWrap: true,
+                crossAxisSpacing: 24,
+                childAspectRatio: 1.33,
+                mainAxisSpacing: 16,
+                physics: const NeverScrollableScrollPhysics(),
+                children: [
+                  _AssistOptionCard(
+                    icon: 'assets/icons/help-circle.svg',
+                    title: 'پشتیبانی بانک',
+                    description: 'موضوعات مربوط به کارت، صورت‌حساب، رمزها و...',
+                    contentColor: Color(0xFF444F58),
+                    backgroundColor: Color(0xFFD1EBDB),
+                    onTap: () {},
+                  ),
+                  _AssistOptionCard(
+                    icon: 'assets/icons/stockmarket.svg',
+                    title: 'وضعیت بازار',
+                    description: 'قیمت دارایی و اخبار و تحلیل آینده بازار',
+                    contentColor: Color(0xFF444F58),
+                    backgroundColor: Color(0xFFDFEBF6),
+                    onTap: () {},
+                  ),
+                  _AssistOptionCard(
+                    icon: 'assets/icons/calculator.svg',
+                    title: 'خرج و مخارج',
+                    description: 'تحلیل وضعیت درآمد و هزینه‌های شما',
+                    contentColor: Color(0xFF56493E),
+                    backgroundColor: Color(0xFFF4E1D2),
+                    onTap: () {},
+                  ),
+                  _AssistOptionCard(
+                    icon: 'assets/icons/help-circle.svg',
+                    title: 'مشاوره پس‌انداز',
+                    description: 'تحلیل رفتار مالی شما و مشاوره مالی',
+                    contentColor: Color(0xFF534E57),
+                    backgroundColor: Color(0xFFF4ECF7),
+                    onTap: () {},
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      )),
+    );
   }
+}
 
-  @override
-  void initState() {
-    super.initState();
-    if (!kIsWeb)
-      _platformVersion =
-          '${Platform.operatingSystem} ${Platform.operatingSystemVersion}';
-    else
-      _platformVersion = 'Web';
-    initPlatformState();
-    _tabController = new TabController(length: 2, vsync: this);
-    _records = [];
-  }
+class _AssistOptionCard extends StatelessWidget {
+  final String icon;
+  final String title;
+  final String description;
+  final Color contentColor;
+  final Color backgroundColor;
+  final VoidCallback onTap;
 
-  // Platform messages are asynchronous, so we initialize in an async method.
-  Future<void> initPlatformState() async {
-    NFCAvailability availability;
-    try {
-      availability = await FlutterNfcKit.nfcAvailability;
-    } on PlatformException {
-      availability = NFCAvailability.not_supported;
-    }
-
-    // If the widget was removed from the tree while the asynchronous platform
-    // message was in flight, we want to discard the reply rather than calling
-    // setState to update our non-existent appearance.
-    if (!mounted) return;
-
-    setState(() {
-      // _platformVersion = platformVersion;
-      _availability = availability;
-    });
-  }
+  const _AssistOptionCard({
+    required this.icon,
+    required this.title,
+    required this.description,
+    required this.contentColor,
+    required this.backgroundColor,
+    Key? key,
+    required this.onTap,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-            title: const Text('NFC Flutter Kit Example App'),
-            bottom: TabBar(
-              tabs: <Widget>[
-                Tab(text: 'Read'),
-                Tab(text: 'Write'),
-              ],
-              controller: _tabController,
-            )),
-        body: new TabBarView(controller: _tabController, children: <Widget>[
-          Scrollbar(
-              child: SingleChildScrollView(
-                  child: Center(
-                      child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                const SizedBox(height: 20),
-                Text('Running on: $_platformVersion\nNFC: $_availability'),
-                const SizedBox(height: 10),
-                ElevatedButton(
-                  onPressed: () async {
-                    try {
-                      NFCTag tag = await FlutterNfcKit.poll();
-                      setState(() {
-                        _tag = tag;
-                      });
-                      await FlutterNfcKit.setIosAlertMessage(
-                          "Working on it...");
-                      _mifareResult = null;
-                      if (tag.standard == "ISO 14443-4 (Type B)") {
-                        String result1 =
-                            await FlutterNfcKit.transceive("00B0950000");
-                        String result2 = await FlutterNfcKit.transceive(
-                            "00A4040009A00000000386980701");
-                        setState(() {
-                          _result = '1: $result1\n2: $result2\n';
-                        });
-                      } else if (tag.type == NFCTagType.iso18092) {
-                        String result1 =
-                            await FlutterNfcKit.transceive("060080080100");
-                        setState(() {
-                          _result = '1: $result1\n';
-                        });
-                      } else if (tag.ndefAvailable ?? false) {
-                        var ndefRecords = await FlutterNfcKit.readNDEFRecords();
-                        var ndefString = '';
-                        for (int i = 0; i < ndefRecords.length; i++) {
-                          ndefString += '${i + 1}: ${ndefRecords[i]}\n';
-                        }
-                        setState(() {
-                          _result = ndefString;
-                        });
-                      } else if (tag.type == NFCTagType.webusb) {
-                        var r = await FlutterNfcKit.transceive(
-                            "00A4040006D27600012401");
-                        print(r);
-                      }
-                    } catch (e) {
-                      setState(() {
-                        _result = 'error: $e';
-                      });
-                    }
-
-                    // Pretend that we are working
-                    if (!kIsWeb) sleep(new Duration(seconds: 1));
-                    await FlutterNfcKit.finish(iosAlertMessage: "Finished!");
-                  },
-                  child: Text('Start polling'),
-                ),
-                const SizedBox(height: 10),
-                Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: _tag != null
-                        ? Text(
-                            'ID: ${_tag!.id}\nStandard: ${_tag!.standard}\nType: ${_tag!.type}\nATQA: ${_tag!.atqa}\nSAK: ${_tag!.sak}\nHistorical Bytes: ${_tag!.historicalBytes}\nProtocol Info: ${_tag!.protocolInfo}\nApplication Data: ${_tag!.applicationData}\nHigher Layer Response: ${_tag!.hiLayerResponse}\nManufacturer: ${_tag!.manufacturer}\nSystem Code: ${_tag!.systemCode}\nDSF ID: ${_tag!.dsfId}\nNDEF Available: ${_tag!.ndefAvailable}\nNDEF Type: ${_tag!.ndefType}\nNDEF Writable: ${_tag!.ndefWritable}\nNDEF Can Make Read Only: ${_tag!.ndefCanMakeReadOnly}\nNDEF Capacity: ${_tag!.ndefCapacity}\nMifare Info:${_tag!.mifareInfo} Transceive Result:\n$_result\n\nBlock Message:\n$_mifareResult')
-                        : const Text('No tag polled yet.')),
-              ])))),
-          NfcApduScreen()
-        ]),
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        decoration: BoxDecoration(
+          color: backgroundColor,
+          borderRadius: BorderRadius.circular(16),
+        ),
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Align(
+              alignment: Alignment.centerLeft,
+              child: SvgPicture.asset(
+                icon,
+                width: 24,
+                height: 24,
+                colorFilter: ColorFilter.mode(contentColor, BlendMode.srcIn),
+              ),
+            ),
+            const SizedBox(height: 8),
+            Text(
+              title,
+              style: Theme.of(context)
+                  .textTheme
+                  .labelLarge
+                  ?.copyWith(fontWeight: FontWeight.bold, color: contentColor),
+            ),
+            const SizedBox(height: 8),
+            Text(
+              description,
+              style: Theme.of(context)
+                  .textTheme
+                  .labelSmall
+                  ?.copyWith(color: contentColor),
+            ),
+          ],
+        ),
       ),
     );
-  }
-
-  Future<void> sendApduCommand() async {
-    // Example APDU command
-    print('sendApduCommand');
-
-    const String apduCommand = '00 B2 01 0C 00';
-
-    try {
-      // Send the APDU command
-      var response = await FlutterNfcKit.transceive(apduCommand);
-      print('APDU response: $response');
-    } catch (e) {
-      // Handle any communication errors
-      print('APDU communication error: $e');
-    }
   }
 }
