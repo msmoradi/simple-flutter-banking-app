@@ -89,6 +89,7 @@ class _TransactionContentState extends State<TransactionContent> {
                         children: [
                           Text(
                             widget.value,
+                            textDirection: TextDirection.ltr,
                             style: Theme.of(context)
                                 .textTheme
                                 .headlineLarge
