@@ -117,6 +117,7 @@ extension GetItInjectableX on _i174.GetIt {
     );
     final registerModule = _$RegisterModule();
     gh.factory<_i535.InfoInterceptor>(() => _i535.InfoInterceptor());
+    gh.factory<_i737.TransactionBloc>(() => _i737.TransactionBloc());
     gh.factory<_i412.HomeBloc>(() => _i412.HomeBloc());
     gh.factory<_i20.AssistBloc>(() => _i20.AssistBloc());
     gh.factory<_i864.BankBloc>(() => _i864.BankBloc());
@@ -240,12 +241,6 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i266.SelectCardBloc>(() => _i266.SelectCardBloc(
           cardRepository: gh<_i831.CardRepository>(),
           addressRepository: gh<_i648.AddressRepository>(),
-        ));
-    gh.factory<_i737.TransactionBloc>(() => _i737.TransactionBloc(
-          authenticationRepository: gh<_i474.AuthenticationRepository>(),
-          tokenRepository: gh<_i232.TokenRepository>(),
-          profileRepository: gh<_i111.ProfileRepository>(),
-          localAuthentication: gh<_i877.LocalAuthHelper>(),
         ));
     gh.factory<_i67.VerifyPasswordBloc>(() => _i67.VerifyPasswordBloc(
           authenticationRepository: gh<_i474.AuthenticationRepository>(),

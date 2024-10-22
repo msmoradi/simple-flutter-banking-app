@@ -19,47 +19,40 @@ part 'transaction_event.dart';
 
 @injectable
 class TransactionBloc extends Bloc<TransactionEvent, TransactionState> {
-  final AuthenticationRepository authenticationRepository;
-  final TokenRepository tokenRepository;
-  final ProfileRepository profileRepository;
-  final LocalAuthHelper localAuthentication;
+  TransactionBloc()
+      : super(const TransactionState(status: TransactionStatus.loading)) {
+    on<SelectTypeEvent>(_onSelectType);
+    on<AddValueEvent>(_onAddValue);
+    on<RemoveValueEvent>(_onRemoveValue);
+  }
 
-  TransactionBloc({
-    required this.authenticationRepository,
-    required this.tokenRepository,
-    required this.profileRepository,
-    required this.localAuthentication,
-  }) : super(const TransactionState(status: TransactionStatus.loading)) {
-    on<AddValueEvent>((event, emit) {
-      final currentValue = state.value ?? '';
-      String updatedValue;
+  void _onSelectType(SelectTypeEvent event, Emitter<TransactionState> emit) {
+    if (state.selectedType != event.selectedType) {
+      emit(state.copyWith(value: ''));
+    }
+    emit(state.copyWith(selectedType: event.selectedType));
+  }
 
-      if (event.key == '.') {
-        if (currentValue.contains('.')) {
-          updatedValue = currentValue;
-        } else {
-          updatedValue = currentValue + event.key;
-        }
-      } else {
-        updatedValue = currentValue + event.key;
-      }
+  void _onAddValue(AddValueEvent event, Emitter<TransactionState> emit) {
+    final currentValue = state.value ?? '';
+    String updatedValue;
 
+    if (event.key == '.') {
+      updatedValue =
+          currentValue.contains('.') ? currentValue : currentValue + event.key;
+    } else {
+      updatedValue = currentValue + event.key;
+    }
+
+    emit(state.copyWith(value: _formatWithCommas(updatedValue)));
+  }
+
+  void _onRemoveValue(RemoveValueEvent event, Emitter<TransactionState> emit) {
+    final currentValue = state.value ?? '';
+    if (currentValue.isNotEmpty) {
+      final updatedValue = currentValue.substring(0, currentValue.length - 1);
       emit(state.copyWith(value: _formatWithCommas(updatedValue)));
-    });
-
-    on<RemoveValueEvent>((event, emit) {
-      final currentValue = state.value ?? '';
-      if (currentValue.isNotEmpty) {
-        final updatedValue = currentValue.substring(0, currentValue.length - 1);
-        emit(state.copyWith(value: updatedValue));
-      }
-    });
-
-    on<SelectTypeEvent>((event, emit) {
-      emit(state.copyWith(
-        selectedType: event.selectedType,
-      ));
-    });
+    }
   }
 
   String _formatWithCommas(String value) {
