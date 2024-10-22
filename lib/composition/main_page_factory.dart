@@ -28,7 +28,7 @@ class MainPageFactory {
         path: (MainPageFactory.path),
         builder: (ctx, state) {
           final initTabIndex =
-              int.tryParse(state.pathParameters['initTabIndex'] ?? "") ?? 4;
+              int.tryParse(state.pathParameters['initTabIndex'] ?? "") ?? 1;
           return MainPageFactory.builder(
             context: ctx,
             initTabIndex: initTabIndex,

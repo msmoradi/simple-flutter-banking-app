@@ -1,0 +1,155 @@
+import 'package:banx/core/designsystem/widgets/bottomsheet/deposit_bottom_sheet_content.dart';
+import 'package:banx/core/designsystem/widgets/components/drop_down_chip_widget.dart';
+import 'package:banx/core/designsystem/widgets/transaction_keypad.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:pinput/pinput.dart';
+
+class TransactionContent extends StatefulWidget {
+  final DropdownChipType selectedType;
+
+  const TransactionContent({
+    super.key,
+    required this.selectedType,
+  });
+
+  @override
+  _TransactionContentState createState() => _TransactionContentState();
+}
+
+class _TransactionContentState extends State<TransactionContent> {
+  late final TextEditingController pinController;
+
+  void _onKeyTapped(String key) {
+    if (!mounted) return;
+    setState(() {
+      pinController.text += key;
+    });
+  }
+
+  void _onBackspace() {
+    if (!mounted) return;
+    setState(() {
+      pinController.delete();
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    pinController = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    pinController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        surfaceTintColor: Colors.transparent,
+        title: const Text('مبلغ انتقال'),
+        titleTextStyle: Theme.of(context).textTheme.headlineSmall?.copyWith(
+              color: Theme.of(context).colorScheme.primary,
+              fontWeight: FontWeight.bold,
+            ),
+        centerTitle: false,
+        automaticallyImplyLeading: false,
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: SvgPicture.asset(
+              width: 32,
+              height: 32,
+              'assets/icons/calendar-minus.svg',
+              colorFilter: ColorFilter.mode(
+                Theme.of(context).colorScheme.primary,
+                BlendMode.srcIn,
+              ),
+            ),
+          ),
+          IconButton(
+            onPressed: () {},
+            icon: SvgPicture.asset(
+              width: 32,
+              height: 32,
+              'assets/icons/help-circle.svg',
+              colorFilter: ColorFilter.mode(
+                Theme.of(context).colorScheme.primary,
+                BlendMode.srcIn,
+              ),
+            ),
+          ),
+        ],
+      ),
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            children: [
+              SingleChildScrollView(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const SizedBox(
+                      height: 16.0,
+                    ),
+                    Text(
+                      '۶۵۵٬۰۰۰ ریالء',
+                      style:
+                          Theme.of(context).textTheme.headlineLarge?.copyWith(
+                                fontWeight: FontWeight.bold,
+                                color: Theme.of(context).colorScheme.primary,
+                              ),
+                    ),
+                    const SizedBox(height: 21),
+                    DropdownChipWidget(
+                      type: widget.selectedType,
+                    ),
+                    const SizedBox(height: 70),
+                    TransactionKeypad(
+                      onKeyTapped: _onKeyTapped,
+                      onBackspace: _onBackspace,
+                      onPrimaryTapped: () {},
+                      primaryIcon: true ? Icons.fingerprint_rounded : null,
+                      isEnabled: pinController.text.length < 4,
+                    ),
+                  ],
+                ),
+              ),
+              InkWell(
+                customBorder: const CircleBorder(),
+                onTap: () {
+                  HapticFeedback.mediumImpact();
+                },
+                child: Container(
+                  alignment: Alignment.center,
+                  margin: const EdgeInsets.all(12.0),
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Theme.of(context).colorScheme.primary,
+                  ),
+                  width: 70.0,
+                  height: 70.0,
+                  child: SvgPicture.asset(
+                    'assets/icons/arrow-left.svg',
+                    width: 40.0,
+                    height: 40.0,
+                    colorFilter: ColorFilter.mode(
+                      Theme.of(context).colorScheme.onPrimary,
+                      BlendMode.srcIn,
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}

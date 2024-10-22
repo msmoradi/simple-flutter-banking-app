@@ -7,7 +7,6 @@ import 'package:banx/core/domain/entities/card_delivery_entity.dart';
 import 'package:banx/feature/bank/presentation/bloc/bank_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 class BankContent extends StatelessWidget {
   final bool showCardDeliveryButton;
