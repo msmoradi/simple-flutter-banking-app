@@ -1,17 +1,19 @@
-import 'package:banx/core/designsystem/widgets/bottomsheet/deposit_bottom_sheet_content.dart';
 import 'package:banx/core/designsystem/widgets/components/drop_down_chip_widget.dart';
 import 'package:banx/core/designsystem/widgets/transaction_keypad.dart';
+import 'package:banx/feature/transaction/presentation/bloc/transaction_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:pinput/pinput.dart';
 
 class TransactionContent extends StatefulWidget {
   final DropdownChipType selectedType;
+  final String value;
 
   const TransactionContent({
     super.key,
     required this.selectedType,
+    required this.value,
   });
 
   @override
@@ -19,32 +21,14 @@ class TransactionContent extends StatefulWidget {
 }
 
 class _TransactionContentState extends State<TransactionContent> {
-  late final TextEditingController pinController;
-
   void _onKeyTapped(String key) {
     if (!mounted) return;
-    setState(() {
-      pinController.text += key;
-    });
+    context.read<TransactionBloc>().add(AddValueEvent(key: key));
   }
 
   void _onBackspace() {
     if (!mounted) return;
-    setState(() {
-      pinController.delete();
-    });
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    pinController = TextEditingController();
-  }
-
-  @override
-  void dispose() {
-    pinController.dispose();
-    super.dispose();
+    context.read<TransactionBloc>().add(const RemoveValueEvent());
   }
 
   @override
@@ -98,13 +82,33 @@ class _TransactionContentState extends State<TransactionContent> {
                     const SizedBox(
                       height: 16.0,
                     ),
-                    Text(
-                      '۶۵۵٬۰۰۰ ریالء',
-                      style:
-                          Theme.of(context).textTheme.headlineLarge?.copyWith(
-                                fontWeight: FontWeight.bold,
-                                color: Theme.of(context).colorScheme.primary,
-                              ),
+                    FittedBox(
+                      fit: BoxFit.scaleDown,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            widget.value,
+                            style: Theme.of(context)
+                                .textTheme
+                                .headlineLarge
+                                ?.copyWith(
+                                  fontWeight: FontWeight.bold,
+                                  color: Theme.of(context).colorScheme.primary,
+                                ),
+                          ),
+                          Text(
+                            widget.selectedType.unit,
+                            style: Theme.of(context)
+                                .textTheme
+                                .headlineLarge
+                                ?.copyWith(
+                                  fontWeight: FontWeight.bold,
+                                  color: Theme.of(context).colorScheme.primary,
+                                ),
+                          ),
+                        ],
+                      ),
                     ),
                     const SizedBox(height: 21),
                     DropdownChipWidget(
@@ -114,9 +118,9 @@ class _TransactionContentState extends State<TransactionContent> {
                     TransactionKeypad(
                       onKeyTapped: _onKeyTapped,
                       onBackspace: _onBackspace,
-                      onPrimaryTapped: () {},
-                      primaryIcon: true ? Icons.fingerprint_rounded : null,
-                      isEnabled: pinController.text.length < 4,
+                      isEnabled: true,
+                      showDot:
+                          widget.selectedType == DropdownChipType.goldDeposit,
                     ),
                   ],
                 ),

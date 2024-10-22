@@ -25,6 +25,7 @@ class TransactionPage extends StatelessWidget {
         builder: (context, state) {
           return TransactionContent(
             selectedType: state.selectedType,
+            value: state.value,
           );
         },
       ),

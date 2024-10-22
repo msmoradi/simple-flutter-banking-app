@@ -13,19 +13,16 @@ class SelectTypeEvent extends TransactionEvent {
   SelectTypeEvent(this.selectedType);
 }
 
-class TransactionSubmitted extends TransactionEvent {
-  final String password;
+class AddValueEvent extends TransactionEvent {
+  final String key;
 
-  const TransactionSubmitted({
-    required this.password,
+  const AddValueEvent({
+    required this.key,
   });
-
-  @override
-  List<Object> get props => [password];
 }
 
-class BiometricsSubmitted extends TransactionEvent {
-  const BiometricsSubmitted();
+class RemoveValueEvent extends TransactionEvent {
+  const RemoveValueEvent();
 
   @override
   List<Object> get props => [];

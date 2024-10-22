@@ -13,7 +13,7 @@ class TransactionState with _$TransactionState {
     @Default('') String deeplink,
     @Default(false) bool showBiometric,
     @Default('') String name,
-    @Default('') String photoUrl,
+    @Default('') String value,
     @Default(DropdownChipType.rialDeposit) DropdownChipType selectedType,
   }) = _TransactionState;
 }

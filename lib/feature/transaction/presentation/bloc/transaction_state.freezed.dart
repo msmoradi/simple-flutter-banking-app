@@ -21,7 +21,7 @@ mixin _$TransactionState {
   String get deeplink => throw _privateConstructorUsedError;
   bool get showBiometric => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
-  String get photoUrl => throw _privateConstructorUsedError;
+  String get value => throw _privateConstructorUsedError;
   DropdownChipType get selectedType => throw _privateConstructorUsedError;
 
   /// Create a copy of TransactionState
@@ -43,7 +43,7 @@ abstract class $TransactionStateCopyWith<$Res> {
       String deeplink,
       bool showBiometric,
       String name,
-      String photoUrl,
+      String value,
       DropdownChipType selectedType});
 }
 
@@ -67,7 +67,7 @@ class _$TransactionStateCopyWithImpl<$Res, $Val extends TransactionState>
     Object? deeplink = null,
     Object? showBiometric = null,
     Object? name = null,
-    Object? photoUrl = null,
+    Object? value = null,
     Object? selectedType = null,
   }) {
     return _then(_value.copyWith(
@@ -91,9 +91,9 @@ class _$TransactionStateCopyWithImpl<$Res, $Val extends TransactionState>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      photoUrl: null == photoUrl
-          ? _value.photoUrl
-          : photoUrl // ignore: cast_nullable_to_non_nullable
+      value: null == value
+          ? _value.value
+          : value // ignore: cast_nullable_to_non_nullable
               as String,
       selectedType: null == selectedType
           ? _value.selectedType
@@ -117,7 +117,7 @@ abstract class _$$TransactionStateImplCopyWith<$Res>
       String deeplink,
       bool showBiometric,
       String name,
-      String photoUrl,
+      String value,
       DropdownChipType selectedType});
 }
 
@@ -139,7 +139,7 @@ class __$$TransactionStateImplCopyWithImpl<$Res>
     Object? deeplink = null,
     Object? showBiometric = null,
     Object? name = null,
-    Object? photoUrl = null,
+    Object? value = null,
     Object? selectedType = null,
   }) {
     return _then(_$TransactionStateImpl(
@@ -163,9 +163,9 @@ class __$$TransactionStateImplCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      photoUrl: null == photoUrl
-          ? _value.photoUrl
-          : photoUrl // ignore: cast_nullable_to_non_nullable
+      value: null == value
+          ? _value.value
+          : value // ignore: cast_nullable_to_non_nullable
               as String,
       selectedType: null == selectedType
           ? _value.selectedType
@@ -184,7 +184,7 @@ class _$TransactionStateImpl implements _TransactionState {
       this.deeplink = '',
       this.showBiometric = false,
       this.name = '',
-      this.photoUrl = '',
+      this.value = '',
       this.selectedType = DropdownChipType.rialDeposit});
 
   @override
@@ -204,14 +204,14 @@ class _$TransactionStateImpl implements _TransactionState {
   final String name;
   @override
   @JsonKey()
-  final String photoUrl;
+  final String value;
   @override
   @JsonKey()
   final DropdownChipType selectedType;
 
   @override
   String toString() {
-    return 'TransactionState(status: $status, errorMessage: $errorMessage, deeplink: $deeplink, showBiometric: $showBiometric, name: $name, photoUrl: $photoUrl, selectedType: $selectedType)';
+    return 'TransactionState(status: $status, errorMessage: $errorMessage, deeplink: $deeplink, showBiometric: $showBiometric, name: $name, value: $value, selectedType: $selectedType)';
   }
 
   @override
@@ -227,15 +227,14 @@ class _$TransactionStateImpl implements _TransactionState {
             (identical(other.showBiometric, showBiometric) ||
                 other.showBiometric == showBiometric) &&
             (identical(other.name, name) || other.name == name) &&
-            (identical(other.photoUrl, photoUrl) ||
-                other.photoUrl == photoUrl) &&
+            (identical(other.value, value) || other.value == value) &&
             (identical(other.selectedType, selectedType) ||
                 other.selectedType == selectedType));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, status, errorMessage, deeplink,
-      showBiometric, name, photoUrl, selectedType);
+      showBiometric, name, value, selectedType);
 
   /// Create a copy of TransactionState
   /// with the given fields replaced by the non-null parameter values.
@@ -254,7 +253,7 @@ abstract class _TransactionState implements TransactionState {
       final String deeplink,
       final bool showBiometric,
       final String name,
-      final String photoUrl,
+      final String value,
       final DropdownChipType selectedType}) = _$TransactionStateImpl;
 
   @override
@@ -268,7 +267,7 @@ abstract class _TransactionState implements TransactionState {
   @override
   String get name;
   @override
-  String get photoUrl;
+  String get value;
   @override
   DropdownChipType get selectedType;
 

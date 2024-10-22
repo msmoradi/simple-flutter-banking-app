@@ -13,6 +13,7 @@ import 'package:banx/feature/verify_password/presentation/bloc/verify_password_s
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
+import 'package:intl/intl.dart';
 
 part 'transaction_event.dart';
 
@@ -29,8 +30,51 @@ class TransactionBloc extends Bloc<TransactionEvent, TransactionState> {
     required this.profileRepository,
     required this.localAuthentication,
   }) : super(const TransactionState(status: TransactionStatus.loading)) {
-    on<SelectTypeEvent>((event, emit) {
-      emit(state.copyWith(selectedType: event.selectedType));
+    on<AddValueEvent>((event, emit) {
+      final currentValue = state.value ?? '';
+      String updatedValue;
+
+      if (event.key == '.') {
+        if (currentValue.contains('.')) {
+          updatedValue = currentValue;
+        } else {
+          updatedValue = currentValue + event.key;
+        }
+      } else {
+        updatedValue = currentValue + event.key;
+      }
+
+      emit(state.copyWith(value: _formatWithCommas(updatedValue)));
     });
+
+    on<RemoveValueEvent>((event, emit) {
+      final currentValue = state.value ?? '';
+      if (currentValue.isNotEmpty) {
+        final updatedValue = currentValue.substring(0, currentValue.length - 1);
+        emit(state.copyWith(value: updatedValue));
+      }
+    });
+
+    on<SelectTypeEvent>((event, emit) {
+      emit(state.copyWith(
+        selectedType: event.selectedType,
+      ));
+    });
+  }
+
+  String _formatWithCommas(String value) {
+    String numericValue = value.replaceAll(',', '');
+    if (numericValue.isEmpty) return '';
+    if (numericValue.contains('.')) {
+      List<String> parts = numericValue.split('.');
+      final formatter = NumberFormat.decimalPattern();
+      String formattedIntPart = formatter.format(int.tryParse(parts[0]) ?? 0);
+      return parts.length > 1
+          ? '$formattedIntPart.${parts[1]}'
+          : formattedIntPart;
+    } else {
+      final formatter = NumberFormat.decimalPattern();
+      return formatter.format(int.tryParse(numericValue) ?? 0);
+    }
   }
 }

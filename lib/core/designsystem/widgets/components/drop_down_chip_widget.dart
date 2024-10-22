@@ -6,26 +6,28 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 enum DropdownChipType {
   rialDeposit(
-    title: 'سپرده ریالء',
-    iconPath: 'assets/images/lite-coin-1.png',
-  ),
+      title: 'سپرده ریالء',
+      iconPath: 'assets/images/lite-coin-1.png',
+      unit: 'ریالء'),
   dollarDeposit(
-    title: 'سپرده دلار',
-    iconPath: 'assets/images/lite-coin-2.png',
-  ),
-  saffronDeposit(
-    title: 'سپرده زعفران',
-    iconPath: 'assets/images/lite-coin-3.png',
-  ),
+      title: 'سپرده دلار',
+      iconPath: 'assets/images/lite-coin-2.png',
+      unit: 'دلار'),
+  goldDeposit(
+      title: 'سپرده طلا',
+      iconPath: 'assets/images/lite-coin-3.png',
+      unit: 'گرم'),
   diamondDeposit(
-    title: 'سپرده الماس',
-    iconPath: 'assets/images/lite-coin-4.png',
-  );
+      title: 'سپرده الماس',
+      iconPath: 'assets/images/lite-coin-4.png',
+      unit: 'گرم');
 
   final String title;
+  final String unit;
   final String iconPath;
 
-  const DropdownChipType({required this.title, required this.iconPath});
+  const DropdownChipType(
+      {required this.title, required this.iconPath, required this.unit});
 }
 
 class DropdownChipWidget extends StatelessWidget {

@@ -4,17 +4,15 @@ import 'package:flutter/services.dart';
 class TransactionKeypad extends StatelessWidget {
   final Function(String) onKeyTapped;
   final VoidCallback onBackspace;
-  final VoidCallback onPrimaryTapped;
   final bool isEnabled;
-  final IconData? primaryIcon;
+  final bool showDot;
 
   const TransactionKeypad({
     super.key,
     required this.onKeyTapped,
     required this.onBackspace,
-    required this.onPrimaryTapped,
     required this.isEnabled,
-    this.primaryIcon,
+    required this.showDot,
   });
 
   @override
@@ -27,7 +25,7 @@ class TransactionKeypad extends StatelessWidget {
           _buildKeypadRow(['1', '2', '3'], context),
           _buildKeypadRow(['4', '5', '6'], context),
           _buildKeypadRow(['7', '8', '9'], context),
-          _buildKeypadRow(['', '0', 'backspace'], context),
+          _buildKeypadRow([showDot ? '.' : '', '0', 'backspace'], context),
         ],
       ),
     );
@@ -39,8 +37,8 @@ class TransactionKeypad extends StatelessWidget {
       children: keys.map((key) {
         if (key == 'backspace') {
           return _buildBackspaceKey(context);
-        } else if (key == '' && primaryIcon != null) {
-          return _buildKey('.', context);
+        } else if (key == '') {
+          return _buildSpace();
         } else {
           return _buildKey(key, context);
         }
@@ -59,7 +57,7 @@ class TransactionKeypad extends StatelessWidget {
           : null,
       child: Container(
         alignment: Alignment.center,
-        margin: EdgeInsets.symmetric(vertical: 12.0),
+        margin: const EdgeInsets.symmetric(vertical: 12.0),
         decoration: BoxDecoration(
           shape: BoxShape.circle,
           color: Theme.of(context).colorScheme.surfaceContainerLow,
@@ -93,11 +91,18 @@ class TransactionKeypad extends StatelessWidget {
         ),
         width: 70.0,
         height: 70.0,
-        child: Icon(
+        child: const Icon(
           Icons.backspace_rounded,
           size: 24.0,
         ),
       ),
+    );
+  }
+
+  Widget _buildSpace() {
+    return const SizedBox(
+      width: 70.0,
+      height: 70.0,
     );
   }
 }
