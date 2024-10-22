@@ -126,8 +126,7 @@ class _TransactionContentState extends State<TransactionContent> {
                   ],
                 ),
               ),
-              InkWell(
-                customBorder: const CircleBorder(),
+              GestureDetector(
                 onTap: () {
                   HapticFeedback.mediumImpact();
                 },

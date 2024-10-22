@@ -47,8 +47,7 @@ class TransactionKeypad extends StatelessWidget {
   }
 
   Widget _buildKey(String key, BuildContext context) {
-    return InkWell(
-      customBorder: const CircleBorder(),
+    return GestureDetector(
       onTap: isEnabled
           ? () {
               HapticFeedback.mediumImpact();
@@ -76,8 +75,7 @@ class TransactionKeypad extends StatelessWidget {
   }
 
   Widget _buildBackspaceKey(BuildContext context) {
-    return InkWell(
-      customBorder: const CircleBorder(),
+    return GestureDetector(
       onTap: () {
         HapticFeedback.mediumImpact();
         onBackspace();
