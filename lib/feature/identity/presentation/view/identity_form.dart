@@ -1,13 +1,12 @@
 import 'package:banx/core/designsystem/widgets/button/fill/full_fill_button.dart';
-import 'package:banx/core/designsystem/widgets/components/birth_date_bottom_sheet.dart';
 import 'package:banx/core/designsystem/widgets/textfields/birthday_text_field.dart';
 import 'package:banx/core/designsystem/widgets/textfields/national_id_text_field.dart';
 import 'package:banx/core/designsystem/widgets/textfields/referral_code_text_field.dart';
-import 'package:banx/core/utils/extension/build_context.dart';
 import 'package:banx/feature/identity/presentation/bloc/identity_bloc.dart';
 import 'package:banx/feature/identity/presentation/view/referral_bottom_sheet_content.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:persian_datetime_picker/persian_datetime_picker.dart';
 
 class IdentityForm extends StatefulWidget {
   final bool showLoading;
@@ -33,8 +32,6 @@ class _IdentityFormState extends State<IdentityForm> {
 
   @override
   Widget build(BuildContext context) {
-    final translator = context.getTranslator();
-
     return Column(
       children: [
         Expanded(
@@ -59,30 +56,28 @@ class _IdentityFormState extends State<IdentityForm> {
                         const SizedBox(height: 16),
                         BirthdayTextField(
                           controller: birthdayController,
-                          onTap: () {
-                            showModalBottomSheet(
-                              enableDrag: false,
-                              showDragHandle: true,
+                          onTap: () async {
+                            Jalali initialDateTime =
+                                birthdayController.text.isEmpty
+                                    ? Jalali(1375, 4)
+                                    : jalaliFromString(birthdayController.text);
+
+                            Jalali? picked = await showPersianDatePicker(
                               context: context,
-                              useSafeArea: true,
-                              shape: const RoundedRectangleBorder(
-                                borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(8.0),
-                                    topRight: Radius.circular(8.0)),
-                              ),
-                              isScrollControlled: true,
-                              builder: (context) {
-                                return BirthDateBottomSheet(
-                                    onCancelPressed: () {
-                                      Navigator.of(context).pop();
-                                    },
-                                    onConfirmPressed: (newDate) {
-                                      birthdayController.text = newDate;
-                                      Navigator.of(context).pop();
-                                    },
-                                    birthDate: birthdayController.text);
-                              },
+                              initialDate: initialDateTime,
+                              firstDate: Jalali(1300, 8),
+                              lastDate: Jalali(1450, 9),
+                              initialEntryMode:
+                                  PersianDatePickerEntryMode.calendarOnly,
+                              initialDatePickerMode: PersianDatePickerMode.year,
                             );
+
+                            if(picked == null) return;
+
+                            String formattedDate =
+                                '${picked.year}/${picked.month}/${picked.day}';
+
+                            birthdayController.text = formattedDate;
                           },
                         ),
                         const SizedBox(height: 16),
@@ -128,11 +123,19 @@ class _IdentityFormState extends State<IdentityForm> {
                   );
             }
           },
-          label: translator.acceptAndContinue,
+          label: 'تأیید و ادامه',
           isLoading: widget.showLoading,
         ),
         const SizedBox(height: 16),
       ],
     );
+  }
+
+  Jalali jalaliFromString(String x) {
+    List<String> parts = x.split('/');
+    int year = int.parse(parts[0]);
+    int month = int.parse(parts[1]);
+    int day = int.parse(parts[2]);
+    return Jalali(year, month, day);
   }
 }
