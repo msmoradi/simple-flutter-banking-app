@@ -1,9 +1,12 @@
+import 'package:banx/composition/add_address_page_factory.dart';
+import 'package:banx/composition/transaction_destination_page_factory.dart';
 import 'package:banx/feature/transaction/presentation/bloc/transaction_bloc.dart';
 import 'package:banx/feature/transaction/presentation/bloc/transaction_state.dart';
 import 'package:banx/feature/transaction/presentation/view/transaction_content.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
+import 'package:go_router/go_router.dart';
 
 class TransactionPage extends StatelessWidget {
   const TransactionPage({
@@ -26,6 +29,12 @@ class TransactionPage extends StatelessWidget {
           return TransactionContent(
             selectedType: state.selectedType,
             value: state.value,
+            onActionClick: () {
+              context.go(TransactionDestinationPageFactory.path,
+                  extra: TransactionDestinationExtra(
+                      amount: state.value + state.selectedType.unit,
+                      source: state.selectedType));
+            },
           );
         },
       ),

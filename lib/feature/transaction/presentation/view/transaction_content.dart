@@ -9,11 +9,12 @@ import 'package:flutter_svg/flutter_svg.dart';
 class TransactionContent extends StatefulWidget {
   final DropdownChipType selectedType;
   final String value;
+  final VoidCallback onActionClick;
 
   const TransactionContent({
     super.key,
     required this.selectedType,
-    required this.value,
+    required this.value, required this.onActionClick,
   });
 
   @override
@@ -130,6 +131,7 @@ class _TransactionContentState extends State<TransactionContent> {
               GestureDetector(
                 onTap: () {
                   HapticFeedback.mediumImpact();
+                  widget.onActionClick();
                 },
                 child: Container(
                   alignment: Alignment.center,
