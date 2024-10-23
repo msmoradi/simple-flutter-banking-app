@@ -41,8 +41,14 @@
 	<true/>
 	<key>NSBiometricUsageDescription</key>
 	<string>We need to use your Touch ID for authentication</string>
+	<key>NSCameraUsageDescription</key>
+	<string>We need access to the camera to record videos.</string>
 	<key>NSFaceIDUsageDescription</key>
 	<string>We need to use your Face ID for authentication</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Can I use the mic please?</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>We need access to save videos to your gallery.</string>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>
@@ -62,19 +68,11 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>NSCameraUsageDescription</key>
-    <string>We need access to the camera to record videos.</string>
-    <key>NSPhotoLibraryUsageDescription</key>
-    <string>We need access to save videos to your gallery.</string>
-    <key>NSMicrophoneUsageDescription</key>
-    <string>Can I use the mic please?</string>
-
-   <key>com.apple.developer.nfc.readersession.formats</key>
-   <array>
-       <string>NDEF</string>
-       <string>TAG</string>
-       <string>ISO7816</string>
-   </array>
-
+	<key>com.apple.developer.nfc.readersession.formats</key>
+	<array>
+		<string>NDEF</string>
+		<string>TAG</string>
+		<string>ISO7816</string>
+	</array>
 </dict>
 </plist>

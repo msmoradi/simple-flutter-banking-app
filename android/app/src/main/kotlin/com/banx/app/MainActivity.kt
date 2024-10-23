@@ -1,4 +1,4 @@
-package com.example.flutter_banx
+package com.banx.app
 
 import io.flutter.embedding.android.FlutterFragmentActivity;
 
