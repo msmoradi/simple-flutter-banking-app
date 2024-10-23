@@ -20,6 +20,7 @@ class ProfileLocalDataSourceImpl extends ProfileLocalDataSource {
   static const _hasPasswordKey = 'HAS_PASSWORD';
   static const _profileStatusKey = 'PROFILE_STATUS';
   static const _kycLevelKey = 'KYC_LEVEL';
+  static const _nfcActiveKey = 'NFC_ACTIVE';
 
   @override
   Future<UserProfileEntity?> getProfile() async {
@@ -33,6 +34,8 @@ class ProfileLocalDataSourceImpl extends ProfileLocalDataSource {
     final photoUrl = await secureStorage.read(key: _photoUrlKey);
     final hasPassword =
         (await secureStorage.read(key: _hasPasswordKey)) == 'true';
+    final nfcActive =
+        (await secureStorage.read(key: _nfcActiveKey)) == 'true';
     final profileStatus = await secureStorage.read(key: _profileStatusKey);
     final kycLevel = await secureStorage.read(key: _kycLevelKey);
 
@@ -56,6 +59,7 @@ class ProfileLocalDataSourceImpl extends ProfileLocalDataSource {
       profileStatus: profileStatus,
       routingButtonEntity: null,
       kycLevel: kycLevel,
+      nfcActive: nfcActive,
     );
   }
 
@@ -74,5 +78,10 @@ class ProfileLocalDataSourceImpl extends ProfileLocalDataSource {
     await secureStorage.write(
         key: _profileStatusKey, value: profile.profileStatus);
     await secureStorage.write(key: _kycLevelKey, value: profile.kycLevel);
+  }
+
+  @override
+  Future<void> nfcActive(bool active) async {
+    await secureStorage.write(key: _nfcActiveKey, value: active.toString());
   }
 }

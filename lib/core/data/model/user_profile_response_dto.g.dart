@@ -18,6 +18,7 @@ _$UserProfileResponseDtoImpl _$$UserProfileResponseDtoImplFromJson(
       nationalID: json['nationalID'] as String?,
       photoUrl: json['photoUrl'] as String?,
       hasPassword: json['hasPassword'] as bool?,
+      nfcActive: json['nfcActive'] as bool?,
       profileStatus: json['profileStatus'] as String?,
       routingButton: json['routingButton'] == null
           ? null
@@ -38,6 +39,7 @@ Map<String, dynamic> _$$UserProfileResponseDtoImplToJson(
       'nationalID': instance.nationalID,
       'photoUrl': instance.photoUrl,
       'hasPassword': instance.hasPassword,
+      'nfcActive': instance.nfcActive,
       'profileStatus': instance.profileStatus,
       'routingButton': instance.routingButton,
       'kycLevel': instance.kycLevel,

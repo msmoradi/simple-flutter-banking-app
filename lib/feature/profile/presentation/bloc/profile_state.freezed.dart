@@ -20,6 +20,8 @@ mixin _$ProfileState {
   String get userProfile => throw _privateConstructorUsedError;
   String get fullName => throw _privateConstructorUsedError;
   String get userName => throw _privateConstructorUsedError;
+  bool get nfcActive => throw _privateConstructorUsedError;
+  bool get showLoading => throw _privateConstructorUsedError;
 
   /// Create a copy of ProfileState
   /// with the given fields replaced by the non-null parameter values.
@@ -38,7 +40,9 @@ abstract class $ProfileStateCopyWith<$Res> {
       {ProfileStatus status,
       String userProfile,
       String fullName,
-      String userName});
+      String userName,
+      bool nfcActive,
+      bool showLoading});
 }
 
 /// @nodoc
@@ -60,6 +64,8 @@ class _$ProfileStateCopyWithImpl<$Res, $Val extends ProfileState>
     Object? userProfile = null,
     Object? fullName = null,
     Object? userName = null,
+    Object? nfcActive = null,
+    Object? showLoading = null,
   }) {
     return _then(_value.copyWith(
       status: null == status
@@ -78,6 +84,14 @@ class _$ProfileStateCopyWithImpl<$Res, $Val extends ProfileState>
           ? _value.userName
           : userName // ignore: cast_nullable_to_non_nullable
               as String,
+      nfcActive: null == nfcActive
+          ? _value.nfcActive
+          : nfcActive // ignore: cast_nullable_to_non_nullable
+              as bool,
+      showLoading: null == showLoading
+          ? _value.showLoading
+          : showLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -94,7 +108,9 @@ abstract class _$$ProfileStateImplCopyWith<$Res>
       {ProfileStatus status,
       String userProfile,
       String fullName,
-      String userName});
+      String userName,
+      bool nfcActive,
+      bool showLoading});
 }
 
 /// @nodoc
@@ -114,6 +130,8 @@ class __$$ProfileStateImplCopyWithImpl<$Res>
     Object? userProfile = null,
     Object? fullName = null,
     Object? userName = null,
+    Object? nfcActive = null,
+    Object? showLoading = null,
   }) {
     return _then(_$ProfileStateImpl(
       status: null == status
@@ -132,6 +150,14 @@ class __$$ProfileStateImplCopyWithImpl<$Res>
           ? _value.userName
           : userName // ignore: cast_nullable_to_non_nullable
               as String,
+      nfcActive: null == nfcActive
+          ? _value.nfcActive
+          : nfcActive // ignore: cast_nullable_to_non_nullable
+              as bool,
+      showLoading: null == showLoading
+          ? _value.showLoading
+          : showLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -143,7 +169,9 @@ class _$ProfileStateImpl implements _ProfileState {
       {this.status = ProfileStatus.initial,
       this.userProfile = 'https://i.pravatar.cc/300',
       this.fullName = 'مهرداد اندامی',
-      this.userName = '@mehrdad_andami'});
+      this.userName = '@mehrdad_andami',
+      this.nfcActive = false,
+      this.showLoading = false});
 
   @override
   @JsonKey()
@@ -157,10 +185,16 @@ class _$ProfileStateImpl implements _ProfileState {
   @override
   @JsonKey()
   final String userName;
+  @override
+  @JsonKey()
+  final bool nfcActive;
+  @override
+  @JsonKey()
+  final bool showLoading;
 
   @override
   String toString() {
-    return 'ProfileState(status: $status, userProfile: $userProfile, fullName: $fullName, userName: $userName)';
+    return 'ProfileState(status: $status, userProfile: $userProfile, fullName: $fullName, userName: $userName, nfcActive: $nfcActive, showLoading: $showLoading)';
   }
 
   @override
@@ -174,12 +208,16 @@ class _$ProfileStateImpl implements _ProfileState {
             (identical(other.fullName, fullName) ||
                 other.fullName == fullName) &&
             (identical(other.userName, userName) ||
-                other.userName == userName));
+                other.userName == userName) &&
+            (identical(other.nfcActive, nfcActive) ||
+                other.nfcActive == nfcActive) &&
+            (identical(other.showLoading, showLoading) ||
+                other.showLoading == showLoading));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, status, userProfile, fullName, userName);
+  int get hashCode => Object.hash(runtimeType, status, userProfile, fullName,
+      userName, nfcActive, showLoading);
 
   /// Create a copy of ProfileState
   /// with the given fields replaced by the non-null parameter values.
@@ -195,7 +233,9 @@ abstract class _ProfileState implements ProfileState {
       {final ProfileStatus status,
       final String userProfile,
       final String fullName,
-      final String userName}) = _$ProfileStateImpl;
+      final String userName,
+      final bool nfcActive,
+      final bool showLoading}) = _$ProfileStateImpl;
 
   @override
   ProfileStatus get status;
@@ -205,6 +245,10 @@ abstract class _ProfileState implements ProfileState {
   String get fullName;
   @override
   String get userName;
+  @override
+  bool get nfcActive;
+  @override
+  bool get showLoading;
 
   /// Create a copy of ProfileState
   /// with the given fields replaced by the non-null parameter values.

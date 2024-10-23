@@ -11,5 +11,7 @@ class ProfileState with _$ProfileState {
     @Default('https://i.pravatar.cc/300') String userProfile,
     @Default('مهرداد اندامی') String fullName,
     @Default('@mehrdad_andami') String userName,
+    @Default(false) bool nfcActive,
+    @Default(false) bool showLoading,
   }) = _ProfileState;
 }

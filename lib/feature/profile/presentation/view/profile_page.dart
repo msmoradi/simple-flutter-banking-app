@@ -16,11 +16,16 @@ class ProfilePage extends StatelessWidget {
       create: (context) => GetIt.instance<ProfileBloc>(),
       child: BlocBuilder<ProfileBloc, ProfileState>(
         builder: (context, state) {
-          return  ProfileContent(
+          return ProfileContent(
             userProfile: state.userProfile,
             fullName: state.fullName,
             userName: state.userName,
-            onExitClick: (){
+            nfcActive: state.nfcActive,
+            showLoading: state.showLoading,
+            onNFCSwitchChange: () {
+              context.read<ProfileBloc>().add(NFCSwitchChange());
+            },
+            onExitClick: () {
               context.read<ProfileBloc>().add(ExitClick());
             },
           );

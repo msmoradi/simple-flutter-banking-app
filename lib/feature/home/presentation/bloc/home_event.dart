@@ -6,3 +6,11 @@ abstract class HomeEvent extends Equatable {
   @override
   List<Object> get props => [];
 }
+
+class Init extends HomeEvent {}
+
+class NFCTagRead extends HomeEvent {
+  final NFCTag tag;
+
+  NFCTagRead({required this.tag});
+}

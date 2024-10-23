@@ -1,15 +1,26 @@
 import 'package:banx/core/designsystem/widgets/components/bank_action_row.dart';
 import 'package:banx/core/designsystem/widgets/components/custom_card.dart';
 import 'package:banx/core/designsystem/widgets/components/dot_indicator_row.dart';
+import 'package:banx/core/designsystem/widgets/components/loading_container.dart';
 import 'package:banx/core/designsystem/widgets/components/simple_card_row.dart';
 import 'package:banx/core/designsystem/widgets/components/title_row.dart';
 import 'package:banx/core/designsystem/widgets/components/transaction_card.dart';
+import 'package:banx/core/designsystem/widgets/nfc_scan_screen.dart';
 import 'package:banx/feature/home/presentation/view/glass_row.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_nfc_kit/flutter_nfc_kit.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class HomeContent extends StatefulWidget {
-  const HomeContent({super.key});
+  final bool nfcActive;
+  final void Function(NFCTag tag) onTagRead;
+  final bool isLoading;
+
+  const HomeContent(
+      {super.key,
+      required this.nfcActive,
+      required this.onTagRead,
+      required this.isLoading});
 
   @override
   State<HomeContent> createState() => _HomeContentState();
@@ -504,114 +515,130 @@ class _HomeContentState extends State<HomeContent> {
             ),
           ],
         ),
-        body: CustomScrollView(
-          slivers: [
-            SliverAppBar(
-              surfaceTintColor: Colors.transparent,
-              expandedHeight: 344,
-              flexibleSpace: PageView.custom(
-                onPageChanged: onPageChanged,
-                childrenDelegate: SliverChildListDelegate([
-                  Stack(
-                    alignment: AlignmentDirectional.bottomCenter,
-                    children: [
-                      Image.asset(
-                        'assets/images/cash_banx.png',
-                        fit: BoxFit.fitHeight,
-                        width: 393,
-                        height: 344,
+        body: LoadingContainer(
+          showLoading: widget.isLoading,
+          content: widget.nfcActive
+              ? NfcScanScreen(
+                  onTagRead: widget.onTagRead,
+                )
+              : CustomScrollView(
+                  slivers: [
+                    SliverAppBar(
+                      surfaceTintColor: Colors.transparent,
+                      expandedHeight: 344,
+                      flexibleSpace: PageView.custom(
+                        onPageChanged: onPageChanged,
+                        childrenDelegate: SliverChildListDelegate([
+                          Stack(
+                            alignment: AlignmentDirectional.bottomCenter,
+                            children: [
+                              Image.asset(
+                                'assets/images/cash_banx.png',
+                                fit: BoxFit.fitHeight,
+                                width: 393,
+                                height: 344,
+                              ),
+                              SizedBox(
+                                width: double.infinity,
+                                child: GlassRow(
+                                  currentPageIndex: 0,
+                                  subtitle: '۱٬۳۳۵٬۶۸۳٬۲۳۵ ریالء',
+                                  title: 'موجودی سپرده ضد تورم',
+                                ),
+                              )
+                            ],
+                          ),
+                          Stack(
+                            alignment: AlignmentDirectional.bottomCenter,
+                            children: [
+                              Image.asset(
+                                'assets/images/gold_banx.png',
+                                fit: BoxFit.fitHeight,
+                                width: 393,
+                                height: 344,
+                              ),
+                              SizedBox(
+                                width: double.infinity,
+                                child: GlassRow(
+                                  currentPageIndex: 1,
+                                  subtitle: '۲۰ گرم ~ ۷۴۲٬۵۲۶٬۷۰۰ ریالء',
+                                  title: 'موجودی سپرده طلا',
+                                ),
+                              )
+                            ],
+                          ),
+                          Stack(
+                            alignment: AlignmentDirectional.bottomCenter,
+                            children: [
+                              Image.asset(
+                                'assets/images/saffron_banx.png',
+                                fit: BoxFit.fitHeight,
+                                width: 393,
+                                height: 344,
+                              ),
+                              SizedBox(
+                                width: double.infinity,
+                                child: GlassRow(
+                                  currentPageIndex: 2,
+                                  subtitle: '۵۰۰۵۰۰ گرم ~ ۵۲۳٬۰۱۰٬۵۰۰ ریالء',
+                                  title: 'موجودی سپرده زعفران',
+                                ),
+                              )
+                            ],
+                          ),
+                          Stack(
+                            alignment: AlignmentDirectional.bottomCenter,
+                            children: [
+                              Image.asset(
+                                'assets/images/diamond_banx.png',
+                                fit: BoxFit.fitHeight,
+                                width: 393,
+                                height: 344,
+                              ),
+                              SizedBox(
+                                width: double.infinity,
+                                child: GlassRow(
+                                  currentPageIndex: 2,
+                                  subtitle: '۱۰ گرم ~ ۴۶٬۱۱۵٬۵۱۰ ریالء',
+                                  title: 'موجودی سپرده الماس',
+                                ),
+                              )
+                            ],
+                          ),
+                        ]),
                       ),
-                      SizedBox(
-                        width: double.infinity,
-                        child: GlassRow(
-                          currentPageIndex: 0,
-                          subtitle: '۱٬۳۳۵٬۶۸۳٬۲۳۵ ریالء',
-                          title: 'موجودی سپرده ضد تورم',
-                        ),
-                      )
-                    ],
-                  ),
-                  Stack(
-                    alignment: AlignmentDirectional.bottomCenter,
-                    children: [
-                      Image.asset(
-                        'assets/images/gold_banx.png',
-                        fit: BoxFit.fitHeight,
-                        width: 393,
-                        height: 344,
+                    ),
+                    SliverPadding(
+                      padding: const EdgeInsets.symmetric(vertical: 8.0),
+                      sliver: SliverToBoxAdapter(
+                        child: Center(
+                            child: DotIndicatorRow(
+                                currentPageIndex: _currentPageIndex,
+                                numberOfDotIndicator: finalList.length)),
                       ),
-                      SizedBox(
-                        width: double.infinity,
-                        child: GlassRow(
-                          currentPageIndex: 1,
-                          subtitle: '۲۰ گرم ~ ۷۴۲٬۵۲۶٬۷۰۰ ریالء',
-                          title: 'موجودی سپرده طلا',
+                    ),
+                    SliverPadding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                      sliver: SliverList(
+                        delegate: SliverChildBuilderDelegate(
+                          (BuildContext context, int index) {
+                            return finalList[_currentPageIndex][index];
+                          },
+                          childCount: finalList[_currentPageIndex].length,
                         ),
-                      )
-                    ],
-                  ),
-                  Stack(
-                    alignment: AlignmentDirectional.bottomCenter,
-                    children: [
-                      Image.asset(
-                        'assets/images/saffron_banx.png',
-                        fit: BoxFit.fitHeight,
-                        width: 393,
-                        height: 344,
                       ),
-                      SizedBox(
-                        width: double.infinity,
-                        child: GlassRow(
-                          currentPageIndex: 2,
-                          subtitle: '۵۰۰۵۰۰ گرم ~ ۵۲۳٬۰۱۰٬۵۰۰ ریالء',
-                          title: 'موجودی سپرده زعفران',
-                        ),
-                      )
-                    ],
-                  ),
-                  Stack(
-                    alignment: AlignmentDirectional.bottomCenter,
-                    children: [
-                      Image.asset(
-                        'assets/images/diamond_banx.png',
-                        fit: BoxFit.fitHeight,
-                        width: 393,
-                        height: 344,
-                      ),
-                      SizedBox(
-                        width: double.infinity,
-                        child: GlassRow(
-                          currentPageIndex: 2,
-                          subtitle: '۱۰ گرم ~ ۴۶٬۱۱۵٬۵۱۰ ریالء',
-                          title: 'موجودی سپرده الماس',
-                        ),
-                      )
-                    ],
-                  ),
-                ]),
-              ),
-            ),
-            SliverPadding(
-              padding: const EdgeInsets.symmetric(vertical: 8.0),
-              sliver: SliverToBoxAdapter(
-                child: Center(
-                    child: DotIndicatorRow(
-                        currentPageIndex: _currentPageIndex,
-                        numberOfDotIndicator: finalList.length)),
-              ),
-            ),
-            SliverPadding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              sliver: SliverList(
-                delegate: SliverChildBuilderDelegate(
-                  (BuildContext context, int index) {
-                    return finalList[_currentPageIndex][index];
-                  },
-                  childCount: finalList[_currentPageIndex].length,
+                    ),
+                  ],
                 ),
-              ),
-            ),
-          ],
         ));
+  }
+}
+
+class HomeNfc extends StatelessWidget {
+  const HomeNfc({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Placeholder();
   }
 }

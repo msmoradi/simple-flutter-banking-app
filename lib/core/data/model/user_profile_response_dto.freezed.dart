@@ -30,6 +30,7 @@ mixin _$UserProfileResponseDto {
   String? get nationalID => throw _privateConstructorUsedError;
   String? get photoUrl => throw _privateConstructorUsedError;
   bool? get hasPassword => throw _privateConstructorUsedError;
+  bool? get nfcActive => throw _privateConstructorUsedError;
   String? get profileStatus => throw _privateConstructorUsedError;
   RoutingButtonDto? get routingButton => throw _privateConstructorUsedError;
   String? get kycLevel => throw _privateConstructorUsedError;
@@ -60,6 +61,7 @@ abstract class $UserProfileResponseDtoCopyWith<$Res> {
       String? nationalID,
       String? photoUrl,
       bool? hasPassword,
+      bool? nfcActive,
       String? profileStatus,
       RoutingButtonDto? routingButton,
       String? kycLevel});
@@ -92,6 +94,7 @@ class _$UserProfileResponseDtoCopyWithImpl<$Res,
     Object? nationalID = freezed,
     Object? photoUrl = freezed,
     Object? hasPassword = freezed,
+    Object? nfcActive = freezed,
     Object? profileStatus = freezed,
     Object? routingButton = freezed,
     Object? kycLevel = freezed,
@@ -132,6 +135,10 @@ class _$UserProfileResponseDtoCopyWithImpl<$Res,
       hasPassword: freezed == hasPassword
           ? _value.hasPassword
           : hasPassword // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      nfcActive: freezed == nfcActive
+          ? _value.nfcActive
+          : nfcActive // ignore: cast_nullable_to_non_nullable
               as bool?,
       profileStatus: freezed == profileStatus
           ? _value.profileStatus
@@ -182,6 +189,7 @@ abstract class _$$UserProfileResponseDtoImplCopyWith<$Res>
       String? nationalID,
       String? photoUrl,
       bool? hasPassword,
+      bool? nfcActive,
       String? profileStatus,
       RoutingButtonDto? routingButton,
       String? kycLevel});
@@ -214,6 +222,7 @@ class __$$UserProfileResponseDtoImplCopyWithImpl<$Res>
     Object? nationalID = freezed,
     Object? photoUrl = freezed,
     Object? hasPassword = freezed,
+    Object? nfcActive = freezed,
     Object? profileStatus = freezed,
     Object? routingButton = freezed,
     Object? kycLevel = freezed,
@@ -255,6 +264,10 @@ class __$$UserProfileResponseDtoImplCopyWithImpl<$Res>
           ? _value.hasPassword
           : hasPassword // ignore: cast_nullable_to_non_nullable
               as bool?,
+      nfcActive: freezed == nfcActive
+          ? _value.nfcActive
+          : nfcActive // ignore: cast_nullable_to_non_nullable
+              as bool?,
       profileStatus: freezed == profileStatus
           ? _value.profileStatus
           : profileStatus // ignore: cast_nullable_to_non_nullable
@@ -284,6 +297,7 @@ class _$UserProfileResponseDtoImpl implements _UserProfileResponseDto {
       required this.nationalID,
       required this.photoUrl,
       required this.hasPassword,
+      required this.nfcActive,
       required this.profileStatus,
       required this.routingButton,
       required this.kycLevel});
@@ -310,6 +324,8 @@ class _$UserProfileResponseDtoImpl implements _UserProfileResponseDto {
   @override
   final bool? hasPassword;
   @override
+  final bool? nfcActive;
+  @override
   final String? profileStatus;
   @override
   final RoutingButtonDto? routingButton;
@@ -318,7 +334,7 @@ class _$UserProfileResponseDtoImpl implements _UserProfileResponseDto {
 
   @override
   String toString() {
-    return 'UserProfileResponseDto(firstName: $firstName, lastName: $lastName, firstNameEN: $firstNameEN, lastNameEN: $lastNameEN, phoneNumber: $phoneNumber, username: $username, nationalID: $nationalID, photoUrl: $photoUrl, hasPassword: $hasPassword, profileStatus: $profileStatus, routingButton: $routingButton, kycLevel: $kycLevel)';
+    return 'UserProfileResponseDto(firstName: $firstName, lastName: $lastName, firstNameEN: $firstNameEN, lastNameEN: $lastNameEN, phoneNumber: $phoneNumber, username: $username, nationalID: $nationalID, photoUrl: $photoUrl, hasPassword: $hasPassword, nfcActive: $nfcActive, profileStatus: $profileStatus, routingButton: $routingButton, kycLevel: $kycLevel)';
   }
 
   @override
@@ -344,6 +360,8 @@ class _$UserProfileResponseDtoImpl implements _UserProfileResponseDto {
                 other.photoUrl == photoUrl) &&
             (identical(other.hasPassword, hasPassword) ||
                 other.hasPassword == hasPassword) &&
+            (identical(other.nfcActive, nfcActive) ||
+                other.nfcActive == nfcActive) &&
             (identical(other.profileStatus, profileStatus) ||
                 other.profileStatus == profileStatus) &&
             (identical(other.routingButton, routingButton) ||
@@ -365,6 +383,7 @@ class _$UserProfileResponseDtoImpl implements _UserProfileResponseDto {
       nationalID,
       photoUrl,
       hasPassword,
+      nfcActive,
       profileStatus,
       routingButton,
       kycLevel);
@@ -397,6 +416,7 @@ abstract class _UserProfileResponseDto implements UserProfileResponseDto {
       required final String? nationalID,
       required final String? photoUrl,
       required final bool? hasPassword,
+      required final bool? nfcActive,
       required final String? profileStatus,
       required final RoutingButtonDto? routingButton,
       required final String? kycLevel}) = _$UserProfileResponseDtoImpl;
@@ -422,6 +442,8 @@ abstract class _UserProfileResponseDto implements UserProfileResponseDto {
   String? get photoUrl;
   @override
   bool? get hasPassword;
+  @override
+  bool? get nfcActive;
   @override
   String? get profileStatus;
   @override

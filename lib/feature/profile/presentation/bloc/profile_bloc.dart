@@ -16,10 +16,19 @@ class ProfileBloc extends Bloc<HomeEvent, ProfileState> {
 
   ProfileBloc({
     required this.profileRepository,
-  }) : super(const ProfileState()) {
+  }) : super(const ProfileState(showLoading: true)) {
     on<ExitClick>(_onExitClick);
+    on<NFCSwitchChange>(_onNFCSwitchChange);
     on<Init>(_onInit);
     add(Init());
+  }
+
+  Future<void> _onNFCSwitchChange(
+      NFCSwitchChange event, Emitter<ProfileState> emit) async {
+    final newState = !state.nfcActive;
+    await profileRepository.nfcActive(newState);
+    emit(state.copyWith(nfcActive: newState));
+    return;
   }
 
   Future<void> _onExitClick(ExitClick event, Emitter<ProfileState> emit) async {
@@ -37,6 +46,7 @@ class ProfileBloc extends Bloc<HomeEvent, ProfileState> {
     final String? firstName = profile.firstName;
     final String? lastName = profile.lastName;
     final String? username = profile.username;
+    final bool? nfcActive = profile.nfcActive;
 
     if (photoUrl?.isNotEmpty == true) {
       emit(state.copyWith(userName: photoUrl!));
@@ -49,5 +59,11 @@ class ProfileBloc extends Bloc<HomeEvent, ProfileState> {
     if (username?.isNotEmpty == true) {
       emit(state.copyWith(userName: username!));
     }
+
+    if (nfcActive != null) {
+      emit(state.copyWith(nfcActive: nfcActive));
+    }
+
+    emit(state.copyWith(showLoading: false));
   }
 }

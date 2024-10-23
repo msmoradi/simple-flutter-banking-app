@@ -9,4 +9,6 @@ abstract class HomeEvent extends Equatable {
 
 class ExitClick extends HomeEvent {}
 
+class NFCSwitchChange extends HomeEvent {}
+
 class Init extends HomeEvent {}

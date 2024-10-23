@@ -11,6 +11,7 @@ class UserProfileEntity extends Entity {
   final String? nationalID;
   final String? photoUrl;
   final bool? hasPassword;
+  final bool? nfcActive;
   final String? profileStatus;
   final RoutingButtonEntity? routingButtonEntity;
   final String? kycLevel;
@@ -21,6 +22,7 @@ class UserProfileEntity extends Entity {
       required this.firstNameEN,
       required this.lastNameEN,
       required this.phoneNumber,
+      required this.nfcActive,
       required this.username,
       required this.nationalID,
       required this.photoUrl,

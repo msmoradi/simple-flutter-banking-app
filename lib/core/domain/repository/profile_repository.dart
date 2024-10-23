@@ -5,4 +5,6 @@ abstract class ProfileRepository {
   Future<EntityWrapper<UserProfileEntity>> getProfile();
 
   Future<UserProfileEntity?> getLocalProfile();
+
+  Future<void> nfcActive(bool active);
 }

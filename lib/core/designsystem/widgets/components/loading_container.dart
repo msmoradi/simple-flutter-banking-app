@@ -14,7 +14,7 @@ class LoadingContainer extends StatelessWidget {
         ? Center(
             child: LoadingAnimationWidget.waveDots(
               color: Theme.of(context).colorScheme.onSurfaceVariant,
-              size: 100.0,
+              size: 80.0,
             ),
           )
         : content;

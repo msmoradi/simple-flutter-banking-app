@@ -1,13 +1,14 @@
-part of 'home_bloc.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-@immutable
-abstract class HomeState extends Equatable {
-  const HomeState();
-}
+part 'home_state.freezed.dart';
 
-class HomeSuccess extends HomeState {
-  const HomeSuccess();
+enum HomeStatus { initial }
 
-  @override
-  List<Object?> get props => [];
+@freezed
+class HomeState with _$HomeState {
+  const factory HomeState({
+    @Default(HomeStatus.initial) HomeStatus status,
+    @Default(false) bool needNfc,
+    @Default(false) bool isLoading,
+  }) = _HomeState;
 }

@@ -14,6 +14,7 @@ extension UserProfileMapper on UserProfileResponseDto {
       nationalID: nationalID,
       photoUrl: photoUrl,
       hasPassword: hasPassword,
+      nfcActive: nfcActive,
       profileStatus: profileStatus,
       routingButtonEntity: routingButton?.toEntity(),
       kycLevel: kycLevel,

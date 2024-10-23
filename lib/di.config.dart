@@ -118,7 +118,6 @@ extension GetItInjectableX on _i174.GetIt {
     final registerModule = _$RegisterModule();
     gh.factory<_i535.InfoInterceptor>(() => _i535.InfoInterceptor());
     gh.factory<_i737.TransactionBloc>(() => _i737.TransactionBloc());
-    gh.factory<_i412.HomeBloc>(() => _i412.HomeBloc());
     gh.factory<_i20.AssistBloc>(() => _i20.AssistBloc());
     gh.factory<_i864.BankBloc>(() => _i864.BankBloc());
     gh.factory<_i381.MainBloc>(() => _i381.MainBloc());
@@ -193,6 +192,8 @@ extension GetItInjectableX on _i174.GetIt {
         addressRemoteDataSource: gh<_i767.AddressRemoteDataSource>()));
     gh.lazySingleton<_i654.MediaRepository>(
         () => _i244.MediaRepositoryImpl(gh<_i665.MediaRemoteDataSource>()));
+    gh.factory<_i412.HomeBloc>(
+        () => _i412.HomeBloc(profileRepository: gh<_i111.ProfileRepository>()));
     gh.factory<_i804.ProfileBloc>(() =>
         _i804.ProfileBloc(profileRepository: gh<_i111.ProfileRepository>()));
     gh.lazySingleton<_i474.AuthenticationRepository>(

@@ -35,4 +35,9 @@ class ProfileRepositoryImpl extends ProfileRepository {
       return entityWrapper;
     });
   }
+
+  @override
+  Future<void> nfcActive(bool active) {
+    return profileLocalDataSource.nfcActive(active);
+  }
 }

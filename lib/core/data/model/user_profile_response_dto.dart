@@ -17,6 +17,7 @@ class UserProfileResponseDto with _$UserProfileResponseDto {
     required String? nationalID,
     required String? photoUrl,
     required bool? hasPassword,
+    required bool? nfcActive,
     required String? profileStatus,
     required RoutingButtonDto? routingButton,
     required String? kycLevel,
