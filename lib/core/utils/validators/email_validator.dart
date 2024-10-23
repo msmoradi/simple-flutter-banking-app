@@ -1,6 +1,5 @@
 import 'package:banx/core/domain/entities/email.dart';
 import 'package:flutter/material.dart';
-import 'package:banx/core/utils/extension/build_context.dart';
 import 'base/validation_error.dart';
 import 'base/validation_result.dart';
 import 'base/validator.dart';
@@ -28,6 +27,6 @@ class EmailValidator extends FieldValidator {
 class EmailStructuralError implements ValidationError {
   @override
   String getMessage(BuildContext context) {
-    return context.getTranslator().emailValidationText;
+    return 'ایمیل شما نباید خالی باشد و باید شامل @ و . باشد';
   }
 }

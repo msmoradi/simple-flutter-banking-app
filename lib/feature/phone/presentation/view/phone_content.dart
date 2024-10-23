@@ -1,6 +1,5 @@
 import 'package:banx/core/designsystem/widgets/button/fill/full_fill_button.dart';
 import 'package:banx/core/designsystem/widgets/textfields/phone_number_text_field.dart';
-import 'package:banx/core/utils/extension/build_context.dart';
 import 'package:banx/feature/phone/presentation/bloc/phone_bloc.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -23,7 +22,6 @@ class _PhoneContentState extends State<PhoneContent> {
 
   @override
   Widget build(BuildContext context) {
-    final translator = context.getTranslator();
     return Scaffold(
       appBar: AppBar(
         centerTitle: false,
@@ -33,7 +31,7 @@ class _PhoneContentState extends State<PhoneContent> {
               .textTheme
               .headlineSmall
               ?.copyWith(fontWeight: FontWeight.bold),
-          translator.mobilePhoneNumber,
+          'شماره تلفن همراه',
         ),
       ),
       body: SafeArea(
@@ -146,7 +144,7 @@ class _PhoneContentState extends State<PhoneContent> {
                     context.read<PhoneBloc>().add(PhoneSubmitted(phoneNumber!));
                   }
                 },
-                label: translator.acceptAndContinue,
+                label: 'تأیید و ادامه',
                 isLoading: widget.showLoading,
               ),
               const SizedBox(height: 16),

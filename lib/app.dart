@@ -1,9 +1,10 @@
 import 'package:banx/core/designsystem/theme/theme.dart';
 import 'package:banx/core/networking/model/dto/error_action_handler.dart';
-import 'package:banx/core/utils/l10n/app_localizations.dart';
 import 'package:banx/error_action_listener.dart';
 import 'package:banx/routing/router.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:persian_datetime_picker/persian_datetime_picker.dart';
 import 'package:toastification/toastification.dart';
 
 class App extends StatefulWidget {
@@ -16,7 +17,6 @@ class App extends StatefulWidget {
 }
 
 class _AppState extends State<App> {
-
   @override
   void dispose() {
     ErrorActionHandler().dispose();
@@ -48,9 +48,17 @@ class _AppState extends State<App> {
         routerConfig: _router,
         theme: BanxTheme.light(),
         darkTheme: BanxTheme.dark(),
-        locale: const Locale('fa'),
-        localizationsDelegates: Translator.localizationsDelegates,
-        supportedLocales: Translator.supportedLocales,
+        locale: const Locale("fa", "IR"),
+        supportedLocales: const [
+          Locale("fa", "IR"),
+        ],
+        localizationsDelegates: const [
+          PersianMaterialLocalizations.delegate,
+          PersianCupertinoLocalizations.delegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
         builder: (context, child) {
           // Wrap with a listener widget to handle ErrorActions
           return ErrorActionListener(

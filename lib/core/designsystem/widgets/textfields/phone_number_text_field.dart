@@ -33,9 +33,9 @@ class _PhoneNumberTextFieldState extends State<PhoneNumberTextField> {
       onSaved: widget.onSaved,
       onFieldSubmitted: widget.onFieldSubmitted,
       keyboardType: TextInputType.number,
-      decoration: InputDecoration(
-        prefixIcon: const Icon(Icons.phone_iphone),
-        labelText: context.getTranslator().mobilePhoneNumber,
+      decoration: const InputDecoration(
+        prefixIcon: Icon(Icons.phone_iphone),
+        labelText: "شماره تلفن همراه",
       ),
       validator: (value) {
         return context.validateFiled(PhoneNumberValidator(value));

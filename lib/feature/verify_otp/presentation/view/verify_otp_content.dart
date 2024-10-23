@@ -102,7 +102,6 @@ class _VerifyOtpContentState extends State<VerifyOtpContent> {
 
   @override
   Widget build(BuildContext context) {
-    final translator = context.getTranslator();
 
     return Scaffold(
       appBar: AppBar(
@@ -193,7 +192,7 @@ class _VerifyOtpContentState extends State<VerifyOtpContent> {
               ),
               PrimaryFillButton(
                 onPressed: _onSubmitTapped,
-                label: translator.acceptAndContinue,
+                label: 'تأیید و ادامه',
                 isLoading: widget.showLoading,
               ),
               const SizedBox(height: 16),

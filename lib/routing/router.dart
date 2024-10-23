@@ -61,8 +61,8 @@ String getInitialLocation({
   required bool verifyPassword,
 }) {
   if (verifyPassword) {
-    return MainPageFactory.path;
+    return IdentityPageFactory.path;
   } else {
-    return MainPageFactory.path;
+    return IdentityPageFactory.path;
   }
 }

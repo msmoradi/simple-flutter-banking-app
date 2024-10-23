@@ -25,9 +25,8 @@ class BirthDateBottomSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Jalali? tempPickedDate;
-    Jalali initialDateTime = birthDate.isEmpty
-        ? Jalali(1375, 4)
-        : jalaliFromString(birthDate);
+    Jalali initialDateTime =
+        birthDate.isEmpty ? Jalali(1375, 4) : jalaliFromString(birthDate);
     return SingleChildScrollView(
       child: Container(
         padding:
@@ -79,9 +78,9 @@ class BirthDateBottomSheet extends StatelessWidget {
                               Theme.of(context).textTheme.titleMedium,
                         ),
                       ),
-                      child: PCupertinoDatePicker(
+                      child: PersianCupertinoDatePicker(
                         backgroundColor: Theme.of(context).colorScheme.surface,
-                        mode: PCupertinoDatePickerMode.date,
+                        mode: PersianCupertinoDatePickerMode.date,
                         initialDateTime: initialDateTime,
                         minimumDate: Jalali(1310, 8),
                         maximumDate: Jalali(1510, 9),

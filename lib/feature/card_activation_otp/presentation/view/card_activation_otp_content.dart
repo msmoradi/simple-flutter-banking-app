@@ -4,7 +4,6 @@ import 'package:banx/core/designsystem/widgets/button/fill/full_fill_button.dart
 import 'package:banx/core/designsystem/widgets/button/fill/full_outline_button.dart';
 import 'package:banx/core/designsystem/widgets/textfields/rounded_with_shadow_otp.dart';
 import 'package:banx/core/designsystem/widgets/textfields/sms_retriever_impl.dart';
-import 'package:banx/core/utils/extension/build_context.dart';
 import 'package:banx/feature/card_activation_otp/presentation/bloc/card_activation_otp_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -103,8 +102,6 @@ class _CardActivationOtpContentState extends State<CardActivationOtpContent> {
 
   @override
   Widget build(BuildContext context) {
-    final translator = context.getTranslator();
-
     return Scaffold(
       appBar: AppBar(
         centerTitle: false,
@@ -195,7 +192,7 @@ class _CardActivationOtpContentState extends State<CardActivationOtpContent> {
               ),
               PrimaryFillButton(
                 onPressed: _onSubmitTapped,
-                label: translator.acceptAndContinue,
+                label: 'تأیید و ادامه',
                 isLoading: widget.state is CardActivationOtpInProgress,
               ),
               const SizedBox(height: 16),

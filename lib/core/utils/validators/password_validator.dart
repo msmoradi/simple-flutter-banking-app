@@ -29,6 +29,6 @@ class PasswordValidator extends FieldValidator {
 class PasswordStructuralError implements ValidationError {
   @override
   String getMessage(BuildContext context) {
-    return context.getTranslator().passwordValidationText;
+    return '"رمز عبور باید حداقل ۸ کاراکتر و یک حرف بزرگ داشته باشد"';
   }
 }

@@ -36,7 +36,6 @@ class _CardActivationContentState extends State<CardActivationContent> {
 
   @override
   Widget build(BuildContext context) {
-    final translator = context.getTranslator();
     return Scaffold(
       appBar: AppBar(
         centerTitle: false,
@@ -104,7 +103,7 @@ class _CardActivationContentState extends State<CardActivationContent> {
                         CardActivationSubmitted(_cardNumberController.text));
                   }
                 },
-                label: translator.acceptAndContinue,
+                label: 'تأیید و ادامه',
                 isLoading: widget.state is CardActivationInProgress,
               ),
               const SizedBox(height: 16),

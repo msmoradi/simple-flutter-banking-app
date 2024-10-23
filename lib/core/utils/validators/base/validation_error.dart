@@ -1,4 +1,3 @@
-import 'package:banx/core/utils/extension/build_context.dart';
 import 'package:flutter/material.dart';
 
 abstract class ValidationError {
@@ -8,6 +7,6 @@ abstract class ValidationError {
 class EmptinessError extends ValidationError {
   @override
   String getMessage(BuildContext context) {
-    return context.getTranslator().emptyValidationText;
+    return "خطای خالی بودن";
   }
 }
