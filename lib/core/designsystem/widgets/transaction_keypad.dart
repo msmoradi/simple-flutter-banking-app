@@ -23,8 +23,17 @@ class TransactionKeypad extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           _buildKeypadRow(['1', '2', '3'], context),
+          const SizedBox(
+            height: 14,
+          ),
           _buildKeypadRow(['4', '5', '6'], context),
+          const SizedBox(
+            height: 14,
+          ),
           _buildKeypadRow(['7', '8', '9'], context),
+          const SizedBox(
+            height: 14,
+          ),
           _buildKeypadRow([showDot ? '.' : '', '0', 'backspace'], context),
         ],
       ),
@@ -56,13 +65,12 @@ class TransactionKeypad extends StatelessWidget {
           : null,
       child: Container(
         alignment: Alignment.center,
-        margin: const EdgeInsets.symmetric(vertical: 12.0),
         decoration: BoxDecoration(
           shape: BoxShape.circle,
           color: Theme.of(context).colorScheme.surfaceContainerLow,
         ),
-        width: 70.0,
-        height: 70.0,
+        width: 80.0,
+        height: 80.0,
         child: Text(
           key,
           style: Theme.of(context)
@@ -82,13 +90,12 @@ class TransactionKeypad extends StatelessWidget {
       },
       child: Container(
         alignment: Alignment.center,
-        margin: const EdgeInsets.symmetric(vertical: 12.0),
         decoration: BoxDecoration(
           shape: BoxShape.circle,
           color: Theme.of(context).colorScheme.surfaceContainerLow,
         ),
-        width: 70.0,
-        height: 70.0,
+        width: 80.0,
+        height: 80.0,
         child: const Icon(
           Icons.backspace_rounded,
           size: 24.0,
@@ -99,8 +106,8 @@ class TransactionKeypad extends StatelessWidget {
 
   Widget _buildSpace() {
     return const SizedBox(
-      width: 70.0,
-      height: 70.0,
+      width: 80.0,
+      height: 80.0,
     );
   }
 }

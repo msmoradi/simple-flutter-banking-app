@@ -126,19 +126,19 @@ class _TransactionContentState extends State<TransactionContent> {
                   ],
                 ),
               ),
+              const SizedBox(height: 14),
               GestureDetector(
                 onTap: () {
                   HapticFeedback.mediumImpact();
                 },
                 child: Container(
                   alignment: Alignment.center,
-                  margin: const EdgeInsets.all(12.0),
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     color: Theme.of(context).colorScheme.primary,
                   ),
-                  width: 70.0,
-                  height: 70.0,
+                  width: 80.0,
+                  height: 80.0,
                   child: SvgPicture.asset(
                     'assets/icons/arrow-left.svg',
                     width: 40.0,
