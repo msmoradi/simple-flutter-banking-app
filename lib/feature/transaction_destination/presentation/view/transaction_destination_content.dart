@@ -151,16 +151,14 @@ class DestinationRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return InkWell(
       onTap: () {
         onTap(userInfo);
       },
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 12.0),
-        child: Expanded(
-          child: UserInfoWidget(
-            userInfo: userInfo,
-          ),
+        child: UserInfoWidget(
+          userInfo: userInfo,
         ),
       ),
     );
