@@ -1,3 +1,6 @@
+import 'package:banx/core/domain/entities/date.dart';
+import 'package:persian_number_utility/persian_number_utility.dart';
+
 class Password {
   final String value;
 
@@ -9,6 +12,6 @@ class Password {
     *  1 lowercase letter and 1 number*/
 
     return RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,30}$')
-        .hasMatch(value);
+        .hasMatch(value.toEnglishDigit());
   }
 }

@@ -2,11 +2,13 @@ import 'package:banx/core/designsystem/widgets/button/fill/full_fill_button.dart
 import 'package:banx/core/designsystem/widgets/textfields/birthday_text_field.dart';
 import 'package:banx/core/designsystem/widgets/textfields/national_id_text_field.dart';
 import 'package:banx/core/designsystem/widgets/textfields/referral_code_text_field.dart';
+import 'package:banx/core/domain/entities/date.dart';
 import 'package:banx/feature/identity/presentation/bloc/identity_bloc.dart';
 import 'package:banx/feature/identity/presentation/view/referral_bottom_sheet_content.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:persian_datetime_picker/persian_datetime_picker.dart';
+import 'package:persian_number_utility/persian_number_utility.dart';
 
 class IdentityForm extends StatefulWidget {
   final bool showLoading;
@@ -116,7 +118,7 @@ class _IdentityFormState extends State<IdentityForm> {
               context.read<IdentityBloc>().add(
                     IdentitySubmitted(
                       phoneNumber: widget.phoneNumber,
-                      nationalId: _nationalId!,
+                      nationalId: _nationalId!.toEnglishDigit(),
                       birthDate: birthdayController.text,
                       referral: referralController.text,
                     ),

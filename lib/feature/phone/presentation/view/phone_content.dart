@@ -4,6 +4,7 @@ import 'package:banx/feature/phone/presentation/bloc/phone_bloc.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:persian_number_utility/persian_number_utility.dart';
 
 class PhoneContent extends StatefulWidget {
   final bool showLoading;
@@ -141,7 +142,9 @@ class _PhoneContentState extends State<PhoneContent> {
                   if (_formKey.currentState!.validate()) {
                     _formKey.currentState?.save();
                     FocusManager.instance.primaryFocus?.unfocus();
-                    context.read<PhoneBloc>().add(PhoneSubmitted(phoneNumber!));
+                    context
+                        .read<PhoneBloc>()
+                        .add(PhoneSubmitted(phoneNumber!.toEnglishDigit()));
                   }
                 },
                 label: 'تأیید و ادامه',

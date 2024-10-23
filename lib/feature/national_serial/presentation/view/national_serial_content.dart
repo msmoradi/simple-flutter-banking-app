@@ -1,9 +1,12 @@
 import 'package:banx/core/designsystem/widgets/button/fill/full_fill_button.dart';
 import 'package:banx/core/designsystem/widgets/textfields/national_id_text_field.dart';
+import 'package:banx/core/domain/entities/date.dart';
+import 'package:banx/core/domain/entities/email.dart';
 import 'package:banx/feature/national_serial/presentation/bloc/national_serial_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:persian_number_utility/persian_number_utility.dart';
 
 class NationalSerialContent extends StatefulWidget {
   final bool showLoading;
@@ -74,9 +77,9 @@ class _NationalSerialContentState extends State<NationalSerialContent> {
                   if (_formKey.currentState!.validate()) {
                     _formKey.currentState?.save();
                     FocusManager.instance.primaryFocus?.unfocus();
-                    context
-                        .read<NationalSerialBloc>()
-                        .add(CheckNationalSerialSubmitted(_nationalSerial!));
+                    context.read<NationalSerialBloc>().add(
+                        CheckNationalSerialSubmitted(
+                            _nationalSerial!.toEnglishDigit()));
                   }
                 },
                 iconAlignment: IconAlignment.start,

@@ -1,3 +1,5 @@
+import 'package:persian_number_utility/persian_number_utility.dart';
+
 class PostalCode {
   String value;
 
@@ -5,6 +7,6 @@ class PostalCode {
 
   bool isValid() {
     return RegExp(r'^(?!0\d{9})(?!(\d)\1{9})(?!(\d{2})\2{4})\d{10}$')
-        .hasMatch(value);
+        .hasMatch(value.toEnglishDigit());
   }
 }

@@ -1,10 +1,11 @@
+import 'package:persian_number_utility/persian_number_utility.dart';
+
 class NationalId {
   String value;
 
   NationalId({required this.value});
 
   bool isValid() {
-    return RegExp(r'^\d{10}$')
-        .hasMatch(value);
+    return value.toEnglishDigit().isValidIranianNationalCode();
   }
 }
