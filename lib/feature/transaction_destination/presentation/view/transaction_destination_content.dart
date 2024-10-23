@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:persian_number_utility/persian_number_utility.dart';
 
 class TransactionDestinationContent extends StatefulWidget {
   final String amount;
@@ -104,7 +105,7 @@ class _TransactionDestinationContentState
               DestinationRow(
                 userInfo: UserInfo(
                   name: 'احسان کریمخانی',
-                  cardNumber: '۵۰۲۲ ۲۹۱۵ ۴۵۲۰ ۴۰۳۹',
+                  cardNumber: '5022221014342345',
                   photoUrl: 'https://i.pravatar.cc/300',
                 ),
                 onTap: widget.onDestinationSelected,
@@ -112,7 +113,7 @@ class _TransactionDestinationContentState
               DestinationRow(
                 userInfo: UserInfo(
                   name: 'محسن محمدیان',
-                  cardNumber: '۵۰۲۲ ۲۹۱۵ ۰۰۰۴ ۱۲۳۴',
+                  cardNumber: '5024345678932345',
                   photoUrl: 'https://i.pravatar.cc/301',
                 ),
                 onTap: widget.onDestinationSelected,
@@ -120,7 +121,7 @@ class _TransactionDestinationContentState
               DestinationRow(
                 userInfo: UserInfo(
                   name: 'محمد کریمیان',
-                  cardNumber: '۶۰۳۷ ۹۹۸۱ ۵۱۵۶ ۰۵۷۹',
+                  cardNumber: '6037998112343953',
                   photoUrl: 'https://i.pravatar.cc/302',
                 ),
                 onTap: widget.onDestinationSelected,
@@ -199,7 +200,8 @@ class UserInfoWidget extends StatelessWidget {
               height: 4,
             ),
             Text(
-              userInfo.cardNumber,
+              textDirection: TextDirection.ltr,
+              userInfo.cardNumber.charRagham(separator: " ").toPersianDigit(),
               style: Theme.of(context).textTheme.bodySmall,
             )
           ],

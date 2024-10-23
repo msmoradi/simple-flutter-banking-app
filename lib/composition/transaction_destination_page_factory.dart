@@ -22,8 +22,8 @@ class TransactionDestinationPageFactory {
                 amount: extra.amount,
                 sourceDepositType: extra.sourceDepositType,
                 sourceUserInfo: UserInfo(
-                    name: 'مهرداد اندامی',
-                    cardNumber: '۵۰۲۲ ۲۹۱۵ ۰۰۰۴ ۱۲۲۱',
+                  name: 'مهرداد اندامی',
+                  cardNumber: '5022291500421234',
                   photoUrl: 'https://i.pravatar.cc/301',
                 ),
                 destinationDepositType: DropdownChipType.rialDeposit,
