@@ -2,7 +2,6 @@ import 'package:banx/core/domain/entities/entity.dart';
 import 'package:banx/core/domain/entities/kyc_state_entity.dart';
 import 'package:banx/core/domain/entities/send_otp_entity.dart';
 import 'package:banx/core/domain/entities/sign_up_entity.dart';
-import 'package:banx/core/domain/entities/verify_otp_entity.dart';
 import 'package:banx/core/domain/entity_wrapper.dart';
 
 abstract class AuthenticationRepository {

@@ -1,4 +1,3 @@
-import 'package:banx/core/domain/entities/date.dart';
 import 'package:persian_number_utility/persian_number_utility.dart';
 
 class Password {

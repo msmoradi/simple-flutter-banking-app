@@ -1,10 +1,6 @@
-import 'package:banx/composition/card_activation_page_factory.dart';
-import 'package:banx/core/designsystem/widgets/bottomsheet/deposit_bottom_sheet_content.dart';
 import 'package:banx/core/designsystem/widgets/components/drop_down_chip_widget.dart';
-import 'package:banx/feature/main/presentation/view/main_page.dart';
 import 'package:banx/feature/transaction_checkout/presentation/view/transaction_checkout_page.dart';
 import 'package:banx/feature/transaction_destination/presentation/view/transaction_destination_content.dart';
-import 'package:banx/feature/transaction_destination/presentation/view/transaction_destination_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 

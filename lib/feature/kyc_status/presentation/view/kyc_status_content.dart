@@ -5,7 +5,6 @@ import 'package:banx/core/domain/entities/kyc_status_entity.dart';
 import 'package:banx/feature/kyc_status/mapper/kyc_state_mapper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 class KycStatusContent extends StatelessWidget {
   final Function() onActionClick;

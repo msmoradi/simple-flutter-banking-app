@@ -1,10 +1,8 @@
-import 'package:banx/core/domain/entities/kyc_status_entity.dart';
 import 'package:banx/core/domain/repository/authentication_repository.dart';
 import 'package:banx/feature/kyc_status/presentation/bloc/kyc_status_state.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
 part 'kyc_status_event.dart';

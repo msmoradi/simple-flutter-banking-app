@@ -4,7 +4,6 @@ import 'package:banx/core/designsystem/widgets/button/fill/full_fill_button.dart
 import 'package:banx/core/designsystem/widgets/button/fill/full_outline_button.dart';
 import 'package:banx/core/designsystem/widgets/textfields/rounded_with_shadow_otp.dart';
 import 'package:banx/core/designsystem/widgets/textfields/sms_retriever_impl.dart';
-import 'package:banx/core/domain/entities/date.dart';
 import 'package:banx/feature/card_activation_otp/presentation/bloc/card_activation_otp_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

@@ -1,4 +1,3 @@
-import 'package:banx/core/designsystem/widgets/components/drop_down_chip_widget.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'transaction_destination_state.freezed.dart';

@@ -1,6 +1,5 @@
 import 'package:banx/core/domain/entities/address_entity.dart';
 import 'package:banx/core/domain/entities/card_shipping_time_slots_entity.dart';
-import 'package:banx/core/domain/entities/empty_entity.dart';
 import 'package:banx/core/domain/entity_wrapper.dart';
 import 'package:banx/core/domain/repository/address_repository.dart';
 import 'package:banx/core/domain/repository/card_repository.dart';

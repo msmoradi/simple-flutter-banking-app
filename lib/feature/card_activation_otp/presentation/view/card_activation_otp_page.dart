@@ -33,7 +33,7 @@ class CardActivationOtpPage extends StatelessWidget {
               {
                 showMessage(s.message);
               }
-            case final MainPage s:
+            case final MainPage _:
               {
                 onMainPage();
               }

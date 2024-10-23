@@ -1,5 +1,4 @@
 import 'package:banx/core/domain/entities/password.dart';
-import 'package:banx/core/utils/extension/build_context.dart';
 import 'package:flutter/material.dart';
 
 import 'base/validation_error.dart';

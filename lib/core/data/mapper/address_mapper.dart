@@ -1,6 +1,5 @@
 import 'package:banx/core/data/model/address_dto.dart';
 import 'package:banx/core/data/model/city_dto.dart';
-import 'package:banx/core/data/model/get_inquiry_response_dto.dart';
 import 'package:banx/core/data/model/province_dto.dart';
 import 'package:banx/core/domain/entities/address_entity.dart';
 import 'package:banx/core/domain/entities/city_entity.dart';

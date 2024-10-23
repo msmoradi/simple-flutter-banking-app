@@ -4,7 +4,6 @@ import 'package:banx/core/designsystem/widgets/textfields/rounded_with_shadow_ot
 import 'package:banx/feature/verify_password/presentation/bloc/verify_password_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:pinput/pinput.dart';
 
 class VerifyPasswordContent extends StatefulWidget {

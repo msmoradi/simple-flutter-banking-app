@@ -2,7 +2,6 @@ import 'package:banx/core/designsystem/widgets/button/fill/full_fill_button.dart
 import 'package:banx/core/designsystem/widgets/textfields/birthday_text_field.dart';
 import 'package:banx/core/designsystem/widgets/textfields/national_id_text_field.dart';
 import 'package:banx/core/designsystem/widgets/textfields/referral_code_text_field.dart';
-import 'package:banx/core/domain/entities/date.dart';
 import 'package:banx/feature/identity/presentation/bloc/identity_bloc.dart';
 import 'package:banx/feature/identity/presentation/view/referral_bottom_sheet_content.dart';
 import 'package:flutter/material.dart';

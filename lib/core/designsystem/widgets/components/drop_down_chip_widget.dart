@@ -1,7 +1,5 @@
 import 'package:banx/core/designsystem/widgets/bottomsheet/deposit_bottom_sheet_content.dart';
-import 'package:banx/feature/transaction/presentation/bloc/transaction_bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 enum DropdownChipType {

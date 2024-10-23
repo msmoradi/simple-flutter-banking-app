@@ -1,6 +1,4 @@
-import 'package:banx/core/designsystem/widgets/card/back_card.dart';
 import 'package:banx/core/designsystem/widgets/card/color_styles.dart';
-import 'package:banx/core/designsystem/widgets/card/front_card.dart';
 import 'package:flip_card/flip_card.dart';
 import 'package:flip_card/flip_card_controller.dart';
 import 'package:flutter/material.dart';

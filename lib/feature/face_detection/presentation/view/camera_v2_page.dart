@@ -61,8 +61,6 @@ class _FlutterCameraState extends State<FlutterCamera> {
     super.dispose();
   }
 
-  bool _isTouchOn = false;
-  bool _isFrontCamera = false;
 
   @override
   Widget build(BuildContext context) {

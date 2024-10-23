@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:banx/core/data/model/user_profile_response_dto.dart';
 import 'package:banx/core/domain/entities/user_profile_entity.dart';
 import 'package:banx/core/domain/repository/authentication_repository.dart';
 import 'package:banx/core/domain/repository/profile_repository.dart';

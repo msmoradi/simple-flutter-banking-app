@@ -1,6 +1,5 @@
 import 'package:banx/core/designsystem/widgets/button/fill/full_fill_button.dart';
 import 'package:banx/core/designsystem/widgets/textfields/postal_code_text_field.dart';
-import 'package:banx/core/domain/entities/date.dart';
 import 'package:banx/feature/check_postal_code/presentation/bloc/check_postal_code_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

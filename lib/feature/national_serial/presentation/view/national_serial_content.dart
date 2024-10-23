@@ -1,7 +1,5 @@
 import 'package:banx/core/designsystem/widgets/button/fill/full_fill_button.dart';
 import 'package:banx/core/designsystem/widgets/textfields/national_id_text_field.dart';
-import 'package:banx/core/domain/entities/date.dart';
-import 'package:banx/core/domain/entities/email.dart';
 import 'package:banx/feature/national_serial/presentation/bloc/national_serial_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

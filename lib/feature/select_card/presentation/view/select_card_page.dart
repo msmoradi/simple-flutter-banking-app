@@ -1,6 +1,3 @@
-import 'package:banx/core/designsystem/widgets/button/fill/full_fill_button.dart';
-import 'package:banx/core/designsystem/widgets/card/credit_card.dart';
-import 'package:banx/core/designsystem/widgets/components/card_personalization_bottom_sheet.dart';
 import 'package:banx/core/domain/entities/address_entity.dart';
 import 'package:banx/feature/select_card/presentation/bloc/select_card_bloc.dart';
 import 'package:banx/feature/select_card/presentation/bloc/select_card_state.dart';

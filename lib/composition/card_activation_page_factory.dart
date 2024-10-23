@@ -1,6 +1,4 @@
 import 'package:banx/composition/card_activation_otp_page_factory.dart';
-import 'package:banx/composition/identity_page_factory.dart';
-import 'package:banx/composition/verify_otp_page_factory.dart';
 import 'package:banx/feature/card_activation/presentation/view/card_activation_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';

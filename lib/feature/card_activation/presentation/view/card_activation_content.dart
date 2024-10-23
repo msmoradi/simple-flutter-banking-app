@@ -1,11 +1,7 @@
 import 'package:banx/core/designsystem/widgets/button/fill/full_fill_button.dart';
-import 'package:banx/core/designsystem/widgets/textfields/phone_number_text_field.dart';
-import 'package:banx/core/utils/extension/build_context.dart';
 import 'package:banx/feature/card_activation/presentation/bloc/card_activation_bloc.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/svg.dart';
 
 class CardActivationContent extends StatefulWidget {
   final CardActivationState state;

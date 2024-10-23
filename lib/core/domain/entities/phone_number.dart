@@ -1,4 +1,3 @@
-import 'package:banx/feature/phone/presentation/view/phone_content.dart';
 import 'package:persian_number_utility/persian_number_utility.dart';
 
 class PhoneNumber {
