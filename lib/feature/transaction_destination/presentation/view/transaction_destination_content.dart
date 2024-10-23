@@ -157,41 +157,56 @@ class DestinationRow extends StatelessWidget {
       },
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 12.0),
-        child: Row(
-          children: [
-            Stack(alignment: Alignment.bottomLeft, children: [
-              CircleAvatar(
-                radius: 20.0,
-                backgroundImage: NetworkImage(userInfo.photoUrl),
-              ),
-              CircleAvatar(
-                radius: 7.0,
-                backgroundColor: Theme.of(context).colorScheme.surface,
-                backgroundImage: const AssetImage('assets/images/x1.png'),
-              ),
-            ]),
-            const SizedBox(
-              width: 12,
-            ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  userInfo.name,
-                  style: Theme.of(context).textTheme.bodyMedium,
-                ),
-                SizedBox(
-                  height: 4,
-                ),
-                Text(
-                  userInfo.cardNumber,
-                  style: Theme.of(context).textTheme.bodySmall,
-                )
-              ],
-            )
-          ],
+        child: Expanded(
+          child: UserInfoWidget(
+            userInfo: userInfo,
+          ),
         ),
       ),
+    );
+  }
+}
+
+class UserInfoWidget extends StatelessWidget {
+  final UserInfo userInfo;
+
+  const UserInfoWidget({super.key, required this.userInfo});
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Stack(alignment: Alignment.bottomLeft, children: [
+          CircleAvatar(
+            radius: 20.0,
+            backgroundImage: NetworkImage(userInfo.photoUrl),
+          ),
+          CircleAvatar(
+            radius: 7.0,
+            backgroundColor: Theme.of(context).colorScheme.surface,
+            backgroundImage: const AssetImage('assets/images/x1.png'),
+          ),
+        ]),
+        const SizedBox(
+          width: 12,
+        ),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              userInfo.name,
+              style: Theme.of(context).textTheme.bodyMedium,
+            ),
+            const SizedBox(
+              height: 4,
+            ),
+            Text(
+              userInfo.cardNumber,
+              style: Theme.of(context).textTheme.bodySmall,
+            )
+          ],
+        )
+      ],
     );
   }
 }

@@ -92,6 +92,8 @@ import 'package:banx/feature/select_card/presentation/bloc/select_card_bloc.dart
     as _i266;
 import 'package:banx/feature/transaction/presentation/bloc/transaction_bloc.dart'
     as _i737;
+import 'package:banx/feature/transaction_checkout/presentation/bloc/transaction_checkout_bloc.dart'
+    as _i578;
 import 'package:banx/feature/transaction_destination/presentation/bloc/transaction_destination_bloc.dart'
     as _i664;
 import 'package:banx/feature/verify_otp/presentation/bloc/verify_otp_bloc.dart'
@@ -125,6 +127,8 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i664.TransactionDestinationBloc>(
         () => _i664.TransactionDestinationBloc());
     gh.factory<_i381.MainBloc>(() => _i381.MainBloc());
+    gh.factory<_i578.TransactionCheckoutBloc>(
+        () => _i578.TransactionCheckoutBloc());
     gh.lazySingleton<_i974.Logger>(() => registerModule.logger());
     gh.lazySingleton<_i558.FlutterSecureStorage>(
         () => registerModule.flutterSecureStorage());

@@ -32,10 +32,12 @@ enum DropdownChipType {
 
 class DropdownChipWidget extends StatelessWidget {
   final DropdownChipType type;
+  final Function(DropdownChipType) onSelectTypeEvent;
 
   const DropdownChipWidget({
     Key? key,
     required this.type,
+    required this.onSelectTypeEvent,
   }) : super(key: key);
 
   @override
@@ -55,7 +57,7 @@ class DropdownChipWidget extends StatelessWidget {
           },
         );
         if (result != null) {
-          context.read<TransactionBloc>().add(SelectTypeEvent(result));
+          onSelectTypeEvent(result);
         }
       },
       child: Container(

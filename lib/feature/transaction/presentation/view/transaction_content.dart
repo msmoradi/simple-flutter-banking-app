@@ -14,7 +14,8 @@ class TransactionContent extends StatefulWidget {
   const TransactionContent({
     super.key,
     required this.selectedType,
-    required this.value, required this.onActionClick,
+    required this.value,
+    required this.onActionClick,
   });
 
   @override
@@ -115,6 +116,11 @@ class _TransactionContentState extends State<TransactionContent> {
                     const SizedBox(height: 21),
                     DropdownChipWidget(
                       type: widget.selectedType,
+                      onSelectTypeEvent: (type) {
+                        context
+                            .read<TransactionBloc>()
+                            .add(SelectTypeEvent(type));
+                      },
                     ),
                     const SizedBox(height: 70),
                     TransactionKeypad(

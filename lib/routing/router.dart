@@ -16,6 +16,7 @@ import 'package:banx/composition/onboarding_face_page_factory.dart';
 import 'package:banx/composition/onboarding_password_page_factory.dart';
 import 'package:banx/composition/phone_page_factory.dart';
 import 'package:banx/composition/select_card_page_factory.dart';
+import 'package:banx/composition/transaction_checkout_page_factory.dart';
 import 'package:banx/composition/transaction_destination_page_factory.dart';
 import 'package:banx/composition/verify_otp_page_factory.dart';
 import 'package:banx/composition/verify_password_page_factory.dart';
@@ -41,6 +42,7 @@ GoRouter getRouterConfig({
       CardActivationPageFactory.route(showMessage: showMessage),
       SelectAddressPageFactory.route(showMessage: showMessage),
       TransactionDestinationPageFactory.route(showMessage: showMessage),
+      TransactionCheckoutPageFactory.route(showMessage: showMessage),
       NationalSerialPageFactory.route(showMessage: showMessage),
       CardDeliveryTimePageFactory.route(showMessage: showMessage),
       ConfirmPasswordPageFactory.route(showMessage: showMessage),

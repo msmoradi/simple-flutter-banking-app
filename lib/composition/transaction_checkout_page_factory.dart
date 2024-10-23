@@ -1,37 +1,27 @@
 import 'package:banx/composition/card_activation_page_factory.dart';
-import 'package:banx/composition/transaction_checkout_page_factory.dart';
 import 'package:banx/core/designsystem/widgets/bottomsheet/deposit_bottom_sheet_content.dart';
 import 'package:banx/core/designsystem/widgets/components/drop_down_chip_widget.dart';
 import 'package:banx/feature/main/presentation/view/main_page.dart';
+import 'package:banx/feature/transaction_checkout/presentation/view/transaction_checkout_page.dart';
 import 'package:banx/feature/transaction_destination/presentation/view/transaction_destination_content.dart';
 import 'package:banx/feature/transaction_destination/presentation/view/transaction_destination_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 
-class TransactionDestinationPageFactory {
-  static const path = "/transaction_destination";
+class TransactionCheckoutPageFactory {
+  static const path = "/transaction_checkout";
 
-  static TransactionDestinationPage builder(
+  static TransactionCheckoutPage builder(
       {required BuildContext context,
-      required TransactionDestinationExtra extra,
+      required TransactionCheckoutExtra extra,
       required Function(String message) showMessage}) {
-    return TransactionDestinationPage(
+    return TransactionCheckoutPage(
       showMessage: showMessage,
       amount: extra.amount,
       sourceDepositType: extra.sourceDepositType,
-      onDestinationSelected: (userInfo) {
-        context.push(TransactionCheckoutPageFactory.path,
-            extra: TransactionCheckoutExtra(
-                amount: extra.amount,
-                sourceDepositType: extra.sourceDepositType,
-                sourceUserInfo: UserInfo(
-                    name: 'مهرداد اندامی',
-                    cardNumber: '۵۰۲۲ ۲۹۱۵ ۰۰۰۴ ۱۲۲۱',
-                  photoUrl: 'https://i.pravatar.cc/301',
-                ),
-                destinationDepositType: DropdownChipType.rialDeposit,
-                destinationUserInfo: userInfo));
-      },
+      sourceUserInfo: extra.sourceUserInfo,
+      destinationUserInfo: extra.destinationUserInfo,
+      destinationDepositType: extra.destinationDepositType,
     );
   }
 
@@ -40,23 +30,29 @@ class TransactionDestinationPageFactory {
     required Function(String message) showMessage,
   }) {
     return GoRoute(
-        path: (TransactionDestinationPageFactory.path),
+        path: (TransactionCheckoutPageFactory.path),
         builder: (ctx, state) {
-          TransactionDestinationExtra extra =
-              state.extra as TransactionDestinationExtra;
-          return TransactionDestinationPageFactory.builder(
+          TransactionCheckoutExtra extra =
+              state.extra as TransactionCheckoutExtra;
+          return TransactionCheckoutPageFactory.builder(
               context: ctx, showMessage: showMessage, extra: extra);
         },
         routes: routes);
   }
 }
 
-class TransactionDestinationExtra {
+class TransactionCheckoutExtra {
   final String amount;
+  final UserInfo destinationUserInfo;
+  final UserInfo sourceUserInfo;
   final DropdownChipType sourceDepositType;
+  final DropdownChipType destinationDepositType;
 
-  TransactionDestinationExtra({
+  TransactionCheckoutExtra({
     required this.amount,
     required this.sourceDepositType,
+    required this.destinationDepositType,
+    required this.destinationUserInfo,
+    required this.sourceUserInfo,
   });
 }
