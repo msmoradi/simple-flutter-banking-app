@@ -41,8 +41,8 @@ class TransactionCheckoutExtra {
   final String amount;
   final UserInfo destinationUserInfo;
   final UserInfo sourceUserInfo;
-  final DropdownChipType sourceDepositType;
-  final DropdownChipType destinationDepositType;
+  final DepositType sourceDepositType;
+  final DepositType destinationDepositType;
 
   TransactionCheckoutExtra({
     required this.amount,

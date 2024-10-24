@@ -7,7 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class TransactionContent extends StatefulWidget {
-  final DropdownChipType selectedType;
+  final DepositType selectedType;
   final String value;
   final VoidCallback onActionClick;
 
@@ -128,7 +128,7 @@ class _TransactionContentState extends State<TransactionContent> {
                       onBackspace: _onBackspace,
                       isEnabled: true,
                       showDot:
-                          widget.selectedType == DropdownChipType.goldDeposit,
+                          widget.selectedType == DepositType.goldDeposit,
                     ),
                   ],
                 ),

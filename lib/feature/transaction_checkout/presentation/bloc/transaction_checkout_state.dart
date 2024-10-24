@@ -13,10 +13,10 @@ class TransactionCheckoutState with _$TransactionCheckoutState {
     TransactionCheckoutStatus status,
     @Default('') String errorMessage,
     @Default('') String conversionFee,
-    @Default(DropdownChipType.rialDeposit) DropdownChipType sourceDepositType,
+    @Default(DepositType.rialDeposit) DepositType sourceDepositType,
     required UserInfo sourceUserInfo,
-    @Default(DropdownChipType.rialDeposit)
-    DropdownChipType destinationDepositType,
+    @Default(DepositType.rialDeposit)
+    DepositType destinationDepositType,
     required UserInfo destinationUserInfo,
   }) = _TransactionCheckoutState;
 }

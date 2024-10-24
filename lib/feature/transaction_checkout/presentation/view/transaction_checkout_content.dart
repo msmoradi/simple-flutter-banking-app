@@ -7,13 +7,13 @@ class TransactionCheckoutContent extends StatefulWidget {
   final String amount;
 
   final String conversionFee;
-  final DropdownChipType sourceDepositType;
+  final DepositType sourceDepositType;
   final UserInfo sourceUserInfo;
-  final DropdownChipType destinationDepositType;
+  final DepositType destinationDepositType;
   final UserInfo destinationUserInfo;
 
-  final Function(DropdownChipType) onSourceSelectTypeEvent;
-  final Function(DropdownChipType) onDestinationSelectTypeEvent;
+  final Function(DepositType) onSourceSelectTypeEvent;
+  final Function(DepositType) onDestinationSelectTypeEvent;
 
   const TransactionCheckoutContent({
     super.key,
@@ -133,8 +133,8 @@ class _TransactionCheckoutContentState
 
 class TransferRow extends StatelessWidget {
   final UserInfo userInfo;
-  final DropdownChipType depositType;
-  final Function(DropdownChipType) onSelectTypeEvent;
+  final DepositType depositType;
+  final Function(DepositType) onSelectTypeEvent;
 
   const TransferRow(
       {super.key,

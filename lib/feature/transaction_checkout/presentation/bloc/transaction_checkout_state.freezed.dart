@@ -19,9 +19,9 @@ mixin _$TransactionCheckoutState {
   TransactionCheckoutStatus get status => throw _privateConstructorUsedError;
   String get errorMessage => throw _privateConstructorUsedError;
   String get conversionFee => throw _privateConstructorUsedError;
-  DropdownChipType get sourceDepositType => throw _privateConstructorUsedError;
+  DepositType get sourceDepositType => throw _privateConstructorUsedError;
   UserInfo get sourceUserInfo => throw _privateConstructorUsedError;
-  DropdownChipType get destinationDepositType =>
+  DepositType get destinationDepositType =>
       throw _privateConstructorUsedError;
   UserInfo get destinationUserInfo => throw _privateConstructorUsedError;
 
@@ -42,9 +42,9 @@ abstract class $TransactionCheckoutStateCopyWith<$Res> {
       {TransactionCheckoutStatus status,
       String errorMessage,
       String conversionFee,
-      DropdownChipType sourceDepositType,
+      DepositType sourceDepositType,
       UserInfo sourceUserInfo,
-      DropdownChipType destinationDepositType,
+      DepositType destinationDepositType,
       UserInfo destinationUserInfo});
 }
 
@@ -88,7 +88,7 @@ class _$TransactionCheckoutStateCopyWithImpl<$Res,
       sourceDepositType: null == sourceDepositType
           ? _value.sourceDepositType
           : sourceDepositType // ignore: cast_nullable_to_non_nullable
-              as DropdownChipType,
+              as DepositType,
       sourceUserInfo: freezed == sourceUserInfo
           ? _value.sourceUserInfo
           : sourceUserInfo // ignore: cast_nullable_to_non_nullable
@@ -96,7 +96,7 @@ class _$TransactionCheckoutStateCopyWithImpl<$Res,
       destinationDepositType: null == destinationDepositType
           ? _value.destinationDepositType
           : destinationDepositType // ignore: cast_nullable_to_non_nullable
-              as DropdownChipType,
+              as DepositType,
       destinationUserInfo: freezed == destinationUserInfo
           ? _value.destinationUserInfo
           : destinationUserInfo // ignore: cast_nullable_to_non_nullable
@@ -118,9 +118,9 @@ abstract class _$$TransactionCheckoutStateImplCopyWith<$Res>
       {TransactionCheckoutStatus status,
       String errorMessage,
       String conversionFee,
-      DropdownChipType sourceDepositType,
+      DepositType sourceDepositType,
       UserInfo sourceUserInfo,
-      DropdownChipType destinationDepositType,
+      DepositType destinationDepositType,
       UserInfo destinationUserInfo});
 }
 
@@ -163,7 +163,7 @@ class __$$TransactionCheckoutStateImplCopyWithImpl<$Res>
       sourceDepositType: null == sourceDepositType
           ? _value.sourceDepositType
           : sourceDepositType // ignore: cast_nullable_to_non_nullable
-              as DropdownChipType,
+              as DepositType,
       sourceUserInfo: freezed == sourceUserInfo
           ? _value.sourceUserInfo
           : sourceUserInfo // ignore: cast_nullable_to_non_nullable
@@ -171,7 +171,7 @@ class __$$TransactionCheckoutStateImplCopyWithImpl<$Res>
       destinationDepositType: null == destinationDepositType
           ? _value.destinationDepositType
           : destinationDepositType // ignore: cast_nullable_to_non_nullable
-              as DropdownChipType,
+              as DepositType,
       destinationUserInfo: freezed == destinationUserInfo
           ? _value.destinationUserInfo
           : destinationUserInfo // ignore: cast_nullable_to_non_nullable
@@ -187,9 +187,9 @@ class _$TransactionCheckoutStateImpl implements _TransactionCheckoutState {
       {this.status = TransactionCheckoutStatus.initial,
       this.errorMessage = '',
       this.conversionFee = '',
-      this.sourceDepositType = DropdownChipType.rialDeposit,
+      this.sourceDepositType = DepositType.rialDeposit,
       required this.sourceUserInfo,
-      this.destinationDepositType = DropdownChipType.rialDeposit,
+      this.destinationDepositType = DepositType.rialDeposit,
       required this.destinationUserInfo});
 
   @override
@@ -203,12 +203,12 @@ class _$TransactionCheckoutStateImpl implements _TransactionCheckoutState {
   final String conversionFee;
   @override
   @JsonKey()
-  final DropdownChipType sourceDepositType;
+  final DepositType sourceDepositType;
   @override
   final UserInfo sourceUserInfo;
   @override
   @JsonKey()
-  final DropdownChipType destinationDepositType;
+  final DepositType destinationDepositType;
   @override
   final UserInfo destinationUserInfo;
 
@@ -263,9 +263,9 @@ abstract class _TransactionCheckoutState implements TransactionCheckoutState {
           {final TransactionCheckoutStatus status,
           final String errorMessage,
           final String conversionFee,
-          final DropdownChipType sourceDepositType,
+          final DepositType sourceDepositType,
           required final UserInfo sourceUserInfo,
-          final DropdownChipType destinationDepositType,
+          final DepositType destinationDepositType,
           required final UserInfo destinationUserInfo}) =
       _$TransactionCheckoutStateImpl;
 
@@ -276,11 +276,11 @@ abstract class _TransactionCheckoutState implements TransactionCheckoutState {
   @override
   String get conversionFee;
   @override
-  DropdownChipType get sourceDepositType;
+  DepositType get sourceDepositType;
   @override
   UserInfo get sourceUserInfo;
   @override
-  DropdownChipType get destinationDepositType;
+  DepositType get destinationDepositType;
   @override
   UserInfo get destinationUserInfo;
 

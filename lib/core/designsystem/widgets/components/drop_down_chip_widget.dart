@@ -2,18 +2,18 @@ import 'package:banx/core/designsystem/widgets/bottomsheet/deposit_bottom_sheet_
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-enum DropdownChipType {
+enum DepositType {
   rialDeposit(
       title: 'سپرده ریالء',
-      iconPath: 'assets/images/lite-coin-1.png',
+      iconPath: 'assets/images/lite-coin-2.png',
       unit: 'ریالء'),
   dollarDeposit(
       title: 'سپرده دلار',
-      iconPath: 'assets/images/lite-coin-2.png',
+      iconPath: 'assets/images/lite-coin-3.png',
       unit: 'دلار'),
   goldDeposit(
       title: 'سپرده طلا',
-      iconPath: 'assets/images/lite-coin-3.png',
+      iconPath: 'assets/images/lite-coin-1.png',
       unit: 'گرم'),
   diamondDeposit(
       title: 'سپرده الماس',
@@ -24,13 +24,13 @@ enum DropdownChipType {
   final String unit;
   final String iconPath;
 
-  const DropdownChipType(
+  const DepositType(
       {required this.title, required this.iconPath, required this.unit});
 }
 
 class DropdownChipWidget extends StatelessWidget {
-  final DropdownChipType type;
-  final Function(DropdownChipType) onSelectTypeEvent;
+  final DepositType type;
+  final Function(DepositType) onSelectTypeEvent;
 
   const DropdownChipWidget({
     Key? key,
@@ -42,7 +42,7 @@ class DropdownChipWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () async {
-        final result = await showModalBottomSheet<DropdownChipType>(
+        final result = await showModalBottomSheet<DepositType>(
           showDragHandle: true,
           context: context,
           builder: (BuildContext context) {

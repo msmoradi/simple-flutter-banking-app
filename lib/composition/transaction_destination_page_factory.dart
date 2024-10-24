@@ -26,7 +26,7 @@ class TransactionDestinationPageFactory {
                   cardNumber: '5022291500421234',
                   photoUrl: 'https://i.pravatar.cc/301',
                 ),
-                destinationDepositType: DropdownChipType.rialDeposit,
+                destinationDepositType: DepositType.rialDeposit,
                 destinationUserInfo: userInfo));
       },
     );
@@ -50,7 +50,7 @@ class TransactionDestinationPageFactory {
 
 class TransactionDestinationExtra {
   final String amount;
-  final DropdownChipType sourceDepositType;
+  final DepositType sourceDepositType;
 
   TransactionDestinationExtra({
     required this.amount,

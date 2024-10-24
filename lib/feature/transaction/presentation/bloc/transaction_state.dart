@@ -14,6 +14,6 @@ class TransactionState with _$TransactionState {
     @Default(false) bool showBiometric,
     @Default('') String name,
     @Default('') String value,
-    @Default(DropdownChipType.rialDeposit) DropdownChipType selectedType,
+    @Default(DepositType.rialDeposit) DepositType selectedType,
   }) = _TransactionState;
 }

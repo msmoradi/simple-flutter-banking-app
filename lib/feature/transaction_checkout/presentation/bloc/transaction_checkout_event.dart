@@ -15,13 +15,13 @@ class Init extends TransactionCheckoutEvent {
 }
 
 class SourceSelectTypeEvent extends TransactionCheckoutEvent {
-  final DropdownChipType type;
+  final DepositType type;
 
   const SourceSelectTypeEvent(this.type);
 }
 
 class DestinationSelectTypeEvent extends TransactionCheckoutEvent {
-  final DropdownChipType type;
+  final DepositType type;
 
   const DestinationSelectTypeEvent(this.type);
 }

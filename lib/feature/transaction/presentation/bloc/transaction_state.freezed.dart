@@ -22,7 +22,7 @@ mixin _$TransactionState {
   bool get showBiometric => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get value => throw _privateConstructorUsedError;
-  DropdownChipType get selectedType => throw _privateConstructorUsedError;
+  DepositType get selectedType => throw _privateConstructorUsedError;
 
   /// Create a copy of TransactionState
   /// with the given fields replaced by the non-null parameter values.
@@ -44,7 +44,7 @@ abstract class $TransactionStateCopyWith<$Res> {
       bool showBiometric,
       String name,
       String value,
-      DropdownChipType selectedType});
+      DepositType selectedType});
 }
 
 /// @nodoc
@@ -98,7 +98,7 @@ class _$TransactionStateCopyWithImpl<$Res, $Val extends TransactionState>
       selectedType: null == selectedType
           ? _value.selectedType
           : selectedType // ignore: cast_nullable_to_non_nullable
-              as DropdownChipType,
+              as DepositType,
     ) as $Val);
   }
 }
@@ -118,7 +118,7 @@ abstract class _$$TransactionStateImplCopyWith<$Res>
       bool showBiometric,
       String name,
       String value,
-      DropdownChipType selectedType});
+      DepositType selectedType});
 }
 
 /// @nodoc
@@ -170,7 +170,7 @@ class __$$TransactionStateImplCopyWithImpl<$Res>
       selectedType: null == selectedType
           ? _value.selectedType
           : selectedType // ignore: cast_nullable_to_non_nullable
-              as DropdownChipType,
+              as DepositType,
     ));
   }
 }
@@ -185,7 +185,7 @@ class _$TransactionStateImpl implements _TransactionState {
       this.showBiometric = false,
       this.name = '',
       this.value = '',
-      this.selectedType = DropdownChipType.rialDeposit});
+      this.selectedType = DepositType.rialDeposit});
 
   @override
   @JsonKey()
@@ -207,7 +207,7 @@ class _$TransactionStateImpl implements _TransactionState {
   final String value;
   @override
   @JsonKey()
-  final DropdownChipType selectedType;
+  final DepositType selectedType;
 
   @override
   String toString() {
@@ -254,7 +254,7 @@ abstract class _TransactionState implements TransactionState {
       final bool showBiometric,
       final String name,
       final String value,
-      final DropdownChipType selectedType}) = _$TransactionStateImpl;
+      final DepositType selectedType}) = _$TransactionStateImpl;
 
   @override
   TransactionStatus get status;
@@ -269,7 +269,7 @@ abstract class _TransactionState implements TransactionState {
   @override
   String get value;
   @override
-  DropdownChipType get selectedType;
+  DepositType get selectedType;
 
   /// Create a copy of TransactionState
   /// with the given fields replaced by the non-null parameter values.

@@ -8,7 +8,7 @@ import 'package:get_it/get_it.dart';
 
 class TransactionDestinationPage extends StatelessWidget {
   final String amount;
-  final DropdownChipType sourceDepositType;
+  final DepositType sourceDepositType;
   final Function(UserInfo) onDestinationSelected;
   final Function(String) showMessage;
 

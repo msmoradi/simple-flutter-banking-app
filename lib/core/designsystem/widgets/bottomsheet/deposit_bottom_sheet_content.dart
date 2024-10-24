@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class DepositBottomSheetContent extends StatelessWidget {
-  final DropdownChipType initialType;
-  final ValueChanged<DropdownChipType> onTypeSelected;
+  final DepositType initialType;
+  final ValueChanged<DepositType> onTypeSelected;
 
   const DepositBottomSheetContent({
     super.key,
@@ -34,9 +34,9 @@ class DepositBottomSheetContent extends StatelessWidget {
         const SizedBox(height: 16),
         ListView.builder(
           shrinkWrap: true,
-          itemCount: DropdownChipType.values.length,
+          itemCount: DepositType.values.length,
           itemBuilder: (context, index) {
-            final type = DropdownChipType.values[index];
+            final type = DepositType.values[index];
             return InkWell(
               onTap: () {
                 onTypeSelected(type);

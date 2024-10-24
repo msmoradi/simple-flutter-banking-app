@@ -8,7 +8,7 @@ abstract class TransactionEvent extends Equatable {
 }
 
 class SelectTypeEvent extends TransactionEvent {
-  final DropdownChipType selectedType;
+  final DepositType selectedType;
 
   SelectTypeEvent(this.selectedType);
 }

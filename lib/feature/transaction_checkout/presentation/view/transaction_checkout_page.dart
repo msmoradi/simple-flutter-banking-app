@@ -9,9 +9,9 @@ import 'package:get_it/get_it.dart';
 
 class TransactionCheckoutPage extends StatelessWidget {
   final String amount;
-  final DropdownChipType sourceDepositType;
+  final DepositType sourceDepositType;
   final UserInfo sourceUserInfo;
-  final DropdownChipType destinationDepositType;
+  final DepositType destinationDepositType;
   final UserInfo destinationUserInfo;
 
   final Function(String) showMessage;
