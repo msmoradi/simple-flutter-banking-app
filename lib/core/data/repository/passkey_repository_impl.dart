@@ -33,9 +33,8 @@ class PasskeyRepositoryImpl implements PasskeyRepository {
   }
 
   @override
-  Future<PasskeyAttestationResponseDTO> signIn(
-      PasskeyAttestationOptionsRequestDTO request) async {
-    final passkeyAuthenticator = PasskeyAuthenticator();
+  Future<PasskeyAttestationResponseDTO> signIn(PasskeyAttestationOptionsRequestDTO request) {
+/* final passkeyAuthenticator = PasskeyAuthenticator();
 
     final webAuthnChallenge = await remoteDataSource
         .getPasskeyAttestationOptions(PasskeyAttestationOptionsRequestDTO());
@@ -43,6 +42,8 @@ class PasskeyRepositoryImpl implements PasskeyRepository {
     final platformRes =
         await passkeyAuthenticator.authenticate(webAuthnChallenge);
     // finish sign in by calling the relying party server again
-    return await remoteDataSource.sendPasskeyAttestation(platformRes);
+    return await remoteDataSource.sendPasskeyAttestation(platformRes);*/
+
+    throw UnimplementedError();
   }
 }
