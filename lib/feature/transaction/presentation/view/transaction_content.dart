@@ -74,91 +74,87 @@ class _TransactionContentState extends State<TransactionContent> {
       ),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            children: [
-              SingleChildScrollView(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const SizedBox(
-                      height: 16.0,
+          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const SizedBox(
+                  height: 16.0,
+                ),
+                FittedBox(
+                  fit: BoxFit.scaleDown,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        widget.value,
+                        textDirection: TextDirection.ltr,
+                        style: Theme.of(context)
+                            .textTheme
+                            .headlineLarge
+                            ?.copyWith(
+                              fontWeight: FontWeight.bold,
+                              color: Theme.of(context).colorScheme.primary,
+                            ),
+                      ),
+                      Text(
+                        widget.selectedType.unit,
+                        style: Theme.of(context)
+                            .textTheme
+                            .headlineLarge
+                            ?.copyWith(
+                              fontWeight: FontWeight.bold,
+                              color: Theme.of(context).colorScheme.primary,
+                            ),
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 21),
+                DropdownChipWidget(
+                  type: widget.selectedType,
+                  onSelectTypeEvent: (type) {
+                    context
+                        .read<TransactionBloc>()
+                        .add(SelectTypeEvent(type));
+                  },
+                ),
+                const SizedBox(height: 48),
+                TransactionKeypad(
+                  onKeyTapped: _onKeyTapped,
+                  onBackspace: _onBackspace,
+                  isEnabled: true,
+                  showDot:
+                      widget.selectedType == DepositType.goldDeposit,
+                ),
+                const SizedBox(height: 14),
+                GestureDetector(
+                  onTap: () {
+                    HapticFeedback.mediumImpact();
+                    widget.onActionClick();
+                  },
+                  child: Container(
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Theme.of(context).colorScheme.primary,
                     ),
-                    FittedBox(
-                      fit: BoxFit.scaleDown,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            widget.value,
-                            textDirection: TextDirection.ltr,
-                            style: Theme.of(context)
-                                .textTheme
-                                .headlineLarge
-                                ?.copyWith(
-                                  fontWeight: FontWeight.bold,
-                                  color: Theme.of(context).colorScheme.primary,
-                                ),
-                          ),
-                          Text(
-                            widget.selectedType.unit,
-                            style: Theme.of(context)
-                                .textTheme
-                                .headlineLarge
-                                ?.copyWith(
-                                  fontWeight: FontWeight.bold,
-                                  color: Theme.of(context).colorScheme.primary,
-                                ),
-                          ),
-                        ],
+                    width: 80.0,
+                    height: 80.0,
+                    child: SvgPicture.asset(
+                      'assets/icons/arrow-left.svg',
+                      width: 40.0,
+                      height: 40.0,
+                      colorFilter: ColorFilter.mode(
+                        Theme.of(context).colorScheme.onPrimary,
+                        BlendMode.srcIn,
                       ),
                     ),
-                    const SizedBox(height: 21),
-                    DropdownChipWidget(
-                      type: widget.selectedType,
-                      onSelectTypeEvent: (type) {
-                        context
-                            .read<TransactionBloc>()
-                            .add(SelectTypeEvent(type));
-                      },
-                    ),
-                    const SizedBox(height: 70),
-                    TransactionKeypad(
-                      onKeyTapped: _onKeyTapped,
-                      onBackspace: _onBackspace,
-                      isEnabled: true,
-                      showDot:
-                          widget.selectedType == DepositType.goldDeposit,
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(height: 14),
-              GestureDetector(
-                onTap: () {
-                  HapticFeedback.mediumImpact();
-                  widget.onActionClick();
-                },
-                child: Container(
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Theme.of(context).colorScheme.primary,
-                  ),
-                  width: 80.0,
-                  height: 80.0,
-                  child: SvgPicture.asset(
-                    'assets/icons/arrow-left.svg',
-                    width: 40.0,
-                    height: 40.0,
-                    colorFilter: ColorFilter.mode(
-                      Theme.of(context).colorScheme.onPrimary,
-                      BlendMode.srcIn,
-                    ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
