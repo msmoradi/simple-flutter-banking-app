@@ -154,11 +154,11 @@ class BankContent extends StatelessWidget {
                 ),
               ),
               ListView.builder(
-                physics: NeverScrollableScrollPhysics(),
+                physics: const NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
-                prototypeItem: Padding(
+                prototypeItem: const Padding(
                   padding:
-                      const EdgeInsets.symmetric(horizontal: 16.0, vertical: 5),
+                      EdgeInsets.symmetric(horizontal: 16.0, vertical: 5),
                   child: TransactionCard(
                     image: BankTransactionIcon(
                       isInput: true,
