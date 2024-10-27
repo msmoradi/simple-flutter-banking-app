@@ -51,6 +51,22 @@
 	<string>We need access to save videos to your gallery.</string>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	<key>NSContactsUsageDescription</key>
+    <string>We require access to your contacts for a better user experience.</string>
+    <key>NSAppleMusicUsageDescription</key>
+    <string>We need access to your Apple Music library to enhance media experiences.</string>
+    <key>NSMotionUsageDescription</key>
+    <string>We need access to motion data to improve the app’s performance or features.</string>
+    <key>NSSpeechRecognitionUsageDescription</key>
+    <string>We need to access speech recognition for voice features.</string>
+    <key>NSSiriUsageDescription</key>
+    <string>We require Siri access to provide voice assistant functionalities within the app.</string>
+    <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+    <string>We need access to your location to offer location-based services.</string>
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string>We need access to your location while using the app to enhance your experience.</string>
+    <key>NSBluetoothAlwaysUsageDescription</key>
+    <string>We need Bluetooth access to connect to nearby devices and enhance features.</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
