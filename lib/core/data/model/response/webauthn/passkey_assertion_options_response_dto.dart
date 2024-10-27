@@ -3,17 +3,20 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'passkey_assertion_options_response_dto.freezed.dart';
+
 part 'passkey_assertion_options_response_dto.g.dart';
 
 @freezed
-class PasskeyAssertionOptionsResponseDTO with _$PasskeyAssertionOptionsResponseDTO {
+class PasskeyAssertionOptionsResponseDTO
+    with _$PasskeyAssertionOptionsResponseDTO {
   const factory PasskeyAssertionOptionsResponseDTO({
     required String requestId,
     required PublicKeyAssertionOptionsDTO publicKey,
     String? errorMessage,
   }) = _PasskeyAssertionOptionsResponseDTO;
 
-  factory PasskeyAssertionOptionsResponseDTO.fromJson(Map<String, dynamic> json) =>
+  factory PasskeyAssertionOptionsResponseDTO.fromJson(
+          Map<String, dynamic> json) =>
       _$PasskeyAssertionOptionsResponseDTOFromJson(json);
 }
 
