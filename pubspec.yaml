@@ -48,6 +48,9 @@ dependencies:
   uuid: ^4.4.2
   flutter_nfc_kit: ^3.4.2
   ndef: ^0.3.3
+  passkeys_android: ^2.1.0
+  passkeys_ios: ^2.1.0
+  passkeys_platform_interface: ^2.1.0
 
 dev_dependencies:
   flutter_test:
