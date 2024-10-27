@@ -1,37 +1,26 @@
 import 'package:banx/core/designsystem/widgets/components/drop_down_chip_widget.dart';
-import 'package:banx/core/designsystem/widgets/transaction_keypad.dart';
+import 'package:banx/core/designsystem/widgets/custom_keypad.dart';
 import 'package:banx/feature/transaction/presentation/bloc/transaction_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class TransactionContent extends StatefulWidget {
+class TransactionContent extends StatelessWidget {
   final DepositType selectedType;
   final String value;
   final VoidCallback onActionClick;
+  final Function(String) onKeyTapped;
+  final VoidCallback onBackspace;
 
   const TransactionContent({
     super.key,
     required this.selectedType,
     required this.value,
     required this.onActionClick,
+    required this.onKeyTapped,
+    required this.onBackspace,
   });
-
-  @override
-  _TransactionContentState createState() => _TransactionContentState();
-}
-
-class _TransactionContentState extends State<TransactionContent> {
-  void _onKeyTapped(String key) {
-    if (!mounted) return;
-    context.read<TransactionBloc>().add(AddValueEvent(key: key));
-  }
-
-  void _onBackspace() {
-    if (!mounted) return;
-    context.read<TransactionBloc>().add(const RemoveValueEvent());
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -82,57 +71,48 @@ class _TransactionContentState extends State<TransactionContent> {
                 const SizedBox(
                   height: 16.0,
                 ),
-                FittedBox(
-                  fit: BoxFit.scaleDown,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        widget.value,
-                        textDirection: TextDirection.ltr,
-                        style: Theme.of(context)
-                            .textTheme
-                            .headlineLarge
-                            ?.copyWith(
-                              fontWeight: FontWeight.bold,
-                              color: Theme.of(context).colorScheme.primary,
-                            ),
-                      ),
-                      Text(
-                        widget.selectedType.unit,
-                        style: Theme.of(context)
-                            .textTheme
-                            .headlineLarge
-                            ?.copyWith(
-                              fontWeight: FontWeight.bold,
-                              color: Theme.of(context).colorScheme.primary,
-                            ),
-                      ),
-                    ],
-                  ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      value,
+                      textDirection: TextDirection.ltr,
+                      style:
+                          Theme.of(context).textTheme.headlineLarge?.copyWith(
+                                fontWeight: FontWeight.bold,
+                                color: Theme.of(context).colorScheme.primary,
+                              ),
+                    ),
+                    Text(
+                      selectedType.unit,
+                      style:
+                          Theme.of(context).textTheme.headlineLarge?.copyWith(
+                                fontWeight: FontWeight.bold,
+                                color: Theme.of(context).colorScheme.primary,
+                              ),
+                    ),
+                  ],
                 ),
                 const SizedBox(height: 21),
                 DropdownChipWidget(
-                  type: widget.selectedType,
+                  type: selectedType,
                   onSelectTypeEvent: (type) {
-                    context
-                        .read<TransactionBloc>()
-                        .add(SelectTypeEvent(type));
+                    context.read<TransactionBloc>().add(SelectTypeEvent(type));
                   },
                 ),
                 const SizedBox(height: 48),
-                TransactionKeypad(
-                  onKeyTapped: _onKeyTapped,
-                  onBackspace: _onBackspace,
+                CustomKeypad(
+                  onKeyTapped: onKeyTapped,
+                  onBackspace: onBackspace,
+                  onPrimaryTapped: () {},
+                  primaryIcon: null,
                   isEnabled: true,
-                  showDot:
-                      widget.selectedType == DepositType.goldDeposit,
                 ),
                 const SizedBox(height: 14),
                 GestureDetector(
                   onTap: () {
                     HapticFeedback.mediumImpact();
-                    widget.onActionClick();
+                    onActionClick();
                   },
                   child: Container(
                     alignment: Alignment.center,

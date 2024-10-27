@@ -28,6 +28,12 @@ class TransactionPage extends StatelessWidget {
           return TransactionContent(
             selectedType: state.selectedType,
             value: state.value,
+            onBackspace: () {
+              context.read<TransactionBloc>().add(const RemoveValueEvent());
+            },
+            onKeyTapped: (key) {
+              context.read<TransactionBloc>().add(AddValueEvent(key: key));
+            },
             onActionClick: () {
               context.push(TransactionDestinationPageFactory.path,
                   extra: TransactionDestinationExtra(
