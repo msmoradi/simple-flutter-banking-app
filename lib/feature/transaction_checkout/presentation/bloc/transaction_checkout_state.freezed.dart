@@ -21,8 +21,7 @@ mixin _$TransactionCheckoutState {
   String get conversionFee => throw _privateConstructorUsedError;
   DepositType get sourceDepositType => throw _privateConstructorUsedError;
   UserInfo get sourceUserInfo => throw _privateConstructorUsedError;
-  DepositType get destinationDepositType =>
-      throw _privateConstructorUsedError;
+  DepositType get destinationDepositType => throw _privateConstructorUsedError;
   UserInfo get destinationUserInfo => throw _privateConstructorUsedError;
 
   /// Create a copy of TransactionCheckoutState
@@ -68,9 +67,9 @@ class _$TransactionCheckoutStateCopyWithImpl<$Res,
     Object? errorMessage = null,
     Object? conversionFee = null,
     Object? sourceDepositType = null,
-    Object? sourceUserInfo = freezed,
+    Object? sourceUserInfo = null,
     Object? destinationDepositType = null,
-    Object? destinationUserInfo = freezed,
+    Object? destinationUserInfo = null,
   }) {
     return _then(_value.copyWith(
       status: null == status
@@ -89,7 +88,7 @@ class _$TransactionCheckoutStateCopyWithImpl<$Res,
           ? _value.sourceDepositType
           : sourceDepositType // ignore: cast_nullable_to_non_nullable
               as DepositType,
-      sourceUserInfo: freezed == sourceUserInfo
+      sourceUserInfo: null == sourceUserInfo
           ? _value.sourceUserInfo
           : sourceUserInfo // ignore: cast_nullable_to_non_nullable
               as UserInfo,
@@ -97,7 +96,7 @@ class _$TransactionCheckoutStateCopyWithImpl<$Res,
           ? _value.destinationDepositType
           : destinationDepositType // ignore: cast_nullable_to_non_nullable
               as DepositType,
-      destinationUserInfo: freezed == destinationUserInfo
+      destinationUserInfo: null == destinationUserInfo
           ? _value.destinationUserInfo
           : destinationUserInfo // ignore: cast_nullable_to_non_nullable
               as UserInfo,
@@ -143,9 +142,9 @@ class __$$TransactionCheckoutStateImplCopyWithImpl<$Res>
     Object? errorMessage = null,
     Object? conversionFee = null,
     Object? sourceDepositType = null,
-    Object? sourceUserInfo = freezed,
+    Object? sourceUserInfo = null,
     Object? destinationDepositType = null,
-    Object? destinationUserInfo = freezed,
+    Object? destinationUserInfo = null,
   }) {
     return _then(_$TransactionCheckoutStateImpl(
       status: null == status
@@ -164,7 +163,7 @@ class __$$TransactionCheckoutStateImplCopyWithImpl<$Res>
           ? _value.sourceDepositType
           : sourceDepositType // ignore: cast_nullable_to_non_nullable
               as DepositType,
-      sourceUserInfo: freezed == sourceUserInfo
+      sourceUserInfo: null == sourceUserInfo
           ? _value.sourceUserInfo
           : sourceUserInfo // ignore: cast_nullable_to_non_nullable
               as UserInfo,
@@ -172,7 +171,7 @@ class __$$TransactionCheckoutStateImplCopyWithImpl<$Res>
           ? _value.destinationDepositType
           : destinationDepositType // ignore: cast_nullable_to_non_nullable
               as DepositType,
-      destinationUserInfo: freezed == destinationUserInfo
+      destinationUserInfo: null == destinationUserInfo
           ? _value.destinationUserInfo
           : destinationUserInfo // ignore: cast_nullable_to_non_nullable
               as UserInfo,
@@ -229,12 +228,12 @@ class _$TransactionCheckoutStateImpl implements _TransactionCheckoutState {
                 other.conversionFee == conversionFee) &&
             (identical(other.sourceDepositType, sourceDepositType) ||
                 other.sourceDepositType == sourceDepositType) &&
-            const DeepCollectionEquality()
-                .equals(other.sourceUserInfo, sourceUserInfo) &&
+            (identical(other.sourceUserInfo, sourceUserInfo) ||
+                other.sourceUserInfo == sourceUserInfo) &&
             (identical(other.destinationDepositType, destinationDepositType) ||
                 other.destinationDepositType == destinationDepositType) &&
-            const DeepCollectionEquality()
-                .equals(other.destinationUserInfo, destinationUserInfo));
+            (identical(other.destinationUserInfo, destinationUserInfo) ||
+                other.destinationUserInfo == destinationUserInfo));
   }
 
   @override
@@ -244,9 +243,9 @@ class _$TransactionCheckoutStateImpl implements _TransactionCheckoutState {
       errorMessage,
       conversionFee,
       sourceDepositType,
-      const DeepCollectionEquality().hash(sourceUserInfo),
+      sourceUserInfo,
       destinationDepositType,
-      const DeepCollectionEquality().hash(destinationUserInfo));
+      destinationUserInfo);
 
   /// Create a copy of TransactionCheckoutState
   /// with the given fields replaced by the non-null parameter values.

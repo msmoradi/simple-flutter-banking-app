@@ -28,6 +28,10 @@ import 'package:banx/core/data/datasource/remote/media_remote_data_source.dart'
     as _i665;
 import 'package:banx/core/data/datasource/remote/media_remote_data_source_impl.dart'
     as _i55;
+import 'package:banx/core/data/datasource/remote/passkey_remote_data_source.dart'
+    as _i79;
+import 'package:banx/core/data/datasource/remote/passkey_remote_data_source_impl.dart'
+    as _i596;
 import 'package:banx/core/data/datasource/remote/profile_remote_datasource.dart'
     as _i264;
 import 'package:banx/core/data/datasource/remote/profile_remote_datasource_impl.dart'
@@ -38,6 +42,8 @@ import 'package:banx/core/data/repository/authentication_repository_impl.dart'
     as _i450;
 import 'package:banx/core/data/repository/card_repository_impl.dart' as _i339;
 import 'package:banx/core/data/repository/media_repository_impl.dart' as _i244;
+import 'package:banx/core/data/repository/passkey_repository_impl.dart'
+    as _i415;
 import 'package:banx/core/data/repository/profile_repository_impl.dart'
     as _i728;
 import 'package:banx/core/data/repository/token_repository_impl.dart' as _i205;
@@ -46,6 +52,7 @@ import 'package:banx/core/domain/repository/authentication_repository.dart'
     as _i474;
 import 'package:banx/core/domain/repository/card_repository.dart' as _i831;
 import 'package:banx/core/domain/repository/media_repository.dart' as _i654;
+import 'package:banx/core/domain/repository/passkey_repository.dart' as _i742;
 import 'package:banx/core/domain/repository/profile_repository.dart' as _i111;
 import 'package:banx/core/domain/repository/token_repository.dart' as _i232;
 import 'package:banx/core/networking/api_service.dart' as _i243;
@@ -171,6 +178,8 @@ extension GetItInjectableX on _i174.GetIt {
         ));
     gh.lazySingleton<_i521.CardRemoteDataSource>(() =>
         _i749.CardRemoteDataSourceImpl(apiService: gh<_i1033.HTTPClient>()));
+    gh.lazySingleton<_i79.PasskeyRemoteDataSource>(() =>
+        _i596.PasskeyRemoteDataSourceImpl(apiService: gh<_i1033.HTTPClient>()));
     gh.lazySingleton<_i767.AddressRemoteDataSource>(() =>
         _i479.AddressRemoteDataSourceImpl(apiService: gh<_i1033.HTTPClient>()));
     gh.lazySingleton<_i665.MediaRemoteDataSource>(() =>
@@ -191,6 +200,8 @@ extension GetItInjectableX on _i174.GetIt {
       ),
       preResolve: true,
     );
+    gh.lazySingleton<_i742.PasskeyRepository>(() => _i415.PasskeyRepositoryImpl(
+        remoteDataSource: gh<_i79.PasskeyRemoteDataSource>()));
     gh.factory<_i807.EnableBiometricBloc>(() => _i807.EnableBiometricBloc(
           profileRepository: gh<_i111.ProfileRepository>(),
           localAuthentication: gh<_i152.LocalAuthentication>(),

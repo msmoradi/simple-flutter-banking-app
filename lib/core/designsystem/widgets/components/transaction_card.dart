@@ -22,13 +22,13 @@ class TransactionCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(8.0),
         color: Theme.of(context).colorScheme.surfaceBright,
       ),
-      padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+      padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           image,
           const SizedBox(
-            width: 8.0,
+            width: 12.0,
           ),
           Expanded(
             child: Column(

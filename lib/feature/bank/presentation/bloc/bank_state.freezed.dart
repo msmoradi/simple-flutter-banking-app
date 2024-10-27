@@ -18,7 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$BankState {
   BankStatus get status => throw _privateConstructorUsedError;
   BankCardStatus get bankCardStatus => throw _privateConstructorUsedError;
-  List<Widget> get widgets => throw _privateConstructorUsedError;
+  List<TransactionModel> get transactions => throw _privateConstructorUsedError;
   String get errorMessage => throw _privateConstructorUsedError;
 
   /// Create a copy of BankState
@@ -36,7 +36,7 @@ abstract class $BankStateCopyWith<$Res> {
   $Res call(
       {BankStatus status,
       BankCardStatus bankCardStatus,
-      List<Widget> widgets,
+      List<TransactionModel> transactions,
       String errorMessage});
 }
 
@@ -57,7 +57,7 @@ class _$BankStateCopyWithImpl<$Res, $Val extends BankState>
   $Res call({
     Object? status = null,
     Object? bankCardStatus = null,
-    Object? widgets = null,
+    Object? transactions = null,
     Object? errorMessage = null,
   }) {
     return _then(_value.copyWith(
@@ -69,10 +69,10 @@ class _$BankStateCopyWithImpl<$Res, $Val extends BankState>
           ? _value.bankCardStatus
           : bankCardStatus // ignore: cast_nullable_to_non_nullable
               as BankCardStatus,
-      widgets: null == widgets
-          ? _value.widgets
-          : widgets // ignore: cast_nullable_to_non_nullable
-              as List<Widget>,
+      transactions: null == transactions
+          ? _value.transactions
+          : transactions // ignore: cast_nullable_to_non_nullable
+              as List<TransactionModel>,
       errorMessage: null == errorMessage
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
@@ -92,7 +92,7 @@ abstract class _$$BankStateImplCopyWith<$Res>
   $Res call(
       {BankStatus status,
       BankCardStatus bankCardStatus,
-      List<Widget> widgets,
+      List<TransactionModel> transactions,
       String errorMessage});
 }
 
@@ -111,7 +111,7 @@ class __$$BankStateImplCopyWithImpl<$Res>
   $Res call({
     Object? status = null,
     Object? bankCardStatus = null,
-    Object? widgets = null,
+    Object? transactions = null,
     Object? errorMessage = null,
   }) {
     return _then(_$BankStateImpl(
@@ -123,10 +123,10 @@ class __$$BankStateImplCopyWithImpl<$Res>
           ? _value.bankCardStatus
           : bankCardStatus // ignore: cast_nullable_to_non_nullable
               as BankCardStatus,
-      widgets: null == widgets
-          ? _value._widgets
-          : widgets // ignore: cast_nullable_to_non_nullable
-              as List<Widget>,
+      transactions: null == transactions
+          ? _value._transactions
+          : transactions // ignore: cast_nullable_to_non_nullable
+              as List<TransactionModel>,
       errorMessage: null == errorMessage
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
@@ -141,21 +141,22 @@ class _$BankStateImpl extends _BankState {
   const _$BankStateImpl(
       {required this.status,
       required this.bankCardStatus,
-      required final List<Widget> widgets,
+      final List<TransactionModel> transactions = const [],
       required this.errorMessage})
-      : _widgets = widgets,
+      : _transactions = transactions,
         super._();
 
   @override
   final BankStatus status;
   @override
   final BankCardStatus bankCardStatus;
-  final List<Widget> _widgets;
+  final List<TransactionModel> _transactions;
   @override
-  List<Widget> get widgets {
-    if (_widgets is EqualUnmodifiableListView) return _widgets;
+  @JsonKey()
+  List<TransactionModel> get transactions {
+    if (_transactions is EqualUnmodifiableListView) return _transactions;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_widgets);
+    return EqualUnmodifiableListView(_transactions);
   }
 
   @override
@@ -163,7 +164,7 @@ class _$BankStateImpl extends _BankState {
 
   @override
   String toString() {
-    return 'BankState(status: $status, bankCardStatus: $bankCardStatus, widgets: $widgets, errorMessage: $errorMessage)';
+    return 'BankState(status: $status, bankCardStatus: $bankCardStatus, transactions: $transactions, errorMessage: $errorMessage)';
   }
 
   @override
@@ -174,14 +175,15 @@ class _$BankStateImpl extends _BankState {
             (identical(other.status, status) || other.status == status) &&
             (identical(other.bankCardStatus, bankCardStatus) ||
                 other.bankCardStatus == bankCardStatus) &&
-            const DeepCollectionEquality().equals(other._widgets, _widgets) &&
+            const DeepCollectionEquality()
+                .equals(other._transactions, _transactions) &&
             (identical(other.errorMessage, errorMessage) ||
                 other.errorMessage == errorMessage));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, status, bankCardStatus,
-      const DeepCollectionEquality().hash(_widgets), errorMessage);
+      const DeepCollectionEquality().hash(_transactions), errorMessage);
 
   /// Create a copy of BankState
   /// with the given fields replaced by the non-null parameter values.
@@ -196,7 +198,7 @@ abstract class _BankState extends BankState {
   const factory _BankState(
       {required final BankStatus status,
       required final BankCardStatus bankCardStatus,
-      required final List<Widget> widgets,
+      final List<TransactionModel> transactions,
       required final String errorMessage}) = _$BankStateImpl;
   const _BankState._() : super._();
 
@@ -205,7 +207,7 @@ abstract class _BankState extends BankState {
   @override
   BankCardStatus get bankCardStatus;
   @override
-  List<Widget> get widgets;
+  List<TransactionModel> get transactions;
   @override
   String get errorMessage;
 

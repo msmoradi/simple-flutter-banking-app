@@ -1,5 +1,5 @@
+import 'package:banx/core/designsystem/widgets/components/transaction_icon.dart';
 import 'package:banx/core/domain/entities/card_delivery_entity.dart';
-import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'bank_state.freezed.dart';
@@ -21,7 +21,7 @@ class BankState with _$BankState {
   const factory BankState({
     required BankStatus status,
     required BankCardStatus bankCardStatus,
-    required List<Widget> widgets,
+    @Default([]) List<TransactionModel> transactions,
     required String errorMessage,
   }) = _BankState;
 

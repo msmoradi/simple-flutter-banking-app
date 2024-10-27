@@ -9,3 +9,4 @@ abstract class BankEvent extends Equatable {
 
 
 class BankXClick extends BankEvent {}
+class Init extends BankEvent {}
