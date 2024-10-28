@@ -1,5 +1,6 @@
 import 'package:banx/core/designsystem/widgets/components/drop_down_chip_widget.dart';
 import 'package:banx/core/designsystem/widgets/custom_keypad.dart';
+import 'package:banx/core/designsystem/widgets/transaction_keypad.dart';
 import 'package:banx/feature/transaction/presentation/bloc/transaction_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -102,12 +103,11 @@ class TransactionContent extends StatelessWidget {
                   },
                 ),
                 const SizedBox(height: 48),
-                CustomKeypad(
+                TransactionKeypad(
                   onKeyTapped: onKeyTapped,
                   onBackspace: onBackspace,
-                  onPrimaryTapped: () {},
-                  primaryIcon: null,
                   isEnabled: true,
+                  showDot: true,
                 ),
                 const SizedBox(height: 14),
                 GestureDetector(
