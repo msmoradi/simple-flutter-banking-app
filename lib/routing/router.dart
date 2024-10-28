@@ -16,6 +16,7 @@ import 'package:banx/composition/onboarding_face_page_factory.dart';
 import 'package:banx/composition/onboarding_password_page_factory.dart';
 import 'package:banx/composition/phone_page_factory.dart';
 import 'package:banx/composition/select_card_page_factory.dart';
+import 'package:banx/composition/splash_page_factory.dart';
 import 'package:banx/composition/transaction_checkout_page_factory.dart';
 import 'package:banx/composition/transaction_destination_page_factory.dart';
 import 'package:banx/composition/verify_otp_page_factory.dart';
@@ -23,14 +24,12 @@ import 'package:banx/composition/verify_password_page_factory.dart';
 import 'package:go_router/go_router.dart';
 
 GoRouter getRouterConfig({
-  required bool verifyPassword,
   required Function(String) showMessage,
 }) {
-  final initialLocation =
-      getInitialLocation(verifyPassword: verifyPassword);
   return GoRouter(
-    initialLocation: initialLocation,
+    initialLocation: SplashPageFactory.path,
     routes: <RouteBase>[
+      SplashPageFactory.route(showMessage: showMessage),
       PhonePageFactory.route(showMessage: showMessage),
       AddAddressPageFactory.route(showMessage: showMessage),
       KycStatusPageFactory.route(showMessage: showMessage),
@@ -55,14 +54,4 @@ GoRouter getRouterConfig({
       VerifyPasswordPageFactory.route(showMessage: showMessage),
     ],
   );
-}
-
-String getInitialLocation({
-  required bool verifyPassword,
-}) {
-  if (verifyPassword) {
-    return MainPageFactory.path;
-  } else {
-    return MainPageFactory.path;
-  }
 }

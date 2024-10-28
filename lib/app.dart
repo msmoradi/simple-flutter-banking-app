@@ -8,9 +8,7 @@ import 'package:persian_datetime_picker/persian_datetime_picker.dart';
 import 'package:toastification/toastification.dart';
 
 class App extends StatefulWidget {
-  final bool verifyPassword;
-
-  const App({super.key, required this.verifyPassword});
+  const App({super.key});
 
   @override
   State<App> createState() => _AppState();
@@ -38,7 +36,6 @@ class _AppState extends State<App> {
           autoCloseDuration: const Duration(seconds: 3),
         );
       },
-      verifyPassword: widget.verifyPassword,
     );
 
     precacheImages(context);

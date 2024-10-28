@@ -97,6 +97,7 @@ import 'package:banx/feature/select_address/presentation/bloc/select_address_blo
     as _i922;
 import 'package:banx/feature/select_card/presentation/bloc/select_card_bloc.dart'
     as _i266;
+import 'package:banx/feature/splash/presentation/bloc/splash_bloc.dart' as _i48;
 import 'package:banx/feature/transaction/presentation/bloc/transaction_bloc.dart'
     as _i737;
 import 'package:banx/feature/transaction_checkout/presentation/bloc/transaction_checkout_bloc.dart'
@@ -211,6 +212,10 @@ extension GetItInjectableX on _i174.GetIt {
         addressRemoteDataSource: gh<_i767.AddressRemoteDataSource>()));
     gh.lazySingleton<_i654.MediaRepository>(
         () => _i244.MediaRepositoryImpl(gh<_i665.MediaRemoteDataSource>()));
+    gh.factory<_i48.SplashBloc>(() => _i48.SplashBloc(
+          tokenRepository: gh<_i232.TokenRepository>(),
+          profileRepository: gh<_i111.ProfileRepository>(),
+        ));
     gh.factory<_i412.HomeBloc>(
         () => _i412.HomeBloc(profileRepository: gh<_i111.ProfileRepository>()));
     gh.factory<_i804.ProfileBloc>(() =>
