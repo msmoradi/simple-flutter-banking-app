@@ -8,7 +8,16 @@ abstract class TransactionCheckoutEvent extends Equatable {
 }
 
 class Init extends TransactionCheckoutEvent {
-  const Init();
+  final DepositType sourceDepositType;
+  final UserInfo sourceUserInfo;
+  final DepositType destinationDepositType;
+  final UserInfo destinationUserInfo;
+
+  const Init(
+      {required this.sourceDepositType,
+      required this.sourceUserInfo,
+      required this.destinationDepositType,
+      required this.destinationUserInfo});
 
   @override
   List<Object> get props => [];

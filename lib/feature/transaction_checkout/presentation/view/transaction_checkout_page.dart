@@ -29,7 +29,12 @@ class TransactionCheckoutPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => GetIt.instance<TransactionCheckoutBloc>(),
+      create: (context) => GetIt.instance<TransactionCheckoutBloc>()
+        ..add(Init(
+            sourceDepositType: sourceDepositType,
+            sourceUserInfo: sourceUserInfo,
+            destinationDepositType: destinationDepositType,
+            destinationUserInfo: destinationUserInfo)),
       child: BlocConsumer<TransactionCheckoutBloc, TransactionCheckoutState>(
         listener: (context, state) {
           if (state.status == TransactionCheckoutStatus.failure) {
@@ -40,10 +45,10 @@ class TransactionCheckoutPage extends StatelessWidget {
           return TransactionCheckoutContent(
             amount: amount,
             conversionFee: state.conversionFee,
-            sourceDepositType: sourceDepositType,
-            sourceUserInfo: sourceUserInfo,
+            sourceDepositType: state.sourceDepositType,
+            sourceUserInfo: state.sourceUserInfo,
             destinationDepositType: state.destinationDepositType,
-            destinationUserInfo: destinationUserInfo,
+            destinationUserInfo: state.destinationUserInfo,
             onDestinationSelectTypeEvent: (type) {
               context
                   .read<TransactionCheckoutBloc>()

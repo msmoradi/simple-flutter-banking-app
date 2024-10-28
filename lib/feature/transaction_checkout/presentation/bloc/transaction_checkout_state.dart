@@ -14,9 +14,9 @@ class TransactionCheckoutState with _$TransactionCheckoutState {
     @Default('') String errorMessage,
     @Default('') String conversionFee,
     @Default(DepositType.rialDeposit) DepositType sourceDepositType,
-    required UserInfo sourceUserInfo,
+    UserInfo? sourceUserInfo,
     @Default(DepositType.rialDeposit)
     DepositType destinationDepositType,
-    required UserInfo destinationUserInfo,
+    UserInfo? destinationUserInfo,
   }) = _TransactionCheckoutState;
 }

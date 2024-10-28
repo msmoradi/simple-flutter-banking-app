@@ -20,9 +20,9 @@ mixin _$TransactionCheckoutState {
   String get errorMessage => throw _privateConstructorUsedError;
   String get conversionFee => throw _privateConstructorUsedError;
   DepositType get sourceDepositType => throw _privateConstructorUsedError;
-  UserInfo get sourceUserInfo => throw _privateConstructorUsedError;
+  UserInfo? get sourceUserInfo => throw _privateConstructorUsedError;
   DepositType get destinationDepositType => throw _privateConstructorUsedError;
-  UserInfo get destinationUserInfo => throw _privateConstructorUsedError;
+  UserInfo? get destinationUserInfo => throw _privateConstructorUsedError;
 
   /// Create a copy of TransactionCheckoutState
   /// with the given fields replaced by the non-null parameter values.
@@ -42,9 +42,9 @@ abstract class $TransactionCheckoutStateCopyWith<$Res> {
       String errorMessage,
       String conversionFee,
       DepositType sourceDepositType,
-      UserInfo sourceUserInfo,
+      UserInfo? sourceUserInfo,
       DepositType destinationDepositType,
-      UserInfo destinationUserInfo});
+      UserInfo? destinationUserInfo});
 }
 
 /// @nodoc
@@ -67,9 +67,9 @@ class _$TransactionCheckoutStateCopyWithImpl<$Res,
     Object? errorMessage = null,
     Object? conversionFee = null,
     Object? sourceDepositType = null,
-    Object? sourceUserInfo = null,
+    Object? sourceUserInfo = freezed,
     Object? destinationDepositType = null,
-    Object? destinationUserInfo = null,
+    Object? destinationUserInfo = freezed,
   }) {
     return _then(_value.copyWith(
       status: null == status
@@ -88,18 +88,18 @@ class _$TransactionCheckoutStateCopyWithImpl<$Res,
           ? _value.sourceDepositType
           : sourceDepositType // ignore: cast_nullable_to_non_nullable
               as DepositType,
-      sourceUserInfo: null == sourceUserInfo
+      sourceUserInfo: freezed == sourceUserInfo
           ? _value.sourceUserInfo
           : sourceUserInfo // ignore: cast_nullable_to_non_nullable
-              as UserInfo,
+              as UserInfo?,
       destinationDepositType: null == destinationDepositType
           ? _value.destinationDepositType
           : destinationDepositType // ignore: cast_nullable_to_non_nullable
               as DepositType,
-      destinationUserInfo: null == destinationUserInfo
+      destinationUserInfo: freezed == destinationUserInfo
           ? _value.destinationUserInfo
           : destinationUserInfo // ignore: cast_nullable_to_non_nullable
-              as UserInfo,
+              as UserInfo?,
     ) as $Val);
   }
 }
@@ -118,9 +118,9 @@ abstract class _$$TransactionCheckoutStateImplCopyWith<$Res>
       String errorMessage,
       String conversionFee,
       DepositType sourceDepositType,
-      UserInfo sourceUserInfo,
+      UserInfo? sourceUserInfo,
       DepositType destinationDepositType,
-      UserInfo destinationUserInfo});
+      UserInfo? destinationUserInfo});
 }
 
 /// @nodoc
@@ -142,9 +142,9 @@ class __$$TransactionCheckoutStateImplCopyWithImpl<$Res>
     Object? errorMessage = null,
     Object? conversionFee = null,
     Object? sourceDepositType = null,
-    Object? sourceUserInfo = null,
+    Object? sourceUserInfo = freezed,
     Object? destinationDepositType = null,
-    Object? destinationUserInfo = null,
+    Object? destinationUserInfo = freezed,
   }) {
     return _then(_$TransactionCheckoutStateImpl(
       status: null == status
@@ -163,18 +163,18 @@ class __$$TransactionCheckoutStateImplCopyWithImpl<$Res>
           ? _value.sourceDepositType
           : sourceDepositType // ignore: cast_nullable_to_non_nullable
               as DepositType,
-      sourceUserInfo: null == sourceUserInfo
+      sourceUserInfo: freezed == sourceUserInfo
           ? _value.sourceUserInfo
           : sourceUserInfo // ignore: cast_nullable_to_non_nullable
-              as UserInfo,
+              as UserInfo?,
       destinationDepositType: null == destinationDepositType
           ? _value.destinationDepositType
           : destinationDepositType // ignore: cast_nullable_to_non_nullable
               as DepositType,
-      destinationUserInfo: null == destinationUserInfo
+      destinationUserInfo: freezed == destinationUserInfo
           ? _value.destinationUserInfo
           : destinationUserInfo // ignore: cast_nullable_to_non_nullable
-              as UserInfo,
+              as UserInfo?,
     ));
   }
 }
@@ -187,9 +187,9 @@ class _$TransactionCheckoutStateImpl implements _TransactionCheckoutState {
       this.errorMessage = '',
       this.conversionFee = '',
       this.sourceDepositType = DepositType.rialDeposit,
-      required this.sourceUserInfo,
+      this.sourceUserInfo,
       this.destinationDepositType = DepositType.rialDeposit,
-      required this.destinationUserInfo});
+      this.destinationUserInfo});
 
   @override
   @JsonKey()
@@ -204,12 +204,12 @@ class _$TransactionCheckoutStateImpl implements _TransactionCheckoutState {
   @JsonKey()
   final DepositType sourceDepositType;
   @override
-  final UserInfo sourceUserInfo;
+  final UserInfo? sourceUserInfo;
   @override
   @JsonKey()
   final DepositType destinationDepositType;
   @override
-  final UserInfo destinationUserInfo;
+  final UserInfo? destinationUserInfo;
 
   @override
   String toString() {
@@ -259,14 +259,13 @@ class _$TransactionCheckoutStateImpl implements _TransactionCheckoutState {
 
 abstract class _TransactionCheckoutState implements TransactionCheckoutState {
   const factory _TransactionCheckoutState(
-          {final TransactionCheckoutStatus status,
-          final String errorMessage,
-          final String conversionFee,
-          final DepositType sourceDepositType,
-          required final UserInfo sourceUserInfo,
-          final DepositType destinationDepositType,
-          required final UserInfo destinationUserInfo}) =
-      _$TransactionCheckoutStateImpl;
+      {final TransactionCheckoutStatus status,
+      final String errorMessage,
+      final String conversionFee,
+      final DepositType sourceDepositType,
+      final UserInfo? sourceUserInfo,
+      final DepositType destinationDepositType,
+      final UserInfo? destinationUserInfo}) = _$TransactionCheckoutStateImpl;
 
   @override
   TransactionCheckoutStatus get status;
@@ -277,11 +276,11 @@ abstract class _TransactionCheckoutState implements TransactionCheckoutState {
   @override
   DepositType get sourceDepositType;
   @override
-  UserInfo get sourceUserInfo;
+  UserInfo? get sourceUserInfo;
   @override
   DepositType get destinationDepositType;
   @override
-  UserInfo get destinationUserInfo;
+  UserInfo? get destinationUserInfo;
 
   /// Create a copy of TransactionCheckoutState
   /// with the given fields replaced by the non-null parameter values.

@@ -8,9 +8,9 @@ class TransactionCheckoutContent extends StatefulWidget {
 
   final String conversionFee;
   final DepositType sourceDepositType;
-  final UserInfo sourceUserInfo;
+  final UserInfo? sourceUserInfo;
   final DepositType destinationDepositType;
-  final UserInfo destinationUserInfo;
+  final UserInfo? destinationUserInfo;
 
   final Function(DepositType) onSourceSelectTypeEvent;
   final Function(DepositType) onDestinationSelectTypeEvent;
@@ -98,11 +98,13 @@ class _TransactionCheckoutContentState
                 ),
               ),
               const SizedBox(height: 10),
-              TransferRow(
-                  dopDownChipTitle: "مبدأ انتقال",
-                  userInfo: widget.sourceUserInfo,
-                  depositType: widget.sourceDepositType,
-                  onSelectTypeEvent: widget.onSourceSelectTypeEvent),
+              widget.sourceUserInfo != null
+                  ? TransferRow(
+                      dopDownChipTitle: "مبدأ انتقال",
+                      userInfo: widget.sourceUserInfo!,
+                      depositType: widget.sourceDepositType,
+                      onSelectTypeEvent: widget.onSourceSelectTypeEvent)
+                  : const SizedBox(height: 10),
               const SizedBox(height: 20),
               Align(
                 alignment: Alignment.centerRight,
@@ -115,11 +117,13 @@ class _TransactionCheckoutContentState
                 ),
               ),
               const SizedBox(height: 10),
-              TransferRow(
-                  dopDownChipTitle: "دریافت دارایی در مقصد",
-                  userInfo: widget.destinationUserInfo,
-                  depositType: widget.destinationDepositType,
-                  onSelectTypeEvent: widget.onDestinationSelectTypeEvent),
+              widget.destinationUserInfo != null
+                  ? TransferRow(
+                      dopDownChipTitle: "دریافت دارایی در مقصد",
+                      userInfo: widget.destinationUserInfo!,
+                      depositType: widget.destinationDepositType,
+                      onSelectTypeEvent: widget.onDestinationSelectTypeEvent)
+                  : const SizedBox(height: 10),
               const SizedBox(height: 20),
               Align(
                 alignment: Alignment.centerRight,
