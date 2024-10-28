@@ -4,7 +4,7 @@ import 'package:banx/core/designsystem/widgets/components/card_delivery_state.da
 import 'package:banx/core/designsystem/widgets/components/loading_container.dart';
 import 'package:banx/core/designsystem/widgets/components/title_row.dart';
 import 'package:banx/core/designsystem/widgets/components/transaction_card.dart';
-import 'package:banx/core/designsystem/widgets/components/transaction_icon.dart';
+import 'package:banx/core/designsystem/widgets/components/bank_transaction_icon.dart';
 import 'package:banx/core/domain/entities/card_delivery_entity.dart';
 import 'package:banx/feature/bank/presentation/bloc/bank_state.dart';
 import 'package:flutter/material.dart';
@@ -148,7 +148,7 @@ class BankContent extends StatelessWidget {
                       title: 'تراکنش‌ها',
                     ),
                     SizedBox(
-                      height: 30.0,
+                      height: 25.0,
                     ),
                   ],
                 ),

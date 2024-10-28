@@ -1,4 +1,4 @@
-import 'package:banx/core/designsystem/widgets/components/transaction_icon.dart';
+import 'package:banx/core/designsystem/widgets/components/bank_transaction_icon.dart';
 import 'package:banx/core/domain/entities/card_delivery_entity.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 

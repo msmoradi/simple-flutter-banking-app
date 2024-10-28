@@ -1,7 +1,12 @@
+import 'package:banx/core/data/mock.dart';
 import 'package:banx/core/designsystem/widgets/components/bank_action_row.dart';
-import 'package:banx/core/designsystem/widgets/components/custom_card.dart';
+import 'package:banx/core/designsystem/widgets/components/bank_transaction_icon.dart';
+import 'package:banx/core/designsystem/widgets/components/diamond_transaction_icon.dart';
 import 'package:banx/core/designsystem/widgets/components/dot_indicator_row.dart';
+import 'package:banx/core/designsystem/widgets/components/gold_transaction_icon.dart';
 import 'package:banx/core/designsystem/widgets/components/loading_container.dart';
+import 'package:banx/core/designsystem/widgets/components/rial_transaction_icon.dart';
+import 'package:banx/core/designsystem/widgets/components/saffron_transaction_icon.dart';
 import 'package:banx/core/designsystem/widgets/components/simple_card_row.dart';
 import 'package:banx/core/designsystem/widgets/components/title_row.dart';
 import 'package:banx/core/designsystem/widgets/components/transaction_card.dart';
@@ -27,426 +32,6 @@ class HomeContent extends StatefulWidget {
 }
 
 class _HomeContentState extends State<HomeContent> {
-  final widgetList = [
-    const SizedBox(
-      height: 24.0,
-    ),
-    BankActionRow(
-      actions: [
-        ActionEntity(icon: 'assets/icons/plus.svg', title: 'واریز'),
-        ActionEntity(icon: 'assets/icons/arrow-down.svg', title: 'برداشت'),
-        ActionEntity(icon: 'assets/icons/exchange.svg', title: 'انتقال'),
-        ActionEntity(icon: 'assets/icons/grid.svg', title: 'بیشتر'),
-      ],
-    ),
-    const SizedBox(
-      height: 30.0,
-    ),
-    SimpleCardRow(
-      hist: const {
-        'بازدهی سرمایه شما': '٪۲۴ روز شمار',
-        'درآمد شما تا کنون': '۳٬۵۴۰٬۰۰۰+ تومان',
-      },
-    ),
-    const SizedBox(
-      height: 16.0,
-    ),
-    const CustomCard(),
-    const SizedBox(
-      height: 30.0,
-    ),
-    const TitleRow(
-      title: 'تراکنش‌ها',
-    ),
-    const SizedBox(
-      height: 10.0,
-    ),
-    TransactionCard(
-        image: Image.asset(
-          'assets/images/lite-coin-2.png',
-          width: 48.0,
-          height: 48.0,
-        ),
-        title: 'واریز به سپرده',
-        subtitle: 'شنبه، ۲۳ تیر ۱۴۰۳ | ۱۲:۲۲',
-        amount: '۵٬۵۰۰٬۰۰۰ تومان'),
-    const SizedBox(
-      height: 10.0,
-    ),
-    TransactionCard(
-        image: Image.asset(
-          'assets/images/lite-coin-3.png',
-          width: 48.0,
-          height: 48.0,
-        ),
-        title: 'برداشت از سپرده',
-        subtitle: 'شنبه، ۲۳ تیر ۱۴۰۳ | ۱۲:۲۲',
-        amount: '۱۰٬۰۰۰٬۰۰۰ تومان'),
-    const SizedBox(
-      height: 10.0,
-    ),
-    TransactionCard(
-        image: Image.asset(
-          'assets/images/lite-coin-2.png',
-          width: 48.0,
-          height: 48.0,
-        ),
-        title: 'واریز به سپرده',
-        subtitle: 'شنبه، ۲۳ تیر ۱۴۰۳ | ۱۲:۲۲',
-        amount: '۶۳٬۰۰۰٬۰۰۰ تومان'),
-    const SizedBox(
-      height: 10.0,
-    ),
-    TransactionCard(
-        image: Image.asset(
-          'assets/images/lite-coin-2.png',
-          width: 48.0,
-          height: 48.0,
-        ),
-        title: 'واریز به سپرده',
-        subtitle: 'شنبه، ۲۳ تیر ۱۴۰۳ | ۱۲:۲۲',
-        amount: '۸۲٬۲۰۰٬۰۰۰ تومان'),
-    const SizedBox(
-      height: 10.0,
-    ),
-    TransactionCard(
-        image: Image.asset(
-          'assets/images/lite-coin-3.png',
-          width: 48.0,
-          height: 48.0,
-        ),
-        title: 'برداشت از سپرده',
-        subtitle: 'شنبه، ۲۳ تیر ۱۴۰۳ | ۱۲:۲۲',
-        amount: '۶٬۷۵۲٬۰۰۰ تومان'),
-    const SizedBox(
-      height: 10.0,
-    ),
-    TransactionCard(
-        image: Image.asset(
-          'assets/images/lite-coin-2.png',
-          width: 48.0,
-          height: 48.0,
-        ),
-        title: 'واریز به سپرده',
-        subtitle: 'شنبه، ۲۳ تیر ۱۴۰۳ | ۱۲:۲۲',
-        amount: '۶٬۹۳۲٬۰۰۰ تومان'),
-    const SizedBox(
-      height: 10.0,
-    ),
-  ];
-
-  final goldWidgetList = [
-    const SizedBox(
-      height: 24.0,
-    ),
-    BankActionRow(
-      actions: [
-        ActionEntity(icon: 'assets/icons/plus.svg', title: 'واریز'),
-        ActionEntity(icon: 'assets/icons/arrow-down.svg', title: 'برداشت'),
-        ActionEntity(icon: 'assets/icons/exchange.svg', title: 'انتقال'),
-        ActionEntity(icon: 'assets/icons/grid.svg', title: 'بیشتر'),
-      ],
-    ),
-    const SizedBox(
-      height: 30.0,
-    ),
-    SimpleCardRow(
-      hist: const {
-        'نوسان قیمت': "(۰٬۲۵٪) ۱۱٬۴۰۰",
-        'قیمت لحظه‌ای': '۳٬۵۴۰٬۰۰۰ تومان',
-      },
-    ),
-    const SizedBox(
-      height: 30.0,
-    ),
-    const TitleRow(
-      title: 'تراکنش‌ها',
-    ),
-    const SizedBox(
-      height: 10.0,
-    ),
-    TransactionCard(
-        image: Image.asset(
-          'assets/images/lite-coin-1.png',
-          width: 48.0,
-          height: 48.0,
-        ),
-        title: 'واریز به سپرده',
-        subtitle: 'شنبه، ۲۳ تیر ۱۴۰۳ | ۱۲:۲۲',
-        amount: '۱٬۲ گرم'),
-    const SizedBox(
-      height: 10.0,
-    ),
-    TransactionCard(
-        image: Image.asset(
-          'assets/images/lite-coin-1.png',
-          width: 48.0,
-          height: 48.0,
-        ),
-        title: 'واریز به سپرده',
-        subtitle: 'شنبه، ۲۳ تیر ۱۴۰۳ | ۱۲:۲۲',
-        amount: '۱٬۲ گرم'),
-    const SizedBox(
-      height: 10.0,
-    ),
-    TransactionCard(
-        image: Image.asset(
-          'assets/images/lite-coin-1.png',
-          width: 48.0,
-          height: 48.0,
-        ),
-        title: 'واریز به سپرده',
-        subtitle: 'شنبه، ۲۳ تیر ۱۴۰۳ | ۱۲:۲۲',
-        amount: '۱٬۲ گرم'),
-    const SizedBox(
-      height: 10.0,
-    ),
-    TransactionCard(
-        image: Image.asset(
-          'assets/images/lite-coin-1.png',
-          width: 48.0,
-          height: 48.0,
-        ),
-        title: 'واریز به سپرده',
-        subtitle: 'شنبه، ۲۳ تیر ۱۴۰۳ | ۱۲:۲۲',
-        amount: '۱٬۲ گرم'),
-    const SizedBox(
-      height: 10.0,
-    ),
-    TransactionCard(
-        image: Image.asset(
-          'assets/images/lite-coin-1.png',
-          width: 48.0,
-          height: 48.0,
-        ),
-        title: 'واریز به سپرده',
-        subtitle: 'شنبه، ۲۳ تیر ۱۴۰۳ | ۱۲:۲۲',
-        amount: '۱٬۲ گرم'),
-    const SizedBox(
-      height: 10.0,
-    ),
-    TransactionCard(
-        image: Image.asset(
-          'assets/images/lite-coin-1.png',
-          width: 48.0,
-          height: 48.0,
-        ),
-        title: 'واریز به سپرده',
-        subtitle: 'شنبه، ۲۳ تیر ۱۴۰۳ | ۱۲:۲۲',
-        amount: '۱٬۲ گرم'),
-    const SizedBox(
-      height: 10.0,
-    ),
-  ];
-
-  final saffronWidgetList = [
-    const SizedBox(
-      height: 24.0,
-    ),
-    BankActionRow(
-      actions: [
-        ActionEntity(icon: 'assets/icons/plus.svg', title: 'واریز'),
-        ActionEntity(icon: 'assets/icons/arrow-down.svg', title: 'برداشت'),
-        ActionEntity(icon: 'assets/icons/exchange.svg', title: 'انتقال'),
-        ActionEntity(icon: 'assets/icons/grid.svg', title: 'بیشتر'),
-      ],
-    ),
-    const SizedBox(
-      height: 30.0,
-    ),
-    SimpleCardRow(
-      hist: const {
-        'نوسان قیمت': "(۰٬۲۵٪) ۱۱٬۴۰۰",
-        'قیمت لحظه‌ای': '۳٬۵۴۰٬۰۰۰ تومان',
-      },
-    ),
-    const SizedBox(
-      height: 30.0,
-    ),
-    const TitleRow(
-      title: 'تراکنش‌ها',
-    ),
-    const SizedBox(
-      height: 10.0,
-    ),
-    TransactionCard(
-        image: Image.asset(
-          'assets/images/lite-coin-4.png',
-          width: 48.0,
-          height: 48.0,
-        ),
-        title: 'واریز به سپرده',
-        subtitle: 'شنبه، ۲۳ تیر ۱۴۰۳ | ۱۲:۲۲',
-        amount: '۱٬۲ گرم'),
-    const SizedBox(
-      height: 10.0,
-    ),
-    TransactionCard(
-        image: Image.asset(
-          'assets/images/lite-coin-4.png',
-          width: 48.0,
-          height: 48.0,
-        ),
-        title: 'واریز به سپرده',
-        subtitle: 'شنبه، ۲۳ تیر ۱۴۰۳ | ۱۲:۲۲',
-        amount: '۱٬۲ گرم'),
-    const SizedBox(
-      height: 10.0,
-    ),
-    TransactionCard(
-        image: Image.asset(
-          'assets/images/lite-coin-4.png',
-          width: 48.0,
-          height: 48.0,
-        ),
-        title: 'واریز به سپرده',
-        subtitle: 'شنبه، ۲۳ تیر ۱۴۰۳ | ۱۲:۲۲',
-        amount: '۱٬۲ گرم'),
-    const SizedBox(
-      height: 10.0,
-    ),
-    TransactionCard(
-        image: Image.asset(
-          'assets/images/lite-coin-4.png',
-          width: 48.0,
-          height: 48.0,
-        ),
-        title: 'واریز به سپرده',
-        subtitle: 'شنبه، ۲۳ تیر ۱۴۰۳ | ۱۲:۲۲',
-        amount: '۱٬۲ گرم'),
-    const SizedBox(
-      height: 10.0,
-    ),
-    TransactionCard(
-        image: Image.asset(
-          'assets/images/lite-coin-4.png',
-          width: 48.0,
-          height: 48.0,
-        ),
-        title: 'واریز به سپرده',
-        subtitle: 'شنبه، ۲۳ تیر ۱۴۰۳ | ۱۲:۲۲',
-        amount: '۱٬۲ گرم'),
-    const SizedBox(
-      height: 10.0,
-    ),
-    TransactionCard(
-        image: Image.asset(
-          'assets/images/lite-coin-4.png',
-          width: 48.0,
-          height: 48.0,
-        ),
-        title: 'واریز به سپرده',
-        subtitle: 'شنبه، ۲۳ تیر ۱۴۰۳ | ۱۲:۲۲',
-        amount: '۱٬۲ گرم'),
-    const SizedBox(
-      height: 10.0,
-    ),
-  ];
-
-  final diamondWidgetList = [
-    const SizedBox(
-      height: 24.0,
-    ),
-    BankActionRow(
-      actions: [
-        ActionEntity(icon: 'assets/icons/plus.svg', title: 'واریز'),
-        ActionEntity(icon: 'assets/icons/arrow-down.svg', title: 'برداشت'),
-        ActionEntity(icon: 'assets/icons/exchange.svg', title: 'انتقال'),
-        ActionEntity(icon: 'assets/icons/grid.svg', title: 'بیشتر'),
-      ],
-    ),
-    const SizedBox(
-      height: 30.0,
-    ),
-    SimpleCardRow(
-      hist: const {
-        'نوسان قیمت': "(۰٬۲۵٪) ۱۱٬۴۰۰",
-        'قیمت لحظه‌ای': '۳٬۵۴۰٬۰۰۰ تومان',
-      },
-    ),
-    const SizedBox(
-      height: 30.0,
-    ),
-    const TitleRow(
-      title: 'تراکنش‌ها',
-    ),
-    const SizedBox(
-      height: 10.0,
-    ),
-    TransactionCard(
-        image: Image.asset(
-          'assets/images/lite-coin-4.png',
-          width: 48.0,
-          height: 48.0,
-        ),
-        title: 'واریز به سپرده',
-        subtitle: 'شنبه، ۲۳ تیر ۱۴۰۳ | ۱۲:۲۲',
-        amount: '۱٬۲ گرم'),
-    const SizedBox(
-      height: 10.0,
-    ),
-    TransactionCard(
-        image: Image.asset(
-          'assets/images/lite-coin-4.png',
-          width: 48.0,
-          height: 48.0,
-        ),
-        title: 'واریز به سپرده',
-        subtitle: 'شنبه، ۲۳ تیر ۱۴۰۳ | ۱۲:۲۲',
-        amount: '۱٬۲ گرم'),
-    const SizedBox(
-      height: 10.0,
-    ),
-    TransactionCard(
-        image: Image.asset(
-          'assets/images/lite-coin-4.png',
-          width: 48.0,
-          height: 48.0,
-        ),
-        title: 'واریز به سپرده',
-        subtitle: 'شنبه، ۲۳ تیر ۱۴۰۳ | ۱۲:۲۲',
-        amount: '۱٬۲ گرم'),
-    const SizedBox(
-      height: 10.0,
-    ),
-    TransactionCard(
-        image: Image.asset(
-          'assets/images/lite-coin-4.png',
-          width: 48.0,
-          height: 48.0,
-        ),
-        title: 'واریز به سپرده',
-        subtitle: 'شنبه، ۲۳ تیر ۱۴۰۳ | ۱۲:۲۲',
-        amount: '۱٬۲ گرم'),
-    const SizedBox(
-      height: 10.0,
-    ),
-    TransactionCard(
-        image: Image.asset(
-          'assets/images/lite-coin-4.png',
-          width: 48.0,
-          height: 48.0,
-        ),
-        title: 'واریز به سپرده',
-        subtitle: 'شنبه، ۲۳ تیر ۱۴۰۳ | ۱۲:۲۲',
-        amount: '۱٬۲ گرم'),
-    const SizedBox(
-      height: 10.0,
-    ),
-    TransactionCard(
-        image: Image.asset(
-          'assets/images/lite-coin-4.png',
-          width: 48.0,
-          height: 48.0,
-        ),
-        title: 'واریز به سپرده',
-        subtitle: 'شنبه، ۲۳ تیر ۱۴۰۳ | ۱۲:۲۲',
-        amount: '۱٬۲ گرم'),
-    const SizedBox(
-      height: 10.0,
-    ),
-  ];
-
   List<List<Widget>> finalList = [];
 
   int _currentPageIndex = 0;
@@ -455,11 +40,92 @@ class _HomeContentState extends State<HomeContent> {
   void initState() {
     super.initState();
     finalList = [
-      widgetList,
-      goldWidgetList,
-      saffronWidgetList,
-      diamondWidgetList
+      _buildPage(
+        transactionIcon: RialTransactionIcon(isInput: true),
+        simpleCardHist: {
+          'بازدهی سرمایه شما': '٪۲۴ روز شمار',
+          'درآمد شما تا کنون': '۳٬۵۴۰٬۰۰۰+ تومان',
+        },
+      ),
+      _buildPage(
+        transactionIcon: GoldTransactionIcon(isInput: true),
+        simpleCardHist: {
+          'نوسان قیمت': "(۰٬۲۵٪) ۱۱٬۴۰۰",
+          'قیمت لحظه‌ای': '۳٬۵۴۰٬۰۰۰ تومان',
+        },
+      ),
+      _buildPage(
+        transactionIcon: SaffronTransactionIcon(isInput: true),
+        simpleCardHist: {
+          'نوسان قیمت': "(۰٬۲۵٪) ۱۱٬۴۰۰",
+          'قیمت لحظه‌ای': '۳٬۵۴۰٬۰۰۰ تومان',
+        },
+      ),
+      _buildPage(
+        transactionIcon: DiamondTransactionIcon(isInput: true),
+        simpleCardHist: {
+          'نوسان قیمت': "(۰٬۲۵٪) ۱۱٬۴۰۰",
+          'قیمت لحظه‌ای': '۳٬۵۴۰٬۰۰۰ تومان',
+        },
+      ),
     ];
+  }
+
+  List<Widget> _buildPage({
+    required Widget transactionIcon,
+    required Map<String, String> simpleCardHist,
+  }) {
+    return [
+      const SizedBox(height: 24.0),
+      _buildBankActionRow(),
+      const SizedBox(height: 30.0),
+      SimpleCardRow(hist: simpleCardHist),
+      const SizedBox(height: 30.0),
+      const TitleRow(title: 'تراکنش‌ها'),
+      const SizedBox(height: 25.0),
+      _buildTransactionList(transactionIcon),
+    ];
+  }
+
+  Widget _buildBankActionRow() {
+    return BankActionRow(
+      actions: [
+        ActionEntity(icon: 'assets/icons/plus.svg', title: 'واریز'),
+        ActionEntity(icon: 'assets/icons/arrow-down.svg', title: 'برداشت'),
+        ActionEntity(icon: 'assets/icons/exchange.svg', title: 'انتقال'),
+        ActionEntity(icon: 'assets/icons/grid.svg', title: 'بیشتر'),
+      ],
+    );
+  }
+
+  Widget _buildTransactionList(Widget transactionIcon) {
+    return ListView.builder(
+      physics: const NeverScrollableScrollPhysics(),
+      shrinkWrap: true,
+      itemCount: MockData.transactions.length,
+      prototypeItem: const Padding(
+        padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 5),
+        child: TransactionCard(
+          image: BankTransactionIcon(
+            isInput: true,
+          ),
+          title: "واریز به سپرده",
+          subtitle: "شنبه | ۲۳ تیر | ۱۲:۲۲",
+          amount: "۵٬۵۰۰٬۰۰۰ ﷼",
+        ),
+      ),
+      itemBuilder: (context, index) {
+        return Padding(
+          padding: const EdgeInsets.symmetric(vertical: 5),
+          child: TransactionCard(
+            image: transactionIcon,
+            title: MockData.transactions[index].title,
+            subtitle: MockData.transactions[index].subtitle,
+            amount: MockData.transactions[index].amount,
+          ),
+        );
+      },
+    );
   }
 
   void onPageChanged(index) {
@@ -631,14 +297,5 @@ class _HomeContentState extends State<HomeContent> {
                   ],
                 ),
         ));
-  }
-}
-
-class HomeNfc extends StatelessWidget {
-  const HomeNfc({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Placeholder();
   }
 }
