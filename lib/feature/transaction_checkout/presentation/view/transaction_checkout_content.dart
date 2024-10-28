@@ -91,12 +91,15 @@ class _TransactionCheckoutContentState
                 alignment: Alignment.centerRight,
                 child: Text(
                   'مبدأ',
-                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                      color: Theme.of(context).colorScheme.primary),
+                  style: Theme.of(context)
+                      .textTheme
+                      .titleMedium
+                      ?.copyWith(color: Theme.of(context).colorScheme.primary),
                 ),
               ),
               const SizedBox(height: 10),
               TransferRow(
+                  dopDownChipTitle: "مبدأ انتقال",
                   userInfo: widget.sourceUserInfo,
                   depositType: widget.sourceDepositType,
                   onSelectTypeEvent: widget.onSourceSelectTypeEvent),
@@ -105,12 +108,15 @@ class _TransactionCheckoutContentState
                 alignment: Alignment.centerRight,
                 child: Text(
                   'مقصد',
-                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                      color: Theme.of(context).colorScheme.primary),
+                  style: Theme.of(context)
+                      .textTheme
+                      .titleMedium
+                      ?.copyWith(color: Theme.of(context).colorScheme.primary),
                 ),
               ),
               const SizedBox(height: 10),
               TransferRow(
+                  dopDownChipTitle: "دریافت دارایی در مقصد",
                   userInfo: widget.destinationUserInfo,
                   depositType: widget.destinationDepositType,
                   onSelectTypeEvent: widget.onDestinationSelectTypeEvent),
@@ -119,8 +125,10 @@ class _TransactionCheckoutContentState
                 alignment: Alignment.centerRight,
                 child: Text(
                   'زمان انتقال',
-                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                      color: Theme.of(context).colorScheme.primary),
+                  style: Theme.of(context)
+                      .textTheme
+                      .titleMedium
+                      ?.copyWith(color: Theme.of(context).colorScheme.primary),
                 ),
               ),
             ],
@@ -133,6 +141,7 @@ class _TransactionCheckoutContentState
 
 class TransferRow extends StatelessWidget {
   final UserInfo userInfo;
+  final String dopDownChipTitle;
   final DepositType depositType;
   final Function(DepositType) onSelectTypeEvent;
 
@@ -140,12 +149,13 @@ class TransferRow extends StatelessWidget {
       {super.key,
       required this.userInfo,
       required this.depositType,
-      required this.onSelectTypeEvent});
+      required this.onSelectTypeEvent,
+      required this.dopDownChipTitle});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 12,horizontal: 16),
+      padding: EdgeInsets.symmetric(vertical: 12, horizontal: 16),
       decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.surfaceBright,
         // Background color similar to the attached image
@@ -155,6 +165,7 @@ class TransferRow extends StatelessWidget {
         children: [
           Expanded(child: UserInfoWidget(userInfo: userInfo)),
           DropdownChipWidget(
+            title: dopDownChipTitle,
             type: depositType,
             onSelectTypeEvent: onSelectTypeEvent,
           ),

@@ -4,12 +4,14 @@ import 'package:flutter/services.dart';
 
 class DepositBottomSheetContent extends StatelessWidget {
   final DepositType initialType;
+  final String title;
   final ValueChanged<DepositType> onTypeSelected;
 
   const DepositBottomSheetContent({
     super.key,
     required this.initialType,
     required this.onTypeSelected,
+    required this.title,
   });
 
   @override
@@ -23,7 +25,7 @@ class DepositBottomSheetContent extends StatelessWidget {
           child: Align(
             alignment: Alignment.centerRight,
             child: Text(
-              'مبدأ انتقال',
+              title,
               style: Theme.of(context)
                   .textTheme
                   .headlineSmall
@@ -43,7 +45,8 @@ class DepositBottomSheetContent extends StatelessWidget {
                 HapticFeedback.selectionClick();
               },
               child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 12.0,horizontal: 16.0),
+                padding: const EdgeInsets.symmetric(
+                    vertical: 12.0, horizontal: 16.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -52,6 +55,7 @@ class DepositBottomSheetContent extends StatelessWidget {
                       children: [
                         Image.asset(
                           type.iconPath,
+                          filterQuality: FilterQuality.high,
                           width: 40,
                           height: 40,
                         ),

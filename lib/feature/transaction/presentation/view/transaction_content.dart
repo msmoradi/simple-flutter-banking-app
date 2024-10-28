@@ -95,6 +95,7 @@ class TransactionContent extends StatelessWidget {
                 ),
                 const SizedBox(height: 21),
                 DropdownChipWidget(
+                  title: "مبدأ انتقال",
                   type: selectedType,
                   onSelectTypeEvent: (type) {
                     context.read<TransactionBloc>().add(SelectTypeEvent(type));

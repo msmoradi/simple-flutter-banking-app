@@ -5,19 +5,19 @@ import 'package:flutter_svg/flutter_svg.dart';
 enum DepositType {
   rialDeposit(
       title: 'سپرده ریالء',
-      iconPath: 'assets/images/lite-coin-2.png',
+      iconPath: 'assets/images/rial_banx.png',
       unit: 'ریالء'),
-  dollarDeposit(
-      title: 'سپرده دلار',
-      iconPath: 'assets/images/lite-coin-3.png',
-      unit: 'دلار'),
   goldDeposit(
       title: 'سپرده طلا',
       iconPath: 'assets/images/lite-coin-1.png',
       unit: 'گرم'),
+  saffronDeposit(
+      title: 'سپرده زعفران',
+      iconPath: 'assets/images/saffron_banx.png',
+      unit: 'گرم'),
   diamondDeposit(
       title: 'سپرده الماس',
-      iconPath: 'assets/images/lite-coin-4.png',
+      iconPath: 'assets/images/diamond_banx.png',
       unit: 'گرم');
 
   final String title;
@@ -30,12 +30,14 @@ enum DepositType {
 
 class DropdownChipWidget extends StatelessWidget {
   final DepositType type;
+  final String title;
   final Function(DepositType) onSelectTypeEvent;
 
   const DropdownChipWidget({
     Key? key,
     required this.type,
     required this.onSelectTypeEvent,
+    required this.title,
   }) : super(key: key);
 
   @override
@@ -47,6 +49,7 @@ class DropdownChipWidget extends StatelessWidget {
           context: context,
           builder: (BuildContext context) {
             return DepositBottomSheetContent(
+              title: title,
               initialType: type,
               onTypeSelected: (type) {
                 Navigator.pop(context, type);

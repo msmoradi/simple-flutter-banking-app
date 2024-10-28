@@ -40,7 +40,7 @@ class TransactionCheckoutPage extends StatelessWidget {
           return TransactionCheckoutContent(
             amount: amount,
             conversionFee: state.conversionFee,
-            sourceDepositType: state.sourceDepositType,
+            sourceDepositType: sourceDepositType,
             sourceUserInfo: sourceUserInfo,
             destinationDepositType: state.destinationDepositType,
             destinationUserInfo: destinationUserInfo,
