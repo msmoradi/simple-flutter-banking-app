@@ -9,7 +9,6 @@ part 'transaction_event.dart';
 
 @injectable
 class TransactionBloc extends Bloc<TransactionEvent, TransactionState> {
-
   TransactionBloc()
       : super(const TransactionState(status: TransactionStatus.loading)) {
     on<SelectTypeEvent>(_onSelectType);
@@ -25,21 +24,27 @@ class TransactionBloc extends Bloc<TransactionEvent, TransactionState> {
 
   void _onAddValue(AddValueEvent event, Emitter<TransactionState> emit) {
     final currentValue = state.value;
+    final isRialDeposit = state.selectedType == DepositType.rialDeposit;
 
-    if (event.key == '.' && currentValue.contains('.')) {
-      return; // Prevent multiple periods.
+    if (_isInvalidDecimal(event, currentValue, isRialDeposit) ||
+        _exceedsMaxLength(currentValue, event.key)) {
+      return;
     }
 
     final updatedValue = currentValue + event.key;
-
-    // Prevent updating if it exceeds max length after adding the new key
-    if (updatedValue.length > 13) return;
-
     final formattedValue = _formatWithCommas(updatedValue);
 
-    if (formattedValue != state.value) {
+    if (formattedValue != currentValue) {
       emit(state.copyWith(value: formattedValue));
     }
+  }
+
+  bool _isInvalidDecimal(AddValueEvent event, String currentValue, bool isRialDeposit) {
+    return (event.key == '.' && (isRialDeposit || currentValue.contains('.')));
+  }
+
+  bool _exceedsMaxLength(String currentValue, String key) {
+    return (currentValue + key).length > 13;
   }
 
   void _onRemoveValue(RemoveValueEvent event, Emitter<TransactionState> emit) {
@@ -61,7 +66,9 @@ class TransactionBloc extends Bloc<TransactionEvent, TransactionState> {
     if (numericValue.contains('.')) {
       List<String> parts = numericValue.split('.');
       String formattedIntPart = parts[0].seRagham();
-      return parts.length > 1 ? '$formattedIntPart.${parts[1]}' : formattedIntPart;
+      return parts.length > 1
+          ? '$formattedIntPart.${parts[1]}'
+          : formattedIntPart;
     } else {
       return numericValue.seRagham();
     }
