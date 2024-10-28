@@ -84,19 +84,9 @@ class TransactionCheckoutContent extends StatelessWidget {
                       depositType: sourceDepositType,
                       onSelectTypeEvent: onSourceSelectTypeEvent)
                   : const SizedBox(height: 10),
-              const SizedBox(height: 20),
-              Align(
-                alignment: Alignment.centerRight,
-                child: Text(
-                  'مقصد',
-                  style: Theme.of(context)
-                      .textTheme
-                      .titleMedium
-                      ?.copyWith(color: Theme.of(context).colorScheme.primary),
-                ),
-              ),
-              const SizedBox(height: 10),
-              const SizedBox(height: 20),
+              conversionFee
+                  ? const ConversionFeeRow()
+                  : const SizedBox(height: 20),
               Align(
                 alignment: Alignment.centerRight,
                 child: Text(
@@ -150,6 +140,7 @@ class TransferRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: 64,
       padding: EdgeInsets.symmetric(vertical: 12, horizontal: 16),
       decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.surfaceBright,
@@ -163,6 +154,63 @@ class TransferRow extends StatelessWidget {
             title: dopDownChipTitle,
             type: depositType,
             onSelectTypeEvent: onSelectTypeEvent,
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class ConversionFeeRow extends StatelessWidget {
+  const ConversionFeeRow({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 20.0),
+      child: Column(
+        children: [
+          Align(
+            alignment: Alignment.centerRight,
+            child: Text(
+              'کارمزد تبدیل',
+              style: Theme.of(context)
+                  .textTheme
+                  .titleMedium
+                  ?.copyWith(color: Theme.of(context).colorScheme.primary),
+            ),
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          Container(
+            height: 64,
+            padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+            decoration: BoxDecoration(
+              color: Theme.of(context).colorScheme.surfaceBright,
+              // Background color similar to the attached image
+              borderRadius: BorderRadius.circular(8.0),
+            ),
+            child: Row(
+              children: [
+                SvgPicture.asset(
+                  'assets/icons/money-coins-exchange.svg',
+                  colorFilter: ColorFilter.mode(
+                    Theme.of(context).colorScheme.primary,
+                    BlendMode.srcIn,
+                  ),
+                ),
+                const SizedBox(
+                  width: 16,
+                ),
+                Text(
+                  '۸۱۹٬۵۴۰ ریالء',
+                  style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                        color: Theme.of(context).colorScheme.primary,
+                      ),
+                )
+              ],
+            ),
           ),
         ],
       ),

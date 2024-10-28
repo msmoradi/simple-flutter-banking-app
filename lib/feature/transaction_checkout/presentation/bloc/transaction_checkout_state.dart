@@ -8,15 +8,18 @@ enum TransactionCheckoutStatus { initial, failure, loading }
 
 @freezed
 class TransactionCheckoutState with _$TransactionCheckoutState {
+  const TransactionCheckoutState._();
+
   const factory TransactionCheckoutState({
     @Default(TransactionCheckoutStatus.initial)
     TransactionCheckoutStatus status,
     @Default('') String errorMessage,
-    @Default('') String conversionFee,
     @Default(DepositType.rialDeposit) DepositType sourceDepositType,
     UserInfo? sourceUserInfo,
     @Default(DepositType.rialDeposit)
     DepositType destinationDepositType,
     UserInfo? destinationUserInfo,
   }) = _TransactionCheckoutState;
+
+  bool get conversionFee => sourceDepositType != destinationDepositType;
 }

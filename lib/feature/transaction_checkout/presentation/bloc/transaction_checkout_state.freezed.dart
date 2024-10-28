@@ -18,7 +18,6 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$TransactionCheckoutState {
   TransactionCheckoutStatus get status => throw _privateConstructorUsedError;
   String get errorMessage => throw _privateConstructorUsedError;
-  String get conversionFee => throw _privateConstructorUsedError;
   DepositType get sourceDepositType => throw _privateConstructorUsedError;
   UserInfo? get sourceUserInfo => throw _privateConstructorUsedError;
   DepositType get destinationDepositType => throw _privateConstructorUsedError;
@@ -40,7 +39,6 @@ abstract class $TransactionCheckoutStateCopyWith<$Res> {
   $Res call(
       {TransactionCheckoutStatus status,
       String errorMessage,
-      String conversionFee,
       DepositType sourceDepositType,
       UserInfo? sourceUserInfo,
       DepositType destinationDepositType,
@@ -65,7 +63,6 @@ class _$TransactionCheckoutStateCopyWithImpl<$Res,
   $Res call({
     Object? status = null,
     Object? errorMessage = null,
-    Object? conversionFee = null,
     Object? sourceDepositType = null,
     Object? sourceUserInfo = freezed,
     Object? destinationDepositType = null,
@@ -79,10 +76,6 @@ class _$TransactionCheckoutStateCopyWithImpl<$Res,
       errorMessage: null == errorMessage
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
-              as String,
-      conversionFee: null == conversionFee
-          ? _value.conversionFee
-          : conversionFee // ignore: cast_nullable_to_non_nullable
               as String,
       sourceDepositType: null == sourceDepositType
           ? _value.sourceDepositType
@@ -116,7 +109,6 @@ abstract class _$$TransactionCheckoutStateImplCopyWith<$Res>
   $Res call(
       {TransactionCheckoutStatus status,
       String errorMessage,
-      String conversionFee,
       DepositType sourceDepositType,
       UserInfo? sourceUserInfo,
       DepositType destinationDepositType,
@@ -140,7 +132,6 @@ class __$$TransactionCheckoutStateImplCopyWithImpl<$Res>
   $Res call({
     Object? status = null,
     Object? errorMessage = null,
-    Object? conversionFee = null,
     Object? sourceDepositType = null,
     Object? sourceUserInfo = freezed,
     Object? destinationDepositType = null,
@@ -154,10 +145,6 @@ class __$$TransactionCheckoutStateImplCopyWithImpl<$Res>
       errorMessage: null == errorMessage
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
-              as String,
-      conversionFee: null == conversionFee
-          ? _value.conversionFee
-          : conversionFee // ignore: cast_nullable_to_non_nullable
               as String,
       sourceDepositType: null == sourceDepositType
           ? _value.sourceDepositType
@@ -181,15 +168,15 @@ class __$$TransactionCheckoutStateImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$TransactionCheckoutStateImpl implements _TransactionCheckoutState {
+class _$TransactionCheckoutStateImpl extends _TransactionCheckoutState {
   const _$TransactionCheckoutStateImpl(
       {this.status = TransactionCheckoutStatus.initial,
       this.errorMessage = '',
-      this.conversionFee = '',
       this.sourceDepositType = DepositType.rialDeposit,
       this.sourceUserInfo,
       this.destinationDepositType = DepositType.rialDeposit,
-      this.destinationUserInfo});
+      this.destinationUserInfo})
+      : super._();
 
   @override
   @JsonKey()
@@ -197,9 +184,6 @@ class _$TransactionCheckoutStateImpl implements _TransactionCheckoutState {
   @override
   @JsonKey()
   final String errorMessage;
-  @override
-  @JsonKey()
-  final String conversionFee;
   @override
   @JsonKey()
   final DepositType sourceDepositType;
@@ -213,7 +197,7 @@ class _$TransactionCheckoutStateImpl implements _TransactionCheckoutState {
 
   @override
   String toString() {
-    return 'TransactionCheckoutState(status: $status, errorMessage: $errorMessage, conversionFee: $conversionFee, sourceDepositType: $sourceDepositType, sourceUserInfo: $sourceUserInfo, destinationDepositType: $destinationDepositType, destinationUserInfo: $destinationUserInfo)';
+    return 'TransactionCheckoutState(status: $status, errorMessage: $errorMessage, sourceDepositType: $sourceDepositType, sourceUserInfo: $sourceUserInfo, destinationDepositType: $destinationDepositType, destinationUserInfo: $destinationUserInfo)';
   }
 
   @override
@@ -224,8 +208,6 @@ class _$TransactionCheckoutStateImpl implements _TransactionCheckoutState {
             (identical(other.status, status) || other.status == status) &&
             (identical(other.errorMessage, errorMessage) ||
                 other.errorMessage == errorMessage) &&
-            (identical(other.conversionFee, conversionFee) ||
-                other.conversionFee == conversionFee) &&
             (identical(other.sourceDepositType, sourceDepositType) ||
                 other.sourceDepositType == sourceDepositType) &&
             (identical(other.sourceUserInfo, sourceUserInfo) ||
@@ -241,7 +223,6 @@ class _$TransactionCheckoutStateImpl implements _TransactionCheckoutState {
       runtimeType,
       status,
       errorMessage,
-      conversionFee,
       sourceDepositType,
       sourceUserInfo,
       destinationDepositType,
@@ -257,22 +238,20 @@ class _$TransactionCheckoutStateImpl implements _TransactionCheckoutState {
           _$TransactionCheckoutStateImpl>(this, _$identity);
 }
 
-abstract class _TransactionCheckoutState implements TransactionCheckoutState {
+abstract class _TransactionCheckoutState extends TransactionCheckoutState {
   const factory _TransactionCheckoutState(
       {final TransactionCheckoutStatus status,
       final String errorMessage,
-      final String conversionFee,
       final DepositType sourceDepositType,
       final UserInfo? sourceUserInfo,
       final DepositType destinationDepositType,
       final UserInfo? destinationUserInfo}) = _$TransactionCheckoutStateImpl;
+  const _TransactionCheckoutState._() : super._();
 
   @override
   TransactionCheckoutStatus get status;
   @override
   String get errorMessage;
-  @override
-  String get conversionFee;
   @override
   DepositType get sourceDepositType;
   @override
