@@ -152,9 +152,13 @@ extension GetItInjectableX on _i174.GetIt {
         registerModule.localAuthHelperImpl(gh<_i152.LocalAuthentication>()));
     gh.lazySingleton<_i232.TokenRepository>(() => _i205.TokenRepositoryImpl(
         secureStorage: gh<_i558.FlutterSecureStorage>()));
+    gh.lazySingleton<_i904.ProfileLocalDataSource>(() =>
+        _i335.ProfileLocalDataSourceImpl(
+            secureStorage: gh<_i558.FlutterSecureStorage>()));
     gh.lazySingleton<_i361.Dio>(
       () => registerModule.refreshDio(
         gh<String>(instanceName: 'BaseUrl'),
+        gh<_i535.InfoInterceptor>(),
         gh<_i528.PrettyDioLogger>(),
       ),
       instanceName: 'RefreshDio',
@@ -164,9 +168,6 @@ extension GetItInjectableX on _i174.GetIt {
           refreshDio: gh<_i361.Dio>(instanceName: 'RefreshDio'),
           logger: gh<_i974.Logger>(),
         ));
-    gh.lazySingleton<_i904.ProfileLocalDataSource>(() =>
-        _i335.ProfileLocalDataSourceImpl(
-            secureStorage: gh<_i558.FlutterSecureStorage>()));
     gh.lazySingleton<_i361.Dio>(() => registerModule.dio(
           gh<String>(instanceName: 'BaseUrl'),
           gh<_i528.PrettyDioLogger>(),

@@ -34,11 +34,13 @@ abstract class RegisterModule {
   @Named('RefreshDio')
   Dio refreshDio(
     @Named('BaseUrl') String url,
+    InfoInterceptor infoInterceptor,
     PrettyDioLogger prettyDioLogger,
   ) =>
       Dio()
         ..options.baseUrl = url
-        ..interceptors.add(prettyDioLogger);
+        ..interceptors.add(prettyDioLogger)
+        ..interceptors.add(infoInterceptor);
 
   @lazySingleton
   Dio dio(
