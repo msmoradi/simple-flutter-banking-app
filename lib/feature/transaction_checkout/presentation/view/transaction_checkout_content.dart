@@ -3,10 +3,10 @@ import 'package:banx/feature/transaction_destination/presentation/view/transacti
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class TransactionCheckoutContent extends StatefulWidget {
+class TransactionCheckoutContent extends StatelessWidget {
   final String amount;
 
-  final String conversionFee;
+  final bool conversionFee;
   final DepositType sourceDepositType;
   final UserInfo? sourceUserInfo;
   final DepositType destinationDepositType;
@@ -26,27 +26,6 @@ class TransactionCheckoutContent extends StatefulWidget {
     required this.onSourceSelectTypeEvent,
     required this.onDestinationSelectTypeEvent,
   });
-
-  @override
-  State<TransactionCheckoutContent> createState() =>
-      _TransactionCheckoutContentState();
-}
-
-class _TransactionCheckoutContentState
-    extends State<TransactionCheckoutContent> {
-  late TextEditingController controller;
-
-  @override
-  void initState() {
-    super.initState();
-    controller = TextEditingController();
-  }
-
-  @override
-  void dispose() {
-    controller.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -79,7 +58,7 @@ class _TransactionCheckoutContentState
               Align(
                 alignment: Alignment.centerRight,
                 child: Text(
-                  'انتقال ${widget.amount}',
+                  'انتقال $amount',
                   style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                         color: Theme.of(context).colorScheme.primary,
                         fontWeight: FontWeight.bold,
@@ -98,12 +77,12 @@ class _TransactionCheckoutContentState
                 ),
               ),
               const SizedBox(height: 10),
-              widget.sourceUserInfo != null
+              sourceUserInfo != null
                   ? TransferRow(
                       dopDownChipTitle: "مبدأ انتقال",
-                      userInfo: widget.sourceUserInfo!,
-                      depositType: widget.sourceDepositType,
-                      onSelectTypeEvent: widget.onSourceSelectTypeEvent)
+                      userInfo: sourceUserInfo!,
+                      depositType: sourceDepositType,
+                      onSelectTypeEvent: onSourceSelectTypeEvent)
                   : const SizedBox(height: 10),
               const SizedBox(height: 20),
               Align(
@@ -117,12 +96,24 @@ class _TransactionCheckoutContentState
                 ),
               ),
               const SizedBox(height: 10),
-              widget.destinationUserInfo != null
+              const SizedBox(height: 20),
+              Align(
+                alignment: Alignment.centerRight,
+                child: Text(
+                  'مقصد',
+                  style: Theme.of(context)
+                      .textTheme
+                      .titleMedium
+                      ?.copyWith(color: Theme.of(context).colorScheme.primary),
+                ),
+              ),
+              const SizedBox(height: 10),
+              destinationUserInfo != null
                   ? TransferRow(
                       dopDownChipTitle: "دریافت دارایی در مقصد",
-                      userInfo: widget.destinationUserInfo!,
-                      depositType: widget.destinationDepositType,
-                      onSelectTypeEvent: widget.onDestinationSelectTypeEvent)
+                      userInfo: destinationUserInfo!,
+                      depositType: destinationDepositType,
+                      onSelectTypeEvent: onDestinationSelectTypeEvent)
                   : const SizedBox(height: 10),
               const SizedBox(height: 20),
               Align(
