@@ -142,6 +142,9 @@ class AuthInterceptor extends Interceptor {
         final refreshResponse = await refreshDio.post(
           ApiEndpoint.auth(AuthEndpoint.REFRESH),
           data: {'refreshToken': refreshToken},
+          options: Options(
+            validateStatus: (status) => status! < 500,
+          ),
         );
 
         if (refreshResponse.statusCode == 200) {
