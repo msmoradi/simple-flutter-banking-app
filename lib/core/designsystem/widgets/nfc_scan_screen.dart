@@ -20,7 +20,9 @@ class _NfcScanScreenState extends State<NfcScanScreen> {
     });
 
     try {
-      NFCTag tag = await FlutterNfcKit.poll();
+      NFCTag tag = await FlutterNfcKit.poll(
+          iosMultipleTagMessage: "Multiple tags found!",
+          iosAlertMessage: "Scan your tag");
       widget.onTagRead(tag);
     } catch (e) {
       // Handle any errors that may occur
@@ -43,7 +45,8 @@ class _NfcScanScreenState extends State<NfcScanScreen> {
           Expanded(
             child: SingleChildScrollView(
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 35.0,vertical: 32),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 35.0, vertical: 32),
                 child: Column(
                   children: [
                     Image.asset(
