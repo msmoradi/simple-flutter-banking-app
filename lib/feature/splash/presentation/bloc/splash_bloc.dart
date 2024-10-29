@@ -32,6 +32,8 @@ class SplashBloc extends Bloc<SplashEvent, SplashState> {
       final bool hasRefresh = refreshToken?.isNotEmpty ?? false;
       final bool verifyPassword = hasPassword && hasRefresh;
 
+      await Future.delayed(const Duration(milliseconds: 300));
+
       if (verifyPassword) {
         emit(state.copyWith(status: SplashStatus.verifyPassword));
       } else {
