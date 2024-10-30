@@ -161,8 +161,8 @@ class TransferRow extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       alignment: Alignment.center,
-      height: 64,
-      padding: EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+      constraints: const BoxConstraints(minHeight: 72),
+      padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
       decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.surfaceBright,
         // Background color similar to the attached image
@@ -206,7 +206,7 @@ class ConversionFeeRow extends StatelessWidget {
           ),
           Container(
             alignment: Alignment.center,
-            height: 64,
+            constraints: const BoxConstraints(minHeight: 72),
             padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
             decoration: BoxDecoration(
               color: Theme.of(context).colorScheme.surfaceBright,
@@ -274,7 +274,7 @@ class _TransactionTimeRowState extends State<TransactionTimeRow> {
                   ?.copyWith(color: Theme.of(context).colorScheme.primary),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 5,
           ),
           ListView.builder(
@@ -293,7 +293,7 @@ class _TransactionTimeRowState extends State<TransactionTimeRow> {
                   },
                   child: Container(
                     alignment: Alignment.center,
-                    height: 64,
+                    constraints: const BoxConstraints(minHeight: 72),
                     padding: const EdgeInsets.symmetric(
                         vertical: 12, horizontal: 16),
                     decoration: BoxDecoration(
