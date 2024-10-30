@@ -68,6 +68,7 @@ class _FlutterCameraState extends State<FlutterCamera> {
       return Container();
     }
     return Scaffold(
+      backgroundColor: Colors.black,
       /// Performs the actual switch with an animation when _cameraView is toggled
       body: videoView(),
     );
@@ -86,9 +87,7 @@ class _FlutterCameraState extends State<FlutterCamera> {
     return Stack(
       key: const ValueKey(1),
       children: [
-        SizedBox(
-          height: MediaQuery.of(context).size.height,
-          width: MediaQuery.of(context).size.width,
+        Center(
           child: CameraPreview(
             controller!,
           ),
