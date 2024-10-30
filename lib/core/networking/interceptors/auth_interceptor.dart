@@ -132,7 +132,6 @@ class AuthInterceptor extends Interceptor {
         if (refreshToken == null) {
           logger.w(
               "No refresh token available. Unable to refresh access token for request: ${error.requestOptions.path}");
-          handleErrorAction(null); // Or handle as per your app's logic
           handler.next(error);
           return;
         }
@@ -155,7 +154,6 @@ class AuthInterceptor extends Interceptor {
         } else {
           logger.w(
               "Unexpected status code ${refreshResponse.statusCode} during token refresh for request: ${error.requestOptions.path}");
-          handleErrorAction(null); // Or handle as per your app's logic
           handler.next(error);
         }
       } catch (e, stackTrace) {
@@ -163,7 +161,6 @@ class AuthInterceptor extends Interceptor {
             "Error during token refresh for request: ${error.requestOptions.path}",
             error: e,
             stackTrace: stackTrace);
-        handleErrorAction(null); // Or handle as per your app's logic
         handler.next(error);
       }
     });
@@ -193,7 +190,6 @@ class AuthInterceptor extends Interceptor {
       await _retryRequest(updatedRequestOptions, handler, newAccessToken);
     } else {
       logger.e("Token refresh response missing tokens.");
-      handleErrorAction(null); // Or handle as per your app's logic
       handler.next(DioException(
         requestOptions: requestOptions,
         error: "Token refresh failed: Missing tokens.",
@@ -219,12 +215,6 @@ class AuthInterceptor extends Interceptor {
       logger.e("Failed to parse ErrorDto from 403 refresh response",
           error: e, stackTrace: stackTrace);
     }
-    handler.next(DioException(
-      requestOptions: error.requestOptions,
-      error: "Token refresh failed with 403.",
-      type: DioExceptionType.badResponse,
-      response: error.response,
-    ));
   }
 
   /// Retries the original request with the updated access token.
