@@ -1,3 +1,4 @@
+import 'package:banx/core/designsystem/widgets/button/fill/full_fill_button.dart';
 import 'package:banx/core/designsystem/widgets/components/drop_down_chip_widget.dart';
 import 'package:banx/core/domain/entities/transaction_time.dart';
 import 'package:banx/feature/transaction_destination/presentation/view/transaction_destination_content.dart';
@@ -8,25 +9,29 @@ class TransactionCheckoutContent extends StatelessWidget {
   final String amount;
 
   final bool conversionFee;
+  final bool buttonLoading;
   final DepositType sourceDepositType;
   final UserInfo? sourceUserInfo;
   final DepositType destinationDepositType;
   final UserInfo? destinationUserInfo;
   final List<TransactionTime> transactionTimes;
 
-  final Function(DepositType) onSourceSelectTypeEvent;
-  final Function(DepositType) onDestinationSelectTypeEvent;
+  final Function(DepositType) onSourceSelectTypeClick;
+  final Function(DepositType) onDestinationSelectTypeClick;
+  final VoidCallback onActionClick;
 
   const TransactionCheckoutContent({
     super.key,
     required this.amount,
+    required this.buttonLoading,
     required this.conversionFee,
     required this.sourceDepositType,
     required this.sourceUserInfo,
     required this.destinationDepositType,
     required this.destinationUserInfo,
-    required this.onSourceSelectTypeEvent,
-    required this.onDestinationSelectTypeEvent,
+    required this.onSourceSelectTypeClick,
+    required this.onDestinationSelectTypeClick,
+    required this.onActionClick,
     required this.transactionTimes,
   });
 
@@ -58,59 +63,79 @@ class TransactionCheckoutContent extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
           child: Column(
             children: [
-              Align(
-                alignment: Alignment.centerRight,
-                child: Text(
-                  'انتقال $amount',
-                  style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                        color: Theme.of(context).colorScheme.primary,
-                        fontWeight: FontWeight.bold,
+              Expanded(
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      Align(
+                        alignment: Alignment.centerRight,
+                        child: Text(
+                          'انتقال $amount',
+                          style: Theme.of(context)
+                              .textTheme
+                              .headlineSmall
+                              ?.copyWith(
+                                color: Theme.of(context).colorScheme.primary,
+                                fontWeight: FontWeight.bold,
+                              ),
+                        ),
                       ),
+                      const SizedBox(height: 12),
+                      Align(
+                        alignment: Alignment.centerRight,
+                        child: Text(
+                          'مبدأ',
+                          style: Theme.of(context)
+                              .textTheme
+                              .titleMedium
+                              ?.copyWith(
+                                  color: Theme.of(context).colorScheme.primary),
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      sourceUserInfo != null
+                          ? TransferRow(
+                              dopDownChipTitle: "مبدأ انتقال",
+                              userInfo: sourceUserInfo!,
+                              depositType: sourceDepositType,
+                              onSelectTypeEvent: onSourceSelectTypeClick)
+                          : const SizedBox(height: 10),
+                      conversionFee
+                          ? const ConversionFeeRow()
+                          : const SizedBox(height: 20),
+                      Align(
+                        alignment: Alignment.centerRight,
+                        child: Text(
+                          'مقصد',
+                          style: Theme.of(context)
+                              .textTheme
+                              .titleMedium
+                              ?.copyWith(
+                                  color: Theme.of(context).colorScheme.primary),
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      destinationUserInfo != null
+                          ? TransferRow(
+                              dopDownChipTitle: "دریافت دارایی در مقصد",
+                              userInfo: destinationUserInfo!,
+                              depositType: destinationDepositType,
+                              onSelectTypeEvent: onDestinationSelectTypeClick)
+                          : const SizedBox(height: 10),
+                      transactionTimes.isNotEmpty
+                          ? TransactionTimeRow(
+                              transactionTimes: transactionTimes)
+                          : const SizedBox(height: 10)
+                    ],
+                  ),
                 ),
               ),
-              const SizedBox(height: 12),
-              Align(
-                alignment: Alignment.centerRight,
-                child: Text(
-                  'مبدأ',
-                  style: Theme.of(context)
-                      .textTheme
-                      .titleMedium
-                      ?.copyWith(color: Theme.of(context).colorScheme.primary),
-                ),
+              PrimaryFillButton(
+                onPressed: onActionClick,
+                label: 'تأیید انتقال',
+                isLoading: buttonLoading,
               ),
-              const SizedBox(height: 10),
-              sourceUserInfo != null
-                  ? TransferRow(
-                      dopDownChipTitle: "مبدأ انتقال",
-                      userInfo: sourceUserInfo!,
-                      depositType: sourceDepositType,
-                      onSelectTypeEvent: onSourceSelectTypeEvent)
-                  : const SizedBox(height: 10),
-              conversionFee
-                  ? const ConversionFeeRow()
-                  : const SizedBox(height: 20),
-              Align(
-                alignment: Alignment.centerRight,
-                child: Text(
-                  'مقصد',
-                  style: Theme.of(context)
-                      .textTheme
-                      .titleMedium
-                      ?.copyWith(color: Theme.of(context).colorScheme.primary),
-                ),
-              ),
-              const SizedBox(height: 10),
-              destinationUserInfo != null
-                  ? TransferRow(
-                      dopDownChipTitle: "دریافت دارایی در مقصد",
-                      userInfo: destinationUserInfo!,
-                      depositType: destinationDepositType,
-                      onSelectTypeEvent: onDestinationSelectTypeEvent)
-                  : const SizedBox(height: 10),
-              transactionTimes.isNotEmpty
-                  ? TransactionTimeRow(transactionTimes: transactionTimes)
-                  : const SizedBox(height: 10)
+              const SizedBox(height: 16),
             ],
           ),
         ),
@@ -226,6 +251,12 @@ class TransactionTimeRow extends StatefulWidget {
 
 class _TransactionTimeRowState extends State<TransactionTimeRow> {
   int selectedIndex = 0;
+
+  @override
+  void didUpdateWidget(covariant TransactionTimeRow oldWidget) {
+    selectedIndex = 0;
+    super.didUpdateWidget(oldWidget);
+  }
 
   @override
   Widget build(BuildContext context) {

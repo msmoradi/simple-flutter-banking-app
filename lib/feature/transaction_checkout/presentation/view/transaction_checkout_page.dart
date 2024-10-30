@@ -45,17 +45,19 @@ class TransactionCheckoutPage extends StatelessWidget {
           return TransactionCheckoutContent(
             amount: amount,
             conversionFee: state.conversionFee,
+            buttonLoading: state.buttonLoading,
             sourceDepositType: state.sourceDepositType,
             sourceUserInfo: state.sourceUserInfo,
             destinationDepositType: state.destinationDepositType,
             destinationUserInfo: state.destinationUserInfo,
             transactionTimes: state.transactionTimes,
-            onDestinationSelectTypeEvent: (type) {
+            onActionClick: () {},
+            onDestinationSelectTypeClick: (type) {
               context
                   .read<TransactionCheckoutBloc>()
                   .add(DestinationSelectTypeEvent(type));
             },
-            onSourceSelectTypeEvent: (type) {
+            onSourceSelectTypeClick: (type) {
               context
                   .read<TransactionCheckoutBloc>()
                   .add(SourceSelectTypeEvent(type));

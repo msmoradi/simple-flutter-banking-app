@@ -37,7 +37,7 @@ class TransactionPage extends StatelessWidget {
             onActionClick: () {
               context.push(TransactionDestinationPageFactory.path,
                   extra: TransactionDestinationExtra(
-                      amount: state.value + state.selectedType.unit,
+                      amount: "${state.value} ${state.selectedType.unit}",
                       sourceDepositType: state.selectedType));
             },
           );

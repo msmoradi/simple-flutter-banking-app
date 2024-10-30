@@ -20,18 +20,8 @@ class TransactionCheckoutBloc
   }
 
   void _onInit(Init event, Emitter<TransactionCheckoutState> emit) {
-    final transactionTimes = [
-      TransactionTime(
-        title: 'در لحظه (کارت به کارت)',
-        subtitle: 'کارمزد: ۲۱٬۲۰۰ ریالء',
-      ),
-      TransactionTime(
-        title: 'امروز ~ ۱۹:۴۵ (پایا)',
-        subtitle: 'کارمزد: ۵٬۴۶۰ ریالء',
-      )
-    ];
+
     emit(state.copyWith(
-        transactionTimes: transactionTimes,
         destinationDepositType: event.destinationDepositType,
         sourceDepositType: event.sourceDepositType,
         destinationUserInfo: event.destinationUserInfo,

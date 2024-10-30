@@ -18,12 +18,11 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$TransactionCheckoutState {
   TransactionCheckoutStatus get status => throw _privateConstructorUsedError;
   String get errorMessage => throw _privateConstructorUsedError;
+  bool get buttonLoading => throw _privateConstructorUsedError;
   DepositType get sourceDepositType => throw _privateConstructorUsedError;
   UserInfo? get sourceUserInfo => throw _privateConstructorUsedError;
   DepositType get destinationDepositType => throw _privateConstructorUsedError;
   UserInfo? get destinationUserInfo => throw _privateConstructorUsedError;
-  List<TransactionTime> get transactionTimes =>
-      throw _privateConstructorUsedError;
 
   /// Create a copy of TransactionCheckoutState
   /// with the given fields replaced by the non-null parameter values.
@@ -41,11 +40,11 @@ abstract class $TransactionCheckoutStateCopyWith<$Res> {
   $Res call(
       {TransactionCheckoutStatus status,
       String errorMessage,
+      bool buttonLoading,
       DepositType sourceDepositType,
       UserInfo? sourceUserInfo,
       DepositType destinationDepositType,
-      UserInfo? destinationUserInfo,
-      List<TransactionTime> transactionTimes});
+      UserInfo? destinationUserInfo});
 }
 
 /// @nodoc
@@ -66,11 +65,11 @@ class _$TransactionCheckoutStateCopyWithImpl<$Res,
   $Res call({
     Object? status = null,
     Object? errorMessage = null,
+    Object? buttonLoading = null,
     Object? sourceDepositType = null,
     Object? sourceUserInfo = freezed,
     Object? destinationDepositType = null,
     Object? destinationUserInfo = freezed,
-    Object? transactionTimes = null,
   }) {
     return _then(_value.copyWith(
       status: null == status
@@ -81,6 +80,10 @@ class _$TransactionCheckoutStateCopyWithImpl<$Res,
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
               as String,
+      buttonLoading: null == buttonLoading
+          ? _value.buttonLoading
+          : buttonLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
       sourceDepositType: null == sourceDepositType
           ? _value.sourceDepositType
           : sourceDepositType // ignore: cast_nullable_to_non_nullable
@@ -97,10 +100,6 @@ class _$TransactionCheckoutStateCopyWithImpl<$Res,
           ? _value.destinationUserInfo
           : destinationUserInfo // ignore: cast_nullable_to_non_nullable
               as UserInfo?,
-      transactionTimes: null == transactionTimes
-          ? _value.transactionTimes
-          : transactionTimes // ignore: cast_nullable_to_non_nullable
-              as List<TransactionTime>,
     ) as $Val);
   }
 }
@@ -117,11 +116,11 @@ abstract class _$$TransactionCheckoutStateImplCopyWith<$Res>
   $Res call(
       {TransactionCheckoutStatus status,
       String errorMessage,
+      bool buttonLoading,
       DepositType sourceDepositType,
       UserInfo? sourceUserInfo,
       DepositType destinationDepositType,
-      UserInfo? destinationUserInfo,
-      List<TransactionTime> transactionTimes});
+      UserInfo? destinationUserInfo});
 }
 
 /// @nodoc
@@ -141,11 +140,11 @@ class __$$TransactionCheckoutStateImplCopyWithImpl<$Res>
   $Res call({
     Object? status = null,
     Object? errorMessage = null,
+    Object? buttonLoading = null,
     Object? sourceDepositType = null,
     Object? sourceUserInfo = freezed,
     Object? destinationDepositType = null,
     Object? destinationUserInfo = freezed,
-    Object? transactionTimes = null,
   }) {
     return _then(_$TransactionCheckoutStateImpl(
       status: null == status
@@ -156,6 +155,10 @@ class __$$TransactionCheckoutStateImplCopyWithImpl<$Res>
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
               as String,
+      buttonLoading: null == buttonLoading
+          ? _value.buttonLoading
+          : buttonLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
       sourceDepositType: null == sourceDepositType
           ? _value.sourceDepositType
           : sourceDepositType // ignore: cast_nullable_to_non_nullable
@@ -172,10 +175,6 @@ class __$$TransactionCheckoutStateImplCopyWithImpl<$Res>
           ? _value.destinationUserInfo
           : destinationUserInfo // ignore: cast_nullable_to_non_nullable
               as UserInfo?,
-      transactionTimes: null == transactionTimes
-          ? _value._transactionTimes
-          : transactionTimes // ignore: cast_nullable_to_non_nullable
-              as List<TransactionTime>,
     ));
   }
 }
@@ -186,13 +185,12 @@ class _$TransactionCheckoutStateImpl extends _TransactionCheckoutState {
   const _$TransactionCheckoutStateImpl(
       {this.status = TransactionCheckoutStatus.initial,
       this.errorMessage = '',
+      this.buttonLoading = false,
       this.sourceDepositType = DepositType.rialDeposit,
       this.sourceUserInfo,
       this.destinationDepositType = DepositType.rialDeposit,
-      this.destinationUserInfo,
-      final List<TransactionTime> transactionTimes = const []})
-      : _transactionTimes = transactionTimes,
-        super._();
+      this.destinationUserInfo})
+      : super._();
 
   @override
   @JsonKey()
@@ -200,6 +198,9 @@ class _$TransactionCheckoutStateImpl extends _TransactionCheckoutState {
   @override
   @JsonKey()
   final String errorMessage;
+  @override
+  @JsonKey()
+  final bool buttonLoading;
   @override
   @JsonKey()
   final DepositType sourceDepositType;
@@ -210,19 +211,10 @@ class _$TransactionCheckoutStateImpl extends _TransactionCheckoutState {
   final DepositType destinationDepositType;
   @override
   final UserInfo? destinationUserInfo;
-  final List<TransactionTime> _transactionTimes;
-  @override
-  @JsonKey()
-  List<TransactionTime> get transactionTimes {
-    if (_transactionTimes is EqualUnmodifiableListView)
-      return _transactionTimes;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_transactionTimes);
-  }
 
   @override
   String toString() {
-    return 'TransactionCheckoutState(status: $status, errorMessage: $errorMessage, sourceDepositType: $sourceDepositType, sourceUserInfo: $sourceUserInfo, destinationDepositType: $destinationDepositType, destinationUserInfo: $destinationUserInfo, transactionTimes: $transactionTimes)';
+    return 'TransactionCheckoutState(status: $status, errorMessage: $errorMessage, buttonLoading: $buttonLoading, sourceDepositType: $sourceDepositType, sourceUserInfo: $sourceUserInfo, destinationDepositType: $destinationDepositType, destinationUserInfo: $destinationUserInfo)';
   }
 
   @override
@@ -233,6 +225,8 @@ class _$TransactionCheckoutStateImpl extends _TransactionCheckoutState {
             (identical(other.status, status) || other.status == status) &&
             (identical(other.errorMessage, errorMessage) ||
                 other.errorMessage == errorMessage) &&
+            (identical(other.buttonLoading, buttonLoading) ||
+                other.buttonLoading == buttonLoading) &&
             (identical(other.sourceDepositType, sourceDepositType) ||
                 other.sourceDepositType == sourceDepositType) &&
             (identical(other.sourceUserInfo, sourceUserInfo) ||
@@ -240,9 +234,7 @@ class _$TransactionCheckoutStateImpl extends _TransactionCheckoutState {
             (identical(other.destinationDepositType, destinationDepositType) ||
                 other.destinationDepositType == destinationDepositType) &&
             (identical(other.destinationUserInfo, destinationUserInfo) ||
-                other.destinationUserInfo == destinationUserInfo) &&
-            const DeepCollectionEquality()
-                .equals(other._transactionTimes, _transactionTimes));
+                other.destinationUserInfo == destinationUserInfo));
   }
 
   @override
@@ -250,11 +242,11 @@ class _$TransactionCheckoutStateImpl extends _TransactionCheckoutState {
       runtimeType,
       status,
       errorMessage,
+      buttonLoading,
       sourceDepositType,
       sourceUserInfo,
       destinationDepositType,
-      destinationUserInfo,
-      const DeepCollectionEquality().hash(_transactionTimes));
+      destinationUserInfo);
 
   /// Create a copy of TransactionCheckoutState
   /// with the given fields replaced by the non-null parameter values.
@@ -268,20 +260,21 @@ class _$TransactionCheckoutStateImpl extends _TransactionCheckoutState {
 
 abstract class _TransactionCheckoutState extends TransactionCheckoutState {
   const factory _TransactionCheckoutState(
-          {final TransactionCheckoutStatus status,
-          final String errorMessage,
-          final DepositType sourceDepositType,
-          final UserInfo? sourceUserInfo,
-          final DepositType destinationDepositType,
-          final UserInfo? destinationUserInfo,
-          final List<TransactionTime> transactionTimes}) =
-      _$TransactionCheckoutStateImpl;
+      {final TransactionCheckoutStatus status,
+      final String errorMessage,
+      final bool buttonLoading,
+      final DepositType sourceDepositType,
+      final UserInfo? sourceUserInfo,
+      final DepositType destinationDepositType,
+      final UserInfo? destinationUserInfo}) = _$TransactionCheckoutStateImpl;
   const _TransactionCheckoutState._() : super._();
 
   @override
   TransactionCheckoutStatus get status;
   @override
   String get errorMessage;
+  @override
+  bool get buttonLoading;
   @override
   DepositType get sourceDepositType;
   @override
@@ -290,8 +283,6 @@ abstract class _TransactionCheckoutState extends TransactionCheckoutState {
   DepositType get destinationDepositType;
   @override
   UserInfo? get destinationUserInfo;
-  @override
-  List<TransactionTime> get transactionTimes;
 
   /// Create a copy of TransactionCheckoutState
   /// with the given fields replaced by the non-null parameter values.
