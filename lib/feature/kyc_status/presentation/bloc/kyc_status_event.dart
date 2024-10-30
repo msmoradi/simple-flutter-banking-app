@@ -14,7 +14,7 @@ class ActionClicked extends KycStatusEvent {
   List<Object> get props => [];
 }
 
-class KycStatusSubmitted extends KycStatusEvent {
+class Init extends KycStatusEvent {
   @override
   List<Object> get props => [];
 }

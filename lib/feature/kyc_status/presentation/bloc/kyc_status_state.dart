@@ -9,7 +9,7 @@ enum KycStatusStatus { initial, failure, loading, deepLinkLanding }
 @freezed
 class KycStatusState with _$KycStatusState {
   const factory KycStatusState({
-    @Default(KycStatusStatus.loading) KycStatusStatus status,
+    @Default(KycStatusStatus.initial) KycStatusStatus status,
     @Default('') String errorMessage,
     String? deeplink,
     @Default('') String actionTitle,

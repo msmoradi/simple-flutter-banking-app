@@ -26,8 +26,8 @@ class SelectCardBloc extends Bloc<SelectCardEvent, SelectCardState> {
     ActionClick event,
     Emitter<SelectCardState> emit,
   ) async {
-    emit(state.copyWith(status: SelectCardStatus.buttonLoading));
     try {
+      emit(state.copyWith(status: SelectCardStatus.buttonLoading));
       final response = await addressRepository.getAddress();
       response.when(
         success: (entity) {
@@ -76,6 +76,7 @@ class SelectCardBloc extends Bloc<SelectCardEvent, SelectCardState> {
     Emitter<SelectCardState> emit,
   ) async {
     try {
+      emit(state.copyWith(status: SelectCardStatus.pageLoading));
       final responses = await cardRepository.types();
       responses.when(
         success: (entity) {

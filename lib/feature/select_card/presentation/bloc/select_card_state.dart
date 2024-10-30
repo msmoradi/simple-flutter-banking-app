@@ -16,7 +16,7 @@ enum SelectCardStatus {
 class SelectCardState with _$SelectCardState {
 
   const factory SelectCardState({
-    @Default(SelectCardStatus.pageLoading) SelectCardStatus status,
+    @Default(SelectCardStatus.initial) SelectCardStatus status,
     @Default('') String errorMessage,
     @Default([]) List<AddressEntity> addressList,
     @Default(0) int cardTypeId,

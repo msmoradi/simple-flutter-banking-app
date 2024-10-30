@@ -14,8 +14,8 @@ class KycStatusBloc extends Bloc<KycStatusEvent, KycStatusState> {
   KycStatusBloc({required this.authenticationRepository})
       : super(const KycStatusState()) {
     on<ActionClicked>(_onActionClicked);
-    on<KycStatusSubmitted>(_onKycStatusSubmitted);
-    add(KycStatusSubmitted());
+    on<Init>(_onInit);
+    add(Init());
   }
 
   Future<void> _onActionClicked(
@@ -25,12 +25,12 @@ class KycStatusBloc extends Bloc<KycStatusEvent, KycStatusState> {
     if (state.deeplink != null) {
       emit(state.copyWith(status: KycStatusStatus.deepLinkLanding));
     } else {
-      add(KycStatusSubmitted());
+      add(Init());
     }
   }
 
-  Future<void> _onKycStatusSubmitted(
-    KycStatusSubmitted event,
+  Future<void> _onInit(
+    Init event,
     Emitter<KycStatusState> emit,
   ) async {
     try {
