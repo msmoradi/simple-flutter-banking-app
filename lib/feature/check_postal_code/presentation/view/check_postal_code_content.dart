@@ -39,14 +39,20 @@ class _CheckPostalCodeContentState extends State<CheckPostalCodeContent> {
           child: Column(
             children: [
               Expanded(
-                child: Form(
-                  key: _formKey,
-                  child: PostalCodeTextField(
-                    autofocus: true,
-                    onSaved: (value) {
-                      _postalCode = value;
-                    },
-                  ),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const SizedBox(height: 16),
+                    Form(
+                      key: _formKey,
+                      child: PostalCodeTextField(
+                        autofocus: true,
+                        onSaved: (value) {
+                          _postalCode = value;
+                        },
+                      ),
+                    ),
+                  ],
                 ),
               ),
               PrimaryFillButton(
