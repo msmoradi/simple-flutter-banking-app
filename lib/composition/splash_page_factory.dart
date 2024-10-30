@@ -15,10 +15,10 @@ class SplashPageFactory {
     return SplashPage(
       showMessage: showMessage,
       onVerifyPassword: () {
-        context.push(VerifyPasswordPageFactory.path);
+        context.go(VerifyPasswordPageFactory.path);
       },
       onPhone: () {
-        context.push(PhonePageFactory.path);
+        context.go(PhonePageFactory.path);
       },
     );
   }
