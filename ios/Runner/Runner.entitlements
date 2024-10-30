@@ -6,7 +6,6 @@
 	<array>
     	<string>NDEF</string>
     	<string>TAG</string>
-    	<string>ISO7816</string>
     </array>
 </dict>
 </plist>
