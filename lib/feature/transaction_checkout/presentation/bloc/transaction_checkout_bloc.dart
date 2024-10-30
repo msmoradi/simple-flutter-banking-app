@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:banx/core/designsystem/widgets/components/drop_down_chip_widget.dart';
+import 'package:banx/core/domain/entities/transaction_time.dart';
 import 'package:banx/feature/transaction_checkout/presentation/bloc/transaction_checkout_state.dart';
 import 'package:banx/feature/transaction_destination/presentation/view/transaction_destination_content.dart';
 import 'package:equatable/equatable.dart';
@@ -19,7 +20,18 @@ class TransactionCheckoutBloc
   }
 
   void _onInit(Init event, Emitter<TransactionCheckoutState> emit) {
+    final transactionTimes = [
+      TransactionTime(
+        title: 'در لحظه (کارت به کارت)',
+        subtitle: 'کارمزد: ۲۱٬۲۰۰ ریالء',
+      ),
+      TransactionTime(
+        title: 'امروز ~ ۱۹:۴۵ (پایا)',
+        subtitle: 'کارمزد: ۵٬۴۶۰ ریالء',
+      )
+    ];
     emit(state.copyWith(
+        transactionTimes: transactionTimes,
         destinationDepositType: event.destinationDepositType,
         sourceDepositType: event.sourceDepositType,
         destinationUserInfo: event.destinationUserInfo,

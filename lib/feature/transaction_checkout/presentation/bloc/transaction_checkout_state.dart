@@ -1,4 +1,5 @@
 import 'package:banx/core/designsystem/widgets/components/drop_down_chip_widget.dart';
+import 'package:banx/core/domain/entities/transaction_time.dart';
 import 'package:banx/feature/transaction_destination/presentation/view/transaction_destination_content.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -19,6 +20,7 @@ class TransactionCheckoutState with _$TransactionCheckoutState {
     @Default(DepositType.rialDeposit)
     DepositType destinationDepositType,
     UserInfo? destinationUserInfo,
+    @Default([]) List<TransactionTime> transactionTimes,
   }) = _TransactionCheckoutState;
 
   bool get conversionFee => sourceDepositType != destinationDepositType;
