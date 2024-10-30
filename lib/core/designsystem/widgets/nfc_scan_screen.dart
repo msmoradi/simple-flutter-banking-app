@@ -21,18 +21,33 @@ class _NfcScanScreenState extends State<NfcScanScreen> {
 
     try {
       NFCTag tag = await FlutterNfcKit.poll(
-          iosMultipleTagMessage: "Multiple tags found!",
-          iosAlertMessage: "Scan your tag");
-      widget.onTagRead(tag);
+        readIso14443A: true,
+        readIso14443B: false,
+        readIso15693: false,
+        readIso18092: false,
+      );
+
+      if (tag.type == NFCTagType.iso7816) {
+        /*var result = await FlutterNfcKit.transceive(
+          Uint8List.fromList([
+            80,
+            30,
+            01,
+            00,
+          ]),
+        );
+        widget.logger.d(result);*/
+        widget.onTagRead(tag);
+      }
+      setState(() {
+        isScanning = false;
+      });
     } catch (e) {
       // Handle any errors that may occur
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Error reading NFC tag: $e')),
       );
     } finally {
-      setState(() {
-        isScanning = false;
-      });
       await FlutterNfcKit.finish();
     }
   }

@@ -5,6 +5,7 @@ import 'package:banx/core/domain/repository/profile_repository.dart';
 import 'package:banx/feature/home/presentation/bloc/home_state.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_nfc_kit/flutter_nfc_kit.dart';
 import 'package:injectable/injectable.dart';
 
@@ -28,12 +29,25 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
     if (profile == null) return;
 
-    final bool? nfcActive = profile.nfcActive;
+    NFCAvailability availability;
+    try {
+      availability = await FlutterNfcKit.nfcAvailability;
+    } on PlatformException {
+      availability = NFCAvailability.not_supported;
+    }
 
-    emit(state.copyWith(needNfc: nfcActive ?? false, isLoading: false));
+    final bool nfcActive = profile.nfcActive ?? false;
+
+    emit(state.copyWith(
+        needNfc: nfcActive && availability != NFCAvailability.not_supported,
+        isLoading: false));
   }
 
   Future<void> _onNFCTagRead(NFCTagRead event, Emitter<HomeState> emit) async {
-    emit(state.copyWith(needNfc: false));
+    emit(state.copyWith(isLoading: true));
+
+    await Future.delayed(const Duration(seconds: 2));
+
+    emit(state.copyWith(needNfc: false, isLoading: false));
   }
 }
