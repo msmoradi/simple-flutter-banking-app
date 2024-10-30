@@ -30,35 +30,3 @@ class BankTransactionIcon extends StatelessWidget {
     );
   }
 }
-
-enum TransactionType {
-  rialDeposit(
-    iconPath: 'assets/images/lite-coin-2.png',
-  ),
-  dollarDeposit(
-    iconPath: 'assets/images/lite-coin-3.png',
-  ),
-  goldDeposit(
-    iconPath: 'assets/images/lite-coin-1.png',
-  ),
-  diamondDeposit(
-    iconPath: 'assets/images/lite-coin-4.png',
-  );
-
-  final String iconPath;
-
-  const TransactionType({required this.iconPath});
-}
-
-class TransactionModel {
-  final bool isInput;
-  final String title;
-  final String subtitle;
-  final String amount;
-
-  TransactionModel(
-      {required this.title,
-      required this.isInput,
-      required this.subtitle,
-      required this.amount});
-}

@@ -218,7 +218,7 @@ class __$$KycStatusStateImplCopyWithImpl<$Res>
 
 class _$KycStatusStateImpl implements _KycStatusState {
   const _$KycStatusStateImpl(
-      {this.status = KycStatusStatus.loading,
+      {this.status = KycStatusStatus.initial,
       this.errorMessage = '',
       this.deeplink,
       this.actionTitle = '',

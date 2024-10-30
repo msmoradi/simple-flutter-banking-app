@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:banx/core/data/mock.dart';
-import 'package:banx/core/designsystem/widgets/components/bank_transaction_icon.dart';
 import 'package:banx/feature/bank/presentation/bloc/bank_state.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
@@ -24,8 +23,10 @@ class BankBloc extends Bloc<BankEvent, BankState> {
 
   Future<void> _onInit(Init event, Emitter<BankState> emit) async {
     await Future.delayed(const Duration(seconds: 1));
+    final mockList = MockData.transactions;
+    mockList.shuffle();
     emit(state.copyWith(
-      transactions: MockData.transactions,
+      transactions: mockList,
       status: BankStatus.initial,
     ));
   }

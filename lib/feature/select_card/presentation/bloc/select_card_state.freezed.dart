@@ -179,7 +179,7 @@ class __$$SelectCardStateImplCopyWithImpl<$Res>
 
 class _$SelectCardStateImpl implements _SelectCardState {
   const _$SelectCardStateImpl(
-      {this.status = SelectCardStatus.pageLoading,
+      {this.status = SelectCardStatus.initial,
       this.errorMessage = '',
       final List<AddressEntity> addressList = const [],
       this.cardTypeId = 0,

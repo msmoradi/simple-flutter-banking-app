@@ -11,6 +11,7 @@ import 'package:banx/core/designsystem/widgets/components/simple_card_row.dart';
 import 'package:banx/core/designsystem/widgets/components/title_row.dart';
 import 'package:banx/core/designsystem/widgets/components/transaction_card.dart';
 import 'package:banx/core/designsystem/widgets/nfc_scan_screen.dart';
+import 'package:banx/core/domain/entities/transaction_model.dart';
 import 'package:banx/feature/home/presentation/view/glass_row.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_nfc_kit/flutter_nfc_kit.dart';
@@ -41,28 +42,28 @@ class _HomeContentState extends State<HomeContent> {
     super.initState();
     finalList = [
       _buildPage(
-        transactionIcon: RialTransactionIcon(isInput: true),
+        transactionType: TransactionType.rial,
         simpleCardHist: {
           'بازدهی سرمایه شما': '٪۲۴ روز شمار',
           'درآمد شما تا کنون': '۳٬۵۴۰٬۰۰۰+ تومان',
         },
       ),
       _buildPage(
-        transactionIcon: GoldTransactionIcon(isInput: true),
+        transactionType: TransactionType.gold,
         simpleCardHist: {
           'نوسان قیمت': "(۰٬۲۵٪) ۱۱٬۴۰۰",
           'قیمت لحظه‌ای': '۳٬۵۴۰٬۰۰۰ تومان',
         },
       ),
       _buildPage(
-        transactionIcon: SaffronTransactionIcon(isInput: true),
+        transactionType: TransactionType.saffron,
         simpleCardHist: {
           'نوسان قیمت': "(۰٬۲۵٪) ۱۱٬۴۰۰",
           'قیمت لحظه‌ای': '۳٬۵۴۰٬۰۰۰ تومان',
         },
       ),
       _buildPage(
-        transactionIcon: DiamondTransactionIcon(isInput: true),
+        transactionType: TransactionType.diamond,
         simpleCardHist: {
           'نوسان قیمت': "(۰٬۲۵٪) ۱۱٬۴۰۰",
           'قیمت لحظه‌ای': '۳٬۵۴۰٬۰۰۰ تومان',
@@ -72,7 +73,7 @@ class _HomeContentState extends State<HomeContent> {
   }
 
   List<Widget> _buildPage({
-    required Widget transactionIcon,
+    required TransactionType transactionType,
     required Map<String, String> simpleCardHist,
   }) {
     return [
@@ -83,7 +84,7 @@ class _HomeContentState extends State<HomeContent> {
       const SizedBox(height: 30.0),
       const TitleRow(title: 'تراکنش‌ها'),
       const SizedBox(height: 25.0),
-      _buildTransactionList(transactionIcon),
+      _buildTransactionList(transactionType),
     ];
   }
 
@@ -98,11 +99,15 @@ class _HomeContentState extends State<HomeContent> {
     );
   }
 
-  Widget _buildTransactionList(Widget transactionIcon) {
+  Widget _buildTransactionList(
+    TransactionType transactionType,
+  ) {
+    final mockList = MockData.transactions;
+    mockList.shuffle();
     return ListView.builder(
       physics: const NeverScrollableScrollPhysics(),
       shrinkWrap: true,
-      itemCount: MockData.transactions.length,
+      itemCount: mockList.length,
       prototypeItem: const Padding(
         padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 5),
         child: TransactionCard(
@@ -115,14 +120,17 @@ class _HomeContentState extends State<HomeContent> {
         ),
       ),
       itemBuilder: (context, index) {
+        final items = mockList
+            .map((element) => TransactionModel(
+                title: element.title,
+                isInput: element.isInput,
+                transactionType: transactionType,
+                subtitle: element.subtitle,
+                amount: element.amount))
+            .toList();
         return Padding(
           padding: const EdgeInsets.symmetric(vertical: 5),
-          child: TransactionCard(
-            image: transactionIcon,
-            title: MockData.transactions[index].title,
-            subtitle: MockData.transactions[index].subtitle,
-            amount: MockData.transactions[index].amount,
-          ),
+          child: items[index].toTransactionCard(),
         );
       },
     );

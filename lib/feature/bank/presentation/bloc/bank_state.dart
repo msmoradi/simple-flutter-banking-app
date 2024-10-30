@@ -1,5 +1,7 @@
+import 'package:banx/core/data/mock.dart';
 import 'package:banx/core/designsystem/widgets/components/bank_transaction_icon.dart';
 import 'package:banx/core/domain/entities/card_delivery_entity.dart';
+import 'package:banx/core/domain/entities/transaction_model.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'bank_state.freezed.dart';
@@ -82,10 +84,9 @@ class BankState with _$BankState {
             bankCardStatus == BankCardStatus.delivered,
       ),
       cardDelivery: CardDeliveryStatusEntity(
-        title: 'تحویل کارت',
-        subtitle: '۳ تا ۵ اردیبهشت',
-        isPassed: bankCardStatus == BankCardStatus.delivered
-      ),
+          title: 'تحویل کارت',
+          subtitle: '۳ تا ۵ اردیبهشت',
+          isPassed: bankCardStatus == BankCardStatus.delivered),
     );
   }
 }

@@ -6,6 +6,7 @@ import 'package:banx/core/designsystem/widgets/components/title_row.dart';
 import 'package:banx/core/designsystem/widgets/components/transaction_card.dart';
 import 'package:banx/core/designsystem/widgets/components/bank_transaction_icon.dart';
 import 'package:banx/core/domain/entities/card_delivery_entity.dart';
+import 'package:banx/core/domain/entities/transaction_model.dart';
 import 'package:banx/feature/bank/presentation/bloc/bank_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -157,8 +158,7 @@ class BankContent extends StatelessWidget {
                 physics: const NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
                 prototypeItem: const Padding(
-                  padding:
-                      EdgeInsets.symmetric(horizontal: 16.0, vertical: 5),
+                  padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 5),
                   child: TransactionCard(
                     image: BankTransactionIcon(
                       isInput: true,
@@ -173,14 +173,7 @@ class BankContent extends StatelessWidget {
                   return Padding(
                     padding: const EdgeInsets.symmetric(
                         horizontal: 16.0, vertical: 5),
-                    child: TransactionCard(
-                      image: BankTransactionIcon(
-                        isInput: transactions[index].isInput,
-                      ),
-                      title: transactions[index].title,
-                      subtitle: transactions[index].subtitle,
-                      amount: transactions[index].amount,
-                    ),
+                    child: transactions[index].toTransactionCard(),
                   );
                 },
               ),
