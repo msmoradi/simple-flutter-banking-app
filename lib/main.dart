@@ -9,10 +9,3 @@ void main() async {
 
   runApp(const App());
 }
-
-void restartApp() async {
-  final tokenRepository = getIt<TokenRepository>();
-  await tokenRepository.clearTokens();
-
-  runApp(const App());
-}

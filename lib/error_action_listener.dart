@@ -1,8 +1,10 @@
 import 'dart:async';
+import 'package:banx/composition/phone_page_factory.dart';
+import 'package:banx/core/domain/repository/token_repository.dart';
 import 'package:banx/core/networking/model/dto/error_action_event.dart';
 import 'package:banx/core/networking/model/dto/error_action_handler.dart';
 import 'package:banx/core/networking/model/dto/error_dto.dart';
-import 'package:banx/main.dart';
+import 'package:banx/di.dart';
 import 'package:flutter/material.dart';
 import 'package:banx/composition/verify_password_page_factory.dart';
 
@@ -29,11 +31,13 @@ class _ErrorActionListenerState extends State<ErrorActionListener> {
   void initState() {
     super.initState();
     _subscription =
-        ErrorActionHandler().actions.listen((ErrorActionEvent event) {
+        ErrorActionHandler().actions.listen((ErrorActionEvent event) async {
       final action = event.action;
       switch (action) {
         case ErrorAction.loggedOut:
-          restartApp();
+          final tokenRepository = getIt<TokenRepository>();
+          await tokenRepository.clearTokens();
+          widget.navigate(PhonePageFactory.path);
           break;
         case ErrorAction.nfcLogin:
           _showNfcLoginDialog();
