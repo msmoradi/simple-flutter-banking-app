@@ -100,6 +100,11 @@ class _CreatePasswordPageState extends State<CreatePasswordPage> {
                         controller: pinController,
                         useNativeKeyboard: false,
                         length: 4,
+                        onCompleted: (password) {
+                          if (formKey.currentState!.validate()) {
+                            widget.onNext(password);
+                          }
+                        },
                         validator: (value) {
                           return value?.length == 4 ? null : 'رمز را وارد کنید';
                         },
