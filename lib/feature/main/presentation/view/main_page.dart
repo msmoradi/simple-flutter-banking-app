@@ -7,12 +7,15 @@ import 'package:get_it/get_it.dart';
 class MainPage extends StatelessWidget {
   final Function(String) showMessage;
   final VoidCallback cardActivation;
+  final VoidCallback logout;
   final int initTabIndex;
 
   const MainPage({
     super.key,
     required this.showMessage,
-    required this.cardActivation, required this.initTabIndex,
+    required this.logout,
+    required this.cardActivation,
+    required this.initTabIndex,
   });
 
   @override
@@ -23,6 +26,7 @@ class MainPage extends StatelessWidget {
         builder: (context, state) {
           return MainContent(
             showMessage: showMessage,
+            logout: logout,
             cardActivation: cardActivation,
             initTabIndex: initTabIndex,
           );

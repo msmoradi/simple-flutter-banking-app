@@ -204,6 +204,10 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.lazySingleton<_i742.PasskeyRepository>(() => _i415.PasskeyRepositoryImpl(
         remoteDataSource: gh<_i79.PasskeyRemoteDataSource>()));
+    gh.factory<_i804.ProfileBloc>(() => _i804.ProfileBloc(
+          profileRepository: gh<_i111.ProfileRepository>(),
+          tokenRepository: gh<_i232.TokenRepository>(),
+        ));
     gh.factory<_i807.EnableBiometricBloc>(() => _i807.EnableBiometricBloc(
           profileRepository: gh<_i111.ProfileRepository>(),
           localAuthentication: gh<_i152.LocalAuthentication>(),
@@ -219,8 +223,6 @@ extension GetItInjectableX on _i174.GetIt {
         ));
     gh.factory<_i412.HomeBloc>(
         () => _i412.HomeBloc(profileRepository: gh<_i111.ProfileRepository>()));
-    gh.factory<_i804.ProfileBloc>(() =>
-        _i804.ProfileBloc(profileRepository: gh<_i111.ProfileRepository>()));
     gh.lazySingleton<_i474.AuthenticationRepository>(
         () => _i450.AuthenticationRepositoryImpl(
               authenticationRemoteDataSource:

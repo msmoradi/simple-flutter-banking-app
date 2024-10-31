@@ -1,4 +1,5 @@
 import 'package:banx/composition/card_activation_page_factory.dart';
+import 'package:banx/composition/phone_page_factory.dart';
 import 'package:banx/feature/main/presentation/view/main_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
@@ -14,6 +15,9 @@ class MainPageFactory {
     return MainPage(
       showMessage: showMessage,
       initTabIndex: initTabIndex,
+      logout: () {
+        context.go(PhonePageFactory.path);
+      },
       cardActivation: () {
         context.push(CardActivationPageFactory.path);
       },

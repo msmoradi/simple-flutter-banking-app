@@ -18,6 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$ProfileState {
   ProfileStatus get status => throw _privateConstructorUsedError;
   String get userProfile => throw _privateConstructorUsedError;
+  String get errorMessage => throw _privateConstructorUsedError;
   String get fullName => throw _privateConstructorUsedError;
   String get userName => throw _privateConstructorUsedError;
   bool get nfcActive => throw _privateConstructorUsedError;
@@ -39,6 +40,7 @@ abstract class $ProfileStateCopyWith<$Res> {
   $Res call(
       {ProfileStatus status,
       String userProfile,
+      String errorMessage,
       String fullName,
       String userName,
       bool nfcActive,
@@ -62,6 +64,7 @@ class _$ProfileStateCopyWithImpl<$Res, $Val extends ProfileState>
   $Res call({
     Object? status = null,
     Object? userProfile = null,
+    Object? errorMessage = null,
     Object? fullName = null,
     Object? userName = null,
     Object? nfcActive = null,
@@ -75,6 +78,10 @@ class _$ProfileStateCopyWithImpl<$Res, $Val extends ProfileState>
       userProfile: null == userProfile
           ? _value.userProfile
           : userProfile // ignore: cast_nullable_to_non_nullable
+              as String,
+      errorMessage: null == errorMessage
+          ? _value.errorMessage
+          : errorMessage // ignore: cast_nullable_to_non_nullable
               as String,
       fullName: null == fullName
           ? _value.fullName
@@ -107,6 +114,7 @@ abstract class _$$ProfileStateImplCopyWith<$Res>
   $Res call(
       {ProfileStatus status,
       String userProfile,
+      String errorMessage,
       String fullName,
       String userName,
       bool nfcActive,
@@ -128,6 +136,7 @@ class __$$ProfileStateImplCopyWithImpl<$Res>
   $Res call({
     Object? status = null,
     Object? userProfile = null,
+    Object? errorMessage = null,
     Object? fullName = null,
     Object? userName = null,
     Object? nfcActive = null,
@@ -141,6 +150,10 @@ class __$$ProfileStateImplCopyWithImpl<$Res>
       userProfile: null == userProfile
           ? _value.userProfile
           : userProfile // ignore: cast_nullable_to_non_nullable
+              as String,
+      errorMessage: null == errorMessage
+          ? _value.errorMessage
+          : errorMessage // ignore: cast_nullable_to_non_nullable
               as String,
       fullName: null == fullName
           ? _value.fullName
@@ -168,6 +181,7 @@ class _$ProfileStateImpl implements _ProfileState {
   const _$ProfileStateImpl(
       {this.status = ProfileStatus.initial,
       this.userProfile = 'https://i.pravatar.cc/300',
+      this.errorMessage = '',
       this.fullName = 'مهرداد اندامی',
       this.userName = '@mehrdad_andami',
       this.nfcActive = false,
@@ -179,6 +193,9 @@ class _$ProfileStateImpl implements _ProfileState {
   @override
   @JsonKey()
   final String userProfile;
+  @override
+  @JsonKey()
+  final String errorMessage;
   @override
   @JsonKey()
   final String fullName;
@@ -194,7 +211,7 @@ class _$ProfileStateImpl implements _ProfileState {
 
   @override
   String toString() {
-    return 'ProfileState(status: $status, userProfile: $userProfile, fullName: $fullName, userName: $userName, nfcActive: $nfcActive, showLoading: $showLoading)';
+    return 'ProfileState(status: $status, userProfile: $userProfile, errorMessage: $errorMessage, fullName: $fullName, userName: $userName, nfcActive: $nfcActive, showLoading: $showLoading)';
   }
 
   @override
@@ -205,6 +222,8 @@ class _$ProfileStateImpl implements _ProfileState {
             (identical(other.status, status) || other.status == status) &&
             (identical(other.userProfile, userProfile) ||
                 other.userProfile == userProfile) &&
+            (identical(other.errorMessage, errorMessage) ||
+                other.errorMessage == errorMessage) &&
             (identical(other.fullName, fullName) ||
                 other.fullName == fullName) &&
             (identical(other.userName, userName) ||
@@ -216,8 +235,8 @@ class _$ProfileStateImpl implements _ProfileState {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, status, userProfile, fullName,
-      userName, nfcActive, showLoading);
+  int get hashCode => Object.hash(runtimeType, status, userProfile,
+      errorMessage, fullName, userName, nfcActive, showLoading);
 
   /// Create a copy of ProfileState
   /// with the given fields replaced by the non-null parameter values.
@@ -232,6 +251,7 @@ abstract class _ProfileState implements ProfileState {
   const factory _ProfileState(
       {final ProfileStatus status,
       final String userProfile,
+      final String errorMessage,
       final String fullName,
       final String userName,
       final bool nfcActive,
@@ -241,6 +261,8 @@ abstract class _ProfileState implements ProfileState {
   ProfileStatus get status;
   @override
   String get userProfile;
+  @override
+  String get errorMessage;
   @override
   String get fullName;
   @override

@@ -8,6 +8,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 class MainContent extends StatefulWidget {
   final Function(String) showMessage;
+  final VoidCallback logout;
   final VoidCallback cardActivation;
   final int initTabIndex;
 
@@ -16,6 +17,7 @@ class MainContent extends StatefulWidget {
     required this.showMessage,
     required this.cardActivation,
     required this.initTabIndex,
+    required this.logout,
   });
 
   @override
@@ -42,7 +44,10 @@ class _MainContentState extends State<MainContent> {
         const TransactionPage(),
         const HomePage(),
         const AssistPage(),
-        const ProfilePage(),
+        ProfilePage(
+          showMessage: widget.showMessage,
+          logout: widget.logout,
+        ),
       ][_selectedIndex ?? widget.initTabIndex],
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,

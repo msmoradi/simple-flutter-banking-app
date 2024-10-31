@@ -2,8 +2,8 @@ import 'dart:async';
 
 import 'package:banx/core/domain/entities/user_profile_entity.dart';
 import 'package:banx/core/domain/repository/profile_repository.dart';
+import 'package:banx/core/domain/repository/token_repository.dart';
 import 'package:banx/feature/profile/presentation/bloc/profile_state.dart';
-import 'package:banx/main.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:injectable/injectable.dart';
@@ -13,9 +13,11 @@ part 'profile_event.dart';
 @injectable
 class ProfileBloc extends Bloc<HomeEvent, ProfileState> {
   final ProfileRepository profileRepository;
+  final TokenRepository tokenRepository;
 
   ProfileBloc({
     required this.profileRepository,
+    required this.tokenRepository,
   }) : super(const ProfileState(showLoading: true)) {
     on<ExitClick>(_onExitClick);
     on<NFCSwitchChange>(_onNFCSwitchChange);
@@ -32,8 +34,8 @@ class ProfileBloc extends Bloc<HomeEvent, ProfileState> {
   }
 
   Future<void> _onExitClick(ExitClick event, Emitter<ProfileState> emit) async {
-    restartApp();
-    return;
+    await tokenRepository.clearTokens();
+    emit(state.copyWith(status: ProfileStatus.logOut));
   }
 
   Future<void> _onInit(Init event, Emitter<ProfileState> emit) async {
