@@ -73,6 +73,9 @@ class AuthInterceptor extends Interceptor {
         "Received error response with status code $statusCode for request: ${error.requestOptions.path}");
 
     switch (statusCode) {
+      case 404:
+        await _handleNotFound(error, responseData, handler);
+        break;
       case 403:
         await _handleForbidden(error, responseData, handler);
         break;
@@ -82,6 +85,24 @@ class AuthInterceptor extends Interceptor {
       default:
         // For other status codes, pass the error along.
         handler.next(error);
+    }
+  }
+
+  /// Handles 404 Forbidden responses.
+  Future<void> _handleNotFound(DioException error, dynamic responseData,
+      ErrorInterceptorHandler handler) async {
+    try {
+      final errorDto = ErrorDto(
+          error: null,
+          code: 404,
+          message: error.message ?? '',
+          action: ErrorAction.loggedOut);
+      logger.e(
+          "404 NotFound Error: ${errorDto.message}. Initiating handleErrorAction with action: ${errorDto.action}");
+      handleErrorAction(errorDto);
+    } catch (e, stackTrace) {
+      logger.e("Failed to parse ErrorDto from 403 response",
+          error: e, stackTrace: stackTrace);
     }
   }
 
