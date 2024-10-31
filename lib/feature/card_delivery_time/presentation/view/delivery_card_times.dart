@@ -1,55 +1,18 @@
 import 'package:banx/core/domain/entities/shipping_time_entity.dart';
 import 'package:flutter/material.dart';
 
-class DeliveryCardTimes extends StatefulWidget {
+class DeliveryCardTimes extends StatelessWidget {
   final List<ShippingTimeEntity> cardShippingTimeSlots;
+  final int selectedTime;
+
   final Function(int) onItemSelected;
 
   const DeliveryCardTimes({
     super.key,
     required this.cardShippingTimeSlots,
     required this.onItemSelected,
+    required this.selectedTime,
   });
-
-  @override
-  _DeliveryCardTimesState createState() => _DeliveryCardTimesState();
-}
-
-class _DeliveryCardTimesState extends State<DeliveryCardTimes> {
-  int? _selectedTime;
-
-  void _onRadioSelected(int value) {
-    setState(() {
-      _selectedTime = value;
-    });
-    widget.onItemSelected(value);
-  }
-
-  Widget _buildRadioRow(
-      {required ShippingTimeEntity timeSlot, required bool needDivider}) {
-    return Column(
-      children: [
-        InkWell(
-          onTap: () => _onRadioSelected(timeSlot.id),
-          child: Row(
-            children: <Widget>[
-              Expanded(child: Text(timeSlot.datetime)),
-              const SizedBox(width: 10),
-              Radio<int>(
-                value: timeSlot.id,
-                groupValue:
-                    _selectedTime ?? widget.cardShippingTimeSlots.first.id,
-                onChanged: (int? value) {
-                },
-                activeColor: Colors.brown,
-              ),
-            ],
-          ),
-        ),
-        if (needDivider) const Divider(),
-      ],
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -57,11 +20,30 @@ class _DeliveryCardTimesState extends State<DeliveryCardTimes> {
       padding: const EdgeInsets.all(16.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: List.generate(widget.cardShippingTimeSlots.length, (index) {
-          final timeSlot = widget.cardShippingTimeSlots[index];
-          return _buildRadioRow(
-            timeSlot: timeSlot,
-            needDivider: index != widget.cardShippingTimeSlots.length - 1,
+        children: List.generate(cardShippingTimeSlots.length, (index) {
+          final timeSlot = cardShippingTimeSlots[index];
+          return Column(
+            children: [
+              InkWell(
+                onTap: () => onItemSelected(timeSlot.id),
+                child: Container(
+                  constraints: const BoxConstraints(minHeight: 40),
+                  child: Row(
+                    children: <Widget>[
+                      Expanded(child: Text(timeSlot.datetime)),
+                      const SizedBox(width: 10),
+                      Icon(
+                        timeSlot.id == selectedTime
+                            ? Icons.radio_button_checked
+                            : Icons.radio_button_unchecked,
+                        color: Colors.grey,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              if (index != cardShippingTimeSlots.length - 1) const Divider(),
+            ],
           );
         }),
       ),

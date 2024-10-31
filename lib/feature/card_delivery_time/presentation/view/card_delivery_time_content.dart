@@ -26,7 +26,13 @@ class CardDeliveryTimeContent extends StatefulWidget {
 }
 
 class _CardDeliveryTimeContentState extends State<CardDeliveryTimeContent> {
-  int? _selectedTime;
+  late int _selectedTime;
+
+  @override
+  void initState() {
+    _selectedTime = widget.cardShippingTimeSlots.firstOrNull?.id ?? 0;
+    super.initState();
+  }
 
   void _onRadioSelected(int value) {
     setState(() {
@@ -41,8 +47,7 @@ class _CardDeliveryTimeContentState extends State<CardDeliveryTimeContent> {
         centerTitle: false,
         automaticallyImplyLeading: false,
         title: Text(
-          style: Theme
-              .of(context)
+          style: Theme.of(context)
               .textTheme
               .headlineSmall
               ?.copyWith(fontWeight: FontWeight.bold),
@@ -69,16 +74,12 @@ class _CardDeliveryTimeContentState extends State<CardDeliveryTimeContent> {
                         alignment: Alignment.centerRight,
                         child: Text(
                           'آدرس دریافت کارت',
-                          style: Theme
-                              .of(context)
+                          style: Theme.of(context)
                               .textTheme
                               .headlineSmall
                               ?.copyWith(
-                              fontWeight: FontWeight.bold,
-                              color: Theme
-                                  .of(context)
-                                  .colorScheme
-                                  .primary),
+                                  fontWeight: FontWeight.bold,
+                                  color: Theme.of(context).colorScheme.primary),
                         ),
                       ),
                     ),
@@ -94,10 +95,7 @@ class _CardDeliveryTimeContentState extends State<CardDeliveryTimeContent> {
                     Container(
                       height: 12,
                       color:
-                      Theme
-                          .of(context)
-                          .colorScheme
-                          .surfaceContainerHighest,
+                          Theme.of(context).colorScheme.surfaceContainerHighest,
                     ),
                     const SizedBox(height: 32),
                     Padding(
@@ -106,21 +104,18 @@ class _CardDeliveryTimeContentState extends State<CardDeliveryTimeContent> {
                         alignment: Alignment.centerRight,
                         child: Text(
                           'زمان دریافت کارت',
-                          style: Theme
-                              .of(context)
+                          style: Theme.of(context)
                               .textTheme
                               .headlineSmall
                               ?.copyWith(
-                              fontWeight: FontWeight.bold,
-                              color: Theme
-                                  .of(context)
-                                  .colorScheme
-                                  .primary),
+                                  fontWeight: FontWeight.bold,
+                                  color: Theme.of(context).colorScheme.primary),
                         ),
                       ),
                     ),
                     DeliveryCardTimes(
                       cardShippingTimeSlots: widget.cardShippingTimeSlots,
+                      selectedTime: _selectedTime,
                       onItemSelected: _onRadioSelected,
                     )
                   ],
@@ -139,10 +134,7 @@ class _CardDeliveryTimeContentState extends State<CardDeliveryTimeContent> {
                 icon: SvgPicture.asset(
                   'assets/icons/thumb-up.svg',
                   colorFilter: ColorFilter.mode(
-                    Theme
-                        .of(context)
-                        .colorScheme
-                        .onPrimary,
+                    Theme.of(context).colorScheme.onPrimary,
                     BlendMode.srcIn,
                   ),
                 ),
