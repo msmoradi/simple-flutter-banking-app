@@ -93,7 +93,7 @@ class _SelectCardContentState extends State<SelectCardContent> {
                         ),
                         const Spacer(),
                         Text(
-                          "کارت فلزی  |  رنگ کربنی",
+                          widget.title,
                           style: Theme.of(context)
                               .textTheme
                               .headlineSmall
@@ -106,7 +106,7 @@ class _SelectCardContentState extends State<SelectCardContent> {
                           height: 12,
                         ),
                         Text(
-                          "کارت بانکی، عضو شبکه شتاب",
+                          widget.description,
                           textAlign: TextAlign.center,
                           style:
                               Theme.of(context).textTheme.bodySmall?.copyWith(
@@ -117,7 +117,7 @@ class _SelectCardContentState extends State<SelectCardContent> {
                         ),
                         const SizedBox(height: 32),
                         Text(
-                          "هزینه سفارش کارت: ۵۰۰ هزار ریالءء",
+                          widget.priceLabel,
                           textAlign: TextAlign.center,
                           style: Theme.of(context)
                               .textTheme
