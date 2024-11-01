@@ -51,6 +51,7 @@ dependencies:
   passkeys_android: ^2.1.0
   passkeys_ios: ^2.1.0
   passkeys_platform_interface: ^2.1.0
+  sentry_flutter: ^8.9.0
 
 dev_dependencies:
   flutter_test:
