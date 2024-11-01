@@ -18,6 +18,8 @@
 	<string>BANX</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
+	<key>NSCalendarsUsageDescription</key>
+    <string>This app requires access to your calendar to schedule events and provide relevant notifications.</string>
 	<key>CFBundleShortVersionString</key>
 	<string>$(FLUTTER_BUILD_NAME)</string>
 	<key>CFBundleSignature</key>
