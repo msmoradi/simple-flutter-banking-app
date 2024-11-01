@@ -44,11 +44,11 @@ class _NfcScanScreenState extends State<NfcScanScreen> {
       });
     } catch (e) {
       // Handle any errors that may occur
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Error reading NFC tag: $e')),
-      );
     } finally {
       await FlutterNfcKit.finish();
+      setState(() {
+        isScanning = false;
+      });
     }
   }
 
