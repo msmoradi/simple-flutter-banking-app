@@ -46,25 +46,12 @@ class _RoundedWithShadowInputState extends State<RoundedWithShadowInput> {
   @override
   Widget build(BuildContext context) {
     final defaultPinTheme = PinTheme(
-      width: 60,
-      height: 64,
+      width: 50,
+      height: 50,
       decoration: BoxDecoration(
+        shape: BoxShape.circle,
         border: Border.all(color: Theme.of(context).colorScheme.outlineVariant),
         color: Theme.of(context).colorScheme.surface,
-        borderRadius: BorderRadius.circular(24),
-      ),
-    );
-
-    final cursor = Align(
-      alignment: Alignment.bottomCenter,
-      child: Container(
-        width: 21,
-        height: 1,
-        margin: const EdgeInsets.only(bottom: 12),
-        decoration: BoxDecoration(
-          color: const Color.fromRGBO(137, 146, 160, 1),
-          borderRadius: BorderRadius.circular(8),
-        ),
       ),
     );
 
@@ -115,8 +102,7 @@ class _RoundedWithShadowInputState extends State<RoundedWithShadowInput> {
       errorPinTheme: defaultPinTheme.copyBorderWith(
         border: Border.all(color: Theme.of(context).colorScheme.error),
       ),
-      showCursor: true,
-      cursor: cursor,
+      showCursor: false,
     );
   }
 }
