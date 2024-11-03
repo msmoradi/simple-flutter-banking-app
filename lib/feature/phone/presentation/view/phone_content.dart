@@ -25,6 +25,7 @@ class _PhoneContentState extends State<PhoneContent> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        forceMaterialTransparency: true,
         centerTitle: false,
         automaticallyImplyLeading: false,
         title: Text(

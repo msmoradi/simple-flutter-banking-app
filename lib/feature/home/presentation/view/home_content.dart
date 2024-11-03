@@ -147,6 +147,7 @@ class _HomeContentState extends State<HomeContent> {
     return Scaffold(
         appBar: AppBar(
           surfaceTintColor: Colors.transparent,
+          forceMaterialTransparency: true,
           title: const Text(
             'روز بخیر مهرداد!',
           ),

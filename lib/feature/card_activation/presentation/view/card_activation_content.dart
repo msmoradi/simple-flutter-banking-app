@@ -34,6 +34,7 @@ class _CardActivationContentState extends State<CardActivationContent> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        forceMaterialTransparency: true,
         centerTitle: false,
         automaticallyImplyLeading: false,
         title: Text(

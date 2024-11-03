@@ -66,6 +66,7 @@ class _AddAddressContentState extends State<AddAddressContent> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        forceMaterialTransparency: true,
         centerTitle: false,
         automaticallyImplyLeading: false,
         title: Text(

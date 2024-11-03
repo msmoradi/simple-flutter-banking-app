@@ -256,6 +256,7 @@ class _NfcApduScreenState extends State<NfcApduScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        forceMaterialTransparency: true,
         title: Text('NFC APDU Sender'),
       ),
       body: SingleChildScrollView(

@@ -27,6 +27,7 @@ class TransactionContent extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        forceMaterialTransparency: true,
         surfaceTintColor: Colors.transparent,
         title: const Text('مبلغ انتقال'),
         titleTextStyle: Theme.of(context).textTheme.headlineSmall?.copyWith(

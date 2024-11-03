@@ -42,7 +42,7 @@ class BankContent extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        surfaceTintColor: Colors.transparent,
+        forceMaterialTransparency: true,
         title: const Text(
           'روز بخیر مهرداد!',
         ),

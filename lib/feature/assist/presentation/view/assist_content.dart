@@ -13,7 +13,7 @@ class _AssistContentState extends State<AssistContent> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        surfaceTintColor: Colors.transparent,
+        forceMaterialTransparency: true,
         title: const Text('دستیار هوشمند'),
         titleTextStyle: Theme.of(context).textTheme.headlineSmall?.copyWith(
               color: Theme.of(context).colorScheme.primary,

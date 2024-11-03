@@ -37,6 +37,7 @@ class _TransactionDestinationContentState
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        forceMaterialTransparency: true,
         surfaceTintColor: Colors.transparent,
         leading: const BackButton(),
         centerTitle: false,

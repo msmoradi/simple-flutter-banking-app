@@ -104,6 +104,7 @@ class _VerifyOtpContentState extends State<VerifyOtpContent> {
 
     return Scaffold(
       appBar: AppBar(
+        forceMaterialTransparency: true,
         centerTitle: false,
         automaticallyImplyLeading: false,
         title: Text(

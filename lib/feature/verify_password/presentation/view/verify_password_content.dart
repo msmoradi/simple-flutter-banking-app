@@ -59,6 +59,7 @@ class _VerifyPasswordContentState extends State<VerifyPasswordContent> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        forceMaterialTransparency: true,
         centerTitle: false,
         toolbarHeight: 0.0,
         automaticallyImplyLeading: false,
