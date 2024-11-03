@@ -24,8 +24,8 @@ dependencies:
   equatable: ^2.0.0
   flutter_secure_storage: ^9.2.2
   local_auth: ^2.2.0
-  shamsi_date: ^1.0.2
   toastification: ^2.3.0
+  table_calendar: ^3.1.2
   flip_card: ^0.7.0
   pinput: ^5.0.0
   flutter_camera: ^1.0.0
@@ -35,7 +35,6 @@ dependencies:
   permission_handler: ^11.3.1
   path: ^1.9.0
   get_it: ^7.7.0
-  google_fonts: ^6.2.1
   injectable: ^2.4.2
   flutter_animation_progress_bar: ^2.3.1
   video_player: ^2.9.2
