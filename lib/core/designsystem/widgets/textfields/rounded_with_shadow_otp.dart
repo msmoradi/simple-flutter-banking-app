@@ -52,7 +52,7 @@ class _RoundedWithShadowInputState extends State<RoundedWithShadowInput> {
       height: 50,
       decoration: BoxDecoration(
         shape: BoxShape.circle,
-        border: Border.all(color: Theme.of(context).colorScheme.outlineVariant),
+        border: Border.all(color: Theme.of(context).colorScheme.outline),
         color: Theme.of(context).colorScheme.surface,
       ),
     );
