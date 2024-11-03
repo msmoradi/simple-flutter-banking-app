@@ -16,6 +16,7 @@ class RoundedWithShadowInput extends StatefulWidget {
   final String? errorText;
   final bool forceErrorState;
   final SmsRetriever? smsRetriever;
+  final double? separatorWidth;
 
   const RoundedWithShadowInput({
     super.key,
@@ -33,6 +34,7 @@ class RoundedWithShadowInput extends StatefulWidget {
     this.errorText,
     this.forceErrorState = false,
     this.smsRetriever,
+    this.separatorWidth,
   });
 
   @override
@@ -95,7 +97,9 @@ class _RoundedWithShadowInputState extends State<RoundedWithShadowInput> {
       ),
       useNativeKeyboard: widget.useNativeKeyboard,
       hapticFeedbackType: HapticFeedbackType.lightImpact,
-      separatorBuilder: (index) => const SizedBox(width: 12),
+      separatorBuilder: (index) => widget.length > 4
+          ? const SizedBox(width: 12)
+          : const SizedBox(width: 16),
       focusedPinTheme: defaultPinTheme.copyBorderWith(
         border: Border.all(color: Theme.of(context).colorScheme.outline),
       ),
