@@ -82,10 +82,6 @@ class _AppState extends State<App> {
   }
 
   void precacheImages(BuildContext context) {
-    precacheImage(const AssetImage("assets/images/asset_shape.png"), context);
-    precacheImage(
-        const AssetImage("assets/images/onboarding_face.png"), context);
-    precacheImage(
-        const AssetImage("assets/images/referral_frame.png"), context);
+    // precacheImage(const AssetImage("assets/images/asset_shape.png"), context);
   }
 }
