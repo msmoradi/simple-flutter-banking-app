@@ -42,11 +42,11 @@ class VerifyOtpPageFactory {
     return GoRoute(
         path: (VerifyOtpPageFactory.path),
         builder: (ctx, state) {
-          final phoneNumber = state.pathParameters['phoneNumber'] ?? "";
+          final phoneNumber = state.pathParameters['phoneNumber'] ?? "09128702779";
           final codeLength =
-              int.tryParse(state.pathParameters['codeLength'] ?? "") ?? 0;
+              int.tryParse(state.pathParameters['codeLength'] ?? "") ?? 6;
           final expiresIn =
-              int.tryParse(state.pathParameters['expiresIn'] ?? "") ?? 0;
+              int.tryParse(state.pathParameters['expiresIn'] ?? "") ?? 100;
 
           return VerifyOtpPageFactory.builder(
             ctx,
