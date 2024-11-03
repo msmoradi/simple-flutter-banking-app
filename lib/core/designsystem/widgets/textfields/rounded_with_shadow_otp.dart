@@ -101,7 +101,10 @@ class _RoundedWithShadowInputState extends State<RoundedWithShadowInput> {
           ? const SizedBox(width: 12)
           : const SizedBox(width: 16),
       focusedPinTheme: defaultPinTheme.copyBorderWith(
-        border: Border.all(color: Theme.of(context).colorScheme.outline),
+        border: Border.all(
+          width: 2,
+          color: Theme.of(context).colorScheme.outline,
+        ),
       ),
       errorPinTheme: defaultPinTheme.copyBorderWith(
         border: Border.all(color: Theme.of(context).colorScheme.error),
