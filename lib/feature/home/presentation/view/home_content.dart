@@ -151,7 +151,7 @@ class _HomeContentState extends State<HomeContent> {
           title: const Text(
             'روز بخیر مهرداد!',
           ),
-          titleTextStyle: Theme.of(context).textTheme.labelLarge?.copyWith(
+          titleTextStyle: Theme.of(context).textTheme.titleMedium?.copyWith(
                 color: Theme.of(context).colorScheme.onSurface,
               ),
           centerTitle: false,

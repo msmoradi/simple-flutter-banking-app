@@ -18,13 +18,8 @@ class OnboardingPasswordPage extends StatelessWidget {
       appBar: AppBar(
         centerTitle: false,
         automaticallyImplyLeading: false,
-        title: Text(
-          style: Theme.of(context)
-              .textTheme
-              .headlineSmall
-              ?.copyWith(fontWeight: FontWeight.bold),
-          "رمز ورود",
-        ),
+        titleTextStyle: Theme.of(context).textTheme.headlineMedium,
+        title: const Text("رمز ورود"),
       ),
       body: SafeArea(
         child: Padding(

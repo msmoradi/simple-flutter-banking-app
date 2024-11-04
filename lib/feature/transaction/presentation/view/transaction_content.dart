@@ -30,10 +30,7 @@ class TransactionContent extends StatelessWidget {
         forceMaterialTransparency: true,
         surfaceTintColor: Colors.transparent,
         title: const Text('مبلغ انتقال'),
-        titleTextStyle: Theme.of(context).textTheme.headlineSmall?.copyWith(
-              color: Theme.of(context).colorScheme.primary,
-              fontWeight: FontWeight.bold,
-            ),
+        titleTextStyle: Theme.of(context).textTheme.headlineMedium,
         centerTitle: false,
         automaticallyImplyLeading: false,
         actions: [

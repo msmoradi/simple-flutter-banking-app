@@ -21,13 +21,8 @@ class IdentityContent extends StatelessWidget {
       appBar: AppBar(
         centerTitle: false,
         automaticallyImplyLeading: false,
-        title: Text(
-          style: Theme.of(context)
-              .textTheme
-              .headlineSmall
-              ?.copyWith(fontWeight: FontWeight.bold),
-          "اطلاعات هویتی",
-        ),
+        title: const Text("اطلاعات هویتی"),
+        titleTextStyle: Theme.of(context).textTheme.headlineMedium,
       ),
       body: SafeArea(
         child: Padding(

@@ -28,13 +28,8 @@ class _PhoneContentState extends State<PhoneContent> {
         forceMaterialTransparency: true,
         centerTitle: false,
         automaticallyImplyLeading: false,
-        title: Text(
-          style: Theme.of(context)
-              .textTheme
-              .headlineSmall
-              ?.copyWith(fontWeight: FontWeight.bold),
-          'شماره تلفن همراه',
-        ),
+        titleTextStyle: Theme.of(context).textTheme.headlineMedium,
+        title: const Text('شماره تلفن همراه'),
       ),
       body: SafeArea(
         child: Padding(

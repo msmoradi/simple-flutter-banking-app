@@ -26,13 +26,8 @@ class _CheckPostalCodeContentState extends State<CheckPostalCodeContent> {
         forceMaterialTransparency: true,
         centerTitle: false,
         automaticallyImplyLeading: false,
-        title: Text(
-          style: Theme.of(context)
-              .textTheme
-              .headlineSmall
-              ?.copyWith(fontWeight: FontWeight.bold),
-          'آدرس دریافت کارت',
-        ),
+        titleTextStyle: Theme.of(context).textTheme.headlineMedium,
+        title: const Text('آدرس دریافت کارت'),
       ),
       body: SafeArea(
         child: Padding(

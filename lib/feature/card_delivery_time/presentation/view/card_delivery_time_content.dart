@@ -47,13 +47,8 @@ class _CardDeliveryTimeContentState extends State<CardDeliveryTimeContent> {
         forceMaterialTransparency: true,
         centerTitle: false,
         automaticallyImplyLeading: false,
-        title: Text(
-          style: Theme.of(context)
-              .textTheme
-              .headlineSmall
-              ?.copyWith(fontWeight: FontWeight.bold),
-          'زمان دریافت کارت',
-        ),
+        titleTextStyle: Theme.of(context).textTheme.headlineMedium,
+        title: const Text('زمان دریافت کارت'),
       ),
       body: SafeArea(
         child: Column(

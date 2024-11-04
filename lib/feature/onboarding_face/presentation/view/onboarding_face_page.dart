@@ -20,13 +20,8 @@ class OnboardingFacePage extends StatelessWidget {
         forceMaterialTransparency: true,
         centerTitle: false,
         automaticallyImplyLeading: false,
-        title: Text(
-          style: Theme.of(context)
-              .textTheme
-              .headlineSmall
-              ?.copyWith(fontWeight: FontWeight.bold),
-          "تشخیص چهره",
-        ),
+        titleTextStyle: Theme.of(context).textTheme.headlineMedium,
+        title: const Text("تشخیص چهره"),
       ),
       body: Stack(alignment: Alignment.bottomRight, children: [
         Image.asset(

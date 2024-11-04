@@ -15,10 +15,7 @@ class _AssistContentState extends State<AssistContent> {
       appBar: AppBar(
         forceMaterialTransparency: true,
         title: const Text('دستیار هوشمند'),
-        titleTextStyle: Theme.of(context).textTheme.headlineSmall?.copyWith(
-              color: Theme.of(context).colorScheme.primary,
-              fontWeight: FontWeight.bold,
-            ),
+        titleTextStyle: Theme.of(context).textTheme.headlineMedium,
         centerTitle: false,
         automaticallyImplyLeading: false,
         actions: [

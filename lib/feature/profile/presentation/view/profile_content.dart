@@ -29,10 +29,7 @@ class ProfileContent extends StatelessWidget {
       appBar: AppBar(
         surfaceTintColor: Colors.transparent,
         title: const Text('تنظیمات'),
-        titleTextStyle: Theme.of(context).textTheme.headlineSmall?.copyWith(
-              color: Theme.of(context).colorScheme.primary,
-              fontWeight: FontWeight.bold,
-            ),
+        titleTextStyle: Theme.of(context).textTheme.headlineMedium,
         centerTitle: false,
         automaticallyImplyLeading: false,
         actions: [

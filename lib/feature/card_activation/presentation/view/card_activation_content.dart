@@ -37,13 +37,8 @@ class _CardActivationContentState extends State<CardActivationContent> {
         forceMaterialTransparency: true,
         centerTitle: false,
         automaticallyImplyLeading: false,
-        title: Text(
-          style: Theme.of(context)
-              .textTheme
-              .headlineSmall
-              ?.copyWith(fontWeight: FontWeight.bold),
-          'فعال‌سازی کارت',
-        ),
+        titleTextStyle: Theme.of(context).textTheme.headlineMedium,
+        title: const Text('فعال‌سازی کارت'),
       ),
       body: SafeArea(
         child: Padding(

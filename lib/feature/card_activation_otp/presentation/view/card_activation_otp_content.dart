@@ -107,13 +107,8 @@ class _CardActivationOtpContentState extends State<CardActivationOtpContent> {
       appBar: AppBar(
         centerTitle: false,
         automaticallyImplyLeading: false,
-        title: Text(
-          style: Theme.of(context)
-              .textTheme
-              .headlineSmall
-              ?.copyWith(fontWeight: FontWeight.bold),
-          "تأیید تلفن همراه",
-        ),
+        titleTextStyle: Theme.of(context).textTheme.headlineMedium,
+        title: const Text("تأیید تلفن همراه"),
       ),
       body: SafeArea(
         child: Padding(

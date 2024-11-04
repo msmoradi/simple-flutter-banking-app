@@ -38,13 +38,8 @@ class KycStatusContent extends StatelessWidget {
       appBar: AppBar(
         centerTitle: false,
         automaticallyImplyLeading: false,
-        title: Text(
-          style: Theme.of(context)
-              .textTheme
-              .headlineSmall
-              ?.copyWith(fontWeight: FontWeight.bold),
-          "احراز هویت و افتتاح حساب",
-        ),
+        titleTextStyle: Theme.of(context).textTheme.headlineMedium,
+        title: const Text("احراز هویت و افتتاح حساب"),
       ),
       body: LoadingContainer(
         showLoading: showLoading,

@@ -43,10 +43,8 @@ class BankContent extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         forceMaterialTransparency: true,
-        title: const Text(
-          'روز بخیر مهرداد!',
-        ),
-        titleTextStyle: Theme.of(context).textTheme.labelLarge?.copyWith(
+        title: const Text('روز بخیر مهرداد!'),
+        titleTextStyle: Theme.of(context).textTheme.titleMedium?.copyWith(
               color: Theme.of(context).colorScheme.onSurface,
             ),
         centerTitle: false,

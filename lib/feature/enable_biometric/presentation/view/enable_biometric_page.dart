@@ -33,13 +33,8 @@ class EnableBiometricPage extends StatelessWidget {
             appBar: AppBar(
               centerTitle: false,
               automaticallyImplyLeading: false,
-              title: Text(
-                style: Theme.of(context)
-                    .textTheme
-                    .headlineSmall
-                    ?.copyWith(fontWeight: FontWeight.bold),
-                "ورود بایومتریک",
-              ),
+              titleTextStyle: Theme.of(context).textTheme.headlineMedium,
+              title: const Text("ورود بایومتریک"),
             ),
             body: SafeArea(
               child: Column(

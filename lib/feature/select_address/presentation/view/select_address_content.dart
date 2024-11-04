@@ -25,11 +25,11 @@ class SelectAddressContent extends StatelessWidget {
       appBar: AppBar(
         centerTitle: false,
         automaticallyImplyLeading: false,
+        titleTextStyle: Theme.of(context).textTheme.headlineMedium,
         title: Text(
           style: Theme.of(context)
               .textTheme
-              .headlineSmall
-              ?.copyWith(fontWeight: FontWeight.bold),
+              .headlineMedium,
           'تحویل کارت',
         ),
       ),

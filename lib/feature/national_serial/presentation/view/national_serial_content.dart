@@ -25,13 +25,8 @@ class _NationalSerialContentState extends State<NationalSerialContent> {
       appBar: AppBar(
         centerTitle: false,
         automaticallyImplyLeading: false,
-        title: Text(
-          style: Theme.of(context)
-              .textTheme
-              .headlineSmall
-              ?.copyWith(fontWeight: FontWeight.bold),
-          'سریال کارت ملی',
-        ),
+        titleTextStyle: Theme.of(context).textTheme.headlineMedium,
+        title: const Text('سریال کارت ملی'),
       ),
       body: SafeArea(
         child: Padding(

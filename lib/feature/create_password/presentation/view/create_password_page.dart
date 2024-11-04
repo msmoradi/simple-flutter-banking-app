@@ -60,13 +60,8 @@ class _CreatePasswordPageState extends State<CreatePasswordPage> {
       appBar: AppBar(
         centerTitle: false,
         automaticallyImplyLeading: false,
-        title: Text(
-          style: Theme.of(context)
-              .textTheme
-              .headlineSmall
-              ?.copyWith(fontWeight: FontWeight.bold),
-          "تعریف رمز ورود",
-        ),
+        titleTextStyle: Theme.of(context).textTheme.headlineMedium,
+        title: const Text("تعریف رمز ورود"),
       ),
       body: SafeArea(
         child: Padding(
@@ -79,12 +74,9 @@ class _CreatePasswordPageState extends State<CreatePasswordPage> {
                 Align(
                   alignment: Alignment.centerRight,
                   child: Text(
-                    style:
-                    Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      color: Theme.of(context)
-                          .colorScheme
-                          .onSurfaceVariant,
-                    ),
+                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                          color: Theme.of(context).colorScheme.onSurfaceVariant,
+                        ),
                     "رمز ورود به اپلیکیشن باید ۴ رقم باشد",
                   ),
                 ),

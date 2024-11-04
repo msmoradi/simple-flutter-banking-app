@@ -101,19 +101,13 @@ class _VerifyOtpContentState extends State<VerifyOtpContent> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: AppBar(
         forceMaterialTransparency: true,
         centerTitle: false,
         automaticallyImplyLeading: false,
-        title: Text(
-          style: Theme.of(context)
-              .textTheme
-              .headlineSmall
-              ?.copyWith(fontWeight: FontWeight.bold),
-          "تأیید تلفن همراه",
-        ),
+        titleTextStyle: Theme.of(context).textTheme.headlineMedium,
+        title: const Text("تأیید تلفن همراه"),
       ),
       body: SafeArea(
         child: Padding(
