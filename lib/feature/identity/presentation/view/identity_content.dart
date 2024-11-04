@@ -24,8 +24,7 @@ class IdentityContent extends StatelessWidget {
         title: Text(
           style: Theme.of(context)
               .textTheme
-              .headlineSmall
-              ?.copyWith(fontWeight: FontWeight.bold),
+              .headlineMedium,
           "اطلاعات هویتی",
         ),
       ),

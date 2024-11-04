@@ -28,8 +28,7 @@ class SelectAddressContent extends StatelessWidget {
         title: Text(
           style: Theme.of(context)
               .textTheme
-              .headlineSmall
-              ?.copyWith(fontWeight: FontWeight.bold),
+              .headlineMedium,
           'تحویل کارت',
         ),
       ),

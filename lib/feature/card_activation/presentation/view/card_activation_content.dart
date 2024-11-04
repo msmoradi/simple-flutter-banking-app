@@ -40,8 +40,7 @@ class _CardActivationContentState extends State<CardActivationContent> {
         title: Text(
           style: Theme.of(context)
               .textTheme
-              .headlineSmall
-              ?.copyWith(fontWeight: FontWeight.bold),
+              .headlineMedium,
           'فعال‌سازی کارت',
         ),
       ),

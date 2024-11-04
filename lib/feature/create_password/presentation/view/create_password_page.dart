@@ -63,8 +63,7 @@ class _CreatePasswordPageState extends State<CreatePasswordPage> {
         title: Text(
           style: Theme.of(context)
               .textTheme
-              .headlineSmall
-              ?.copyWith(fontWeight: FontWeight.bold),
+              .headlineMedium,
           "تعریف رمز ورود",
         ),
       ),

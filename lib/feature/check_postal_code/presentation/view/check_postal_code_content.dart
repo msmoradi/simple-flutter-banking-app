@@ -29,8 +29,7 @@ class _CheckPostalCodeContentState extends State<CheckPostalCodeContent> {
         title: Text(
           style: Theme.of(context)
               .textTheme
-              .headlineSmall
-              ?.copyWith(fontWeight: FontWeight.bold),
+              .headlineMedium,
           'آدرس دریافت کارت',
         ),
       ),

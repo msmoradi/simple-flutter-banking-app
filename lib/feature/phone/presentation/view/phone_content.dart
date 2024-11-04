@@ -31,8 +31,7 @@ class _PhoneContentState extends State<PhoneContent> {
         title: Text(
           style: Theme.of(context)
               .textTheme
-              .headlineSmall
-              ?.copyWith(fontWeight: FontWeight.bold),
+              .headlineMedium,
           'شماره تلفن همراه',
         ),
       ),

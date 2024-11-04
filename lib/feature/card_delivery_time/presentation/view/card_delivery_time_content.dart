@@ -50,8 +50,7 @@ class _CardDeliveryTimeContentState extends State<CardDeliveryTimeContent> {
         title: Text(
           style: Theme.of(context)
               .textTheme
-              .headlineSmall
-              ?.copyWith(fontWeight: FontWeight.bold),
+              .headlineMedium,
           'زمان دریافت کارت',
         ),
       ),
