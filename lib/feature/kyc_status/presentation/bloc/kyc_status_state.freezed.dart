@@ -18,10 +18,8 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$KycStatusState {
   KycStatusStatus get status => throw _privateConstructorUsedError;
   String get errorMessage => throw _privateConstructorUsedError;
-  String? get deeplink => throw _privateConstructorUsedError;
+  String get deeplink => throw _privateConstructorUsedError;
   String get actionTitle => throw _privateConstructorUsedError;
-  String get actionIcon => throw _privateConstructorUsedError;
-  IconAlignment get iconAlignment => throw _privateConstructorUsedError;
   KYCStatusEntity get identity => throw _privateConstructorUsedError;
   KYCStatusEntity get phoneNumber => throw _privateConstructorUsedError;
   KYCStatusEntity get face => throw _privateConstructorUsedError;
@@ -43,10 +41,8 @@ abstract class $KycStatusStateCopyWith<$Res> {
   $Res call(
       {KycStatusStatus status,
       String errorMessage,
-      String? deeplink,
+      String deeplink,
       String actionTitle,
-      String actionIcon,
-      IconAlignment iconAlignment,
       KYCStatusEntity identity,
       KYCStatusEntity phoneNumber,
       KYCStatusEntity face,
@@ -70,10 +66,8 @@ class _$KycStatusStateCopyWithImpl<$Res, $Val extends KycStatusState>
   $Res call({
     Object? status = null,
     Object? errorMessage = null,
-    Object? deeplink = freezed,
+    Object? deeplink = null,
     Object? actionTitle = null,
-    Object? actionIcon = null,
-    Object? iconAlignment = null,
     Object? identity = null,
     Object? phoneNumber = null,
     Object? face = null,
@@ -88,22 +82,14 @@ class _$KycStatusStateCopyWithImpl<$Res, $Val extends KycStatusState>
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
               as String,
-      deeplink: freezed == deeplink
+      deeplink: null == deeplink
           ? _value.deeplink
           : deeplink // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       actionTitle: null == actionTitle
           ? _value.actionTitle
           : actionTitle // ignore: cast_nullable_to_non_nullable
               as String,
-      actionIcon: null == actionIcon
-          ? _value.actionIcon
-          : actionIcon // ignore: cast_nullable_to_non_nullable
-              as String,
-      iconAlignment: null == iconAlignment
-          ? _value.iconAlignment
-          : iconAlignment // ignore: cast_nullable_to_non_nullable
-              as IconAlignment,
       identity: null == identity
           ? _value.identity
           : identity // ignore: cast_nullable_to_non_nullable
@@ -135,10 +121,8 @@ abstract class _$$KycStatusStateImplCopyWith<$Res>
   $Res call(
       {KycStatusStatus status,
       String errorMessage,
-      String? deeplink,
+      String deeplink,
       String actionTitle,
-      String actionIcon,
-      IconAlignment iconAlignment,
       KYCStatusEntity identity,
       KYCStatusEntity phoneNumber,
       KYCStatusEntity face,
@@ -160,10 +144,8 @@ class __$$KycStatusStateImplCopyWithImpl<$Res>
   $Res call({
     Object? status = null,
     Object? errorMessage = null,
-    Object? deeplink = freezed,
+    Object? deeplink = null,
     Object? actionTitle = null,
-    Object? actionIcon = null,
-    Object? iconAlignment = null,
     Object? identity = null,
     Object? phoneNumber = null,
     Object? face = null,
@@ -178,22 +160,14 @@ class __$$KycStatusStateImplCopyWithImpl<$Res>
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
               as String,
-      deeplink: freezed == deeplink
+      deeplink: null == deeplink
           ? _value.deeplink
           : deeplink // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       actionTitle: null == actionTitle
           ? _value.actionTitle
           : actionTitle // ignore: cast_nullable_to_non_nullable
               as String,
-      actionIcon: null == actionIcon
-          ? _value.actionIcon
-          : actionIcon // ignore: cast_nullable_to_non_nullable
-              as String,
-      iconAlignment: null == iconAlignment
-          ? _value.iconAlignment
-          : iconAlignment // ignore: cast_nullable_to_non_nullable
-              as IconAlignment,
       identity: null == identity
           ? _value.identity
           : identity // ignore: cast_nullable_to_non_nullable
@@ -216,18 +190,17 @@ class __$$KycStatusStateImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$KycStatusStateImpl implements _KycStatusState {
+class _$KycStatusStateImpl extends _KycStatusState {
   const _$KycStatusStateImpl(
       {this.status = KycStatusStatus.initial,
       this.errorMessage = '',
-      this.deeplink,
+      this.deeplink = '',
       this.actionTitle = '',
-      this.actionIcon = '',
-      this.iconAlignment = IconAlignment.end,
       this.identity = const KYCStatusEntity(),
       this.phoneNumber = const KYCStatusEntity(),
       this.face = const KYCStatusEntity(),
-      this.sayah = const KYCStatusEntity()});
+      this.sayah = const KYCStatusEntity()})
+      : super._();
 
   @override
   @JsonKey()
@@ -236,16 +209,11 @@ class _$KycStatusStateImpl implements _KycStatusState {
   @JsonKey()
   final String errorMessage;
   @override
-  final String? deeplink;
+  @JsonKey()
+  final String deeplink;
   @override
   @JsonKey()
   final String actionTitle;
-  @override
-  @JsonKey()
-  final String actionIcon;
-  @override
-  @JsonKey()
-  final IconAlignment iconAlignment;
   @override
   @JsonKey()
   final KYCStatusEntity identity;
@@ -261,7 +229,7 @@ class _$KycStatusStateImpl implements _KycStatusState {
 
   @override
   String toString() {
-    return 'KycStatusState(status: $status, errorMessage: $errorMessage, deeplink: $deeplink, actionTitle: $actionTitle, actionIcon: $actionIcon, iconAlignment: $iconAlignment, identity: $identity, phoneNumber: $phoneNumber, face: $face, sayah: $sayah)';
+    return 'KycStatusState(status: $status, errorMessage: $errorMessage, deeplink: $deeplink, actionTitle: $actionTitle, identity: $identity, phoneNumber: $phoneNumber, face: $face, sayah: $sayah)';
   }
 
   @override
@@ -276,10 +244,6 @@ class _$KycStatusStateImpl implements _KycStatusState {
                 other.deeplink == deeplink) &&
             (identical(other.actionTitle, actionTitle) ||
                 other.actionTitle == actionTitle) &&
-            (identical(other.actionIcon, actionIcon) ||
-                other.actionIcon == actionIcon) &&
-            (identical(other.iconAlignment, iconAlignment) ||
-                other.iconAlignment == iconAlignment) &&
             (identical(other.identity, identity) ||
                 other.identity == identity) &&
             (identical(other.phoneNumber, phoneNumber) ||
@@ -289,18 +253,8 @@ class _$KycStatusStateImpl implements _KycStatusState {
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      status,
-      errorMessage,
-      deeplink,
-      actionTitle,
-      actionIcon,
-      iconAlignment,
-      identity,
-      phoneNumber,
-      face,
-      sayah);
+  int get hashCode => Object.hash(runtimeType, status, errorMessage, deeplink,
+      actionTitle, identity, phoneNumber, face, sayah);
 
   /// Create a copy of KycStatusState
   /// with the given fields replaced by the non-null parameter values.
@@ -312,31 +266,26 @@ class _$KycStatusStateImpl implements _KycStatusState {
           this, _$identity);
 }
 
-abstract class _KycStatusState implements KycStatusState {
+abstract class _KycStatusState extends KycStatusState {
   const factory _KycStatusState(
       {final KycStatusStatus status,
       final String errorMessage,
-      final String? deeplink,
+      final String deeplink,
       final String actionTitle,
-      final String actionIcon,
-      final IconAlignment iconAlignment,
       final KYCStatusEntity identity,
       final KYCStatusEntity phoneNumber,
       final KYCStatusEntity face,
       final KYCStatusEntity sayah}) = _$KycStatusStateImpl;
+  const _KycStatusState._() : super._();
 
   @override
   KycStatusStatus get status;
   @override
   String get errorMessage;
   @override
-  String? get deeplink;
+  String get deeplink;
   @override
   String get actionTitle;
-  @override
-  String get actionIcon;
-  @override
-  IconAlignment get iconAlignment;
   @override
   KYCStatusEntity get identity;
   @override

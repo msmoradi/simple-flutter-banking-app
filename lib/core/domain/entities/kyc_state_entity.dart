@@ -3,7 +3,7 @@ import 'package:banx/core/domain/entities/kyc_status_entity.dart';
 import 'package:banx/core/domain/entities/routing_button_entity.dart';
 
 class KycStateEntity extends Entity {
-  final RoutingButtonEntity? routingButton;
+  final RoutingButtonEntity routingButton;
   final StateEntity state;
 
   KycStateEntity({

@@ -9,8 +9,8 @@ part of 'routing_button_dto.dart';
 _$RoutingButtonDtoImpl _$$RoutingButtonDtoImplFromJson(
         Map<String, dynamic> json) =>
     _$RoutingButtonDtoImpl(
-      deeplink: json['deeplink'] as String,
-      title: json['title'] as String?,
+      deeplink: json['deeplink'] as String? ?? '',
+      title: json['title'] as String? ?? '',
     );
 
 Map<String, dynamic> _$$RoutingButtonDtoImplToJson(

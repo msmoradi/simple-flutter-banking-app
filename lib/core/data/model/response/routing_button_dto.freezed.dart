@@ -21,7 +21,7 @@ RoutingButtonDto _$RoutingButtonDtoFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$RoutingButtonDto {
   String get deeplink => throw _privateConstructorUsedError;
-  String? get title => throw _privateConstructorUsedError;
+  String get title => throw _privateConstructorUsedError;
 
   /// Serializes this RoutingButtonDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -39,7 +39,7 @@ abstract class $RoutingButtonDtoCopyWith<$Res> {
           RoutingButtonDto value, $Res Function(RoutingButtonDto) then) =
       _$RoutingButtonDtoCopyWithImpl<$Res, RoutingButtonDto>;
   @useResult
-  $Res call({String deeplink, String? title});
+  $Res call({String deeplink, String title});
 }
 
 /// @nodoc
@@ -58,17 +58,17 @@ class _$RoutingButtonDtoCopyWithImpl<$Res, $Val extends RoutingButtonDto>
   @override
   $Res call({
     Object? deeplink = null,
-    Object? title = freezed,
+    Object? title = null,
   }) {
     return _then(_value.copyWith(
       deeplink: null == deeplink
           ? _value.deeplink
           : deeplink // ignore: cast_nullable_to_non_nullable
               as String,
-      title: freezed == title
+      title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
     ) as $Val);
   }
 }
@@ -81,7 +81,7 @@ abstract class _$$RoutingButtonDtoImplCopyWith<$Res>
       __$$RoutingButtonDtoImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String deeplink, String? title});
+  $Res call({String deeplink, String title});
 }
 
 /// @nodoc
@@ -98,17 +98,17 @@ class __$$RoutingButtonDtoImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? deeplink = null,
-    Object? title = freezed,
+    Object? title = null,
   }) {
     return _then(_$RoutingButtonDtoImpl(
       deeplink: null == deeplink
           ? _value.deeplink
           : deeplink // ignore: cast_nullable_to_non_nullable
               as String,
-      title: freezed == title
+      title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
     ));
   }
 }
@@ -116,15 +116,17 @@ class __$$RoutingButtonDtoImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$RoutingButtonDtoImpl implements _RoutingButtonDto {
-  const _$RoutingButtonDtoImpl({required this.deeplink, required this.title});
+  const _$RoutingButtonDtoImpl({this.deeplink = '', this.title = ''});
 
   factory _$RoutingButtonDtoImpl.fromJson(Map<String, dynamic> json) =>
       _$$RoutingButtonDtoImplFromJson(json);
 
   @override
+  @JsonKey()
   final String deeplink;
   @override
-  final String? title;
+  @JsonKey()
+  final String title;
 
   @override
   String toString() {
@@ -163,9 +165,8 @@ class _$RoutingButtonDtoImpl implements _RoutingButtonDto {
 }
 
 abstract class _RoutingButtonDto implements RoutingButtonDto {
-  const factory _RoutingButtonDto(
-      {required final String deeplink,
-      required final String? title}) = _$RoutingButtonDtoImpl;
+  const factory _RoutingButtonDto({final String deeplink, final String title}) =
+      _$RoutingButtonDtoImpl;
 
   factory _RoutingButtonDto.fromJson(Map<String, dynamic> json) =
       _$RoutingButtonDtoImpl.fromJson;
@@ -173,7 +174,7 @@ abstract class _RoutingButtonDto implements RoutingButtonDto {
   @override
   String get deeplink;
   @override
-  String? get title;
+  String get title;
 
   /// Create a copy of RoutingButtonDto
   /// with the given fields replaced by the non-null parameter values.

@@ -22,10 +22,10 @@ class KycStatusBloc extends Bloc<KycStatusEvent, KycStatusState> {
     ActionClicked event,
     Emitter<KycStatusState> emit,
   ) async {
-    if (state.deeplink != null) {
-      emit(state.copyWith(status: KycStatusStatus.deepLinkLanding));
-    } else {
+    if (state.deeplink.isEmpty) {
       add(Init());
+    } else {
+      emit(state.copyWith(status: KycStatusStatus.deepLinkLanding));
     }
   }
 
@@ -41,31 +41,14 @@ class KycStatusBloc extends Bloc<KycStatusEvent, KycStatusState> {
         success: (entity) {
           emit(
             state.copyWith(
+                status: KycStatusStatus.initial,
+                deeplink: entity.routingButton.deeplink,
+                actionTitle: entity.routingButton.title,
                 identity: entity.state.identity,
                 phoneNumber: entity.state.phoneNumber,
                 face: entity.state.face,
                 sayah: entity.state.sayah),
           );
-
-          if (entity.routingButton != null) {
-            emit(
-              state.copyWith(
-                  status: KycStatusStatus.initial,
-                  deeplink: entity.routingButton!.deeplink,
-                  actionTitle: entity.routingButton!.title!,
-                  actionIcon: "arrow-left",
-                  iconAlignment: IconAlignment.end),
-            );
-          } else {
-            emit(
-              state.copyWith(
-                  status: KycStatusStatus.initial,
-                  deeplink: null,
-                  actionTitle: "به‌روزرسانی وضعیت",
-                  actionIcon: "refresh-ccw",
-                  iconAlignment: IconAlignment.start),
-            );
-          }
         },
         partialSuccess: (message) => emit(
           state.copyWith(

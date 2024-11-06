@@ -85,6 +85,8 @@ import 'package:banx/feature/face_detection/presentation/bloc/face_detection_blo
 import 'package:banx/feature/home/presentation/bloc/home_bloc.dart' as _i412;
 import 'package:banx/feature/identity/presentation/bloc/identity_bloc.dart'
     as _i665;
+import 'package:banx/feature/identity_correction/presentation/bloc/identity_correction_bloc.dart'
+    as _i801;
 import 'package:banx/feature/kyc_status/presentation/bloc/kyc_status_bloc.dart'
     as _i618;
 import 'package:banx/feature/main/presentation/bloc/main_bloc.dart' as _i381;
@@ -261,6 +263,8 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i402.PhoneBloc>(() => _i402.PhoneBloc(
         authenticationRepository: gh<_i474.AuthenticationRepository>()));
     gh.factory<_i618.KycStatusBloc>(() => _i618.KycStatusBloc(
+        authenticationRepository: gh<_i474.AuthenticationRepository>()));
+    gh.factory<_i801.IdentityCorrectionBloc>(() => _i801.IdentityCorrectionBloc(
         authenticationRepository: gh<_i474.AuthenticationRepository>()));
     gh.factory<_i339.ConfirmPasswordBloc>(() => _i339.ConfirmPasswordBloc(
           authenticationRepository: gh<_i474.AuthenticationRepository>(),
