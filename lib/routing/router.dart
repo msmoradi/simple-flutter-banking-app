@@ -2,6 +2,7 @@ import 'package:banx/composition/add_address_page_factory.dart';
 import 'package:banx/composition/card_activation_otp_page_factory.dart';
 import 'package:banx/composition/card_activation_page_factory.dart';
 import 'package:banx/composition/check_postal_code_page_factory.dart';
+import 'package:banx/composition/identity_correction_page_factory.dart';
 import 'package:banx/composition/select_address_page_factory.dart';
 import 'package:banx/composition/card_delivery_time_page_factory.dart';
 import 'package:banx/composition/confirm_password_page_factory.dart';
@@ -50,6 +51,7 @@ GoRouter getRouterConfig({
       EnableBiometricPageFactory.route(showMessage: showMessage),
       OnboardingFacePageFactory.route(showMessage: showMessage),
       IdentityPageFactory.route(showMessage: showMessage),
+      IdentityCorrectionPageFactory.route(showMessage: showMessage),
       VerifyOtpPageFactory.route(showMessage: showMessage),
       VerifyPasswordPageFactory.route(showMessage: showMessage),
     ],

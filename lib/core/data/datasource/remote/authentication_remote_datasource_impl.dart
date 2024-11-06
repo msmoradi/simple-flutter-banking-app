@@ -120,4 +120,24 @@ class AuthenticationRemoteDataSourceImpl
       },
     );
   }
+
+  @override
+  Future<SignUpResponseDto> identityCorrection({
+    required String birthDate,
+  }) {
+    final body = {
+      'birthDate': birthDate,
+    };
+
+    return apiService.post(
+      endpoint: ApiEndpoint.auth(AuthEndpoint.IDENTITY_CORRECTION),
+      data: body,
+      mapper: (response) {
+        if (response != null) {
+          return SignUpResponseDto.fromJson(response);
+        }
+        throw NotNullableError('signup response should not be null');
+      },
+    );
+  }
 }

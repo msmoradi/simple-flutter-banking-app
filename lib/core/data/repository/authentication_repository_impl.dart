@@ -40,7 +40,6 @@ class AuthenticationRepositoryImpl extends AuthenticationRepository {
       );
     }).then((entityWrapper) async {
       if (entityWrapper is SuccessEntityWrapper<TokenEntity>) {
-
         await saveTokens(
             accessToken: entityWrapper.data.accessToken,
             refreshToken: entityWrapper.data.refreshToken);
@@ -114,6 +113,20 @@ class AuthenticationRepositoryImpl extends AuthenticationRepository {
             nationalId: nationalId,
             birthDate: birthDate,
             referralCode: referralCode)
+        .mapResponseToEntityWrapper(mapper: (model) {
+      return SignUpEntity(
+        expiresIn: model.expiresIn,
+        codeLength: model.codeLength,
+      );
+    });
+  }
+
+  @override
+  Future<EntityWrapper<SignUpEntity>> identityCorrection({
+    required String birthDate,
+  }) {
+    return authenticationRemoteDataSource
+        .identityCorrection(birthDate: birthDate)
         .mapResponseToEntityWrapper(mapper: (model) {
       return SignUpEntity(
         expiresIn: model.expiresIn,

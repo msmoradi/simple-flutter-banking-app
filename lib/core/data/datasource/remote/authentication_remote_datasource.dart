@@ -25,6 +25,10 @@ abstract class AuthenticationRemoteDataSource {
     String? referralCode,
   });
 
+  Future<SignUpResponseDto> identityCorrection({
+    required String birthDate,
+  });
+
   Future<SendOtpResponseDto> sendOtp(
     String phoneNumber,
   );

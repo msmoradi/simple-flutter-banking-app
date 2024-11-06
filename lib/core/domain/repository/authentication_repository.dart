@@ -30,4 +30,8 @@ abstract class AuthenticationRepository {
     required String birthDate,
     String? referralCode,
   });
+
+  Future<EntityWrapper<SignUpEntity>> identityCorrection({
+    required String birthDate,
+  });
 }
