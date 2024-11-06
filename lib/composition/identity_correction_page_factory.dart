@@ -17,7 +17,7 @@ class IdentityCorrectionPageFactory {
       phoneNumber: phoneNumber,
       onVerifyOtp: (expiresIn, codeLength) {
         context.push(
-          "${VerifyOtpPageFactory.startPath}/$phoneNumber",
+          "${VerifyOtpPageFactory.startPath}/$phoneNumber/$codeLength/$expiresIn",
         );
       },
     );
