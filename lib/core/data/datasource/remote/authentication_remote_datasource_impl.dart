@@ -129,7 +129,7 @@ class AuthenticationRemoteDataSourceImpl
       'birthDate': birthDate,
     };
 
-    return apiService.post(
+    return apiService.put(
       endpoint: ApiEndpoint.auth(AuthEndpoint.IDENTITY_CORRECTION),
       data: body,
       mapper: (response) {

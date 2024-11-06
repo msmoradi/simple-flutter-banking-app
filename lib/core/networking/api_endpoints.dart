@@ -21,7 +21,7 @@ class ApiEndpoint {
       case AuthEndpoint.SIGN_UP:
         return '$path/otp/signup';
       case AuthEndpoint.IDENTITY_CORRECTION:
-        return '$path/otp/identityCorrection';
+        return '$path/otp/birthdate';
     }
   }
 
