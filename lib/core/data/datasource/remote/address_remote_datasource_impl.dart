@@ -10,6 +10,7 @@ import 'package:banx/core/networking/api_endpoints.dart';
 import 'package:banx/core/networking/http_client.dart';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
+import 'package:persian_number_utility/persian_number_utility.dart';
 
 @LazySingleton(as: AddressRemoteDataSource)
 class AddressRemoteDataSourceImpl extends AddressRemoteDataSource {
@@ -42,13 +43,13 @@ class AddressRemoteDataSourceImpl extends AddressRemoteDataSource {
     required AddressDto addressDto,
   }) {
     final dataRequest = PostAddressRequestDto(
-      postalCode: addressDto.postalCode,
+      postalCode: addressDto.postalCode.toEnglishDigit(),
       address: addressDto.address,
       region: addressDto.region,
       street: addressDto.street,
-      plaque: addressDto.plaque,
-      floor: addressDto.floor,
-      unit: addressDto.unit,
+      plaque: addressDto.plaque.toEnglishDigit(),
+      floor: addressDto.floor.toEnglishDigit(),
+      unit: addressDto.unit.toEnglishDigit(),
       houseName: addressDto.houseName,
       cityId: addressDto.city.id,
       provinceId: addressDto.province.id,
@@ -69,7 +70,7 @@ class AddressRemoteDataSourceImpl extends AddressRemoteDataSource {
   @override
   Future<GetInquiryResponseDto> getInquiry({required String postalCode}) {
     final requestParameters = GetInquiryRequestDto(
-      postalCode: postalCode,
+      postalCode: postalCode.toEnglishDigit(),
     ).toJson();
 
     return apiService.get(

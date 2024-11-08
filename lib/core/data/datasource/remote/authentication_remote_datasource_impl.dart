@@ -8,6 +8,7 @@ import 'package:banx/core/networking/api_endpoints.dart';
 import 'package:banx/core/networking/http_client.dart';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
+import 'package:persian_number_utility/persian_number_utility.dart';
 
 @LazySingleton(as: AuthenticationRemoteDataSource)
 class AuthenticationRemoteDataSourceImpl
@@ -21,7 +22,7 @@ class AuthenticationRemoteDataSourceImpl
     String phoneNumber,
   ) {
     final body = {
-      'phoneNumber': phoneNumber,
+      'phoneNumber': phoneNumber.toEnglishDigit(),
     };
     return apiService.post(
       endpoint: ApiEndpoint.auth(AuthEndpoint.SEND_OTP),
@@ -41,8 +42,8 @@ class AuthenticationRemoteDataSourceImpl
     String otp,
   ) {
     final body = {
-      'phoneNumber': phoneNumber,
-      'otp': otp,
+      'phoneNumber': phoneNumber.toEnglishDigit(),
+      'otp': otp.toEnglishDigit(),
     };
     return apiService.post(
       endpoint: ApiEndpoint.auth(AuthEndpoint.VERIFY_OTP),
@@ -59,7 +60,7 @@ class AuthenticationRemoteDataSourceImpl
   @override
   Future<EmptyResponseDto> putPassword(String password) {
     final body = {
-      'password': password,
+      'password': password.toEnglishDigit(),
     };
 
     return apiService.put(
@@ -74,7 +75,7 @@ class AuthenticationRemoteDataSourceImpl
   @override
   Future<TokenDto> postPassword(String password) {
     final body = {
-      'password': password,
+      'password': password.toEnglishDigit(),
     };
 
     return apiService.post(
@@ -104,9 +105,9 @@ class AuthenticationRemoteDataSourceImpl
     String? referralCode,
   }) {
     final body = {
-      'phoneNumber': phoneNumber,
-      'nationalId': nationalId,
-      'birthDate': birthDate,
+      'phoneNumber': phoneNumber.toEnglishDigit(),
+      'nationalId': nationalId.toEnglishDigit(),
+      'birthDate': birthDate.toEnglishDigit(),
     };
 
     return apiService.post(
@@ -126,7 +127,7 @@ class AuthenticationRemoteDataSourceImpl
     required String birthDate,
   }) {
     final body = {
-      'birthDate': birthDate,
+      'birthDate': birthDate.toEnglishDigit(),
     };
 
     return apiService.put(
